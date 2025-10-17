@@ -1,0 +1,20 @@
+
+{
+  "name": "maldives-bible",
+  "version": "1.0.0",
+  "description": "A comprehensive guide to Maldives resorts.",
+  "type": "module",
+  "scripts": {
+    "generate-data": "node ./scripts/generate-resorts-json.js"
+  },
+  "keywords": [
+    "react",
+    "gemini",
+    "maldives"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^1.25.0"
+  }
+}
