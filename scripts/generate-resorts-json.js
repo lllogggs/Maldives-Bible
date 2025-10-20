@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 import * as fs from 'fs';
 import * as path from 'path';
@@ -77,14 +76,15 @@ async function generateResortsData() {
       *   **transportation**: '수상비행기', '보트', '국내선' 중 하나여야 합니다.
       *   **price**: 4박, 성인 2인, 올인클루시브 기준의 대략적인 USD 가격입니다.
       *   **snorkelingQuality**: 1에서 5 사이의 점수로 평가해주세요.
-      *   **imageUrl**: 매우 중요합니다. 각 리조트의 실제 모습을 보여주는 고품질 이미지의 직접 URL을 찾아주세요. (예: .jpg, .png, .webp). 공식 웹사이트, Booking.com, Expedia 같은 신뢰도 높은 소스를 우선으로 사용하세요. 절대 'picsum.photos'나 'unsplash' 같은 더미/스톡 이미지 사이트를 사용하지 마세요.
+      *   **imageUrls**: 매우 중요합니다. 각 리조트의 공식 갤러리 등에서 실제 모습을 보여주는 고품질 이미지의 직접 URL을 4개 찾아 배열 형태로 제공해주세요. (예: .jpg, .png, .webp). 첫 번째 이미지는 리조트를 가장 잘 나타내는 대표 이미지여야 합니다. 절대 'picsum.photos'나 'unsplash' 같은 더미/스톡 이미지 사이트를 사용하지 마세요.
+      *   **homepageUrl**: 각 리조트의 공식 홈페이지 메인 주소를 정확하게 찾아주세요.
       *   **roomTypes**: 대표적인 룸 타입 2-3개를 배열 형태로 포함해주세요. (예: ["비치빌라", "워터빌라"])
       *   다른 모든 필드도 최대한 정확한 정보로 채워주세요.
       *   만약 특정 리조트 정보를 찾을 수 없다면, 결과에서 제외하세요.
 
       JSON 형식 예시:
       [{
-        "id": 1, // id는 순차적으로 증가하도록 부여
+        "id": 1,
         "name": "리조트 한글 이름",
         "name_en": "Resort English Name",
         "brand": "Brand Name",
@@ -107,8 +107,14 @@ async function generateResortsData() {
         "hasFamilyRoom": true,
         "hasKidsClub": true,
         "honeymoonPerks": true,
-        "imageUrl": "https://www.fourseasons.com/alt/img-opt/~70.1530.0,0000-151,3302-3000,0000-1687,5000/publish/content/dam/fourseasons/images/web/MAL/MAL_106_1280x720.jpg",
-        "roomTypes": ["비치빌라", "워터빌라"]
+        "imageUrls": [
+          "https://www.fourseasons.com/alt/img-opt/~70.1530.0,0000-151,3302-3000,0000-1687,5000/publish/content/dam/fourseasons/images/web/MAL/MAL_106_1280x720.jpg",
+          "https://example.com/image2.jpg",
+          "https://example.com/image3.jpg",
+          "https://example.com/image4.jpg"
+        ],
+        "roomTypes": ["비치빌라", "워터빌라"],
+        "homepageUrl": "https://www.fourseasons.com/maldiveskh/"
       }]
     `;
 
@@ -158,9 +164,19 @@ async function generateResortsData() {
   }
 
   if (allResortsData.length > 0) {
-    const filePath = path.join(__dirname, '..', 'public', 'api', 'resorts.json');
-    fs.writeFileSync(filePath, JSON.stringify(allResortsData, null, 2), 'utf-8');
-    console.log(`\n\n최종 완료! 총 ${allResortsData.length}개의 리조트 데이터가 ${filePath}에 저장되었습니다.`);
+    const outputDir = path.join(__dirname, '..', 'public', 'api');
+    const resortsPerFile = 20;
+    const finalChunks = chunkArray(allResortsData, resortsPerFile);
+
+    finalChunks.forEach((chunk, index) => {
+      const fileIndex = index + 1;
+      const fileName = fileIndex === 1 ? 'resorts.json' : `resorts${fileIndex}.json`;
+      const filePath = path.join(outputDir, fileName);
+      fs.writeFileSync(filePath, JSON.stringify(chunk, null, 2), 'utf-8');
+      console.log(`${chunk.length}개의 리조트 데이터가 ${filePath}에 저장되었습니다.`);
+    });
+    
+    console.log(`\n\n최종 완료! 총 ${allResortsData.length}개의 리조트 데이터가 ${finalChunks.length}개의 파일에 나뉘어 저장되었습니다.`);
   } else {
     console.error('\n\n오류: 최종적으로 생성된 리조트 데이터가 없습니다. 스크립트를 다시 실행해보세요.');
   }

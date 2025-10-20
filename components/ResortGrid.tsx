@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ResortCard from './ResortCard';
 import type { Resort, SortOption } from '../types';
@@ -7,9 +6,13 @@ interface ResortGridProps {
   resorts: Resort[];
   sortOption: SortOption;
   onSortChange: (option: SortOption) => void;
+  isEditMode: boolean;
+  onEditResort: (resort: Resort) => void;
+  compareList: number[];
+  onToggleCompare: (resortId: number) => void;
 }
 
-const SortDropdown: React.FC<Omit<ResortGridProps, 'resorts'>> = ({ sortOption, onSortChange }) => {
+const SortDropdown: React.FC<Pick<ResortGridProps, 'sortOption' | 'onSortChange'>> = ({ sortOption, onSortChange }) => {
   return (
     <div className="relative">
       <select
@@ -35,7 +38,7 @@ const SortDropdown: React.FC<Omit<ResortGridProps, 'resorts'>> = ({ sortOption, 
 };
 
 
-const ResortGrid: React.FC<ResortGridProps> = ({ resorts, sortOption, onSortChange }) => {
+const ResortGrid: React.FC<ResortGridProps> = ({ resorts, sortOption, onSortChange, isEditMode, onEditResort, compareList, onToggleCompare }) => {
   return (
     <div>
       <div className="mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
@@ -48,8 +51,16 @@ const ResortGrid: React.FC<ResortGridProps> = ({ resorts, sortOption, onSortChan
 
       {resorts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {resorts.map(resort => (
-            <ResortCard key={resort.id} resort={resort} />
+          {resorts.map((resort, index) => (
+            <ResortCard 
+              key={resort.id} 
+              resort={resort} 
+              isEditMode={isEditMode}
+              onEdit={onEditResort}
+              compareList={compareList}
+              onToggleCompare={onToggleCompare}
+              isFirstCard={index === 0}
+            />
           ))}
         </div>
       ) : (

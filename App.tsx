@@ -2,6 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/Header';
 import FilterSidebar from './components/FilterSidebar';
 import ResortGrid from './components/ResortGrid';
+import EditModal from './components/EditModal';
+import ResortDetail from './components/ResortDetail';
+import CompareTray from './components/CompareTray';
+import CompareView from './components/CompareView';
+import NavBar from './components/NavBar';
+import TravelAgencies from './components/TravelAgencies';
 import type { Resort, Filters, SortOption } from './types';
 
 const App: React.FC = () => {
@@ -19,32 +25,39 @@ const App: React.FC = () => {
     hasPrivatePool: false,
   });
   const [sortOption, setSortOption] = useState<SortOption>('default');
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  const [editingResort, setEditingResort] = useState<Resort | null>(null);
+  const [selectedResortId, setSelectedResortId] = useState<number | null>(null);
+  const [compareList, setCompareList] = useState<number[]>([]);
+  const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
+  const [currentView, setCurrentView] = useState<'resorts' | 'agencies'>('resorts');
 
   useEffect(() => {
     const fetchResorts = async () => {
       try {
         setLoading(true);
-        // Fetch from all four JSON files concurrently
-        const [resorts1Response, resorts2Response, resorts3Response, resorts4Response] = await Promise.all([
-          fetch('/api/resorts.json'),
-          fetch('/api/resorts2.json'),
-          fetch('/api/resorts3.json'),
-          fetch('/api/resorts4.json')
-        ]);
+        const resortFileUrls = Array.from({ length: 9 }, (_, i) => 
+            i === 0 ? '/api/resorts.json' : `/api/resorts${i + 1}.json`
+        );
 
-        if (!resorts1Response.ok || !resorts2Response.ok || !resorts3Response.ok || !resorts4Response.ok) {
-          throw new Error('리조트 데이터를 불러오는 데 실패했습니다.');
+        const responses = await Promise.all(resortFileUrls.map(url => fetch(url)));
+
+        for (const response of responses) {
+            if (!response.ok) {
+                throw new Error(`리조트 데이터를 불러오는 데 실패했습니다: ${response.statusText}`);
+            }
         }
 
-        const data1: Resort[] = await resorts1Response.json();
-        const data2: Resort[] = await resorts2Response.json();
-        const data3: Resort[] = await resorts3Response.json();
-        const data4: Resort[] = await resorts4Response.json();
+        const resortsDataArrays: Resort[][] = await Promise.all(responses.map(res => res.json()));
         
-        const combinedData = [...data1, ...data2, ...data3, ...data4];
+        const combinedData = resortsDataArrays.flat();
+        const overrides = JSON.parse(localStorage.getItem('resortOverrides') || '{}');
+        const mergedData = combinedData.map(resort => ({
+          ...resort,
+          ...(overrides[resort.id] || {}),
+        }));
 
-        setInitialResorts(combinedData);
-        setDisplayedResorts(combinedData);
+        setInitialResorts(mergedData);
       } catch (err) {
         console.error(err);
         setError(err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.');
@@ -56,25 +69,45 @@ const App: React.FC = () => {
     fetchResorts();
   }, []);
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      const match = hash.match(/^#\/resort\/(\d+)$/);
+      if (match) {
+        setSelectedResortId(Number(match[1]));
+        window.scrollTo(0, 0);
+      } else {
+        setSelectedResortId(null);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    
+    // 항상 메인 리스트 뷰에서 시작하도록 초기 로드 시 해시를 초기화합니다.
+    // 'hashchange' 이벤트가 발생하여 handleHashChange가 자동으로 올바른 뷰를 설정합니다.
+    window.location.hash = '';
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   const applyFiltersAndSort = useCallback(() => {
     let processedResorts = [...initialResorts];
 
-    // Filtering
+    // Filtering logic...
     if (filters.searchTerm) {
       processedResorts = processedResorts.filter(resort =>
         resort.name.toLowerCase().includes(filters.searchTerm.toLowerCase()) ||
         resort.name_en.toLowerCase().includes(filters.searchTerm.toLowerCase())
       );
     }
-
     if (filters.transportation.length > 0) {
       processedResorts = processedResorts.filter(resort =>
         filters.transportation.includes(resort.transportation)
       );
     }
-
     processedResorts = processedResorts.filter(resort => resort.price <= filters.maxPrice);
-
     if (filters.roomTypes.length > 0) {
       processedResorts = processedResorts.filter(resort =>
         filters.roomTypes.every(type => {
@@ -84,36 +117,20 @@ const App: React.FC = () => {
         })
       );
     }
-
     if (filters.hasPrivatePool) {
       processedResorts = processedResorts.filter(resort => resort.hasPrivatePool);
     }
-    
     processedResorts = processedResorts.filter(resort => resort.restaurants >= filters.minRestaurants);
     processedResorts = processedResorts.filter(resort => resort.bars >= filters.minBars);
 
-    // Sorting
+    // Sorting logic...
     switch (sortOption) {
-      case 'price-asc':
-        processedResorts.sort((a, b) => a.price - b.price);
-        break;
-      case 'price-desc':
-        processedResorts.sort((a, b) => b.price - a.price);
-        break;
-      case 'rating-desc':
-        processedResorts.sort((a, b) => b.rating - a.rating);
-        break;
-      case 'snorkeling-desc':
-        processedResorts.sort((a, b) => b.snorkelingQuality - a.snorkelingQuality);
-        break;
-      case 'travelTime-asc':
-        processedResorts.sort((a, b) => a.travelTime - b.travelTime);
-        break;
-      case 'default':
-      default:
-        // Default sort is by ID, which is the initial order.
-        processedResorts.sort((a, b) => a.id - b.id);
-        break;
+      case 'price-asc': processedResorts.sort((a, b) => a.price - b.price); break;
+      case 'price-desc': processedResorts.sort((a, b) => b.price - a.price); break;
+      case 'rating-desc': processedResorts.sort((a, b) => b.rating - a.rating); break;
+      case 'snorkeling-desc': processedResorts.sort((a, b) => b.snorkelingQuality - a.snorkelingQuality); break;
+      case 'travelTime-asc': processedResorts.sort((a, b) => a.travelTime - b.travelTime); break;
+      case 'default': default: processedResorts.sort((a, b) => a.id - b.id); break;
     }
 
     setDisplayedResorts(processedResorts);
@@ -122,6 +139,14 @@ const App: React.FC = () => {
   useEffect(() => {
     applyFiltersAndSort();
   }, [applyFiltersAndSort]);
+
+  const selectedResort = initialResorts.find(r => r.id === selectedResortId);
+
+  useEffect(() => {
+    if (selectedResortId && initialResorts.length > 0 && !selectedResort) {
+      window.location.hash = '';
+    }
+  }, [selectedResortId, initialResorts, selectedResort]);
 
   const handleSearchChange = (term: string) => {
     setFilters(prev => ({ ...prev, searchTerm: term }));
@@ -134,28 +159,137 @@ const App: React.FC = () => {
   const handleSortChange = (option: SortOption) => {
     setSortOption(option);
   };
+
+  const handleToggleEditMode = () => {
+    setIsEditMode(prev => !prev);
+  };
+
+  const handleOpenEditModal = (resort: Resort) => {
+    setEditingResort(resort);
+  };
+
+  const handleCloseEditModal = () => {
+    setEditingResort(null);
+  };
   
+  const handleGoBackToList = () => {
+    window.location.hash = '';
+  };
+
+  const handleSaveResort = (resortId: number, newImageUrl: string) => {
+    const updatedInitialResorts = initialResorts.map(r => {
+      if (r.id === resortId) {
+        const newImageUrls = r.imageUrls ? [...r.imageUrls] : [''];
+        newImageUrls[0] = newImageUrl;
+        return { ...r, imageUrls: newImageUrls };
+      }
+      return r;
+    });
+    setInitialResorts(updatedInitialResorts);
+
+    const overrides = JSON.parse(localStorage.getItem('resortOverrides') || '{}');
+    const resortToUpdate = updatedInitialResorts.find(r => r.id === resortId);
+    if(resortToUpdate) {
+        overrides[resortId] = { ...overrides[resortId], imageUrls: resortToUpdate.imageUrls };
+        localStorage.setItem('resortOverrides', JSON.stringify(overrides));
+    }
+
+    handleCloseEditModal();
+  };
+  
+  const handleToggleCompare = (resortId: number) => {
+    setCompareList(prev => {
+      if (prev.includes(resortId)) {
+        return prev.filter(id => id !== resortId);
+      }
+      if (prev.length < 3) {
+        return [...prev, resortId];
+      }
+      alert('최대 3개의 리조트만 비교할 수 있습니다.');
+      return prev;
+    });
+  };
+
+  const handleClearCompare = () => {
+    setCompareList([]);
+  };
+
+  const handleShowCompare = () => {
+    setIsCompareViewVisible(true);
+    window.scrollTo(0, 0);
+  };
+
+  const handleHideCompare = () => {
+    setIsCompareViewVisible(false);
+  };
+
+  const resortsToCompare = initialResorts
+    .filter(r => compareList.includes(r.id))
+    .sort((a, b) => compareList.indexOf(a.id) - compareList.indexOf(b.id));
+
   return (
-    <div className="min-h-screen bg-white">
-      <Header searchTerm={filters.searchTerm} onSearchChange={handleSearchChange} />
+    <div className="min-h-screen bg-gray-50 pb-32">
+      <Header 
+        searchTerm={filters.searchTerm} 
+        onSearchChange={handleSearchChange}
+        isEditMode={isEditMode}
+        onToggleEditMode={handleToggleEditMode}
+      />
       <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <div className="lg:col-span-1">
-            <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
-          </div>
-          <div className="lg:col-span-3">
-            {loading && <div className="text-center py-16">몰디브 리조트 정보를 불러오는 중입니다...</div>}
-            {error && <div className="text-center py-16 text-red-500">에러: {error}</div>}
-            {!loading && !error && (
-              <ResortGrid 
-                resorts={displayedResorts} 
-                sortOption={sortOption}
-                onSortChange={handleSortChange}
+        <NavBar currentView={currentView} onViewChange={setCurrentView} />
+        
+        {currentView === 'agencies' && <TravelAgencies />}
+        
+        {currentView === 'resorts' && (
+          <>
+            {isCompareViewVisible ? (
+              <CompareView 
+                resorts={resortsToCompare} 
+                onBack={handleHideCompare}
+                onRemove={handleToggleCompare}
               />
+            ) : selectedResortId && selectedResort ? (
+              <ResortDetail resort={selectedResort} onBack={handleGoBackToList} />
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div className="lg:col-span-1">
+                  <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
+                </div>
+                <div className="lg:col-span-3">
+                  {loading && <div className="text-center py-16">몰디브 리조트 정보를 불러오는 중입니다...</div>}
+                  {error && <div className="text-center py-16 text-red-500">에러: {error}</div>}
+                  {!loading && !error && (
+                    <ResortGrid 
+                      resorts={displayedResorts} 
+                      sortOption={sortOption}
+                      onSortChange={handleSortChange}
+                      isEditMode={isEditMode}
+                      onEditResort={handleOpenEditModal}
+                      compareList={compareList}
+                      onToggleCompare={handleToggleCompare}
+                    />
+                  )}
+                </div>
+              </div>
             )}
-          </div>
-        </div>
+          </>
+        )}
       </main>
+       {!isCompareViewVisible && currentView === 'resorts' && (
+        <CompareTray 
+          resorts={resortsToCompare} 
+          onRemove={handleToggleCompare}
+          onClear={handleClearCompare}
+          onCompare={handleShowCompare}
+        />
+      )}
+      {editingResort && (
+        <EditModal
+          resort={editingResort}
+          onSave={handleSaveResort}
+          onClose={handleCloseEditModal}
+        />
+      )}
     </div>
   );
 };

@@ -28,8 +28,9 @@ export interface Resort {
   hasFamilyRoom: boolean;
   hasKidsClub: boolean;
   honeymoonPerks: boolean;
-  imageUrl: string;
+  imageUrls: string[];
   roomTypes: string[];
+  homepageUrl: string;
 }
 
 export type RoomTypeFilter = 'beach' | 'water';
