@@ -1,6 +1,8 @@
+
 import React from 'react';
 import ResortCard from './ResortCard';
 import type { Resort, SortOption } from '../types';
+import { SortIcon } from './icons/Icons';
 
 interface ResortGridProps {
   resorts: Resort[];
@@ -12,32 +14,6 @@ interface ResortGridProps {
   onToggleCompare: (resortId: number) => void;
 }
 
-const SortDropdown: React.FC<Pick<ResortGridProps, 'sortOption' | 'onSortChange'>> = ({ sortOption, onSortChange }) => {
-  return (
-    <div className="relative">
-      <select
-        id="sort-options"
-        value={sortOption}
-        onChange={(e) => onSortChange(e.target.value as SortOption)}
-        className="appearance-none w-full sm:w-auto bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
-      >
-        <option value="default">추천순</option>
-        <option value="price-asc">가격 낮은 순</option>
-        <option value="price-desc">가격 높은 순</option>
-        <option value="rating-desc">평점 높은 순</option>
-        <option value="snorkeling-desc">스노클링 좋은 순</option>
-        <option value="travelTime-asc">이동시간 짧은 순</option>
-      </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-        </svg>
-      </div>
-    </div>
-  );
-};
-
-
 const ResortGrid: React.FC<ResortGridProps> = ({ resorts, sortOption, onSortChange, isEditMode, onEditResort, compareList, onToggleCompare }) => {
   return (
     <div>
@@ -46,7 +22,39 @@ const ResortGrid: React.FC<ResortGridProps> = ({ resorts, sortOption, onSortChan
           <h2 className="text-2xl font-bold text-gray-900">검색 결과</h2>
           <p className="text-gray-600 mt-1">총 {resorts.length}개의 리조트</p>
         </div>
-        <SortDropdown sortOption={sortOption} onSortChange={onSortChange} />
+        
+        <div>
+          <div className="flex items-center justify-end gap-2">
+            <SortIcon className="h-5 w-5 text-gray-500" />
+            <div className="relative">
+              <select
+                id="sort-options"
+                value={sortOption}
+                onChange={(e) => onSortChange(e.target.value as SortOption)}
+                className="appearance-none w-full sm:w-auto bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-center"
+              >
+                <option value="popularity">인기 많은 순</option>
+                <option value="price-asc">가격 낮은 순</option>
+                <option value="price-desc">가격 높은 순</option>
+                <option value="rating-desc">평점 높은 순</option>
+                <option value="snorkeling-desc">수중환경 좋은 순</option>
+                <option value="travelTime-asc">이동시간 짧은 순</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div className="h-5">
+            {sortOption === 'popularity' && (
+              <p className="text-right text-xs text-gray-600 mt-1">
+                  한국 구글 내 몰디브 리조트 검색량 지수 기준
+              </p>
+            )}
+          </div>
+        </div>
       </div>
 
       {resorts.length > 0 ? (

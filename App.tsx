@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/Header';
 import FilterSidebar from './components/FilterSidebar';
@@ -8,6 +9,7 @@ import CompareTray from './components/CompareTray';
 import CompareView from './components/CompareView';
 import NavBar from './components/NavBar';
 import TravelAgencies from './components/TravelAgencies';
+import { POPULARITY_RANKING } from './constants';
 import type { Resort, Filters, SortOption } from './types';
 
 const App: React.FC = () => {
@@ -24,7 +26,7 @@ const App: React.FC = () => {
     minBars: 0,
     hasPrivatePool: false,
   });
-  const [sortOption, setSortOption] = useState<SortOption>('default');
+  const [sortOption, setSortOption] = useState<SortOption>('popularity');
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [editingResort, setEditingResort] = useState<Resort | null>(null);
   const [selectedResortId, setSelectedResortId] = useState<number | null>(null);
@@ -125,12 +127,22 @@ const App: React.FC = () => {
 
     // Sorting logic...
     switch (sortOption) {
+      case 'popularity':
+        processedResorts.sort((a, b) => {
+          const rankA = POPULARITY_RANKING.indexOf(a.name);
+          const rankB = POPULARITY_RANKING.indexOf(b.name);
+          
+          if (rankA !== -1 && rankB !== -1) return rankA - rankB;
+          if (rankA !== -1) return -1;
+          if (rankB !== -1) return 1;
+          return a.id - b.id; // Fallback for unranked items
+        });
+        break;
       case 'price-asc': processedResorts.sort((a, b) => a.price - b.price); break;
       case 'price-desc': processedResorts.sort((a, b) => b.price - a.price); break;
       case 'rating-desc': processedResorts.sort((a, b) => b.rating - a.rating); break;
       case 'snorkeling-desc': processedResorts.sort((a, b) => b.snorkelingQuality - a.snorkelingQuality); break;
       case 'travelTime-asc': processedResorts.sort((a, b) => a.travelTime - b.travelTime); break;
-      case 'default': default: processedResorts.sort((a, b) => a.id - b.id); break;
     }
 
     setDisplayedResorts(processedResorts);

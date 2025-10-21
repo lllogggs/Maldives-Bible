@@ -1,7 +1,8 @@
+
 import React from 'react';
 import type { Filters, RoomTypeFilter } from '../types';
 import { TransportationType } from '../types';
-import { BoatIcon, DomesticFlightIcon, SeaplaneIcon } from './icons/Icons';
+import { BoatIcon, DomesticFlightIcon, SeaplaneIcon, FilterIcon } from './icons/Icons';
 
 interface FilterSidebarProps {
   filters: Filters;
@@ -45,8 +46,11 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange }
   };
 
   return (
-    <aside className="p-6 bg-gray-50 rounded-lg shadow-sm border border-gray-200">
-      <h2 className="text-xl font-bold text-gray-900 pb-4 border-b border-gray-200">필터</h2>
+    <aside className="p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+      <h2 className="text-xl font-bold text-gray-900 pb-4 border-b border-gray-200 flex items-center gap-2">
+        <FilterIcon className="h-6 w-6 text-gray-700" />
+        필터
+      </h2>
       
       <FilterOption title="이동수단">
         <div className="space-y-3">

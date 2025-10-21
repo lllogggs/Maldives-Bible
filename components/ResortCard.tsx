@@ -51,8 +51,8 @@ const ResortCard: React.FC<ResortCardProps> = ({ resort, isEditMode, onEdit, com
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-200 flex flex-col">
-      <div className="relative group">
-        <img className="w-full h-56 object-cover" src={imageUrls[currentImageIndex]} alt={`${resort.name_en} image ${currentImageIndex + 1}`} />
+      <div className="relative group cursor-pointer" onClick={handleViewDetails}>
+        <img className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105" src={imageUrls[currentImageIndex]} alt={`${resort.name_en} image ${currentImageIndex + 1}`} />
         
         {imageUrls.length > 1 && (
           <>
@@ -85,7 +85,7 @@ const ResortCard: React.FC<ResortCardProps> = ({ resort, isEditMode, onEdit, com
         </div>
         {isEditMode && (
           <button
-            onClick={() => onEdit(resort)}
+            onClick={(e) => { e.stopPropagation(); onEdit(resort); }}
             className="absolute bottom-3 right-3 bg-white/80 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg hover:bg-white transition-colors"
             aria-label={`Edit ${resort.name}`}
           >
@@ -100,7 +100,7 @@ const ResortCard: React.FC<ResortCardProps> = ({ resort, isEditMode, onEdit, com
                 </div>
             )}
             <button
-                onClick={() => onToggleCompare(resort.id)}
+                onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
                 disabled={!canSelectForCompare}
                 className={`bg-white/80 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg hover:bg-white transition-colors disabled:bg-gray-200/80 disabled:cursor-not-allowed`}
                 aria-label={isSelectedForCompare ? `Remove ${resort.name} from comparison` : `Add ${resort.name} to comparison`}
@@ -112,7 +112,7 @@ const ResortCard: React.FC<ResortCardProps> = ({ resort, isEditMode, onEdit, com
       </div>
       <div className="p-5 flex-grow flex flex-col">
         <div>
-          <h3 className="text-xl font-bold text-gray-900">{resort.name}</h3>
+          <h3 className="text-xl font-bold text-gray-900 cursor-pointer hover:text-cyan-600 transition-colors" onClick={handleViewDetails}>{resort.name}</h3>
           <p className="text-sm text-gray-500 mb-2">{resort.name_en}</p>
           
           <div className="flex items-center text-sm text-gray-600 mb-1">

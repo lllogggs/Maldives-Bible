@@ -1,8 +1,8 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode, useCallback } from 'react';
 import type { Resort } from '../types';
 import { 
   ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon, StarIcon, LocationPinIcon, ClockIcon, DollarIcon,
-  SeaplaneIcon, BoatIcon, DomesticFlightIcon, LinkIcon, CalendarIcon, RestaurantIcon, CheckCircleIcon, XCircleIcon, KidsClubIcon, HeartIcon
+  SeaplaneIcon, BoatIcon, DomesticFlightIcon, LinkIcon, CalendarIcon, RestaurantIcon, CheckCircleIcon, XCircleIcon, KidsClubIcon, HeartIcon, GalleryIcon
 } from './icons/Icons';
 import { TransportationType } from '../types';
 
@@ -40,19 +40,48 @@ const TransportationIcon: React.FC<{type: TransportationType}> = ({ type }) => {
 }
 
 const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const imageUrls = resort.imageUrls && resort.imageUrls.length > 0
     ? resort.imageUrls
     : ['https://via.placeholder.com/1280x720.png?text=Image+Not+Found'];
 
-  const handlePrevImage = () => {
-    setCurrentImageIndex(prev => (prev - 1 + imageUrls.length) % imageUrls.length);
+  const openGallery = (index: number) => {
+    setSelectedImageIndex(index);
+    setIsGalleryOpen(true);
   };
 
-  const handleNextImage = () => {
-    setCurrentImageIndex(prev => (prev + 1) % imageUrls.length);
-  };
+  const closeGallery = useCallback(() => {
+    setIsGalleryOpen(false);
+  }, []);
+
+  const goToNext = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
+    e?.stopPropagation();
+    setSelectedImageIndex(prev => (prev + 1) % imageUrls.length);
+  }, [imageUrls.length]);
+
+  const goToPrev = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
+    e?.stopPropagation();
+    setSelectedImageIndex(prev => (prev - 1 + imageUrls.length) % imageUrls.length);
+  }, [imageUrls.length]);
+  
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeGallery();
+      if (e.key === 'ArrowRight') goToNext(e);
+      if (e.key === 'ArrowLeft') goToPrev(e);
+    };
+    if (isGalleryOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isGalleryOpen, closeGallery, goToNext, goToPrev]);
+
+
+  const gridImages = imageUrls.slice(1, 5);
 
   return (
     <div className="animate-fade-in">
@@ -66,35 +95,33 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
 
       <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
         {/* Image Gallery */}
-        <div className="relative group w-full h-64 sm:h-80 md:h-96">
-          <img 
-            src={imageUrls[currentImageIndex]} 
-            alt={`${resort.name_en} gallery image ${currentImageIndex + 1}`} 
-            className="w-full h-full object-cover transition-transform duration-500 ease-in-out" 
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-64 md:h-[450px]">
+          <div 
+            className="col-span-2 row-span-2 cursor-pointer group overflow-hidden" 
+            onClick={() => openGallery(0)}
+            role="button"
+            aria-label="View image 1 in gallery"
+          >
+            <img src={imageUrls[0]} alt={`${resort.name_en} main view`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+          </div>
           
-          {imageUrls.length > 1 && (
-            <>
-              <button
-                onClick={handlePrevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 focus:outline-none"
-                aria-label="Previous image"
-              >
-                <ChevronLeftIcon />
-              </button>
-              <button
-                onClick={handleNextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 focus:outline-none"
-                aria-label="Next image"
-              >
-                <ChevronRightIcon />
-              </button>
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-semibold px-3 py-1 rounded-full pointer-events-none">
-                {currentImageIndex + 1} / {imageUrls.length}
-              </div>
-            </>
-          )}
+          {gridImages.map((url, index) => (
+            <div 
+              key={index} 
+              className="hidden md:block col-span-1 row-span-1 cursor-pointer group relative overflow-hidden" 
+              onClick={() => openGallery(index + 1)}
+              role="button"
+              aria-label={`View image ${index + 2} in gallery`}
+            >
+              <img src={url} alt={`${resort.name_en} view ${index + 2}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+              {index === gridImages.length - 1 && imageUrls.length > 5 && (
+                <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white font-bold text-lg pointer-events-none">
+                  <GalleryIcon />
+                  <span className="mt-2 text-sm whitespace-nowrap">사진 모두보기 ({imageUrls.length}장)</span>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
         
         <div className="p-6 md:p-8">
@@ -180,6 +207,53 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
 
         </div>
       </div>
+       {isGalleryOpen && (
+        <div 
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" 
+          onClick={closeGallery}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button 
+            onClick={closeGallery}
+            className="absolute top-4 right-4 text-white hover:text-gray-300"
+            aria-label="Close gallery"
+          >
+            <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <button 
+            onClick={goToPrev}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors"
+            aria-label="Previous image"
+          >
+            <ChevronLeftIcon className="h-8 w-8" />
+          </button>
+          <button 
+            onClick={goToNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors"
+            aria-label="Next image"
+          >
+            <ChevronRightIcon className="h-8 w-8" />
+          </button>
+
+          <div 
+            className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={imageUrls[selectedImageIndex]} 
+              alt={`Resort image ${selectedImageIndex + 1}`} 
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-sm font-semibold px-3 py-1 rounded-full">
+              {selectedImageIndex + 1} / {imageUrls.length}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

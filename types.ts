@@ -46,7 +46,7 @@ export interface Filters {
 }
 
 export type SortOption =
-  | 'default'
+  | 'popularity'
   | 'price-asc'
   | 'price-desc'
   | 'rating-desc'
