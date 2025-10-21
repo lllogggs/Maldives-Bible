@@ -5,6 +5,10 @@
   "description": "A comprehensive guide to Maldives resorts.",
   "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && gh-pages -d dist",
     "generate-data": "node ./scripts/generate-resorts-json.js"
   },
   "keywords": [
@@ -15,6 +19,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/genai": "^1.25.0"
+    "@google/genai": "^1.25.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "gh-pages": "^6.1.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
   }
 }
