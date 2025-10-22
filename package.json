@@ -1,10 +1,14 @@
-
 {
   "name": "maldives-bible",
+  "homepage": "https://lllogggs.github.io/Maldives-Bible/",
   "version": "1.0.0",
   "description": "A comprehensive guide to Maldives resorts.",
   "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "generate-data": "node ./scripts/generate-resorts-json.js"
   },
   "keywords": [
@@ -15,6 +19,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/genai": "^1.25.0"
+    "@google/genai": "^1.25.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "gh-pages": "^6.1.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
   }
 }
