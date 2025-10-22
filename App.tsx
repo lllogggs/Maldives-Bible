@@ -38,8 +38,9 @@ const App: React.FC = () => {
     const fetchResorts = async () => {
       try {
         setLoading(true);
-        const resortFileUrls = Array.from({ length: 9 }, (_, i) => 
-            i === 0 ? '/api/resorts.json' : `/api/resorts${i + 1}.json`
+        const baseUrl = import.meta.env.BASE_URL;
+        const resortFileUrls = Array.from({ length: 9 }, (_, i) =>
+            `${baseUrl}api/resorts${i === 0 ? '' : i + 1}.json`
         );
 
         const responses = await Promise.all(resortFileUrls.map(url => fetch(url)));
