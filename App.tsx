@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/Header';
 import FilterSidebar from './components/FilterSidebar';
@@ -38,8 +37,10 @@ const App: React.FC = () => {
     const fetchResorts = async () => {
       try {
         setLoading(true);
+        // vite.config.ts의 base 경로를 가져와 절대 경로를 만듭니다.
         const baseUrl = import.meta.env.BASE_URL;
         const resortFileUrls = Array.from({ length: 9 }, (_, i) =>
+            // 예: /Maldives-Bible/api/resorts.json
             `${baseUrl}api/resorts${i === 0 ? '' : i + 1}.json`
         );
 
@@ -47,7 +48,7 @@ const App: React.FC = () => {
 
         for (const response of responses) {
             if (!response.ok) {
-                throw new Error(`리조트 데이터를 불러오는 데 실패했습니다: ${response.statusText}`);
+                throw new Error(`리조트 데이터를 불러오는 데 실패했습니다: ${response.statusText} (${response.url})`);
             }
         }
 
@@ -85,10 +86,7 @@ const App: React.FC = () => {
     };
 
     window.addEventListener('hashchange', handleHashChange);
-    
-    // 항상 메인 리스트 뷰에서 시작하도록 초기 로드 시 해시를 초기화합니다.
-    // 'hashchange' 이벤트가 발생하여 handleHashChange가 자동으로 올바른 뷰를 설정합니다.
-    window.location.hash = '';
+    handleHashChange(); // 초기 로드 시에도 해시를 확인합니다.
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
