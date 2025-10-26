@@ -23,6 +23,11 @@ const buildPreferencesEndpoint = () => {
     return `${baseUrl}/api/resort-preferences`;
   }
 
+  if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
+    const fallbackBase = 'https://maldives-bible.vercel.app';
+    return `${fallbackBase}/api/resort-preferences`;
+  }
+
   return '/api/resort-preferences';
 };
 
