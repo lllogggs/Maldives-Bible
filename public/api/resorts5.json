@@ -94,10 +94,15 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.kuramathi.com/images/gallery/island/1.jpg",
-      "https://www.kuramathi.com/images/gallery/villas/9.jpg",
-      "https://www.kuramathi.com/images/gallery/dining/1.jpg",
-      "https://www.kuramathi.com/images/gallery/leisure/1.jpg"
+      "https://www.kuramathi.com/2016/wp-content/uploads/2025/06/Kuramathi-Aerial-1-scaled.jpg",
+      "https://www.kuramathi.com/2016/wp-content/uploads/2018/10/Kuramathi_IslandAerial-34.jpg",
+      "https://www.kuramathi.com/2016/wp-content/uploads/2016/02/water-villa-03.jpg",
+      "https://www.kuramathi.com/2016/wp-content/uploads/2016/03/guest-villas-deluxe-water-villas-03.jpg",
+      "https://www.kuramathi.com/2016/wp-content/uploads/2016/02/water-villa-with-pool-01.jpg",
+      "https://www.kuramathi.com/2016/wp-content/uploads/2016/02/sunset-pool-villa-03.jpg",
+      "https://www.kuramathi.com/2016/wp-content/uploads/2016/02/sunset-water-villa-with-pool-01.jpg",
+      "https://www.kuramathi.com/2016/wp-content/uploads/2018/10/Kuramathi_Inguru.jpg",
+      "https://www.kuramathi.com/2016/wp-content/uploads/2016/02/001-Kuramathi-Spa01.jpg"
     ],
     "roomTypes": [
       "비치 빌라",
@@ -314,10 +319,12 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.luxresorts.com/media/27221/lux-south-ari-atoll-aerial-view.jpg",
-      "https://www.luxresorts.com/media/27222/lux-south-ari-atoll-romantic-pool-water-villa.jpg",
-      "https://www.luxresorts.com/media/27224/lux-south-ari-atoll-east-market-restaurant.jpg",
-      "https://www.luxresorts.com/media/27226/lux-south-ari-atoll-lux-me-spa.jpg"
+      "https://www.luxresorts.com/media/xech4nw4/lsaa_aerial_1.jpg",
+      "https://www.luxresorts.com/media/dx1ngomr/lsaa_beach-sea_1.jpg",
+      "https://www.luxresorts.com/media/wnwohuil/lsaa_lux-villa_1.jpg",
+      "https://www.luxresorts.com/media/yzifwqio/lsaa_lux-villa_3.jpg",
+      "https://www.luxresorts.com/media/llvbvssz/lsaa_beach-pool-villa_4.jpg",
+      "https://www.luxresorts.com/media/yzxmzfge/lsaa_family-lagoon-pavilion_5.jpg"
     ],
     "roomTypes": [
       "비치 파빌리온",

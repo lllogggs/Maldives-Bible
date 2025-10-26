@@ -579,9 +579,15 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1534233330522-9Q3LCO5NWKGFZE6JX91U/DJI_0066.JPG?format=2500w",
+      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1534233330522-9Q3LCO5NWKGFZE6JX91U/DJI_0066.JPG?format=750w",
+      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1533275638438-UBGTNUUSBGX41U5GN9W2/Ayada+Maldives+villas+SUNSET+OCEAN+SUITE+%281%29.jpg?format=2500w",
       "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1533275490963-50A7451VWHHRM186SBCI/Ayada+Maldives+villas+SUNSET+OCEAN+FAMILY+SUITE+%285%29+color+fix.jpg?format=2500w",
-      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1748949151245-H9IU4A2GERX07BDBV3OT/IMG_4292.jpg?format=2500w"
+      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1748949151245-H9IU4A2GERX07BDBV3OT/IMG_4292.jpg?format=2500w",
+      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1532678056046-2I393HL258IGMVG5LB7Z/351bbf9b32ea226d4294d111dad38ed0.jpg?format=2500w",
+      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1532678062056-MBU0DEZ6A5O7SJB6DTSC/beach-villas-img4.jpg?format=2500w",
+      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1532678097920-UBU3UWXGCMG3SVO79R7D/Ayada-Maldives-villas-BEACH-VILLA-1.jpg?format=2500w",
+      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1536395328714-NZVWQCZKA90LLNXCG08G/Screen+Shot+2018-09-08+at+13.25.09.png?format=500w",
+      "https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1536395620450-YB4RSFJGQ9OEGOU1XD9R/Screen+Shot+2018-09-08+at+13.30.47.png?format=500w"
     ],
     "roomTypes": [
       "비치 빌라 위드 풀",
@@ -795,7 +801,15 @@
     "imageUrls": [
       "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_4772930c146e-f7a4-4954-9c7b-0a75bce1f8bcblob.png",
       "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_477461805c1e-5804-464e-9f39-502e85893ddfblob.png",
-      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_48165b8a0bd2-b597-496f-827c-4313f6dc6833blob.png"
+      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_47766af6d1d9-a2e2-47f8-98be-20b234c1692bblob.png",
+      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_4786688a7846-dbf9-402e-8506-4e573125defeblob.png",
+      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_4790fdf808d7-fb0a-4ed8-b3ae-680c4c7ee17eblob.png",
+      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_47926fb0c76f-b165-402e-8cd3-0006b59f8774blob.png",
+      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_47947dbbcc6e-e122-4a61-a2ae-b6d618f0ede2blob.png",
+      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_4802a1c2a418-31a9-430a-a8c7-3bd2e06c0ad4blob.png",
+      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_480431d12290-e6df-4db3-849e-21a63b4b54b0blob.png",
+      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_4814fdde31b4-9afd-4282-913b-2bcc0bf3d46ablob.png",
+      "https://toc-ucmsapi.theozencollection.com/TOC/images/subSection_48226657e919-b89a-4752-81aa-8d5cf99e8c5bblob.png"
     ],
     "roomTypes": [
       "오션 풀 스위트 위드 슬라이드",

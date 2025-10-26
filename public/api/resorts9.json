@@ -1,3 +1,4 @@
+
 [
   {
     "id": 161,
@@ -269,10 +270,20 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://faarufushi.com/wp-content/uploads/2023/10/Faarufushi-Resort-Maldives-1-2.jpg",
-      "https://faarufushi.com/wp-content/uploads/2023/10/Ocean-Retreat-with-Pool-4.jpg",
-      "https://faarufushi.com/wp-content/uploads/2023/10/Iru-scaled.jpg",
-      "https://faarufushi.com/wp-content/uploads/2023/10/Boli-scaled.jpg"
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/6641c8e187ef5da5890fda6a_xs_faarufushi_wv2.jpg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/663e4297008b1fd3cdd68af7_xs_faarufushi_eclipse5.jpg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/663cda0f54c79e091a247673_xs_faarufushi_eclipse3.jpg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/663cd9cdc21e9dc0fbf166e5_xs_faarufushi_asia2.jpg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/66422e8d6a22433656e5babd_xs_faarufushi_bcg1.jpg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/6640d030e3dfb0b8eb2d19c4_xs_faarufushi_gym5.jpeg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/6641c91a0258bd36cfa2183b_xs_faarufushi_sunset1.jpg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/663cda2afe7edc2d48c87097_xs_faarufushi_sunset1.jpg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/6640c215e64e64d33cff28ed_xs_faarufushi_gym1.jpeg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/6641358060acd7aa3880056b_xs_faarufushi_bv1.jpeg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/664139c3aa228e3acb133aab_xs_faarufushi_fbv3.jpeg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/6641c8e58fb4f0ea756a6ffa_xs_faarufushi_wv5.jpg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/6641c90b15c72ce4200e3769_xs_faarufushi_super4.jpg",
+      "https://cdn.prod.website-files.com/614dd23228b0182a7ae09c18/6641c8e48fb4f0ea756a6eaa_xs_faarufushi_wv1.jpg"
     ],
     "roomTypes": [
       "오션 리트리트 위드 풀",

@@ -1,3 +1,4 @@
+
 [
   {
     "id": 21,
@@ -415,9 +416,14 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
+      "https://bfldr.constancehotels.com/4HTSVWZZ/at/2hkxpf697jchwcp3g37p77g/Constance-Halaveli-Hotel_Exterior_and_Aerial_Views-Aerial_Views-17.jpg?format=webp&width=1239&height=826&fit=crop",
+      "https://bfldr.constancehotels.com/4HTSVWZZ/at/v5fw3vp43jgqc855qqp92w/Constance-Halaveli-Pool-09.jpg?format=webp&width=1239&height=826&fit=crop",
+      "https://bfldr.constancehotels.com/4HTSVWZZ/at/8nfwbr78nj8n2hpcgrwftkj/Constance-Halaveli-Pool-11.jpg?format=webp&width=1239&height=826&fit=crop",
       "https://bfldr.constancehotels.com/4HTSVWZZ/at/38g3hrpsbxfz5z9w7k9swt5/Constance-Halaveli-Accommodation-Water_Villa-11.jpg?format=webp&width=1800",
       "https://bfldr.constancehotels.com/4HTSVWZZ/at/rbs53s53q53v2qh7hk26k3/Constance-Halaveli-Accommodation-Water_Villa-13.jpg?format=webp&width=507&height=676&fit=crop",
-      "https://bfldr.constancehotels.com/4HTSVWZZ/at/g7gtj3jssh2v35mzmwt5wj8h/Constance-Halaveli-Accommodation-Water_Villa-05.jpg?format=webp&width=1800"
+      "https://bfldr.constancehotels.com/4HTSVWZZ/at/g7gtj3jssh2v35mzmwt5wj8h/Constance-Halaveli-Accommodation-Water_Villa-05.jpg?format=webp&width=1800",
+      "https://bfldr.constancehotels.com/4HTSVWZZ/at/7ts8v3bwfrncf6fjk77t7n/Constance-Halaveli-Beach-24.jpg?format=webp&width=1239&height=826&fit=crop",
+      "https://bfldr.constancehotels.com/4HTSVWZZ/at/qmqzxwh3nt4859srchb3j6fn/Constance-Halaveli-Restaurants_and_Bars-Kaika_Sushi_Bar-08.jpg?format=webp&width=1239&height=826&fit=crop"
     ],
     "roomTypes": [
       "워터 빌라",
@@ -520,10 +526,13 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.cocoonmaldives.com/wp-content/uploads/2018/09/Cocoon-Maldives-Lagoon-Suite-Pool.jpg",
-      "https://www.cocoonmaldives.com/wp-content/uploads/2018/09/Cocoon-Maldives-Beach-Suite.jpg",
-      "https://www.cocoonmaldives.com/wp-content/uploads/2018/09/Cocoon-Maldives-Octopus-Restaurant.jpg",
-      "https://www.cocoonmaldives.com/wp-content/uploads/2018/09/Cocoon-Maldives-Loabi-Loabi-Bar.jpg"
+      "https://static.wixstatic.com/media/d22179_3bd41f9cf41c4c1f9be47dad80d07b7d~mv2.jpg",
+      "https://static.wixstatic.com/media/d22179_20008d5635d34515a4787f4c3b55a630~mv2.jpg",
+      "https://static.wixstatic.com/media/d22179_f38fce70529a4185a2278defddba308a~mv2.jpg",
+      "https://static.wixstatic.com/media/d22179_83ef3b3a6fc6451ab16829b945d99a29~mv2.jpg",
+      "https://static.wixstatic.com/media/d22179_eb417a6ea7eb4598a23685e11e251f09~mv2.jpg",
+      "https://static.wixstatic.com/media/d22179_26d67b1baf4e45b9952a239ac88e0e2a~mv2.jpg",
+      "https://static.wixstatic.com/media/d22179_e4773587de614e1b86f91bf4de4147f3~mv2.jpg"
     ],
     "roomTypes": [
       "비치 스위트",
