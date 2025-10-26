@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/Header';
 import FilterSidebar from './components/FilterSidebar';
 import ResortGrid from './components/ResortGrid';
-import EditModal from './components/EditModal';
 import ResortDetail from './components/ResortDetail';
 import CompareTray from './components/CompareTray';
 import CompareView from './components/CompareView';
@@ -11,6 +9,8 @@ import NavBar from './components/NavBar';
 import TravelAgencies from './components/TravelAgencies';
 import { POPULARITY_RANKING } from './constants';
 import type { Resort, Filters, SortOption } from './types';
+
+const RESORTS_PER_PAGE = 15;
 
 const App: React.FC = () => {
   const [initialResorts, setInitialResorts] = useState<Resort[]>([]);
@@ -27,8 +27,7 @@ const App: React.FC = () => {
     hasPrivatePool: false,
   });
   const [sortOption, setSortOption] = useState<SortOption>('popularity');
-  const [isEditMode, setIsEditMode] = useState<boolean>(false);
-  const [editingResort, setEditingResort] = useState<Resort | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedResortId, setSelectedResortId] = useState<number | null>(null);
   const [compareList, setCompareList] = useState<number[]>([]);
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
@@ -150,6 +149,7 @@ const App: React.FC = () => {
     }
 
     setDisplayedResorts(processedResorts);
+    setCurrentPage(1);
   }, [filters, initialResorts, sortOption]);
 
   useEffect(() => {
@@ -157,6 +157,22 @@ const App: React.FC = () => {
   }, [applyFiltersAndSort]);
 
   const selectedResort = initialResorts.find(r => r.id === selectedResortId);
+  const totalPages = displayedResorts.length === 0
+    ? 0
+    : Math.ceil(displayedResorts.length / RESORTS_PER_PAGE);
+
+  useEffect(() => {
+    if (totalPages > 0 && currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const paginatedResorts = totalPages === 0
+    ? []
+    : displayedResorts.slice(
+        (currentPage - 1) * RESORTS_PER_PAGE,
+        currentPage * RESORTS_PER_PAGE
+      );
 
   useEffect(() => {
     if (selectedResortId && initialResorts.length > 0 && !selectedResort) {
@@ -175,44 +191,11 @@ const App: React.FC = () => {
   const handleSortChange = (option: SortOption) => {
     setSortOption(option);
   };
-
-  const handleToggleEditMode = () => {
-    setIsEditMode(prev => !prev);
-  };
-
-  const handleOpenEditModal = (resort: Resort) => {
-    setEditingResort(resort);
-  };
-
-  const handleCloseEditModal = () => {
-    setEditingResort(null);
-  };
   
   const handleGoBackToList = () => {
     window.location.hash = '';
   };
 
-  const handleSaveResort = (resortId: number, newImageUrl: string) => {
-    const updatedInitialResorts = initialResorts.map(r => {
-      if (r.id === resortId) {
-        const newImageUrls = r.imageUrls ? [...r.imageUrls] : [''];
-        newImageUrls[0] = newImageUrl;
-        return { ...r, imageUrls: newImageUrls };
-      }
-      return r;
-    });
-    setInitialResorts(updatedInitialResorts);
-
-    const overrides = JSON.parse(localStorage.getItem('resortOverrides') || '{}');
-    const resortToUpdate = updatedInitialResorts.find(r => r.id === resortId);
-    if(resortToUpdate) {
-        overrides[resortId] = { ...overrides[resortId], imageUrls: resortToUpdate.imageUrls };
-        localStorage.setItem('resortOverrides', JSON.stringify(overrides));
-    }
-
-    handleCloseEditModal();
-  };
-  
   const handleToggleCompare = (resortId: number) => {
     setCompareList(prev => {
       if (prev.includes(resortId)) {
@@ -245,11 +228,9 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-32">
-      <Header 
-        searchTerm={filters.searchTerm} 
+      <Header
+        searchTerm={filters.searchTerm}
         onSearchChange={handleSearchChange}
-        isEditMode={isEditMode}
-        onToggleEditMode={handleToggleEditMode}
       />
       <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
         <NavBar currentView={currentView} onViewChange={setCurrentView} />
@@ -275,12 +256,14 @@ const App: React.FC = () => {
                   {loading && <div className="text-center py-16">몰디브 리조트 정보를 불러오는 중입니다...</div>}
                   {error && <div className="text-center py-16 text-red-500">에러: {error}</div>}
                   {!loading && !error && (
-                    <ResortGrid 
-                      resorts={displayedResorts} 
+                    <ResortGrid
+                      resorts={paginatedResorts}
                       sortOption={sortOption}
                       onSortChange={handleSortChange}
-                      isEditMode={isEditMode}
-                      onEditResort={handleOpenEditModal}
+                      totalResortsCount={displayedResorts.length}
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      onPageChange={setCurrentPage}
                       compareList={compareList}
                       onToggleCompare={handleToggleCompare}
                       onOpenFilter={() => setIsFilterOpen(true)}
@@ -317,13 +300,6 @@ const App: React.FC = () => {
           onRemove={handleToggleCompare}
           onClear={handleClearCompare}
           onCompare={handleShowCompare}
-        />
-      )}
-      {editingResort && (
-        <EditModal
-          resort={editingResort}
-          onSave={handleSaveResort}
-          onClose={handleCloseEditModal}
         />
       )}
     </div>

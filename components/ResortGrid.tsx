@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import ResortCard from './ResortCard';
 import type { Resort, SortOption } from '../types';
@@ -9,24 +7,71 @@ interface ResortGridProps {
   resorts: Resort[];
   sortOption: SortOption;
   onSortChange: (option: SortOption) => void;
-  isEditMode: boolean;
-  onEditResort: (resort: Resort) => void;
+  totalResortsCount: number;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
   onOpenFilter: () => void;
 }
 
-const ResortGrid: React.FC<ResortGridProps> = ({ resorts, sortOption, onSortChange, isEditMode, onEditResort, compareList, onToggleCompare, onOpenFilter }) => {
+type PageIndicator = number | 'ellipsis';
+
+const ResortGrid: React.FC<ResortGridProps> = ({
+  resorts,
+  sortOption,
+  onSortChange,
+  totalResortsCount,
+  currentPage,
+  totalPages,
+  onPageChange,
+  compareList,
+  onToggleCompare,
+  onOpenFilter,
+}) => {
+  const getPageNumbers = (): PageIndicator[] => {
+    if (totalPages <= 1) {
+      return [1];
+    }
+
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, index) => index + 1);
+    }
+
+    const pages: PageIndicator[] = [1];
+    const start = Math.max(2, currentPage - 1);
+    const end = Math.min(totalPages - 1, currentPage + 1);
+
+    if (start > 2) {
+      pages.push('ellipsis');
+    }
+
+    for (let page = start; page <= end; page += 1) {
+      pages.push(page);
+    }
+
+    if (end < totalPages - 1) {
+      pages.push('ellipsis');
+    }
+
+    pages.push(totalPages);
+
+    return pages;
+  };
+
+  const pageNumbers = totalPages === 0 ? [] : getPageNumbers();
+
   return (
     <div>
       <div className="mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">검색 결과</h2>
-            <p className="text-gray-600 mt-1">총 {resorts.length}개의 리조트</p>
+            <p className="text-gray-600 mt-1">총 {totalResortsCount}개의 리조트</p>
           </div>
-           <button 
-            onClick={onOpenFilter} 
+          <button
+            onClick={onOpenFilter}
             className="lg:hidden flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 active:bg-gray-100"
           >
             <FilterIcon className="h-5 w-5" />
@@ -71,11 +116,9 @@ const ResortGrid: React.FC<ResortGridProps> = ({ resorts, sortOption, onSortChan
       {resorts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {resorts.map((resort, index) => (
-            <ResortCard 
-              key={resort.id} 
-              resort={resort} 
-              isEditMode={isEditMode}
-              onEdit={onEditResort}
+            <ResortCard
+              key={resort.id}
+              resort={resort}
               compareList={compareList}
               onToggleCompare={onToggleCompare}
               isFirstCard={index === 0}
@@ -87,6 +130,50 @@ const ResortGrid: React.FC<ResortGridProps> = ({ resorts, sortOption, onSortChan
           <h3 className="text-xl font-semibold text-gray-700">검색 결과가 없습니다.</h3>
           <p className="text-gray-500 mt-2">다른 필터 옵션을 시도해 보세요.</p>
         </div>
+      )}
+
+      {totalPages > 1 && (
+        <nav className="mt-8 flex items-center justify-center gap-2" aria-label="Resort pagination">
+          <button
+            type="button"
+            onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
+            aria-label="이전 페이지"
+          >
+            ◀
+          </button>
+          {pageNumbers.map((page, index) =>
+            page === 'ellipsis' ? (
+              <span key={`ellipsis-${index}`} className="px-2 text-gray-400">
+                ...
+              </span>
+            ) : (
+              <button
+                key={page}
+                type="button"
+                onClick={() => onPageChange(page)}
+                className={`px-3 py-1 text-sm font-semibold rounded-md border ${
+                  page === currentPage
+                    ? 'bg-cyan-500 text-white border-cyan-500'
+                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                }`}
+                aria-current={page === currentPage ? 'page' : undefined}
+              >
+                {page}
+              </button>
+            ),
+          )}
+          <button
+            type="button"
+            onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage === totalPages}
+            className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
+            aria-label="다음 페이지"
+          >
+            ▶
+          </button>
+        </nav>
       )}
     </div>
   );

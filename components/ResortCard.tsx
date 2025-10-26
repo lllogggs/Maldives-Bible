@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
-import { LocationPinIcon, StarIcon, EditIcon, ChevronLeftIcon, ChevronRightIcon, CartIcon, CheckCircleIcon } from './icons/Icons';
+import { LocationPinIcon, StarIcon, ChevronLeftIcon, ChevronRightIcon, CartIcon, CheckCircleIcon } from './icons/Icons';
 
 interface ResortCardProps {
   resort: Resort;
-  isEditMode: boolean;
-  onEdit: (resort: Resort) => void;
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
   isFirstCard?: boolean;
@@ -25,7 +23,7 @@ const getTransportationTagColor = (transportation: TransportationType) => {
   }
 };
 
-const ResortCard: React.FC<ResortCardProps> = ({ resort, isEditMode, onEdit, compareList, onToggleCompare, isFirstCard = false }) => {
+const ResortCard: React.FC<ResortCardProps> = ({ resort, compareList, onToggleCompare, isFirstCard = false }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -122,17 +120,8 @@ const ResortCard: React.FC<ResortCardProps> = ({ resort, isEditMode, onEdit, com
           <StarIcon />
           <span>{resort.rating.toFixed(1)}</span>
         </div>
-        {isEditMode && (
-          <button
-            onClick={(e) => { e.stopPropagation(); onEdit(resort); }}
-            className="absolute bottom-3 right-3 bg-white/80 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg hover:bg-white transition-colors"
-            aria-label={`Edit ${resort.name}`}
-          >
-            <EditIcon />
-          </button>
-        )}
-        <div className={`absolute bottom-3 ${isEditMode ? 'right-14' : 'right-3'}`}>
-            {isFirstCard && !isEditMode && (
+        <div className="absolute bottom-3 right-3">
+            {isFirstCard && (
                 <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs font-bold py-1 px-3 rounded-md shadow-lg whitespace-nowrap z-10">
                     비교하기
                     <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-gray-800"></div>
