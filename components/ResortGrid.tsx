@@ -17,6 +17,8 @@ interface ResortGridProps {
   isImageEditMode: boolean;
   onDeleteResort?: (resortId: number) => void;
   onMoveResort?: (resortId: number, direction: 'up' | 'down') => void;
+  onDeleteImage?: (resortId: number, imageIndex: number) => void;
+  onReorderImage?: (resortId: number, fromIndex: number, toIndex: number) => void;
 }
 
 type PageIndicator = number | 'ellipsis';
@@ -35,6 +37,8 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   isImageEditMode,
   onDeleteResort,
   onMoveResort,
+  onDeleteImage,
+  onReorderImage,
 }) => {
   const getPageNumbers = (): PageIndicator[] => {
     if (totalPages <= 1) {
@@ -125,7 +129,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 
       {isImageEditMode && (
         <div className="mb-4 rounded-lg border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900">
-          이미지 편집 모드에서는 각 카드에서 삭제하거나 순서를 변경하는 버튼이 노출됩니다. 변경 사항은 이 브라우저에만 저장됩니다.
+          이미지 편집 모드에서는 각 카드에서 대표 이미지를 삭제하거나 순서를 조정하고, 카드 순서를 재배치하거나 숨길 수 있습니다. 변경 사항은 이 브라우저에만 저장됩니다.
         </div>
       )}
 
@@ -144,6 +148,8 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               onMoveDown={() => onMoveResort?.(resort.id, 'down')}
               disableMoveUp={index === 0}
               disableMoveDown={index === resorts.length - 1}
+              onDeleteImage={onDeleteImage}
+              onReorderImage={onReorderImage}
             />
           ))}
         </div>
