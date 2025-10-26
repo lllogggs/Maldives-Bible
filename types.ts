@@ -46,6 +46,7 @@ export interface Filters {
 }
 
 export type SortOption =
+  | 'custom'
   | 'popularity'
   | 'price-asc'
   | 'price-desc'
