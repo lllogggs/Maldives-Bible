@@ -6,8 +6,32 @@ type PreferencesPayload = {
   custom_order: number[];
 };
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const resolveSupabaseUrl = (rawUrl: string | undefined): string | null => {
+  if (!rawUrl) {
+    return null;
+  }
+
+  const trimmed = rawUrl.replace(/\/$/, '');
+
+  if (/\.supabase\.co$/i.test(trimmed)) {
+    return trimmed;
+  }
+
+  const dashboardMatch = trimmed.match(/supabase\.com\/dashboard\/project\/([a-z0-9]+)/i);
+  if (dashboardMatch) {
+    return `https://${dashboardMatch[1]}.supabase.co`;
+  }
+
+  return trimmed;
+};
+
+const supabaseUrl =
+  resolveSupabaseUrl(process.env.SUPABASE_URL) ??
+  resolveSupabaseUrl('https://supabase.com/dashboard/project/gfontovgnwckmmyyjbom');
+
+const serviceRoleKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ??
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdmb250b3Znbndja21teXlqYm9tIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTQ4MTQ3NiwiZXhwIjoyMDc3MDU3NDc2fQ.g373kdD4XL-LI4H_ee27A_a-rUbJGmLhsGd6TYHE93c';
 const tableName = process.env.RESORT_PREFERENCES_TABLE ?? 'resort_preferences';
 const profileId = process.env.RESORT_PREFERENCES_PROFILE_ID ?? 'public';
 const allowedOrigins = (process.env.RESORT_PREFERENCES_ALLOWED_ORIGINS ?? 'https://lllogggs.github.io')
