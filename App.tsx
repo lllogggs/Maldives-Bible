@@ -12,6 +12,23 @@ import type { Resort, Filters, SortOption } from './types';
 
 const RESORTS_PER_PAGE = 15;
 
+const parseNumberArray = (value: string | null): number[] => {
+  if (!value) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(value);
+    if (Array.isArray(parsed)) {
+      return parsed.filter((item): item is number => typeof item === 'number');
+    }
+  } catch (err) {
+    console.error('Failed to parse number array from localStorage', err);
+  }
+
+  return [];
+};
+
 const App: React.FC = () => {
   const [initialResorts, setInitialResorts] = useState<Resort[]>([]);
   const [displayedResorts, setDisplayedResorts] = useState<Resort[]>([]);
@@ -33,6 +50,10 @@ const App: React.FC = () => {
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
   const [currentView, setCurrentView] = useState<'resorts' | 'agencies'>('resorts');
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  const [isImageEditMode, setIsImageEditMode] = useState<boolean>(false);
+  const [previousSortOption, setPreviousSortOption] = useState<SortOption>('popularity');
+  const [customOrder, setCustomOrder] = useState<number[]>([]);
+  const [hiddenResortIds, setHiddenResortIds] = useState<number[]>([]);
 
 
   useEffect(() => {
@@ -65,6 +86,18 @@ const App: React.FC = () => {
           ...(overrides[resort.id] || {}),
         }));
 
+        const hiddenResortsFromStorage = parseNumberArray(localStorage.getItem('hiddenResorts'));
+        const hiddenSet = new Set(hiddenResortsFromStorage);
+        const storedOrder = parseNumberArray(localStorage.getItem('resortOrder'));
+        const mergedIds = mergedData.map(resort => resort.id);
+        const sanitizedOrder = storedOrder.filter(id => mergedIds.includes(id) && !hiddenSet.has(id));
+        const orderSet = new Set(sanitizedOrder);
+        const missingIds = mergedIds.filter(id => !orderSet.has(id) && !hiddenSet.has(id));
+        const finalOrder = [...sanitizedOrder, ...missingIds];
+
+        setHiddenResortIds(hiddenResortsFromStorage);
+        setCustomOrder(finalOrder);
+        localStorage.setItem('resortOrder', JSON.stringify(finalOrder));
         setInitialResorts(mergedData);
       } catch (err) {
         console.error(err);
@@ -99,6 +132,9 @@ const App: React.FC = () => {
 
   const applyFiltersAndSort = useCallback(() => {
     let processedResorts = [...initialResorts];
+    const hiddenSet = new Set(hiddenResortIds);
+
+    processedResorts = processedResorts.filter(resort => !hiddenSet.has(resort.id));
 
     // Filtering logic...
     if (filters.searchTerm) {
@@ -130,11 +166,26 @@ const App: React.FC = () => {
 
     // Sorting logic...
     switch (sortOption) {
+      case 'custom': {
+        if (customOrder.length > 0) {
+          const orderMap = new Map(customOrder.map((id, index) => [id, index]));
+          processedResorts.sort((a, b) => {
+            const indexA = orderMap.get(a.id);
+            const indexB = orderMap.get(b.id);
+
+            if (indexA === undefined && indexB === undefined) return a.id - b.id;
+            if (indexA === undefined) return 1;
+            if (indexB === undefined) return -1;
+            return indexA - indexB;
+          });
+        }
+        break;
+      }
       case 'popularity':
         processedResorts.sort((a, b) => {
           const rankA = POPULARITY_RANKING.indexOf(a.name);
           const rankB = POPULARITY_RANKING.indexOf(b.name);
-          
+
           if (rankA !== -1 && rankB !== -1) return rankA - rankB;
           if (rankA !== -1) return -1;
           if (rankB !== -1) return 1;
@@ -150,29 +201,35 @@ const App: React.FC = () => {
 
     setDisplayedResorts(processedResorts);
     setCurrentPage(1);
-  }, [filters, initialResorts, sortOption]);
+  }, [customOrder, filters, hiddenResortIds, initialResorts, sortOption]);
 
   useEffect(() => {
     applyFiltersAndSort();
   }, [applyFiltersAndSort]);
 
   const selectedResort = initialResorts.find(r => r.id === selectedResortId);
-  const totalPages = displayedResorts.length === 0
+  const calculatedTotalPages = displayedResorts.length === 0
     ? 0
     : Math.ceil(displayedResorts.length / RESORTS_PER_PAGE);
+
+  const paginatedResorts = isImageEditMode
+    ? displayedResorts
+    : calculatedTotalPages === 0
+      ? []
+      : displayedResorts.slice(
+          (currentPage - 1) * RESORTS_PER_PAGE,
+          currentPage * RESORTS_PER_PAGE
+        );
+
+  const totalPages = isImageEditMode
+    ? (displayedResorts.length > 0 ? 1 : 0)
+    : calculatedTotalPages;
 
   useEffect(() => {
     if (totalPages > 0 && currentPage > totalPages) {
       setCurrentPage(totalPages);
     }
   }, [currentPage, totalPages]);
-
-  const paginatedResorts = totalPages === 0
-    ? []
-    : displayedResorts.slice(
-        (currentPage - 1) * RESORTS_PER_PAGE,
-        currentPage * RESORTS_PER_PAGE
-      );
 
   useEffect(() => {
     if (selectedResortId && initialResorts.length > 0 && !selectedResort) {
@@ -227,6 +284,67 @@ const App: React.FC = () => {
     setIsCompareViewVisible(false);
   };
 
+  const handleToggleImageEditMode = () => {
+    if (!isImageEditMode) {
+      setPreviousSortOption(sortOption);
+      if (sortOption !== 'custom') {
+        setSortOption('custom');
+      }
+      setCurrentPage(1);
+      setIsImageEditMode(true);
+      return;
+    }
+
+    setIsImageEditMode(false);
+    setSortOption(previousSortOption);
+  };
+
+  const handleDeleteResort = (resortId: number) => {
+    setHiddenResortIds(prev => {
+      if (prev.includes(resortId)) {
+        return prev;
+      }
+      const updated = [...prev, resortId];
+      localStorage.setItem('hiddenResorts', JSON.stringify(updated));
+      return updated;
+    });
+
+    setCustomOrder(prev => {
+      if (!prev.includes(resortId)) {
+        return prev;
+      }
+      const updatedOrder = prev.filter(id => id !== resortId);
+      localStorage.setItem('resortOrder', JSON.stringify(updatedOrder));
+      return updatedOrder;
+    });
+
+    setCompareList(prev => prev.filter(id => id !== resortId));
+
+    if (selectedResortId === resortId) {
+      setSelectedResortId(null);
+      window.location.hash = '';
+    }
+  };
+
+  const handleMoveResort = (resortId: number, direction: 'up' | 'down') => {
+    setCustomOrder(prev => {
+      const index = prev.indexOf(resortId);
+      if (index === -1) {
+        return prev;
+      }
+
+      const swapIndex = direction === 'up' ? index - 1 : index + 1;
+      if (swapIndex < 0 || swapIndex >= prev.length) {
+        return prev;
+      }
+
+      const updatedOrder = [...prev];
+      [updatedOrder[index], updatedOrder[swapIndex]] = [updatedOrder[swapIndex], updatedOrder[index]];
+      localStorage.setItem('resortOrder', JSON.stringify(updatedOrder));
+      return updatedOrder;
+    });
+  };
+
   const resortsToCompare = initialResorts
     .filter(r => compareList.includes(r.id))
     .sort((a, b) => compareList.indexOf(a.id) - compareList.indexOf(b.id));
@@ -236,6 +354,8 @@ const App: React.FC = () => {
       <Header
         searchTerm={filters.searchTerm}
         onSearchChange={handleSearchChange}
+        isImageEditMode={isImageEditMode}
+        onToggleImageEditMode={handleToggleImageEditMode}
       />
       <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
         <NavBar currentView={currentView} onViewChange={setCurrentView} />
@@ -272,6 +392,9 @@ const App: React.FC = () => {
                       compareList={compareList}
                       onToggleCompare={handleToggleCompare}
                       onOpenFilter={() => setIsFilterOpen(true)}
+                      isImageEditMode={isImageEditMode}
+                      onDeleteResort={handleDeleteResort}
+                      onMoveResort={handleMoveResort}
                     />
                   )}
                 </div>
@@ -299,9 +422,9 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
-       {!isCompareViewVisible && currentView === 'resorts' && (
-        <CompareTray 
-          resorts={resortsToCompare} 
+       {!isCompareViewVisible && currentView === 'resorts' && !isImageEditMode && (
+        <CompareTray
+          resorts={resortsToCompare}
           onRemove={handleToggleCompare}
           onClear={handleClearCompare}
           onCompare={handleShowCompare}

@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
-import { LocationPinIcon, StarIcon, ChevronLeftIcon, ChevronRightIcon, CartIcon, CheckCircleIcon } from './icons/Icons';
+import { LocationPinIcon, StarIcon, ChevronLeftIcon, ChevronRightIcon, CartIcon, CheckCircleIcon, XIcon } from './icons/Icons';
 
 interface ResortCardProps {
   resort: Resort;
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
   isFirstCard?: boolean;
+  isImageEditMode?: boolean;
+  onDelete?: () => void;
+  onMoveUp?: () => void;
+  onMoveDown?: () => void;
+  disableMoveUp?: boolean;
+  disableMoveDown?: boolean;
 }
 
 const getTransportationTagColor = (transportation: TransportationType) => {
@@ -23,7 +29,18 @@ const getTransportationTagColor = (transportation: TransportationType) => {
   }
 };
 
-const ResortCard: React.FC<ResortCardProps> = ({ resort, compareList, onToggleCompare, isFirstCard = false }) => {
+const ResortCard: React.FC<ResortCardProps> = ({
+  resort,
+  compareList,
+  onToggleCompare,
+  isFirstCard = false,
+  isImageEditMode = false,
+  onDelete,
+  onMoveUp,
+  onMoveDown,
+  disableMoveUp = false,
+  disableMoveDown = false,
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -45,10 +62,31 @@ const ResortCard: React.FC<ResortCardProps> = ({ resort, compareList, onToggleCo
     e.stopPropagation();
     setCurrentImageIndex(prev => (prev + 1) % imageUrls.length);
   };
-  
+
   const handleViewDetails = (e: React.MouseEvent) => {
     e.stopPropagation();
     window.location.hash = `#/resort/${resort.id}`;
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onDelete && window.confirm(`${resort.name} 카드를 목록에서 숨길까요?`)) {
+      onDelete();
+    }
+  };
+
+  const handleMoveUpClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!disableMoveUp) {
+      onMoveUp?.();
+    }
+  };
+
+  const handleMoveDownClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!disableMoveDown) {
+      onMoveDown?.();
+    }
   };
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -82,16 +120,16 @@ const ResortCard: React.FC<ResortCardProps> = ({ resort, compareList, onToggleCo
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-200 flex flex-col">
-      <div 
-        className="relative group cursor-pointer" 
+      <div
+        className="relative group cursor-pointer"
         onClick={handleViewDetails}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
         <img className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105" src={imageUrls[currentImageIndex]} alt={`${resort.name_en} image ${currentImageIndex + 1}`} />
-        
-        {imageUrls.length > 1 && (
+
+        {imageUrls.length > 1 && !isImageEditMode && (
           <>
             <button
               onClick={handlePrevImage}
@@ -111,6 +149,47 @@ const ResortCard: React.FC<ResortCardProps> = ({ resort, compareList, onToggleCo
               {currentImageIndex + 1} / {imageUrls.length}
             </div>
           </>
+        )}
+
+        {isImageEditMode && (
+          <div className="absolute bottom-3 left-3 flex items-end gap-3">
+            <div className="flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={handleMoveUpClick}
+                disabled={disableMoveUp}
+                className={`flex h-10 w-10 items-center justify-center rounded-full border text-sm font-bold shadow-md transition-colors ${
+                  disableMoveUp
+                    ? 'border-gray-200 bg-gray-100 text-gray-400'
+                    : 'border-cyan-600 bg-white/90 text-cyan-700 hover:bg-cyan-50'
+                }`}
+                aria-label={`${resort.name} 카드 위로 이동`}
+              >
+                ▲
+              </button>
+              <button
+                type="button"
+                onClick={handleMoveDownClick}
+                disabled={disableMoveDown}
+                className={`flex h-10 w-10 items-center justify-center rounded-full border text-sm font-bold shadow-md transition-colors ${
+                  disableMoveDown
+                    ? 'border-gray-200 bg-gray-100 text-gray-400'
+                    : 'border-cyan-600 bg-white/90 text-cyan-700 hover:bg-cyan-50'
+                }`}
+                aria-label={`${resort.name} 카드 아래로 이동`}
+              >
+                ▼
+              </button>
+            </div>
+            <button
+              type="button"
+              onClick={handleDeleteClick}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500 text-white shadow-md transition-colors hover:bg-red-600"
+              aria-label={`${resort.name} 카드 삭제`}
+            >
+              <XIcon className="h-5 w-5" />
+            </button>
+          </div>
         )}
 
         <div className={`absolute top-3 left-3 px-3 py-1 text-sm font-semibold text-white rounded-full shadow-lg ${getTransportationTagColor(resort.transportation)}`}>

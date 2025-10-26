@@ -14,6 +14,9 @@ interface ResortGridProps {
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
   onOpenFilter: () => void;
+  isImageEditMode: boolean;
+  onDeleteResort?: (resortId: number) => void;
+  onMoveResort?: (resortId: number, direction: 'up' | 'down') => void;
 }
 
 type PageIndicator = number | 'ellipsis';
@@ -29,6 +32,9 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   compareList,
   onToggleCompare,
   onOpenFilter,
+  isImageEditMode,
+  onDeleteResort,
+  onMoveResort,
 }) => {
   const getPageNumbers = (): PageIndicator[] => {
     if (totalPages <= 1) {
@@ -86,8 +92,12 @@ const ResortGrid: React.FC<ResortGridProps> = ({
                   id="sort-options"
                   value={sortOption}
                   onChange={(e) => onSortChange(e.target.value as SortOption)}
-                  className="appearance-none w-full sm:w-auto bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-center"
+                  disabled={isImageEditMode}
+                  className={`appearance-none w-full sm:w-auto border border-gray-300 rounded-md py-2 pl-3 pr-10 text-sm text-center focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 ${
+                    isImageEditMode ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700'
+                  }`}
                 >
+                  <option value="custom">사용자 지정 순서</option>
                   <option value="popularity">인기 많은 순</option>
                   <option value="price-asc">가격 낮은 순</option>
                   <option value="price-desc">가격 높은 순</option>
@@ -113,6 +123,12 @@ const ResortGrid: React.FC<ResortGridProps> = ({
         </div>
       </div>
 
+      {isImageEditMode && (
+        <div className="mb-4 rounded-lg border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900">
+          이미지 편집 모드에서는 각 카드에서 삭제하거나 순서를 변경하는 버튼이 노출됩니다. 변경 사항은 이 브라우저에만 저장됩니다.
+        </div>
+      )}
+
       {resorts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {resorts.map((resort, index) => (
@@ -122,6 +138,12 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               compareList={compareList}
               onToggleCompare={onToggleCompare}
               isFirstCard={index === 0}
+              isImageEditMode={isImageEditMode}
+              onDelete={() => onDeleteResort?.(resort.id)}
+              onMoveUp={() => onMoveResort?.(resort.id, 'up')}
+              onMoveDown={() => onMoveResort?.(resort.id, 'down')}
+              disableMoveUp={index === 0}
+              disableMoveDown={index === resorts.length - 1}
             />
           ))}
         </div>
@@ -132,7 +154,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
         </div>
       )}
 
-      {totalPages > 1 && (
+      {!isImageEditMode && totalPages > 1 && (
         <nav className="mt-8 flex items-center justify-center gap-2" aria-label="Resort pagination">
           <button
             type="button"
