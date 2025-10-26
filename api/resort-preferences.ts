@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import type { PostgrestError } from '@supabase/supabase-js';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 type PreferencesPayload = {
@@ -25,13 +26,9 @@ const resolveSupabaseUrl = (rawUrl: string | undefined): string | null => {
   return trimmed;
 };
 
-const supabaseUrl =
-  resolveSupabaseUrl(process.env.SUPABASE_URL) ??
-  resolveSupabaseUrl('https://supabase.com/dashboard/project/gfontovgnwckmmyyjbom');
+const supabaseUrl = resolveSupabaseUrl(process.env.SUPABASE_URL);
 
-const serviceRoleKey =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ??
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdmb250b3Znbndja21teXlqYm9tIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTQ4MTQ3NiwiZXhwIjoyMDc3MDU3NDc2fQ.g373kdD4XL-LI4H_ee27A_a-rUbJGmLhsGd6TYHE93c';
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const tableName = process.env.RESORT_PREFERENCES_TABLE ?? 'resort_preferences';
 const profileId = process.env.RESORT_PREFERENCES_PROFILE_ID ?? 'public';
 const allowedOrigins = (process.env.RESORT_PREFERENCES_ALLOWED_ORIGINS ?? 'https://lllogggs.github.io')
@@ -39,17 +36,55 @@ const allowedOrigins = (process.env.RESORT_PREFERENCES_ALLOWED_ORIGINS ?? 'https
   .map(origin => origin.trim())
   .filter(Boolean);
 
-if (!supabaseUrl) {
-  throw new Error('Missing SUPABASE_URL environment variable');
+class SupabaseConfigurationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'SupabaseConfigurationError';
+  }
 }
 
-if (!serviceRoleKey) {
-  throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY environment variable');
+class SupabaseAuthorizationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'SupabaseAuthorizationError';
+  }
 }
 
-const supabase = createClient(supabaseUrl, serviceRoleKey, {
-  auth: { persistSession: false },
-});
+const supabase =
+  supabaseUrl && serviceRoleKey
+    ? createClient(supabaseUrl, serviceRoleKey, {
+        auth: { persistSession: false },
+      })
+    : null;
+
+const ensureSupabaseClient = () => {
+  if (!supabase) {
+    throw new SupabaseConfigurationError(
+      'Supabase가 설정되지 않았습니다. SUPABASE_URL과 SUPABASE_SERVICE_ROLE_KEY 환경 변수를 확인해주세요.'
+    );
+  }
+
+  return supabase;
+};
+
+const normalizePostgrestError = (error: PostgrestError): never => {
+  const code = error.code?.toUpperCase();
+  const message = `${error.message ?? ''} ${error.details ?? ''}`.toLowerCase();
+
+  if (
+    code === '42501' ||
+    code === 'PGRST301' ||
+    message.includes('permission') ||
+    message.includes('api key') ||
+    (message.includes('key') && message.includes('invalid'))
+  ) {
+    throw new SupabaseAuthorizationError(
+      'Supabase 자격 증명이 거부되었습니다. 서비스 롤 키와 RLS 정책을 확인해주세요.'
+    );
+  }
+
+  throw error;
+};
 
 const isAllowedOrigin = (origin: string | undefined): origin is string => {
   if (!origin) {
@@ -81,14 +116,16 @@ const ensureArrayOfNumbers = (value: unknown): number[] => {
 };
 
 const getPreferences = async (): Promise<PreferencesPayload> => {
-  const { data, error } = await supabase
+  const client = ensureSupabaseClient();
+
+  const { data, error } = await client
     .from(tableName)
     .select('hidden_ids, custom_order')
     .eq('profile_id', profileId)
     .maybeSingle();
 
   if (error && error.code !== 'PGRST116') {
-    throw error;
+    normalizePostgrestError(error);
   }
 
   return {
@@ -104,12 +141,14 @@ const upsertPreferences = async (payload: PreferencesPayload): Promise<Preferenc
     custom_order: ensureArrayOfNumbers(payload.custom_order),
   };
 
-  const { error } = await supabase
+  const client = ensureSupabaseClient();
+
+  const { error } = await client
     .from(tableName)
     .upsert(dataToSave, { onConflict: 'profile_id' });
 
   if (error) {
-    throw error;
+    normalizePostgrestError(error);
   }
 
   return {
@@ -172,6 +211,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
   } catch (error) {
+    if (error instanceof SupabaseConfigurationError) {
+      console.error('Supabase configuration error', error.message);
+      return res.status(503).json({ error: error.message });
+    }
+
+    if (error instanceof SupabaseAuthorizationError) {
+      console.error('Supabase authorization error', error.message);
+      return res.status(502).json({ error: error.message });
+    }
+
     console.error('Failed to handle resort preferences request', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
