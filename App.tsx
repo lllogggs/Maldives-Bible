@@ -191,7 +191,12 @@ const App: React.FC = () => {
   const handleSortChange = (option: SortOption) => {
     setSortOption(option);
   };
-  
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleGoBackToList = () => {
     window.location.hash = '';
   };
@@ -263,7 +268,7 @@ const App: React.FC = () => {
                       totalResortsCount={displayedResorts.length}
                       currentPage={currentPage}
                       totalPages={totalPages}
-                      onPageChange={setCurrentPage}
+                      onPageChange={handlePageChange}
                       compareList={compareList}
                       onToggleCompare={handleToggleCompare}
                       onOpenFilter={() => setIsFilterOpen(true)}

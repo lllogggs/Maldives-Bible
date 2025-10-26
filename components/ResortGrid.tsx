@@ -64,49 +64,49 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 
   return (
     <div>
-      <div className="mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900">검색 결과</h2>
-            <p className="text-gray-600 mt-1">총 {totalResortsCount}개의 리조트</p>
-          </div>
-          <button
-            onClick={onOpenFilter}
-            className="lg:hidden flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 active:bg-gray-100"
-          >
-            <FilterIcon className="h-5 w-5" />
-            <span>필터</span>
-          </button>
-        </div>
-        
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
         <div>
-          <div className="flex items-center justify-end gap-2">
-            <SortIcon className="h-5 w-5 text-gray-500" />
-            <div className="relative">
-              <select
-                id="sort-options"
-                value={sortOption}
-                onChange={(e) => onSortChange(e.target.value as SortOption)}
-                className="appearance-none w-full sm:w-auto bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-center"
-              >
-                <option value="popularity">인기 많은 순</option>
-                <option value="price-asc">가격 낮은 순</option>
-                <option value="price-desc">가격 높은 순</option>
-                <option value="rating-desc">평점 높은 순</option>
-                <option value="snorkeling-desc">수중환경 좋은 순</option>
-                <option value="travelTime-asc">이동시간 짧은 순</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+          <h2 className="text-2xl font-bold text-gray-900">검색 결과</h2>
+          <p className="text-gray-600 mt-1">총 {totalResortsCount}개의 리조트</p>
+        </div>
+
+        <div className="flex flex-col gap-2 w-full sm:w-auto sm:items-end">
+          <div className="flex flex-wrap items-center justify-between gap-2 sm:justify-end">
+            <button
+              onClick={onOpenFilter}
+              className="order-1 lg:hidden flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 active:bg-gray-100"
+            >
+              <FilterIcon className="h-5 w-5" />
+              <span>필터</span>
+            </button>
+            <div className="order-2 flex items-center gap-2 sm:order-none">
+              <SortIcon className="h-5 w-5 text-gray-500" />
+              <div className="relative">
+                <select
+                  id="sort-options"
+                  value={sortOption}
+                  onChange={(e) => onSortChange(e.target.value as SortOption)}
+                  className="appearance-none w-full sm:w-auto bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 text-center"
+                >
+                  <option value="popularity">인기 많은 순</option>
+                  <option value="price-asc">가격 낮은 순</option>
+                  <option value="price-desc">가격 높은 순</option>
+                  <option value="rating-desc">평점 높은 순</option>
+                  <option value="snorkeling-desc">수중환경 좋은 순</option>
+                  <option value="travelTime-asc">이동시간 짧은 순</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
-          <div className="h-5">
+          <div className="min-h-[1.25rem] sm:text-right">
             {sortOption === 'popularity' && (
-              <p className="text-right text-xs text-gray-600 mt-1">
-                  한국 구글 내 몰디브 리조트 검색량 지수 기준
+              <p className="text-xs text-gray-600 mt-1 sm:mt-0">
+                한국 구글 내 몰디브 리조트 검색량 지수 기준
               </p>
             )}
           </div>
