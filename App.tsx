@@ -12,6 +12,32 @@ import type { Resort, Filters, SortOption } from './types';
 
 const RESORTS_PER_PAGE = 15;
 
+type ResortPreferences = {
+  hidden_ids: number[];
+  custom_order: number[];
+};
+
+const buildPreferencesEndpoint = () => {
+  const baseUrl = import.meta.env.VITE_PREFERENCES_API_BASE_URL?.replace(/\/$/, '');
+  if (baseUrl) {
+    return `${baseUrl}/api/resort-preferences`;
+  }
+
+  return '/api/resort-preferences';
+};
+
+const PREFERENCES_ENDPOINT = buildPreferencesEndpoint();
+
+const ensureNumberArray = (value: unknown): number[] => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map(item => (typeof item === 'number' ? item : Number(item)))
+    .filter(item => Number.isFinite(item));
+};
+
 const parseNumberArray = (value: string | null): number[] => {
   if (!value) {
     return [];
@@ -54,6 +80,71 @@ const App: React.FC = () => {
   const [previousSortOption, setPreviousSortOption] = useState<SortOption>('popularity');
   const [customOrder, setCustomOrder] = useState<number[]>([]);
   const [hiddenResortIds, setHiddenResortIds] = useState<number[]>([]);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!toastMessage) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => setToastMessage(null), 5000);
+    return () => window.clearTimeout(timeout);
+  }, [toastMessage]);
+
+  const getLocalPreferences = useCallback((): ResortPreferences => ({
+    hidden_ids: parseNumberArray(localStorage.getItem('hiddenResorts')),
+    custom_order: parseNumberArray(localStorage.getItem('resortOrder')),
+  }), []);
+
+  const savePreferencesToLocal = useCallback((hiddenIds: number[], order: number[]) => {
+    localStorage.setItem('hiddenResorts', JSON.stringify(hiddenIds));
+    localStorage.setItem('resortOrder', JSON.stringify(order));
+  }, []);
+
+  const fetchRemotePreferences = useCallback(async (): Promise<ResortPreferences | null> => {
+    try {
+      const response = await fetch(PREFERENCES_ENDPOINT, {
+        headers: { Accept: 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch preferences: ${response.statusText}`);
+      }
+
+      const payload = (await response.json()) as Partial<ResortPreferences>;
+
+      return {
+        hidden_ids: ensureNumberArray(payload.hidden_ids),
+        custom_order: ensureNumberArray(payload.custom_order),
+      };
+    } catch (err) {
+      console.error('Failed to fetch remote resort preferences', err);
+      setToastMessage('선호 데이터를 불러오지 못했습니다. 로컬 저장 데이터를 사용합니다.');
+      return null;
+    }
+  }, [setToastMessage]);
+
+  const persistPreferences = useCallback(async (hiddenIds: number[], order: number[]) => {
+    savePreferencesToLocal(hiddenIds, order);
+
+    try {
+      const response = await fetch(PREFERENCES_ENDPOINT, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          hidden_ids: hiddenIds,
+          custom_order: order,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to update preferences: ${response.statusText}`);
+      }
+    } catch (err) {
+      console.error('Failed to sync resort preferences', err);
+      setToastMessage('변경 사항을 저장하지 못했습니다. 네트워크 상태를 확인해주세요.');
+    }
+  }, [savePreferencesToLocal, setToastMessage]);
 
 
   useEffect(() => {
@@ -86,18 +177,34 @@ const App: React.FC = () => {
           ...(overrides[resort.id] || {}),
         }));
 
-        const hiddenResortsFromStorage = parseNumberArray(localStorage.getItem('hiddenResorts'));
-        const hiddenSet = new Set(hiddenResortsFromStorage);
-        const storedOrder = parseNumberArray(localStorage.getItem('resortOrder'));
-        const mergedIds = mergedData.map(resort => resort.id);
-        const sanitizedOrder = storedOrder.filter(id => mergedIds.includes(id) && !hiddenSet.has(id));
+        const localPreferences = getLocalPreferences();
+        const remotePreferences = await fetchRemotePreferences();
+
+        const mergedHiddenIds = Array.from(
+          new Set([
+            ...(remotePreferences?.hidden_ids ?? []),
+            ...localPreferences.hidden_ids,
+          ])
+        );
+
+        const resortIds = mergedData.map(resort => resort.id);
+        const resortIdSet = new Set(resortIds);
+        const validHiddenIds = mergedHiddenIds.filter(id => resortIdSet.has(id));
+        const hiddenSet = new Set(validHiddenIds);
+
+        const baseOrder = remotePreferences && remotePreferences.custom_order.length > 0
+          ? remotePreferences.custom_order
+          : localPreferences.custom_order;
+
+        const sanitizedOrder = baseOrder.filter(id => resortIdSet.has(id) && !hiddenSet.has(id));
         const orderSet = new Set(sanitizedOrder);
-        const missingIds = mergedIds.filter(id => !orderSet.has(id) && !hiddenSet.has(id));
+        const missingIds = resortIds.filter(id => !orderSet.has(id) && !hiddenSet.has(id));
         const finalOrder = [...sanitizedOrder, ...missingIds];
 
-        setHiddenResortIds(hiddenResortsFromStorage);
+        savePreferencesToLocal(validHiddenIds, finalOrder);
+
+        setHiddenResortIds(validHiddenIds);
         setCustomOrder(finalOrder);
-        localStorage.setItem('resortOrder', JSON.stringify(finalOrder));
         setInitialResorts(mergedData);
       } catch (err) {
         console.error(err);
@@ -108,7 +215,7 @@ const App: React.FC = () => {
     };
 
     fetchResorts();
-  }, []);
+  }, [fetchRemotePreferences, getLocalPreferences, savePreferencesToLocal]);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -300,23 +407,25 @@ const App: React.FC = () => {
   };
 
   const handleDeleteResort = (resortId: number) => {
-    setHiddenResortIds(prev => {
-      if (prev.includes(resortId)) {
-        return prev;
-      }
-      const updated = [...prev, resortId];
-      localStorage.setItem('hiddenResorts', JSON.stringify(updated));
-      return updated;
-    });
+    let nextHidden = hiddenResortIds;
+    let nextOrder = customOrder;
+    let hasChanged = false;
 
-    setCustomOrder(prev => {
-      if (!prev.includes(resortId)) {
-        return prev;
-      }
-      const updatedOrder = prev.filter(id => id !== resortId);
-      localStorage.setItem('resortOrder', JSON.stringify(updatedOrder));
-      return updatedOrder;
-    });
+    if (!hiddenResortIds.includes(resortId)) {
+      nextHidden = [...hiddenResortIds, resortId];
+      hasChanged = true;
+    }
+
+    if (customOrder.includes(resortId)) {
+      nextOrder = customOrder.filter(id => id !== resortId);
+      hasChanged = true;
+    }
+
+    if (hasChanged) {
+      setHiddenResortIds(nextHidden);
+      setCustomOrder(nextOrder);
+      void persistPreferences(nextHidden, nextOrder);
+    }
 
     setCompareList(prev => prev.filter(id => id !== resortId));
 
@@ -327,22 +436,20 @@ const App: React.FC = () => {
   };
 
   const handleMoveResort = (resortId: number, direction: 'up' | 'down') => {
-    setCustomOrder(prev => {
-      const index = prev.indexOf(resortId);
-      if (index === -1) {
-        return prev;
-      }
+    const index = customOrder.indexOf(resortId);
+    if (index === -1) {
+      return;
+    }
 
-      const swapIndex = direction === 'up' ? index - 1 : index + 1;
-      if (swapIndex < 0 || swapIndex >= prev.length) {
-        return prev;
-      }
+    const swapIndex = direction === 'up' ? index - 1 : index + 1;
+    if (swapIndex < 0 || swapIndex >= customOrder.length) {
+      return;
+    }
 
-      const updatedOrder = [...prev];
-      [updatedOrder[index], updatedOrder[swapIndex]] = [updatedOrder[swapIndex], updatedOrder[index]];
-      localStorage.setItem('resortOrder', JSON.stringify(updatedOrder));
-      return updatedOrder;
-    });
+    const updatedOrder = [...customOrder];
+    [updatedOrder[index], updatedOrder[swapIndex]] = [updatedOrder[swapIndex], updatedOrder[index]];
+    setCustomOrder(updatedOrder);
+    void persistPreferences(hiddenResortIds, updatedOrder);
   };
 
   const resortsToCompare = initialResorts
@@ -404,8 +511,8 @@ const App: React.FC = () => {
         )}
       </main>
       {isFilterOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 z-50 lg:hidden transition-opacity duration-300" 
+        <div
+          className="fixed inset-0 bg-black/60 z-50 lg:hidden transition-opacity duration-300"
           onClick={() => setIsFilterOpen(false)}
         >
           <div 
@@ -429,6 +536,11 @@ const App: React.FC = () => {
           onClear={handleClearCompare}
           onCompare={handleShowCompare}
         />
+      )}
+      {toastMessage && (
+        <div className="fixed bottom-4 right-4 z-50 max-w-xs bg-red-500 text-white px-4 py-3 rounded shadow-lg">
+          {toastMessage}
+        </div>
       )}
     </div>
   );
