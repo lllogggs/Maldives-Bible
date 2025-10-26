@@ -1202,42 +1202,5 @@
       "비치 풀 빌라"
     ],
     "homepageUrl": "https://www.niyama.com/"
-  },
-  {
-    "id": 134,
-    "name": "빌라멘두 아일랜드 리조트 & 스파",
-    "name_en": "Vilamendhoo Island Resort & Spa",
-    "brand": "Crown & Champa Resorts",
-    "openYear": 1994,
-    "renovationYear": 2015,
-    "transportation": "수상비행기",
-    "travelTime": 25,
-    "travelCost": 400,
-    "price": 4900,
-    "rating": 4.7,
-    "snorkelingQuality": 5,
-    "location": "South Ari Atoll",
-    "spaBrand": "Duniye Spa",
-    "restaurants": 4,
-    "bars": 4,
-    "pools": 2,
-    "hasWaterVilla": true,
-    "hasBeachVilla": true,
-    "hasPrivatePool": true,
-    "hasFamilyRoom": true,
-    "hasKidsClub": true,
-    "honeymoonPerks": true,
-    "imageUrls": [
-      "https://dra0pipbd8ype.cloudfront.net/2017/08/Vilamendhoo-Aerial-4-600x400.jpg",
-      "https://dra0pipbd8ype.cloudfront.net/2017/08/Vilamendhoo-Aerial-3-600x400.jpg",
-      "https://dra0pipbd8ype.cloudfront.net/2017/08/Vilamendhoo-Island-2-600x400.jpg",
-      "https://dra0pipbd8ype.cloudfront.net/2017/08/Beach-Villa-3-600x400.jpg",
-      "https://dra0pipbd8ype.cloudfront.net/2017/08/Jacuzzi-Water-Villa-3-600x400.jpg"
-    ],
-    "roomTypes": [
-      "자쿠지 워터 빌라",
-      "자쿠지 비치 빌라"
-    ],
-    "homepageUrl": "https://www.vilamendhoo.com/"
   }
 ]
