@@ -15,6 +15,7 @@ const RESORTS_PER_PAGE = 15;
 type ResortPreferences = {
   hidden_ids: number[];
   custom_order: number[];
+  deleted_image_urls: string[];
 };
 
 const buildPreferencesEndpoint = () => {
@@ -60,6 +61,16 @@ const parseNumberArray = (value: string | null): number[] => {
   return [];
 };
 
+const ensureStringArray = (value: unknown): string[] => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map(item => (typeof item === 'string' ? item : String(item ?? '')).trim())
+    .filter(item => item.length > 0);
+};
+
 type ResortOverride = {
   imageUrls?: string[];
 };
@@ -89,6 +100,7 @@ const App: React.FC = () => {
   const [previousSortOption, setPreviousSortOption] = useState<SortOption>('popularity');
   const [customOrder, setCustomOrder] = useState<number[]>([]);
   const [hiddenResortIds, setHiddenResortIds] = useState<number[]>([]);
+  const [, setDeletedImageUrls] = useState<string[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [, setResortOverrides] = useState<Record<number, ResortOverride>>({});
 
@@ -104,6 +116,7 @@ const App: React.FC = () => {
   const getLocalPreferences = useCallback((): ResortPreferences => ({
     hidden_ids: parseNumberArray(localStorage.getItem('hiddenResorts')),
     custom_order: parseNumberArray(localStorage.getItem('resortOrder')),
+    deleted_image_urls: [],
   }), []);
 
   const savePreferencesToLocal = useCallback((hiddenIds: number[], order: number[]) => {
@@ -126,6 +139,7 @@ const App: React.FC = () => {
       return {
         hidden_ids: ensureNumberArray(payload.hidden_ids),
         custom_order: ensureNumberArray(payload.custom_order),
+        deleted_image_urls: ensureStringArray(payload.deleted_image_urls),
       };
     } catch (err) {
       console.error('Failed to fetch remote resort preferences', err);
@@ -134,7 +148,7 @@ const App: React.FC = () => {
     }
   }, [setToastMessage]);
 
-  const persistPreferences = useCallback(async (hiddenIds: number[], order: number[]) => {
+  const persistPreferences = useCallback(async (hiddenIds: number[], order: number[], deletedUrls?: string[]) => {
     savePreferencesToLocal(hiddenIds, order);
 
     try {
@@ -144,6 +158,7 @@ const App: React.FC = () => {
         body: JSON.stringify({
           hidden_ids: hiddenIds,
           custom_order: order,
+          deleted_image_urls: ensureStringArray(deletedUrls),
         }),
       });
 
@@ -216,6 +231,10 @@ const App: React.FC = () => {
 
         const localPreferences = getLocalPreferences();
         const remotePreferences = await fetchRemotePreferences();
+
+        if (remotePreferences) {
+          setDeletedImageUrls(remotePreferences.deleted_image_urls);
+        }
 
         const mergedHiddenIds = Array.from(
           new Set([
@@ -497,74 +516,20 @@ const App: React.FC = () => {
     }
   }, []);
 
-  const handleDeleteResortImage = (resortId: number, imageIndex: number) => {
+  const handleDeleteResortImage = (resortId: number, imageIndex: number, imageUrl: string) => {
+    if (!imageUrl || imageUrl.trim().length === 0) {
+      return;
+    }
+
     updateResortImages(resortId, currentUrls =>
       currentUrls.filter((_, index) => index !== imageIndex)
     );
-  };
 
-  const handleReorderResortImage = (resortId: number, fromIndex: number, toIndex: number) => {
-    updateResortImages(resortId, currentUrls => {
-      if (
-        fromIndex < 0 ||
-        fromIndex >= currentUrls.length ||
-        toIndex < 0 ||
-        toIndex >= currentUrls.length
-      ) {
-        return currentUrls;
-      }
-
-      const nextUrls = [...currentUrls];
-      const [moved] = nextUrls.splice(fromIndex, 1);
-      nextUrls.splice(toIndex, 0, moved);
+    setDeletedImageUrls(prevUrls => {
+      const nextUrls = [...prevUrls, imageUrl];
+      void persistPreferences(hiddenResortIds, customOrder, nextUrls);
       return nextUrls;
     });
-  };
-
-  const handleDeleteResort = (resortId: number) => {
-    let nextHidden = hiddenResortIds;
-    let nextOrder = customOrder;
-    let hasChanged = false;
-
-    if (!hiddenResortIds.includes(resortId)) {
-      nextHidden = [...hiddenResortIds, resortId];
-      hasChanged = true;
-    }
-
-    if (customOrder.includes(resortId)) {
-      nextOrder = customOrder.filter(id => id !== resortId);
-      hasChanged = true;
-    }
-
-    if (hasChanged) {
-      setHiddenResortIds(nextHidden);
-      setCustomOrder(nextOrder);
-      void persistPreferences(nextHidden, nextOrder);
-    }
-
-    setCompareList(prev => prev.filter(id => id !== resortId));
-
-    if (selectedResortId === resortId) {
-      setSelectedResortId(null);
-      window.location.hash = '';
-    }
-  };
-
-  const handleMoveResort = (resortId: number, direction: 'up' | 'down') => {
-    const index = customOrder.indexOf(resortId);
-    if (index === -1) {
-      return;
-    }
-
-    const swapIndex = direction === 'up' ? index - 1 : index + 1;
-    if (swapIndex < 0 || swapIndex >= customOrder.length) {
-      return;
-    }
-
-    const updatedOrder = [...customOrder];
-    [updatedOrder[index], updatedOrder[swapIndex]] = [updatedOrder[swapIndex], updatedOrder[index]];
-    setCustomOrder(updatedOrder);
-    void persistPreferences(hiddenResortIds, updatedOrder);
   };
 
   const resortsToCompare = initialResorts
@@ -593,7 +558,12 @@ const App: React.FC = () => {
                 onRemove={handleToggleCompare}
               />
             ) : selectedResortId && selectedResort ? (
-              <ResortDetail resort={selectedResort} onBack={handleGoBackToList} />
+              <ResortDetail
+                resort={selectedResort}
+                onBack={handleGoBackToList}
+                isImageEditMode={isImageEditMode}
+                onDeleteImage={handleDeleteResortImage}
+              />
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 <div className="lg:col-span-1 hidden lg:block">
@@ -615,10 +585,6 @@ const App: React.FC = () => {
                       onToggleCompare={handleToggleCompare}
                       onOpenFilter={() => setIsFilterOpen(true)}
                       isImageEditMode={isImageEditMode}
-                      onDeleteResort={handleDeleteResort}
-                      onMoveResort={handleMoveResort}
-                      onDeleteImage={handleDeleteResortImage}
-                      onReorderImage={handleReorderResortImage}
                     />
                   )}
                 </div>
