@@ -103,9 +103,9 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               </div>
             </div>
           </div>
-          <div className="min-h-[1.25rem] sm:text-right">
+          <div className="min-h-[1.25rem] flex justify-end items-end">
             {sortOption === 'popularity' && (
-              <p className="text-xs text-gray-600 mt-1 sm:mt-0">
+              <p className="text-xs text-gray-600 mt-1 sm:mt-0 text-right">
                 한국 구글 내 몰디브 리조트 검색량 지수 기준
               </p>
             )}
