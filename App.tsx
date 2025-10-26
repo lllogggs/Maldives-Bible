@@ -60,6 +60,10 @@ const parseNumberArray = (value: string | null): number[] => {
   return [];
 };
 
+type ResortOverride = {
+  imageUrls?: string[];
+};
+
 const App: React.FC = () => {
   const [initialResorts, setInitialResorts] = useState<Resort[]>([]);
   const [displayedResorts, setDisplayedResorts] = useState<Resort[]>([]);
@@ -86,6 +90,7 @@ const App: React.FC = () => {
   const [customOrder, setCustomOrder] = useState<number[]>([]);
   const [hiddenResortIds, setHiddenResortIds] = useState<number[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [, setResortOverrides] = useState<Record<number, ResortOverride>>({});
 
   useEffect(() => {
     if (!toastMessage) {
@@ -176,10 +181,37 @@ const App: React.FC = () => {
         const resortsDataArrays: Resort[][] = await Promise.all(responses.map(res => res.json()));
         
         const combinedData = resortsDataArrays.flat();
-        const overrides = JSON.parse(localStorage.getItem('resortOverrides') || '{}');
+        const storedOverrides = JSON.parse(localStorage.getItem('resortOverrides') || '{}') as Record<string, ResortOverride>;
+        const normalizedOverrides: Record<number, ResortOverride> = {};
+
+        Object.entries(storedOverrides).forEach(([key, value]) => {
+          const resortId = Number(key);
+          if (!Number.isFinite(resortId) || !value || typeof value !== 'object') {
+            return;
+          }
+
+          const cleanedOverride: ResortOverride = {};
+          if (Array.isArray(value.imageUrls)) {
+            cleanedOverride.imageUrls = value.imageUrls.filter(
+              (url): url is string => typeof url === 'string'
+            );
+          }
+
+          if (cleanedOverride.imageUrls && cleanedOverride.imageUrls.length === 0) {
+            cleanedOverride.imageUrls = [];
+          }
+
+          if (cleanedOverride.imageUrls !== undefined) {
+            normalizedOverrides[resortId] = cleanedOverride;
+          }
+        });
+
+        setResortOverrides(normalizedOverrides);
+        localStorage.setItem('resortOverrides', JSON.stringify(normalizedOverrides));
+
         const mergedData = combinedData.map(resort => ({
           ...resort,
-          ...(overrides[resort.id] || {}),
+          ...(normalizedOverrides[resort.id] || {}),
         }));
 
         const localPreferences = getLocalPreferences();
@@ -411,6 +443,84 @@ const App: React.FC = () => {
     setSortOption(previousSortOption);
   };
 
+  const updateResortImages = useCallback((resortId: number, updater: (imageUrls: string[]) => string[]) => {
+    let updatedUrls: string[] | null = null;
+
+    setInitialResorts(prevResorts => {
+      const index = prevResorts.findIndex(resort => resort.id === resortId);
+      if (index === -1) {
+        return prevResorts;
+      }
+
+      const resort = prevResorts[index];
+      const currentUrls = Array.isArray(resort.imageUrls) ? resort.imageUrls : [];
+      const nextUrlsRaw = updater(currentUrls);
+      const nextUrls = Array.isArray(nextUrlsRaw)
+        ? nextUrlsRaw.filter((url): url is string => typeof url === 'string')
+        : currentUrls;
+
+      if (
+        nextUrls.length === currentUrls.length &&
+        nextUrls.every((url, idx) => url === currentUrls[idx])
+      ) {
+        return prevResorts;
+      }
+
+      updatedUrls = nextUrls;
+      const updatedResort = { ...resort, imageUrls: nextUrls };
+      const nextResorts = [...prevResorts];
+      nextResorts[index] = updatedResort;
+      return nextResorts;
+    });
+
+    if (updatedUrls) {
+      setDisplayedResorts(prevResorts =>
+        prevResorts.map(resort =>
+          resort.id === resortId
+            ? { ...resort, imageUrls: updatedUrls as string[] }
+            : resort
+        )
+      );
+
+      setResortOverrides(prevOverrides => {
+        const nextOverrides = {
+          ...prevOverrides,
+          [resortId]: {
+            ...(prevOverrides[resortId] ?? {}),
+            imageUrls: updatedUrls as string[],
+          },
+        };
+
+        localStorage.setItem('resortOverrides', JSON.stringify(nextOverrides));
+        return nextOverrides;
+      });
+    }
+  }, []);
+
+  const handleDeleteResortImage = (resortId: number, imageIndex: number) => {
+    updateResortImages(resortId, currentUrls =>
+      currentUrls.filter((_, index) => index !== imageIndex)
+    );
+  };
+
+  const handleReorderResortImage = (resortId: number, fromIndex: number, toIndex: number) => {
+    updateResortImages(resortId, currentUrls => {
+      if (
+        fromIndex < 0 ||
+        fromIndex >= currentUrls.length ||
+        toIndex < 0 ||
+        toIndex >= currentUrls.length
+      ) {
+        return currentUrls;
+      }
+
+      const nextUrls = [...currentUrls];
+      const [moved] = nextUrls.splice(fromIndex, 1);
+      nextUrls.splice(toIndex, 0, moved);
+      return nextUrls;
+    });
+  };
+
   const handleDeleteResort = (resortId: number) => {
     let nextHidden = hiddenResortIds;
     let nextOrder = customOrder;
@@ -507,6 +617,8 @@ const App: React.FC = () => {
                       isImageEditMode={isImageEditMode}
                       onDeleteResort={handleDeleteResort}
                       onMoveResort={handleMoveResort}
+                      onDeleteImage={handleDeleteResortImage}
+                      onReorderImage={handleReorderResortImage}
                     />
                   )}
                 </div>

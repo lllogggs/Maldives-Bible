@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
 import { LocationPinIcon, StarIcon, ChevronLeftIcon, ChevronRightIcon, CartIcon, CheckCircleIcon, XIcon } from './icons/Icons';
@@ -14,6 +14,8 @@ interface ResortCardProps {
   onMoveDown?: () => void;
   disableMoveUp?: boolean;
   disableMoveDown?: boolean;
+  onDeleteImage?: (resortId: number, imageIndex: number) => void;
+  onReorderImage?: (resortId: number, fromIndex: number, toIndex: number) => void;
 }
 
 const getTransportationTagColor = (transportation: TransportationType) => {
@@ -40,6 +42,8 @@ const ResortCard: React.FC<ResortCardProps> = ({
   onMoveDown,
   disableMoveUp = false,
   disableMoveDown = false,
+  onDeleteImage,
+  onReorderImage,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -47,11 +51,25 @@ const ResortCard: React.FC<ResortCardProps> = ({
   const isSelectedForCompare = compareList.includes(resort.id);
   const canSelectForCompare = compareList.length < 3 || isSelectedForCompare;
 
-  const imageUrls = resort.imageUrls && resort.imageUrls.length > 0
-    ? resort.imageUrls
+  const actualImageUrls = Array.isArray(resort.imageUrls) ? resort.imageUrls : [];
+  const actualImageCount = actualImageUrls.length;
+  const hasActualImages = actualImageCount > 0;
+  const imageUrls = hasActualImages
+    ? actualImageUrls
     : ['https://via.placeholder.com/400x224.png?text=Image+Not+Found'];
 
+  useEffect(() => {
+    if (hasActualImages) {
+      setCurrentImageIndex(prev => Math.min(prev, actualImageCount - 1));
+    } else {
+      setCurrentImageIndex(0);
+    }
+  }, [hasActualImages, actualImageCount]);
+
   const minSwipeDistance = 50;
+  const canMoveImageBackward = Boolean(onReorderImage) && hasActualImages && currentImageIndex > 0;
+  const canMoveImageForward = Boolean(onReorderImage) && hasActualImages && currentImageIndex < actualImageCount - 1;
+  const canDeleteImage = Boolean(onDeleteImage) && hasActualImages;
 
   const handlePrevImage = (e: React.SyntheticEvent) => {
     e.stopPropagation();
@@ -68,11 +86,48 @@ const ResortCard: React.FC<ResortCardProps> = ({
     window.location.hash = `#/resort/${resort.id}`;
   };
 
-  const handleDeleteClick = (e: React.MouseEvent) => {
+  const handleHideCardClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (onDelete && window.confirm(`${resort.name} 카드를 목록에서 숨길까요?`)) {
       onDelete();
     }
+  };
+
+  const handleDeleteImageClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!onDeleteImage || !hasActualImages) {
+      return;
+    }
+
+    const confirmDelete = window.confirm(`${resort.name}의 현재 이미지를 삭제할까요?`);
+    if (!confirmDelete) {
+      return;
+    }
+
+    const nextIndex = currentImageIndex >= actualImageCount - 1
+      ? Math.max(0, currentImageIndex - 1)
+      : currentImageIndex;
+
+    onDeleteImage(resort.id, currentImageIndex);
+    setCurrentImageIndex(nextIndex);
+  };
+
+  const handleReorderImage = (direction: 'previous' | 'next') => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!onReorderImage || !hasActualImages) {
+      return;
+    }
+
+    const targetIndex = direction === 'previous'
+      ? currentImageIndex - 1
+      : currentImageIndex + 1;
+
+    if (targetIndex < 0 || targetIndex >= actualImageCount) {
+      return;
+    }
+
+    onReorderImage(resort.id, currentImageIndex, targetIndex);
+    setCurrentImageIndex(targetIndex);
   };
 
   const handleMoveUpClick = (e: React.MouseEvent) => {
@@ -152,43 +207,96 @@ const ResortCard: React.FC<ResortCardProps> = ({
         )}
 
         {isImageEditMode && (
-          <div className="absolute bottom-3 left-3 flex items-end gap-3">
-            <div className="flex flex-col gap-2">
+          <div className="absolute bottom-3 left-3 flex flex-col items-start gap-3">
+            <div className="flex items-center gap-2 rounded-full border border-cyan-600 bg-white/90 px-3 py-2 shadow-md">
               <button
                 type="button"
-                onClick={handleMoveUpClick}
-                disabled={disableMoveUp}
-                className={`flex h-10 w-10 items-center justify-center rounded-full border text-sm font-bold shadow-md transition-colors ${
-                  disableMoveUp
-                    ? 'border-gray-200 bg-gray-100 text-gray-400'
-                    : 'border-cyan-600 bg-white/90 text-cyan-700 hover:bg-cyan-50'
+                onClick={handleReorderImage('previous')}
+                disabled={!canMoveImageBackward}
+                className={`flex h-8 w-8 items-center justify-center rounded-full text-cyan-700 transition-colors ${
+                  canMoveImageBackward
+                    ? 'hover:bg-cyan-50'
+                    : 'cursor-not-allowed text-gray-400'
                 }`}
-                aria-label={`${resort.name} 카드 위로 이동`}
+                aria-label={`${resort.name} 이미지 앞쪽으로 이동`}
+                title="이미지 순서를 앞쪽으로 이동"
               >
-                ▲
+                <ChevronLeftIcon className="h-4 w-4" />
+              </button>
+              <span className="text-sm font-semibold text-cyan-800">
+                이미지 편집
+              </span>
+              <button
+                type="button"
+                onClick={handleReorderImage('next')}
+                disabled={!canMoveImageForward}
+                className={`flex h-8 w-8 items-center justify-center rounded-full text-cyan-700 transition-colors ${
+                  canMoveImageForward
+                    ? 'hover:bg-cyan-50'
+                    : 'cursor-not-allowed text-gray-400'
+                }`}
+                aria-label={`${resort.name} 이미지 뒤쪽으로 이동`}
+                title="이미지 순서를 뒤쪽으로 이동"
+              >
+                <ChevronRightIcon className="h-4 w-4" />
               </button>
               <button
                 type="button"
-                onClick={handleMoveDownClick}
-                disabled={disableMoveDown}
-                className={`flex h-10 w-10 items-center justify-center rounded-full border text-sm font-bold shadow-md transition-colors ${
-                  disableMoveDown
-                    ? 'border-gray-200 bg-gray-100 text-gray-400'
-                    : 'border-cyan-600 bg-white/90 text-cyan-700 hover:bg-cyan-50'
+                onClick={handleDeleteImageClick}
+                disabled={!canDeleteImage}
+                className={`ml-2 flex h-8 w-8 items-center justify-center rounded-full text-red-600 transition-colors ${
+                  canDeleteImage
+                    ? 'hover:bg-red-50'
+                    : 'cursor-not-allowed text-gray-400'
                 }`}
-                aria-label={`${resort.name} 카드 아래로 이동`}
+                aria-label={`${resort.name} 현재 이미지 삭제`}
+                title="현재 이미지를 삭제"
               >
-                ▼
+                <XIcon className="h-4 w-4" />
               </button>
             </div>
-            <button
-              type="button"
-              onClick={handleDeleteClick}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500 text-white shadow-md transition-colors hover:bg-red-600"
-              aria-label={`${resort.name} 카드 삭제`}
-            >
-              <XIcon className="h-5 w-5" />
-            </button>
+            <div className="flex items-end gap-3">
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={handleMoveUpClick}
+                  disabled={disableMoveUp}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border text-sm font-bold shadow-md transition-colors ${
+                    disableMoveUp
+                      ? 'border-gray-200 bg-gray-100 text-gray-400'
+                      : 'border-cyan-600 bg-white/90 text-cyan-700 hover:bg-cyan-50'
+                  }`}
+                  aria-label={`${resort.name} 카드 위로 이동`}
+                  title="카드를 위로 이동"
+                >
+                  ▲
+                </button>
+                <button
+                  type="button"
+                  onClick={handleMoveDownClick}
+                  disabled={disableMoveDown}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border text-sm font-bold shadow-md transition-colors ${
+                    disableMoveDown
+                      ? 'border-gray-200 bg-gray-100 text-gray-400'
+                      : 'border-cyan-600 bg-white/90 text-cyan-700 hover:bg-cyan-50'
+                  }`}
+                  aria-label={`${resort.name} 카드 아래로 이동`}
+                  title="카드를 아래로 이동"
+                >
+                  ▼
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={handleHideCardClick}
+                className="flex items-center gap-2 rounded-full border border-red-500 bg-white/90 px-4 py-2 text-sm font-semibold text-red-600 shadow-md transition-colors hover:bg-red-50"
+                aria-label={`${resort.name} 카드 숨기기`}
+                title="이 카드를 목록에서 숨기기"
+              >
+                <XIcon className="h-4 w-4" />
+                숨기기
+              </button>
+            </div>
           </div>
         )}
 
