@@ -5,6 +5,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 type PreferencesPayload = {
   hidden_ids: number[];
   custom_order: number[];
+  deleted_image_urls: string[];
 };
 
 const resolveSupabaseUrl = (rawUrl: string | undefined): string | null => {
@@ -115,12 +116,22 @@ const ensureArrayOfNumbers = (value: unknown): number[] => {
     .filter(item => Number.isFinite(item));
 };
 
+const ensureArrayOfStrings = (value: unknown): string[] => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map(item => (typeof item === 'string' ? item : String(item ?? '')).trim())
+    .filter(item => item.length > 0);
+};
+
 const getPreferences = async (): Promise<PreferencesPayload> => {
   const client = ensureSupabaseClient();
 
   const { data, error } = await client
     .from(tableName)
-    .select('hidden_ids, custom_order')
+    .select('hidden_ids, custom_order, deleted_image_urls')
     .eq('profile_id', profileId)
     .maybeSingle();
 
@@ -131,6 +142,7 @@ const getPreferences = async (): Promise<PreferencesPayload> => {
   return {
     hidden_ids: ensureArrayOfNumbers(data?.hidden_ids) ?? [],
     custom_order: ensureArrayOfNumbers(data?.custom_order) ?? [],
+    deleted_image_urls: ensureArrayOfStrings(data?.deleted_image_urls) ?? [],
   };
 };
 
@@ -139,6 +151,7 @@ const upsertPreferences = async (payload: PreferencesPayload): Promise<Preferenc
     profile_id: profileId,
     hidden_ids: ensureArrayOfNumbers(payload.hidden_ids),
     custom_order: ensureArrayOfNumbers(payload.custom_order),
+    deleted_image_urls: ensureArrayOfStrings(payload.deleted_image_urls),
   };
 
   const client = ensureSupabaseClient();
@@ -154,23 +167,28 @@ const upsertPreferences = async (payload: PreferencesPayload): Promise<Preferenc
   return {
     hidden_ids: dataToSave.hidden_ids,
     custom_order: dataToSave.custom_order,
+    deleted_image_urls: dataToSave.deleted_image_urls,
   };
 };
 
 const parseRequestBody = (req: VercelRequest): PreferencesPayload => {
   if (!req.body) {
-    return { hidden_ids: [], custom_order: [] };
+    return { hidden_ids: [], custom_order: [], deleted_image_urls: [] };
   }
 
   if (typeof req.body === 'string') {
     try {
       return JSON.parse(req.body);
     } catch {
-      return { hidden_ids: [], custom_order: [] };
+      return { hidden_ids: [], custom_order: [], deleted_image_urls: [] };
     }
   }
 
-  return req.body as PreferencesPayload;
+  return {
+    hidden_ids: ensureArrayOfNumbers((req.body as PreferencesPayload).hidden_ids),
+    custom_order: ensureArrayOfNumbers((req.body as PreferencesPayload).custom_order),
+    deleted_image_urls: ensureArrayOfStrings((req.body as PreferencesPayload).deleted_image_urls),
+  };
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
