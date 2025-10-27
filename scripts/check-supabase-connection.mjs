@@ -1,6 +1,62 @@
 #!/usr/bin/env node
 import process from 'node:process';
-import { createClient } from '@supabase/supabase-js';
+import { readFileSync, existsSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+let createClient;
+try {
+  ({ createClient } = await import('@supabase/supabase-js'));
+} catch (error) {
+  if (error?.code === 'ERR_MODULE_NOT_FOUND' || error?.code === 'MODULE_NOT_FOUND') {
+    console.error('❌ @supabase/supabase-js 패키지를 찾을 수 없습니다.');
+    console.error('   먼저 `npm install` 또는 `npm install @supabase/supabase-js`를 실행해 의존성을 설치해 주세요.');
+    process.exit(1);
+  }
+
+  throw error;
+}
+
+const ENV_FILES = ['.env.local', '.env'];
+const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
+
+function loadEnvFile(fileName) {
+  const filePath = resolve(SCRIPT_DIR, '..', fileName);
+
+  if (!existsSync(filePath)) {
+    return;
+  }
+
+  try {
+    const file = readFileSync(filePath, 'utf8');
+
+    for (const line of file.split(/\r?\n/)) {
+      if (!line || /^\s*#/.test(line)) {
+        continue;
+      }
+
+      const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)\s*$/);
+
+      if (!match) {
+        continue;
+      }
+
+      const [, key, rawValue] = match;
+      if (process.env[key] != null) {
+        continue;
+      }
+
+      const value = rawValue.replace(/^['"]|['"]$/g, '');
+      process.env[key] = value;
+    }
+  } catch (error) {
+    console.warn(`⚠️  ${fileName} 파일을 읽는 중 문제가 발생했습니다:`, error.message);
+  }
+}
+
+for (const file of ENV_FILES) {
+  loadEnvFile(file);
+}
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
