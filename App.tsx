@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Header from './components/Header';
 import FilterSidebar from './components/FilterSidebar';
 import ResortGrid from './components/ResortGrid';
@@ -15,23 +15,54 @@ const RESORTS_PER_PAGE = 15;
 type ResortPreferences = {
   hidden_ids: number[];
   custom_order: number[];
+  deleted_image_urls: string[];
 };
 
-const buildPreferencesEndpoint = () => {
-  const baseUrl = import.meta.env.VITE_PREFERENCES_API_BASE_URL?.replace(/\/$/, '');
-  if (baseUrl) {
-    return `${baseUrl}/api/resort-preferences`;
-  }
+class PreferencesRequestError extends Error {
+  retryable: boolean;
 
-  if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
-    const fallbackBase = 'https://maldives-bible.vercel.app';
-    return `${fallbackBase}/api/resort-preferences`;
+  constructor(message: string, retryable: boolean) {
+    super(message);
+    this.name = 'PreferencesRequestError';
+    this.retryable = retryable;
   }
+}
 
-  return '/api/resort-preferences';
+const normalizeBaseUrl = (rawUrl: string): string => rawUrl.replace(/\/$/, '');
+
+const buildPreferencesEndpoints = (currentOrigin: string | null): string[] => {
+  const envValue = import.meta.env.VITE_PREFERENCES_API_BASE_URL;
+  const envCandidates = typeof envValue === 'string'
+    ? envValue
+        .split(/[,\s]+/)
+        .map(value => value.trim())
+        .filter(Boolean)
+    : [];
+
+  const fallbackCandidates = [
+    'https://maldives-bible.vercel.app',
+    currentOrigin ?? '',
+    '',
+  ];
+
+  const seen = new Set<string>();
+  const endpoints: string[] = [];
+
+  const appendCandidate = (candidate: string) => {
+    const normalized = candidate ? normalizeBaseUrl(candidate) : '';
+    if (seen.has(normalized)) {
+      return;
+    }
+
+    seen.add(normalized);
+    endpoints.push(normalized ? `${normalized}/api/resort-preferences` : '/api/resort-preferences');
+  };
+
+  envCandidates.forEach(appendCandidate);
+  fallbackCandidates.forEach(appendCandidate);
+
+  return endpoints;
 };
-
-const PREFERENCES_ENDPOINT = buildPreferencesEndpoint();
 
 const ensureNumberArray = (value: unknown): number[] => {
   if (!Array.isArray(value)) {
@@ -58,6 +89,16 @@ const parseNumberArray = (value: string | null): number[] => {
   }
 
   return [];
+};
+
+const ensureStringArray = (value: unknown): string[] => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map(item => (typeof item === 'string' ? item : String(item ?? '')).trim())
+    .filter(item => item.length > 0);
 };
 
 type ResortOverride = {
@@ -89,8 +130,15 @@ const App: React.FC = () => {
   const [previousSortOption, setPreviousSortOption] = useState<SortOption>('popularity');
   const [customOrder, setCustomOrder] = useState<number[]>([]);
   const [hiddenResortIds, setHiddenResortIds] = useState<number[]>([]);
+  const [, setDeletedImageUrls] = useState<string[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [, setResortOverrides] = useState<Record<number, ResortOverride>>({});
+  const [preferencesEndpoints] = useState(() =>
+    buildPreferencesEndpoints(
+      typeof window !== 'undefined' ? window.location.origin : null
+    )
+  );
+  const preferredEndpointRef = useRef<string | null>(preferencesEndpoints[0] ?? null);
 
   useEffect(() => {
     if (!toastMessage) {
@@ -101,9 +149,58 @@ const App: React.FC = () => {
     return () => window.clearTimeout(timeout);
   }, [toastMessage]);
 
+  const executeWithPreferencesEndpoint = useCallback(
+    async <T,>(executor: (endpoint: string) => Promise<T>): Promise<T> => {
+      const attempted = new Set<string>();
+      const orderedEndpoints = preferredEndpointRef.current
+        ? [
+            preferredEndpointRef.current,
+            ...preferencesEndpoints.filter(endpoint => endpoint !== preferredEndpointRef.current),
+          ]
+        : [...preferencesEndpoints];
+
+      let lastError: unknown = null;
+
+      for (const endpoint of orderedEndpoints) {
+        if (!endpoint || attempted.has(endpoint)) {
+          continue;
+        }
+
+        attempted.add(endpoint);
+
+        try {
+          const result = await executor(endpoint);
+          preferredEndpointRef.current = endpoint;
+          return result;
+        } catch (error) {
+          lastError = error;
+
+          const shouldRetry =
+            error instanceof PreferencesRequestError
+              ? error.retryable
+              : error instanceof Error && /Failed to fetch/i.test(error.message);
+
+          if (shouldRetry && attempted.size < orderedEndpoints.length) {
+            continue;
+          }
+
+          throw error;
+        }
+      }
+
+      if (lastError instanceof Error) {
+        throw lastError;
+      }
+
+      throw new Error('선호도 API 요청에 실패했습니다.');
+    },
+    [preferencesEndpoints]
+  );
+
   const getLocalPreferences = useCallback((): ResortPreferences => ({
     hidden_ids: parseNumberArray(localStorage.getItem('hiddenResorts')),
     custom_order: parseNumberArray(localStorage.getItem('resortOrder')),
+    deleted_image_urls: [],
   }), []);
 
   const savePreferencesToLocal = useCallback((hiddenIds: number[], order: number[]) => {
@@ -113,48 +210,106 @@ const App: React.FC = () => {
 
   const fetchRemotePreferences = useCallback(async (): Promise<ResortPreferences | null> => {
     try {
-      const response = await fetch(PREFERENCES_ENDPOINT, {
-        headers: { Accept: 'application/json' },
+      const payload = await executeWithPreferencesEndpoint(async endpoint => {
+        try {
+          const response = await fetch(endpoint, {
+            headers: { Accept: 'application/json' },
+          });
+
+          if (!response.ok) {
+            const responseText = await response.text().catch(() => '');
+            const normalizedMessage = responseText.trim();
+            const shouldRetry = response.status === 403 || response.status === 404 || response.status >= 500;
+            throw new PreferencesRequestError(
+              normalizedMessage || `Failed to fetch preferences: ${response.statusText}`,
+              shouldRetry
+            );
+          }
+
+          const preferences = (await response.json()) as Partial<ResortPreferences>;
+
+          return {
+            hidden_ids: ensureNumberArray(preferences.hidden_ids),
+            custom_order: ensureNumberArray(preferences.custom_order),
+            deleted_image_urls: ensureStringArray(preferences.deleted_image_urls),
+          };
+        } catch (error) {
+          if (error instanceof PreferencesRequestError) {
+            throw error;
+          }
+
+          const message = error instanceof Error ? error.message : '네트워크 오류가 발생했습니다.';
+          throw new PreferencesRequestError(message, true);
+        }
       });
 
-      if (!response.ok) {
-        throw new Error(`Failed to fetch preferences: ${response.statusText}`);
-      }
-
-      const payload = (await response.json()) as Partial<ResortPreferences>;
-
-      return {
-        hidden_ids: ensureNumberArray(payload.hidden_ids),
-        custom_order: ensureNumberArray(payload.custom_order),
-      };
+      return payload;
     } catch (err) {
       console.error('Failed to fetch remote resort preferences', err);
       setToastMessage('선호 데이터를 불러오지 못했습니다. 로컬 저장 데이터를 사용합니다.');
       return null;
     }
-  }, [setToastMessage]);
+  }, [executeWithPreferencesEndpoint, setToastMessage]);
 
-  const persistPreferences = useCallback(async (hiddenIds: number[], order: number[]) => {
-    savePreferencesToLocal(hiddenIds, order);
+  const persistPreferences = useCallback(
+    async (hiddenIds: number[], order: number[], deletedUrls?: string[]) => {
+      savePreferencesToLocal(hiddenIds, order);
 
-    try {
-      const response = await fetch(PREFERENCES_ENDPOINT, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          hidden_ids: hiddenIds,
-          custom_order: order,
-        }),
-      });
+      try {
+        await executeWithPreferencesEndpoint(async endpoint => {
+          try {
+            const response = await fetch(endpoint, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                hidden_ids: hiddenIds,
+                custom_order: order,
+                deleted_image_urls: ensureStringArray(deletedUrls),
+              }),
+            });
 
-      if (!response.ok) {
-        throw new Error(`Failed to update preferences: ${response.statusText}`);
+            if (!response.ok) {
+              const rawMessage = await response.text().catch(() => '');
+              let normalizedMessage = rawMessage?.trim();
+
+              if (normalizedMessage) {
+                try {
+                  const parsed = JSON.parse(normalizedMessage) as { error?: unknown };
+                  if (parsed && typeof parsed.error === 'string') {
+                    normalizedMessage = parsed.error;
+                  }
+                } catch {
+                  // ignore JSON parse failure – we'll use the raw text message instead
+                }
+              }
+
+              if (!normalizedMessage) {
+                normalizedMessage = `변경 사항 저장에 실패했습니다. (HTTP ${response.status})`;
+              }
+
+              const shouldRetry = response.status === 403 || response.status === 404 || response.status >= 500;
+              throw new PreferencesRequestError(normalizedMessage, shouldRetry);
+            }
+          } catch (error) {
+            if (error instanceof PreferencesRequestError) {
+              throw error;
+            }
+
+            const message = error instanceof Error ? error.message : '네트워크 오류가 발생했습니다.';
+            throw new PreferencesRequestError(message, true);
+          }
+        });
+      } catch (err) {
+        console.error('Failed to sync resort preferences', err);
+        const fallbackMessage =
+          err instanceof Error && err.message
+            ? err.message
+            : '변경 사항을 저장하지 못했습니다. 네트워크 상태를 확인해주세요.';
+        setToastMessage(fallbackMessage);
       }
-    } catch (err) {
-      console.error('Failed to sync resort preferences', err);
-      setToastMessage('변경 사항을 저장하지 못했습니다. 네트워크 상태를 확인해주세요.');
-    }
-  }, [savePreferencesToLocal, setToastMessage]);
+    },
+    [executeWithPreferencesEndpoint, savePreferencesToLocal, setToastMessage]
+  );
 
 
   useEffect(() => {
@@ -216,6 +371,10 @@ const App: React.FC = () => {
 
         const localPreferences = getLocalPreferences();
         const remotePreferences = await fetchRemotePreferences();
+
+        if (remotePreferences) {
+          setDeletedImageUrls(remotePreferences.deleted_image_urls);
+        }
 
         const mergedHiddenIds = Array.from(
           new Set([
@@ -497,74 +656,20 @@ const App: React.FC = () => {
     }
   }, []);
 
-  const handleDeleteResortImage = (resortId: number, imageIndex: number) => {
+  const handleDeleteResortImage = (resortId: number, imageIndex: number, imageUrl: string) => {
+    if (!imageUrl || imageUrl.trim().length === 0) {
+      return;
+    }
+
     updateResortImages(resortId, currentUrls =>
       currentUrls.filter((_, index) => index !== imageIndex)
     );
-  };
 
-  const handleReorderResortImage = (resortId: number, fromIndex: number, toIndex: number) => {
-    updateResortImages(resortId, currentUrls => {
-      if (
-        fromIndex < 0 ||
-        fromIndex >= currentUrls.length ||
-        toIndex < 0 ||
-        toIndex >= currentUrls.length
-      ) {
-        return currentUrls;
-      }
-
-      const nextUrls = [...currentUrls];
-      const [moved] = nextUrls.splice(fromIndex, 1);
-      nextUrls.splice(toIndex, 0, moved);
+    setDeletedImageUrls(prevUrls => {
+      const nextUrls = [...prevUrls, imageUrl];
+      void persistPreferences(hiddenResortIds, customOrder, nextUrls);
       return nextUrls;
     });
-  };
-
-  const handleDeleteResort = (resortId: number) => {
-    let nextHidden = hiddenResortIds;
-    let nextOrder = customOrder;
-    let hasChanged = false;
-
-    if (!hiddenResortIds.includes(resortId)) {
-      nextHidden = [...hiddenResortIds, resortId];
-      hasChanged = true;
-    }
-
-    if (customOrder.includes(resortId)) {
-      nextOrder = customOrder.filter(id => id !== resortId);
-      hasChanged = true;
-    }
-
-    if (hasChanged) {
-      setHiddenResortIds(nextHidden);
-      setCustomOrder(nextOrder);
-      void persistPreferences(nextHidden, nextOrder);
-    }
-
-    setCompareList(prev => prev.filter(id => id !== resortId));
-
-    if (selectedResortId === resortId) {
-      setSelectedResortId(null);
-      window.location.hash = '';
-    }
-  };
-
-  const handleMoveResort = (resortId: number, direction: 'up' | 'down') => {
-    const index = customOrder.indexOf(resortId);
-    if (index === -1) {
-      return;
-    }
-
-    const swapIndex = direction === 'up' ? index - 1 : index + 1;
-    if (swapIndex < 0 || swapIndex >= customOrder.length) {
-      return;
-    }
-
-    const updatedOrder = [...customOrder];
-    [updatedOrder[index], updatedOrder[swapIndex]] = [updatedOrder[swapIndex], updatedOrder[index]];
-    setCustomOrder(updatedOrder);
-    void persistPreferences(hiddenResortIds, updatedOrder);
   };
 
   const resortsToCompare = initialResorts
@@ -593,7 +698,12 @@ const App: React.FC = () => {
                 onRemove={handleToggleCompare}
               />
             ) : selectedResortId && selectedResort ? (
-              <ResortDetail resort={selectedResort} onBack={handleGoBackToList} />
+              <ResortDetail
+                resort={selectedResort}
+                onBack={handleGoBackToList}
+                isImageEditMode={isImageEditMode}
+                onDeleteImage={handleDeleteResortImage}
+              />
             ) : (
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 <div className="lg:col-span-1 hidden lg:block">
@@ -615,10 +725,6 @@ const App: React.FC = () => {
                       onToggleCompare={handleToggleCompare}
                       onOpenFilter={() => setIsFilterOpen(true)}
                       isImageEditMode={isImageEditMode}
-                      onDeleteResort={handleDeleteResort}
-                      onMoveResort={handleMoveResort}
-                      onDeleteImage={handleDeleteResortImage}
-                      onReorderImage={handleReorderResortImage}
                     />
                   )}
                 </div>
