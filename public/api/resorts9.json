@@ -22,12 +22,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.villahotels.com/sun-island-resort-spa/wp-content/uploads/sites/5/2021/07/sun-island-maldives-water-bungalow-1.jpg",
-      "https://www.villahotels.com/sun-island-resort-spa/wp-content/uploads/sites/5/2021/07/sun-island-maldives-beach-pool-villa-1.jpg",
-      "https://www.villahotels.com/sun-island-resort-spa/wp-content/uploads/sites/5/2021/07/sun-island-maldives-southern-star-restaurant-1.jpg",
-      "https://www.villahotels.com/sun-island-resort-spa/wp-content/uploads/sites/5/2021/07/sun-island-maldives-pool-bar-1.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "워터 방갈로",
       "비치 풀 빌라"
@@ -57,12 +52,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.villahotels.com/paradise-island-resort-spa/wp-content/uploads/sites/4/2021/07/paradise-island-maldives-water-villa-1.jpg",
-      "https://www.villahotels.com/paradise-island-resort-spa/wp-content/uploads/sites/4/2021/07/paradise-island-maldives-beach-pool-villa-1.jpg",
-      "https://www.villahotels.com/paradise-island-resort-spa/wp-content/uploads/sites/4/2021/07/paradise-island-maldives-bageecha-restaurant-1.jpg",
-      "https://www.villahotels.com/paradise-island-resort-spa/wp-content/uploads/sites/4/2021/07/paradise-island-maldives-athiri-bar-1.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "워터 빌라",
       "비치 풀 빌라"
@@ -93,16 +83,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://meeru.com/wp-content/uploads/2021/11/meeru_logo.png",
-      "https://www.meeru.com/wp-content/uploads/2021/11/fw4otjmsbfbplqep8pw7.png",
-      "https://www.meeru.com/wp-content/uploads/elementor/thumbs/MeeruLogoMain-r9d11sgxad8ql7w5rh0r3sn5s07a6lj4bk1rl5wn78.png",
-      "https://www.meeru.com/wp-content/uploads/2021/11/MeeruLogoNew.png",
-      "https://www.meeru.com/wp-content/uploads/2023/07/cropped-MeeruLogo.png",
-      "https://www.meeru.com/wp-content/uploads/2021/11/TC_white_BF-Logo_LL_2025_RGB.png",
-      "https://www.meeru.com/wp-content/uploads/2021/11/ibsilhxlnl9qz3yw0oyw.png",
-      "https://www.meeru.com/wp-content/uploads/2021/11/GoldLogo2024_3.png"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "자쿠지 워터 빌라",
       "비치 빌라"
@@ -164,12 +145,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.nokuhotels.com/maldives/images/banner/home-1.jpg",
-      "https://www.nokuhotels.com/maldives/images/accm/water-pool-villa-1.jpg",
-      "https://www.nokuhotels.com/maldives/images/dining/palms-restaurant-1.jpg",
-      "https://www.nokuhotels.com/maldives/images/experiences/spa-1.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "워터 풀 빌라",
       "비치 풀 빌라"
@@ -200,24 +176,10 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/f086fcfb-9704-4916-a5ff-26ea61ca1048/IMG_1530.jpeg",
       "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/891c6ae6-97bf-43c9-b16f-dc7cd064a662/BSR+8.jpg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/e0effc6b-c3d9-43d4-9f2c-34b5929c22cc/_E7A1736.jpg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/3dc74e1a-2e79-49b9-952a-4d99510acc1d/_E7A2593+2.jpg",
       "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/735accd3-eaea-4849-a2b5-65e8c70f5ad1/IMG_1861.jpeg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/d0939ec0-0c7a-494b-bcb7-60b24ebbca78/IMG_1906.jpeg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/6d3f8ca9-a8b0-43d8-8b3e-2ea6f47fe5be/img_7762.jpg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/c3d78599-8568-4af2-b108-22f9ac8a4b09/IMG_1710+%281%29.jpeg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/714d7b3d-8c35-404c-896d-8efd244664be/_E7A2643.jpg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/6f7a1fb1-3ca3-4d05-bcdf-a3c2aca7ccce/IMG_1661.jpg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/82c07b9e-b471-4d03-8db6-a51f66ef51f0/_E7A2641.jpg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/0a7c2a7c-aed0-4c76-9196-c9c45aa1e423/_E7A1866.jpg",
       "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/249c5915-7d4a-4785-972f-dc6812c99019/DJI_0247.JPG",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/8a8bd53a-bfa8-4d4e-b387-77978778419f/New+logo+with+transparent+background.png?format=1500w",
       "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/c32960d7-9a44-42c2-8f4a-639f3094932a/IMG_1886.jpg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/c7d8042d-1f80-4cf2-ae22-5a3e9c93916e/_E7A2642.jpg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/d6ca855c-cf56-4fff-b2e5-5a18535f21bc/_E7A2632.jpg",
-      "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/6fdc1d87-7036-4b6c-9658-54aa28b21c43/BEACH+4.jpg",
       "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/793496b9-1a52-40c3-9190-b9bf2578b3ad/DJI_0024.jpg",
       "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/465bc8f9-50c5-42fe-8cb6-20c1d53ea36e/2.jpg",
       "https://images.squarespace-cdn.com/content/v1/68a8fd44271c153d72dbb25a/5e0563dd-b8b3-479a-a92b-39b3f14df3b5/_E7A2506.jpg",
@@ -384,10 +346,7 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://makunudu.com/wp-content/uploads/2024/05/Logo-WHITE.png",
-      "https://makunudu.com/wp-content/uploads/2024/05/DSC8030-1.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "디럭스 비치 방갈로"
     ],
@@ -418,30 +377,15 @@
     "honeymoonPerks": true,
     "imageUrls": [
       "https://medhufushiisland.com/wp-content/uploads/2018/12/BO_6575-Aerial.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2019/01/Underwater-titlebar.jpg",
       "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0155.jpg",
       "https://medhufushiisland.com/wp-content/uploads/2019/01/2014-04-29.jpg",
       "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0313.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/water.jpg",
       "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0095-E.jpg",
-      "https://downloads.brainstormforce.com/convertplug/presets/preset_hugo_bg.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/Medhufushi-logo-Horizontal-logo-01-e1545889256356.png",
-      "https://medhufushiisland.com/wp-content/uploads/2019/01/food4.jpg",
-      "https://openweathermap.org/img/w/04d.png",
-      "https://medhufushiisland.com/wp-content/plugins/convertplug/modules/assets/images/blue_final.png",
-      "https://medhufushiisland.com/wp-content/uploads/2019/01/Medhufushi-Spa.jpg",
-      "https://medhufushiisland.com/wp-content/plugins/convertplug/modules/assets/images/default.png",
-      "https://medhufushiisland.com/wp-content/uploads/2023/05/Secret-Deal-Offer-icon-MIR-1.png",
       "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0126.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2019/01/gallery.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0338.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/X8I2077-22web.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2022/07/DOD-icon.png",
       "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0094.jpg",
       "https://medhufushiisland.com/wp-content/uploads/2019/01/medhufushi-68-5421.jpg",
       "https://medhufushiisland.com/wp-content/uploads/2018/12/BO_6932.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0316-1.jpg",
-      "https://medhufushiisland.com/wp-content/plugins/convertplug/modules/modal/functions/config/img/cross.png"
+      "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0316-1.jpg"
     ],
     "roomTypes": [
       "비치 빌라",
@@ -474,12 +418,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.rihiveli-maldives.com/wp-content/uploads/2021/08/Rihiveli-Maldives-Resort-Beach-Bungalow-Exterior-1.jpg",
-      "https://www.rihiveli-maldives.com/wp-content/uploads/2021/08/Rihiveli-Maldives-Resort-Family-Bungalow-Exterior-1.jpg",
-      "https://www.rihiveli-maldives.com/wp-content/uploads/2021/08/Rihiveli-Maldives-Resort-Restaurant-1.jpg",
-      "https://www.rihiveli-maldives.com/wp-content/uploads/2021/08/Rihiveli-Maldives-Resort-Bar-1.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 방갈로",
       "패밀리 방갈로"
