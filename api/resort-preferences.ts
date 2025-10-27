@@ -32,10 +32,34 @@ const supabaseUrl = resolveSupabaseUrl(process.env.SUPABASE_URL);
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const tableName = process.env.RESORT_PREFERENCES_TABLE ?? 'resort_preferences';
 const profileId = process.env.RESORT_PREFERENCES_PROFILE_ID ?? 'public';
-const allowedOrigins = (process.env.RESORT_PREFERENCES_ALLOWED_ORIGINS ?? 'https://lllogggs.github.io')
+
+const defaultAllowedOrigins = [
+  'https://lllogggs.github.io',
+  'https://maldives-bible.vercel.app',
+  'https://*.vercel.app',
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+];
+
+const customAllowedOrigins = (process.env.RESORT_PREFERENCES_ALLOWED_ORIGINS ?? '')
   .split(',')
   .map(origin => origin.trim())
   .filter(Boolean);
+
+const allowedOrigins = Array.from(new Set([...defaultAllowedOrigins, ...customAllowedOrigins]));
+
+const escapeForRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const buildOriginMatcher = (origin: string): string | RegExp => {
+  if (origin.includes('*')) {
+    const pattern = `^${escapeForRegex(origin).replace(/\\\*/g, '.*')}$`;
+    return new RegExp(pattern, 'i');
+  }
+
+  return origin.toLowerCase();
+};
+
+const allowedOriginMatchers = allowedOrigins.map(buildOriginMatcher);
 
 class SupabaseConfigurationError extends Error {
   constructor(message: string) {
@@ -87,12 +111,26 @@ const normalizePostgrestError = (error: PostgrestError): never => {
   throw error;
 };
 
-const isAllowedOrigin = (origin: string | undefined): origin is string => {
+const isAllowedOrigin = (origin: string | undefined, host?: string | null): origin is string => {
   if (!origin) {
     return true;
   }
 
-  return allowedOrigins.some(allowed => allowed === origin);
+  const normalizedOrigin = origin.toLowerCase();
+
+  if (host) {
+    const normalizedHost = host.toLowerCase();
+    const httpsHost = `https://${normalizedHost}`;
+    const httpHost = `http://${normalizedHost}`;
+
+    if (normalizedOrigin === httpsHost || normalizedOrigin === httpHost) {
+      return true;
+    }
+  }
+
+  return allowedOriginMatchers.some(allowed =>
+    typeof allowed === 'string' ? allowed === normalizedOrigin : allowed.test(normalizedOrigin)
+  );
 };
 
 const setCorsHeaders = (res: VercelResponse, origin: string | undefined) => {
@@ -194,8 +232,10 @@ const parseRequestBody = (req: VercelRequest): PreferencesPayload => {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const origin = req.headers.origin as string | undefined;
 
+  const host = req.headers.host ?? null;
+
   if (req.method === 'OPTIONS') {
-    if (!isAllowedOrigin(origin)) {
+    if (!isAllowedOrigin(origin, host)) {
       return res.status(403).end();
     }
 
@@ -205,7 +245,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(204).end();
   }
 
-  if (!isAllowedOrigin(origin)) {
+  if (!isAllowedOrigin(origin, host)) {
     return res.status(403).json({ error: 'Origin not allowed' });
   }
 

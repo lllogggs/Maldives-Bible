@@ -163,11 +163,33 @@ const App: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to update preferences: ${response.statusText}`);
+        const rawMessage = await response.text();
+        let normalizedMessage = rawMessage?.trim();
+
+        if (normalizedMessage) {
+          try {
+            const parsed = JSON.parse(normalizedMessage) as { error?: unknown };
+            if (parsed && typeof parsed.error === 'string') {
+              normalizedMessage = parsed.error;
+            }
+          } catch {
+            // ignore JSON parse failure – we'll use the raw text message instead
+          }
+        }
+
+        if (!normalizedMessage) {
+          normalizedMessage = `변경 사항 저장에 실패했습니다. (HTTP ${response.status})`;
+        }
+
+        throw new Error(normalizedMessage);
       }
     } catch (err) {
       console.error('Failed to sync resort preferences', err);
-      setToastMessage('변경 사항을 저장하지 못했습니다. 네트워크 상태를 확인해주세요.');
+      const fallbackMessage =
+        err instanceof Error && err.message
+          ? err.message
+          : '변경 사항을 저장하지 못했습니다. 네트워크 상태를 확인해주세요.';
+      setToastMessage(fallbackMessage);
     }
   }, [savePreferencesToLocal, setToastMessage]);
 
