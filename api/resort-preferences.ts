@@ -5,6 +5,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 type PreferencesPayload = {
   hidden_ids: number[];
   custom_order: number[];
+  deleted_image_urls: string[];
 };
 
 const resolveSupabaseUrl = (rawUrl: string | undefined): string | null => {
@@ -31,10 +32,34 @@ const supabaseUrl = resolveSupabaseUrl(process.env.SUPABASE_URL);
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const tableName = process.env.RESORT_PREFERENCES_TABLE ?? 'resort_preferences';
 const profileId = process.env.RESORT_PREFERENCES_PROFILE_ID ?? 'public';
-const allowedOrigins = (process.env.RESORT_PREFERENCES_ALLOWED_ORIGINS ?? 'https://lllogggs.github.io')
+
+const defaultAllowedOrigins = [
+  'https://lllogggs.github.io',
+  'https://maldives-bible.vercel.app',
+  'https://*.vercel.app',
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+];
+
+const customAllowedOrigins = (process.env.RESORT_PREFERENCES_ALLOWED_ORIGINS ?? '')
   .split(',')
   .map(origin => origin.trim())
   .filter(Boolean);
+
+const allowedOrigins = Array.from(new Set([...defaultAllowedOrigins, ...customAllowedOrigins]));
+
+const escapeForRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const buildOriginMatcher = (origin: string): string | RegExp => {
+  if (origin.includes('*')) {
+    const pattern = `^${escapeForRegex(origin).replace(/\\\*/g, '.*')}$`;
+    return new RegExp(pattern, 'i');
+  }
+
+  return origin.toLowerCase();
+};
+
+const allowedOriginMatchers = allowedOrigins.map(buildOriginMatcher);
 
 class SupabaseConfigurationError extends Error {
   constructor(message: string) {
@@ -86,12 +111,26 @@ const normalizePostgrestError = (error: PostgrestError): never => {
   throw error;
 };
 
-const isAllowedOrigin = (origin: string | undefined): origin is string => {
+const isAllowedOrigin = (origin: string | undefined, host?: string | null): origin is string => {
   if (!origin) {
     return true;
   }
 
-  return allowedOrigins.some(allowed => allowed === origin);
+  const normalizedOrigin = origin.toLowerCase();
+
+  if (host) {
+    const normalizedHost = host.toLowerCase();
+    const httpsHost = `https://${normalizedHost}`;
+    const httpHost = `http://${normalizedHost}`;
+
+    if (normalizedOrigin === httpsHost || normalizedOrigin === httpHost) {
+      return true;
+    }
+  }
+
+  return allowedOriginMatchers.some(allowed =>
+    typeof allowed === 'string' ? allowed === normalizedOrigin : allowed.test(normalizedOrigin)
+  );
 };
 
 const setCorsHeaders = (res: VercelResponse, origin: string | undefined) => {
@@ -115,12 +154,22 @@ const ensureArrayOfNumbers = (value: unknown): number[] => {
     .filter(item => Number.isFinite(item));
 };
 
+const ensureArrayOfStrings = (value: unknown): string[] => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map(item => (typeof item === 'string' ? item : String(item ?? '')).trim())
+    .filter(item => item.length > 0);
+};
+
 const getPreferences = async (): Promise<PreferencesPayload> => {
   const client = ensureSupabaseClient();
 
   const { data, error } = await client
     .from(tableName)
-    .select('hidden_ids, custom_order')
+    .select('hidden_ids, custom_order, deleted_image_urls')
     .eq('profile_id', profileId)
     .maybeSingle();
 
@@ -131,6 +180,7 @@ const getPreferences = async (): Promise<PreferencesPayload> => {
   return {
     hidden_ids: ensureArrayOfNumbers(data?.hidden_ids) ?? [],
     custom_order: ensureArrayOfNumbers(data?.custom_order) ?? [],
+    deleted_image_urls: ensureArrayOfStrings(data?.deleted_image_urls) ?? [],
   };
 };
 
@@ -139,6 +189,7 @@ const upsertPreferences = async (payload: PreferencesPayload): Promise<Preferenc
     profile_id: profileId,
     hidden_ids: ensureArrayOfNumbers(payload.hidden_ids),
     custom_order: ensureArrayOfNumbers(payload.custom_order),
+    deleted_image_urls: ensureArrayOfStrings(payload.deleted_image_urls),
   };
 
   const client = ensureSupabaseClient();
@@ -154,30 +205,37 @@ const upsertPreferences = async (payload: PreferencesPayload): Promise<Preferenc
   return {
     hidden_ids: dataToSave.hidden_ids,
     custom_order: dataToSave.custom_order,
+    deleted_image_urls: dataToSave.deleted_image_urls,
   };
 };
 
 const parseRequestBody = (req: VercelRequest): PreferencesPayload => {
   if (!req.body) {
-    return { hidden_ids: [], custom_order: [] };
+    return { hidden_ids: [], custom_order: [], deleted_image_urls: [] };
   }
 
   if (typeof req.body === 'string') {
     try {
       return JSON.parse(req.body);
     } catch {
-      return { hidden_ids: [], custom_order: [] };
+      return { hidden_ids: [], custom_order: [], deleted_image_urls: [] };
     }
   }
 
-  return req.body as PreferencesPayload;
+  return {
+    hidden_ids: ensureArrayOfNumbers((req.body as PreferencesPayload).hidden_ids),
+    custom_order: ensureArrayOfNumbers((req.body as PreferencesPayload).custom_order),
+    deleted_image_urls: ensureArrayOfStrings((req.body as PreferencesPayload).deleted_image_urls),
+  };
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const origin = req.headers.origin as string | undefined;
 
+  const host = req.headers.host ?? null;
+
   if (req.method === 'OPTIONS') {
-    if (!isAllowedOrigin(origin)) {
+    if (!isAllowedOrigin(origin, host)) {
       return res.status(403).end();
     }
 
@@ -187,7 +245,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(204).end();
   }
 
-  if (!isAllowedOrigin(origin)) {
+  if (!isAllowedOrigin(origin, host)) {
     return res.status(403).json({ error: 'Origin not allowed' });
   }
 

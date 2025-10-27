@@ -9,6 +9,8 @@ import { TransportationType } from '../types';
 interface ResortDetailProps {
   resort: Resort;
   onBack: () => void;
+  isImageEditMode?: boolean;
+  onDeleteImage?: (resortId: number, imageIndex: number, imageUrl: string) => void;
 }
 
 const InfoCard: React.FC<{ icon: ReactNode; title: string; children: ReactNode }> = ({ icon, title, children }) => (
@@ -39,7 +41,7 @@ const TransportationIcon: React.FC<{type: TransportationType}> = ({ type }) => {
     }
 }
 
-const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
+const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEditMode = false, onDeleteImage }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -47,9 +49,15 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
 
   const minSwipeDistance = 50;
 
-  const imageUrls = resort.imageUrls && resort.imageUrls.length > 0
-    ? resort.imageUrls
+  const actualImageUrls = Array.isArray(resort.imageUrls)
+    ? resort.imageUrls.filter((url): url is string => typeof url === 'string' && url.trim().length > 0)
+    : [];
+
+  const displayedImageUrls = actualImageUrls.length > 0
+    ? actualImageUrls
     : ['https://via.placeholder.com/1280x720.png?text=Image+Not+Found'];
+
+  const canDeleteImages = Boolean(isImageEditMode && onDeleteImage && actualImageUrls.length > 0);
 
   const openGallery = (index: number) => {
     setSelectedImageIndex(index);
@@ -62,13 +70,51 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
 
   const goToNext = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
     e?.stopPropagation();
-    setSelectedImageIndex(prev => (prev + 1) % imageUrls.length);
-  }, [imageUrls.length]);
+    setSelectedImageIndex(prev => (prev + 1) % displayedImageUrls.length);
+  }, [displayedImageUrls.length]);
 
   const goToPrev = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
     e?.stopPropagation();
-    setSelectedImageIndex(prev => (prev - 1 + imageUrls.length) % imageUrls.length);
-  }, [imageUrls.length]);
+    setSelectedImageIndex(prev => (prev - 1 + displayedImageUrls.length) % displayedImageUrls.length);
+  }, [displayedImageUrls.length]);
+
+  const requestImageDelete = useCallback(
+    (index: number) => (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+
+      if (!canDeleteImages) {
+        return;
+      }
+
+      const targetUrl = actualImageUrls[index];
+      if (!targetUrl) {
+        return;
+      }
+
+      const confirmMessage = actualImageUrls.length === 1
+        ? `${resort.name}의 마지막 이미지를 삭제할까요?`
+        : `${resort.name}의 이미지를 삭제할까요?`;
+
+      if (!window.confirm(confirmMessage)) {
+        return;
+      }
+
+      onDeleteImage?.(resort.id, index, targetUrl);
+
+      setSelectedImageIndex(prevIndex => {
+        if (prevIndex > index) {
+          return prevIndex - 1;
+        }
+
+        if (prevIndex === index && index >= actualImageUrls.length - 1) {
+          return Math.max(0, prevIndex - 1);
+        }
+
+        return prevIndex;
+      });
+    },
+    [actualImageUrls, canDeleteImages, onDeleteImage, resort.id, resort.name]
+  );
   
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -83,6 +129,12 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isGalleryOpen, closeGallery, goToNext, goToPrev]);
+
+  useEffect(() => {
+    if (selectedImageIndex >= displayedImageUrls.length) {
+      setSelectedImageIndex(Math.max(0, displayedImageUrls.length - 1));
+    }
+  }, [displayedImageUrls.length, selectedImageIndex]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(0);
@@ -109,7 +161,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
     setTouchEnd(0);
   };
 
-  const gridImages = imageUrls.slice(1, 5);
+  const gridImages = displayedImageUrls.slice(1, 5);
 
   return (
     <div className="animate-fade-in">
@@ -121,40 +173,71 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
         목록으로 돌아가기
       </button>
 
+      {isImageEditMode && (
+        <div className="mb-6 rounded-lg border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900">
+          삭제하려는 이미지를 선택한 뒤 <span className="font-semibold">삭제</span> 버튼을 누르면 해당 이미지가 목록에서 제거되고 URL이 기록됩니다.
+        </div>
+      )}
+
       <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
         {/* Image Gallery */}
         <div className="relative" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
             {/* Desktop Grid */}
             <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 md:gap-2 md:h-[450px]">
-                <div 
-                    className="col-span-2 row-span-2 cursor-pointer group overflow-hidden" 
+                <div
+                    className="col-span-2 row-span-2 cursor-pointer group relative overflow-hidden"
                     onClick={() => openGallery(0)}
                     role="button"
                     aria-label="View image 1 in gallery"
                 >
-                    <img src={imageUrls[0]} alt={`${resort.name_en} main view`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
-                </div>
-                {gridImages.map((url, index) => (
-                    <div 
-                    key={index} 
-                    className="col-span-1 row-span-1 cursor-pointer group relative overflow-hidden" 
-                    onClick={() => openGallery(index + 1)}
-                    role="button"
-                    aria-label={`View image ${index + 2} in gallery`}
-                    >
-                    <img src={url} alt={`${resort.name_en} view ${index + 2}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
-                    {index === gridImages.length - 1 && imageUrls.length > 5 && (
-                        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white font-bold text-lg pointer-events-none">
-                        <GalleryIcon />
-                        <span className="mt-2 text-sm whitespace-nowrap">사진 모두보기 ({imageUrls.length}장)</span>
-                        </div>
+                    <img src={displayedImageUrls[0]} alt={`${resort.name_en} main view`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                    {canDeleteImages && (
+                      <button
+                        type="button"
+                        onClick={requestImageDelete(0)}
+                        className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-red-600/90 px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+                        aria-label={`${resort.name} 첫 번째 이미지 삭제`}
+                        title="이 이미지를 삭제"
+                      >
+                        삭제
+                      </button>
                     )}
+                </div>
+                {gridImages.map((url, index) => {
+                  const actualIndex = index + 1;
+                  return (
+                    <div
+                      key={actualIndex}
+                      className="col-span-1 row-span-1 cursor-pointer group relative overflow-hidden"
+                      onClick={() => openGallery(actualIndex)}
+                      role="button"
+                      aria-label={`View image ${actualIndex + 1} in gallery`}
+                    >
+                      <img src={url} alt={`${resort.name_en} view ${actualIndex + 1}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                      {canDeleteImages && (
+                        <button
+                          type="button"
+                          onClick={requestImageDelete(actualIndex)}
+                          className="absolute top-2 right-2 inline-flex items-center gap-1 rounded-full bg-red-600/90 px-2.5 py-1 text-[11px] font-semibold text-white shadow-md transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+                          aria-label={`${resort.name} 이미지 ${actualIndex + 1} 삭제`}
+                          title="이 이미지를 삭제"
+                        >
+                          삭제
+                        </button>
+                      )}
+                      {index === gridImages.length - 1 && displayedImageUrls.length > 5 && (
+                        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white font-bold text-lg pointer-events-none">
+                          <GalleryIcon />
+                          <span className="mt-2 text-sm whitespace-nowrap">사진 모두보기 ({displayedImageUrls.length}장)</span>
+                        </div>
+                      )}
                     </div>
-                ))}
+                  );
+                })}
             </div>
             {/* Mobile Carousel */}
             <div className="md:hidden h-64 w-full overflow-hidden relative">
-                {imageUrls.map((url, index) => (
+                {displayedImageUrls.map((url, index) => (
                     <div
                         key={index}
                         className="absolute w-full h-full transition-transform duration-300 ease-in-out"
@@ -164,10 +247,21 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
                         <img src={url} alt={`${resort.name_en} view ${index + 1}`} className="w-full h-full object-cover"/>
                     </div>
                 ))}
+                {canDeleteImages && (
+                  <button
+                    type="button"
+                    onClick={requestImageDelete(selectedImageIndex)}
+                    className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-red-600/90 px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300 z-20"
+                    aria-label={`${resort.name} 현재 이미지 삭제`}
+                    title="현재 이미지를 삭제"
+                  >
+                    삭제
+                  </button>
+                )}
             </div>
-             {imageUrls.length > 1 && (
+             {displayedImageUrls.length > 1 && (
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-semibold px-2 py-1 rounded-full pointer-events-none z-10">
-                    {selectedImageIndex + 1} / {imageUrls.length}
+                    {selectedImageIndex + 1} / {displayedImageUrls.length}
                 </div>
             )}
             <button
@@ -286,14 +380,14 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
             </svg>
           </button>
 
-          <button 
+          <button
             onClick={goToPrev}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors"
             aria-label="Previous image"
           >
             <ChevronLeftIcon className="h-8 w-8" />
           </button>
-          <button 
+          <button
             onClick={goToNext}
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors"
             aria-label="Next image"
@@ -301,17 +395,29 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack }) => {
             <ChevronRightIcon className="h-8 w-8" />
           </button>
 
-          <div 
+          {canDeleteImages && (
+            <button
+              type="button"
+              onClick={requestImageDelete(selectedImageIndex)}
+              className="absolute top-16 right-4 inline-flex items-center gap-2 rounded-full bg-red-600/90 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+              aria-label={`${resort.name} 갤러리 이미지 삭제`}
+              title="현재 이미지를 삭제"
+            >
+              삭제
+            </button>
+          )}
+
+          <div
             className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img 
-              src={imageUrls[selectedImageIndex]} 
-              alt={`Resort image ${selectedImageIndex + 1}`} 
+            <img
+              src={displayedImageUrls[selectedImageIndex]}
+              alt={`Resort image ${selectedImageIndex + 1}`}
               className="max-w-full max-h-full object-contain rounded-lg"
             />
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-sm font-semibold px-3 py-1 rounded-full">
-              {selectedImageIndex + 1} / {imageUrls.length}
+              {selectedImageIndex + 1} / {displayedImageUrls.length}
             </div>
           </div>
         </div>
