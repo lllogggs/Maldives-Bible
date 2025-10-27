@@ -1,34 +1,36 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // ✅ CORS 헤더
-  res.setHeader('Access-Control-Allow-Origin', '*'); // 필요시 특정 도메인으로 제한
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+// ---- CORS 공통 설정 ----
+function setCors(req: NextApiRequest, res: NextApiResponse) {
+  const origin = (req.headers.origin as string) || '*';
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Vary', 'Origin');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'content-type, authorization, x-requested-with');
+  res.setHeader('Access-Control-Max-Age', '86400');
+}
 
-  // ✅ Preflight 요청 처리
+// ---- API Handler ----
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  setCors(req, res);
+
   if (req.method === 'OPTIONS') {
-    return res.status(204).end();
+    res.status(204).end();
+    return;
   }
 
-  const SUPABASE_URL = process.env.SUPABASE_URL || '';
-  const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-    return res.status(401).json({ error: 'Missing Supabase environment variables' });
+  if (req.method === 'GET') {
+    res.status(200).json({ ok: true });
+    return;
   }
 
-  try {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/resort_preferences?select=*`, {
-      headers: {
-        apikey: SUPABASE_SERVICE_ROLE_KEY,
-        Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`
-      }
-    });
-
-    const body = await r.json();
-    return res.status(r.ok ? 200 : r.status).json(body);
-  } catch (err: any) {
-    return res.status(500).json({ error: err?.message || 'Unexpected error' });
+  if (req.method === 'PUT') {
+    const body = req.body;
+    // TODO: Supabase 저장 로직 추가
+    res.status(200).json({ ok: true, received: body });
+    return;
   }
+
+  res.setHeader('Allow', 'GET,PUT,OPTIONS');
+  res.status(405).end('Method Not Allowed');
 }
