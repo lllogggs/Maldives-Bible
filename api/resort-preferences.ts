@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { createClient } from '@supabase/supabase-js';
 
-// ---- CORS 공통 ----
+// ---- CORS ----
 function setCors(req: NextApiRequest, res: NextApiResponse) {
   const origin = (req.headers.origin as string) || '*';
   res.setHeader('Access-Control-Allow-Origin', origin);
@@ -9,34 +10,59 @@ function setCors(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Access-Control-Allow-Headers', 'content-type, authorization, x-requested-with');
   res.setHeader('Access-Control-Max-Age', '86400');
 }
-
-// 통일 응답 헬퍼: 어떤 status든 CORS 유지
 function send(res: NextApiResponse, status: number, body?: any) {
-  if (body === undefined || body === null) return res.status(status).end();
+  if (!body) return res.status(status).end();
   return res.status(status).json(body);
 }
 
+// ---- Supabase 연결 ----
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  { auth: { persistSession: false } }
+);
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   setCors(req, res);
-
   if (req.method === 'OPTIONS') return send(res, 204);
 
   try {
     if (req.method === 'GET') {
-      // TODO: 인증 필요하면 검사하되 실패 시에도 send(res, 401, {...})
-      return send(res, 200, { ok: true });
+      const { profileId } = req.query;
+      if (!profileId) return send(res, 400, { error: 'missing profileId' });
+      const { data, error } = await supabase
+        .from('resort_preferences')
+        .select('*')
+        .eq('profile_id', profileId)
+        .maybeSingle();
+      if (error) return send(res, 500, { error: error.message });
+      return send(res, 200, { ok: true, data });
     }
 
     if (req.method === 'PUT') {
-      // TODO: 인증/권한 체크 (실패 시에도 send(res, 401, {...}))
-      const body = req.body;
-      // TODO: Supabase 저장 로직
-      return send(res, 200, { ok: true, received: body });
+      const { profileId, hiddenIds, customOrder, deletedImageUrls } = req.body;
+      if (!profileId) return send(res, 400, { error: 'missing profileId' });
+
+      const payload = {
+        profile_id: profileId,
+        hidden_ids: hiddenIds || [],
+        custom_order: customOrder || [],
+        deleted_image_urls: deletedImageUrls || [],
+      };
+
+      const { data, error } = await supabase
+        .from('resort_preferences')
+        .upsert(payload, { onConflict: 'profile_id' })
+        .select()
+        .single();
+
+      if (error) return send(res, 500, { error: error.message });
+      return send(res, 200, { ok: true, data });
     }
 
     res.setHeader('Allow', 'GET,PUT,OPTIONS');
     return send(res, 405, { error: 'Method Not Allowed' });
   } catch (e: any) {
-    return send(res, 500, { error: 'internal_error', detail: e?.message });
+    return send(res, 500, { error: e?.message || 'internal_error' });
   }
 }
