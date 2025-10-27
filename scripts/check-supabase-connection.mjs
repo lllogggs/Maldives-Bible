@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import process from 'node:process';
 import { readFileSync, existsSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { dirname, resolve, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 let createClient;
@@ -19,43 +19,92 @@ try {
 
 const ENV_FILES = ['.env.local', '.env'];
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
+const loadedEnvReport = [];
 
-function loadEnvFile(fileName) {
-  const filePath = resolve(SCRIPT_DIR, '..', fileName);
-
-  if (!existsSync(filePath)) {
+function assignEnv(key, value, collectedKeys) {
+  if (process.env[key] != null) {
     return;
   }
 
-  try {
-    const file = readFileSync(filePath, 'utf8');
+  process.env[key] = value;
+  collectedKeys.add(key);
+}
 
-    for (const line of file.split(/\r?\n/)) {
-      if (!line || /^\s*#/.test(line)) {
-        continue;
-      }
+function normaliseValue(rawValue) {
+  const trimmed = rawValue.trim();
 
-      const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)\s*$/);
+  if (!trimmed) {
+    return '';
+  }
 
-      if (!match) {
-        continue;
-      }
+  const firstChar = trimmed[0];
+  const lastChar = trimmed.at(-1);
 
-      const [, key, rawValue] = match;
-      if (process.env[key] != null) {
-        continue;
-      }
+  if ((firstChar === '"' && lastChar === '"') || (firstChar === "'" && lastChar === "'")) {
+    return trimmed.slice(1, -1);
+  }
 
-      const value = rawValue.replace(/^['"]|['"]$/g, '');
-      process.env[key] = value;
+  const commentIndex = trimmed.indexOf(' #');
+  if (commentIndex !== -1) {
+    return trimmed.slice(0, commentIndex).trim();
+  }
+
+  return trimmed;
+}
+
+function loadEnvFile(fileName) {
+  const candidatePaths = new Set([
+    resolve(process.cwd(), fileName),
+    resolve(SCRIPT_DIR, '..', fileName),
+  ]);
+
+  for (const filePath of candidatePaths) {
+    if (!existsSync(filePath)) {
+      continue;
     }
-  } catch (error) {
-    console.warn(`⚠️  ${fileName} 파일을 읽는 중 문제가 발생했습니다:`, error.message);
+
+    try {
+      const file = readFileSync(filePath, 'utf8');
+      const collectedKeys = new Set();
+
+      for (const line of file.split(/\r?\n/)) {
+        if (!line || /^\s*#/.test(line)) {
+          continue;
+        }
+
+        const match = line.match(/^\s*(?:export\s+)?([\w.-]+)\s*=\s*(.*)\s*$/);
+
+        if (!match) {
+          continue;
+        }
+
+        const [, key, rawValue] = match;
+        const value = normaliseValue(rawValue ?? '');
+        assignEnv(key, value, collectedKeys);
+      }
+
+      if (collectedKeys.size > 0) {
+        const relativePath = relative(process.cwd(), filePath) || filePath;
+        loadedEnvReport.push({
+          filePath: relativePath,
+          keys: [...collectedKeys].sort(),
+        });
+      }
+    } catch (error) {
+      console.warn(`⚠️  ${fileName} 파일을 읽는 중 문제가 발생했습니다:`, error.message);
+    }
   }
 }
 
 for (const file of ENV_FILES) {
   loadEnvFile(file);
+}
+
+if (loadedEnvReport.length > 0) {
+  console.log('ℹ️  다음 파일에서 환경 변수를 불러왔습니다:');
+  for (const { filePath, keys } of loadedEnvReport) {
+    console.log(`   - ${filePath}: ${keys.join(', ')}`);
+  }
 }
 
 const supabaseUrl = process.env.SUPABASE_URL;
