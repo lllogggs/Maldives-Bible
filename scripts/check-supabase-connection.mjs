@@ -1,6 +1,18 @@
 #!/usr/bin/env node
 import process from 'node:process';
-import { createClient } from '@supabase/supabase-js';
+
+let createClient;
+try {
+  ({ createClient } = await import('@supabase/supabase-js'));
+} catch (error) {
+  if (error?.code === 'ERR_MODULE_NOT_FOUND' || error?.code === 'MODULE_NOT_FOUND') {
+    console.error('❌ @supabase/supabase-js 패키지를 찾을 수 없습니다.');
+    console.error('   먼저 `npm install` 또는 `npm install @supabase/supabase-js`를 실행해 의존성을 설치해 주세요.');
+    process.exit(1);
+  }
+
+  throw error;
+}
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
