@@ -256,7 +256,8 @@ const EXCLUDE_PATTERNS = [
   /footer/i,
 ];
 
-const resortsDir = path.resolve("api");
+const resortsDir = path.resolve("public/api");
+
 
 const shouldExclude = (url) => {
   if (!url || typeof url !== "string") return false;

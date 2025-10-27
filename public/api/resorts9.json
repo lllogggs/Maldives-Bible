@@ -306,11 +306,8 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.adaaran.com/prestigewatervillas/wp-content/themes/adaaran-theme/assets/img/close-b.png",
       "https://www.adaaran.com/prestigewatervillas/wp-content/themes/adaaran-theme/assets/img/menu.jpg",
-      "https://www.adaaran.com/prestigewatervillas/wp-content/themes/adaaran-theme/assets/img/bg.png",
-      "https://adaaran.imgix.net/sites/6/2025/08/Adaaran-Select-Meedhupparu-Hero-Image.jpg?w=1920&h=1080&fit=crop&crop=center&auto=format,compress,enhance&q=50",
-      "https://www.adaaran.com/prestigewatervillas/wp-content/themes/adaaran-theme/assets/img/placeholder.jpg"
+      "https://adaaran.imgix.net/sites/6/2025/08/Adaaran-Select-Meedhupparu-Hero-Image.jpg?w=1920&h=1080&fit=crop&crop=center&auto=format,compress,enhance&q=50"
     ],
     "roomTypes": [
       "워터 빌라 선라이즈",
@@ -512,12 +509,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": false,
-    "imageUrls": [
-      "https://lh3.googleusercontent.com/p/AF1QipMhB1q1k_Jd6n4K5p6g-8o_J8Lz1J8Lz1J8Lz1=s1280-w1280-h800",
-      "https://lh3.googleusercontent.com/p/AF1QipN5p6g-8o_J8Lz1J8Lz1J8Lz1J8Lz1J8Lz1J=s1280-w1280-h800",
-      "https://lh3.googleusercontent.com/p/AF1QipMhB1q1k_Jd6n4K5p6g-8o_J8Lz1J8Lz1J8Lz2=s1280-w1280-h800",
-      "https://lh3.googleusercontent.com/p/AF1QipN5p6g-8o_J8Lz1J8Lz1J8Lz1J8Lz1J8Lz1J=s1280-w1280-h800"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "디럭스 룸",
       "패밀리 룸"
