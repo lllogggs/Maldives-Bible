@@ -957,7 +957,7 @@ const App: React.FC = () => {
       />
       <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
         <section
-          className="mb-10 rounded-3xl border border-cyan-100 bg-white p-6 shadow-sm sm:p-8 lg:p-10"
+          className="sr-only mb-10 rounded-3xl border border-cyan-100 bg-white p-6 shadow-sm sm:p-8 lg:p-10"
           aria-labelledby="maldives-bible-intro"
         >
           <div className="space-y-6 text-gray-800">
@@ -996,11 +996,11 @@ const App: React.FC = () => {
                 </p>
               </article>
               <article className="rounded-2xl bg-cyan-50/60 p-5 shadow-inner">
-                <h2 className="text-lg font-semibold text-cyan-700">몰디브 리조트학과 입학 준비</h2>
+                <h2 className="text-lg font-semibold text-cyan-700">몰디브 리조트학과 입학(?) 썰</h2>
                 <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                  관광·호텔 관련 학과에서 활용할 수 있도록 커리큘럼별 추천 리조트, 인턴십 연계 가능 리조트, 지속가능성
-                  프로그램 사례 등을 정리했습니다. "몰디브 리조트학과 입학"을 준비하는 수험생과 취업 준비생에게 실무형
-                  레퍼런스를 제공합니다.
+                  몰디브 리조트를 처음 알아볼 때 "몰디브 리조트학과 입학했다"고 농담하는 여행자들의 밈을 담았습니다.
+                  진짜 학위나 인턴십 준비가 아니라, 리조트 공부를 빡세게 해보겠다는 마음가짐 정도로 가볍게 웃을 수 있는
+                  스토리텔링을 더해 검색 키워드와 자연스럽게 연결했습니다.
                 </p>
               </article>
             </div>
@@ -1013,7 +1013,7 @@ const App: React.FC = () => {
               <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-700">
                 <li>"몰디브 리조트 비교" + "허니문 전용" + 원하는 예산대</li>
                 <li>"몰디브 리조트 입문" + "수상 비행기 vs 스피드보트"</li>
-                <li>"몰디브 리조트학과 입학" + "산학협력" 혹은 "인턴십"</li>
+                <li>"몰디브 리조트학과 입학" 장난 + "친구들에게 썰 풀기"</li>
                 <li>"몰디브 가족 여행" + "키즈 클럽" + 리조트 이름</li>
                 <li>"몰디브바이블" + "실시간 견적"으로 브랜드 검색 유도</li>
               </ul>
