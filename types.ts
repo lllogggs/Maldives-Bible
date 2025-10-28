@@ -43,6 +43,7 @@ export interface Filters {
   minRestaurants: number;
   minBars: number;
   hasPrivatePool: boolean;
+  onlyLiked: boolean;
 }
 
 export type SortOption =
@@ -52,4 +53,5 @@ export type SortOption =
   | 'price-desc'
   | 'rating-desc'
   | 'snorkeling-desc'
-  | 'travelTime-asc';
+  | 'travelTime-asc'
+  | 'likes-desc';

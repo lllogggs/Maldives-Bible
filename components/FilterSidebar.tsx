@@ -2,7 +2,7 @@
 import React from 'react';
 import type { Filters, RoomTypeFilter } from '../types';
 import { TransportationType } from '../types';
-import { BoatIcon, DomesticFlightIcon, SeaplaneIcon, FilterIcon, XIcon } from './icons/Icons';
+import { BoatIcon, DomesticFlightIcon, SeaplaneIcon, FilterIcon, XIcon, HeartIcon } from './icons/Icons';
 
 interface FilterSidebarProps {
   filters: Filters;
@@ -136,6 +136,21 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
               />
               <span className="text-gray-700">개인 풀 포함</span>
             </label>
+        </div>
+      </FilterOption>
+
+      <FilterOption title="좋아요">
+        <div className="space-y-2">
+          <label className="flex items-center space-x-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={filters.onlyLiked}
+              onChange={(e) => onFilterChange('onlyLiked', e.target.checked)}
+              className="h-4 w-4 rounded text-cyan-500 border-gray-300 focus:ring-cyan-400"
+            />
+            <HeartIcon className="h-5 w-5 text-rose-500" />
+            <span className="text-gray-700">좋아요 표시한 리조트만 보기</span>
+          </label>
         </div>
       </FilterOption>
 

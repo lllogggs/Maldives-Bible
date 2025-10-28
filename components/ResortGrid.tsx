@@ -15,6 +15,10 @@ interface ResortGridProps {
   onToggleCompare: (resortId: number) => void;
   onOpenFilter: () => void;
   isImageEditMode: boolean;
+  likesCountMap: Record<number, number>;
+  likedResortIds: number[];
+  onToggleLike: (resortId: number) => void;
+  pendingLikeResortIds: Set<number>;
 }
 
 type PageIndicator = number | 'ellipsis';
@@ -31,6 +35,10 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   onToggleCompare,
   onOpenFilter,
   isImageEditMode,
+  likesCountMap,
+  likedResortIds,
+  onToggleLike,
+  pendingLikeResortIds,
 }) => {
   const getPageNumbers = (): PageIndicator[] => {
     if (totalPages <= 1) {
@@ -100,6 +108,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
                   <option value="rating-desc">평점 높은 순</option>
                   <option value="snorkeling-desc">수중환경 좋은 순</option>
                   <option value="travelTime-asc">이동시간 짧은 순</option>
+                  <option value="likes-desc">좋아요 많은 순</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -135,6 +144,10 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               onToggleCompare={onToggleCompare}
               isFirstCard={index === 0}
               isImageEditMode={isImageEditMode}
+              likesCount={likesCountMap[resort.id] ?? 0}
+              isLiked={likedResortIds.includes(resort.id)}
+              onToggleLike={onToggleLike}
+              isLikePending={pendingLikeResortIds.has(resort.id)}
             />
           ))}
         </div>

@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
-import { LocationPinIcon, StarIcon, ChevronLeftIcon, ChevronRightIcon, CartIcon, CheckCircleIcon } from './icons/Icons';
+import {
+  LocationPinIcon,
+  StarIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CartIcon,
+  CheckCircleIcon,
+  HeartIcon,
+  HeartFilledIcon,
+} from './icons/Icons';
 
 interface ResortCardProps {
   resort: Resort;
@@ -9,6 +18,10 @@ interface ResortCardProps {
   onToggleCompare: (resortId: number) => void;
   isFirstCard?: boolean;
   isImageEditMode?: boolean;
+  likesCount: number;
+  isLiked: boolean;
+  onToggleLike: (resortId: number) => void;
+  isLikePending: boolean;
 }
 
 const getTransportationTagColor = (transportation: TransportationType) => {
@@ -30,6 +43,10 @@ const ResortCard: React.FC<ResortCardProps> = ({
   onToggleCompare,
   isFirstCard = false,
   isImageEditMode = false,
+  likesCount,
+  isLiked,
+  onToggleLike,
+  isLikePending,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -95,6 +112,16 @@ const ResortCard: React.FC<ResortCardProps> = ({
     
     setTouchStart(0);
     setTouchEnd(0);
+  };
+
+  const formattedLikesCount = Math.max(0, likesCount ?? 0).toLocaleString();
+  const likeButtonTitle = isLiked ? '좋아요 취소' : '좋아요 추가';
+  const handleLikeClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isLikePending) {
+      return;
+    }
+    onToggleLike(resort.id);
   };
 
 
@@ -182,14 +209,41 @@ const ResortCard: React.FC<ResortCardProps> = ({
         <div className="border-t border-gray-100 my-4"></div>
         
         <div className="mt-auto">
-            <p className="text-xs text-gray-500">4박 2인 기준 (올인클루시브)</p>
-            <div className="flex justify-between items-center mt-1">
+          <div className="flex items-start justify-between gap-3">
+            <button
+              type="button"
+              onClick={handleLikeClick}
+              disabled={isLikePending}
+              aria-pressed={isLiked}
+              aria-label={`${likeButtonTitle} (현재 ${formattedLikesCount}명)`}
+              title={likeButtonTitle}
+              className={`flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-semibold transition-colors ${
+                isLiked
+                  ? 'border-rose-300 bg-rose-100 text-rose-600 hover:bg-rose-200'
+                  : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-100'
+              } ${isLikePending ? 'opacity-70 cursor-wait' : ''}`}
+            >
+              {isLiked ? (
+                <HeartFilledIcon className="h-5 w-5 text-rose-500" />
+              ) : (
+                <HeartIcon className="h-5 w-5 text-rose-500" />
+              )}
+              <span>♥{formattedLikesCount}</span>
+            </button>
+            <div className="flex-1 text-right">
+              <p className="text-xs text-gray-500">4박 2인 기준 (올인클루시브)</p>
+              <div className="mt-1 flex items-center justify-end gap-3">
                 <p className="text-2xl font-extrabold text-cyan-600">${resort.price.toLocaleString()}</p>
-                <button onClick={handleViewDetails} className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-200 transition-colors">
-                    상세보기
+                <button
+                  onClick={handleViewDetails}
+                  className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+                >
+                  상세보기
                 </button>
+              </div>
             </div>
-            <p className="text-right text-xs text-gray-500 mt-1">수중환경: {resort.snorkelingQuality}/5점</p>
+          </div>
+          <p className="text-right text-xs text-gray-500 mt-2">수중환경: {resort.snorkelingQuality}/5점</p>
         </div>
       </div>
     </div>
