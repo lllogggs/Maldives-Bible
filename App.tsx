@@ -118,14 +118,11 @@ const parseNumberArray = (value: string | null): number[] => {
 
   try {
     const parsed = JSON.parse(value);
-    if (Array.isArray(parsed)) {
-      return parsed.filter((item): item is number => typeof item === 'number');
-    }
+    return ensureNumberArray(parsed);
   } catch (err) {
     console.error('Failed to parse number array from localStorage', err);
+    return [];
   }
-
-  return [];
 };
 
 const ensureStringArray = (value: unknown): string[] => {
@@ -698,9 +695,9 @@ const App: React.FC = () => {
 
     setLikedResortIds(prev => {
       const next = wasLiked ? prev.filter(id => id !== resortId) : [...prev, resortId];
-      const uniqueNext = Array.from(new Set(next));
-      saveLikedResortsToLocal(uniqueNext);
-      return uniqueNext;
+      const normalized = ensureNumberArray(next);
+      saveLikedResortsToLocal(normalized);
+      return normalized;
     });
 
     setLikesCountMap(prev => {
@@ -744,11 +741,10 @@ const App: React.FC = () => {
       setToastMessage('좋아요 상태를 저장하지 못했습니다. 잠시 후 다시 시도해주세요.');
 
       setLikedResortIds(prev => {
-        const restored = wasLiked
-          ? Array.from(new Set([...prev, resortId]))
-          : prev.filter(id => id !== resortId);
-        saveLikedResortsToLocal(restored);
-        return restored;
+        const restored = wasLiked ? [...prev, resortId] : prev.filter(id => id !== resortId);
+        const normalized = ensureNumberArray(restored);
+        saveLikedResortsToLocal(normalized);
+        return normalized;
       });
 
       setLikesCountMap(prev => ({
