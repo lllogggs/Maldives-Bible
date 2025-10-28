@@ -95,6 +95,25 @@ const ensureNumberArray = (value: unknown): number[] => {
     .filter(item => Number.isFinite(item));
 };
 
+const dedupeNumbers = (values: Iterable<number>): number[] => {
+  const result: number[] = [];
+  const seen = new Set<number>();
+
+  for (const value of values) {
+    if (!Number.isFinite(value)) {
+      continue;
+    }
+
+    const normalized = Math.trunc(value);
+    if (!seen.has(normalized)) {
+      seen.add(normalized);
+      result.push(normalized);
+    }
+  }
+
+  return result;
+};
+
 const parseNumberArray = (value: string | null): number[] => {
   if (!value) {
     return [];
@@ -446,7 +465,7 @@ const App: React.FC = () => {
             return normalizedCounts;
           });
 
-          const uniqueLikedIds = Array.from(new Set(remoteLikes.likedIds));
+          const uniqueLikedIds = dedupeNumbers(remoteLikes.likedIds);
           setLikedResortIds(uniqueLikedIds);
           saveLikedResortsToLocal(uniqueLikedIds);
         } else {
@@ -682,9 +701,9 @@ const App: React.FC = () => {
 
     setLikedResortIds(prev => {
       const next = wasLiked ? prev.filter(id => id !== resortId) : [...prev, resortId];
-      const uniqueNext = Array.from(new Set(next));
-      saveLikedResortsToLocal(uniqueNext);
-      return uniqueNext;
+      const deduped = dedupeNumbers(next);
+      saveLikedResortsToLocal(deduped);
+      return deduped;
     });
 
     setLikesCountMap(prev => {
@@ -720,7 +739,7 @@ const App: React.FC = () => {
 
       if (payload?.data?.likedIds) {
         const normalized = ensureNumberArray(payload.data.likedIds);
-        const uniqueNormalized = Array.from(new Set(normalized));
+        const uniqueNormalized = dedupeNumbers(normalized);
         setLikedResortIds(uniqueNormalized);
         saveLikedResortsToLocal(uniqueNormalized);
       }
@@ -729,9 +748,7 @@ const App: React.FC = () => {
       setToastMessage('좋아요 상태를 저장하지 못했습니다. 잠시 후 다시 시도해주세요.');
 
       setLikedResortIds(prev => {
-        const restored = wasLiked
-          ? Array.from(new Set([...prev, resortId]))
-          : prev.filter(id => id !== resortId);
+        const restored = wasLiked ? dedupeNumbers([...prev, resortId]) : prev.filter(id => id !== resortId);
         saveLikedResortsToLocal(restored);
         return restored;
       });
