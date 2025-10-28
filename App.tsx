@@ -35,6 +35,11 @@ type ResortPreferences = {
   deleted_image_urls: string[];
 };
 
+type ResortLikesSummary = {
+  counts: Record<number, number>;
+  likedIds: number[];
+};
+
 const buildPreferencesEndpoint = () => {
   const baseUrl = import.meta.env.VITE_PREFERENCES_API_BASE_URL?.replace(/\/$/, '');
   if (baseUrl) {
@@ -51,14 +56,59 @@ const buildPreferencesEndpoint = () => {
 
 const PREFERENCES_ENDPOINT = buildPreferencesEndpoint();
 
+const buildLikesEndpoint = () => {
+  const baseUrl = import.meta.env.VITE_PREFERENCES_API_BASE_URL?.replace(/\/$/, '');
+  if (baseUrl) {
+    return `${baseUrl}/api/resort-likes`;
+  }
+
+  if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
+    const fallbackBase = 'https://maldives-bible.vercel.app';
+    return `${fallbackBase}/api/resort-likes`;
+  }
+
+  return '/api/resort-likes';
+};
+
+const RESORT_LIKES_ENDPOINT = buildLikesEndpoint();
+
+function parseJsonSafely<T>(raw: string): T | null {
+  if (!raw || raw.trim().length === 0) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(raw) as T;
+  } catch (error) {
+    console.error('Failed to parse JSON payload', error);
+    return null;
+  }
+}
+
 const ensureNumberArray = (value: unknown): number[] => {
   if (!Array.isArray(value)) {
     return [];
   }
 
-  return value
-    .map(item => (typeof item === 'number' ? item : Number(item)))
-    .filter(item => Number.isFinite(item));
+  const seen = new Set<number>();
+  const result: number[] = [];
+
+  for (const item of value) {
+    const numericValue = typeof item === 'number' ? item : Number(item);
+    if (!Number.isFinite(numericValue)) {
+      continue;
+    }
+
+    const normalized = Math.trunc(numericValue);
+    if (seen.has(normalized)) {
+      continue;
+    }
+
+    seen.add(normalized);
+    result.push(normalized);
+  }
+
+  return result;
 };
 
 const parseNumberArray = (value: string | null): number[] => {
@@ -68,14 +118,11 @@ const parseNumberArray = (value: string | null): number[] => {
 
   try {
     const parsed = JSON.parse(value);
-    if (Array.isArray(parsed)) {
-      return parsed.filter((item): item is number => typeof item === 'number');
-    }
+    return ensureNumberArray(parsed);
   } catch (err) {
     console.error('Failed to parse number array from localStorage', err);
+    return [];
   }
-
-  return [];
 };
 
 const ensureStringArray = (value: unknown): string[] => {
@@ -88,8 +135,209 @@ const ensureStringArray = (value: unknown): string[] => {
     .filter(item => item.length > 0);
 };
 
+const ensureNumberRecord = (value: unknown): Record<number, number> => {
+  if (!value || typeof value !== 'object') {
+    return {};
+  }
+
+  const result: Record<number, number> = {};
+  Object.entries(value as Record<string, unknown>).forEach(([key, raw]) => {
+    const numericKey = Number(key);
+    const numericValue = Number(raw);
+    if (Number.isFinite(numericKey) && Number.isFinite(numericValue)) {
+      result[numericKey] = Math.max(0, Math.floor(numericValue));
+    }
+  });
+
+  return result;
+};
+
+const createProfileId = (): string => {
+  try {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+  } catch {
+    // ignore and fall back to manual generation
+  }
+
+  return `profile-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+};
+
 type ResortOverride = {
   imageUrls?: string[];
+};
+
+type UseResortLikesOptions = {
+  profileId: string | null;
+  onToast: (message: string) => void;
+  saveLikedResorts: (ids: number[]) => void;
+};
+
+type UseResortLikesResult = {
+  likesCountMap: Record<number, number>;
+  likedResortIds: number[];
+  pendingLikeResortIds: Set<number>;
+  setInitialLikedResorts: (ids: number[]) => void;
+  hydrateLikesState: (resorts: Resort[], summary: ResortLikesSummary | null) => void;
+  toggleLike: (resortId: number) => Promise<void>;
+};
+
+const useResortLikes = ({
+  profileId,
+  onToast,
+  saveLikedResorts,
+}: UseResortLikesOptions): UseResortLikesResult => {
+  const [likesCountMap, setLikesCountMap] = useState<Record<number, number>>({});
+  const [likedResortIds, setLikedResortIds] = useState<number[]>([]);
+  const [pendingLikeResortIds, setPendingLikeResortIds] = useState<Set<number>>(new Set());
+
+  const setInitialLikedResorts = useCallback(
+    (ids: number[]) => {
+      const normalized = ensureNumberArray(ids);
+      setLikedResortIds(normalized);
+      saveLikedResorts(normalized);
+    },
+    [saveLikedResorts]
+  );
+
+  const hydrateLikesState = useCallback(
+    (resorts: Resort[], summary: ResortLikesSummary | null) => {
+      setLikesCountMap(prev => {
+        const next: Record<number, number> = {};
+
+        resorts.forEach(resort => {
+          const serverCount = summary?.counts?.[resort.id];
+          if (typeof serverCount === 'number' && Number.isFinite(serverCount)) {
+            next[resort.id] = Math.max(0, Math.floor(serverCount));
+            return;
+          }
+
+          const previous = prev[resort.id] ?? 0;
+          next[resort.id] = Math.max(0, Math.floor(previous));
+        });
+
+        return next;
+      });
+
+      if (summary) {
+        const normalizedIds = ensureNumberArray(summary.likedIds);
+        setLikedResortIds(normalizedIds);
+        saveLikedResorts(normalizedIds);
+      }
+    },
+    [saveLikedResorts]
+  );
+
+  const toggleLike = useCallback(
+    async (resortId: number) => {
+      if (!profileId) {
+        onToast('사용자 정보를 초기화하는 중입니다. 잠시 후 다시 시도해주세요.');
+        return;
+      }
+
+      if (pendingLikeResortIds.has(resortId)) {
+        return;
+      }
+
+      const wasLiked = likedResortIds.includes(resortId);
+      const previousCount = likesCountMap[resortId] ?? 0;
+
+      setPendingLikeResortIds(prev => {
+        const next = new Set(prev);
+        next.add(resortId);
+        return next;
+      });
+
+      const optimisticLikedIds = wasLiked
+        ? likedResortIds.filter(id => id !== resortId)
+        : [...likedResortIds, resortId];
+      const normalizedOptimisticIds = ensureNumberArray(optimisticLikedIds);
+
+      setLikedResortIds(normalizedOptimisticIds);
+      saveLikedResorts(normalizedOptimisticIds);
+
+      setLikesCountMap(prev => {
+        const next = { ...prev };
+        const updatedCount = Math.max(0, (next[resortId] ?? 0) + (wasLiked ? -1 : 1));
+        next[resortId] = updatedCount;
+        return next;
+      });
+
+      try {
+        const response = await fetch(RESORT_LIKES_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ profileId, resortId, liked: !wasLiked }),
+        });
+
+        const rawBody = await response.text();
+
+        if (!response.ok) {
+          const normalizedMessage = rawBody?.trim();
+          throw new Error(normalizedMessage || '좋아요 상태를 저장하지 못했습니다.');
+        }
+
+        const payload = parseJsonSafely<{ data?: { likesCount?: number; likedIds?: unknown } }>(rawBody);
+
+        const serverCount = payload?.data?.likesCount;
+        if (typeof serverCount === 'number' && Number.isFinite(serverCount)) {
+          setLikesCountMap(prev => ({
+            ...prev,
+            [resortId]: Math.max(0, Math.floor(serverCount)),
+          }));
+        }
+
+        if (payload?.data?.likedIds) {
+          const normalized = ensureNumberArray(payload.data.likedIds);
+          setLikedResortIds(normalized);
+          saveLikedResorts(normalized);
+        }
+      } catch (err) {
+        console.error('Failed to update resort like', err);
+        onToast('좋아요 상태를 저장하지 못했습니다. 잠시 후 다시 시도해주세요.');
+
+        setLikedResortIds(prev => {
+          let restored: number[];
+          if (wasLiked) {
+            restored = ensureNumberArray([...prev, resortId]);
+          } else {
+            restored = prev.filter(id => id !== resortId);
+          }
+          saveLikedResorts(restored);
+          return restored;
+        });
+
+        setLikesCountMap(prev => ({
+          ...prev,
+          [resortId]: previousCount,
+        }));
+      } finally {
+        setPendingLikeResortIds(prev => {
+          const next = new Set(prev);
+          next.delete(resortId);
+          return next;
+        });
+      }
+    },
+    [
+      profileId,
+      likedResortIds,
+      likesCountMap,
+      onToast,
+      pendingLikeResortIds,
+      saveLikedResorts,
+    ]
+  );
+
+  return {
+    likesCountMap,
+    likedResortIds,
+    pendingLikeResortIds,
+    setInitialLikedResorts,
+    hydrateLikesState,
+    toggleLike,
+  };
 };
 
 const App: React.FC = () => {
@@ -106,6 +354,7 @@ const App: React.FC = () => {
     minRestaurants: 0,
     minBars: 0,
     hasPrivatePool: false,
+    onlyLiked: false,
   });
   const [sortOption, setSortOption] = useState<SortOption>('popularity');
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -121,15 +370,7 @@ const App: React.FC = () => {
   const [, setDeletedImageUrls] = useState<string[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [, setResortOverrides] = useState<Record<number, ResortOverride>>({});
-
-  useEffect(() => {
-    if (!toastMessage) {
-      return;
-    }
-
-    const timeout = window.setTimeout(() => setToastMessage(null), 5000);
-    return () => window.clearTimeout(timeout);
-  }, [toastMessage]);
+  const [profileId, setProfileId] = useState<string | null>(null);
 
   const getLocalPreferences = useCallback((): ResortPreferences => ({
     hidden_ids: parseNumberArray(localStorage.getItem('hiddenResorts')),
@@ -142,9 +383,59 @@ const App: React.FC = () => {
     localStorage.setItem('resortOrder', JSON.stringify(order));
   }, []);
 
-  const fetchRemotePreferences = useCallback(async (): Promise<ResortPreferences | null> => {
+  const saveLikedResortsToLocal = useCallback((likedIds: number[]) => {
+    localStorage.setItem('likedResorts', JSON.stringify(likedIds));
+  }, []);
+
+  const {
+    likesCountMap,
+    likedResortIds,
+    pendingLikeResortIds,
+    setInitialLikedResorts,
+    hydrateLikesState,
+    toggleLike,
+  } = useResortLikes({
+    profileId,
+    onToast: setToastMessage,
+    saveLikedResorts: saveLikedResortsToLocal,
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const storedProfileId = localStorage.getItem('resortProfileId');
+    if (storedProfileId && storedProfileId.trim().length > 0) {
+      setProfileId(storedProfileId);
+    } else {
+      const generated = createProfileId();
+      localStorage.setItem('resortProfileId', generated);
+      setProfileId(generated);
+    }
+
+    const localLikes = parseNumberArray(localStorage.getItem('likedResorts'));
+    if (localLikes.length > 0) {
+      setInitialLikedResorts(localLikes);
+    }
+  }, [setInitialLikedResorts]);
+
+  useEffect(() => {
+    if (!toastMessage) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => setToastMessage(null), 5000);
+    return () => window.clearTimeout(timeout);
+  }, [toastMessage]);
+
+  const fetchRemotePreferences = useCallback(async (activeProfileId: string | null): Promise<ResortPreferences | null> => {
+    if (!activeProfileId) {
+      return null;
+    }
+
     try {
-      const response = await fetch(PREFERENCES_ENDPOINT, {
+      const response = await fetch(`${PREFERENCES_ENDPOINT}?profileId=${encodeURIComponent(activeProfileId)}`, {
         headers: { Accept: 'application/json' },
       });
 
@@ -152,12 +443,13 @@ const App: React.FC = () => {
         throw new Error(`Failed to fetch preferences: ${response.statusText}`);
       }
 
-      const payload = (await response.json()) as Partial<ResortPreferences>;
+      const payload = (await response.json()) as { data?: Partial<ResortPreferences> };
+      const data = payload?.data ?? {};
 
       return {
-        hidden_ids: ensureNumberArray(payload.hidden_ids),
-        custom_order: ensureNumberArray(payload.custom_order),
-        deleted_image_urls: ensureStringArray(payload.deleted_image_urls),
+        hidden_ids: ensureNumberArray((data as ResortPreferences).hidden_ids),
+        custom_order: ensureNumberArray((data as ResortPreferences).custom_order),
+        deleted_image_urls: ensureStringArray((data as ResortPreferences).deleted_image_urls),
       };
     } catch (err) {
       console.error('Failed to fetch remote resort preferences', err);
@@ -165,59 +457,98 @@ const App: React.FC = () => {
     }
   }, []);
 
-  const persistPreferences = useCallback(async (hiddenIds: number[], order: number[], deletedUrls?: string[]) => {
-    savePreferencesToLocal(hiddenIds, order);
+  const persistPreferences = useCallback(
+    async (hiddenIds: number[], order: number[], deletedUrls?: string[]) => {
+      savePreferencesToLocal(hiddenIds, order);
+
+      if (!profileId) {
+        return;
+      }
+
+      try {
+        const response = await fetch(PREFERENCES_ENDPOINT, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            profileId,
+            hiddenIds,
+            customOrder: order,
+            deletedImageUrls: ensureStringArray(deletedUrls),
+          }),
+        });
+
+        if (!response.ok) {
+          const rawMessage = await response.text();
+          let normalizedMessage = rawMessage?.trim();
+
+          if (normalizedMessage) {
+            try {
+              const parsed = JSON.parse(normalizedMessage) as { error?: unknown };
+              if (parsed && typeof parsed.error === 'string') {
+                normalizedMessage = parsed.error;
+              }
+            } catch {
+              // ignore JSON parse failure – we'll use the raw text message instead
+            }
+          }
+
+          if (!normalizedMessage) {
+            normalizedMessage = `변경 사항 저장에 실패했습니다. (HTTP ${response.status})`;
+          }
+
+          throw new Error(normalizedMessage);
+        }
+      } catch (err) {
+        console.error('Failed to sync resort preferences', err);
+        const fallbackMessage =
+          err instanceof Error && err.message
+            ? err.message
+            : '변경 사항을 저장하지 못했습니다. 네트워크 상태를 확인해주세요.';
+        setToastMessage(fallbackMessage);
+      }
+    },
+    [profileId, savePreferencesToLocal]
+  );
+
+  const fetchRemoteLikes = useCallback(async (activeProfileId: string | null): Promise<ResortLikesSummary | null> => {
+    if (!activeProfileId) {
+      return null;
+    }
 
     try {
-      const response = await fetch(PREFERENCES_ENDPOINT, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          hidden_ids: hiddenIds,
-          custom_order: order,
-          deleted_image_urls: ensureStringArray(deletedUrls),
-        }),
+      const response = await fetch(`${RESORT_LIKES_ENDPOINT}?profileId=${encodeURIComponent(activeProfileId)}`, {
+        headers: { Accept: 'application/json' },
       });
 
       if (!response.ok) {
-        const rawMessage = await response.text();
-        let normalizedMessage = rawMessage?.trim();
-
-        if (normalizedMessage) {
-          try {
-            const parsed = JSON.parse(normalizedMessage) as { error?: unknown };
-            if (parsed && typeof parsed.error === 'string') {
-              normalizedMessage = parsed.error;
-            }
-          } catch {
-            // ignore JSON parse failure – we'll use the raw text message instead
-          }
-        }
-
-        if (!normalizedMessage) {
-          normalizedMessage = `변경 사항 저장에 실패했습니다. (HTTP ${response.status})`;
-        }
-
-        throw new Error(normalizedMessage);
+        throw new Error(`Failed to fetch likes: ${response.statusText}`);
       }
+
+      const payload = (await response.json()) as { data?: Partial<ResortLikesSummary> };
+      const data = payload?.data ?? {};
+
+      return {
+        counts: ensureNumberRecord(data.counts),
+        likedIds: ensureNumberArray((data as ResortLikesSummary).likedIds),
+      };
     } catch (err) {
-      console.error('Failed to sync resort preferences', err);
-      const fallbackMessage =
-        err instanceof Error && err.message
-          ? err.message
-          : '변경 사항을 저장하지 못했습니다. 네트워크 상태를 확인해주세요.';
-      setToastMessage(fallbackMessage);
+      console.error('Failed to fetch resort likes', err);
+      return null;
     }
-  }, [savePreferencesToLocal, setToastMessage]);
+  }, []);
 
 
   useEffect(() => {
+    if (!profileId) {
+      return;
+    }
+
     const fetchResorts = async () => {
       try {
         setLoading(true);
 
         const isProd = window.location.hostname.includes('github.io');
-        
+
         const resortFileUrls = Array.from({ length: 9 }, (_, i) => {
           const fileName = `resorts${i === 0 ? '' : i + 1}.json`;
           // 개발 환경(AI Studio)에서는 상대 경로를, 프로덕션 환경(GitHub)에서는 절대 경로를 사용합니다.
@@ -233,7 +564,7 @@ const App: React.FC = () => {
         }
 
         const resortsDataArrays: Resort[][] = await Promise.all(responses.map(res => res.json()));
-        
+
         const combinedData = resortsDataArrays.flat();
         const storedOverrides = JSON.parse(localStorage.getItem('resortOverrides') || '{}') as Record<string, ResortOverride>;
         const normalizedOverrides: Record<number, ResortOverride> = {};
@@ -269,7 +600,10 @@ const App: React.FC = () => {
         }));
 
         const localPreferences = getLocalPreferences();
-        const remotePreferences = await fetchRemotePreferences();
+        const [remotePreferences, remoteLikes] = await Promise.all([
+          fetchRemotePreferences(profileId),
+          fetchRemoteLikes(profileId),
+        ]);
 
         if (remotePreferences) {
           setDeletedImageUrls(remotePreferences.deleted_image_urls);
@@ -298,6 +632,8 @@ const App: React.FC = () => {
 
         savePreferencesToLocal(validHiddenIds, finalOrder);
 
+        hydrateLikesState(mergedData, remoteLikes);
+
         setHiddenResortIds(validHiddenIds);
         setCustomOrder(finalOrder);
         setInitialResorts(mergedData);
@@ -310,7 +646,14 @@ const App: React.FC = () => {
     };
 
     fetchResorts();
-  }, [fetchRemotePreferences, getLocalPreferences, savePreferencesToLocal]);
+  }, [
+    fetchRemoteLikes,
+    fetchRemotePreferences,
+    getLocalPreferences,
+    hydrateLikesState,
+    profileId,
+    savePreferencesToLocal,
+  ]);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -335,6 +678,7 @@ const App: React.FC = () => {
   const applyFiltersAndSort = useCallback(() => {
     let processedResorts = [...initialResorts];
     const hiddenSet = new Set(hiddenResortIds);
+    const likedSet = new Set(likedResortIds);
 
     processedResorts = processedResorts.filter(resort => !hiddenSet.has(resort.id));
 
@@ -365,6 +709,9 @@ const App: React.FC = () => {
     }
     processedResorts = processedResorts.filter(resort => resort.restaurants >= filters.minRestaurants);
     processedResorts = processedResorts.filter(resort => resort.bars >= filters.minBars);
+    if (filters.onlyLiked) {
+      processedResorts = processedResorts.filter(resort => likedSet.has(resort.id));
+    }
 
     // Sorting logic...
     switch (sortOption) {
@@ -399,11 +746,21 @@ const App: React.FC = () => {
       case 'rating-desc': processedResorts.sort((a, b) => b.rating - a.rating); break;
       case 'snorkeling-desc': processedResorts.sort((a, b) => b.snorkelingQuality - a.snorkelingQuality); break;
       case 'travelTime-asc': processedResorts.sort((a, b) => a.travelTime - b.travelTime); break;
+      case 'likes-desc':
+        processedResorts.sort((a, b) => {
+          const likesA = likesCountMap[a.id] ?? 0;
+          const likesB = likesCountMap[b.id] ?? 0;
+          if (likesA === likesB) {
+            return a.id - b.id;
+          }
+          return likesB - likesA;
+        });
+        break;
     }
 
     setDisplayedResorts(processedResorts);
     setCurrentPage(1);
-  }, [customOrder, filters, hiddenResortIds, initialResorts, sortOption]);
+  }, [customOrder, filters, hiddenResortIds, initialResorts, likedResortIds, likesCountMap, sortOption]);
 
   useEffect(() => {
     applyFiltersAndSort();
@@ -636,6 +993,10 @@ const App: React.FC = () => {
                       onToggleCompare={handleToggleCompare}
                       onOpenFilter={() => setIsFilterOpen(true)}
                       isImageEditMode={isImageEditMode}
+                      likesCountMap={likesCountMap}
+                      likedResortIds={likedResortIds}
+                      onToggleLike={toggleLike}
+                      pendingLikeResortIds={pendingLikeResortIds}
                     />
                   )}
                 </div>
@@ -663,7 +1024,7 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
-       {!isCompareViewVisible && currentView === 'resorts' && !isImageEditMode && (
+      {!isCompareViewVisible && currentView === 'resorts' && !isImageEditMode && (
         <CompareTray
           resorts={resortsToCompare}
           onRemove={handleToggleCompare}
