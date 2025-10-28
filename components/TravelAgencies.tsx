@@ -33,8 +33,8 @@ const TravelAgencies: React.FC = () => {
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
                 <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">직접 예약</h3>
                 <div className="flex-grow flex flex-col">
-                    <div className="flex items-center justify-center min-h-[128px]">
-                        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-center w-full max-w-full">
+                    <div className="flex items-center justify-center min-h-[128px] overflow-hidden">
+                        <div className="venn-diagram inline-flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-center mx-auto origin-center">
                             <div className="flex flex-col items-center gap-1 flex-1 min-w-[48px]">
                                 <BuildingIcon className="h-8 w-8 sm:h-12 sm:w-12 text-blue-600" />
                                 <span className="font-semibold text-[11px] sm:text-sm">리조트</span>
@@ -64,8 +64,8 @@ const TravelAgencies: React.FC = () => {
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
                 <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">여행사 예약 (추천)</h3>
                 <div className="flex-grow flex flex-col">
-                    <div className="flex items-center justify-center min-h-[128px]">
-                        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:gap-4 text-center w-full max-w-full">
+                    <div className="flex items-center justify-center min-h-[128px] overflow-hidden">
+                        <div className="venn-diagram inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 lg:gap-4 text-center mx-auto origin-center">
                             <div className="flex flex-col items-center gap-1 flex-1 min-w-[48px]">
                                 <BuildingIcon className="h-8 w-8 sm:h-11 sm:w-11 text-blue-600" />
                                 <span className="font-semibold text-[11px] sm:text-sm">리조트</span>

@@ -116,6 +116,23 @@
     cursor: pointer;
     border: none;
   }
+
+  .venn-diagram {
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  @media (max-width: 1023px) {
+    .venn-diagram {
+      transform: scale(0.75);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .venn-diagram {
+      transform: scale(0.5);
+    }
+  }
 </style>
 <link rel="stylesheet" href="/index.css">
 </head>
