@@ -228,7 +228,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
               ) : (
                 <HeartIcon className="h-5 w-5 text-rose-500" />
               )}
-              <span>♥{formattedLikesCount}</span>
+              <span>{formattedLikesCount}</span>
             </button>
             <div className="flex-1 text-right">
               <p className="text-xs text-gray-500">4박 2인 기준 (올인클루시브)</p>

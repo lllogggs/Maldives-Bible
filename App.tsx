@@ -759,12 +759,15 @@ const App: React.FC = () => {
     }
 
     setDisplayedResorts(processedResorts);
-    setCurrentPage(1);
   }, [customOrder, filters, hiddenResortIds, initialResorts, likedResortIds, likesCountMap, sortOption]);
 
   useEffect(() => {
     applyFiltersAndSort();
   }, [applyFiltersAndSort]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters, sortOption, hiddenResortIds, customOrder, initialResorts]);
 
   const selectedResort = initialResorts.find(r => r.id === selectedResortId);
   const calculatedTotalPages = displayedResorts.length === 0
