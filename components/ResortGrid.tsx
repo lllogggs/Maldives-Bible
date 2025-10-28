@@ -21,8 +21,6 @@ interface ResortGridProps {
   pendingLikeResortIds: Set<number>;
 }
 
-type PageIndicator = number | 'ellipsis';
-
 const ResortGrid: React.FC<ResortGridProps> = ({
   resorts,
   sortOption,
@@ -40,37 +38,9 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   onToggleLike,
   pendingLikeResortIds,
 }) => {
-  const getPageNumbers = (): PageIndicator[] => {
-    if (totalPages <= 1) {
-      return [1];
-    }
-
-    if (totalPages <= 7) {
-      return Array.from({ length: totalPages }, (_, index) => index + 1);
-    }
-
-    const pages: PageIndicator[] = [1];
-    const start = Math.max(2, currentPage - 1);
-    const end = Math.min(totalPages - 1, currentPage + 1);
-
-    if (start > 2) {
-      pages.push('ellipsis');
-    }
-
-    for (let page = start; page <= end; page += 1) {
-      pages.push(page);
-    }
-
-    if (end < totalPages - 1) {
-      pages.push('ellipsis');
-    }
-
-    pages.push(totalPages);
-
-    return pages;
-  };
-
-  const pageNumbers = totalPages === 0 ? [] : getPageNumbers();
+  const pageNumbers = totalPages === 0
+    ? []
+    : Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
     <div>
@@ -159,42 +129,36 @@ const ResortGrid: React.FC<ResortGridProps> = ({
       )}
 
       {!isImageEditMode && totalPages > 1 && (
-        <nav className="mt-8 flex items-center justify-center gap-2" aria-label="Resort pagination">
+        <nav className="mt-8 flex items-center justify-center gap-3" aria-label="Resort pagination">
           <button
             type="button"
             onClick={() => onPageChange(Math.max(1, currentPage - 1))}
             disabled={currentPage === 1}
-            className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
+            className="text-sm font-semibold text-gray-600 disabled:text-gray-300 hover:text-cyan-500"
             aria-label="이전 페이지"
           >
             ◀
           </button>
-          {pageNumbers.map((page, index) =>
-            page === 'ellipsis' ? (
-              <span key={`ellipsis-${index}`} className="px-2 text-gray-400">
-                ...
-              </span>
-            ) : (
-              <button
-                key={page}
-                type="button"
-                onClick={() => onPageChange(page)}
-                className={`px-3 py-1 text-sm font-semibold rounded-md border ${
-                  page === currentPage
-                    ? 'bg-cyan-500 text-white border-cyan-500'
-                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                }`}
-                aria-current={page === currentPage ? 'page' : undefined}
-              >
-                {page}
-              </button>
-            ),
-          )}
+          {pageNumbers.map(page => (
+            <button
+              key={page}
+              type="button"
+              onClick={() => onPageChange(page)}
+              className={`text-sm font-semibold transition-colors ${
+                page === currentPage
+                  ? 'text-cyan-600 underline underline-offset-4'
+                  : 'text-gray-700 hover:text-cyan-500'
+              }`}
+              aria-current={page === currentPage ? 'page' : undefined}
+            >
+              {page}
+            </button>
+          ))}
           <button
             type="button"
             onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
             disabled={currentPage === totalPages}
-            className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
+            className="text-sm font-semibold text-gray-600 disabled:text-gray-300 hover:text-cyan-500"
             aria-label="다음 페이지"
           >
             ▶
