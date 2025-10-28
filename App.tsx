@@ -956,6 +956,71 @@ const App: React.FC = () => {
         isImageEditFeatureAvailable={canUseImageEditMode}
       />
       <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
+        <section
+          className="mb-10 rounded-3xl border border-cyan-100 bg-white p-6 shadow-sm sm:p-8 lg:p-10"
+          aria-labelledby="maldives-bible-intro"
+        >
+          <div className="space-y-6 text-gray-800">
+            <header className="space-y-3">
+              <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">
+                몰디브바이블 SEO 허브
+              </p>
+              <h1
+                id="maldives-bible-intro"
+                className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl"
+              >
+                몰디브 바이블: 몰디브 리조트 비교 · 입문 가이드의 표준
+              </h1>
+              <p className="text-base leading-relaxed sm:text-lg">
+                몰디브 바이블은 방대한 리조트 데이터를 기반으로 <strong>몰디브 리조트 비교</strong>를 돕는 전문
+                플랫폼입니다. 허니문, 가족 여행, 럭셔리 올인클루시브까지 조건별 필터와 실제 여행사 제휴 정보를
+                한 번에 제공하여, 처음 준비하는 <strong>몰디브 리조트 입문</strong>자도 쉽게 방향을 잡을 수 있는
+                한국어 몰디브 데이터베이스를 목표로 합니다.
+              </p>
+            </header>
+            <div className="grid gap-6 lg:grid-cols-3">
+              <article className="rounded-2xl bg-cyan-50/60 p-5 shadow-inner">
+                <h2 className="text-lg font-semibold text-cyan-700">몰디브 리조트 비교 인사이트</h2>
+                <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                  시즌별 프로모션, 수상·수상 콤보 빌라, 수상 스포츠 제공 여부 등 깊이 있는 조건을 중심으로 리조트를
+                  세분화했습니다. 즐겨찾기와 비교함 기능을 활용하면 니치한 검색어로 유입된 사용자도 원하는 후보군을
+                  빠르게 정리할 수 있습니다.
+                </p>
+              </article>
+              <article className="rounded-2xl bg-cyan-50/60 p-5 shadow-inner">
+                <h2 className="text-lg font-semibold text-cyan-700">몰디브 리조트 입문 로드맵</h2>
+                <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                  입문자가 궁금해하는 예산대, 이동 동선, 식사 플랜 차이를 단계별로 소개합니다. "몰디브 리조트 입문"과
+                  같은 키워드로 정보를 찾는 여행자에게 가장 중요한 의사결정 포인트를 FAQ로 정리하여 처음 방문해도 길을
+                  잃지 않도록 돕습니다.
+                </p>
+              </article>
+              <article className="rounded-2xl bg-cyan-50/60 p-5 shadow-inner">
+                <h2 className="text-lg font-semibold text-cyan-700">몰디브 리조트학과 입학 준비</h2>
+                <p className="mt-3 text-sm leading-relaxed text-gray-700">
+                  관광·호텔 관련 학과에서 활용할 수 있도록 커리큘럼별 추천 리조트, 인턴십 연계 가능 리조트, 지속가능성
+                  프로그램 사례 등을 정리했습니다. "몰디브 리조트학과 입학"을 준비하는 수험생과 취업 준비생에게 실무형
+                  레퍼런스를 제공합니다.
+                </p>
+              </article>
+            </div>
+            <div className="rounded-2xl border border-dashed border-cyan-200 bg-white/70 p-5">
+              <h2 className="text-lg font-semibold text-gray-900">니치 검색어 탐색 팁</h2>
+              <p className="mt-2 text-sm leading-relaxed text-gray-700">
+                몰디브바이블은 검색 수요가 낮지만 예약 전환율이 높은 롱테일 키워드를 적극적으로 다룹니다. 아래 키워드
+                조합을 활용하면 검색엔진에서 경쟁이 낮은 트래픽을 확보할 수 있습니다.
+              </p>
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-700">
+                <li>"몰디브 리조트 비교" + "허니문 전용" + 원하는 예산대</li>
+                <li>"몰디브 리조트 입문" + "수상 비행기 vs 스피드보트"</li>
+                <li>"몰디브 리조트학과 입학" + "산학협력" 혹은 "인턴십"</li>
+                <li>"몰디브 가족 여행" + "키즈 클럽" + 리조트 이름</li>
+                <li>"몰디브바이블" + "실시간 견적"으로 브랜드 검색 유도</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <NavBar currentView={currentView} onViewChange={setCurrentView} />
         
         {currentView === 'agencies' && <TravelAgencies />}
