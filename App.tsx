@@ -161,10 +161,9 @@ const App: React.FC = () => {
       };
     } catch (err) {
       console.error('Failed to fetch remote resort preferences', err);
-      setToastMessage('선호 데이터를 불러오지 못했습니다. 로컬 저장 데이터를 사용합니다.');
       return null;
     }
-  }, [setToastMessage]);
+  }, []);
 
   const persistPreferences = useCallback(async (hiddenIds: number[], order: number[], deletedUrls?: string[]) => {
     savePreferencesToLocal(hiddenIds, order);
