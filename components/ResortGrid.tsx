@@ -129,7 +129,10 @@ const ResortGrid: React.FC<ResortGridProps> = ({
       )}
 
       {!isImageEditMode && totalPages > 1 && (
-        <nav className="mt-8 flex items-center justify-center gap-2" aria-label="Resort pagination">
+        <nav
+          className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-1"
+          aria-label="Resort pagination"
+        >
           <button
             type="button"
             onClick={() => onPageChange(Math.max(1, currentPage - 1))}
@@ -144,10 +147,10 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               key={page}
               type="button"
               onClick={() => onPageChange(page)}
-              className={`px-3 py-1 text-sm font-semibold rounded-md border ${
+              className={`px-1 text-sm font-semibold transition-colors ${
                 page === currentPage
-                  ? 'bg-cyan-500 text-white border-cyan-500'
-                  : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                  ? 'text-cyan-600 underline underline-offset-4 decoration-2'
+                  : 'text-gray-700 hover:text-cyan-600'
               }`}
               aria-current={page === currentPage ? 'page' : undefined}
             >
