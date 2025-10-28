@@ -236,7 +236,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
                 <p className="text-2xl font-extrabold text-cyan-600">${resort.price.toLocaleString()}</p>
                 <button
                   onClick={handleViewDetails}
-                  className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+                  className="px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg hover:bg-gray-200 transition-colors"
                 >
                   상세보기
                 </button>
