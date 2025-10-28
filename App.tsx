@@ -10,7 +10,24 @@ import TravelAgencies from './components/TravelAgencies';
 import { POPULARITY_RANKING } from './constants';
 import type { Resort, Filters, SortOption } from './types';
 
+type ViteEnvShim = {
+  DEV?: boolean;
+  MODE?: string;
+  VITE_DEV_SERVER_URL?: string;
+};
+
+const resolveImageEditAvailability = (): boolean => {
+  const env = ((import.meta as unknown as { env?: ViteEnvShim })?.env) ?? {};
+  const isDevMode = env.DEV ?? env.MODE === 'development';
+  const servedFromDevServer = Boolean(
+    typeof env.VITE_DEV_SERVER_URL === 'string' && env.VITE_DEV_SERVER_URL.length > 0
+  );
+
+  return Boolean(isDevMode && servedFromDevServer);
+};
+
 const RESORTS_PER_PAGE = 15;
+const IS_IMAGE_EDIT_FEATURE_AVAILABLE = resolveImageEditAvailability();
 
 type ResortPreferences = {
   hidden_ids: number[];
@@ -76,6 +93,7 @@ type ResortOverride = {
 };
 
 const App: React.FC = () => {
+  const canUseImageEditMode = IS_IMAGE_EDIT_FEATURE_AVAILABLE;
   const [initialResorts, setInitialResorts] = useState<Resort[]>([]);
   const [displayedResorts, setDisplayedResorts] = useState<Resort[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -143,10 +161,9 @@ const App: React.FC = () => {
       };
     } catch (err) {
       console.error('Failed to fetch remote resort preferences', err);
-      setToastMessage('선호 데이터를 불러오지 못했습니다. 로컬 저장 데이터를 사용합니다.');
       return null;
     }
-  }, [setToastMessage]);
+  }, []);
 
   const persistPreferences = useCallback(async (hiddenIds: number[], order: number[], deletedUrls?: string[]) => {
     savePreferencesToLocal(hiddenIds, order);
@@ -469,7 +486,18 @@ const App: React.FC = () => {
     setIsCompareViewVisible(false);
   };
 
+  useEffect(() => {
+    if (!canUseImageEditMode && isImageEditMode) {
+      setIsImageEditMode(false);
+    }
+  }, [canUseImageEditMode, isImageEditMode]);
+
   const handleToggleImageEditMode = () => {
+    if (!canUseImageEditMode) {
+      setToastMessage('이미지 편집은 개발 서버(npm run dev)에서만 사용할 수 있습니다.');
+      return;
+    }
+
     if (!isImageEditMode) {
       setPreviousSortOption(sortOption);
       if (sortOption !== 'custom') {
@@ -565,6 +593,7 @@ const App: React.FC = () => {
         onSearchChange={handleSearchChange}
         isImageEditMode={isImageEditMode}
         onToggleImageEditMode={handleToggleImageEditMode}
+        isImageEditFeatureAvailable={canUseImageEditMode}
       />
       <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
         <NavBar currentView={currentView} onViewChange={setCurrentView} />
