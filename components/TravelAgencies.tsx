@@ -30,29 +30,29 @@ const TravelAgencies: React.FC = () => {
             ✈️ <strong>직접예약</strong>이 <strong>여행사예약</strong>보다 더 비싼이유가 뭘까요?
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex flex-col">
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
                 <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">직접 예약</h3>
                 <div className="flex-grow flex flex-col">
-                    <div className="flex items-center justify-center" style={{minHeight: "148px"}}>
-                        <div className="flex items-start justify-center gap-4 sm:gap-6 text-center">
-                            <div className="flex flex-col items-center gap-2">
-                                <BuildingIcon className="h-14 w-14 text-blue-600" />
-                                <span className="font-semibold text-base">리조트</span>
+                    <div className="flex items-center justify-center min-h-[128px]">
+                        <div className="flex flex-nowrap items-center justify-between gap-2 sm:gap-4 text-center w-full max-w-[420px]">
+                            <div className="flex flex-col items-center gap-1 flex-1 min-w-[64px]">
+                                <BuildingIcon className="h-10 w-10 sm:h-12 sm:w-12 text-blue-600" />
+                                <span className="font-semibold text-xs sm:text-sm">리조트</span>
                             </div>
-                            <div className="flex flex-col items-center text-gray-500 pt-5 px-1 sm:px-2">
-                                <ChevronRightIcon className="h-7 w-7" />
-                                <span className="text-base font-bold mt-1 text-red-500">$10,000</span>
-                                <span className="text-sm font-semibold text-gray-500 mt-1">공시가</span>
+                            <div className="flex flex-col items-center text-gray-500 px-1 sm:px-2 flex-[0.75] min-w-[54px]">
+                                <ChevronRightIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                                <span className="text-xs sm:text-sm font-bold mt-1 text-red-500">$10,000</span>
+                                <span className="text-[10px] sm:text-xs font-semibold text-gray-500 mt-1">공시가</span>
                             </div>
-                            <div className="flex flex-col items-center gap-2">
-                                <UserIcon className="h-14 w-14 text-cyan-600" />
-                                <span className="font-semibold text-base">고객</span>
+                            <div className="flex flex-col items-center gap-1 flex-1 min-w-[64px]">
+                                <UserIcon className="h-10 w-10 sm:h-12 sm:w-12 text-cyan-600" />
+                                <span className="font-semibold text-xs sm:text-sm">고객</span>
                             </div>
                         </div>
                     </div>
-                     <div className="text-base text-gray-600 text-center flex-grow mt-auto px-4 flex flex-col justify-center">
-                        <p>
-                            고객이 리조트에 직접 예약 시, 할인되지 않은 <strong className="text-gray-800">'공시가'</strong>가 적용됩니다.
+                    <div className="text-base text-gray-600 text-center flex-grow mt-auto px-4 flex flex-col justify-center">
+                        <p className="leading-relaxed">
+                            고객이 리조트에 직접 예약 시,<br />할인되지 않은 <strong className="text-gray-800">'공시가'</strong>가 적용됩니다.
                         </p>
                     </div>
                 </div>
@@ -61,45 +61,46 @@ const TravelAgencies: React.FC = () => {
                     <p className="text-center font-bold text-3xl text-red-500 mt-1">$10,000</p>
                 </div>
             </div>
-            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex flex-col">
+            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
                 <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">여행사 예약 (추천)</h3>
                 <div className="flex-grow flex flex-col">
-                    <div className="flex items-center justify-center" style={{minHeight: "148px"}}>
-                        <div className="flex items-start justify-center gap-2 sm:gap-3 text-center">
-                            <div className="flex flex-col items-center gap-2">
-                                <BuildingIcon className="h-14 w-14 text-blue-600" />
-                                <span className="font-semibold text-base">리조트</span>
+                    <div className="flex items-center justify-center min-h-[128px]">
+                        <div className="flex flex-nowrap items-center justify-between gap-2 sm:gap-3 lg:gap-4 text-center w-full max-w-[620px]">
+                            <div className="flex flex-col items-center gap-1 flex-1 min-w-[60px]">
+                                <BuildingIcon className="h-9 w-9 sm:h-11 sm:w-11 text-blue-600" />
+                                <span className="font-semibold text-[11px] sm:text-sm">리조트</span>
                             </div>
-                            <div className="flex flex-col items-center text-gray-500 pt-5 px-1 sm:px-2">
-                                <ChevronRightIcon className="h-7 w-7" />
-                                <span className="text-base font-bold mt-1 text-gray-700">$6,000</span>
-                                <span className="text-sm font-semibold text-gray-500 mt-1">도매가</span>
+                            <div className="flex flex-col items-center text-gray-500 px-1 sm:px-2 flex-[0.7] min-w-[52px]">
+                                <ChevronRightIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                                <span className="text-[11px] sm:text-sm font-bold mt-1 text-gray-700">$6,000</span>
+                                <span className="text-[10px] sm:text-xs font-semibold text-gray-500 mt-1">도매가</span>
                             </div>
-                            <div className="flex flex-col items-center gap-2">
-                                <BuildingIcon className="h-14 w-14 text-green-600" />
-                                <span className="font-semibold text-base">한국 총판<br/>(GSA)</span>
+                            <div className="flex flex-col items-center gap-1 flex-1 min-w-[66px]">
+                                <BuildingIcon className="h-9 w-9 sm:h-11 sm:w-11 text-green-600" />
+                                <span className="font-semibold text-[11px] sm:text-sm leading-tight">한국 총판<br />(GSA)</span>
                             </div>
-                            <div className="flex flex-col items-center text-gray-500 pt-5 px-1 sm:px-2">
-                                <ChevronRightIcon className="h-7 w-7" />
-                                <span className="text-base font-bold mt-1 text-gray-700">$7,500</span>
+                            <div className="flex flex-col items-center text-gray-500 px-1 sm:px-2 flex-[0.7] min-w-[52px]">
+                                <ChevronRightIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                                <span className="text-[11px] sm:text-sm font-bold mt-1 text-gray-700">$7,500</span>
                             </div>
-                            <div className="flex flex-col items-center gap-2">
-                                <BuildingIcon className="h-14 w-14 text-purple-600" />
-                                <span className="font-semibold text-base">여행사</span>
+                            <div className="flex flex-col items-center gap-1 flex-1 min-w-[60px]">
+                                <BuildingIcon className="h-9 w-9 sm:h-11 sm:w-11 text-purple-600" />
+                                <span className="font-semibold text-[11px] sm:text-sm">여행사</span>
                             </div>
-                             <div className="flex flex-col items-center text-gray-500 pt-5 px-1 sm:px-2">
-                                <ChevronRightIcon className="h-7 w-7" />
-                                <span className="text-base font-bold mt-1 text-cyan-600">$8,500</span>
+                             <div className="flex flex-col items-center text-gray-500 px-1 sm:px-2 flex-[0.7] min-w-[52px]">
+                                <ChevronRightIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                                <span className="text-[11px] sm:text-sm font-bold mt-1 text-cyan-600">$8,500</span>
                             </div>
-                            <div className="flex flex-col items-center gap-2">
-                                <UserIcon className="h-14 w-14 text-cyan-600" />
-                                <span className="font-semibold text-base">고객</span>
+                            <div className="flex flex-col items-center gap-1 flex-1 min-w-[60px]">
+                                <UserIcon className="h-9 w-9 sm:h-11 sm:w-11 text-cyan-600" />
+                                <span className="font-semibold text-[11px] sm:text-sm">고객</span>
                             </div>
                         </div>
                     </div>
                     <div className="text-base text-gray-600 text-center flex-grow mt-auto px-4 flex flex-col justify-center">
-                        <p>리조트는 대량 판매를 조건으로 여행사에 저렴한 <strong className="text-gray-800">'도매가'</strong>를 제공합니다.</p>
-                        <p className="mt-2">이 구조 덕분에 고객은 최종적으로 <strong className="text-cyan-600">더 저렴한 가격</strong>에 예약할 수 있습니다.</p>
+                        <p className="leading-relaxed">
+                            대량판매 <strong className="text-gray-800">'도매가'</strong> 덕분에<br />고객은 저렴하게 예약 가능합니다.
+                        </p>
                     </div>
                 </div>
                  <div className="mt-auto pt-4 border-t border-gray-100">
