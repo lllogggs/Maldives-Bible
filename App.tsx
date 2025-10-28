@@ -930,7 +930,7 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
-       {!isCompareViewVisible && currentView === 'resorts' && !isImageEditMode && (
+      {!isCompareViewVisible && currentView === 'resorts' && !isImageEditMode && (
         <CompareTray
           resorts={resortsToCompare}
           onRemove={handleToggleCompare}
