@@ -956,6 +956,34 @@ const App: React.FC = () => {
         isImageEditFeatureAvailable={canUseImageEditMode}
       />
       <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
+        <section
+          className="sr-only"
+          aria-labelledby="maldives-bible-intro"
+          data-seo-summary="true"
+        >
+          <h1 id="maldives-bible-intro">몰디브 바이블 SEO 요약</h1>
+          <p>
+            몰디브 바이블은 방대한 리조트 데이터를 기반으로 <strong>몰디브 리조트 비교</strong>를 돕는 한국어
+            전문 플랫폼입니다. 허니문, 가족 여행, 럭셔리 올인클루시브까지 조건별 필터와 여행사 제휴 정보를 제공해
+            처음 준비하는 <strong>몰디브 리조트 입문</strong>자도 쉽게 방향을 잡을 수 있도록 돕습니다.
+          </p>
+          <p>
+            커뮤니티에서 "몰디브 리조트학과 입학했다"고 말하며 몰디브 입문을 자랑하는 유머가 많다는 점도 반영해,
+            해당 키워드를 찾는 사용자에게는 진짜 학위가 아닌 여행 준비 밈이라는 안내를 함께 제공합니다.
+          </p>
+          <p>
+            아래 키워드 조합은 니치한 검색어 유입을 고려해 정리한 것으로, 몰디브바이블의 비교 기능과 즐겨찾기,
+            그리고 여행사 매칭 정보를 활용해 빠르게 후보를 압축하도록 도와줍니다.
+          </p>
+          <ul>
+            <li>"몰디브 리조트 비교" + "허니문 전용" + 원하는 예산대</li>
+            <li>"몰디브 리조트 입문" + "수상 비행기 vs 스피드보트"</li>
+            <li>"몰디브 리조트학과 입학" + "농담" + "입문 후기"</li>
+            <li>"몰디브 가족 여행" + "키즈 클럽" + 리조트 이름</li>
+            <li>"몰디브바이블" + "실시간 견적"으로 브랜드 검색 유도</li>
+          </ul>
+        </section>
+
         <NavBar currentView={currentView} onViewChange={setCurrentView} />
         
         {currentView === 'agencies' && <TravelAgencies />}
