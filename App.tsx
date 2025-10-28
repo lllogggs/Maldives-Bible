@@ -90,25 +90,22 @@ const ensureNumberArray = (value: unknown): number[] => {
     return [];
   }
 
-  return value
-    .map(item => (typeof item === 'number' ? item : Number(item)))
-    .filter(item => Number.isFinite(item));
-};
-
-const dedupeNumbers = (values: Iterable<number>): number[] => {
-  const result: number[] = [];
   const seen = new Set<number>();
+  const result: number[] = [];
 
-  for (const value of values) {
-    if (!Number.isFinite(value)) {
+  for (const item of value) {
+    const numericValue = typeof item === 'number' ? item : Number(item);
+    if (!Number.isFinite(numericValue)) {
       continue;
     }
 
-    const normalized = Math.trunc(value);
-    if (!seen.has(normalized)) {
-      seen.add(normalized);
-      result.push(normalized);
+    const normalized = Math.trunc(numericValue);
+    if (seen.has(normalized)) {
+      continue;
     }
+
+    seen.add(normalized);
+    result.push(normalized);
   }
 
   return result;
@@ -465,7 +462,7 @@ const App: React.FC = () => {
             return normalizedCounts;
           });
 
-          const uniqueLikedIds = dedupeNumbers(remoteLikes.likedIds);
+          const uniqueLikedIds = ensureNumberArray(remoteLikes.likedIds);
           setLikedResortIds(uniqueLikedIds);
           saveLikedResortsToLocal(uniqueLikedIds);
         } else {
@@ -701,9 +698,9 @@ const App: React.FC = () => {
 
     setLikedResortIds(prev => {
       const next = wasLiked ? prev.filter(id => id !== resortId) : [...prev, resortId];
-      const deduped = dedupeNumbers(next);
-      saveLikedResortsToLocal(deduped);
-      return deduped;
+      const uniqueNext = Array.from(new Set(next));
+      saveLikedResortsToLocal(uniqueNext);
+      return uniqueNext;
     });
 
     setLikesCountMap(prev => {
@@ -739,16 +736,17 @@ const App: React.FC = () => {
 
       if (payload?.data?.likedIds) {
         const normalized = ensureNumberArray(payload.data.likedIds);
-        const uniqueNormalized = dedupeNumbers(normalized);
-        setLikedResortIds(uniqueNormalized);
-        saveLikedResortsToLocal(uniqueNormalized);
+        setLikedResortIds(normalized);
+        saveLikedResortsToLocal(normalized);
       }
     } catch (err) {
       console.error('Failed to update resort like', err);
       setToastMessage('좋아요 상태를 저장하지 못했습니다. 잠시 후 다시 시도해주세요.');
 
       setLikedResortIds(prev => {
-        const restored = wasLiked ? dedupeNumbers([...prev, resortId]) : prev.filter(id => id !== resortId);
+        const restored = wasLiked
+          ? Array.from(new Set([...prev, resortId]))
+          : prev.filter(id => id !== resortId);
         saveLikedResortsToLocal(restored);
         return restored;
       });
