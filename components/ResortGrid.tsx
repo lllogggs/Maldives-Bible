@@ -40,7 +40,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 }) => {
   const pageNumbers = totalPages === 0
     ? []
-    : Array.from({ length: totalPages }, (_, index) => index + 1);
+    : Array.from({ length: Math.min(12, totalPages) }, (_, index) => index + 1);
 
   return (
     <div>
@@ -130,42 +130,47 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 
       {!isImageEditMode && totalPages > 1 && (
         <nav
-          className="mt-8 flex flex-wrap items-center justify-center gap-x-2 gap-y-1"
+          className="mt-8 flex flex-col items-center gap-3"
           aria-label="Resort pagination"
         >
-          <button
-            type="button"
-            onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-            disabled={currentPage === 1}
-            className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
-            aria-label="이전 페이지"
-          >
-            ◀
-          </button>
-          {pageNumbers.map(page => (
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            {pageNumbers.map(page => (
+              <button
+                key={page}
+                type="button"
+                onClick={() => onPageChange(page)}
+                className={`px-1 text-sm font-semibold transition-colors ${
+                  page === currentPage
+                    ? 'text-cyan-600 underline underline-offset-4 decoration-2'
+                    : 'text-gray-700 hover:text-cyan-600'
+                }`}
+                aria-current={page === currentPage ? 'page' : undefined}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center gap-4">
             <button
-              key={page}
               type="button"
-              onClick={() => onPageChange(page)}
-              className={`px-1 text-sm font-semibold transition-colors ${
-                page === currentPage
-                  ? 'text-cyan-600 underline underline-offset-4 decoration-2'
-                  : 'text-gray-700 hover:text-cyan-600'
-              }`}
-              aria-current={page === currentPage ? 'page' : undefined}
+              onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
+              aria-label="이전 페이지"
             >
-              {page}
+              ◀
             </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-            disabled={currentPage === totalPages}
-            className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
-            aria-label="다음 페이지"
-          >
-            ▶
-          </button>
+            <span className="text-lg text-gray-300">ㅣ</span>
+            <button
+              type="button"
+              onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
+              aria-label="다음 페이지"
+            >
+              ▶
+            </button>
+          </div>
         </nav>
       )}
     </div>
