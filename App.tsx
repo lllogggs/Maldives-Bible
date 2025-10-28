@@ -72,6 +72,19 @@ const buildLikesEndpoint = () => {
 
 const RESORT_LIKES_ENDPOINT = buildLikesEndpoint();
 
+function parseJsonSafely<T>(raw: string): T | null {
+  if (!raw || raw.trim().length === 0) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(raw) as T;
+  } catch (error) {
+    console.error('Failed to parse JSON payload', error);
+    return null;
+  }
+}
+
 const ensureNumberArray = (value: unknown): number[] => {
   if (!Array.isArray(value)) {
     return [];
@@ -688,14 +701,14 @@ const App: React.FC = () => {
         body: JSON.stringify({ profileId, resortId, liked: !wasLiked }),
       });
 
+      const rawBody = await response.text();
+
       if (!response.ok) {
-        const rawMessage = await response.text();
-        throw new Error(rawMessage?.trim() || '좋아요 상태를 저장하지 못했습니다.');
+        const normalizedMessage = rawBody?.trim();
+        throw new Error(normalizedMessage || '좋아요 상태를 저장하지 못했습니다.');
       }
 
-      const payload = (await response.json()) as {
-        data?: { likesCount?: number; likedIds?: number[] };
-      };
+      const payload = parseJsonSafely<{ data?: { likesCount?: number; likedIds?: unknown } }>(rawBody);
 
       const serverCount = payload?.data?.likesCount;
       if (typeof serverCount === 'number' && Number.isFinite(serverCount)) {
