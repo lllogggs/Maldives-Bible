@@ -787,6 +787,10 @@ const App: React.FC = () => {
     ? (displayedResorts.length > 0 ? 1 : 0)
     : calculatedTotalPages;
 
+  const isResortListFocused =
+    currentView === 'resorts' && !isCompareViewVisible && !(selectedResortId && selectedResort);
+  const isCompactHeader = !isResortListFocused;
+
   useEffect(() => {
     if (totalPages > 0 && currentPage > totalPages) {
       setCurrentPage(totalPages);
@@ -954,6 +958,7 @@ const App: React.FC = () => {
         isImageEditMode={isImageEditMode}
         onToggleImageEditMode={handleToggleImageEditMode}
         isImageEditFeatureAvailable={canUseImageEditMode}
+        isCompact={isCompactHeader}
       />
       <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
         <section
