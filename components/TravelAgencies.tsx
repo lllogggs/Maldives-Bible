@@ -36,8 +36,8 @@ const TravelAgencies: React.FC = () => {
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
                 <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">직접 예약</h3>
                 <div className="flex-grow flex flex-col">
-                    <div className="flex items-center justify-center min-h-[128px] overflow-hidden">
-                        <div className="venn-diagram inline-flex flex-nowrap items-stretch justify-center gap-1 sm:gap-1.5 lg:gap-2 text-center mx-auto origin-center transform scale-[0.36] sm:scale-[0.5] md:scale-[0.66] lg:scale-[0.8] xl:scale-100">
+                    <div className="flex items-center justify-center min-h-[140px] overflow-hidden">
+                        <div className="venn-diagram inline-flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 lg:gap-2.5 text-center mx-auto origin-center w-full max-w-[320px] transform scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-[0.95] xl:scale-100">
                             <div className="flex flex-col items-center justify-center gap-1.5 w-24">
                                 <BuildingIcon className="h-10 w-10 text-blue-600" />
                                 <span className="font-semibold text-[10px] sm:text-xs md:text-sm">리조트</span>
@@ -68,8 +68,8 @@ const TravelAgencies: React.FC = () => {
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
                 <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">여행사 예약 (추천)</h3>
                 <div className="flex-grow flex flex-col">
-                    <div className="flex items-center justify-center min-h-[128px] overflow-hidden">
-                        <div className="venn-diagram inline-flex flex-nowrap items-stretch justify-center gap-1 sm:gap-1.5 lg:gap-2 text-center mx-auto origin-center transform scale-[0.32] sm:scale-[0.48] md:scale-[0.64] lg:scale-[0.8] xl:scale-100">
+                    <div className="flex items-center justify-center min-h-[150px] overflow-hidden">
+                        <div className="venn-diagram inline-flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 lg:gap-2.5 text-center mx-auto origin-center w-full max-w-[360px] transform scale-[0.5] sm:scale-[0.65] md:scale-[0.8] lg:scale-[0.95] xl:scale-100">
                             <div className="flex flex-col items-center justify-center gap-1.5 w-24">
                                 <BuildingIcon className="h-10 w-10 text-blue-600" />
                                 <span className="font-semibold text-[10px] sm:text-xs md:text-sm">리조트</span>
