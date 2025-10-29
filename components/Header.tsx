@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const containerSpacing = isCompact ? 'py-0 sm:py-1.5' : 'py-5 sm:py-7';
   const contentSpacing = isCompact ? 'gap-1.5 sm:gap-3' : 'gap-8 sm:gap-10';
-  const logoScale = isCompact ? 'scale-50' : 'scale-100';
+  const logoWidth = isCompact ? 'w-32 sm:w-40 md:w-48' : 'w-[288px]';
   const inputSizing = isCompact ? 'py-1.5 text-sm' : 'py-2 text-base';
   const buttonSizing = isCompact ? 'px-3 py-1.5 text-sm gap-2' : 'px-4 py-2 text-sm gap-3';
   const logoSpacing = isCompact ? 'mt-0.5 sm:mt-1' : '';
@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({
       >
         <div className={`flex flex-col items-center text-center transition-all duration-300 ${contentSpacing}`}>
           <div
-            className={`w-[288px] origin-top transform transition-transform duration-300 ${logoScale} ${logoSpacing} [filter:drop-shadow(0_4px_4px_rgba(0,0,0,0.25))]`}
+            className={`${logoWidth} origin-top transition-all duration-300 ${logoSpacing} [filter:drop-shadow(0_4px_4px_rgba(0,0,0,0.25))]`}
           >
             <LogoIcon />
           </div>
