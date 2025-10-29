@@ -362,6 +362,13 @@ const App: React.FC = () => {
   const [compareList, setCompareList] = useState<number[]>([]);
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
   const [currentView, setCurrentView] = useState<'resorts' | 'agencies'>('resorts');
+  const [isMobileViewport, setIsMobileViewport] = useState<boolean>(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return false;
+    }
+
+    return window.matchMedia('(max-width: 640px)').matches;
+  });
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [isImageEditMode, setIsImageEditMode] = useState<boolean>(false);
   const [previousSortOption, setPreviousSortOption] = useState<SortOption>('popularity');
@@ -399,6 +406,27 @@ const App: React.FC = () => {
     onToast: setToastMessage,
     saveLikedResorts: saveLikedResortsToLocal,
   });
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia('(max-width: 640px)');
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsMobileViewport(event.matches);
+    };
+
+    setIsMobileViewport(mediaQuery.matches);
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -789,7 +817,7 @@ const App: React.FC = () => {
 
   const isResortListFocused =
     currentView === 'resorts' && !isCompareViewVisible && !(selectedResortId && selectedResort);
-  const isCompactHeader = !isResortListFocused;
+  const isCompactHeader = !isResortListFocused || isMobileViewport;
 
   useEffect(() => {
     if (totalPages > 0 && currentPage > totalPages) {
