@@ -26,8 +26,11 @@ const TravelAgencies: React.FC = () => {
   return (
     <div className="animate-fade-in">
       <div className="mb-12 p-6 bg-cyan-50/50 border border-cyan-200 rounded-lg lg:w-11/12 mx-auto">
-        <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
-            ✈️ <strong>직접예약</strong>이 <strong>여행사예약</strong>보다 더 비싼이유가 뭘까요?
+        <h2 className="text-2xl text-center text-gray-500 mb-8 leading-snug">
+            ✈️ <strong className="font-semibold text-gray-900">직접예약</strong>이{' '}
+            <strong className="font-semibold text-gray-900">여행사예약</strong>보다
+            <br />
+            더 비싼 이유가 뭘까요?
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
