@@ -19,12 +19,12 @@ const Header: React.FC<HeaderProps> = ({
   isCompact,
 }) => {
   const containerSpacing = isCompact ? 'py-0 sm:py-1.5' : 'py-5 sm:py-7';
-  const contentSpacing = isCompact ? 'gap-0 sm:gap-6' : 'gap-8 sm:gap-10';
+  const contentSpacing = isCompact ? 'gap-1.5 sm:gap-3' : 'gap-8 sm:gap-10';
   const logoScale = isCompact ? 'scale-50' : 'scale-100';
   const inputSizing = isCompact ? 'py-1.5 text-sm' : 'py-2 text-base';
   const buttonSizing = isCompact ? 'px-3 py-1.5 text-sm gap-2' : 'px-4 py-2 text-sm gap-3';
-  const logoSpacing = isCompact ? 'mt-1 sm:mt-2' : '';
-  const searchBarSpacing = isCompact ? 'mb-1.5 sm:mb-0' : '';
+  const logoSpacing = isCompact ? 'mt-0.5 sm:mt-1' : '';
+  const searchBarSpacing = isCompact ? 'mb-1 sm:mb-0' : '';
 
   return (
     <header className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-md transition-all duration-300">
