@@ -18,11 +18,13 @@ const Header: React.FC<HeaderProps> = ({
   isImageEditFeatureAvailable,
   isCompact,
 }) => {
-  const containerSpacing = isCompact ? 'py-1 sm:py-1.5' : 'py-5 sm:py-7';
-  const contentSpacing = isCompact ? 'gap-1.5' : 'gap-8 sm:gap-10';
+  const containerSpacing = isCompact ? 'py-0 sm:py-1.5' : 'py-5 sm:py-7';
+  const contentSpacing = isCompact ? 'gap-0 sm:gap-6' : 'gap-8 sm:gap-10';
   const logoScale = isCompact ? 'scale-50' : 'scale-100';
   const inputSizing = isCompact ? 'py-1.5 text-sm' : 'py-2 text-base';
   const buttonSizing = isCompact ? 'px-3 py-1.5 text-sm gap-2' : 'px-4 py-2 text-sm gap-3';
+  const logoSpacing = isCompact ? 'mt-1 sm:mt-2' : '';
+  const searchBarSpacing = isCompact ? 'mb-1.5 sm:mb-0' : '';
 
   return (
     <header className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-md transition-all duration-300">
@@ -31,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({
       >
         <div className={`flex flex-col items-center text-center transition-all duration-300 ${contentSpacing}`}>
           <div
-            className={`w-[288px] origin-top transform transition-transform duration-300 ${logoScale} [filter:drop-shadow(0_4px_4px_rgba(0,0,0,0.25))]`}
+            className={`w-[288px] origin-top transform transition-transform duration-300 ${logoScale} ${logoSpacing} [filter:drop-shadow(0_4px_4px_rgba(0,0,0,0.25))]`}
           >
             <LogoIcon />
           </div>
@@ -40,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
               isCompact ? 'gap-1.5 sm:gap-3' : 'gap-4 sm:gap-6'
             } sm:max-w-2xl`}
           >
-            <div className="relative w-full sm:max-w-xl">
+            <div className={`relative w-full sm:max-w-xl ${searchBarSpacing}`}>
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <SearchIcon />
               </div>
