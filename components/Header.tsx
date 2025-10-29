@@ -18,8 +18,8 @@ const Header: React.FC<HeaderProps> = ({
   isImageEditFeatureAvailable,
   isCompact,
 }) => {
-  const containerSpacing = isCompact ? 'py-2 sm:py-2.5' : 'py-5 sm:py-7';
-  const contentSpacing = isCompact ? 'gap-3' : 'gap-8 sm:gap-10';
+  const containerSpacing = isCompact ? 'py-1 sm:py-1.5' : 'py-5 sm:py-7';
+  const contentSpacing = isCompact ? 'gap-1.5' : 'gap-8 sm:gap-10';
   const logoScale = isCompact ? 'scale-50' : 'scale-100';
   const inputSizing = isCompact ? 'py-1.5 text-sm' : 'py-2 text-base';
   const buttonSizing = isCompact ? 'px-3 py-1.5 text-sm gap-2' : 'px-4 py-2 text-sm gap-3';
@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({
           </div>
           <div
             className={`w-full flex flex-col items-center sm:flex-row sm:items-center sm:justify-center transition-all duration-300 ${
-              isCompact ? 'gap-2 sm:gap-3' : 'gap-4 sm:gap-6'
+              isCompact ? 'gap-1.5 sm:gap-3' : 'gap-4 sm:gap-6'
             } sm:max-w-2xl`}
           >
             <div className="relative w-full sm:max-w-xl">
