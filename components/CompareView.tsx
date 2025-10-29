@@ -127,22 +127,23 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) 
   const bestPrice = numResorts > 1 ? Math.min(...prices) : null;
 
   return (
-    <div className="animate-fade-in">
-       {showRotateModal && (
-        <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 lg:hidden">
-            <div className="bg-white rounded-lg p-8 text-center max-w-sm shadow-xl">
-                <RotateDeviceIcon className="h-16 w-16 mx-auto text-cyan-500 mb-4"/>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">가로 모드로 돌려보세요</h3>
-                <p className="text-gray-600 mb-6">리조트 비교는 화면을 가로로 돌렸을 때 더 편하게 보실 수 있습니다.</p>
-                <button
-                    onClick={() => setShowRotateModal(false)}
-                    className="w-full bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-cyan-600 transition-colors"
-                >
-                    확인
-                </button>
-            </div>
+    <>
+      {showRotateModal && (
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center p-4 pt-20 sm:pt-24 lg:hidden">
+          <div className="bg-white rounded-lg p-6 sm:p-8 text-center max-w-sm shadow-xl w-full max-w-[360px]">
+            <RotateDeviceIcon className="h-16 w-16 mx-auto text-cyan-500 mb-4" />
+            <h3 className="text-xl font-bold text-gray-800 mb-2">가로 모드로 돌려보세요</h3>
+            <p className="text-gray-600 mb-6">리조트 비교는 화면을 가로로 돌렸을 때 더 편하게 보실 수 있습니다.</p>
+            <button
+              onClick={() => setShowRotateModal(false)}
+              className="w-full bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-cyan-600 transition-colors"
+            >
+              확인
+            </button>
+          </div>
         </div>
       )}
+      <div className="animate-fade-in">
       <button
         onClick={onBack}
         className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"
@@ -199,7 +200,8 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) 
             </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
