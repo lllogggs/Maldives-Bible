@@ -37,18 +37,18 @@ const TravelAgencies: React.FC = () => {
                 <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">직접 예약</h3>
                 <div className="flex-grow flex flex-col">
                     <div className="flex items-center justify-center min-h-[140px] overflow-hidden">
-                        <div className="venn-diagram inline-flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 lg:gap-2.5 text-center mx-auto origin-center w-full max-w-[320px] transform scale-[0.55] sm:scale-[0.7] md:scale-[0.85] lg:scale-[0.95] xl:scale-100">
+                        <div className="venn-diagram inline-flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 lg:gap-2.5 text-center mx-auto origin-center w-full max-w-[320px] transform scale-[1.2] sm:scale-[0.75] md:scale-[0.88] lg:scale-[0.96] xl:scale-100">
                             <div className="flex flex-col items-center justify-center gap-1.5 w-24">
-                                <BuildingIcon className="h-10 w-10 text-blue-600" />
+                                <BuildingIcon className="h-20 w-20 sm:h-10 sm:w-10 text-blue-600" />
                                 <span className="font-semibold text-[10px] sm:text-xs md:text-sm">리조트</span>
                             </div>
                             <div className="flex flex-col items-center justify-center gap-2 w-20 text-gray-500">
-                                <ChevronRightIcon className="h-6 w-6" />
+                                <ChevronRightIcon className="h-12 w-12 sm:h-6 sm:w-6" />
                                 <span className="text-[10px] sm:text-xs font-bold text-red-500">$10,000</span>
                                 <span className="text-[9px] sm:text-xs font-semibold text-gray-500">공시가</span>
                             </div>
                             <div className="flex flex-col items-center justify-center gap-1.5 w-24">
-                                <UserIcon className="h-10 w-10 text-cyan-600" />
+                                <UserIcon className="h-20 w-20 sm:h-10 sm:w-10 text-cyan-600" />
                                 <span className="font-semibold text-[10px] sm:text-xs md:text-sm">고객</span>
                             </div>
                         </div>
@@ -69,35 +69,35 @@ const TravelAgencies: React.FC = () => {
                 <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">여행사 예약 (추천)</h3>
                 <div className="flex-grow flex flex-col">
                     <div className="flex items-center justify-center min-h-[150px] overflow-hidden">
-                        <div className="venn-diagram inline-flex flex-nowrap items-stretch justify-center gap-1.5 sm:gap-2 lg:gap-2.5 text-center mx-auto origin-center w-full max-w-[360px] transform scale-[0.5] sm:scale-[0.65] md:scale-[0.8] lg:scale-[0.95] xl:scale-100">
-                            <div className="flex flex-col items-center justify-center gap-1.5 w-24">
-                                <BuildingIcon className="h-10 w-10 text-blue-600" />
-                                <span className="font-semibold text-[10px] sm:text-xs md:text-sm">리조트</span>
+                        <div className="venn-diagram inline-flex flex-nowrap items-stretch justify-center gap-2 sm:gap-3 lg:gap-3.5 text-center mx-auto origin-center w-full max-w-[360px] transform scale-[1.1] sm:scale-[0.7] md:scale-[0.85] lg:scale-[0.97] xl:scale-100">
+                            <div className="flex flex-col items-center justify-center gap-2 w-24">
+                                <BuildingIcon className="h-20 w-20 sm:h-10 sm:w-10 text-blue-600" />
+                                <span className="font-semibold text-[13px] sm:text-sm md:text-base">리조트</span>
                             </div>
                             <div className="flex flex-col items-center justify-center gap-2 w-20 text-gray-500">
-                                <ChevronRightIcon className="h-6 w-6" />
-                                <span className="text-[10px] sm:text-xs font-bold text-gray-700">$6,000</span>
-                                <span className="text-[9px] sm:text-xs font-semibold text-gray-500">도매가</span>
+                                <ChevronRightIcon className="h-12 w-12 sm:h-6 sm:w-6" />
+                                <span className="text-[13px] sm:text-sm font-bold text-gray-700">$6,000</span>
+                                <span className="text-[12px] sm:text-sm font-semibold text-gray-500">도매가</span>
                             </div>
-                            <div className="flex flex-col items-center justify-center gap-1.5 w-24">
-                                <BuildingIcon className="h-10 w-10 text-green-600" />
-                                <span className="font-semibold text-[9px] sm:text-xs md:text-sm leading-tight text-center">한국 총판<br />(GSA)</span>
+                            <div className="flex flex-col items-center justify-center gap-2 w-24">
+                                <BuildingIcon className="h-20 w-20 sm:h-10 sm:w-10 text-green-600" />
+                                <span className="font-semibold text-[12px] sm:text-sm md:text-base leading-tight text-center">한국 총판<br />(GSA)</span>
                             </div>
                             <div className="flex flex-col items-center justify-center gap-2 w-20 text-gray-500">
-                                <ChevronRightIcon className="h-6 w-6" />
-                                <span className="text-[10px] sm:text-xs font-bold text-gray-700">$7,500</span>
+                                <ChevronRightIcon className="h-12 w-12 sm:h-6 sm:w-6" />
+                                <span className="text-[13px] sm:text-sm font-bold text-gray-700">$7,500</span>
                             </div>
-                            <div className="flex flex-col items-center justify-center gap-1.5 w-24">
-                                <BuildingIcon className="h-10 w-10 text-purple-600" />
-                                <span className="font-semibold text-[10px] sm:text-xs md:text-sm">여행사</span>
+                            <div className="flex flex-col items-center justify-center gap-2 w-24">
+                                <BuildingIcon className="h-20 w-20 sm:h-10 sm:w-10 text-purple-600" />
+                                <span className="font-semibold text-[13px] sm:text-sm md:text-base">여행사</span>
                             </div>
                              <div className="flex flex-col items-center justify-center gap-2 w-20 text-gray-500">
-                                <ChevronRightIcon className="h-6 w-6" />
-                                <span className="text-[10px] sm:text-xs font-bold text-cyan-600">$8,500</span>
+                                <ChevronRightIcon className="h-12 w-12 sm:h-6 sm:w-6" />
+                                <span className="text-[13px] sm:text-sm font-bold text-cyan-600">$8,500</span>
                             </div>
-                            <div className="flex flex-col items-center justify-center gap-1.5 w-24">
-                                <UserIcon className="h-10 w-10 text-cyan-600" />
-                                <span className="font-semibold text-[10px] sm:text-xs md:text-sm">고객</span>
+                            <div className="flex flex-col items-center justify-center gap-2 w-24">
+                                <UserIcon className="h-20 w-20 sm:h-10 sm:w-10 text-cyan-600" />
+                                <span className="font-semibold text-[13px] sm:text-sm md:text-base">고객</span>
                             </div>
                         </div>
                     </div>
