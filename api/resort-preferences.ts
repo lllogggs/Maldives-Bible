@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSupabaseAdminClient } from './_lib/supabase-admin';
+import { createClient } from '@supabase/supabase-js';
 
 // ---- CORS ----
 function setCors(req: NextApiRequest, res: NextApiResponse) {
@@ -15,17 +15,22 @@ function send(res: NextApiResponse, status: number, body?: any) {
   return res.status(status).json(body);
 }
 
+// ---- Supabase 연결 ----
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  { auth: { persistSession: false } }
+);
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   setCors(req, res);
   if (req.method === 'OPTIONS') return send(res, 204);
 
   try {
-    const supabaseAdminClient = getSupabaseAdminClient();
-
     if (req.method === 'GET') {
       const { profileId } = req.query;
       if (!profileId) return send(res, 400, { error: 'missing profileId' });
-      const { data, error } = await supabaseAdminClient
+      const { data, error } = await supabase
         .from('resort_preferences')
         .select('*')
         .eq('profile_id', profileId)
@@ -45,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         deleted_image_urls: deletedImageUrls || [],
       };
 
-      const { data, error } = await supabaseAdminClient
+      const { data, error } = await supabase
         .from('resort_preferences')
         .upsert(payload, { onConflict: 'profile_id' })
         .select()
