@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdminClient } from './_lib/supabase-admin';
 
 function setCors(req: NextApiRequest, res: NextApiResponse) {
   const origin = (req.headers.origin as string) || '*';
@@ -14,12 +14,6 @@ function send(res: NextApiResponse, status: number, body?: any) {
   if (!body) return res.status(status).end();
   return res.status(status).json(body);
 }
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  { auth: { persistSession: false } }
-);
 
 type LikeRow = {
   resort_id: number | null;
@@ -53,13 +47,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    const supabaseAdminClient = getSupabaseAdminClient();
+
     if (req.method === 'GET') {
       const profileId = typeof req.query.profileId === 'string' ? req.query.profileId : undefined;
       if (!profileId) {
         return send(res, 400, { error: 'missing profileId' });
       }
 
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAdminClient
         .from<LikeRow>('resort_likes')
         .select('resort_id, profile_id');
 
@@ -86,7 +82,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const shouldLike = Boolean(liked);
 
       if (shouldLike) {
-        const { error: upsertError } = await supabase
+        const { error: upsertError } = await supabaseAdminClient
           .from('resort_likes')
           .upsert(
             { profile_id: profileId, resort_id: numericResortId },
@@ -97,7 +93,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           return send(res, 500, { error: upsertError.message });
         }
       } else {
-        const { error: deleteError } = await supabase
+        const { error: deleteError } = await supabaseAdminClient
           .from('resort_likes')
           .delete()
           .eq('profile_id', profileId)
@@ -108,7 +104,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       }
 
-      const { count, error: countError } = await supabase
+      const { count, error: countError } = await supabaseAdminClient
         .from('resort_likes')
         .select('*', { head: true, count: 'exact' })
         .eq('resort_id', numericResortId);
@@ -117,7 +113,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return send(res, 500, { error: countError.message });
       }
 
-      const { data: likedRows, error: likedRowsError } = await supabase
+      const { data: likedRows, error: likedRowsError } = await supabaseAdminClient
         .from<{ resort_id: number | null }>('resort_likes')
         .select('resort_id')
         .eq('profile_id', profileId);
