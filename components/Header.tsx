@@ -8,6 +8,7 @@ interface HeaderProps {
   onToggleImageEditMode: () => void;
   isImageEditFeatureAvailable: boolean;
   isCompact: boolean;
+  onLogoClick: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -17,6 +18,7 @@ const Header: React.FC<HeaderProps> = ({
   onToggleImageEditMode,
   isImageEditFeatureAvailable,
   isCompact,
+  onLogoClick,
 }) => {
   const containerSpacing = isCompact ? 'py-0 sm:py-1.5' : 'py-5 sm:py-7';
   const contentSpacing = isCompact ? 'gap-1.5 sm:gap-3' : 'gap-8 sm:gap-10';
@@ -32,11 +34,14 @@ const Header: React.FC<HeaderProps> = ({
         className={`max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${containerSpacing}`}
       >
         <div className={`flex flex-col items-center text-center transition-all duration-300 ${contentSpacing}`}>
-          <div
-            className={`${logoWidth} origin-top transition-all duration-300 ${logoSpacing} [filter:drop-shadow(0_4px_4px_rgba(0,0,0,0.25))]`}
+          <button
+            type="button"
+            onClick={onLogoClick}
+            aria-label="홈으로 이동"
+            className={`${logoWidth} origin-top transition-all duration-300 ${logoSpacing} [filter:drop-shadow(0_4px_4px_rgba(0,0,0,0.25))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-cyan-500 block cursor-pointer`}
           >
             <LogoIcon />
-          </div>
+          </button>
           <div
             className={`w-full flex flex-col items-center sm:flex-row sm:items-center sm:justify-center transition-all duration-300 ${
               isCompact ? 'gap-1.5 sm:gap-3' : 'gap-4 sm:gap-6'
