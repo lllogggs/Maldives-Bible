@@ -878,6 +878,20 @@ const App: React.FC = () => {
     setIsCompareViewVisible(false);
   };
 
+  const handleLogoClick = () => {
+    setCurrentView('resorts');
+    setIsCompareViewVisible(false);
+    setIsFilterOpen(false);
+    if (isImageEditMode) {
+      setIsImageEditMode(false);
+      setSortOption(previousSortOption);
+    }
+    setSelectedResortId(null);
+    setCurrentPage(1);
+    window.location.hash = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     if (!canUseImageEditMode && isImageEditMode) {
       setIsImageEditMode(false);
@@ -987,6 +1001,7 @@ const App: React.FC = () => {
         onToggleImageEditMode={handleToggleImageEditMode}
         isImageEditFeatureAvailable={canUseImageEditMode}
         isCompact={isCompactHeader}
+        onLogoClick={handleLogoClick}
       />
       <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
         <section

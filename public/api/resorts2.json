@@ -155,7 +155,14 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://d18slle4wlf9ku.cloudfront.net/www.cinnamonhotels.com-1302818674/cms/cache/v2/66cd6f6358775.jpg/1920x1080/resize/80/790f987df13ab5a820e6ff49ef5ae38c.jpg",
+      "https://d18slle4wlf9ku.cloudfront.net/www.cinnamonhotels.com-1302818674/cms/cache/v2/66b49a86aa2a5.jpg/1920x1080/resize/80/742320e004fcc15ce7310c9b8de11df8.jpg",
+      "https://d18slle4wlf9ku.cloudfront.net/www.cinnamonhotels.com-1302818674/cms/cache/v2/66b49a8258d40.jpg/1920x1080/resize/80/0cb0bdf5d64c65c12c60e31f1c176a46.jpg",
+      "https://d18slle4wlf9ku.cloudfront.net/www.cinnamonhotels.com-1302818674/cms/cache/v2/67cfef0844c7e.jpg/1920x1080/resize/80/ecbf2487abe9ae170c7b89a460129a15.jpg",
+      "https://d18slle4wlf9ku.cloudfront.net/www.cinnamonhotels.com-1302818674/cms/cache/v2/66baf05681470.jpg/1920x1080/resize/80/3e7efea0dba612bbd7078ace4788481f.jpg",
+      "https://d18slle4wlf9ku.cloudfront.net/www.cinnamonhotels.com-1302818674/cms/cache/v2/66cd6f5eb1f7b.jpg/1920x1080/resize/80/1f72b12ff7d14a115bcbaf3e3ab8ae4a.jpg"
+    ],
     "roomTypes": [
       "비치 방갈로",
       "워터 방갈로"
