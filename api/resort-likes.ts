@@ -26,6 +26,11 @@ type LikeRow = {
   profile_id: string | null;
 };
 
+type DeleteVerificationRow = {
+  resort_id: number | null;
+  profile_id: string | null;
+};
+
 function normalizeCounts(rows: LikeRow[], profileId: string) {
   const counts: Record<number, number> = {};
   const likedIds: number[] = [];
@@ -94,6 +99,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           );
 
         if (upsertError) {
+          console.error('Failed to insert resort like', {
+            profileId,
+            resortId: numericResortId,
+            code: upsertError.code,
+            details: upsertError.details,
+            hint: upsertError.hint,
+            message: upsertError.message,
+          });
           return send(res, 500, { error: upsertError.message });
         }
       } else {
@@ -104,7 +117,38 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           .eq('resort_id', numericResortId);
 
         if (deleteError) {
+          console.error('Failed to delete resort like', {
+            profileId,
+            resortId: numericResortId,
+            code: deleteError.code,
+            details: deleteError.details,
+            hint: deleteError.hint,
+            message: deleteError.message,
+          });
           return send(res, 500, { error: deleteError.message });
+        }
+
+        const { data: verificationRows, error: verificationError } = await supabase
+          .from<DeleteVerificationRow>('resort_likes')
+          .select('profile_id, resort_id')
+          .eq('profile_id', profileId)
+          .eq('resort_id', numericResortId);
+
+        if (verificationError) {
+          console.error('Failed to verify resort like deletion', {
+            profileId,
+            resortId: numericResortId,
+            code: verificationError.code,
+            details: verificationError.details,
+            hint: verificationError.hint,
+            message: verificationError.message,
+          });
+        } else if ((verificationRows ?? []).length > 0) {
+          console.warn('Resort like rows still exist after deletion attempt', {
+            profileId,
+            resortId: numericResortId,
+            rows: verificationRows,
+          });
         }
       }
 
