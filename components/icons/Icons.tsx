@@ -2,48 +2,39 @@
 import React from 'react';
 
 export const LogoIcon: React.FC = () => (
-<svg viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style={{stopColor: '#ffcc00', stopOpacity: 1}} />
-      <stop offset="100%" style={{stopColor: '#ff9900', stopOpacity: 1}} />
-    </linearGradient>
-    <linearGradient id="seaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style={{stopColor: '#00bcd4', stopOpacity: 1}} />
-      <stop offset="100%" style={{stopColor: '#0097a7', stopOpacity: 1}} />
-    </linearGradient>
-  </defs>
-  
-  <path d="M100 8 C 60 8, 20 25, 20 90 L 100 75 L 180 90 C 180 25, 140 8, 100 8 Z" fill="#FFFFFF"/>
-  <path d="M100 8 C 60 8, 20 25, 20 90 L 100 75" fill="none" stroke="#e0e0e0" strokeWidth="1"/>
-  <path d="M100 8 C 140 8, 180 25, 180 90 L 100 75" fill="none" stroke="#e0e0e0" strokeWidth="1"/>
-  
-  <path d="M20 90 L 100 75 L 180 90 L 180 93 L 100 78 L 20 93 Z" fill="#d3a17c" />
-  <path d="M20 90 L 20 93 L 180 93 L 180 90 L 100 75 Z" stroke="#ab7953" strokeWidth="1.5" fill="none"/>
-  
-  <circle cx="70" cy="35" r="12" fill="url(#skyGradient)" />
-  
-  <path d="M40 70 C 60 60, 80 80, 100 70 S 140 50, 160 65" fill="none" stroke="url(#seaGradient)" strokeWidth="10" strokeLinecap="round" />
+  <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle">
+    <title id="logoTitle">Maldives Bible Logo</title>
+    <defs>
+      <linearGradient id="logo-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#27c4ff" />
+        <stop offset="100%" stopColor="#0fa0ff" />
+      </linearGradient>
+      <clipPath id="logo-dome">
+        <path d="M15 64C15 33 42 10 75 10s60 21 60 54v19H15Z" />
+      </clipPath>
+    </defs>
 
-  <path d="M135 60 Q 140 50, 145 60" fill="#388e3c" />
-  <path d="M140 40 L 140 60" stroke="#795548" strokeWidth="2" strokeLinecap="round"/>
-  <path d="M140 45 L 130 35" stroke="#4caf50" strokeWidth="3" strokeLinecap="round"/>
-  <path d="M140 45 L 150 35" stroke="#4caf50" strokeWidth="3" strokeLinecap="round"/>
-  <path d="M140 40 L 132 40" stroke="#4caf50" strokeWidth="3" strokeLinecap="round"/>
-  <path d="M140 40 L 148 40" stroke="#4caf50" strokeWidth="3" strokeLinecap="round"/>
-  
-  <text 
-    x="100" 
-    y="115" 
-    fontFamily="sans-serif" 
-    fontSize="18" 
-    fontWeight="bold" 
-    fill="#FFFFFF"
-    textAnchor="middle"
-  >
-    몰디브 바이블
-  </text>
-</svg>
+    <rect width="120" height="90" rx="18" fill="url(#logo-bg)" />
+
+    <g clipPath="url(#logo-dome)">
+      <path d="M15 64C15 33 42 10 75 10s60 21 60 54v19H15Z" fill="#ffffff" />
+      <circle cx="48" cy="32" r="10" fill="#ffbe00" />
+      <path
+        d="M15 70c10 5 18 7 26 7 14 0 20-5 30-5 14 0 19 5 34 5 8 0 15-1 20-3v16H15Z"
+        fill="#00c6ff"
+      />
+      <path
+        d="M87 45c-1.4 11.4-4.2 23.5-6 34h4.2c1.5-9.4 3.7-20.2 4.4-30.5.2-3-2.9-4.2-2.6-3.5z"
+        fill="#00aedd"
+      />
+      <g stroke="#00aedd" strokeWidth="3" strokeLinecap="round" fill="none">
+        <path d="M86.5 43.5c4.5-5.8 11.3-9.6 18.5-9.6" />
+        <path d="M86.5 43.5c-4.5-5.8-11.3-9.6-18.5-9.6" />
+        <path d="M86.5 47.5c5.5-3.8 12.5-4.6 18.5-2.8" />
+        <path d="M86.5 47.5c-5.5-3.8-12.5-4.6-18.5-2.8" />
+      </g>
+    </g>
+  </svg>
 );
 
 export const SearchIcon: React.FC = () => (
