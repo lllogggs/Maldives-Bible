@@ -78,18 +78,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return send(res, 400, { error: 'missing profileId' });
       }
 
+      const trimmedProfileId = profileId.trim();
+      if (!trimmedProfileId) {
+        return send(res, 400, { error: 'missing profileId' });
+      }
+
       const numericResortId = Number(resortId);
       if (!Number.isFinite(numericResortId)) {
         return send(res, 400, { error: 'invalid resortId' });
       }
 
-      const shouldLike = Boolean(liked);
+      let shouldLike: boolean;
+      if (typeof liked === 'string') {
+        const normalized = liked.trim().toLowerCase();
+        shouldLike = normalized === 'true' || normalized === '1' || normalized === 'yes';
+      } else if (typeof liked === 'number') {
+        shouldLike = Number.isFinite(liked) ? liked > 0 : false;
+      } else {
+        shouldLike = Boolean(liked);
+      }
 
       if (shouldLike) {
         const { error: upsertError } = await supabase
           .from('resort_likes')
           .upsert(
-            { profile_id: profileId, resort_id: numericResortId },
+            { profile_id: trimmedProfileId, resort_id: numericResortId },
             { onConflict: 'profile_id,resort_id' }
           );
 
@@ -100,7 +113,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { error: deleteError } = await supabase
           .from('resort_likes')
           .delete()
-          .eq('profile_id', profileId)
+          .eq('profile_id', trimmedProfileId)
           .eq('resort_id', numericResortId);
 
         if (deleteError) {
@@ -120,7 +133,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { data: likedRows, error: likedRowsError } = await supabase
         .from<{ resort_id: number | null }>('resort_likes')
         .select('resort_id')
-        .eq('profile_id', profileId);
+        .eq('profile_id', trimmedProfileId);
 
       if (likedRowsError) {
         return send(res, 500, { error: likedRowsError.message });
