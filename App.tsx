@@ -46,9 +46,13 @@ const buildPreferencesEndpoint = () => {
     return `${baseUrl}/api/resort-preferences`;
   }
 
-  if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
-    const fallbackBase = 'https://maldives-bible.vercel.app';
-    return `${fallbackBase}/api/resort-preferences`;
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1';
+
+    if (!isLocalHost) {
+      return 'https://maldives-bible.vercel.app/api/resort-preferences';
+    }
   }
 
   return '/api/resort-preferences';
@@ -62,9 +66,13 @@ const buildLikesEndpoint = () => {
     return `${baseUrl}/api/resort-likes`;
   }
 
-  if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
-    const fallbackBase = 'https://maldives-bible.vercel.app';
-    return `${fallbackBase}/api/resort-likes`;
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1';
+
+    if (!isLocalHost) {
+      return 'https://maldives-bible.vercel.app/api/resort-likes';
+    }
   }
 
   return '/api/resort-likes';
@@ -575,12 +583,11 @@ const App: React.FC = () => {
       try {
         setLoading(true);
 
-        const isProd = window.location.hostname.includes('github.io');
-
+        const basePath = (import.meta.env.BASE_URL ?? '/').replace(/\/+$/, '');
         const resortFileUrls = Array.from({ length: 9 }, (_, i) => {
           const fileName = `resorts${i === 0 ? '' : i + 1}.json`;
-          // 개발 환경(AI Studio)에서는 상대 경로를, 프로덕션 환경(GitHub)에서는 절대 경로를 사용합니다.
-          return isProd ? `/Maldives-Bible/api/${fileName}` : `api/${fileName}`;
+          const url = `${basePath}/api/${fileName}`;
+          return url.startsWith('/') ? url : `/${url}`;
         });
 
         const responses = await Promise.all(resortFileUrls.map(url => fetch(url)));
