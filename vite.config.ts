@@ -5,12 +5,11 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
-    
-    // AI Studio/로컬 개발 환경에서는 base를 '/'로, Github Pages 배포 시에는 '/Maldives-Bible/'로 설정
-    const base = mode === 'production' ? '/Maldives-Bible/' : '/';
+
+    // 커스텀 도메인 환경에서도 동일한 경로를 사용하기 위해 base는 항상 '/'로 고정합니다.
 
     return {
-      base: base,
+      base: '/',
       server: {
         port: 3000,
         host: '0.0.0.0',
