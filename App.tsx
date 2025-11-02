@@ -170,6 +170,7 @@ type ResortOverride = {
 
 type UseResortLikesOptions = {
   profileId: string | null;
+  ensureProfileId: () => string | null;
   saveLikedResorts: (ids: number[]) => void;
 };
 
@@ -182,7 +183,11 @@ type UseResortLikesResult = {
   toggleLike: (resortId: number) => Promise<void>;
 };
 
-const useResortLikes = ({ profileId, saveLikedResorts }: UseResortLikesOptions): UseResortLikesResult => {
+const useResortLikes = ({
+  profileId,
+  ensureProfileId,
+  saveLikedResorts,
+}: UseResortLikesOptions): UseResortLikesResult => {
   const [likesCountMap, setLikesCountMap] = useState<Record<number, number>>({});
   const [likedResortIds, setLikedResortIds] = useState<number[]>([]);
   const [pendingLikeResortIds, setPendingLikeResortIds] = useState<Set<number>>(new Set());
@@ -226,9 +231,18 @@ const useResortLikes = ({ profileId, saveLikedResorts }: UseResortLikesOptions):
 
   const toggleLike = useCallback(
     async (resortId: number) => {
-      if (!profileId) {
+      let activeProfileId = profileId;
+
+      if (!activeProfileId) {
+        activeProfileId = ensureProfileId();
+      }
+
+      if (!activeProfileId || activeProfileId.trim().length === 0) {
+        console.warn('좋아요를 업데이트하려면 프로필 ID가 필요합니다.');
         return;
       }
+
+      const normalizedProfileId = activeProfileId.trim();
 
       if (pendingLikeResortIds.has(resortId)) {
         return;
@@ -263,7 +277,7 @@ const useResortLikes = ({ profileId, saveLikedResorts }: UseResortLikesOptions):
         const response = await fetch(RESORT_LIKES_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ profileId, resortId, liked: !wasLiked }),
+          body: JSON.stringify({ profileId: normalizedProfileId, resortId, liked: !wasLiked }),
         });
 
         const rawBody = await response.text();
@@ -326,7 +340,14 @@ const useResortLikes = ({ profileId, saveLikedResorts }: UseResortLikesOptions):
         });
       }
     },
-    [profileId, likedResortIds, likesCountMap, pendingLikeResortIds, saveLikedResorts]
+    [
+      profileId,
+      likedResortIds,
+      likesCountMap,
+      pendingLikeResortIds,
+      saveLikedResorts,
+      ensureProfileId,
+    ]
   );
 
   return {
@@ -378,6 +399,33 @@ const App: React.FC = () => {
   const [, setResortOverrides] = useState<Record<number, ResortOverride>>({});
   const [profileId, setProfileId] = useState<string | null>(null);
 
+  const ensureProfileId = useCallback((): string | null => {
+    if (profileId && profileId.trim().length > 0) {
+      return profileId;
+    }
+
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    const storedProfileId = localStorage.getItem('resortProfileId');
+    if (storedProfileId && storedProfileId.trim().length > 0) {
+      setProfileId(storedProfileId);
+      return storedProfileId;
+    }
+
+    const generated = createProfileId();
+
+    try {
+      localStorage.setItem('resortProfileId', generated);
+    } catch (err) {
+      console.error('프로필 ID를 로컬 스토리지에 저장하지 못했습니다.', err);
+    }
+
+    setProfileId(generated);
+    return generated;
+  }, [profileId]);
+
   const getLocalPreferences = useCallback((): ResortPreferences => ({
     hidden_ids: parseNumberArray(localStorage.getItem('hiddenResorts')),
     custom_order: parseNumberArray(localStorage.getItem('resortOrder')),
@@ -402,6 +450,7 @@ const App: React.FC = () => {
     toggleLike,
   } = useResortLikes({
     profileId,
+    ensureProfileId,
     saveLikedResorts: saveLikedResortsToLocal,
   });
 
@@ -431,20 +480,13 @@ const App: React.FC = () => {
       return;
     }
 
-    const storedProfileId = localStorage.getItem('resortProfileId');
-    if (storedProfileId && storedProfileId.trim().length > 0) {
-      setProfileId(storedProfileId);
-    } else {
-      const generated = createProfileId();
-      localStorage.setItem('resortProfileId', generated);
-      setProfileId(generated);
-    }
+    ensureProfileId();
 
     const localLikes = parseNumberArray(localStorage.getItem('likedResorts'));
     if (localLikes.length > 0) {
       setInitialLikedResorts(localLikes);
     }
-  }, [setInitialLikedResorts]);
+  }, [ensureProfileId, setInitialLikedResorts]);
 
   useEffect(() => {
     if (!toastMessage) {
