@@ -6,6 +6,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
 
+    if (!('VITE_GOOGLE_SITE_VERIFICATION' in env)) {
+      env.VITE_GOOGLE_SITE_VERIFICATION = '';
+      process.env.VITE_GOOGLE_SITE_VERIFICATION = '';
+    }
+
     // 커스텀 도메인 환경에서도 동일한 경로를 사용하기 위해 base는 항상 '/'로 고정합니다.
 
     return {
