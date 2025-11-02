@@ -274,8 +274,22 @@ const useResortLikes = ({
         const rawBody = await response.text();
 
         if (!response.ok) {
-          const normalizedMessage = rawBody?.trim();
-          throw new Error(normalizedMessage || '좋아요 상태를 저장하지 못했습니다.');
+          let normalizedMessage = '';
+          const parsedError = parseJsonSafely<{ error?: string }>(rawBody);
+          if (parsedError?.error && typeof parsedError.error === 'string') {
+            normalizedMessage = parsedError.error.trim();
+          }
+
+          if (!normalizedMessage && rawBody?.trim()) {
+            normalizedMessage = rawBody.trim();
+          }
+
+          const error = new Error(
+            normalizedMessage || `좋아요 상태를 저장하지 못했습니다. (HTTP ${response.status})`
+          ) as Error & { status?: number; responseBody?: string };
+          error.status = response.status;
+          error.responseBody = rawBody;
+          throw error;
         }
 
         const payload = parseJsonSafely<{ data?: { likesCount?: number; likedIds?: unknown } }>(rawBody);
@@ -294,24 +308,33 @@ const useResortLikes = ({
           saveLikedResorts(normalized);
         }
       } catch (err) {
+        const errorWithStatus = err as Error & { status?: number };
+        const status = typeof errorWithStatus?.status === 'number' ? errorWithStatus.status : null;
+        const shouldRestoreState = status !== null && status < 500 && status !== 403;
+
         console.error('Failed to update resort like', err);
-        onToast('좋아요 상태를 저장하지 못했습니다. 잠시 후 다시 시도해주세요.');
 
-        setLikedResortIds(prev => {
-          let restored: number[];
-          if (wasLiked) {
-            restored = ensureNumberArray([...prev, resortId]);
-          } else {
-            restored = prev.filter(id => id !== resortId);
-          }
-          saveLikedResorts(restored);
-          return restored;
-        });
+        if (shouldRestoreState) {
+          onToast('좋아요 상태를 저장하지 못했습니다. 잠시 후 다시 시도해주세요.');
 
-        setLikesCountMap(prev => ({
-          ...prev,
-          [resortId]: previousCount,
-        }));
+          setLikedResortIds(prev => {
+            let restored: number[];
+            if (wasLiked) {
+              restored = ensureNumberArray([...prev, resortId]);
+            } else {
+              restored = prev.filter(id => id !== resortId);
+            }
+            saveLikedResorts(restored);
+            return restored;
+          });
+
+          setLikesCountMap(prev => ({
+            ...prev,
+            [resortId]: previousCount,
+          }));
+        } else {
+          onToast('서버 동기화에 실패했지만 현재 기기에선 좋아요 상태가 유지됩니다.');
+        }
       } finally {
         setPendingLikeResortIds(prev => {
           const next = new Set(prev);
