@@ -19,6 +19,15 @@ View your app in AI Studio: https://ai.studio/apps/drive/13AT_mh8BY8Loo3i_7IIIqV
 3. Run the app:
    `npm run dev`
 
+## Google Search Console 설정
+
+1. Google Search Console에서 `https://www.maldivesbible.com/` 속성을 추가한 뒤 **HTML 태그** 인증 방식을 선택합니다.
+2. 발급된 `content` 값을 `.env.local` 또는 Vercel 환경 변수에 `VITE_GOOGLE_SITE_VERIFICATION="<발급된 토큰>"` 형식으로 저장합니다.
+   - 값이 비어 있으면 `<meta name="google-site-verification">` 태그의 `content` 속성이 빈 문자열로 남아 검증이 실패하므로 정확한 문자열을 입력하세요.
+   - 로컬에서 확인하려면 `.env.local`을 저장한 뒤 `npm run dev`로 실행하고, 페이지 소스에 메타 태그가 삽입됐는지 확인합니다.
+3. 배포가 완료되면 Search Console에서 “확인”을 눌러 소유권을 검증합니다.
+4. 등록 후 **Sitemaps** 메뉴에서 `https://www.maldivesbible.com/sitemap.xml`을 제출하고, `https://www.maldivesbible.com/robots.txt`가 정상 응답하는지도 확인하세요.
+
 ## Supabase 연결 점검
 
 배포 전에 선호 데이터 API가 올바른 Supabase 프로젝트와 통신하는지 확인하려면 아래 명령을 실행하세요.
