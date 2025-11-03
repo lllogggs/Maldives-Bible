@@ -6,7 +6,9 @@ import ResortDetail from './components/ResortDetail';
 import CompareTray from './components/CompareTray';
 import CompareView from './components/CompareView';
 import NavBar from './components/NavBar';
+import ResortSelectionTips from './components/ResortSelectionTips';
 import TravelAgencies from './components/TravelAgencies';
+import FlightInfo from './components/FlightInfo';
 import { POPULARITY_RANKING } from './constants';
 import type { Resort, Filters, SortOption } from './types';
 
@@ -15,6 +17,8 @@ type ViteEnvShim = {
   MODE?: string;
   VITE_DEV_SERVER_URL?: string;
 };
+
+type View = 'resorts' | 'tips' | 'agencies' | 'flights';
 
 const resolveImageEditAvailability = (): boolean => {
   const env = ((import.meta as unknown as { env?: ViteEnvShim })?.env) ?? {};
@@ -381,7 +385,7 @@ const App: React.FC = () => {
   const [selectedResortId, setSelectedResortId] = useState<number | null>(null);
   const [compareList, setCompareList] = useState<number[]>([]);
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
-  const [currentView, setCurrentView] = useState<'resorts' | 'agencies'>('resorts');
+  const [currentView, setCurrentView] = useState<View>('resorts');
   const [isMobileViewport, setIsMobileViewport] = useState<boolean>(() => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
       return false;
@@ -1109,9 +1113,13 @@ const App: React.FC = () => {
         </section>
 
         <NavBar currentView={currentView} onViewChange={setCurrentView} />
-        
+
+        {currentView === 'tips' && <ResortSelectionTips />}
+
         {currentView === 'agencies' && <TravelAgencies />}
-        
+
+        {currentView === 'flights' && <FlightInfo />}
+
         {currentView === 'resorts' && (
           <>
             {isCompareViewVisible ? (
