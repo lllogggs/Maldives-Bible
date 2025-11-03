@@ -1,6 +1,6 @@
 import React from 'react';
 
-type View = 'resorts' | 'agencies';
+type View = 'resorts' | 'tips' | 'agencies' | 'flights';
 
 interface NavBarProps {
   currentView: View;
@@ -35,9 +35,19 @@ const NavBar: React.FC<NavBarProps> = ({ currentView, onViewChange }) => {
           onClick={() => onViewChange('resorts')}
         />
         <NavButton
+          label="리조트 선택 팁"
+          isActive={currentView === 'tips'}
+          onClick={() => onViewChange('tips')}
+        />
+        <NavButton
           label="한국 여행사"
           isActive={currentView === 'agencies'}
           onClick={() => onViewChange('agencies')}
+        />
+        <NavButton
+          label="항공권 정보"
+          isActive={currentView === 'flights'}
+          onClick={() => onViewChange('flights')}
         />
       </div>
     </div>
