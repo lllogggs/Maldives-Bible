@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: [ main ]   # main에 푸시하면 배포
+    branches: [ main ]
 permissions:
   contents: read
   pages: write
@@ -15,12 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare artifact
-        run: |
-          mkdir -p dist
-          cp -R * dist/ 2>/dev/null || true
-          # ★ 커스텀 도메인 고정(매 배포마다 문패 달기)
-          echo "maldivesbible.com" > dist/CNAME
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build
+      - name: Add CNAME
+        run: echo "maldivesbible.com" > dist/CNAME
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
