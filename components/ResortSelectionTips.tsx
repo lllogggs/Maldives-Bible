@@ -6,8 +6,8 @@ const ResortSelectionTips: React.FC = () => {
       <header className="rounded-2xl bg-gradient-to-r from-cyan-100 via-white to-cyan-50 p-6 shadow-sm">
         <h1 className="text-2xl font-bold text-gray-900">리조트 선택 핵심 체크리스트</h1>
         <p className="mt-3 text-sm leading-relaxed text-gray-700">
-          이동 동선과 수중환경부터 미식 경험까지, 리조트별로 가장 많이 비교하는 항목을 한눈에 요약했습니다.
-          아래 항목을 확인하며 원하는 분위기와 서비스 레벨을 빠르게 정리해 보세요.
+          이동 동선, 식사 플랜, 수중환경 등 꼭 확인할 포인트만 가볍게 추렸습니다.
+          아래 체크리스트로 후보 리조트를 빠르게 비교해 보세요.
         </p>
       </header>
 

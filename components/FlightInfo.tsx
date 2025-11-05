@@ -6,8 +6,8 @@ const FlightInfo: React.FC = () => {
       <header className="rounded-2xl bg-gradient-to-r from-sky-100 via-white to-sky-50 p-6 shadow-sm">
         <h1 className="text-xl font-semibold text-gray-900">항공권 정보</h1>
         <p className="mt-3 text-sm leading-relaxed text-gray-700">
-          말레까지 가는 주요 경유 허브와 항공사를 비교해 보세요. 평균 요금과 소요시간, 스탑오버 팁을 함께 정리했습니다.
-          성수기에는 판매 속도가 빠르므로 경유지 호텔과 라운지 옵션까지 미리 확인해 두면 여유로운 일정을 만들 수 있습니다.
+          말레행 인기 경유 노선과 평균 요금, 스탑오버 포인트를 빠르게 확인하세요.
+          간단한 요약 뒤에는 항공사별 대표 스케줄을 정리했습니다.
         </p>
       </header>
 
@@ -54,6 +54,105 @@ const FlightInfo: React.FC = () => {
           </tbody>
         </table>
       </div>
+
+      <section className="rounded-2xl border border-sky-200 bg-white/80 p-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-sky-700">주요 항공편 스케줄 한눈에 보기</h2>
+        <p className="mt-3 text-sm leading-relaxed text-gray-700">
+          각 항공사의 대표 편명과 시간표, 환승 대기 시간, 스탑오버 허용 일수를 정리했습니다. 실제 운항 일정은 시즌에 따라 다르니
+          발권 전 최신 스케줄을 다시 확인하세요.
+        </p>
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
+          <article className="rounded-xl border border-sky-100 bg-white/90 p-5 shadow-sm">
+            <header>
+              <h3 className="text-base font-semibold text-gray-900">싱가포르항공</h3>
+              <p className="mt-1 text-xs font-medium text-sky-600">SQ607 (ICN→SIN) / SQ432 (SIN→MLE)</p>
+            </header>
+            <dl className="mt-3 grid grid-cols-[auto,1fr] gap-x-3 gap-y-2 text-sm leading-relaxed text-gray-700">
+              <dt className="font-semibold text-gray-900">출발 · 도착</dt>
+              <dd>ICN 09:10 → SIN 14:55 / SIN 20:10 → MLE 22:05</dd>
+              <dt className="font-semibold text-gray-900">경유 대기</dt>
+              <dd>5시간 15분 (창이 공항)</dd>
+              <dt className="font-semibold text-gray-900">스탑오버</dt>
+              <dd>싱가포르 스탑오버 프로그램으로 최대 48시간까지 호텔·관광 패스 구성 가능</dd>
+            </dl>
+          </article>
+
+          <article className="rounded-xl border border-sky-100 bg-white/90 p-5 shadow-sm">
+            <header>
+              <h3 className="text-base font-semibold text-gray-900">스쿠트</h3>
+              <p className="mt-1 text-xs font-medium text-sky-600">TR841 (ICN→SIN) / TR588 (SIN→MLE)</p>
+            </header>
+            <dl className="mt-3 grid grid-cols-[auto,1fr] gap-x-3 gap-y-2 text-sm leading-relaxed text-gray-700">
+              <dt className="font-semibold text-gray-900">출발 · 도착</dt>
+              <dd>ICN 18:20 → SIN 23:35 / SIN 01:45 → MLE 03:15</dd>
+              <dt className="font-semibold text-gray-900">경유 대기</dt>
+              <dd>2시간 10분 (창이 공항)</dd>
+              <dt className="font-semibold text-gray-900">스탑오버</dt>
+              <dd>유료 스탑오버 옵션으로 최대 24시간까지 체류 가능, 저비용 항공 특성상 수하물·식사 추가 요금 발생</dd>
+            </dl>
+          </article>
+
+          <article className="rounded-xl border border-sky-100 bg-white/90 p-5 shadow-sm">
+            <header>
+              <h3 className="text-base font-semibold text-gray-900">에미레이트항공</h3>
+              <p className="mt-1 text-xs font-medium text-sky-600">EK323 (ICN→DXB) / EK656 (DXB→MLE)</p>
+            </header>
+            <dl className="mt-3 grid grid-cols-[auto,1fr] gap-x-3 gap-y-2 text-sm leading-relaxed text-gray-700">
+              <dt className="font-semibold text-gray-900">출발 · 도착</dt>
+              <dd>ICN 23:55 → DXB 04:45+1 / DXB 10:35 → MLE 16:05</dd>
+              <dt className="font-semibold text-gray-900">경유 대기</dt>
+              <dd>5시간 50분 (두바이 국제공항)</dd>
+              <dt className="font-semibold text-gray-900">스탑오버</dt>
+              <dd>두바이 커넥트 서비스로 최대 96시간까지 체류 지원, 호텔·교통 일부 포함</dd>
+            </dl>
+          </article>
+
+          <article className="rounded-xl border border-sky-100 bg-white/90 p-5 shadow-sm">
+            <header>
+              <h3 className="text-base font-semibold text-gray-900">에티하드항공</h3>
+              <p className="mt-1 text-xs font-medium text-sky-600">EY873 (ICN→AUH) / EY278 (AUH→MLE)</p>
+            </header>
+            <dl className="mt-3 grid grid-cols-[auto,1fr] gap-x-3 gap-y-2 text-sm leading-relaxed text-gray-700">
+              <dt className="font-semibold text-gray-900">출발 · 도착</dt>
+              <dd>ICN 00:25 → AUH 05:35 / AUH 09:40 → MLE 15:15</dd>
+              <dt className="font-semibold text-gray-900">경유 대기</dt>
+              <dd>4시간 5분 (아부다비 Zayed 공항)</dd>
+              <dt className="font-semibold text-gray-900">스탑오버</dt>
+              <dd>에티하드 스탑오버로 최대 2박 무료 호텔 제공, 추가 숙박은 할인 요금 적용</dd>
+            </dl>
+          </article>
+
+          <article className="rounded-xl border border-sky-100 bg-white/90 p-5 shadow-sm">
+            <header>
+              <h3 className="text-base font-semibold text-gray-900">말레이시아항공</h3>
+              <p className="mt-1 text-xs font-medium text-sky-600">MH067 (ICN→KUL) / MH176 (KUL→MLE)</p>
+            </header>
+            <dl className="mt-3 grid grid-cols-[auto,1fr] gap-x-3 gap-y-2 text-sm leading-relaxed text-gray-700">
+              <dt className="font-semibold text-gray-900">출발 · 도착</dt>
+              <dd>ICN 11:10 → KUL 17:45 / KUL 20:45 → MLE 22:00</dd>
+              <dt className="font-semibold text-gray-900">경유 대기</dt>
+              <dd>3시간 0분 (쿠알라룸푸르 국제공항)</dd>
+              <dt className="font-semibold text-gray-900">스탑오버</dt>
+              <dd>말레이시아 스톱오버 패스로 최대 72시간까지 체류 가능, 시티투어·공항철도 연계</dd>
+            </dl>
+          </article>
+
+          <article className="rounded-xl border border-sky-100 bg-white/90 p-5 shadow-sm">
+            <header>
+              <h3 className="text-base font-semibold text-gray-900">에어아시아 X</h3>
+              <p className="mt-1 text-xs font-medium text-sky-600">D7 509 (ICN→KUL) / AK71 (KUL→MLE)</p>
+            </header>
+            <dl className="mt-3 grid grid-cols-[auto,1fr] gap-x-3 gap-y-2 text-sm leading-relaxed text-gray-700">
+              <dt className="font-semibold text-gray-900">출발 · 도착</dt>
+              <dd>ICN 23:45 → KUL 05:30+1 / KUL 09:45 → MLE 10:50</dd>
+              <dt className="font-semibold text-gray-900">경유 대기</dt>
+              <dd>4시간 15분 (쿠알라룸푸르 국제공항 2터미널)</dd>
+              <dt className="font-semibold text-gray-900">스탑오버</dt>
+              <dd>플렉시 스탑오버로 최대 30일까지 체류 가능, 각 구간 수하물·기내식 별도 구매 필요</dd>
+            </dl>
+          </article>
+        </div>
+      </section>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <article className="rounded-2xl border border-sky-200 bg-white/80 p-6 shadow-sm">
