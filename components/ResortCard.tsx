@@ -238,7 +238,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
                 </p>
                 <button
                   onClick={handleViewDetails}
-                  className="px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+                  className="px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap"
                 >
                   상세보기
                 </button>
