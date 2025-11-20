@@ -233,7 +233,9 @@ const ResortCard: React.FC<ResortCardProps> = ({
             <div className="flex-1 text-right">
               <p className="text-xs text-gray-500">4박 2인 기준 (올인클루시브)</p>
               <div className="mt-1 flex items-center justify-end gap-3">
-                <p className="text-2xl font-extrabold text-cyan-600">${resort.price.toLocaleString()}</p>
+                <p className="text-xl md:text-2xl font-extrabold text-cyan-600 whitespace-nowrap leading-tight">
+                  ${resort.price.toLocaleString()}
+                </p>
                 <button
                   onClick={handleViewDetails}
                   className="px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg hover:bg-gray-200 transition-colors"
