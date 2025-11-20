@@ -126,7 +126,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
 
 
   return (
-    <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-200 flex flex-col">
+    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-200 flex flex-col">
       <div
         className="relative group cursor-pointer"
         onClick={handleViewDetails}
@@ -183,98 +183,69 @@ const ResortCard: React.FC<ResortCardProps> = ({
             </button>
         </div>
       </div>
-      <div className="p-5 flex-grow flex flex-col space-y-3">
+      <div className="p-5 flex-grow flex flex-col">
         {isImageEditMode && (
           <div className="mb-3 rounded-lg border border-cyan-200 bg-cyan-50 px-3 py-2 text-xs font-semibold text-cyan-800">
             상세 페이지에서 삭제할 이미지를 선택할 수 있습니다.
           </div>
         )}
-        <div className="space-y-2">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <h3 className="text-xl font-bold text-gray-900 cursor-pointer hover:text-cyan-600 transition-colors" onClick={handleViewDetails}>{resort.name}</h3>
-              <p className="text-sm text-gray-500">{resort.name_en}</p>
-            </div>
-            <button
-              onClick={handleViewDetails}
-              className="rounded-full bg-cyan-50 text-cyan-700 px-3 py-1 text-xs font-semibold border border-cyan-100 hover:bg-cyan-100"
-            >
-              상세 보기
-            </button>
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 cursor-pointer hover:text-cyan-600 transition-colors" onClick={handleViewDetails}>{resort.name}</h3>
+          <p className="text-sm text-gray-500 mb-2">{resort.name_en}</p>
+          
+          <div className="flex items-center text-sm text-gray-600 mb-1">
+            <LocationPinIcon />
+            <span className="ml-1">{resort.location} • {resort.travelTime}분</span>
           </div>
-
-          <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
-            <span className="inline-flex items-center gap-1"><LocationPinIcon />{resort.location}</span>
-            <span className="text-gray-400">•</span>
-            <span className="font-semibold text-cyan-700">{resort.travelTime}분</span>
-            <span className="text-gray-400">•</span>
-            <span className="truncate">{resort.brand} • {resort.spaBrand}</span>
-          </div>
-
-          <div className="flex flex-wrap gap-2 pt-1">
+          <p className="text-sm text-gray-600 truncate">{resort.brand} • {resort.spaBrand}</p>
+          
+          <div className="mt-3 flex flex-wrap gap-2">
             {resort.roomTypes.map(type => (
-              <span key={type} className="px-3 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded-full">{type}</span>
+              <span key={type} className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">{type}</span>
             ))}
           </div>
         </div>
 
-        <div className="border-t border-gray-100" />
-
-        <div className="mt-auto space-y-2">
-          <div className="flex items-center justify-between text-xs text-gray-500">
-            <span>4박 2인 기준 (올인클루시브)</span>
-            <span className="text-gray-600">수중환경 {resort.snorkelingQuality}/5</span>
-          </div>
-          <div className="flex flex-wrap items-center gap-3 justify-between">
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
-                disabled={!canSelectForCompare}
-                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors border ${
-                  isSelectedForCompare
-                    ? 'border-cyan-300 bg-cyan-50 text-cyan-700'
-                    : 'border-gray-200 bg-white text-gray-700 hover:border-cyan-200'
-                } ${!canSelectForCompare ? 'cursor-not-allowed opacity-70' : ''}`}
-                aria-label={isSelectedForCompare ? `Remove ${resort.name} from comparison` : `Add ${resort.name} to comparison`}
-                title={isSelectedForCompare ? '비교 목록에서 제거' : '비교 목록에 추가'}
-              >
-                {isSelectedForCompare ? <CheckCircleIcon className="h-5 w-5 text-cyan-600" /> : <CartIcon className="h-5 w-5" />}
-                <span>비교함</span>
-              </button>
-              <button
-                type="button"
-                onClick={handleLikeClick}
-                disabled={isLikePending}
-                aria-pressed={isLiked}
-                aria-label={`${likeButtonTitle} (현재 ${formattedLikesCount}명)`}
-                title={likeButtonTitle}
-                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors border ${
-                  isLiked
-                    ? 'border-rose-300 bg-rose-50 text-rose-600 hover:bg-rose-100'
-                    : 'border-gray-200 bg-white text-gray-700 hover:border-rose-200'
-                } ${isLikePending ? 'opacity-70 cursor-wait' : ''}`}
-              >
-                {isLiked ? (
-                  <HeartFilledIcon className="h-5 w-5 text-rose-500" />
-                ) : (
-                  <HeartIcon className="h-5 w-5 text-rose-500" />
-                )}
-                <span>{formattedLikesCount}</span>
-              </button>
-            </div>
-            <div className="flex items-center gap-3">
-              <p className="text-xl md:text-2xl font-extrabold text-cyan-600 whitespace-nowrap leading-tight">
-                ${resort.price.toLocaleString()}
-              </p>
-              <button
-                onClick={handleViewDetails}
-                className="px-4 py-2 bg-cyan-600 text-white text-sm font-semibold rounded-full hover:bg-cyan-700 transition-colors whitespace-nowrap"
-              >
-                상세보기
-              </button>
+        <div className="border-t border-gray-100 my-4"></div>
+        
+        <div className="mt-auto">
+          <div className="flex items-start justify-between gap-3">
+            <button
+              type="button"
+              onClick={handleLikeClick}
+              disabled={isLikePending}
+              aria-pressed={isLiked}
+              aria-label={`${likeButtonTitle} (현재 ${formattedLikesCount}명)`}
+              title={likeButtonTitle}
+              className={`flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-semibold transition-colors ${
+                isLiked
+                  ? 'border-rose-300 bg-rose-100 text-rose-600 hover:bg-rose-200'
+                  : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-100'
+              } ${isLikePending ? 'opacity-70 cursor-wait' : ''}`}
+            >
+              {isLiked ? (
+                <HeartFilledIcon className="h-5 w-5 text-rose-500" />
+              ) : (
+                <HeartIcon className="h-5 w-5 text-rose-500" />
+              )}
+              <span>{formattedLikesCount}</span>
+            </button>
+            <div className="flex-1 text-right">
+              <p className="text-xs text-gray-500">4박 2인 기준 (올인클루시브)</p>
+              <div className="mt-1 flex items-center justify-end gap-3">
+                <p className="text-xl md:text-2xl font-extrabold text-cyan-600 whitespace-nowrap leading-tight">
+                  ${resort.price.toLocaleString()}
+                </p>
+                <button
+                  onClick={handleViewDetails}
+                  className="px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap"
+                >
+                  상세보기
+                </button>
+              </div>
             </div>
           </div>
+          <p className="text-right text-xs text-gray-500 mt-2">수중환경: {resort.snorkelingQuality}/5점</p>
         </div>
       </div>
     </div>
