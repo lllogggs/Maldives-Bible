@@ -67,39 +67,39 @@ const glossary = [
 
 const ResortSelectionTips: React.FC = () => {
   return (
-    <section className="space-y-10">
+    <section className="space-y-12">
       <header className="rounded-2xl bg-gradient-to-r from-cyan-100 via-white to-cyan-50 p-6 shadow-sm">
         <h1 className="text-2xl font-bold text-gray-900">리조트 선택 핵심 체크리스트</h1>
         <p className="mt-3 text-sm text-gray-700">핵심만 추려 빠르게 비교하세요.</p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ol className="mt-4 grid gap-2 text-sm text-gray-800 sm:grid-cols-2">
           {checklist.map((item, index) => (
-            <div key={item} className="flex items-center gap-3 rounded-xl border border-cyan-100 bg-white/80 px-3 py-2 shadow-sm">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan-600 text-white text-sm font-bold">{index + 1}</span>
-              <span className="text-sm text-gray-800">{item}</span>
-            </div>
+            <li key={item} className="flex gap-2">
+              <span className="font-semibold text-cyan-700">{index + 1}.</span>
+              <span>{item}</span>
+            </li>
           ))}
-        </div>
+        </ol>
       </header>
 
-      <section className="rounded-2xl border border-cyan-200 bg-white/80 p-6 shadow-sm space-y-6">
-        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 className="text-lg font-semibold text-cyan-700">이동수단 한눈에 비교</h2>
-            <p className="text-sm text-gray-700">첫날 동선과 예산, 이동 시간을 기준으로 선택하세요.</p>
-          </div>
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 font-semibold text-emerald-700">+ 장점</span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-rose-100 px-2 py-1 font-semibold text-rose-700">- 단점</span>
-          </div>
-        </div>
-        <div className="grid gap-4 md:grid-cols-3">
+      <section className="rounded-2xl border border-cyan-200 bg-white/80 p-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-cyan-700">이동동선 선택 팁</h2>
+        <p className="mt-2 text-sm text-gray-700">
+          첫날 일정과 예산, 이동 거리까지 고려해 가장 편한 이동 수단을 고르세요.
+        </p>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
           {transferOptions.map((option) => (
-            <article key={option.title} className="rounded-xl border border-cyan-100 bg-white p-5 shadow-sm space-y-3">
+            <article key={option.title} className="rounded-xl border border-cyan-100 bg-white p-5 shadow-sm">
               <h3 className="text-base font-semibold text-gray-900">{option.title}</h3>
-              <div className="space-y-2 text-sm">
-                <p className="flex gap-2"><span className="font-bold text-emerald-600">+ </span><span className="text-gray-900">{option.pros}</span></p>
-                <p className="flex gap-2"><span className="font-bold text-rose-600">- </span><span className="text-gray-900">{option.cons}</span></p>
-              </div>
+              <dl className="mt-4 space-y-3 text-sm">
+                <div className="flex gap-2">
+                  <dt className="shrink-0 font-semibold text-sky-600">장점 :</dt>
+                  <dd className="text-gray-900">{option.pros}</dd>
+                </div>
+                <div className="flex gap-2">
+                  <dt className="shrink-0 font-semibold text-red-500">단점 :</dt>
+                  <dd className="text-gray-900">{option.cons}</dd>
+                </div>
+              </dl>
             </article>
           ))}
         </div>
@@ -107,45 +107,36 @@ const ResortSelectionTips: React.FC = () => {
 
       <div className="grid gap-6 md:grid-cols-3">
         {highlightCards.map((card) => (
-          <article key={card.title} className="rounded-2xl border border-cyan-200 bg-white/80 p-6 shadow-sm space-y-3">
+          <article key={card.title} className="rounded-2xl border border-cyan-200 bg-white/80 p-6 shadow-sm">
             <h2 className="text-lg font-semibold text-cyan-700">{card.title}</h2>
-            <ul className="space-y-2 text-sm text-gray-700">
+            <ul className="mt-3 space-y-2 text-sm text-gray-700">
               {card.points.map((point) => (
-                <li key={point} className="flex gap-2">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-cyan-500" aria-hidden="true" />
-                  <span>{point}</span>
-                </li>
+                <li key={point}>{point}</li>
               ))}
             </ul>
           </article>
         ))}
       </div>
 
-      <aside className="rounded-2xl bg-cyan-900/90 p-6 text-white space-y-3">
+      <aside className="rounded-2xl bg-cyan-900/90 p-6 text-white">
         <h2 className="text-lg font-semibold">빠르게 비교하는 방법</h2>
-        <div className="grid gap-3 sm:grid-cols-3">
-          {["후보 3곳만 남기고 표로 정리", "상담 시 이동·식사·객실 정보를 한번에 전달", "예산·체류일수·특별 요청을 메모로 공유"].map((tip) => (
-            <div key={tip} className="rounded-xl bg-white/10 px-3 py-2 text-sm">{tip}</div>
-          ))}
-        </div>
+        <ul className="mt-3 space-y-2 text-sm text-cyan-50">
+          <li>후보 3곳만 남기고 위 체크포인트로 표 만들기.</li>
+          <li>상담 시 이동수단·식사 플랜·객실 타입을 한 번에 전달.</li>
+          <li>예산·체류일수·특별 요청(허니문, 가족)을 메모해 공유.</li>
+        </ul>
       </aside>
 
-      <section className="rounded-2xl border border-cyan-200 bg-white/80 p-6 shadow-sm space-y-4">
-        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <h2 className="text-lg font-semibold text-cyan-700">몰디브 여행 용어 사전</h2>
-          <p className="text-xs text-gray-500">더보기를 눌러 세부 설명을 접거나 펼칠 수 있습니다.</p>
-        </div>
-        <div className="grid gap-3 md:grid-cols-2">
+      <section className="rounded-2xl border border-cyan-200 bg-white/80 p-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-cyan-700">몰디브 여행 용어 사전</h2>
+        <dl className="mt-4 grid gap-4 md:grid-cols-2">
           {glossary.map(({ term, description }) => (
-            <details key={term} className="rounded-xl border border-gray-200 bg-white px-4 py-3 shadow-sm group" open>
-              <summary className="cursor-pointer text-sm font-semibold text-gray-900 flex items-center justify-between">
-                {term}
-                <span className="text-xs text-cyan-600 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-2 text-sm text-gray-700 leading-relaxed">{description}</p>
-            </details>
+            <div key={term}>
+              <dt className="font-semibold text-gray-900">{term}</dt>
+              <dd className="mt-1 text-sm text-gray-700">{description}</dd>
+            </div>
           ))}
-        </div>
+        </dl>
       </section>
     </section>
   );
