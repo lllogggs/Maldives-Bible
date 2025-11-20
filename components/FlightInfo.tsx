@@ -9,6 +9,19 @@ const FlightInfo: React.FC = () => {
           말레행 인기 경유 노선과 평균 요금, 스탑오버 포인트를 빠르게 확인하세요.
           간단한 요약 뒤에는 항공사별 대표 스케줄을 정리했습니다.
         </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {[
+            { title: '직항', desc: '경유 없이 빠르게 이동, 프리미엄 좌석 중심', badge: '시간 절약', color: 'bg-emerald-100 text-emerald-700' },
+            { title: '1회 환승', desc: '항공사/시간 선택 폭이 넓고 스탑오버 연계 가능', badge: '선택지↑', color: 'bg-blue-100 text-blue-700' },
+            { title: '저비용 항공', desc: '예산 친화적이지만 수하물·식사 추가 비용 확인 필수', badge: '예산 절약', color: 'bg-amber-100 text-amber-700' },
+          ].map((item) => (
+            <div key={item.title} className="rounded-xl border border-sky-200 bg-white/80 p-4 shadow-sm">
+              <div className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${item.color}`}>{item.badge}</div>
+              <h3 className="mt-2 text-base font-semibold text-gray-900">{item.title}</h3>
+              <p className="mt-1 text-sm text-gray-700 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
       </header>
 
       <div className="overflow-x-auto rounded-2xl border border-sky-200 bg-white/90 shadow-sm">
@@ -54,6 +67,40 @@ const FlightInfo: React.FC = () => {
           </tbody>
         </table>
       </div>
+
+      <section className="grid gap-4 lg:grid-cols-2">
+        <article className="rounded-2xl border border-sky-200 bg-white/80 p-5 shadow-sm">
+          <h2 className="text-lg font-semibold text-sky-700">직항 VS 환승 요약</h2>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-3">
+              <p className="text-sm font-bold text-emerald-700 flex items-center gap-2">직항 ✔</p>
+              <ul className="mt-2 space-y-1 text-sm text-gray-700 list-disc list-inside">
+                <li>이동 동선 단순, 지연 리스크↓</li>
+                <li>허니문/가족에게 편의성↑</li>
+              </ul>
+            </div>
+            <div className="rounded-xl border border-blue-100 bg-blue-50 p-3">
+              <p className="text-sm font-bold text-blue-700 flex items-center gap-2">환승 ⟳</p>
+              <ul className="mt-2 space-y-1 text-sm text-gray-700 list-disc list-inside">
+                <li>가격·시간 선택지가 다양</li>
+                <li>스탑오버로 도시 여행 결합</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+        <article className="rounded-2xl border border-sky-200 bg-white/80 p-5 shadow-sm">
+          <h2 className="text-lg font-semibold text-sky-700">FAQ</h2>
+          <div className="mt-3 space-y-2">
+            {[{ q: '스탑오버를 붙이면 추가 요금이 크나요?', a: '항공사/도시에 따라 다르지만 호텔·이동 포함 패키지 프로모션을 활용하면 큰 추가 없이 관광을 묶을 수 있습니다.' },
+              { q: '심야 도착 시 어떤 노선을 고르면 좋나요?', a: '야간 도착 여정에는 24시간 운항 보트 환승이 가능한 싱가포르/말레이시아 경유 노선이 안전합니다.' }].map((item) => (
+              <details key={item.q} className="rounded-lg border border-gray-200 bg-white px-3 py-2" open>
+                <summary className="cursor-pointer text-sm font-semibold text-gray-900">{item.q}</summary>
+                <p className="mt-1 text-sm text-gray-700 leading-relaxed">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </article>
+      </section>
 
       <section className="rounded-2xl border border-sky-200 bg-white/80 p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-sky-700">주요 항공편 스케줄 한눈에 보기</h2>
