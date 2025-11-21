@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinkIcon, KakaoIcon, BuildingIcon, UserIcon, ChevronRightIcon } from './icons/Icons';
+import { LinkIcon, KakaoIcon } from './icons/Icons';
 
 interface Agency {
   name: string;
@@ -15,7 +15,7 @@ const agencies: Agency[] = [
   { "name": "나래여행사", "website": "http://www.nadree.net/", "kakao_channel": null },
   { "name": "하이몰디브", "website": "http://www.himaldives.co.kr/", "kakao_channel": null },
   { "name": "여행산책", "website": "https://www.tourw.co.kr/", "kakao_channel": "http://pf.kakao.com/_Dlrtb" },
-  { "name": "잇츠마이트래블 (구, 몰디브클럽)", "website": "http://itsmytravel.co.kr/", "kakao_channel": "http://pf.kakao.com/_qgDUxd" },
+  { "name": "잇츠마이트래블", "website": "http://itsmytravel.co.kr/", "kakao_channel": "http://pf.kakao.com/_qgDUxd" },
   { "name": "투어플래닛", "website": "http://www.tour-planet.co.kr/", "kakao_channel": "http://pf.kakao.com/_LYSSl" },
   { "name": "허니문리조트", "website": "http://www.honeymoonresort.co.kr/", "kakao_channel": "http://pf.kakao.com/_gkKlE" },
   { "name": "천생연분닷컴", "website": "http://www.1000syb.com/", "kakao_channel": null },
@@ -24,151 +24,105 @@ const agencies: Agency[] = [
 
 const TravelAgencies: React.FC = () => {
   return (
-    <div className="animate-fade-in">
-      <div className="mb-12 p-6 bg-cyan-50/50 border border-cyan-200 rounded-lg lg:w-11/12 mx-auto">
-        <h2 className="text-2xl text-center text-gray-500 mb-8 leading-snug">
-            ✈️ <strong className="font-semibold text-gray-900">직접예약</strong>이{' '}
-            <strong className="font-semibold text-gray-900">여행사예약</strong>보다
-            <br />
-            더 비싼 이유가 뭘까요?
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
-                <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">직접 예약</h3>
-                <div className="flex-grow flex flex-col">
-                    <div className="flex items-center justify-center min-h-[150px]">
-                        <div className="venn-diagram flex items-center justify-between gap-4 text-center mx-auto w-full max-w-[420px] overflow-x-auto sm:overflow-visible">
-                            <div className="flex flex-col items-center justify-center gap-2 w-[80px] sm:w-[88px]">
-                                <div className="flex items-center justify-center w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] rounded-2xl bg-cyan-100/60 p-3">
-                                    <BuildingIcon className="h-full w-full text-blue-600" />
-                                </div>
-                                <span className="font-semibold text-xs sm:text-sm text-gray-700">리조트</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-1 w-[72px] text-gray-500">
-                                <div className="flex items-center justify-center w-[56px] h-[56px] rounded-2xl border border-cyan-100 bg-white p-2.5">
-                                    <ChevronRightIcon className="h-2/3 w-2/3 text-cyan-500" />
-                                </div>
-                                <span className="text-xs sm:text-sm font-bold text-red-500">$10,000</span>
-                                <span className="text-[10px] sm:text-xs font-semibold text-gray-500">공시가</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-2 w-[80px] sm:w-[88px]">
-                                <div className="flex items-center justify-center w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] rounded-2xl bg-cyan-100/60 p-3">
-                                    <UserIcon className="h-full w-full text-cyan-600" />
-                                </div>
-                                <span className="font-semibold text-xs sm:text-sm text-gray-700">고객</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="text-base text-gray-600 text-center flex-grow mt-auto px-4 flex flex-col justify-center">
-                        <p className="leading-relaxed">
-                            고객이 리조트에 직접 예약 시,<br />
-                            할인되지 않은 <strong className="text-gray-800">'공시가'</strong>가 적용됩니다.
-                        </p>
-                    </div>
-                </div>
-                 <div className="mt-auto pt-6 border-t border-gray-100">
-                    <p className="text-sm text-gray-500 text-center">예시 최종가 (4박)</p>
-                    <p className="text-center font-bold text-3xl text-red-500 mt-1">$10,000</p>
-                </div>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
-                <h3 className="font-bold text-xl text-gray-900 pb-4 mb-6 text-center border-b-2 border-cyan-100 underline decoration-cyan-400 decoration-4 underline-offset-8">여행사 예약 (추천)</h3>
-                <div className="flex-grow flex flex-col">
-                    <div className="flex items-center justify-center min-h-[150px]">
-                        <div className="venn-diagram flex items-center justify-between gap-4 text-center mx-auto w-full max-w-3xl overflow-x-auto sm:overflow-visible">
-                            <div className="flex flex-col items-center justify-center gap-2 w-[84px] sm:w-[92px]">
-                                <div className="flex items-center justify-center w-[66px] h-[66px] sm:w-[76px] sm:h-[76px] rounded-2xl bg-cyan-100/60 p-3">
-                                    <BuildingIcon className="h-full w-full text-blue-600" />
-                                </div>
-                                <span className="font-semibold text-xs sm:text-sm text-gray-700">리조트</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-1 w-[74px] text-gray-500">
-                                <div className="flex items-center justify-center w-[58px] h-[58px] rounded-2xl border border-cyan-100 bg-white p-2.5">
-                                    <ChevronRightIcon className="h-2/3 w-2/3 text-cyan-500" />
-                                </div>
-                                <span className="text-xs sm:text-sm font-bold text-gray-700">$6,000</span>
-                                <span className="text-[10px] sm:text-xs font-semibold text-gray-500">도매가</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-2 w-[84px] sm:w-[92px]">
-                                <div className="flex items-center justify-center w-[66px] h-[66px] sm:w-[76px] sm:h-[76px] rounded-2xl bg-emerald-100/60 p-3">
-                                    <BuildingIcon className="h-full w-full text-green-600" />
-                                </div>
-                                <span className="font-semibold text-xs sm:text-sm leading-tight text-gray-700 text-center">한국 총판<br />(GSA)</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-1 w-[74px] text-gray-500">
-                                <div className="flex items-center justify-center w-[58px] h-[58px] rounded-2xl border border-cyan-100 bg-white p-2.5">
-                                    <ChevronRightIcon className="h-2/3 w-2/3 text-cyan-500" />
-                                </div>
-                                <span className="text-xs sm:text-sm font-bold text-gray-700">$7,500</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-2 w-[84px] sm:w-[92px]">
-                                <div className="flex items-center justify-center w-[66px] h-[66px] sm:w-[76px] sm:h-[76px] rounded-2xl bg-violet-100/60 p-3">
-                                    <BuildingIcon className="h-full w-full text-purple-600" />
-                                </div>
-                                <span className="font-semibold text-xs sm:text-sm text-gray-700">여행사</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-1 w-[74px] text-gray-500">
-                                <div className="flex items-center justify-center w-[58px] h-[58px] rounded-2xl border border-cyan-100 bg-white p-2.5">
-                                    <ChevronRightIcon className="h-2/3 w-2/3 text-cyan-500" />
-                                </div>
-                                <span className="text-xs sm:text-sm font-bold text-cyan-600">$8,500</span>
-                            </div>
-                            <div className="flex flex-col items-center justify-center gap-2 w-[84px] sm:w-[92px]">
-                                <div className="flex items-center justify-center w-[66px] h-[66px] sm:w-[76px] sm:h-[76px] rounded-2xl bg-cyan-100/60 p-3">
-                                    <UserIcon className="h-full w-full text-cyan-600" />
-                                </div>
-                                <span className="font-semibold text-xs sm:text-sm text-gray-700">고객</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="text-base text-gray-600 text-center flex-grow mt-auto px-4 flex flex-col justify-center">
-                        <p className="leading-relaxed">
-                            대량판매 <strong className="text-gray-800">'도매가'</strong> 덕분에<br />
-                            고객은 저렴하게 예약 가능합니다.
-                        </p>
-                    </div>
-                </div>
-                 <div className="mt-auto pt-4 border-t border-gray-100">
-                    <p className="text-sm text-gray-500 text-center">예시 최종가 (4박)</p>
-                    <p className="text-center font-bold text-3xl text-cyan-600 mt-1">$8,500</p>
-                </div>
-            </div>
+    <div className="animate-fade-in space-y-12 pb-10">
+      {/* Price Comparison Section */}
+      <section className="bg-white rounded-3xl border border-cyan-100 shadow-sm overflow-hidden">
+        <div className="p-8 text-center bg-cyan-50/50 border-b border-cyan-100">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            왜 <span className="text-cyan-600">여행사 예약</span>이 더 저렴할까요?
+          </h2>
+          <p className="text-gray-600">
+            리조트와 직접 계약된 도매가로 제공되기 때문에 개인 예약보다 훨씬 경제적입니다.
+          </p>
         </div>
-      </div>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">몰디브 전문 한국 여행사</h1>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {agencies.map((agency) => (
-          <div key={agency.name} className="bg-white rounded-lg shadow-md border border-gray-200 p-6 flex flex-col justify-between hover:shadow-lg transition-shadow">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">{agency.name}</h2>
-            <div className="flex flex-col space-y-3 mt-auto">
-              {agency.website ? (
-                <a href={agency.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 text-gray-800 font-semibold rounded-md hover:bg-gray-200 transition-colors">
-                  <LinkIcon className="h-4 w-4" />
-                  홈페이지
-                </a>
-              ) : (
-                <button disabled className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 text-gray-400 font-semibold rounded-md cursor-not-allowed">
-                  <LinkIcon className="h-4 w-4" />
-                  홈페이지 (없음)
-                </button>
-              )}
-              {agency.kakao_channel ? (
-                <a href={agency.kakao_channel} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 bg-yellow-400 text-black font-semibold rounded-md hover:bg-yellow-500 transition-colors">
-                  <KakaoIcon className="h-4 w-4" />
-                  카카오톡 채널
-                </a>
-              ) : (
-                <button disabled className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 bg-gray-100 text-gray-400 font-semibold rounded-md cursor-not-allowed">
-                  <KakaoIcon className="h-4 w-4" />
-                  카카오톡 채널 (없음)
-                </button>
-              )}
+
+        <div className="p-8 grid gap-8 md:grid-cols-2 items-center max-w-4xl mx-auto">
+          {/* Direct Booking */}
+          <div className="space-y-4">
+            <div className="flex justify-between items-end mb-2">
+              <span className="font-bold text-gray-500">직접 예약 (공시가)</span>
+              <span className="font-bold text-2xl text-gray-400 line-through decoration-red-500/50">$10,000</span>
             </div>
+            <div className="h-12 bg-gray-100 rounded-full w-full relative overflow-hidden">
+              <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium text-sm">
+                할인 없음
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 text-center">
+              호텔 예약 사이트나 리조트 공홈 예약 시<br />정가(Rack Rate)가 적용됩니다.
+            </p>
           </div>
-        ))}
-      </div>
+
+          {/* Agency Booking */}
+          <div className="space-y-4 relative">
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm animate-bounce">
+              약 $1,500 절약!
+            </div>
+            <div className="flex justify-between items-end mb-2">
+              <span className="font-bold text-cyan-700">여행사 예약 (특가)</span>
+              <span className="font-bold text-3xl text-cyan-600">$8,500</span>
+            </div>
+            <div className="h-12 bg-cyan-50 rounded-full w-full relative overflow-hidden border border-cyan-100">
+              <div className="absolute top-0 left-0 h-full bg-cyan-500 w-[85%] rounded-full flex items-center justify-end px-4">
+                <span className="text-white font-bold text-sm">도매가 적용</span>
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 text-center">
+              한국 총판(GSA)과 여행사가 대량 구매 계약을 맺어<br />더 저렴한 요금을 제공합니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Agency List Section */}
+      <section>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <span>🇰🇷 몰디브 전문 여행사</span>
+          <span className="text-sm font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">{agencies.length}곳</span>
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {agencies.map((agency) => (
+            <div key={agency.name} className="bg-white rounded-xl border border-gray-200 p-5 hover:border-cyan-300 hover:shadow-md transition-all group">
+              <h3 className="font-bold text-gray-800 mb-4 truncate" title={agency.name}>{agency.name}</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {agency.website ? (
+                  <a
+                    href={agency.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-50 text-gray-700 text-xs font-semibold rounded-lg hover:bg-gray-100 transition-colors border border-gray-100"
+                  >
+                    <LinkIcon className="h-3.5 w-3.5" />
+                    홈페이지
+                  </a>
+                ) : (
+                  <button disabled className="flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-50 text-gray-300 text-xs font-semibold rounded-lg cursor-not-allowed border border-gray-100">
+                    <LinkIcon className="h-3.5 w-3.5" />
+                    홈페이지
+                  </button>
+                )}
+
+                {agency.kakao_channel ? (
+                  <a
+                    href={agency.kakao_channel}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 bg-[#FAE100] text-[#371D1E] text-xs font-semibold rounded-lg hover:bg-[#F9E000]/90 transition-colors"
+                  >
+                    <KakaoIcon className="h-3.5 w-3.5" />
+                    카카오톡
+                  </a>
+                ) : (
+                  <button disabled className="flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-50 text-gray-300 text-xs font-semibold rounded-lg cursor-not-allowed border border-gray-100">
+                    <KakaoIcon className="h-3.5 w-3.5" />
+                    카카오톡
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
