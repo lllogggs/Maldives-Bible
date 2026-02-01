@@ -20,6 +20,23 @@ type ViteEnvShim = {
 
 type View = 'resorts' | 'tips' | 'agencies' | 'flights';
 
+const slugify = (value: string): string =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+    .trim();
+
+const getResortSlug = (resort: Pick<Resort, 'name' | 'name_en'>): string => {
+  const name = resort.name_en || resort.name || '';
+  return slugify(name);
+};
+
+const getSlugFromPath = (pathname: string): string | null => {
+  const match = pathname.match(/^\/resorts\/([^/]+)\/?$/);
+  return match ? match[1] : null;
+};
+
 const resolveImageEditAvailability = (): boolean => {
   const env = ((import.meta as unknown as { env?: ViteEnvShim })?.env) ?? {};
   const isDevMode = env.DEV ?? env.MODE === 'development';
@@ -754,7 +771,10 @@ const App: React.FC = () => {
       if (match) {
         setSelectedResortId(Number(match[1]));
         window.scrollTo(0, 0);
-      } else {
+        return;
+      }
+
+      if (!getSlugFromPath(window.location.pathname)) {
         setSelectedResortId(null);
       }
     };
@@ -766,6 +786,77 @@ const App: React.FC = () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const syncFromPath = () => {
+      const slug = getSlugFromPath(window.location.pathname);
+      if (!slug) {
+        return;
+      }
+
+      if (initialResorts.length === 0) {
+        return;
+      }
+
+      const matched = initialResorts.find(resort => getResortSlug(resort) === slug);
+      if (matched) {
+        setSelectedResortId(matched.id);
+        window.scrollTo(0, 0);
+      } else {
+        setSelectedResortId(null);
+      }
+    };
+
+    const handlePopState = () => {
+      syncFromPath();
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    syncFromPath();
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [initialResorts]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (!selectedResortId) {
+      const currentSlug = getSlugFromPath(window.location.pathname);
+      if (currentSlug) {
+        const queryString = window.location.search;
+        window.history.replaceState(null, '', `/${queryString}`);
+      }
+      return;
+    }
+
+    const resort = initialResorts.find(item => item.id === selectedResortId);
+    if (!resort) {
+      return;
+    }
+
+    const slug = getResortSlug(resort);
+    if (!slug) {
+      return;
+    }
+
+    const queryString = window.location.search;
+    const nextUrl = `/resorts/${slug}/${queryString}`;
+
+    if (window.location.pathname !== `/resorts/${slug}/`) {
+      window.history.replaceState(null, '', nextUrl);
+      if (window.location.hash) {
+        window.location.hash = '';
+      }
+    }
+  }, [initialResorts, selectedResortId]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -1032,6 +1123,8 @@ const App: React.FC = () => {
   };
 
   const handleGoBackToList = () => {
+    const queryString = window.location.search;
+    window.history.replaceState(null, '', `/${queryString}`);
     window.location.hash = '';
   };
 
@@ -1071,6 +1164,8 @@ const App: React.FC = () => {
     }
     setSelectedResortId(null);
     setCurrentPage(1);
+    const queryString = window.location.search;
+    window.history.replaceState(null, '', `/${queryString}`);
     window.location.hash = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
