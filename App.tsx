@@ -34,7 +34,12 @@ const getResortSlug = (resort: Pick<Resort, 'name' | 'name_en'>): string => {
 
 const getSlugFromPath = (pathname: string): string | null => {
   const match = pathname.match(/^\/resorts\/([^/]+)\/?$/);
-  return match ? match[1] : null;
+  if (!match) {
+    return null;
+  }
+  const rawSlug = decodeURIComponent(match[1]);
+  const normalized = slugify(rawSlug);
+  return normalized.length > 0 ? normalized : null;
 };
 
 const parseResortIdFromHash = (hash: string): number | null => {
