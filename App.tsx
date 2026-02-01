@@ -853,13 +853,11 @@ const App: React.FC = () => {
     }
 
     const queryString = window.location.search;
-    const nextUrl = `/resorts/${slug}/${queryString}`;
+    const expectedPath = `/resorts/${slug}/`;
+    const nextUrl = `${expectedPath}${queryString}`;
 
-    if (window.location.pathname !== `/resorts/${slug}/`) {
+    if (window.location.pathname !== expectedPath || window.location.hash) {
       window.history.replaceState(null, '', nextUrl);
-      if (window.location.hash) {
-        window.location.hash = '';
-      }
     }
     previousSelectedResortIdRef.current = selectedResortId ?? null;
   }, [initialResorts, selectedResortId]);
