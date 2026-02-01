@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Header from './components/Header';
 import FilterSidebar from './components/FilterSidebar';
 import ResortGrid from './components/ResortGrid';
@@ -421,6 +421,7 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isQueryHydrated, setIsQueryHydrated] = useState<boolean>(false);
   const [selectedResortId, setSelectedResortId] = useState<number | null>(null);
+  const previousSelectedResortIdRef = useRef<number | null>(null);
   const [compareList, setCompareList] = useState<number[]>([]);
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
   const [currentView, setCurrentView] = useState<View>('resorts');
@@ -830,7 +831,9 @@ const App: React.FC = () => {
 
     if (!selectedResortId) {
       const currentSlug = getSlugFromPath(window.location.pathname);
-      if (currentSlug) {
+      const wasSelected = previousSelectedResortIdRef.current;
+      previousSelectedResortIdRef.current = selectedResortId ?? null;
+      if (currentSlug && wasSelected) {
         const queryString = window.location.search;
         window.history.replaceState(null, '', `/${queryString}`);
       }
@@ -839,11 +842,13 @@ const App: React.FC = () => {
 
     const resort = initialResorts.find(item => item.id === selectedResortId);
     if (!resort) {
+      previousSelectedResortIdRef.current = selectedResortId ?? null;
       return;
     }
 
     const slug = getResortSlug(resort);
     if (!slug) {
+      previousSelectedResortIdRef.current = selectedResortId ?? null;
       return;
     }
 
@@ -856,6 +861,7 @@ const App: React.FC = () => {
         window.location.hash = '';
       }
     }
+    previousSelectedResortIdRef.current = selectedResortId ?? null;
   }, [initialResorts, selectedResortId]);
 
   useEffect(() => {
@@ -1128,6 +1134,15 @@ const App: React.FC = () => {
     window.location.hash = '';
   };
 
+  const handleViewDetails = (resortId: number) => {
+    setIsCompareViewVisible(false);
+    setSelectedResortId(resortId);
+    if (typeof window !== 'undefined') {
+      window.location.hash = '';
+      window.scrollTo(0, 0);
+    }
+  };
+
   const handleToggleCompare = (resortId: number) => {
     setCompareList(prev => {
       if (prev.includes(resortId)) {
@@ -1397,6 +1412,7 @@ const App: React.FC = () => {
                       likedResortIds={likedResortIds}
                       onToggleLike={toggleLike}
                       pendingLikeResortIds={pendingLikeResortIds}
+                      onViewDetails={handleViewDetails}
                     />
                   )}
                 </div>
