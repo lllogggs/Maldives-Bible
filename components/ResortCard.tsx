@@ -22,6 +22,7 @@ interface ResortCardProps {
   isLiked: boolean;
   onToggleLike: (resortId: number) => void;
   isLikePending: boolean;
+  onViewDetails: (resortId: number) => void;
 }
 
 const getTransportationTagColor = (transportation: TransportationType) => {
@@ -47,6 +48,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
   isLiked,
   onToggleLike,
   isLikePending,
+  onViewDetails,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -83,7 +85,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
 
   const handleViewDetails = (e: React.MouseEvent) => {
     e.stopPropagation();
-    window.location.hash = `#/resort/${resort.id}`;
+    onViewDetails(resort.id);
   };
 
   const onTouchStart = (e: React.TouchEvent) => {
