@@ -5,6 +5,7 @@ const distDir = resolve(process.cwd(), 'dist');
 const source = resolve(distDir, 'index.html');
 const target = resolve(distDir, '404.html');
 const resortsDataPath = resolve(distDir, 'api', 'resorts.json');
+const sourceResortsPath = resolve(process.cwd(), 'public', 'api', 'resorts.json');
 const sitemapPath = resolve(distDir, 'sitemap.xml');
 
 const slugify = (value) =>
@@ -61,15 +62,26 @@ const injectMeta = ({ html, title, description, url, schemaJson }) => {
 
 const updateSitemap = async (resortSlugs) => {
   try {
-    const sitemap = await readFile(sitemapPath, 'utf-8');
-    const urlEntries = resortSlugs
-      .map((slug) =>
-        `  <url>\n    <loc>https://www.maldivesbible.com/resorts/${slug}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`
-      )
-      .join('\n');
+    const staticEntries = [
+      'https://www.maldivesbible.com/',
+      'https://www.maldivesbible.com/?view=tips',
+      'https://www.maldivesbible.com/?view=agencies',
+      'https://www.maldivesbible.com/?view=flights',
+    ];
 
-    const updated = sitemap.replace(/<\/urlset>/, `${urlEntries}\n</urlset>`);
-    await writeFile(sitemapPath, updated, 'utf-8');
+    const urlEntries = [
+      ...staticEntries.map(
+        (loc) =>
+          `  <url>\n    <loc>${loc}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`
+      ),
+      ...resortSlugs.map(
+        (slug) =>
+          `  <url>\n    <loc>https://www.maldivesbible.com/resorts/${slug}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`
+      ),
+    ].join('\n');
+
+    const sitemap = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n${urlEntries}\n</urlset>`;
+    await writeFile(sitemapPath, sitemap, 'utf-8');
   } catch (error) {
     console.error('Failed to update sitemap with resort URLs', error);
   }
@@ -81,7 +93,7 @@ try {
 
   const [template, resortJson] = await Promise.all([
     readFile(source, 'utf-8'),
-    readFile(resortsDataPath, 'utf-8'),
+    readFile(resortsDataPath, 'utf-8').catch(async () => readFile(sourceResortsPath, 'utf-8')),
   ]);
 
   const resorts = JSON.parse(resortJson);
