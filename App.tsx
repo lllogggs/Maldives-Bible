@@ -37,6 +37,11 @@ const getSlugFromPath = (pathname: string): string | null => {
   return match ? match[1] : null;
 };
 
+const parseResortIdFromHash = (hash: string): number | null => {
+  const match = hash.match(/^#\/resort\/(\d+)$/);
+  return match ? Number(match[1]) : null;
+};
+
 const resolveImageEditAvailability = (): boolean => {
   const env = ((import.meta as unknown as { env?: ViteEnvShim })?.env) ?? {};
   const isDevMode = env.DEV ?? env.MODE === 'development';
@@ -767,10 +772,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash;
-      const match = hash.match(/^#\/resort\/(\d+)$/);
-      if (match) {
-        setSelectedResortId(Number(match[1]));
+      const hashResortId = parseResortIdFromHash(window.location.hash);
+      if (hashResortId) {
+        setSelectedResortId(hashResortId);
         window.scrollTo(0, 0);
         return;
       }
@@ -795,21 +799,40 @@ const App: React.FC = () => {
 
     const syncFromPath = () => {
       const slug = getSlugFromPath(window.location.pathname);
-      if (!slug) {
-        return;
-      }
+      const hashResortId = parseResortIdFromHash(window.location.hash);
 
       if (initialResorts.length === 0) {
+        if (hashResortId) {
+          setSelectedResortId(hashResortId);
+        }
         return;
       }
 
-      const matched = initialResorts.find(resort => getResortSlug(resort) === slug);
-      if (matched) {
-        setSelectedResortId(matched.id);
-        window.scrollTo(0, 0);
-      } else {
-        setSelectedResortId(null);
+      if (slug) {
+        const matched = initialResorts.find(resort => getResortSlug(resort) === slug);
+        if (matched) {
+          setSelectedResortId(matched.id);
+          window.scrollTo(0, 0);
+          return;
+        }
       }
+
+      if (hashResortId) {
+        setSelectedResortId(hashResortId);
+        const matchedById = initialResorts.find(resort => resort.id === hashResortId);
+        if (matchedById) {
+          const matchedSlug = getResortSlug(matchedById);
+          if (matchedSlug) {
+            const queryString = window.location.search;
+            const nextUrl = `/resorts/${matchedSlug}/${queryString}`;
+            window.history.replaceState(null, '', nextUrl);
+          }
+        }
+        window.scrollTo(0, 0);
+        return;
+      }
+
+      setSelectedResortId(null);
     };
 
     const handlePopState = () => {
@@ -853,13 +876,11 @@ const App: React.FC = () => {
     }
 
     const queryString = window.location.search;
-    const nextUrl = `/resorts/${slug}/${queryString}`;
+    const expectedPath = `/resorts/${slug}/`;
+    const nextUrl = `${expectedPath}${queryString}`;
 
-    if (window.location.pathname !== `/resorts/${slug}/`) {
+    if (window.location.pathname !== expectedPath || window.location.hash) {
       window.history.replaceState(null, '', nextUrl);
-      if (window.location.hash) {
-        window.location.hash = '';
-      }
     }
     previousSelectedResortIdRef.current = selectedResortId ?? null;
   }, [initialResorts, selectedResortId]);
