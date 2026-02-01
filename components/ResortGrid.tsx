@@ -8,12 +8,14 @@ interface ResortGridProps {
   sortOption: SortOption;
   onSortChange: (option: SortOption) => void;
   totalResortsCount: number;
+  totalAllResortsCount: number;
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
   onOpenFilter: () => void;
+  onCopyShareLink: () => void;
   isImageEditMode: boolean;
   likesCountMap: Record<number, number>;
   likedResortIds: number[];
@@ -26,12 +28,14 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   sortOption,
   onSortChange,
   totalResortsCount,
+  totalAllResortsCount,
   currentPage,
   totalPages,
   onPageChange,
   compareList,
   onToggleCompare,
   onOpenFilter,
+  onCopyShareLink,
   isImageEditMode,
   likesCountMap,
   likedResortIds,
@@ -47,7 +51,14 @@ const ResortGrid: React.FC<ResortGridProps> = ({
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">검색 결과</h2>
-          <p className="text-gray-600 mt-1">총 {totalResortsCount}개의 리조트</p>
+          <p className="text-gray-600 mt-1">
+            총 {totalResortsCount}개의 리조트
+            {totalResortsCount !== totalAllResortsCount && (
+              <span className="ml-2 text-cyan-700 font-semibold">
+                (필터 적용: {totalResortsCount}/{totalAllResortsCount})
+              </span>
+            )}
+          </p>
         </div>
 
         <div className="flex flex-col gap-2 w-full sm:w-auto sm:items-end">
@@ -59,7 +70,13 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               <FilterIcon className="h-5 w-5" />
               <span>필터</span>
             </button>
-            <div className="order-2 flex items-center gap-2 sm:order-none">
+            <button
+              onClick={onCopyShareLink}
+              className="order-2 lg:order-none flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 active:bg-gray-100"
+            >
+              링크 복사
+            </button>
+            <div className="order-3 flex items-center gap-2 sm:order-none">
               <SortIcon className="h-5 w-5 text-gray-500" />
               <div className="relative">
                 <select

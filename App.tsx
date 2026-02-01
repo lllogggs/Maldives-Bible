@@ -33,6 +33,35 @@ const resolveImageEditAvailability = (): boolean => {
 const RESORTS_PER_PAGE = 15;
 const IS_IMAGE_EDIT_FEATURE_AVAILABLE = resolveImageEditAvailability();
 
+const DEFAULT_FILTERS: Filters = {
+  searchTerm: '',
+  transportation: [],
+  maxPrice: 30000,
+  roomTypes: [],
+  minRestaurants: 0,
+  minBars: 0,
+  hasPrivatePool: false,
+  onlyLiked: false,
+};
+
+const parseNumberParam = (value: string | null, fallback: number) => {
+  if (!value) {
+    return fallback;
+  }
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+};
+
+const parseCsvParam = (value: string | null): string[] => {
+  if (!value) {
+    return [];
+  }
+  return value
+    .split(',')
+    .map(item => item.trim())
+    .filter(item => item.length > 0);
+};
+
 type ResortPreferences = {
   hidden_ids: number[];
   custom_order: number[];
@@ -370,18 +399,10 @@ const App: React.FC = () => {
   const [displayedResorts, setDisplayedResorts] = useState<Resort[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [filters, setFilters] = useState<Filters>({
-    searchTerm: '',
-    transportation: [],
-    maxPrice: 30000,
-    roomTypes: [],
-    minRestaurants: 0,
-    minBars: 0,
-    hasPrivatePool: false,
-    onlyLiked: false,
-  });
+  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
   const [sortOption, setSortOption] = useState<SortOption>('popularity');
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [isQueryHydrated, setIsQueryHydrated] = useState<boolean>(false);
   const [selectedResortId, setSelectedResortId] = useState<number | null>(null);
   const [compareList, setCompareList] = useState<number[]>([]);
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
@@ -746,6 +767,44 @@ const App: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const parsedFilters: Filters = {
+      ...DEFAULT_FILTERS,
+      searchTerm: params.get('q') ?? DEFAULT_FILTERS.searchTerm,
+      transportation: parseCsvParam(params.get('t')) as Filters['transportation'],
+      maxPrice: parseNumberParam(params.get('max'), DEFAULT_FILTERS.maxPrice),
+      roomTypes: parseCsvParam(params.get('room')) as Filters['roomTypes'],
+      minRestaurants: parseNumberParam(params.get('rest'), DEFAULT_FILTERS.minRestaurants),
+      minBars: parseNumberParam(params.get('bars'), DEFAULT_FILTERS.minBars),
+      hasPrivatePool: params.get('pool') === '1',
+      onlyLiked: params.get('liked') === '1',
+    };
+
+    setFilters(parsedFilters);
+
+    const sort = params.get('sort') as SortOption | null;
+    if (sort) {
+      setSortOption(sort);
+    }
+
+    const view = params.get('view') as View | null;
+    if (view) {
+      setCurrentView(view);
+    }
+
+    const page = parseNumberParam(params.get('page'), 1);
+    if (page > 0) {
+      setCurrentPage(page);
+    }
+
+    setIsQueryHydrated(true);
+  }, []);
+
   const applyFiltersAndSort = useCallback(() => {
     let processedResorts = [...initialResorts];
     const hiddenSet = new Set(hiddenResortIds);
@@ -840,6 +899,51 @@ const App: React.FC = () => {
     setCurrentPage(1);
   }, [filters, sortOption, hiddenResortIds, customOrder, initialResorts]);
 
+  useEffect(() => {
+    if (!isQueryHydrated || typeof window === 'undefined') {
+      return;
+    }
+
+    const params = new URLSearchParams();
+    if (filters.searchTerm.trim().length > 0) {
+      params.set('q', filters.searchTerm.trim());
+    }
+    if (filters.transportation.length > 0) {
+      params.set('t', filters.transportation.join(','));
+    }
+    if (filters.maxPrice !== DEFAULT_FILTERS.maxPrice) {
+      params.set('max', String(filters.maxPrice));
+    }
+    if (filters.roomTypes.length > 0) {
+      params.set('room', filters.roomTypes.join(','));
+    }
+    if (filters.minRestaurants !== DEFAULT_FILTERS.minRestaurants) {
+      params.set('rest', String(filters.minRestaurants));
+    }
+    if (filters.minBars !== DEFAULT_FILTERS.minBars) {
+      params.set('bars', String(filters.minBars));
+    }
+    if (filters.hasPrivatePool) {
+      params.set('pool', '1');
+    }
+    if (filters.onlyLiked) {
+      params.set('liked', '1');
+    }
+    if (sortOption !== 'popularity') {
+      params.set('sort', sortOption);
+    }
+    if (currentView !== 'resorts') {
+      params.set('view', currentView);
+    }
+    if (currentPage !== 1) {
+      params.set('page', String(currentPage));
+    }
+
+    const queryString = params.toString();
+    const nextUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ''}${window.location.hash}`;
+    window.history.replaceState(null, '', nextUrl);
+  }, [filters, sortOption, currentView, currentPage, isQueryHydrated]);
+
   const selectedResort = initialResorts.find(r => r.id === selectedResortId);
   const calculatedTotalPages = displayedResorts.length === 0
     ? 0
@@ -884,6 +988,42 @@ const App: React.FC = () => {
 
   const handleSortChange = (option: SortOption) => {
     setSortOption(option);
+  };
+
+  const handleViewChange = (view: View) => {
+    setCurrentView(view);
+    setIsCompareViewVisible(false);
+    setSelectedResortId(null);
+    if (view !== 'resorts') {
+      window.location.hash = '';
+    }
+    setCurrentPage(1);
+  };
+
+  const handleCopyShareLink = async () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const link = window.location.href;
+    try {
+      await navigator.clipboard.writeText(link);
+      setToastMessage('필터/정렬 링크가 복사되었습니다.');
+    } catch (err) {
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = link;
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        setToastMessage('필터/정렬 링크가 복사되었습니다.');
+      } catch (copyErr) {
+        console.error('Failed to copy share link', copyErr);
+        setToastMessage('링크 복사에 실패했습니다.');
+      }
+    }
   };
 
   const handlePageChange = (page: number) => {
@@ -1112,7 +1252,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <NavBar currentView={currentView} onViewChange={setCurrentView} />
+        <NavBar currentView={currentView} onViewChange={handleViewChange} />
 
         {currentView === 'tips' && <ResortSelectionTips />}
 
@@ -1149,12 +1289,14 @@ const App: React.FC = () => {
                       sortOption={sortOption}
                       onSortChange={handleSortChange}
                       totalResortsCount={displayedResorts.length}
+                      totalAllResortsCount={initialResorts.length}
                       currentPage={currentPage}
                       totalPages={totalPages}
                       onPageChange={handlePageChange}
                       compareList={compareList}
                       onToggleCompare={handleToggleCompare}
                       onOpenFilter={() => setIsFilterOpen(true)}
+                      onCopyShareLink={handleCopyShareLink}
                       isImageEditMode={isImageEditMode}
                       likesCountMap={likesCountMap}
                       likedResortIds={likedResortIds}

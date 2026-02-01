@@ -43,17 +43,7 @@
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6227921544579562"
       crossorigin="anonymous"
     ></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y00T1V6W91"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-Y00T1V6W91");
-    </script>
+    <!-- GA is configured via GTM only -->
     <meta name="application-name" content="몰디브 바이블" />
     <meta name="apple-mobile-web-app-title" content="몰디브 바이블" />
     <meta name="theme-color" content="#0e7490" />
@@ -93,6 +83,38 @@
           "target": "https://www.maldivesbible.com/?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "몰디브 리조트는 어떻게 비교하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "이동수단(수상비행기/스피드보트), 객실 타입(워터/비치), 예산대를 먼저 정하고 필터로 후보군을 좁히는 것이 가장 빠릅니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "올인클루시브는 다 같나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "포함 범위가 리조트마다 다릅니다. 레스토랑 수, 음료/스파 포함 여부를 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "허니문과 가족여행 리조트 선택 기준은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "허니문은 프라이버시와 분위기, 가족여행은 키즈클럽/액티비티/이동시간이 핵심입니다."
+            }
+          }
+        ]
       }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
