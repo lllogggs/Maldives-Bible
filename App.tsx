@@ -1128,6 +1128,15 @@ const App: React.FC = () => {
     window.location.hash = '';
   };
 
+  const handleViewDetails = (resortId: number) => {
+    setIsCompareViewVisible(false);
+    setSelectedResortId(resortId);
+    if (typeof window !== 'undefined') {
+      window.location.hash = '';
+      window.scrollTo(0, 0);
+    }
+  };
+
   const handleToggleCompare = (resortId: number) => {
     setCompareList(prev => {
       if (prev.includes(resortId)) {
@@ -1397,6 +1406,7 @@ const App: React.FC = () => {
                       likedResortIds={likedResortIds}
                       onToggleLike={toggleLike}
                       pendingLikeResortIds={pendingLikeResortIds}
+                      onViewDetails={handleViewDetails}
                     />
                   )}
                 </div>
