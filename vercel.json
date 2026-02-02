@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/resorts/:slug", "destination": "/" },
+    { "source": "/resorts/:slug/", "destination": "/" }
+  ]
+}
