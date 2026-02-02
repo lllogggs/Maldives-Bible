@@ -32,14 +32,22 @@ const getResortSlug = (resort: Pick<Resort, 'name' | 'name_en'>): string => {
   return slugify(name);
 };
 
-const getSlugFromPath = (pathname: string): string | null => {
-  const match = pathname.match(/^\/resorts\/([^/]+)\/?$/);
+const getResortPathSegment = (pathname: string): string | null => {
+  const match = pathname.match(/^\/resorts?\/([^/]+)\/?$/);
   if (!match) {
     return null;
   }
-  const rawSlug = decodeURIComponent(match[1]);
-  const normalized = slugify(rawSlug);
+  return decodeURIComponent(match[1]);
+};
+
+const normalizeSlug = (raw: string): string | null => {
+  const normalized = slugify(raw);
   return normalized.length > 0 ? normalized : null;
+};
+
+const getSlugFromPath = (pathname: string): string | null => {
+  const segment = getResortPathSegment(pathname);
+  return segment ? normalizeSlug(segment) : null;
 };
 
 const parseResortIdFromHash = (hash: string): number | null => {
@@ -803,7 +811,9 @@ const App: React.FC = () => {
     }
 
     const syncFromPath = () => {
-      const slug = getSlugFromPath(window.location.pathname);
+      const pathname = window.location.pathname;
+      const segment = getResortPathSegment(pathname);
+      const slug = segment ? normalizeSlug(segment) : null;
       const hashResortId = parseResortIdFromHash(window.location.hash);
 
       if (initialResorts.length === 0) {
@@ -819,6 +829,24 @@ const App: React.FC = () => {
           setSelectedResortId(matched.id);
           window.scrollTo(0, 0);
           return;
+        }
+      }
+
+      if (segment) {
+        const numericSegment = Number(segment);
+        if (Number.isFinite(numericSegment)) {
+          const matchedById = initialResorts.find(resort => resort.id === numericSegment);
+          if (matchedById) {
+            setSelectedResortId(matchedById.id);
+            const matchedSlug = getResortSlug(matchedById);
+            if (matchedSlug) {
+              const queryString = window.location.search;
+              const nextUrl = `/resorts/${matchedSlug}/${queryString}`;
+              window.history.replaceState(null, '', nextUrl);
+            }
+            window.scrollTo(0, 0);
+            return;
+          }
         }
       }
 
@@ -1164,6 +1192,12 @@ const App: React.FC = () => {
     setIsCompareViewVisible(false);
     setSelectedResortId(resortId);
     if (typeof window !== 'undefined') {
+      const resort = initialResorts.find(item => item.id === resortId);
+      const slug = resort ? getResortSlug(resort) : null;
+      if (slug) {
+        const queryString = window.location.search;
+        window.history.replaceState(null, '', `/resorts/${slug}/${queryString}`);
+      }
       window.location.hash = '';
       window.scrollTo(0, 0);
     }
