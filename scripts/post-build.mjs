@@ -186,6 +186,35 @@ const resortCard = (resort) => {
     </article>`;
 };
 
+const buildResortPageContent = (resort) => {
+  const name = resort.name || resort.name_en;
+  const badges = [
+    resort.transportation ? `${resort.transportation} 이동` : null,
+    resort.hasWaterVilla ? '워터빌라 보유' : null,
+    resort.hasPrivatePool ? '개인풀 보유' : null,
+    resort.honeymoonPerks ? '허니문 혜택' : null,
+  ].filter(Boolean);
+
+  return `
+    <main style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
+      <article style="max-width:920px;margin:0 auto;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:26px;">
+        <p style="margin:0 0 8px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">Maldives Resort Detail</p>
+        <h1 style="margin:0;font-size:38px;line-height:1.18;">${escapeHtml(name)}</h1>
+        <p style="margin:8px 0 18px;color:#64748b;font-size:17px;">${escapeHtml(resort.name_en || '')}</p>
+        <p style="margin:0 0 12px;color:#334155;line-height:1.7;">
+          ${escapeHtml(resort.location || '')} · ${escapeHtml(resort.transportation || '')} ${resort.travelTime || 0}분 · 4박 2인 ${formatUsd(resort.price)}
+        </p>
+        <p style="margin:0 0 18px;color:#334155;line-height:1.7;">
+          수중환경 ${resort.snorkelingQuality || '-'} / 5 · 레스토랑 ${resort.restaurants || 0}곳 · 바 ${resort.bars || 0}곳 · 이동비 2인 왕복 ${formatUsd((resort.travelCost || 0) * 2)}
+        </p>
+        <p style="margin:0 0 20px;">${badges
+          .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
+          .join('')}</p>
+        <a href="${siteUrl}/" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 전체 비교로 돌아가기</a>
+      </article>
+    </main>`;
+};
+
 const buildNichePageContent = (page, resorts) => {
   const selected = resorts.filter(page.filter).sort(page.sort).slice(0, 12);
   const listItems = selected
@@ -276,7 +305,8 @@ const injectMeta = ({ html, title, description, url, schemaJson }) => {
     .replace(/<script type="application\/ld\+json">\s*\{[\s\S]*?\}\s*<\/script>/, match => `${match}\n<script type="application/ld+json">${schemaJson}</script>`);
 };
 
-const injectStaticRoot = (html, content) => html.replace('<div id="root"></div>', `<div id="root">${content}</div>`);
+const injectStaticRoot = (html, content) =>
+  html.replace(/<div id="root">[\s\S]*?<\/div>\s*<\/body>/, `<div id="root">${content}</div>\n  </body>`);
 
 const updateSitemap = async (resortSlugs, nicheSlugs) => {
   try {
@@ -373,7 +403,10 @@ try {
     const url = `https://www.maldivesbible.com/resorts/${slug}/`;
     const schemaJson = buildResortSchema(resort, url);
 
-    const html = injectMeta({ html: template, title, description, url, schemaJson });
+    const html = injectStaticRoot(
+      injectMeta({ html: template, title, description, url, schemaJson }),
+      buildResortPageContent(resort)
+    );
     const targetPath = resolve(distDir, 'resorts', slug, 'index.html');
     await mkdir(dirname(targetPath), { recursive: true });
     await writeFile(targetPath, html, 'utf-8');
