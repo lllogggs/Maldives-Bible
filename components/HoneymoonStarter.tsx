@@ -82,7 +82,7 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
 
   return (
   <section
-    className="mb-5 rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-900/5"
+    className="mb-5 rounded-lg border border-teal-100 bg-white p-5 shadow-sm shadow-slate-900/5"
     aria-labelledby="honeymoon-starter-title"
   >
     <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -112,7 +112,7 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
 
     <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
       {presets.map((preset) => (
-        <article key={preset.id} className="flex min-h-[12rem] flex-col rounded-lg border border-slate-200 bg-slate-50 p-4">
+        <article key={preset.id} className="flex min-h-[12rem] flex-col rounded-lg border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-teal-200 hover:bg-white">
           <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">{preset.label}</p>
           <h2 className="mt-2 text-base font-bold text-slate-950">{preset.title}</h2>
           <p className="mt-2 flex-1 text-sm leading-5 text-slate-600">{preset.description}</p>
@@ -120,7 +120,7 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
           <button
             type="button"
             onClick={() => onApplyPreset(preset)}
-            className="mt-3 min-h-10 rounded-lg bg-slate-950 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+            className="mt-3 min-h-10 rounded-lg bg-slate-950 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-teal-800"
           >
             이 조건으로 보기
           </button>
@@ -128,14 +128,14 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
       ))}
     </div>
 
-    <div className="mt-4 flex flex-col gap-3 rounded-lg border border-dashed border-slate-300 bg-white px-4 py-3 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mt-4 flex flex-col gap-3 rounded-lg border border-dashed border-teal-200 bg-teal-50/50 px-4 py-3 text-sm text-slate-700 sm:flex-row sm:items-center sm:justify-between">
       <p>
         아직 예산이 애매하면 처음 준비 가이드를 먼저 보고, 이동수단과 객실 타입만 골라 후보를 천천히 줄여보세요.
       </p>
       <button
         type="button"
         onClick={onOpenFilter}
-        className="min-h-10 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50 lg:hidden"
+        className="min-h-10 rounded-lg border border-teal-200 bg-white px-3 py-2 text-sm font-semibold text-teal-800 transition-colors hover:bg-teal-50 lg:hidden"
       >
         필터 열기
       </button>

@@ -4,6 +4,13 @@ import type { Resort, SortOption } from '../types';
 import type { HoneymoonPreset } from './HoneymoonStarter';
 import { SortIcon, FilterIcon, ChevronDownIcon } from './icons/Icons';
 
+const QUICK_PRESET_LABELS: Record<string, string> = {
+  'budget-first': '예산 맞추기',
+  'easy-transfer': '이동 짧게',
+  'water-pool': '워터빌라',
+  'reef-first': '스노클링',
+};
+
 interface ResortGridProps {
   resorts: Resort[];
   sortOption: SortOption;
@@ -115,8 +122,8 @@ const ResortGrid: React.FC<ResortGridProps> = ({
         </div>
       </div>
 
-      <div className="mb-5 rounded-lg border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-900/5">
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div className="mb-5 rounded-lg border border-teal-100 bg-white px-3 py-3 shadow-sm shadow-slate-900/5">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center justify-between gap-3">
             <p className="whitespace-nowrap text-xs font-bold uppercase tracking-[0.12em] text-teal-700">
               빠른 시작
@@ -125,17 +132,17 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               지금 가장 중요한 기준으로 먼저 좁히기
             </span>
           </div>
-          <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 md:mx-0 md:justify-end md:pb-0">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:flex lg:flex-wrap lg:justify-end">
             {honeymoonPresets.map((preset) => (
               <button
                 key={preset.id}
                 type="button"
                 onClick={() => onApplyHoneymoonPreset(preset)}
-                className="min-h-9 shrink-0 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-900 transition-colors hover:border-teal-300 hover:bg-teal-50 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10"
+                className="min-h-10 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center text-sm font-semibold leading-5 text-slate-900 transition-colors hover:border-teal-300 hover:bg-teal-50 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 lg:whitespace-nowrap"
                 data-quick-preset={preset.id}
                 title={preset.resultHint}
               >
-                {preset.title}
+                {QUICK_PRESET_LABELS[preset.id] ?? preset.title}
               </button>
             ))}
           </div>
