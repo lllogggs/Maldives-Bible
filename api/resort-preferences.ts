@@ -1,5 +1,5 @@
 import type { ApiRequest, ApiResponse } from '../server/api-http';
-import { requireProfileAccess } from '../server/profile-token';
+import { requireProfileAccess } from '../server/profile-token.js';
 
 const MAX_PREFERENCE_IDS = 1000;
 const MAX_DELETED_IMAGE_URLS = 2000;

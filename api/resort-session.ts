@@ -1,5 +1,5 @@
 import type { ApiRequest, ApiResponse } from '../server/api-http';
-import { createProfileSession } from '../server/profile-token';
+import { createProfileSession } from '../server/profile-token.js';
 
 function getHeaderValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;

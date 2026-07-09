@@ -1,23 +1,17 @@
 import { createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
-import type { ApiRequest } from './api-http';
 
 const TOKEN_TTL_SECONDS = 60 * 60 * 24 * 400;
 const TOKEN_HEADER = 'x-resort-profile-token';
-
-type ProfileTokenPayload = {
-  profileId: string;
-  exp: number;
-};
 
 function getSigningSecret() {
   return process.env.RESORT_PROFILE_TOKEN_SECRET || '';
 }
 
-function toBase64Url(value: string | Buffer) {
+function toBase64Url(value) {
   return Buffer.from(value).toString('base64url');
 }
 
-function signPayload(payload: string, secret: string) {
+function signPayload(payload, secret) {
   return createHmac('sha256', secret).update(payload).digest('base64url');
 }
 
@@ -29,7 +23,7 @@ export function createProfileSession() {
 
   const profileId = randomUUID();
   const exp = Math.floor(Date.now() / 1000) + TOKEN_TTL_SECONDS;
-  const payload = toBase64Url(JSON.stringify({ profileId, exp } satisfies ProfileTokenPayload));
+  const payload = toBase64Url(JSON.stringify({ profileId, exp }));
   const signature = signPayload(payload, secret);
 
   return {
@@ -38,11 +32,11 @@ export function createProfileSession() {
   };
 }
 
-function getHeaderValue(value: string | string[] | undefined) {
+function getHeaderValue(value) {
   return Array.isArray(value) ? value[0] : value;
 }
 
-export function getProfileToken(req: ApiRequest) {
+export function getProfileToken(req) {
   const directToken = getHeaderValue(req.headers[TOKEN_HEADER]);
   if (directToken) {
     return directToken;
@@ -53,7 +47,7 @@ export function getProfileToken(req: ApiRequest) {
   return match?.[1];
 }
 
-export function normalizeProfileId(value: unknown) {
+export function normalizeProfileId(value) {
   if (typeof value !== 'string') {
     return null;
   }
@@ -66,7 +60,7 @@ export function normalizeProfileId(value: unknown) {
   return normalized;
 }
 
-export function verifyProfileToken(profileId: string, token: string | undefined) {
+export function verifyProfileToken(profileId, token) {
   if (process.env.RESORT_ALLOW_LEGACY_PROFILE_IDS === 'true') {
     return true;
   }
@@ -92,23 +86,23 @@ export function verifyProfileToken(profileId: string, token: string | undefined)
   }
 
   try {
-    const parsed = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8')) as ProfileTokenPayload;
+    const parsed = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
     return parsed.profileId === profileId && parsed.exp >= Math.floor(Date.now() / 1000);
   } catch {
     return false;
   }
 }
 
-export function requireProfileAccess(req: ApiRequest, rawProfileId: unknown) {
+export function requireProfileAccess(req, rawProfileId) {
   const profileId = normalizeProfileId(rawProfileId);
   if (!profileId) {
-    return { ok: false as const, status: 400, error: 'invalid profileId' };
+    return { ok: false, status: 400, error: 'invalid profileId' };
   }
 
   const token = getProfileToken(req);
   if (!verifyProfileToken(profileId, token)) {
-    return { ok: false as const, status: 401, error: 'invalid profile token' };
+    return { ok: false, status: 401, error: 'invalid profile token' };
   }
 
-  return { ok: true as const, profileId };
+  return { ok: true, profileId };
 }
