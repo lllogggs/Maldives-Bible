@@ -23,10 +23,12 @@ const agencies: Agency[] = [
 ];
 
 const bookingReasons = [
-  ['프로모션 견적', '시즌 특가 + 허니문 혜택'],
-  ['포함 내역', '식사, 트랜스퍼, 세금 포함 여부'],
-  ['도착 시간', '말레 도착 시간에 맞춘 리조트 이동'],
+  ['총판 특가', '리조트 프로모션 객실을 먼저 확보'],
+  ['일정 조합', '말레 도착 시간에 맞춘 이동과 1박 판단'],
+  ['허니문 조건', '객실, 식사, 특전을 한 번에 비교'],
 ];
+
+const bookingFlow = ['리조트', '총판', '여행사', '고객'];
 
 const TravelAgencies: React.FC = () => {
   return (
@@ -39,7 +41,27 @@ const TravelAgencies: React.FC = () => {
       </section>
 
       <section className="border-b border-slate-200 pb-5">
-        <div className="grid gap-2 md:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr] lg:items-end">
+          <div>
+            <p className="text-xs font-bold text-teal-700">예약 구조</p>
+            <h2 className="mt-2 font-brand-heading text-xl text-slate-950">여행사 견적을 먼저 보는 이유</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+              몰디브는 총판이 리조트 프로모션을 확보하고, 여행사가 이동·식사·허니문 혜택을 고객 일정에 맞춰 조합하는 구조가 많습니다.
+            </p>
+          </div>
+          <div className="grid grid-cols-4 gap-1.5 text-center text-xs font-bold text-slate-700">
+            {bookingFlow.map((step, index) => (
+              <div key={step} className="relative rounded-lg border border-teal-100 bg-teal-50 px-2 py-2 text-teal-900">
+                {step}
+                {index < bookingFlow.length - 1 && (
+                  <span className="absolute -right-1.5 top-1/2 z-10 -translate-y-1/2 text-teal-500">›</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-2 md:grid-cols-3">
           {bookingReasons.map(([title, description]) => (
             <div key={title} className="rounded-lg border border-slate-200 bg-white px-4 py-3">
               <h3 className="text-sm font-bold text-slate-950">{title}</h3>
