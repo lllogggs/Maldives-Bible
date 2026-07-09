@@ -2,7 +2,7 @@
   "name": "maldives-bible",
   "homepage": "https://www.maldivesbible.com/",
   "version": "1.0.0",
-  "description": "A comprehensive guide to Maldives resorts.",
+  "description": "한국 커플을 위한 몰디브 신혼여행 리조트 비교 데이터베이스.",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,10 +15,10 @@
   },
   "keywords": [
     "몰디브 신혼여행 리조트 비교",
-    "몰디브 워터빌라 개인풀",
-    "몰디브 보트 이동 리조트",
-    "몰디브 수상비행기 리조트",
-    "몰디브 스노클링 리조트"
+    "몰디브 신혼여행 워터빌라 개인풀",
+    "몰디브 신혼여행 보트 이동",
+    "몰디브 수상비행기 리조트 비교",
+    "몰디브 스노클링 좋은 리조트"
   ],
   "author": "",
   "license": "ISC",

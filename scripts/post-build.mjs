@@ -9,13 +9,16 @@ const sourceResortsPath = resolve(process.cwd(), 'public', 'api', 'resorts.json'
 const sitemapPath = resolve(distDir, 'sitemap.xml');
 const siteUrl = 'https://www.maldivesbible.com';
 
+const toUrlPath = (slug) => `/${encodeURI(slug)}/`;
+const toAbsoluteUrl = (slug) => `${siteUrl}${toUrlPath(slug)}`;
+
 const nichePages = [
   {
-    slug: 'maldives-honeymoon-water-villa-private-pool',
+    slug: '몰디브-신혼여행-워터빌라-개인풀',
     title: '몰디브 신혼여행 워터빌라 개인풀 리조트 비교 | 몰디브 바이블',
     description:
       '몰디브 신혼여행에서 워터빌라와 개인풀을 함께 보는 커플을 위해 예산, 이동시간, 수중환경 기준으로 후보 리조트를 비교합니다.',
-    eyebrow: 'Honeymoon Water Villa',
+    eyebrow: '워터빌라 개인풀',
     heading: '몰디브 신혼여행 워터빌라 개인풀 후보',
     intro:
       '사진 감성, 프라이버시, 객실 만족도를 우선하는 커플은 워터빌라와 개인풀 여부를 먼저 확인하는 편이 빠릅니다.',
@@ -36,11 +39,11 @@ const nichePages = [
     ],
   },
   {
-    slug: 'maldives-speedboat-resorts-honeymoon',
+    slug: '몰디브-보트-이동-리조트',
     title: '몰디브 보트 이동 리조트 비교 | 신혼여행 이동 피로 줄이기',
     description:
       '장거리 비행 뒤 이동 피로가 걱정되는 커플을 위해 말레 공항에서 보트로 이동하는 몰디브 허니문 리조트를 비교합니다.',
-    eyebrow: 'Speedboat Resorts',
+    eyebrow: '보트 이동 리조트',
     heading: '몰디브 보트 이동 리조트 후보',
     intro:
       '신혼여행 첫날 컨디션이 걱정된다면 보트 이동 리조트부터 보는 것이 현실적입니다. 이동시간과 이동비, 허니문 혜택을 함께 봅니다.',
@@ -61,11 +64,11 @@ const nichePages = [
     ],
   },
   {
-    slug: 'maldives-seaplane-resorts-comparison',
+    slug: '몰디브-수상비행기-리조트',
     title: '몰디브 수상비행기 리조트 비교 | 라군·수중환경 중심 후보',
     description:
       '몰디브 수상비행기 이동 리조트를 라군, 수중환경, 이동시간, 예산 기준으로 비교해 신혼여행 후보를 좁힙니다.',
-    eyebrow: 'Seaplane Resorts',
+    eyebrow: '수상비행기 리조트',
     heading: '몰디브 수상비행기 리조트 비교',
     intro:
       '수상비행기 이동은 몰디브다운 풍경을 기대하는 커플에게 매력적입니다. 대신 운항 시간과 대기 피로를 감안해 후보를 비교해야 합니다.',
@@ -86,11 +89,11 @@ const nichePages = [
     ],
   },
   {
-    slug: 'maldives-snorkeling-house-reef-resorts',
+    slug: '몰디브-스노클링-좋은-리조트',
     title: '몰디브 스노클링 좋은 리조트 비교 | 하우스리프·수중환경 기준',
     description:
       '몰디브에서 스노클링과 하우스리프를 중요하게 보는 커플을 위해 수중환경 점수, 이동수단, 예산 기준으로 리조트를 비교합니다.',
-    eyebrow: 'Snorkeling Resorts',
+    eyebrow: '스노클링 좋은 리조트',
     heading: '몰디브 스노클링 좋은 리조트 후보',
     intro:
       '라군 색감보다 물속 경험이 중요한 커플이라면 수중환경 점수와 이동수단을 먼저 보는 편이 좋습니다.',
@@ -111,11 +114,11 @@ const nichePages = [
     ],
   },
   {
-    slug: 'maldives-all-inclusive-honeymoon-resorts',
+    slug: '몰디브-올인클루시브-신혼여행',
     title: '몰디브 올인클루시브 신혼여행 리조트 비교 | 예산·다이닝 기준',
     description:
       '몰디브 신혼여행 예산을 잡기 쉽게 4박 2인 기준 가격, 레스토랑 수, 허니문 혜택을 중심으로 올인클루시브 후보를 비교합니다.',
-    eyebrow: 'All Inclusive Honeymoon',
+    eyebrow: '올인클루시브 신혼여행',
     heading: '몰디브 올인클루시브 신혼여행 후보',
     intro:
       '견적이 불안한 커플은 숙박 총액만 보지 말고 1박 환산가, 다이닝 선택지, 이동비를 함께 비교해야 합니다.',
@@ -153,13 +156,15 @@ const escapeHtml = (value = '') =>
     .replace(/'/g, '&#39;');
 
 const buildResortDescription = (resort) => {
+  const displayName = resort.name || resort.name_en;
+  const englishName = resort.name_en && resort.name_en !== displayName ? `(${resort.name_en})` : null;
   const parts = [
-    resort.name_en || resort.name,
+    [displayName, englishName].filter(Boolean).join(' '),
     resort.transportation ? `${resort.transportation} 이동` : null,
     resort.price ? `4박 2인 기준 $${resort.price.toLocaleString?.() ?? resort.price}` : null,
   ].filter(Boolean);
 
-  return `${parts.join(' · ')} 리조트 정보를 확인하세요.`;
+  return `${parts.join(' · ')} 리조트 정보를 한국어로 확인하세요.`;
 };
 
 const formatUsd = (value) => `$${Number(value || 0).toLocaleString('en-US')}`;
@@ -198,7 +203,7 @@ const buildResortPageContent = (resort) => {
   return `
     <main style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
       <article style="max-width:920px;margin:0 auto;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:26px;">
-        <p style="margin:0 0 8px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">Maldives Resort Detail</p>
+        <p style="margin:0 0 8px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">몰디브 리조트 상세</p>
         <h1 style="margin:0;font-size:38px;line-height:1.18;">${escapeHtml(name)}</h1>
         <p style="margin:8px 0 18px;color:#64748b;font-size:17px;">${escapeHtml(resort.name_en || '')}</p>
         <p style="margin:0 0 12px;color:#334155;line-height:1.7;">
@@ -274,7 +279,8 @@ const buildResortSchema = (resort, canonicalUrl) => {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Hotel',
-    name: resort.name_en || resort.name,
+    name: resort.name || resort.name_en,
+    alternateName: resort.name_en && resort.name_en !== resort.name ? resort.name_en : undefined,
     url: canonicalUrl,
     image: Array.isArray(resort.imageUrls) ? resort.imageUrls.slice(0, 3) : undefined,
     address: resort.location ? { '@type': 'PostalAddress', addressLocality: resort.location } : undefined,
@@ -302,6 +308,7 @@ const injectMeta = ({ html, title, description, url, schemaJson }) => {
   updated = replaceMetaContent(updated, 'name', 'twitter:description', description);
   return updated
     .replace(/<link rel="canonical" href=".*?"\s*\/>/, `<link rel="canonical" href="${escapeHtml(url)}" />`)
+    .replace(/<link rel="alternate" href=".*?" hreflang="ko(?:-KR)?"\s*\/>/, `<link rel="alternate" href="${escapeHtml(url)}" hreflang="ko-KR" />`)
     .replace(/<script type="application\/ld\+json">\s*\{[\s\S]*?\}\s*<\/script>/, match => `${match}\n<script type="application/ld+json">${schemaJson}</script>`);
 };
 
@@ -315,7 +322,7 @@ const updateSitemap = async (resortSlugs, nicheSlugs) => {
       `${siteUrl}/?view=tips`,
       `${siteUrl}/?view=agencies`,
       `${siteUrl}/?view=flights`,
-      ...nicheSlugs.map((slug) => `${siteUrl}/${slug}/`),
+      ...nicheSlugs.map((slug) => toAbsoluteUrl(slug)),
     ];
 
     const urlEntries = [
@@ -398,9 +405,9 @@ try {
     usedSlugs.add(slug);
     slugs.push(slug);
 
-    const title = `${name} | 몰디브 바이블`;
+    const title = `${resort.name || name} 리조트 정보 | 몰디브 바이블`;
     const description = buildResortDescription(resort);
-    const url = `https://www.maldivesbible.com/resorts/${slug}/`;
+    const url = `${siteUrl}/resorts/${slug}/`;
     const schemaJson = buildResortSchema(resort, url);
 
     const html = injectStaticRoot(
@@ -414,7 +421,7 @@ try {
 
   const nicheSlugs = [];
   for (const page of nichePages) {
-    const url = `${siteUrl}/${page.slug}/`;
+    const url = toAbsoluteUrl(page.slug);
     const { html: content, schemaJson } = buildNichePageContent(page, resorts);
     const html = injectStaticRoot(
       injectMeta({ html: template, title: page.title, description: page.description, url, schemaJson }),

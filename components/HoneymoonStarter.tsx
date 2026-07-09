@@ -28,24 +28,24 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
 }) => {
   const nicheGuides = [
     {
-      href: '/maldives-honeymoon-water-villa-private-pool/',
-      label: '워터빌라·개인풀 신혼여행',
+      href: '/몰디브-신혼여행-워터빌라-개인풀/',
+      label: '몰디브 신혼여행 워터빌라 개인풀',
     },
     {
-      href: '/maldives-speedboat-resorts-honeymoon/',
-      label: '보트 이동 리조트',
+      href: '/몰디브-보트-이동-리조트/',
+      label: '몰디브 보트 이동 리조트',
     },
     {
-      href: '/maldives-seaplane-resorts-comparison/',
-      label: '수상비행기 리조트',
+      href: '/몰디브-수상비행기-리조트/',
+      label: '몰디브 수상비행기 리조트',
     },
     {
-      href: '/maldives-snorkeling-house-reef-resorts/',
-      label: '스노클링 좋은 리조트',
+      href: '/몰디브-스노클링-좋은-리조트/',
+      label: '몰디브 스노클링 좋은 리조트',
     },
     {
-      href: '/maldives-all-inclusive-honeymoon-resorts/',
-      label: '올인클루시브 허니문',
+      href: '/몰디브-올인클루시브-신혼여행/',
+      label: '몰디브 올인클루시브 신혼여행',
     },
   ];
 
@@ -57,7 +57,7 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
     <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
       <div className="max-w-3xl">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-700">
-          Maldives Honeymoon Finder
+          몰디브 신혼여행 리조트 찾기
         </p>
         <h2 id="honeymoon-starter-title" className="mt-2 text-2xl font-extrabold leading-tight text-slate-950 sm:text-3xl">
           몰디브 신혼여행 리조트, 먼저 네 가지 기준으로 좁히세요

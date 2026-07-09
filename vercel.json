@@ -1,4 +1,56 @@
 {
+  "redirects": [
+    {
+      "source": "/maldives-honeymoon-water-villa-private-pool",
+      "destination": "/몰디브-신혼여행-워터빌라-개인풀/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-honeymoon-water-villa-private-pool/",
+      "destination": "/몰디브-신혼여행-워터빌라-개인풀/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-speedboat-resorts-honeymoon",
+      "destination": "/몰디브-보트-이동-리조트/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-speedboat-resorts-honeymoon/",
+      "destination": "/몰디브-보트-이동-리조트/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-seaplane-resorts-comparison",
+      "destination": "/몰디브-수상비행기-리조트/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-seaplane-resorts-comparison/",
+      "destination": "/몰디브-수상비행기-리조트/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-snorkeling-house-reef-resorts",
+      "destination": "/몰디브-스노클링-좋은-리조트/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-snorkeling-house-reef-resorts/",
+      "destination": "/몰디브-스노클링-좋은-리조트/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-all-inclusive-honeymoon-resorts",
+      "destination": "/몰디브-올인클루시브-신혼여행/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-all-inclusive-honeymoon-resorts/",
+      "destination": "/몰디브-올인클루시브-신혼여행/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/resorts/:slug", "destination": "/" },
     { "source": "/resorts/:slug/", "destination": "/" }
