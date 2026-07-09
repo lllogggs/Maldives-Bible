@@ -6,7 +6,6 @@ import {
   StarIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  CartIcon,
   CheckCircleIcon,
   HeartIcon,
   HeartFilledIcon,
@@ -16,7 +15,6 @@ interface ResortCardProps {
   resort: Resort;
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
-  isFirstCard?: boolean;
   isImageEditMode?: boolean;
   likesCount: number;
   isLiked: boolean;
@@ -44,7 +42,6 @@ const ResortCard: React.FC<ResortCardProps> = ({
   resort,
   compareList,
   onToggleCompare,
-  isFirstCard = false,
   isImageEditMode = false,
   likesCount,
   isLiked,
@@ -200,21 +197,20 @@ const ResortCard: React.FC<ResortCardProps> = ({
           <span>{resort.rating.toFixed(1)}</span>
         </div>
         <div className="absolute bottom-3 right-3">
-          {isFirstCard && (
-            <div className="absolute -top-5 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-950 px-3 py-1 text-xs font-bold text-white shadow-sm">
-              비교함 담기
-              <div className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-x-4 border-t-4 border-x-transparent border-t-slate-950"></div>
-            </div>
-          )}
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
             disabled={!canSelectForCompare}
-            className="rounded-full bg-white/90 p-2 text-slate-800 shadow-sm backdrop-blur transition-colors hover:bg-white disabled:cursor-not-allowed disabled:bg-slate-200/80"
-            aria-label={isSelectedForCompare ? `${resort.name} 비교함에서 제거` : `${resort.name} 비교함에 담기`}
-            title={isSelectedForCompare ? '비교함에서 제거' : '비교함에 담기'}
+            className={`inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-xs font-bold shadow-sm backdrop-blur transition-colors disabled:cursor-not-allowed disabled:bg-slate-200/80 ${
+              isSelectedForCompare
+                ? 'bg-teal-700 text-white hover:bg-teal-800'
+                : 'bg-white/90 text-slate-800 hover:bg-white'
+            }`}
+            aria-label={isSelectedForCompare ? `${resort.name} 비교에서 제거` : `${resort.name} 비교에 추가`}
+            title={isSelectedForCompare ? '비교에서 제거' : '비교에 추가'}
           >
-            {isSelectedForCompare ? <CheckCircleIcon className="h-5 w-5 text-teal-700" /> : <CartIcon className="h-5 w-5" />}
+            {isSelectedForCompare && <CheckCircleIcon className="h-4 w-4" />}
+            비교
           </button>
         </div>
       </div>
@@ -304,7 +300,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
                   onClick={handleViewDetails}
                   className="h-8 whitespace-nowrap rounded-lg bg-slate-950 px-3 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
                 >
-                  상세
+                  보기
                 </button>
               </div>
               <p className="mt-1 text-xs leading-5 text-slate-500">

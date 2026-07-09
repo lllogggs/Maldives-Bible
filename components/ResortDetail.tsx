@@ -238,14 +238,16 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
             {/* Mobile Carousel */}
             <div className="md:hidden h-64 w-full overflow-hidden relative">
                 {displayedImageUrls.map((url, index) => (
-                    <div
-                        key={index}
-                        className="absolute w-full h-full transition-transform duration-300 ease-in-out"
+                    <button
+                        key={url}
+                        type="button"
+                        aria-label={`${resort.name} 이미지 ${index + 1} 크게 보기`}
+                        className="absolute h-full w-full border-0 bg-transparent p-0 transition-transform duration-300 ease-in-out"
                         style={{ transform: `translateX(${(index - selectedImageIndex) * 100}%)` }}
                         onClick={() => openGallery(selectedImageIndex)}
                     >
                         <img src={url} alt={`${resort.name_en} view ${index + 1}`} className="w-full h-full object-cover"/>
-                    </div>
+                    </button>
                 ))}
                 {canDeleteImages && (
                   <button
@@ -303,7 +305,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
             <InfoCard icon={<StarIcon />} title="수중환경">
                 {resort.snorkelingQuality} / 5
             </InfoCard>
-            <InfoCard icon={<DollarIcon />} title="4박 가격 (USD)">
+            <InfoCard icon={<DollarIcon />} title="4박 2인">
                 ${resort.price.toLocaleString()}
             </InfoCard>
             <InfoCard icon={<TransportationIcon type={resort.transportation} />} title="이동수단">
@@ -312,13 +314,13 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
             <InfoCard icon={<ClockIcon />} title="이동시간">
                 {resort.travelTime}분
             </InfoCard>
-            <InfoCard icon={<DollarIcon />} title="이동비용 (USD)">
+            <InfoCard icon={<DollarIcon />} title="이동비 1인">
                 ${resort.travelCost.toLocaleString()}
             </InfoCard>
             <InfoCard icon={<LocationPinIcon />} title="위치">
                 {resort.location}
             </InfoCard>
-             <InfoCard icon={<CalendarIcon />} title="오픈/리노베이션">
+             <InfoCard icon={<CalendarIcon />} title="오픈/리뉴얼">
                 {resort.openYear}{resort.renovationYear && ` / ${resort.renovationYear}`}
             </InfoCard>
           </div>
@@ -326,7 +328,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
           {/* Details & Amenities */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">리조트 시설</h3>
+                <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">시설</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     <InfoCard icon={<RestaurantIcon />} title="레스토랑">{resort.restaurants}개</InfoCard>
                     <InfoCard icon={<RestaurantIcon />} title="바">{resort.bars}개</InfoCard>
@@ -337,13 +339,13 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
                 </div>
             </div>
             <div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">객실 및 편의시설</h3>
+                <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">객실 및 혜택</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <AmenityItem icon={<CheckCircleIcon />} label="비치빌라 보유" value={resort.hasBeachVilla} />
-                    <AmenityItem icon={<CheckCircleIcon />} label="워터빌라 보유" value={resort.hasWaterVilla} />
-                    <AmenityItem icon={<CheckCircleIcon />} label="개인 풀 보유" value={resort.hasPrivatePool} />
-                    <AmenityItem icon={<CheckCircleIcon />} label="패밀리 룸" value={resort.hasFamilyRoom} />
-                    <AmenityItem icon={<KidsClubIcon />} label="키즈 클럽" value={resort.hasKidsClub} />
+                    <AmenityItem icon={<CheckCircleIcon />} label="비치빌라" value={resort.hasBeachVilla} />
+                    <AmenityItem icon={<CheckCircleIcon />} label="워터빌라" value={resort.hasWaterVilla} />
+                    <AmenityItem icon={<CheckCircleIcon />} label="개인풀" value={resort.hasPrivatePool} />
+                    <AmenityItem icon={<CheckCircleIcon />} label="패밀리룸" value={resort.hasFamilyRoom} />
+                    <AmenityItem icon={<KidsClubIcon />} label="키즈클럽" value={resort.hasKidsClub} />
                     <AmenityItem icon={<HeartIcon />} label="허니문 혜택" value={resort.honeymoonPerks} />
                 </div>
             </div>
@@ -351,7 +353,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
           
           {/* Room Types */}
           <div className="mt-8">
-            <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">대표 객실 타입</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">객실 타입</h3>
             <div className="flex flex-wrap gap-3">
               {resort.roomTypes.map(type => (
                 <span key={type} className="px-4 py-2 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">

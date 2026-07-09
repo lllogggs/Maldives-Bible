@@ -200,14 +200,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
         </div>
       </FilterOption>
 
-      <FilterOption title="4박 예산">
+      <FilterOption title="4박 기준 예산">
         <div className="space-y-3">
           <div className="flex items-center justify-between gap-3">
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">
-              최소 {formatBudget(filters.minPrice)}
+              {filters.minPrice > MIN_BUDGET ? `최소 ${formatBudget(filters.minPrice)}` : '최소 제한 없음'}
             </span>
             <span className="rounded-full bg-teal-50 px-3 py-1 text-xs font-bold text-teal-800">
-              최대 {formatBudget(filters.maxPrice)}
+              {filters.maxPrice < MAX_BUDGET ? `최대 ${formatBudget(filters.maxPrice)}` : '최대 제한 없음'}
             </span>
           </div>
           <div
@@ -280,17 +280,17 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
         </div>
       </FilterOption>
 
-      <FilterOption title="저장">
+      <FilterOption title="찜">
         <CheckboxRow
           checked={filters.onlyLiked}
           onChange={() => onFilterChange('onlyLiked', !filters.onlyLiked)}
         >
           <HeartIcon className="h-5 w-5 text-rose-500" />
-          <span className="text-slate-700">좋아요만 보기</span>
+          <span className="text-slate-700">찜한 리조트만</span>
         </CheckboxRow>
       </FilterOption>
 
-      <FilterOption title={`레스토랑 ${filters.minRestaurants}개 이상`}>
+      <FilterOption title={filters.minRestaurants > 0 ? `다이닝 ${filters.minRestaurants}곳 이상` : '다이닝'}>
         <input
           type="range"
           min="0"
@@ -299,19 +299,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
           value={filters.minRestaurants}
           onChange={e => onFilterChange('minRestaurants', Number(e.target.value))}
           style={getRangeStyle(filters.minRestaurants, 0, 15)}
-          className="h-2 w-full cursor-pointer appearance-none rounded-lg"
-        />
-      </FilterOption>
-
-      <FilterOption title={`바 ${filters.minBars}개 이상`}>
-        <input
-          type="range"
-          min="0"
-          max="10"
-          step="1"
-          value={filters.minBars}
-          onChange={e => onFilterChange('minBars', Number(e.target.value))}
-          style={getRangeStyle(filters.minBars, 0, 10)}
           className="h-2 w-full cursor-pointer appearance-none rounded-lg"
         />
       </FilterOption>

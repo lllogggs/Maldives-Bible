@@ -125,13 +125,8 @@ const PROFILE_ID_STORAGE_KEY = 'resortProfileId';
 const PROFILE_TOKEN_STORAGE_KEY = 'resortProfileToken';
 
 const buildApiEndpoint = (path: string) => {
-  const baseUrl = import.meta.env.VITE_PREFERENCES_API_BASE_URL?.replace(/\/$/, '');
-  if (baseUrl) {
-    return `${baseUrl}${path}`;
-  }
-
   if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
-    const fallbackBase = 'https://maldives-bible.vercel.app';
+    const fallbackBase = import.meta.env.VITE_PREFERENCES_API_BASE_URL?.replace(/\/$/, '') ?? 'https://maldives-bible.vercel.app';
     return `${fallbackBase}${path}`;
   }
 
@@ -160,8 +155,12 @@ const canUseRemoteStateApi = () => {
   }
 
   const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+  if (isLocalHost && env.VITE_ENABLE_REMOTE_STATE_IN_DEV !== 'true') {
+    return false;
+  }
+
   const isDevMode = env.DEV ?? env.MODE === 'development';
-  if (isDevMode && isLocalHost && env.VITE_ENABLE_REMOTE_STATE_IN_DEV !== 'true') {
+  if (isDevMode && isLocalHost) {
     return false;
   }
 

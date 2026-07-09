@@ -26,7 +26,7 @@ const TransportationDisplay: React.FC<{type: TransportationType; className?: str
 
 const specs = [
   {
-    category: '기본 정보',
+    category: '기본',
     attributes: [
       { label: '평점', key: 'rating', lowerIsBetter: false, render: (val: number) => <div className="flex items-center justify-center gap-1 font-bold"><StarIcon className="h-4 w-4 text-yellow-400" /> {val.toFixed(1)}</div> },
       { label: '수중환경', key: 'snorkelingQuality', lowerIsBetter: false, render: (val: number) => <div className="flex items-center justify-center gap-1 font-bold"><StarIcon className="h-4 w-4 text-yellow-400" /> {val}</div> },
@@ -40,15 +40,15 @@ const specs = [
     attributes: [
       { label: '비치빌라', key: 'hasBeachVilla', render: (val: boolean) => <BooleanIcon value={val} /> },
       { label: '워터빌라', key: 'hasWaterVilla', render: (val: boolean) => <BooleanIcon value={val} /> },
-      { label: '개인 풀', key: 'hasPrivatePool', render: (val: boolean) => <BooleanIcon value={val} /> },
+      { label: '개인풀', key: 'hasPrivatePool', render: (val: boolean) => <BooleanIcon value={val} /> },
     ]
   },
   {
-    category: '이동 정보',
+    category: '이동',
     attributes: [
       { label: '이동수단', key: 'transportation', render: (val: TransportationType) => <TransportationDisplay type={val} /> },
       { label: '이동시간 (분)', key: 'travelTime', lowerIsBetter: true },
-      { label: '이동비용 ($)', key: 'travelCost', lowerIsBetter: true, render: (val: number) => val.toLocaleString() },
+      { label: '이동비 1인 ($)', key: 'travelCost', lowerIsBetter: true, render: (val: number) => val.toLocaleString() },
     ]
   },
   {
@@ -61,7 +61,7 @@ const specs = [
     ]
   },
   {
-    category: '편의시설',
+    category: '혜택',
     attributes: [
       { label: '패밀리룸', key: 'hasFamilyRoom', render: (val: boolean) => <BooleanIcon value={val} /> },
       { label: '키즈클럽', key: 'hasKidsClub', render: (val: boolean) => <BooleanIcon value={val} /> },
@@ -132,8 +132,8 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) 
         <div className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center p-4 pt-20 sm:pt-24 lg:hidden">
           <div className="bg-white rounded-lg p-6 sm:p-8 text-center max-w-sm shadow-xl w-full max-w-[360px]">
             <RotateDeviceIcon className="h-16 w-16 mx-auto text-cyan-500 mb-4" />
-            <h3 className="text-xl font-bold text-gray-800 mb-2">가로 모드로 돌려보세요</h3>
-            <p className="text-gray-600 mb-6">리조트 비교는 화면을 가로로 돌렸을 때 더 편하게 보실 수 있습니다.</p>
+            <h3 className="text-xl font-bold text-gray-800 mb-2">가로 화면 추천</h3>
+            <p className="text-gray-600 mb-6">넓은 비교표로 보기</p>
             <button
               onClick={() => setShowRotateModal(false)}
               className="w-full bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-cyan-600 transition-colors"
@@ -153,7 +153,7 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) 
       </button>
 
       <div className="bg-white p-2 sm:p-6 rounded-lg border border-gray-200 shadow-md">
-        <h1 className="text-xl sm:text-3xl font-bold text-gray-900">선택한 리조트 비교하기</h1>
+        <h1 className="text-xl sm:text-3xl font-bold text-gray-900">리조트 비교</h1>
         <div className="relative mt-4 sm:mt-6 overflow-x-auto">
             <div className="grid gap-x-2 sm:gap-x-4" style={{ gridTemplateColumns: `minmax(100px, auto) repeat(${numResorts}, max-content)`}}>
                 {/* Row 1: Headers */}

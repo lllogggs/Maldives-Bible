@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({
                 Maldives Bible
               </span>
               <span className="font-brand-heading block truncate text-base text-slate-950 group-hover:text-teal-700">
-                몰디브 리조트 탐색
+                몰디브 리조트
               </span>
             </span>
           </button>
@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({
               </div>
               <input
                 type="text"
-                placeholder="리조트 이름으로 검색..."
+                placeholder="리조트 이름 검색"
                 value={searchTerm}
                 onChange={(e) => onSearchChange(e.target.value)}
                 className={`w-full rounded-lg border border-slate-200 bg-white pl-10 pr-4 text-slate-950 shadow-inner shadow-slate-900/[0.03] placeholder:text-slate-400 transition-all duration-300 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 ${inputSizing}`}

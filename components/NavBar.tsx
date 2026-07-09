@@ -31,22 +31,22 @@ const NavBar: React.FC<NavBarProps> = ({ currentView, onViewChange }) => {
     <nav className="mb-6 overflow-x-auto border-b border-slate-200" aria-label="몰디브 바이블 섹션">
       <div className="flex min-w-max gap-1 sm:gap-8">
         <NavButton
-          label="리조트 목록"
+          label="리조트"
           isActive={currentView === 'resorts'}
           onClick={() => onViewChange('resorts')}
         />
         <NavButton
-          label="리조트 선택 팁"
+          label="선택 기준"
           isActive={currentView === 'tips'}
           onClick={() => onViewChange('tips')}
         />
         <NavButton
-          label="한국 여행사"
+          label="견적 문의"
           isActive={currentView === 'agencies'}
           onClick={() => onViewChange('agencies')}
         />
         <NavButton
-          label="항공권 정보"
+          label="항공 일정"
           isActive={currentView === 'flights'}
           onClick={() => onViewChange('flights')}
         />

@@ -19,8 +19,8 @@ const CompareTray: React.FC<CompareTrayProps> = ({ resorts, onRemove, onClear, o
       <div className="max-w-screen-xl mx-auto px-2 sm:px-4 py-2">
         <div className="flex items-center justify-between gap-2 sm:gap-4">
           <div className="flex-1 min-w-0">
-            <h3 className="hidden sm:block text-lg font-bold text-gray-800 mb-2">비교할 리조트 ({resorts.length}/3)</h3>
-            <div className="sm:hidden text-sm font-bold text-gray-800 mb-1">비교하기 ({resorts.length}/3)</div>
+            <h3 className="hidden sm:block text-lg font-bold text-gray-800 mb-2">비교 리조트 ({resorts.length}/3)</h3>
+            <div className="sm:hidden text-sm font-bold text-gray-800 mb-1">비교 ({resorts.length}/3)</div>
             
             <div className="hidden sm:grid sm:grid-cols-3 gap-3">
               {resorts.map(resort => (
@@ -33,7 +33,7 @@ const CompareTray: React.FC<CompareTrayProps> = ({ resorts, onRemove, onClear, o
               ))}
               {Array.from({ length: 3 - resorts.length }).map((_, i) => (
                 <div key={`placeholder-${i}`} className="bg-gray-100/50 rounded-lg p-2 flex items-center justify-center text-sm border-2 border-dashed border-gray-300 h-[40px]">
-                  <span className="text-gray-400">리조트 추가...</span>
+                  <span className="text-gray-400">추가 선택</span>
                 </div>
               ))}
             </div>
@@ -47,20 +47,20 @@ const CompareTray: React.FC<CompareTrayProps> = ({ resorts, onRemove, onClear, o
                   </button>
                 </div>
               ))}
-              {resorts.length === 0 && <div className="text-gray-400 text-sm flex-shrink-0 px-2">리조트를 추가하세요...</div>}
+              {resorts.length === 0 && <div className="text-gray-400 text-sm flex-shrink-0 px-2">리조트 선택</div>}
             </div>
           </div>
 
           <div className="flex-shrink-0 flex items-center gap-2">
             <button onClick={onClear} className="p-2 sm:px-4 text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900 rounded-md hover:bg-gray-200">
-              전체삭제
+              비우기
             </button>
             <button 
               onClick={onCompare} 
-              className="px-3 py-2 sm:px-6 sm:py-3 bg-cyan-500 text-white font-bold rounded-lg hover:bg-cyan-600 transition-transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:scale-100 text-xs sm:text-base"
+              className="px-3 py-2 sm:px-6 sm:py-3 bg-teal-700 text-white font-bold rounded-lg hover:bg-teal-800 transition-transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:scale-100 text-xs sm:text-base"
               disabled={resorts.length < 2}
             >
-              {resorts.length < 2 ? `선택 (${resorts.length}/2)` : `비교 (${resorts.length})`}
+              {resorts.length < 2 ? '2개 이상 선택' : `비교 (${resorts.length})`}
             </button>
           </div>
         </div>

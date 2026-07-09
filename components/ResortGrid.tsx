@@ -50,14 +50,11 @@ const ResortGrid: React.FC<ResortGridProps> = ({
     <div>
       <div className="mb-4 flex flex-col gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="font-brand-heading text-2xl text-slate-950">허니문 후보 리조트</h1>
+          <h1 className="font-brand-heading text-2xl text-slate-950">몰디브 허니문 리조트</h1>
           <p className="mt-1 text-sm text-slate-600">
-            {totalResortsCount}개
-            {totalResortsCount !== totalAllResortsCount && (
-              <span className="ml-2 font-semibold text-teal-700">
-                필터 {totalResortsCount}/{totalAllResortsCount}
-              </span>
-            )}
+            {totalResortsCount === totalAllResortsCount
+              ? `${totalResortsCount}개 리조트`
+              : `전체 ${totalAllResortsCount}개 중 ${totalResortsCount}개`}
           </p>
         </div>
 
@@ -83,14 +80,14 @@ const ResortGrid: React.FC<ResortGridProps> = ({
                     isImageEditMode ? 'cursor-not-allowed bg-slate-100 text-slate-400' : 'bg-white text-slate-700'
                   }`}
                 >
-                  <option value="custom">사용자 지정 순서</option>
-                  <option value="popularity">인기 많은 순</option>
+                  <option value="custom">추천순</option>
+                  <option value="popularity">인기순</option>
                   <option value="price-asc">가격 낮은 순</option>
                   <option value="price-desc">가격 높은 순</option>
                   <option value="rating-desc">평점 높은 순</option>
-                  <option value="snorkeling-desc">수중환경 좋은 순</option>
+                  <option value="snorkeling-desc">수중환경순</option>
                   <option value="travelTime-asc">이동시간 짧은 순</option>
-                  <option value="likes-desc">좋아요 많은 순</option>
+                  <option value="likes-desc">좋아요순</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-600">
                   <ChevronDownIcon />
@@ -109,13 +106,12 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 
       {resorts.length > 0 ? (
         <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {resorts.map((resort, index) => (
+          {resorts.map((resort) => (
             <ResortCard
               key={resort.id}
               resort={resort}
               compareList={compareList}
               onToggleCompare={onToggleCompare}
-              isFirstCard={index === 0}
               isImageEditMode={isImageEditMode}
               likesCount={likesCountMap[resort.id] ?? 0}
               isLiked={likedResortIds.includes(resort.id)}
@@ -128,7 +124,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
       ) : (
         <div className="rounded-lg border border-dashed border-slate-300 bg-white px-6 py-16 text-center">
           <h3 className="text-xl font-semibold text-slate-800">검색 결과가 없습니다.</h3>
-          <p className="mt-2 text-slate-500">필터 조건을 줄여보세요.</p>
+          <p className="mt-2 text-slate-500">조건을 조금 넓혀보세요.</p>
         </div>
       )}
 

@@ -4,32 +4,32 @@ import { ClockIcon, CalendarIcon, DomesticFlightIcon } from './icons/Icons';
 const scheduleTips = [
   {
     title: '말레 새벽 도착',
-    value: '리조트 첫날부터 사용',
-    note: '비싼 리조트 숙박일을 가장 길게 쓰는 일정입니다. 도착 후 라운지 대기, 수상비행기/보트 연결 가능 시간을 같이 확인하세요.',
+    value: '리조트 시간을 길게',
+    note: '도착 후 대기시간 + 리조트 이동 첫 편',
   },
   {
     title: '오후·밤 도착',
     value: '말레 1박 후 이동',
-    note: '당일 이동이 애매하면 훌루말레나 말레에서 1박하고 다음날 오전 리조트로 들어가는 편이 낫습니다.',
+    note: '늦은 도착이면 다음날 오전 이동',
   },
   {
     title: '수상비행기 리조트',
-    value: '낮 시간 연결',
-    note: '수상비행기는 야간 운항이 제한됩니다. 말레 도착 시간이 늦으면 첫날 리조트 숙박을 날릴 수 있습니다.',
+    value: '낮 도착 우선',
+    note: '야간 연결 제한, 말레 도착 시간 중요',
   },
 ];
 
 const routeRows = [
-  ['싱가포르 경유', '동선 깔끔', '대기시간 확인'],
-  ['중동 경유', '밤 출발 선택지', '총 이동시간 확인'],
-  ['동남아 경유', '가격 비교용', '수하물 포함 확인'],
+  ['싱가포르 경유', '일정 맞추기 쉬움', '대기시간'],
+  ['중동 경유', '밤 출발 선택지', '총 이동시간'],
+  ['동남아 경유', '가격 비교', '수하물 포함'],
 ];
 
 const FlightInfo: React.FC = () => {
   return (
     <div className="animate-fade-in space-y-7 pb-10">
       <section className="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h1 className="font-brand-heading text-2xl text-slate-950">항공권 정보</h1>
+        <h1 className="font-brand-heading text-2xl text-slate-950">항공 일정</h1>
         <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
           ICN → MLE
         </span>
@@ -68,7 +68,7 @@ const FlightInfo: React.FC = () => {
         <div className="flex items-start gap-2">
           <CalendarIcon className="mt-0.5 h-4 w-4 shrink-0" />
           <p>
-            리조트 견적을 받기 전에는 항공권을 확정하지 말고, 말레 도착 시간과 리조트 이동 가능 시간을 먼저 맞춰보세요.
+            말레 도착 시간과 리조트 이동 가능 시간 확인 후 항공권 확정
           </p>
         </div>
       </section>
