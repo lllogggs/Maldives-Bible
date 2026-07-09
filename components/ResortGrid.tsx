@@ -122,7 +122,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
         </div>
       </div>
 
-      <div className="mb-4 rounded-lg border border-teal-100 bg-white px-3 py-3 shadow-sm shadow-slate-900/5">
+      <div className="mb-4 hidden rounded-lg border border-teal-100 bg-white px-3 py-3 shadow-sm shadow-slate-900/5 sm:block">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs font-bold uppercase tracking-[0.12em] text-teal-700">빠른 시작</p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
