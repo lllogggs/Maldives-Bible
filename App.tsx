@@ -9,10 +9,8 @@ import NavBar from './components/NavBar';
 import ResortSelectionTips from './components/ResortSelectionTips';
 import TravelAgencies from './components/TravelAgencies';
 import FlightInfo from './components/FlightInfo';
-import HoneymoonStarter, { type HoneymoonPreset } from './components/HoneymoonStarter';
 import { POPULARITY_RANKING } from './constants';
 import type { Resort, Filters, SortOption } from './types';
-import { TransportationType } from './types';
 
 type ViteEnvShim = {
   DEV?: boolean;
@@ -88,45 +86,6 @@ const DEFAULT_FILTERS: Filters = {
   honeymoonPerks: false,
   onlyLiked: false,
 };
-
-const HONEYMOON_PRESETS: HoneymoonPreset[] = [
-  {
-    id: 'budget-first',
-    label: 'Budget',
-    title: '예산 먼저 맞추기',
-    description: '견적이 불안한 커플을 위해 4박 2인 $7,000 이하 후보부터 보여줍니다.',
-    resultHint: '가격 낮은 순 + 허니문 혜택',
-    filters: { minPrice: 0, maxPrice: 7000, honeymoonPerks: true },
-    sortOption: 'price-asc',
-  },
-  {
-    id: 'easy-transfer',
-    label: 'Transfer',
-    title: '이동 피로 줄이기',
-    description: '장거리 비행 뒤 바로 쉬고 싶은 일정이면 보트 이동권부터 보는 편이 안전합니다.',
-    resultHint: '보트 이동 + 이동시간 짧은 순',
-    filters: { transportation: [TransportationType.Boat], minPrice: 0, maxPrice: 12000, honeymoonPerks: true },
-    sortOption: 'travelTime-asc',
-  },
-  {
-    id: 'water-pool',
-    label: 'Romance',
-    title: '워터빌라 로망 챙기기',
-    description: '사진, 프라이버시, 객실 만족도를 우선하는 커플을 위한 워터빌라+개인풀 후보입니다.',
-    resultHint: '워터빌라 + 개인풀 + 평점순',
-    filters: { roomTypes: ['water'], hasPrivatePool: true, minPrice: 7000, maxPrice: 18000, honeymoonPerks: true },
-    sortOption: 'rating-desc',
-  },
-  {
-    id: 'reef-first',
-    label: 'Reef',
-    title: '스노클링 만족도 우선',
-    description: '라군만 예쁜 곳보다 물속 경험이 중요한 커플을 위해 수중환경 좋은 순으로 정렬합니다.',
-    resultHint: '허니문 혜택 + 수중환경순',
-    filters: { minPrice: 0, maxPrice: 14000, honeymoonPerks: true },
-    sortOption: 'snorkeling-desc',
-  },
-];
 
 const parseNumberParam = (value: string | null, fallback: number) => {
   if (!value) {
@@ -1330,19 +1289,6 @@ const App: React.FC = () => {
     setSortOption(option);
   };
 
-  const handleApplyHoneymoonPreset = (preset: HoneymoonPreset) => {
-    setFilters({
-      ...DEFAULT_FILTERS,
-      ...preset.filters,
-    });
-    setSortOption(preset.sortOption);
-    setCurrentView('resorts');
-    setIsCompareViewVisible(false);
-    setSelectedResortId(null);
-    setCurrentPage(1);
-    setToastMessage(`${preset.title} 조건으로 후보를 좁혔습니다.`);
-  };
-
   const handleViewChange = (view: View) => {
     setCurrentView(view);
     setIsCompareViewVisible(false);
@@ -1351,32 +1297,6 @@ const App: React.FC = () => {
       window.location.hash = '';
     }
     setCurrentPage(1);
-  };
-
-  const handleCopyShareLink = async () => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    const link = window.location.href;
-    try {
-      await navigator.clipboard.writeText(link);
-      setToastMessage('필터/정렬 링크가 복사되었습니다.');
-    } catch (err) {
-      try {
-        const textarea = document.createElement('textarea');
-        textarea.value = link;
-        textarea.style.position = 'fixed';
-        textarea.style.left = '-9999px';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        setToastMessage('필터/정렬 링크가 복사되었습니다.');
-      } catch (copyErr) {
-        console.error('Failed to copy share link', copyErr);
-        setToastMessage('링크 복사에 실패했습니다.');
-      }
-    }
   };
 
   const handlePageChange = (page: number) => {
@@ -1612,7 +1532,6 @@ const App: React.FC = () => {
                         compareList={compareList}
                         onToggleCompare={handleToggleCompare}
                         onOpenFilter={() => setIsFilterOpen(true)}
-                        onCopyShareLink={handleCopyShareLink}
                         isImageEditMode={isImageEditMode}
                         likesCountMap={likesCountMap}
                         likedResortIds={likedResortIds}
@@ -1620,15 +1539,6 @@ const App: React.FC = () => {
                         pendingLikeResortIds={pendingLikeResortIds}
                         onViewDetails={handleViewDetails}
                       />
-                      <div className="mt-10">
-                        <HoneymoonStarter
-                          presets={HONEYMOON_PRESETS}
-                          totalAllResortsCount={initialResorts.length}
-                          totalResortsCount={displayedResorts.length}
-                          onApplyPreset={handleApplyHoneymoonPreset}
-                          onOpenFilter={() => setIsFilterOpen(true)}
-                        />
-                      </div>
                     </>
                   )}
                 </div>

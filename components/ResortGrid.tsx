@@ -15,7 +15,6 @@ interface ResortGridProps {
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
   onOpenFilter: () => void;
-  onCopyShareLink: () => void;
   isImageEditMode: boolean;
   likesCountMap: Record<number, number>;
   likedResortIds: number[];
@@ -36,7 +35,6 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   compareList,
   onToggleCompare,
   onOpenFilter,
-  onCopyShareLink,
   isImageEditMode,
   likesCountMap,
   likedResortIds,
@@ -72,13 +70,6 @@ const ResortGrid: React.FC<ResortGridProps> = ({
             >
               <FilterIcon className="h-5 w-5" />
               <span>필터</span>
-            </button>
-            <button
-              type="button"
-              onClick={onCopyShareLink}
-              className="order-2 flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:order-none"
-            >
-              링크 복사
             </button>
             <div className="order-3 flex items-center gap-2 sm:order-none">
               <SortIcon className="h-5 w-5 text-slate-500" />
