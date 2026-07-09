@@ -38,7 +38,7 @@ export const LogoIcon: React.FC = () => (
     fontFamily="sans-serif" 
     fontSize="18" 
     fontWeight="bold" 
-    fill="#FFFFFF"
+    fill="#0f766e"
     textAnchor="middle"
   >
     몰디브 바이블

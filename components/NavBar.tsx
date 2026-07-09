@@ -12,13 +12,14 @@ const NavButton: React.FC<{
   isActive: boolean;
   onClick: () => void;
 }> = ({ label, isActive, onClick }) => {
-  const activeClasses = 'border-cyan-500 text-cyan-600';
-  const inactiveClasses = 'border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-300';
+  const activeClasses = 'border-teal-600 text-slate-950';
+  const inactiveClasses = 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900';
   
   return (
     <button
+      type="button"
       onClick={onClick}
-      className={`py-4 px-1 border-b-2 font-medium text-sm sm:text-base transition-colors duration-200 ${isActive ? activeClasses : inactiveClasses}`}
+      className={`min-h-11 shrink-0 border-b-2 px-1 text-sm font-semibold transition-colors duration-200 sm:text-base ${isActive ? activeClasses : inactiveClasses}`}
     >
       {label}
     </button>
@@ -27,8 +28,8 @@ const NavButton: React.FC<{
 
 const NavBar: React.FC<NavBarProps> = ({ currentView, onViewChange }) => {
   return (
-    <div className="mb-8 border-b border-gray-200">
-      <div className="flex space-x-4 sm:space-x-8">
+    <nav className="mb-6 overflow-x-auto border-b border-slate-200" aria-label="몰디브 바이블 섹션">
+      <div className="flex min-w-max gap-5 sm:gap-8">
         <NavButton
           label="리조트 목록"
           isActive={currentView === 'resorts'}
@@ -50,7 +51,7 @@ const NavBar: React.FC<NavBarProps> = ({ currentView, onViewChange }) => {
           onClick={() => onViewChange('flights')}
         />
       </div>
-    </div>
+    </nav>
   );
 };
 

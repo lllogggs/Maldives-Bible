@@ -28,13 +28,13 @@ interface ResortCardProps {
 const getTransportationTagColor = (transportation: TransportationType) => {
   switch (transportation) {
     case TransportationType.Seaplane:
-      return 'bg-cyan-500';
+      return 'border-sky-200 bg-sky-50 text-sky-800';
     case TransportationType.Boat:
-      return 'bg-blue-500';
+      return 'border-teal-200 bg-teal-50 text-teal-800';
     case TransportationType.Domestic:
-      return 'bg-green-500';
+      return 'border-emerald-200 bg-emerald-50 text-emerald-800';
     default:
-      return 'bg-gray-500';
+      return 'border-slate-200 bg-slate-50 text-slate-800';
   }
 };
 
@@ -128,87 +128,90 @@ const ResortCard: React.FC<ResortCardProps> = ({
 
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-200 flex flex-col">
+    <article className="flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
       <div
-        className="relative group cursor-pointer"
+        className="group relative cursor-pointer overflow-hidden bg-slate-100"
         onClick={handleViewDetails}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <img className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105" src={imageUrls[currentImageIndex]} alt={`${resort.name_en} image ${currentImageIndex + 1}`} />
+        <img className="h-60 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" src={imageUrls[currentImageIndex]} alt={`${resort.name_en} image ${currentImageIndex + 1}`} />
 
         {imageUrls.length > 1 && !isImageEditMode && (
           <>
             <button
+              type="button"
               onClick={handlePrevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition-all lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100"
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur hover:bg-white transition-all lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100"
               aria-label="Previous image"
             >
               <ChevronLeftIcon />
             </button>
             <button
+              type="button"
               onClick={handleNextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition-all lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100"
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur hover:bg-white transition-all lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100"
               aria-label="Next image"
             >
               <ChevronRightIcon />
             </button>
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-semibold px-2 py-1 rounded-full pointer-events-none">
+            <div className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-slate-950/70 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">
               {currentImageIndex + 1} / {imageUrls.length}
             </div>
           </>
         )}
 
-        <div className={`absolute top-3 left-3 px-3 py-1 text-sm font-semibold text-white rounded-full shadow-lg ${getTransportationTagColor(resort.transportation)}`}>
+        <div className={`absolute left-3 top-3 rounded-full border px-3 py-1 text-xs font-bold shadow-sm backdrop-blur ${getTransportationTagColor(resort.transportation)}`}>
           {resort.transportation}
         </div>
-        <div className="absolute top-3 right-3 bg-white px-3 py-1 text-sm font-bold text-gray-800 rounded-full shadow-lg flex items-center gap-1">
+        <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-sm font-bold text-slate-900 shadow-sm backdrop-blur">
           <StarIcon />
           <span>{resort.rating.toFixed(1)}</span>
         </div>
         <div className="absolute bottom-3 right-3">
             {isFirstCard && (
-                <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs font-bold py-1 px-3 rounded-md shadow-lg whitespace-nowrap z-10">
+                <div className="absolute -top-5 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-950 px-3 py-1 text-xs font-bold text-white shadow-sm">
                     비교하기
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-gray-800"></div>
+                    <div className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-x-4 border-t-4 border-x-transparent border-t-slate-950"></div>
                 </div>
             )}
             <button
+                type="button"
                 onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
                 disabled={!canSelectForCompare}
-                className={`bg-white/80 backdrop-blur-sm text-gray-800 p-2 rounded-full shadow-lg hover:bg-white transition-colors disabled:bg-gray-200/80 disabled:cursor-not-allowed`}
+                className="rounded-full bg-white/90 p-2 text-slate-800 shadow-sm backdrop-blur transition-colors hover:bg-white disabled:cursor-not-allowed disabled:bg-slate-200/80"
                 aria-label={isSelectedForCompare ? `Remove ${resort.name} from comparison` : `Add ${resort.name} to comparison`}
                 title={isSelectedForCompare ? '비교 목록에서 제거' : '비교 목록에 추가'}
             >
-                {isSelectedForCompare ? <CheckCircleIcon className="h-5 w-5 text-cyan-600" /> : <CartIcon className="h-5 w-5" />}
+                {isSelectedForCompare ? <CheckCircleIcon className="h-5 w-5 text-teal-700" /> : <CartIcon className="h-5 w-5" />}
             </button>
         </div>
       </div>
-      <div className="p-5 flex-grow flex flex-col">
+      <div className="flex flex-grow flex-col p-5">
         {isImageEditMode && (
-          <div className="mb-3 rounded-lg border border-cyan-200 bg-cyan-50 px-3 py-2 text-xs font-semibold text-cyan-800">
+          <div className="mb-3 rounded-lg border border-teal-200 bg-teal-50 px-3 py-2 text-xs font-semibold text-teal-800">
             상세 페이지에서 삭제할 이미지를 선택할 수 있습니다.
           </div>
         )}
         <div>
-          <h3 className="text-xl font-bold text-gray-900 cursor-pointer hover:text-cyan-600 transition-colors" onClick={handleViewDetails}>{resort.name}</h3>
-          <p className="text-sm text-gray-500 mb-2">{resort.name_en}</p>
+          <h3 className="cursor-pointer text-lg font-bold leading-snug text-slate-950 transition-colors hover:text-teal-700" onClick={handleViewDetails}>{resort.name}</h3>
+          <p className="mb-3 text-sm text-slate-500">{resort.name_en}</p>
           
-          <div className="flex items-center text-sm text-gray-600 mb-1">
+          <div className="mb-1 flex items-center text-sm text-slate-600">
             <LocationPinIcon />
             <span className="ml-1">{resort.location} • {resort.travelTime}분</span>
           </div>
-          <p className="text-sm text-gray-600 truncate">{resort.brand} • {resort.spaBrand}</p>
+          <p className="truncate text-sm text-slate-600">{resort.brand} • {resort.spaBrand}</p>
           
           <div className="mt-3 flex flex-wrap gap-2">
             {resort.roomTypes.map(type => (
-              <span key={type} className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">{type}</span>
+              <span key={type} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700">{type}</span>
             ))}
           </div>
         </div>
 
-        <div className="border-t border-gray-100 my-4"></div>
+        <div className="my-4 border-t border-slate-100"></div>
         
         <div className="mt-auto">
           <div className="flex items-start justify-between gap-3">
@@ -222,7 +225,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
               className={`flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-semibold transition-colors ${
                 isLiked
                   ? 'border-rose-300 bg-rose-100 text-rose-600 hover:bg-rose-200'
-                  : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-100'
+                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
               } ${isLikePending ? 'opacity-70 cursor-wait' : ''}`}
             >
               {isLiked ? (
@@ -233,24 +236,25 @@ const ResortCard: React.FC<ResortCardProps> = ({
               <span>{formattedLikesCount}</span>
             </button>
             <div className="flex-1 text-right">
-              <p className="text-xs text-gray-500">4박 2인 기준 (올인클루시브)</p>
-              <div className="mt-1 flex items-center justify-end gap-3">
-                <p className="text-xl md:text-2xl font-extrabold text-cyan-600 whitespace-nowrap leading-tight">
+              <p className="text-xs text-slate-500">4박 2인 기준 (올인클루시브)</p>
+              <div className="mt-1 flex items-center justify-end gap-2">
+                <p className="whitespace-nowrap text-xl font-extrabold leading-tight text-teal-700 md:text-2xl">
                   ${resort.price.toLocaleString()}
                 </p>
                 <button
+                  type="button"
                   onClick={handleViewDetails}
-                  className="px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap"
+                  className="whitespace-nowrap rounded-lg bg-slate-950 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
                 >
                   상세보기
                 </button>
               </div>
             </div>
           </div>
-          <p className="text-right text-xs text-gray-500 mt-2">수중환경: {resort.snorkelingQuality}/5점</p>
+          <p className="mt-2 text-right text-xs text-slate-500">수중환경: {resort.snorkelingQuality}/5점</p>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

@@ -140,6 +140,23 @@ const buildLikesEndpoint = () => {
 
 const RESORT_LIKES_ENDPOINT = buildLikesEndpoint();
 
+const canUseRemoteStateApi = () => {
+  const env = ((import.meta as unknown as { env?: ViteEnvShim })?.env) ?? {};
+  if (typeof env.VITE_PREFERENCES_API_BASE_URL === 'string' && env.VITE_PREFERENCES_API_BASE_URL.length > 0) {
+    return true;
+  }
+
+  if (typeof window === 'undefined') {
+    return true;
+  }
+
+  const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+  const isDevMode = env.DEV ?? env.MODE === 'development';
+  return !(isDevMode && isLocalHost);
+};
+
+const SHOULD_USE_REMOTE_STATE_API = canUseRemoteStateApi();
+
 function parseJsonSafely<T>(raw: string): T | null {
   if (!raw || raw.trim().length === 0) {
     return null;
@@ -340,6 +357,15 @@ const useResortLikes = ({
         next[resortId] = updatedCount;
         return next;
       });
+
+      if (!SHOULD_USE_REMOTE_STATE_API) {
+        setPendingLikeResortIds(prev => {
+          const next = new Set(prev);
+          next.delete(resortId);
+          return next;
+        });
+        return;
+      }
 
       try {
         const response = await fetch(RESORT_LIKES_ENDPOINT, {
@@ -559,7 +585,7 @@ const App: React.FC = () => {
   }, [toastMessage]);
 
   const fetchRemotePreferences = useCallback(async (activeProfileId: string | null): Promise<ResortPreferences | null> => {
-    if (!activeProfileId) {
+    if (!activeProfileId || !SHOULD_USE_REMOTE_STATE_API) {
       return null;
     }
 
@@ -581,7 +607,7 @@ const App: React.FC = () => {
         deleted_image_urls: ensureStringArray((data as ResortPreferences).deleted_image_urls),
       };
     } catch (err) {
-      console.error('Failed to fetch remote resort preferences', err);
+      console.warn('Failed to fetch remote resort preferences; using local preferences instead', err);
       return null;
     }
   }, []);
@@ -590,7 +616,7 @@ const App: React.FC = () => {
     async (hiddenIds: number[], order: number[], deletedUrls?: string[]) => {
       savePreferencesToLocal(hiddenIds, order);
 
-      if (!profileId) {
+      if (!profileId || !SHOULD_USE_REMOTE_STATE_API) {
         return;
       }
 
@@ -640,7 +666,7 @@ const App: React.FC = () => {
   );
 
   const fetchRemoteLikes = useCallback(async (activeProfileId: string | null): Promise<ResortLikesSummary | null> => {
-    if (!activeProfileId) {
+    if (!activeProfileId || !SHOULD_USE_REMOTE_STATE_API) {
       return null;
     }
 
@@ -661,7 +687,7 @@ const App: React.FC = () => {
         likedIds: ensureNumberArray((data as ResortLikesSummary).likedIds),
       };
     } catch (err) {
-      console.error('Failed to fetch resort likes', err);
+      console.warn('Failed to fetch resort likes; using local likes instead', err);
       return null;
     }
   }, []);
@@ -1346,7 +1372,7 @@ const App: React.FC = () => {
     .sort((a, b) => compareList.indexOf(a.id) - compareList.indexOf(b.id));
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-32">
+    <div className="min-h-screen bg-[#f6f8f7] pb-32 text-slate-950">
       <Header
         searchTerm={filters.searchTerm}
         onSearchChange={handleSearchChange}
@@ -1356,7 +1382,7 @@ const App: React.FC = () => {
         isCompact={isCompactHeader}
         onLogoClick={handleLogoClick}
       />
-      <main className="max-w-screen-xl mx-auto p-4 sm:p-6 lg:p-8">
+      <main className="mx-auto max-w-[1440px] px-4 py-5 sm:px-6 lg:px-8">
         <section
           className="sr-only mb-10 rounded-3xl border border-cyan-100 bg-white p-6 shadow-sm sm:p-8 lg:p-10"
           aria-labelledby="maldives-bible-intro"
@@ -1446,13 +1472,21 @@ const App: React.FC = () => {
                 onDeleteImage={handleDeleteResortImage}
               />
             ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                <div className="lg:col-span-1 hidden lg:block">
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+                <div className="hidden lg:block">
                   <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
                 </div>
-                <div className="lg:col-span-3">
-                  {loading && <div className="text-center py-16">몰디브 리조트 정보를 불러오는 중입니다...</div>}
-                  {error && <div className="text-center py-16 text-red-500">에러: {error}</div>}
+                <div className="min-w-0">
+                  {loading && (
+                    <div className="rounded-lg border border-slate-200 bg-white px-6 py-16 text-center text-slate-600">
+                      몰디브 리조트 정보를 불러오는 중입니다...
+                    </div>
+                  )}
+                  {error && (
+                    <div className="rounded-lg border border-red-200 bg-red-50 px-6 py-16 text-center text-red-600">
+                      에러: {error}
+                    </div>
+                  )}
                   {!loading && !error && (
                     <ResortGrid
                       resorts={paginatedResorts}
@@ -1483,11 +1517,11 @@ const App: React.FC = () => {
       </main>
       {isFilterOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-50 lg:hidden transition-opacity duration-300"
+          className="fixed inset-0 z-50 bg-slate-950/45 backdrop-blur-sm transition-opacity duration-300 lg:hidden"
           onClick={() => setIsFilterOpen(false)}
         >
           <div 
-            className="bg-white h-full w-4/5 max-w-sm shadow-xl transition-transform duration-300 transform -translate-x-full animate-slide-in"
+            className="h-full w-4/5 max-w-sm translate-x-0 bg-white shadow-xl transition-transform duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="h-full overflow-y-auto">
@@ -1509,7 +1543,7 @@ const App: React.FC = () => {
         />
       )}
       {toastMessage && (
-        <div className="fixed bottom-4 right-4 z-50 max-w-xs bg-red-500 text-white px-4 py-3 rounded shadow-lg">
+        <div className="fixed bottom-4 right-4 z-50 max-w-xs rounded-lg bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg">
           {toastMessage}
         </div>
       )}

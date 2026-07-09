@@ -20,35 +20,44 @@ const Header: React.FC<HeaderProps> = ({
   isCompact,
   onLogoClick,
 }) => {
-  const containerSpacing = isCompact ? 'py-0 sm:py-1.5' : 'py-5 sm:py-7';
-  const contentSpacing = isCompact ? 'gap-1.5 sm:gap-3' : 'gap-8 sm:gap-10';
-  const logoWidth = isCompact ? 'w-32 sm:w-40 md:w-48' : 'w-[288px]';
-  const inputSizing = isCompact ? 'py-1.5 text-sm' : 'py-2 text-base';
-  const buttonSizing = isCompact ? 'px-3 py-1.5 text-sm gap-2' : 'px-4 py-2 text-sm gap-3';
-  const logoSpacing = isCompact ? 'mt-0.5 sm:mt-1' : '';
+  const containerSpacing = isCompact ? 'py-2' : 'py-4 sm:py-5';
+  const contentSpacing = isCompact ? 'gap-2 sm:gap-4' : 'gap-3 sm:gap-6';
+  const logoWidth = isCompact ? 'w-14 sm:w-16' : 'w-16 sm:w-20';
+  const inputSizing = isCompact ? 'py-2 text-sm' : 'py-2.5 text-base';
+  const buttonSizing = isCompact ? 'px-3 py-2 text-sm gap-2' : 'px-4 py-2.5 text-sm gap-3';
   const searchBarSpacing = isCompact ? 'mb-1 sm:mb-0' : '';
 
   return (
-    <header className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-md transition-all duration-300">
+    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/85 text-slate-950 shadow-sm shadow-slate-900/5 backdrop-blur-xl transition-all duration-300">
       <div
-        className={`max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${containerSpacing}`}
+        className={`mx-auto max-w-[1440px] px-4 transition-all duration-300 sm:px-6 lg:px-8 ${containerSpacing}`}
       >
-        <div className={`flex flex-col items-center text-center transition-all duration-300 ${contentSpacing}`}>
+        <div className={`grid items-center transition-all duration-300 md:grid-cols-[auto_minmax(0,1fr)] ${contentSpacing}`}>
           <button
             type="button"
             onClick={onLogoClick}
             aria-label="홈으로 이동"
-            className={`${logoWidth} origin-top transition-all duration-300 ${logoSpacing} [filter:drop-shadow(0_4px_4px_rgba(0,0,0,0.25))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-cyan-500 block cursor-pointer`}
+            className="group flex min-w-0 items-center gap-3 justify-self-start text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
           >
-            <LogoIcon />
+            <span className={`${logoWidth} block shrink-0 transition-all duration-300`}>
+              <LogoIcon />
+            </span>
+            <span className="hidden min-w-0 sm:block">
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700">
+                Maldives Bible
+              </span>
+              <span className="block truncate text-base font-bold text-slate-950 group-hover:text-teal-700">
+                몰디브 리조트 탐색
+              </span>
+            </span>
           </button>
           <div
-            className={`w-full flex flex-col items-center sm:flex-row sm:items-center sm:justify-center transition-all duration-300 ${
-              isCompact ? 'gap-1.5 sm:gap-3' : 'gap-4 sm:gap-6'
-            } sm:max-w-2xl`}
+            className={`w-full min-w-0 flex flex-col items-stretch sm:flex-row sm:items-center sm:justify-end transition-all duration-300 ${
+              isCompact ? 'gap-2 sm:gap-3' : 'gap-3 sm:gap-4'
+            }`}
           >
-            <div className={`relative w-full sm:max-w-xl ${searchBarSpacing}`}>
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <div className={`relative w-full md:max-w-xl ${searchBarSpacing}`}>
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
                 <SearchIcon />
               </div>
               <input
@@ -56,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({
                 placeholder="리조트 이름으로 검색..."
                 value={searchTerm}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className={`w-full pl-10 pr-4 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300 ${inputSizing}`}
+                className={`w-full rounded-lg border border-slate-200 bg-white pl-10 pr-4 text-slate-950 shadow-inner shadow-slate-900/[0.03] placeholder:text-slate-400 transition-all duration-300 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 ${inputSizing}`}
               />
             </div>
             {isImageEditFeatureAvailable && (
@@ -64,10 +73,10 @@ const Header: React.FC<HeaderProps> = ({
                 type="button"
                 onClick={onToggleImageEditMode}
                 aria-pressed={isImageEditMode}
-                className={`flex items-center justify-between rounded-lg font-semibold shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white ${
+                className={`flex items-center justify-between rounded-lg border font-semibold transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-teal-500/10 ${
                   isImageEditMode
-                    ? 'bg-white/90 text-cyan-700'
-                    : 'bg-white/30 text-white hover:bg-white/40'
+                    ? 'border-teal-300 bg-teal-50 text-teal-800'
+                    : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'
                 } ${buttonSizing}`}
               >
                 <span className="flex items-center gap-2">
@@ -76,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({
                 </span>
                 <span
                   className={`inline-flex min-w-[3rem] items-center justify-center rounded-full px-2 py-1 text-xs font-bold ${
-                    isImageEditMode ? 'bg-emerald-500 text-emerald-950' : 'bg-white/60 text-cyan-700'
+                    isImageEditMode ? 'bg-teal-600 text-white' : 'bg-slate-100 text-slate-600'
                   }`}
                 >
                   {isImageEditMode ? 'ON' : 'OFF'}

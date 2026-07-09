@@ -50,13 +50,13 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 
   return (
     <div>
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+      <div className="mb-5 flex flex-col gap-4 border-b border-slate-200 pb-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">검색 결과</h2>
-          <p className="text-gray-600 mt-1">
+          <h2 className="text-2xl font-bold text-slate-950">검색 결과</h2>
+          <p className="mt-1 text-sm text-slate-600">
             총 {totalResortsCount}개의 리조트
             {totalResortsCount !== totalAllResortsCount && (
-              <span className="ml-2 text-cyan-700 font-semibold">
+              <span className="ml-2 font-semibold text-teal-700">
                 (필터 적용: {totalResortsCount}/{totalAllResortsCount})
               </span>
             )}
@@ -66,28 +66,30 @@ const ResortGrid: React.FC<ResortGridProps> = ({
         <div className="flex flex-col gap-2 w-full sm:w-auto sm:items-end">
           <div className="flex flex-wrap items-center justify-between gap-2 sm:justify-end">
             <button
+              type="button"
               onClick={onOpenFilter}
-              className="order-1 lg:hidden flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 active:bg-gray-100"
+              className="order-1 flex min-h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:hidden"
             >
               <FilterIcon className="h-5 w-5" />
               <span>필터</span>
             </button>
             <button
+              type="button"
               onClick={onCopyShareLink}
-              className="order-2 lg:order-none flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 active:bg-gray-100"
+              className="order-2 flex min-h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:order-none"
             >
               링크 복사
             </button>
             <div className="order-3 flex items-center gap-2 sm:order-none">
-              <SortIcon className="h-5 w-5 text-gray-500" />
+              <SortIcon className="h-5 w-5 text-slate-500" />
               <div className="relative">
                 <select
                   id="sort-options"
                   value={sortOption}
                   onChange={(e) => onSortChange(e.target.value as SortOption)}
                   disabled={isImageEditMode}
-                  className={`appearance-none w-full sm:w-auto border border-gray-300 rounded-md py-2 pl-3 pr-10 text-sm text-center focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 ${
-                    isImageEditMode ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700'
+                  className={`min-h-10 w-full appearance-none rounded-lg border border-slate-200 py-2 pl-3 pr-10 text-center text-sm shadow-sm shadow-slate-900/5 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:w-auto ${
+                    isImageEditMode ? 'cursor-not-allowed bg-slate-100 text-slate-400' : 'bg-white text-slate-700'
                   }`}
                 >
                   <option value="custom">사용자 지정 순서</option>
@@ -99,7 +101,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
                   <option value="travelTime-asc">이동시간 짧은 순</option>
                   <option value="likes-desc">좋아요 많은 순</option>
                 </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-600">
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                   </svg>
@@ -109,7 +111,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
           </div>
           <div className="min-h-[1.25rem] flex justify-end items-end">
             {sortOption === 'popularity' && (
-              <p className="text-xs text-gray-600 mt-1 sm:mt-0 text-right">
+              <p className="mt-1 text-right text-xs text-slate-500 sm:mt-0">
                 한국 구글 내 몰디브 리조트 검색량 지수 기준
               </p>
             )}
@@ -118,13 +120,13 @@ const ResortGrid: React.FC<ResortGridProps> = ({
       </div>
 
       {isImageEditMode && (
-        <div className="mb-4 rounded-lg border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900">
+        <div className="mb-4 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-900">
           이미지 편집 모드에서는 원하는 리조트의 상세 페이지로 이동해 삭제할 이미지를 선택하세요. 삭제한 이미지 URL은 기록되어 추후 확인할 수 있습니다.
         </div>
       )}
 
       {resorts.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {resorts.map((resort, index) => (
             <ResortCard
               key={resort.id}
@@ -142,9 +144,9 @@ const ResortGrid: React.FC<ResortGridProps> = ({
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 px-6 bg-gray-50 rounded-lg">
-          <h3 className="text-xl font-semibold text-gray-700">검색 결과가 없습니다.</h3>
-          <p className="text-gray-500 mt-2">다른 필터 옵션을 시도해 보세요.</p>
+        <div className="rounded-lg border border-dashed border-slate-300 bg-white px-6 py-16 text-center">
+          <h3 className="text-xl font-semibold text-slate-800">검색 결과가 없습니다.</h3>
+          <p className="mt-2 text-slate-500">다른 필터 옵션을 시도해 보세요.</p>
         </div>
       )}
 
@@ -161,8 +163,8 @@ const ResortGrid: React.FC<ResortGridProps> = ({
                 onClick={() => onPageChange(page)}
                 className={`px-1 text-sm font-semibold transition-colors ${
                   page === currentPage
-                    ? 'text-cyan-600 underline underline-offset-4 decoration-2'
-                    : 'text-gray-700 hover:text-cyan-600'
+                    ? 'text-teal-700 underline underline-offset-4 decoration-2'
+                    : 'text-slate-700 hover:text-teal-700'
                 }`}
                 aria-current={page === currentPage ? 'page' : undefined}
               >
@@ -175,17 +177,17 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               type="button"
               onClick={() => onPageChange(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
+              className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
               aria-label="이전 페이지"
             >
               ◀
             </button>
-            <span className="text-lg text-gray-300">ㅣ</span>
+            <span className="text-lg text-slate-300">ㅣ</span>
             <button
               type="button"
               onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
-              className="px-3 py-1 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-md disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-100 hover:bg-gray-50"
+              className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
               aria-label="다음 페이지"
             >
               ▶

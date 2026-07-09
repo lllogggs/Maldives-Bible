@@ -11,17 +11,16 @@ interface FilterSidebarProps {
 }
 
 const FilterOption: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-  <div className="py-6 border-b border-gray-200">
-    <h3 className="text-lg font-semibold text-gray-800 mb-4">{title}</h3>
+  <div className="border-b border-slate-200 py-5 last:border-b-0">
+    <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.08em] text-slate-500">{title}</h3>
     {children}
   </div>
 );
 
 const getRangeStyle = (value: number, min: number, max: number) => {
   const progress = max > min ? ((value - min) / (max - min)) * 100 : 0;
-  // Using Tailwind colors: cyan-500 for fill, gray-200 for track
   return {
-    background: `linear-gradient(to right, #06b6d4 ${progress}%, #e5e7eb ${progress}%)`,
+    background: `linear-gradient(to right, #0f766e ${progress}%, #e2e8f0 ${progress}%)`,
   };
 };
 
@@ -47,14 +46,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
   };
 
   return (
-    <aside className="p-6 bg-white rounded-lg shadow-sm border-r border-gray-200 h-full">
-      <div className="flex items-center justify-between pb-4 border-b border-gray-200">
-        <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-          <FilterIcon className="h-6 w-6 text-gray-700" />
+    <aside className="h-full rounded-lg border border-slate-200 bg-white/90 p-5 shadow-sm shadow-slate-900/5 lg:sticky lg:top-28">
+      <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 className="flex items-center gap-2 text-base font-bold text-slate-950">
+          <FilterIcon className="h-5 w-5 text-teal-700" />
           필터
         </h2>
         {onClose && (
-          <button onClick={onClose} className="lg:hidden p-1 text-gray-500 hover:text-gray-800" aria-label="Close filters">
+          <button type="button" onClick={onClose} className="p-1 text-slate-500 hover:text-slate-900 lg:hidden" aria-label="Close filters">
             <XIcon className="h-6 w-6" />
           </button>
         )}
@@ -63,18 +62,18 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
       <FilterOption title="이동수단">
         <div className="space-y-3">
           {[TransportationType.Boat, TransportationType.Seaplane, TransportationType.Domestic].map((type) => (
-            <label key={type} className="flex items-center space-x-3 cursor-pointer">
+            <label key={type} className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-slate-50">
               <input
                 type="checkbox"
                 name="transportation"
                 checked={filters.transportation.includes(type)}
                 onChange={() => handleTransportationChange(type)}
-                className="h-4 w-4 rounded text-cyan-500 border-gray-300 focus:ring-cyan-400"
+                className="h-4 w-4 rounded border-slate-300 text-teal-700 accent-teal-700 focus:ring-teal-500"
               />
               {type === TransportationType.Boat && <BoatIcon />}
               {type === TransportationType.Seaplane && <SeaplaneIcon />}
               {type === TransportationType.Domestic && <DomesticFlightIcon />}
-              <span className="text-gray-700">{type}</span>
+              <span className="text-slate-700">{type}</span>
             </label>
           ))}
         </div>
@@ -83,14 +82,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
       <FilterOption title="4박 가격 (USD, 2인)">
         <div className="relative pt-8">
           <div
-            className="absolute -top-0 bg-cyan-600 text-white text-sm font-bold py-1 px-3 rounded-full shadow-lg pointer-events-none"
+            className="pointer-events-none absolute -top-0 rounded-full bg-slate-950 px-3 py-1 text-sm font-bold text-white shadow-sm"
             style={{
               left: `${(filters.maxPrice / 30000) * 100}%`,
               transform: 'translateX(-50%)',
             }}
           >
             ${filters.maxPrice.toLocaleString()}
-            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-cyan-600"></div>
+            <div className="absolute -bottom-1 left-1/2 h-0 w-0 -translate-x-1/2 border-x-4 border-t-4 border-x-transparent border-t-slate-950"></div>
           </div>
           <input
             type="range"
@@ -100,9 +99,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             value={filters.maxPrice}
             onChange={(e) => onFilterChange('maxPrice', Number(e.target.value))}
             style={getRangeStyle(filters.maxPrice, 0, 30000)}
-            className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+            className="h-2 w-full cursor-pointer appearance-none rounded-lg"
           />
-          <div className="flex justify-between text-sm text-gray-600 mt-2">
+          <div className="mt-2 flex justify-between text-sm text-slate-500">
             <span>$0</span>
             <span>$30,000</span>
           </div>
@@ -112,14 +111,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
       <FilterOption title="객실 타입">
         <div className="space-y-2">
           {roomTypes.map((type) => (
-            <label key={type.value} className="flex items-center space-x-3 cursor-pointer">
+            <label key={type.value} className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-slate-50">
               <input
                 type="checkbox"
                 checked={filters.roomTypes.includes(type.value)}
                 onChange={() => handleRoomTypeChange(type.value)}
-                className="h-4 w-4 rounded text-cyan-500 border-gray-300 focus:ring-cyan-400"
+                className="h-4 w-4 rounded border-slate-300 text-teal-700 accent-teal-700 focus:ring-teal-500"
               />
-              <span className="text-gray-700">{type.label}</span>
+              <span className="text-slate-700">{type.label}</span>
             </label>
           ))}
         </div>
@@ -127,29 +126,29 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
 
       <FilterOption title="객실 내 개인 풀">
         <div className="space-y-2">
-            <label className="flex items-center space-x-3 cursor-pointer">
+            <label className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-slate-50">
               <input
                 type="checkbox"
                 checked={filters.hasPrivatePool}
                 onChange={(e) => onFilterChange('hasPrivatePool', e.target.checked)}
-                className="h-4 w-4 rounded text-cyan-500 border-gray-300 focus:ring-cyan-400"
+                className="h-4 w-4 rounded border-slate-300 text-teal-700 accent-teal-700 focus:ring-teal-500"
               />
-              <span className="text-gray-700">개인 풀 포함</span>
+              <span className="text-slate-700">개인 풀 포함</span>
             </label>
         </div>
       </FilterOption>
 
       <FilterOption title="좋아요">
         <div className="space-y-2">
-          <label className="flex items-center space-x-3 cursor-pointer">
+          <label className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-slate-50">
             <input
               type="checkbox"
               checked={filters.onlyLiked}
               onChange={(e) => onFilterChange('onlyLiked', e.target.checked)}
-              className="h-4 w-4 rounded text-cyan-500 border-gray-300 focus:ring-cyan-400"
+              className="h-4 w-4 rounded border-slate-300 text-teal-700 accent-teal-700 focus:ring-teal-500"
             />
             <HeartIcon className="h-5 w-5 text-rose-500" />
-            <span className="text-gray-700">좋아요 표시한 리조트만 보기</span>
+            <span className="text-slate-700">좋아요 표시한 리조트만 보기</span>
           </label>
         </div>
       </FilterOption>
@@ -157,14 +156,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
       <FilterOption title={`레스토랑: ${filters.minRestaurants}개 이상`}>
          <div className="relative pt-8">
            <div
-            className="absolute -top-0 bg-cyan-600 text-white text-sm font-bold py-1 px-3 rounded-full shadow-lg pointer-events-none"
+            className="pointer-events-none absolute -top-0 rounded-full bg-slate-950 px-3 py-1 text-sm font-bold text-white shadow-sm"
             style={{
               left: `${(filters.minRestaurants / 15) * 100}%`,
               transform: 'translateX(-50%)',
             }}
           >
             {filters.minRestaurants}
-            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-cyan-600"></div>
+            <div className="absolute -bottom-1 left-1/2 h-0 w-0 -translate-x-1/2 border-x-4 border-t-4 border-x-transparent border-t-slate-950"></div>
           </div>
           <input
             type="range"
@@ -174,9 +173,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             value={filters.minRestaurants}
             onChange={(e) => onFilterChange('minRestaurants', Number(e.target.value))}
             style={getRangeStyle(filters.minRestaurants, 0, 15)}
-            className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+            className="h-2 w-full cursor-pointer appearance-none rounded-lg"
           />
-          <div className="flex justify-between text-sm text-gray-600 mt-2">
+          <div className="mt-2 flex justify-between text-sm text-slate-500">
             <span>0개</span>
             <span>15개</span>
           </div>
@@ -186,14 +185,14 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
       <FilterOption title={`바: ${filters.minBars}개 이상`}>
          <div className="relative pt-8">
            <div
-            className="absolute -top-0 bg-cyan-600 text-white text-sm font-bold py-1 px-3 rounded-full shadow-lg pointer-events-none"
+            className="pointer-events-none absolute -top-0 rounded-full bg-slate-950 px-3 py-1 text-sm font-bold text-white shadow-sm"
             style={{
               left: `${(filters.minBars / 10) * 100}%`,
               transform: 'translateX(-50%)',
             }}
           >
             {filters.minBars}
-            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-cyan-600"></div>
+            <div className="absolute -bottom-1 left-1/2 h-0 w-0 -translate-x-1/2 border-x-4 border-t-4 border-x-transparent border-t-slate-950"></div>
           </div>
           <input
             type="range"
@@ -203,9 +202,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             value={filters.minBars}
             onChange={(e) => onFilterChange('minBars', Number(e.target.value))}
             style={getRangeStyle(filters.minBars, 0, 10)}
-            className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+            className="h-2 w-full cursor-pointer appearance-none rounded-lg"
           />
-          <div className="flex justify-between text-sm text-gray-600 mt-2">
+          <div className="mt-2 flex justify-between text-sm text-slate-500">
             <span>0개</span>
             <span>10개</span>
           </div>
