@@ -1,15 +1,7 @@
 import React from 'react';
 import ResortCard from './ResortCard';
 import type { Resort, SortOption } from '../types';
-import type { HoneymoonPreset } from './HoneymoonStarter';
 import { SortIcon, FilterIcon, ChevronDownIcon } from './icons/Icons';
-
-const QUICK_PRESET_LABELS: Record<string, string> = {
-  'budget-first': '예산',
-  'easy-transfer': '이동',
-  'water-pool': '워터빌라',
-  'reef-first': '스노클링',
-};
 
 interface ResortGridProps {
   resorts: Resort[];
@@ -30,8 +22,6 @@ interface ResortGridProps {
   onToggleLike: (resortId: number) => void;
   pendingLikeResortIds: Set<number>;
   onViewDetails: (resortId: number) => void;
-  honeymoonPresets: HoneymoonPreset[];
-  onApplyHoneymoonPreset: (preset: HoneymoonPreset) => void;
 }
 
 const ResortGrid: React.FC<ResortGridProps> = ({
@@ -53,8 +43,6 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   onToggleLike,
   pendingLikeResortIds,
   onViewDetails,
-  honeymoonPresets,
-  onApplyHoneymoonPreset,
 }) => {
   const pageNumbers = totalPages === 0
     ? []
@@ -118,26 +106,6 @@ const ResortGrid: React.FC<ResortGridProps> = ({
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="mb-4 hidden rounded-lg border border-teal-100 bg-white px-3 py-3 shadow-sm shadow-slate-900/5 sm:block">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs font-bold uppercase tracking-[0.12em] text-teal-700">빠른 시작</p>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {honeymoonPresets.map((preset) => (
-              <button
-                key={preset.id}
-                type="button"
-                onClick={() => onApplyHoneymoonPreset(preset)}
-                className="h-9 rounded-lg border border-slate-200 bg-slate-50 px-3 text-center text-sm font-semibold text-slate-900 transition-colors hover:border-teal-300 hover:bg-teal-50 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10"
-                data-quick-preset={preset.id}
-                title={preset.resultHint}
-              >
-                {QUICK_PRESET_LABELS[preset.id] ?? preset.title}
-              </button>
-            ))}
           </div>
         </div>
       </div>

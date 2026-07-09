@@ -1619,8 +1619,6 @@ const App: React.FC = () => {
                         onToggleLike={toggleLike}
                         pendingLikeResortIds={pendingLikeResortIds}
                         onViewDetails={handleViewDetails}
-                        honeymoonPresets={HONEYMOON_PRESETS}
-                        onApplyHoneymoonPreset={handleApplyHoneymoonPreset}
                       />
                       <div className="mt-10">
                         <HoneymoonStarter
