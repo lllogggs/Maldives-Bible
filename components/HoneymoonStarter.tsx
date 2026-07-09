@@ -26,6 +26,37 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
   onApplyPreset,
   onOpenFilter,
 }) => {
+  const beginnerGuides = [
+    {
+      href: '/몰디브-신혼여행-처음-준비/',
+      label: '몰디브 신혼여행 처음 준비',
+    },
+    {
+      href: '/몰디브-리조트-선택-기준/',
+      label: '몰디브 리조트 선택 기준',
+    },
+    {
+      href: '/몰디브-신혼여행-비용-감잡기/',
+      label: '몰디브 신혼여행 비용 감잡기',
+    },
+    {
+      href: '/몰디브-신혼여행-일정-4박6일-5박7일/',
+      label: '4박 6일·5박 7일 일정',
+    },
+    {
+      href: '/몰디브-리조트-이동수단-차이/',
+      label: '보트·수상비행기·국내선 차이',
+    },
+    {
+      href: '/몰디브-워터빌라-비치빌라-차이/',
+      label: '워터빌라·비치빌라 차이',
+    },
+    {
+      href: '/몰디브-하프보드-풀보드-올인클루시브-차이/',
+      label: '식사플랜 차이',
+    },
+  ];
+
   const nicheGuides = [
     {
       href: '/몰디브-신혼여행-워터빌라-개인풀/',
@@ -60,11 +91,11 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
           몰디브 신혼여행 리조트 찾기
         </p>
         <h2 id="honeymoon-starter-title" className="mt-2 text-2xl font-extrabold leading-tight text-slate-950 sm:text-3xl">
-          몰디브 신혼여행 리조트, 먼저 네 가지 기준으로 좁히세요
+          몰디브 신혼여행, 리조트 이름보다 기준부터 잡으세요
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base">
-          처음 준비하는 커플은 후보가 너무 많아지는 순간부터 지칩니다. 예산, 이동 피로도, 워터빌라 로망,
-          스노클링 취향 중 지금 제일 중요한 기준을 먼저 고르면 비교할 리조트가 빠르게 줄어듭니다.
+          이제 막 알아보기 시작했다면 예산, 일정, 이동수단, 객실타입, 식사플랜을 먼저 이해하는 편이 좋습니다.
+          기준을 잡은 뒤 워터빌라, 보트 이동, 스노클링 같은 취향으로 후보를 좁혀보세요.
         </p>
       </div>
       <div className="grid grid-cols-2 gap-2 text-sm sm:flex sm:flex-wrap sm:justify-end">
@@ -99,7 +130,7 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
 
     <div className="mt-4 flex flex-col gap-3 rounded-lg border border-dashed border-slate-300 bg-white px-4 py-3 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
       <p>
-        예산이 아직 애매하면 먼저 이동수단과 객실 타입만 고른 뒤, 마음에 드는 리조트 2-3곳을 비교함에 담아보세요.
+        아직 예산이 애매하면 처음 준비 가이드를 먼저 보고, 이동수단과 객실 타입만 골라 후보를 천천히 줄여보세요.
       </p>
       <button
         type="button"
@@ -108,6 +139,23 @@ const HoneymoonStarter: React.FC<HoneymoonStarterProps> = ({
       >
         필터 열기
       </button>
+    </div>
+
+    <div className="mt-4 border-t border-slate-200 pt-4">
+      <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+        처음 준비 가이드
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {beginnerGuides.map((guide) => (
+          <a
+            key={guide.href}
+            href={guide.href}
+            className="rounded-lg border border-teal-200 bg-teal-50 px-3 py-2 text-sm font-semibold text-teal-800 transition-colors hover:border-teal-300 hover:bg-teal-100"
+          >
+            {guide.label}
+          </a>
+        ))}
+      </div>
     </div>
 
     <div className="mt-4 border-t border-slate-200 pt-4">
