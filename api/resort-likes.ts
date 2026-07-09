@@ -1,6 +1,5 @@
 import type { ApiRequest, ApiResponse } from '../server/api-http';
 import { requireProfileAccess } from '../server/profile-token';
-import { createClient } from '@supabase/supabase-js';
 
 function getHeaderValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
@@ -43,35 +42,164 @@ function send(res: ApiResponse, status: number, body?: any) {
   return res.status(status).json(body);
 }
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  { auth: { persistSession: false } }
-);
-
-type LikeRow = {
-  resort_id: number | null;
-  profile_id: string | null;
+type LikesSummary = {
+  counts: Record<number, number>;
+  likedIds: number[];
 };
 
-function normalizeCounts(rows: LikeRow[], profileId: string) {
-  const counts: Record<number, number> = {};
-  const likedIds: number[] = [];
+type LikesUpdate = {
+  likesCount: number;
+  likedIds: number[];
+};
 
-  rows.forEach(row => {
-    if (typeof row.resort_id !== 'number' || !Number.isFinite(row.resort_id)) {
-      return;
-    }
+type RedisResult<T> = {
+  result?: T;
+  error?: string;
+};
 
-    const resortId = row.resort_id;
-    counts[resortId] = (counts[resortId] ?? 0) + 1;
+const REDIS_COUNTS_KEY = 'maldives-bible:likes:counts';
+const REDIS_RESORT_PREFIX = 'maldives-bible:likes:resort:';
+const REDIS_PROFILE_PREFIX = 'maldives-bible:likes:profile:';
 
-    if (row.profile_id === profileId) {
-      likedIds.push(resortId);
-    }
+function getRedisConfig() {
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) {
+    return null;
+  }
+
+  return {
+    url: url.replace(/\/$/, ''),
+    token,
+  };
+}
+
+async function redisCommand<T>(command: Array<string | number>) {
+  const config = getRedisConfig();
+  if (!config) {
+    throw new Error('redis_not_configured');
+  }
+
+  const response = await fetch(config.url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${config.token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(command),
   });
 
-  return { counts, likedIds };
+  const payload = (await response.json()) as RedisResult<T>;
+  if (!response.ok || payload.error) {
+    throw new Error(payload.error || `redis_request_failed_${response.status}`);
+  }
+
+  return payload.result as T;
+}
+
+function normalizeRedisCounts(raw: unknown): Record<number, number> {
+  const counts: Record<number, number> = {};
+
+  if (Array.isArray(raw)) {
+    for (let index = 0; index < raw.length; index += 2) {
+      const resortId = Number(raw[index]);
+      const count = Number(raw[index + 1]);
+      if (Number.isFinite(resortId) && Number.isFinite(count) && count > 0) {
+        counts[resortId] = Math.floor(count);
+      }
+    }
+    return counts;
+  }
+
+  if (raw && typeof raw === 'object') {
+    Object.entries(raw as Record<string, unknown>).forEach(([key, value]) => {
+      const resortId = Number(key);
+      const count = Number(value);
+      if (Number.isFinite(resortId) && Number.isFinite(count) && count > 0) {
+        counts[resortId] = Math.floor(count);
+      }
+    });
+  }
+
+  return counts;
+}
+
+function normalizeRedisIds(raw: unknown): number[] {
+  if (!Array.isArray(raw)) {
+    return [];
+  }
+
+  return raw
+    .map(item => Number(item))
+    .filter((item): item is number => Number.isInteger(item) && item > 0);
+}
+
+async function readLikesFromRedis(profileId: string): Promise<LikesSummary> {
+  const [countsRaw, likedRaw] = await Promise.all([
+    redisCommand<unknown>(['HGETALL', REDIS_COUNTS_KEY]),
+    redisCommand<unknown>(['SMEMBERS', `${REDIS_PROFILE_PREFIX}${profileId}`]),
+  ]);
+
+  return {
+    counts: normalizeRedisCounts(countsRaw),
+    likedIds: normalizeRedisIds(likedRaw),
+  };
+}
+
+async function updateLikesInRedis(profileId: string, resortId: number, shouldLike: boolean): Promise<LikesUpdate> {
+  const resortKey = `${REDIS_RESORT_PREFIX}${resortId}`;
+  const profileKey = `${REDIS_PROFILE_PREFIX}${profileId}`;
+
+  if (shouldLike) {
+    const changed = Number(await redisCommand<number>(['SADD', resortKey, profileId]));
+    await redisCommand<number>(['SADD', profileKey, resortId]);
+    if (changed > 0) {
+      await redisCommand<number>(['HINCRBY', REDIS_COUNTS_KEY, resortId, 1]);
+    }
+  } else {
+    const changed = Number(await redisCommand<number>(['SREM', resortKey, profileId]));
+    await redisCommand<number>(['SREM', profileKey, resortId]);
+    if (changed > 0) {
+      const nextCount = Number(await redisCommand<number>(['HINCRBY', REDIS_COUNTS_KEY, resortId, -1]));
+      if (nextCount <= 0) {
+        await redisCommand<number>(['HDEL', REDIS_COUNTS_KEY, resortId]);
+      }
+    }
+  }
+
+  const [likesCount, likedRaw] = await Promise.all([
+    redisCommand<number>(['SCARD', resortKey]),
+    redisCommand<unknown>(['SMEMBERS', profileKey]),
+  ]);
+
+  return {
+    likesCount: Math.max(0, Number(likesCount) || 0),
+    likedIds: normalizeRedisIds(likedRaw),
+  };
+}
+
+async function readLikes(profileId: string): Promise<LikesSummary | null> {
+  if (getRedisConfig()) {
+    try {
+      return await readLikesFromRedis(profileId);
+    } catch (error) {
+      console.warn('Redis likes storage unavailable; falling back', error);
+    }
+  }
+
+  return null;
+}
+
+async function updateLikes(profileId: string, resortId: number, shouldLike: boolean): Promise<LikesUpdate | null> {
+  if (getRedisConfig()) {
+    try {
+      return await updateLikesInRedis(profileId, resortId, shouldLike);
+    } catch (error) {
+      console.warn('Redis likes storage unavailable; falling back', error);
+    }
+  }
+
+  return null;
 }
 
 export default async function handler(req: ApiRequest, res: ApiResponse) {
@@ -87,16 +215,11 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       const access = requireProfileAccess(req, req.query.profileId);
       if (!access.ok) return send(res, access.status, { error: access.error });
 
-      const { data, error } = await supabase
-        .from('resort_likes')
-        .select('resort_id, profile_id');
-
-      if (error) {
-        return send(res, 500, { error: error.message });
-      }
-
-      const summary = normalizeCounts((data ?? []) as LikeRow[], access.profileId);
-      return send(res, 200, { ok: true, data: summary });
+      const summary = await readLikes(access.profileId);
+      return send(res, 200, {
+        ok: true,
+        data: summary ?? { storage: 'local' },
+      });
     }
 
     if (req.method === 'POST') {
@@ -120,54 +243,10 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
         shouldLike = Boolean(liked);
       }
 
-      if (shouldLike) {
-        const { error: upsertError } = await supabase
-          .from('resort_likes')
-          .upsert(
-            { profile_id: access.profileId, resort_id: numericResortId },
-            { onConflict: 'profile_id,resort_id' }
-          );
-
-        if (upsertError) {
-          return send(res, 500, { error: upsertError.message });
-        }
-      } else {
-        const { error: deleteError } = await supabase
-          .from('resort_likes')
-          .delete()
-          .eq('profile_id', access.profileId)
-          .eq('resort_id', numericResortId);
-
-        if (deleteError) {
-          return send(res, 500, { error: deleteError.message });
-        }
-      }
-
-      const { count, error: countError } = await supabase
-        .from('resort_likes')
-        .select('*', { head: true, count: 'exact' })
-        .eq('resort_id', numericResortId);
-
-      if (countError) {
-        return send(res, 500, { error: countError.message });
-      }
-
-      const { data: likedRows, error: likedRowsError } = await supabase
-        .from('resort_likes')
-        .select('resort_id')
-        .eq('profile_id', access.profileId);
-
-      if (likedRowsError) {
-        return send(res, 500, { error: likedRowsError.message });
-      }
-
-      const likedIds = ((likedRows ?? []) as Array<{ resort_id: number | null }>)
-        .map(row => (row.resort_id ?? undefined))
-        .filter((id): id is number => typeof id === 'number' && Number.isFinite(id));
-
+      const update = await updateLikes(access.profileId, numericResortId, shouldLike);
       return send(res, 200, {
         ok: true,
-        data: { likesCount: count ?? 0, likedIds },
+        data: update ?? { storage: 'local' },
       });
     }
 

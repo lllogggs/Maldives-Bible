@@ -38,6 +38,7 @@ export type RoomTypeFilter = 'beach' | 'water';
 export interface Filters {
   searchTerm: string;
   transportation: TransportationType[];
+  minPrice: number;
   maxPrice: number;
   roomTypes: RoomTypeFilter[];
   minRestaurants: number;

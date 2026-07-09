@@ -1,5 +1,5 @@
 import React from 'react';
-import { LogoIcon, SearchIcon, EditIcon } from './icons/Icons';
+import { SearchIcon, EditIcon } from './icons/Icons';
 
 interface HeaderProps {
   searchTerm: string;
@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const containerSpacing = isCompact ? 'py-2' : 'py-4 sm:py-5';
   const contentSpacing = isCompact ? 'gap-2 sm:gap-4' : 'gap-3 sm:gap-6';
-  const logoWidth = isCompact ? 'w-14 sm:w-16' : 'w-16 sm:w-20';
+  const logoSize = isCompact ? 'h-11 w-11 sm:h-12 sm:w-12' : 'h-12 w-12 sm:h-14 sm:w-14';
   const inputSizing = isCompact ? 'py-2 text-sm' : 'py-2.5 text-base';
   const buttonSizing = isCompact ? 'px-3 py-2 text-sm gap-2' : 'px-4 py-2.5 text-sm gap-3';
   const searchBarSpacing = isCompact ? 'mb-1 sm:mb-0' : '';
@@ -39,14 +39,20 @@ const Header: React.FC<HeaderProps> = ({
             aria-label="홈으로 이동"
             className="group flex min-w-0 items-center gap-3 justify-self-start text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
           >
-            <span className={`${logoWidth} block shrink-0 transition-all duration-300`}>
-              <LogoIcon />
+            <span className={`${logoSize} block shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/10 transition-all duration-300`}>
+              <img
+                src="/brand/maldives-bible-logo.png"
+                alt=""
+                className="h-full w-full object-cover"
+                width={112}
+                height={112}
+              />
             </span>
             <span className="hidden min-w-0 sm:block">
               <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700">
                 Maldives Bible
               </span>
-              <span className="block truncate text-base font-bold text-slate-950 group-hover:text-teal-700">
+              <span className="font-brand-heading block truncate text-base text-slate-950 group-hover:text-teal-700">
                 몰디브 리조트 탐색
               </span>
             </span>

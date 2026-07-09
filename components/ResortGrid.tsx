@@ -64,7 +64,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
     <div>
       <div className="mb-5 flex flex-col gap-4 border-b border-slate-200 pb-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-950">허니문 후보 리조트</h1>
+          <h1 className="font-brand-heading text-2xl text-slate-950">허니문 후보 리조트</h1>
           <p className="mt-1 text-sm text-slate-600">
             총 {totalResortsCount}개의 리조트
             {totalResortsCount !== totalAllResortsCount && (
@@ -156,7 +156,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
       )}
 
       {resorts.length > 0 ? (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
           {resorts.map((resort, index) => (
             <ResortCard
               key={resort.id}

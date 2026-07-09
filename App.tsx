@@ -79,6 +79,7 @@ const IS_IMAGE_EDIT_FEATURE_AVAILABLE = resolveImageEditAvailability();
 const DEFAULT_FILTERS: Filters = {
   searchTerm: '',
   transportation: [],
+  minPrice: 0,
   maxPrice: 30000,
   roomTypes: [],
   minRestaurants: 0,
@@ -95,7 +96,7 @@ const HONEYMOON_PRESETS: HoneymoonPreset[] = [
     title: '예산 먼저 맞추기',
     description: '견적이 불안한 커플을 위해 4박 2인 $7,000 이하 후보부터 보여줍니다.',
     resultHint: '가격 낮은 순 + 허니문 혜택',
-    filters: { maxPrice: 7000, honeymoonPerks: true },
+    filters: { minPrice: 0, maxPrice: 7000, honeymoonPerks: true },
     sortOption: 'price-asc',
   },
   {
@@ -104,7 +105,7 @@ const HONEYMOON_PRESETS: HoneymoonPreset[] = [
     title: '이동 피로 줄이기',
     description: '장거리 비행 뒤 바로 쉬고 싶은 일정이면 보트 이동권부터 보는 편이 안전합니다.',
     resultHint: '보트 이동 + 이동시간 짧은 순',
-    filters: { transportation: [TransportationType.Boat], maxPrice: 12000, honeymoonPerks: true },
+    filters: { transportation: [TransportationType.Boat], minPrice: 0, maxPrice: 12000, honeymoonPerks: true },
     sortOption: 'travelTime-asc',
   },
   {
@@ -113,7 +114,7 @@ const HONEYMOON_PRESETS: HoneymoonPreset[] = [
     title: '워터빌라 로망 챙기기',
     description: '사진, 프라이버시, 객실 만족도를 우선하는 커플을 위한 워터빌라+개인풀 후보입니다.',
     resultHint: '워터빌라 + 개인풀 + 평점순',
-    filters: { roomTypes: ['water'], hasPrivatePool: true, maxPrice: 18000, honeymoonPerks: true },
+    filters: { roomTypes: ['water'], hasPrivatePool: true, minPrice: 7000, maxPrice: 18000, honeymoonPerks: true },
     sortOption: 'rating-desc',
   },
   {
@@ -122,7 +123,7 @@ const HONEYMOON_PRESETS: HoneymoonPreset[] = [
     title: '스노클링 만족도 우선',
     description: '라군만 예쁜 곳보다 물속 경험이 중요한 커플을 위해 수중환경 좋은 순으로 정렬합니다.',
     resultHint: '허니문 혜택 + 수중환경순',
-    filters: { maxPrice: 14000, honeymoonPerks: true },
+    filters: { minPrice: 0, maxPrice: 14000, honeymoonPerks: true },
     sortOption: 'snorkeling-desc',
   },
 ];
@@ -814,8 +815,16 @@ const App: React.FC = () => {
         throw new Error(`Failed to fetch likes: ${response.statusText}`);
       }
 
-      const payload = (await response.json()) as { data?: Partial<ResortLikesSummary> };
+      const payload = (await response.json()) as {
+        data?: Partial<ResortLikesSummary> & { storage?: string };
+      };
+      if (payload.data?.storage === 'local') {
+        return null;
+      }
       const data = payload?.data ?? {};
+      if (!data.counts && !data.likedIds) {
+        return null;
+      }
 
       return {
         counts: ensureNumberRecord(data.counts),
@@ -1089,6 +1098,7 @@ const App: React.FC = () => {
       ...DEFAULT_FILTERS,
       searchTerm: params.get('q') ?? DEFAULT_FILTERS.searchTerm,
       transportation: parseCsvParam(params.get('t')) as Filters['transportation'],
+      minPrice: parseNumberParam(params.get('min'), DEFAULT_FILTERS.minPrice),
       maxPrice: parseNumberParam(params.get('max'), DEFAULT_FILTERS.maxPrice),
       roomTypes: parseCsvParam(params.get('room')) as Filters['roomTypes'],
       minRestaurants: parseNumberParam(params.get('rest'), DEFAULT_FILTERS.minRestaurants),
@@ -1137,7 +1147,9 @@ const App: React.FC = () => {
         filters.transportation.includes(resort.transportation)
       );
     }
-    processedResorts = processedResorts.filter(resort => resort.price <= filters.maxPrice);
+    processedResorts = processedResorts.filter(
+      resort => resort.price >= filters.minPrice && resort.price <= filters.maxPrice
+    );
     if (filters.roomTypes.length > 0) {
       processedResorts = processedResorts.filter(resort =>
         filters.roomTypes.every(type => {
@@ -1232,6 +1244,9 @@ const App: React.FC = () => {
     }
     if (filters.transportation.length > 0) {
       params.set('t', filters.transportation.join(','));
+    }
+    if (filters.minPrice !== DEFAULT_FILTERS.minPrice) {
+      params.set('min', String(filters.minPrice));
     }
     if (filters.maxPrice !== DEFAULT_FILTERS.maxPrice) {
       params.set('max', String(filters.maxPrice));

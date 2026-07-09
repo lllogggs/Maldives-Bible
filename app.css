@@ -3,8 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: 'NanumSquareNeo';
+    src: url('/fonts/nanum-square-neo/NanumSquareNeoTTF-bRg.woff2') format('woff2');
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'NanumSquareNeoBold';
+    src: url('/fonts/nanum-square-neo/NanumSquareNeoTTF-cBd.woff2') format('woff2');
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'NanumSquareNeoExtraBold';
+    src: url('/fonts/nanum-square-neo/NanumSquareNeoTTF-dEb.woff2') format('woff2');
+    font-style: normal;
+    font-display: swap;
+  }
+
   html {
     background: #f6f8f7;
+    font-family: 'NanumSquareNeo', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
   }
 
   body {
@@ -17,6 +39,25 @@
 }
 
 @layer utilities {
+  .font-brand-heading {
+    font-family: 'NanumSquareNeoExtraBold', 'NanumSquareNeoBold', 'NanumSquareNeo', 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+  }
+
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
   .capture-board-mode .sticky,
   .capture-board-mode [class~="lg:sticky"] {
     position: static !important;

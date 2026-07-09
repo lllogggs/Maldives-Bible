@@ -10,7 +10,7 @@ type ProfileTokenPayload = {
 };
 
 function getSigningSecret() {
-  return process.env.RESORT_PROFILE_TOKEN_SECRET || process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+  return process.env.RESORT_PROFILE_TOKEN_SECRET || '';
 }
 
 function toBase64Url(value: string | Buffer) {

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ArrowLeft,
   ArrowUpDown,
-  BookOpen,
   Building2,
   CalendarDays,
   CheckCircle2,
@@ -26,7 +25,6 @@ import {
   SlidersHorizontal,
   Sparkles,
   Star,
-  TreePalm,
   UserRound,
   Utensils,
   Waves,
@@ -40,20 +38,6 @@ type IconProps = LucideProps & {
 };
 
 const iconStroke = 1.9;
-
-export const LogoIcon: React.FC = () => (
-  <div className="relative aspect-[1.35/1] w-full overflow-hidden rounded-lg border border-teal-200 bg-white shadow-sm shadow-teal-950/10">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_15%,rgba(251,191,36,0.36),transparent_28%),linear-gradient(160deg,#ecfeff_0%,#f8fafc_52%,#ccfbf1_100%)]" />
-    <div className="absolute left-2 top-2 flex h-7 w-7 items-center justify-center rounded-md bg-white/85 text-teal-800 shadow-sm">
-      <BookOpen className="h-4 w-4" strokeWidth={2.1} />
-    </div>
-    <TreePalm className="absolute right-2 top-2 h-6 w-6 text-teal-700" strokeWidth={2.1} />
-    <Waves className="absolute bottom-7 left-1/2 h-5 w-16 -translate-x-1/2 text-cyan-600" strokeWidth={2.2} />
-    <div className="absolute bottom-1.5 left-2 right-2 rounded-md bg-white/80 px-1.5 py-0.5 text-center text-[9px] font-black tracking-[0.14em] text-teal-800">
-      MB
-    </div>
-  </div>
-);
 
 export const SearchIcon: React.FC<IconProps> = ({ className = 'h-5 w-5 text-gray-400', ...props }) => (
   <Search className={className} strokeWidth={iconStroke} {...props} />

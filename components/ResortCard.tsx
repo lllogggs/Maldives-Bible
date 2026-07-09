@@ -158,7 +158,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
 
   return (
     <article
-      className="flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+      className="flex h-full min-h-[640px] flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
       data-resort-card={resort.id}
     >
       <div
@@ -234,34 +234,34 @@ const ResortCard: React.FC<ResortCardProps> = ({
             </button>
         </div>
       </div>
-      <div className="flex flex-grow flex-col p-5">
+      <div className="flex min-h-[400px] flex-1 flex-col p-5">
         {isImageEditMode && (
           <div className="mb-3 rounded-lg border border-teal-200 bg-teal-50 px-3 py-2 text-xs font-semibold text-teal-800">
             상세 페이지에서 삭제할 이미지를 선택할 수 있습니다.
           </div>
         )}
-        <div>
-          <h3 className="cursor-pointer text-lg font-bold leading-snug text-slate-950 transition-colors hover:text-teal-700" onClick={handleViewDetails}>{resort.name}</h3>
-          <p className="mb-3 text-sm text-slate-500">{resort.name_en}</p>
+        <div className="min-h-[250px]">
+          <h3 className="font-brand-heading line-clamp-2 min-h-[3.25rem] cursor-pointer text-lg leading-snug text-slate-950 transition-colors hover:text-teal-700" onClick={handleViewDetails}>{resort.name}</h3>
+          <p className="line-clamp-1 mb-3 min-h-5 text-sm text-slate-500">{resort.name_en}</p>
           
-          <div className="mb-1 flex items-center text-sm text-slate-600">
+          <div className="mb-1 flex min-h-5 items-center text-sm text-slate-600">
             <LocationPinIcon />
-            <span className="ml-1">{resort.location} • {resort.travelTime}분</span>
+            <span className="line-clamp-1 ml-1">{resort.location} • {resort.travelTime}분</span>
           </div>
           <p className="truncate text-sm text-slate-600">{resort.brand} • {resort.spaBrand}</p>
 
-          {honeymoonTags.length > 0 && (
-            <div className="mt-3 flex flex-wrap gap-2">
-              {honeymoonTags.slice(0, 4).map(tag => (
+          <div className="mt-3 flex min-h-[34px] flex-wrap gap-2 overflow-hidden">
+            {honeymoonTags.length > 0 && (
+              honeymoonTags.slice(0, 3).map(tag => (
                 <span key={tag} className="rounded-full border border-rose-100 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
                   {tag}
                 </span>
-              ))}
-            </div>
-          )}
+              ))
+            )}
+          </div>
           
-          <div className="mt-3 flex flex-wrap gap-2">
-            {resort.roomTypes.map(type => (
+          <div className="mt-3 flex min-h-[32px] flex-wrap gap-2 overflow-hidden">
+            {resort.roomTypes.slice(0, 3).map(type => (
               <span key={type} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700">{type}</span>
             ))}
           </div>
@@ -271,7 +271,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
               <strong className="mt-1 block text-slate-900">{resort.travelTime}분</strong>
             </div>
             <div className="rounded-lg bg-slate-50 px-2 py-2">
-              <span className="block text-slate-500">수중</span>
+              <span className="block text-slate-500">수중환경</span>
               <strong className="mt-1 block text-slate-900">{resort.snorkelingQuality}/5</strong>
             </div>
             <div className="rounded-lg bg-slate-50 px-2 py-2">
@@ -316,15 +316,14 @@ const ResortCard: React.FC<ResortCardProps> = ({
                   onClick={handleViewDetails}
                   className="whitespace-nowrap rounded-lg bg-slate-950 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
                 >
-                  상세보기
+                  상세
                 </button>
               </div>
               <p className="mt-1 text-xs leading-5 text-slate-500">
-                1박 약 ${nightlyPrice.toLocaleString()} · 이동비 2인 왕복 ${coupleTransferCost.toLocaleString()}
+                1박 ${nightlyPrice.toLocaleString()} · 이동비 2인 ${coupleTransferCost.toLocaleString()}
               </p>
             </div>
           </div>
-          <p className="mt-2 text-right text-xs text-slate-500">수중환경: {resort.snorkelingQuality}/5점</p>
         </div>
       </div>
     </article>
