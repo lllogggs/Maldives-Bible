@@ -227,12 +227,12 @@ const ResortCard: React.FC<ResortCardProps> = ({
         )}
 
         <h3
-          className="font-brand-heading line-clamp-2 min-h-[3rem] cursor-pointer text-lg leading-snug text-slate-950 transition-colors hover:text-teal-700"
+          className="font-brand-heading line-clamp-2 cursor-pointer text-lg leading-tight text-slate-950 transition-colors hover:text-teal-700"
           onClick={handleViewDetails}
         >
           {resort.name}
         </h3>
-        <p className="line-clamp-1 mt-1 text-sm text-slate-500">{resort.name_en}</p>
+        <p className="line-clamp-1 mt-0.5 text-sm leading-5 text-slate-500">{resort.name_en}</p>
 
         <div className="mt-3 flex items-center text-sm text-slate-600">
           <LocationPinIcon />

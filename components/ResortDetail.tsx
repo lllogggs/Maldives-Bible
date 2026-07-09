@@ -283,8 +283,8 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
         <div className="p-6 md:p-8">
           {/* Header */}
           <div className="mb-6">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">{resort.name}</h1>
-            <p className="text-lg text-gray-500 mt-1">{resort.name_en}</p>
+            <h1 className="text-3xl md:text-4xl font-extrabold leading-tight text-gray-900">{resort.name}</h1>
+            <p className="mt-0.5 text-lg leading-6 text-gray-500">{resort.name_en}</p>
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
               <p className="text-gray-700 font-semibold">{resort.brand}</p>
               {resort.homepageUrl && (
