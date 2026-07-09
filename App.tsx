@@ -487,7 +487,7 @@ const App: React.FC = () => {
   const previousSelectedResortIdRef = useRef<number | null>(null);
   const [compareList, setCompareList] = useState<number[]>([]);
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
-  const [currentView, setCurrentView] = useState<View>('resorts');
+  const [currentView, setCurrentView] = useState<View>('tips');
   const [isMobileViewport, setIsMobileViewport] = useState<boolean>(() => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
       return false;
@@ -1230,7 +1230,7 @@ const App: React.FC = () => {
     if (sortOption !== 'popularity') {
       params.set('sort', sortOption);
     }
-    if (currentView !== 'resorts') {
+    if (currentView !== 'tips') {
       params.set('view', currentView);
     }
     if (currentPage !== 1) {
@@ -1298,6 +1298,11 @@ const App: React.FC = () => {
     setCurrentPage(1);
   };
 
+  const handleShowResortsFromTips = () => {
+    handleViewChange('resorts');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1351,7 +1356,7 @@ const App: React.FC = () => {
   };
 
   const handleLogoClick = () => {
-    setCurrentView('resorts');
+    setCurrentView('tips');
     setIsCompareViewVisible(false);
     setIsFilterOpen(false);
     if (isImageEditMode) {
@@ -1360,8 +1365,7 @@ const App: React.FC = () => {
     }
     setSelectedResortId(null);
     setCurrentPage(1);
-    const queryString = window.location.search;
-    window.history.replaceState(null, '', `/${queryString}`);
+    window.history.replaceState(null, '', '/');
     window.location.hash = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -1480,7 +1484,7 @@ const App: React.FC = () => {
       <main className="mx-auto max-w-[1440px] px-4 py-5 sm:px-6 lg:px-8">
         <NavBar currentView={currentView} onViewChange={handleViewChange} />
 
-        {currentView === 'tips' && <ResortSelectionTips />}
+        {currentView === 'tips' && <ResortSelectionTips onShowResorts={handleShowResortsFromTips} />}
 
         {currentView === 'agencies' && <TravelAgencies />}
 
