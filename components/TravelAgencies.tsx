@@ -22,6 +22,12 @@ const agencies: Agency[] = [
   { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao_channel: 'http://pf.kakao.com/_Hxmxaxexj' },
 ];
 
+const bookingReasons = [
+  ['총판 공급가', '총판이 리조트 객실 물량과 시즌 프로모션을 받아 여행사 공급가로 내려줍니다.'],
+  ['포함 조건 비교', '직접 예약·OTA는 식사, 트랜스퍼, 세금, 허니문 특전 포함 여부가 다를 수 있습니다.'],
+  ['일정 연결', '말레 도착 시간과 수상비행기·보트 연결까지 맞춰야 실제로 좋은 견적입니다.'],
+];
+
 const TravelAgencies: React.FC = () => {
   return (
     <div className="animate-fade-in space-y-6 pb-10">
@@ -30,6 +36,28 @@ const TravelAgencies: React.FC = () => {
         <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
           {agencies.length}곳
         </span>
+      </section>
+
+      <section className="border-b border-slate-200 pb-5">
+        <h2 className="mb-3 text-base font-bold text-slate-950">왜 여행사 견적인가</h2>
+        <div className="mb-4 flex flex-wrap items-center gap-2 text-sm font-bold text-slate-900">
+          <span className="rounded-full bg-slate-950 px-3 py-1.5 text-white">리조트</span>
+          <span className="text-slate-300">→</span>
+          <span className="rounded-full bg-teal-700 px-3 py-1.5 text-white">총판</span>
+          <span className="text-slate-300">→</span>
+          <span className="rounded-full bg-white px-3 py-1.5 ring-1 ring-slate-200">여행사</span>
+          <span className="text-slate-300">→</span>
+          <span className="rounded-full bg-white px-3 py-1.5 ring-1 ring-slate-200">고객</span>
+        </div>
+
+        <div className="grid gap-2 md:grid-cols-3">
+          {bookingReasons.map(([title, description]) => (
+            <div key={title} className="rounded-lg border border-slate-200 bg-white px-4 py-3">
+              <h3 className="text-sm font-bold text-slate-950">{title}</h3>
+              <p className="mt-1 text-sm leading-6 text-slate-600">{description}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
