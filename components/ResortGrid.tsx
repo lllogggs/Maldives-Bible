@@ -5,8 +5,8 @@ import type { HoneymoonPreset } from './HoneymoonStarter';
 import { SortIcon, FilterIcon, ChevronDownIcon } from './icons/Icons';
 
 const QUICK_PRESET_LABELS: Record<string, string> = {
-  'budget-first': '예산 맞추기',
-  'easy-transfer': '이동 짧게',
+  'budget-first': '예산',
+  'easy-transfer': '이동',
   'water-pool': '워터빌라',
   'reef-first': '스노클링',
 };
@@ -62,14 +62,14 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 
   return (
     <div>
-      <div className="mb-5 flex flex-col gap-4 border-b border-slate-200 pb-5 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mb-4 flex flex-col gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="font-brand-heading text-2xl text-slate-950">허니문 후보 리조트</h1>
           <p className="mt-1 text-sm text-slate-600">
-            총 {totalResortsCount}개의 리조트
+            {totalResortsCount}개
             {totalResortsCount !== totalAllResortsCount && (
               <span className="ml-2 font-semibold text-teal-700">
-                (필터 적용: {totalResortsCount}/{totalAllResortsCount})
+                필터 {totalResortsCount}/{totalAllResortsCount}
               </span>
             )}
           </p>
@@ -80,7 +80,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
             <button
               type="button"
               onClick={onOpenFilter}
-              className="order-1 flex min-h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:hidden"
+              className="order-1 flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:hidden"
             >
               <FilterIcon className="h-5 w-5" />
               <span>필터</span>
@@ -88,7 +88,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
             <button
               type="button"
               onClick={onCopyShareLink}
-              className="order-2 flex min-h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:order-none"
+              className="order-2 flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:order-none"
             >
               링크 복사
             </button>
@@ -100,7 +100,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
                   value={sortOption}
                   onChange={(e) => onSortChange(e.target.value as SortOption)}
                   disabled={isImageEditMode}
-                  className={`min-h-10 w-full appearance-none rounded-lg border border-slate-200 py-2 pl-3 pr-10 text-center text-sm shadow-sm shadow-slate-900/5 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:w-auto ${
+                  className={`h-10 w-full appearance-none rounded-lg border border-slate-200 py-2 pl-3 pr-10 text-center text-sm shadow-sm shadow-slate-900/5 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:w-auto ${
                     isImageEditMode ? 'cursor-not-allowed bg-slate-100 text-slate-400' : 'bg-white text-slate-700'
                   }`}
                 >
@@ -122,23 +122,16 @@ const ResortGrid: React.FC<ResortGridProps> = ({
         </div>
       </div>
 
-      <div className="mb-5 rounded-lg border border-teal-100 bg-white px-3 py-3 shadow-sm shadow-slate-900/5">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-center justify-between gap-3">
-            <p className="whitespace-nowrap text-xs font-bold uppercase tracking-[0.12em] text-teal-700">
-              빠른 시작
-            </p>
-            <span className="hidden text-sm text-slate-500 xl:inline">
-              지금 가장 중요한 기준으로 먼저 좁히기
-            </span>
-          </div>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:flex lg:flex-wrap lg:justify-end">
+      <div className="mb-4 rounded-lg border border-teal-100 bg-white px-3 py-3 shadow-sm shadow-slate-900/5">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs font-bold uppercase tracking-[0.12em] text-teal-700">빠른 시작</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {honeymoonPresets.map((preset) => (
               <button
                 key={preset.id}
                 type="button"
                 onClick={() => onApplyHoneymoonPreset(preset)}
-                className="min-h-10 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center text-sm font-semibold leading-5 text-slate-900 transition-colors hover:border-teal-300 hover:bg-teal-50 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 lg:whitespace-nowrap"
+                className="h-9 rounded-lg border border-slate-200 bg-slate-50 px-3 text-center text-sm font-semibold text-slate-900 transition-colors hover:border-teal-300 hover:bg-teal-50 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10"
                 data-quick-preset={preset.id}
                 title={preset.resultHint}
               >
@@ -151,7 +144,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 
       {isImageEditMode && (
         <div className="mb-4 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-900">
-          이미지 편집 모드에서는 원하는 리조트의 상세 페이지로 이동해 삭제할 이미지를 선택하세요. 삭제한 이미지 URL은 기록되어 추후 확인할 수 있습니다.
+          상세 페이지에서 삭제할 이미지를 선택할 수 있습니다.
         </div>
       )}
 
@@ -176,7 +169,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
       ) : (
         <div className="rounded-lg border border-dashed border-slate-300 bg-white px-6 py-16 text-center">
           <h3 className="text-xl font-semibold text-slate-800">검색 결과가 없습니다.</h3>
-          <p className="mt-2 text-slate-500">다른 필터 옵션을 시도해 보세요.</p>
+          <p className="mt-2 text-slate-500">필터 조건을 줄여보세요.</p>
         </div>
       )}
 
@@ -210,9 +203,11 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
               aria-label="이전 페이지"
             >
-              ◀
+              이전
             </button>
-            <span className="text-lg text-slate-300">ㅣ</span>
+            <span className="text-sm font-semibold text-slate-500">
+              {currentPage}/{totalPages}
+            </span>
             <button
               type="button"
               onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
@@ -220,7 +215,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
               aria-label="다음 페이지"
             >
-              ▶
+              다음
             </button>
           </div>
         </nav>

@@ -38,6 +38,8 @@ const getTransportationTagColor = (transportation: TransportationType) => {
   }
 };
 
+const chipClass = 'inline-flex h-7 items-center rounded-full px-2.5 text-xs font-semibold leading-none';
+
 const ResortCard: React.FC<ResortCardProps> = ({
   resort,
   compareList,
@@ -64,11 +66,11 @@ const ResortCard: React.FC<ResortCardProps> = ({
   const imageCount = imageUrls.length;
   const hasDisplayImages = imageCount > 0;
   const currentImageUrl = hasDisplayImages ? imageUrls[currentImageIndex] : null;
-  const honeymoonTags = [
+  const featureTags = [
     resort.honeymoonPerks ? '허니문 혜택' : null,
     resort.hasWaterVilla ? '워터빌라' : null,
     resort.hasPrivatePool ? '개인풀' : null,
-    resort.snorkelingQuality >= 4.7 ? '수중환경 강점' : null,
+    resort.snorkelingQuality >= 4.7 ? '수중환경' : null,
     resort.travelTime <= 45 ? '이동 짧음' : null,
   ].filter((tag): tag is string => Boolean(tag));
 
@@ -84,21 +86,17 @@ const ResortCard: React.FC<ResortCardProps> = ({
 
   const handlePrevImage = (e: React.SyntheticEvent) => {
     e.stopPropagation();
-    if (imageUrls.length < 2) {
-      return;
-    }
+    if (imageUrls.length < 2) return;
     setCurrentImageIndex(prev => (prev - 1 + imageUrls.length) % imageUrls.length);
   };
 
   const handleNextImage = (e: React.SyntheticEvent) => {
     e.stopPropagation();
-    if (imageUrls.length < 2) {
-      return;
-    }
+    if (imageUrls.length < 2) return;
     setCurrentImageIndex(prev => (prev + 1) % imageUrls.length);
   };
 
-  const handleViewDetails = (e: React.MouseEvent) => {
+  const handleViewDetails = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     onViewDetails(resort.id);
   };
@@ -115,18 +113,11 @@ const ResortCard: React.FC<ResortCardProps> = ({
   const onTouchEnd = (e: React.TouchEvent) => {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe || isRightSwipe) {
-      e.stopPropagation();
-      if (isLeftSwipe) {
-        handleNextImage(e);
-      } else {
-        handlePrevImage(e);
-      }
+    if (distance > minSwipeDistance) {
+      handleNextImage(e);
+    } else if (distance < -minSwipeDistance) {
+      handlePrevImage(e);
     }
-    
     setTouchStart(0);
     setTouchEnd(0);
   };
@@ -135,19 +126,16 @@ const ResortCard: React.FC<ResortCardProps> = ({
   const nightlyPrice = Math.round(resort.price / 4);
   const coupleTransferCost = Math.max(0, resort.travelCost * 2);
   const likeButtonTitle = isLiked ? '좋아요 취소' : '좋아요 추가';
+
   const handleLikeClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isLikePending) {
-      return;
+    if (!isLikePending) {
+      onToggleLike(resort.id);
     }
-    onToggleLike(resort.id);
   };
 
   const handleImageError = () => {
-    if (!currentImageUrl) {
-      return;
-    }
-
+    if (!currentImageUrl) return;
     setFailedImageUrls(prev => {
       const next = new Set(prev);
       next.add(currentImageUrl);
@@ -155,10 +143,9 @@ const ResortCard: React.FC<ResortCardProps> = ({
     });
   };
 
-
   return (
     <article
-      className="flex h-full min-h-[640px] flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+      className="flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
       data-resort-card={resort.id}
     >
       <div
@@ -170,17 +157,14 @@ const ResortCard: React.FC<ResortCardProps> = ({
       >
         {currentImageUrl ? (
           <img
-            className="h-60 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             src={currentImageUrl}
             alt={`${resort.name} 리조트 이미지 ${currentImageIndex + 1}`}
             onError={handleImageError}
           />
         ) : (
-          <div className="flex h-60 w-full flex-col items-center justify-center bg-[linear-gradient(135deg,#e0f2f1,#f8fafc)] px-6 text-center">
+          <div className="flex h-56 w-full items-center justify-center bg-[linear-gradient(135deg,#e0f2f1,#f8fafc)] px-6 text-center">
             <p className="text-sm font-bold text-teal-800">{resort.name}</p>
-            <p className="mt-2 text-xs leading-5 text-slate-500">
-              이미지 확인 중입니다. 상세 정보와 조건 비교는 계속 이용할 수 있습니다.
-            </p>
           </div>
         )}
 
@@ -189,16 +173,16 @@ const ResortCard: React.FC<ResortCardProps> = ({
             <button
               type="button"
               onClick={handlePrevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur hover:bg-white transition-all lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100"
-              aria-label="Previous image"
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur transition-all hover:bg-white focus:opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
+              aria-label="이전 이미지"
             >
               <ChevronLeftIcon />
             </button>
             <button
               type="button"
               onClick={handleNextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur hover:bg-white transition-all lg:opacity-0 lg:group-hover:opacity-100 focus:opacity-100"
-              aria-label="Next image"
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur transition-all hover:bg-white focus:opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
+              aria-label="다음 이미지"
             >
               <ChevronRightIcon />
             </button>
@@ -216,75 +200,79 @@ const ResortCard: React.FC<ResortCardProps> = ({
           <span>{resort.rating.toFixed(1)}</span>
         </div>
         <div className="absolute bottom-3 right-3">
-            {isFirstCard && (
-                <div className="absolute -top-5 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-950 px-3 py-1 text-xs font-bold text-white shadow-sm">
-                    비교함 담기
-                    <div className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-x-4 border-t-4 border-x-transparent border-t-slate-950"></div>
-                </div>
-            )}
-            <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
-                disabled={!canSelectForCompare}
-                className="rounded-full bg-white/90 p-2 text-slate-800 shadow-sm backdrop-blur transition-colors hover:bg-white disabled:cursor-not-allowed disabled:bg-slate-200/80"
-                aria-label={isSelectedForCompare ? `${resort.name} 비교함에서 제거` : `${resort.name} 비교함에 담기`}
-                title={isSelectedForCompare ? '비교 목록에서 제거' : '비교 목록에 추가'}
-            >
-                {isSelectedForCompare ? <CheckCircleIcon className="h-5 w-5 text-teal-700" /> : <CartIcon className="h-5 w-5" />}
-            </button>
+          {isFirstCard && (
+            <div className="absolute -top-5 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-950 px-3 py-1 text-xs font-bold text-white shadow-sm">
+              비교함 담기
+              <div className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-x-4 border-t-4 border-x-transparent border-t-slate-950"></div>
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
+            disabled={!canSelectForCompare}
+            className="rounded-full bg-white/90 p-2 text-slate-800 shadow-sm backdrop-blur transition-colors hover:bg-white disabled:cursor-not-allowed disabled:bg-slate-200/80"
+            aria-label={isSelectedForCompare ? `${resort.name} 비교함에서 제거` : `${resort.name} 비교함에 담기`}
+            title={isSelectedForCompare ? '비교함에서 제거' : '비교함에 담기'}
+          >
+            {isSelectedForCompare ? <CheckCircleIcon className="h-5 w-5 text-teal-700" /> : <CartIcon className="h-5 w-5" />}
+          </button>
         </div>
       </div>
-      <div className="flex min-h-[400px] flex-1 flex-col p-5">
+
+      <div className="flex flex-1 flex-col p-4">
         {isImageEditMode && (
           <div className="mb-3 rounded-lg border border-teal-200 bg-teal-50 px-3 py-2 text-xs font-semibold text-teal-800">
             상세 페이지에서 삭제할 이미지를 선택할 수 있습니다.
           </div>
         )}
-        <div className="min-h-[250px]">
-          <h3 className="font-brand-heading line-clamp-2 min-h-[3.25rem] cursor-pointer text-lg leading-snug text-slate-950 transition-colors hover:text-teal-700" onClick={handleViewDetails}>{resort.name}</h3>
-          <p className="line-clamp-1 mb-3 min-h-5 text-sm text-slate-500">{resort.name_en}</p>
-          
-          <div className="mb-1 flex min-h-5 items-center text-sm text-slate-600">
-            <LocationPinIcon />
-            <span className="line-clamp-1 ml-1">{resort.location} • {resort.travelTime}분</span>
-          </div>
-          <p className="truncate text-sm text-slate-600">{resort.brand} • {resort.spaBrand}</p>
 
-          <div className="mt-3 flex min-h-[34px] flex-wrap gap-2 overflow-hidden">
-            {honeymoonTags.length > 0 && (
-              honeymoonTags.slice(0, 3).map(tag => (
-                <span key={tag} className="rounded-full border border-rose-100 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
-                  {tag}
-                </span>
-              ))
-            )}
+        <h3
+          className="font-brand-heading line-clamp-2 min-h-[3rem] cursor-pointer text-lg leading-snug text-slate-950 transition-colors hover:text-teal-700"
+          onClick={handleViewDetails}
+        >
+          {resort.name}
+        </h3>
+        <p className="line-clamp-1 mt-1 text-sm text-slate-500">{resort.name_en}</p>
+
+        <div className="mt-3 flex items-center text-sm text-slate-600">
+          <LocationPinIcon />
+          <span className="line-clamp-1 ml-1">{resort.location} · {resort.travelTime}분</span>
+        </div>
+        <p className="mt-1 truncate text-sm text-slate-600">{resort.brand} · {resort.spaBrand}</p>
+
+        <div className="mt-3 flex h-7 flex-wrap gap-1.5 overflow-hidden">
+          {featureTags.slice(0, 3).map(tag => (
+            <span key={tag} className={`${chipClass} border border-rose-100 bg-rose-50 text-rose-700`}>
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-2 flex h-7 flex-wrap gap-1.5 overflow-hidden">
+          {resort.roomTypes.slice(0, 3).map(type => (
+            <span key={type} className={`${chipClass} border border-slate-200 bg-slate-50 text-slate-700`}>
+              {type}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
+          <div className="rounded-lg bg-slate-50 px-2 py-2">
+            <span className="block text-slate-500">이동</span>
+            <strong className="mt-1 block text-slate-900">{resort.travelTime}분</strong>
           </div>
-          
-          <div className="mt-3 flex min-h-[32px] flex-wrap gap-2 overflow-hidden">
-            {resort.roomTypes.slice(0, 3).map(type => (
-              <span key={type} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700">{type}</span>
-            ))}
+          <div className="rounded-lg bg-slate-50 px-2 py-2">
+            <span className="block text-slate-500">수중환경</span>
+            <strong className="mt-1 block text-slate-900">{resort.snorkelingQuality}/5</strong>
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
-            <div className="rounded-lg bg-slate-50 px-2 py-2">
-              <span className="block text-slate-500">이동</span>
-              <strong className="mt-1 block text-slate-900">{resort.travelTime}분</strong>
-            </div>
-            <div className="rounded-lg bg-slate-50 px-2 py-2">
-              <span className="block text-slate-500">수중환경</span>
-              <strong className="mt-1 block text-slate-900">{resort.snorkelingQuality}/5</strong>
-            </div>
-            <div className="rounded-lg bg-slate-50 px-2 py-2">
-              <span className="block text-slate-500">다이닝</span>
-              <strong className="mt-1 block text-slate-900">{resort.restaurants}곳</strong>
-            </div>
+          <div className="rounded-lg bg-slate-50 px-2 py-2">
+            <span className="block text-slate-500">다이닝</span>
+            <strong className="mt-1 block text-slate-900">{resort.restaurants}곳</strong>
           </div>
         </div>
 
-        <div className="my-4 border-t border-slate-100"></div>
-        
-        <div className="mt-auto">
-          <div className="flex items-start justify-between gap-3">
+        <div className="mt-auto pt-4">
+          <div className="flex items-end justify-between gap-3">
             <button
               type="button"
               onClick={handleLikeClick}
@@ -292,11 +280,11 @@ const ResortCard: React.FC<ResortCardProps> = ({
               aria-pressed={isLiked}
               aria-label={`${likeButtonTitle} (현재 ${formattedLikesCount}명)`}
               title={likeButtonTitle}
-              className={`flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-semibold transition-colors ${
+              className={`flex h-9 items-center gap-2 rounded-full border px-3 text-sm font-semibold transition-colors ${
                 isLiked
                   ? 'border-rose-300 bg-rose-100 text-rose-600 hover:bg-rose-200'
                   : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
-              } ${isLikePending ? 'opacity-70 cursor-wait' : ''}`}
+              } ${isLikePending ? 'cursor-wait opacity-70' : ''}`}
             >
               {isLiked ? (
                 <HeartFilledIcon className="h-5 w-5 text-rose-500" />
@@ -305,16 +293,16 @@ const ResortCard: React.FC<ResortCardProps> = ({
               )}
               <span>{formattedLikesCount}</span>
             </button>
-            <div className="flex-1 text-right">
-              <p className="text-xs text-slate-500">4박 2인 기준 (올인클루시브)</p>
+            <div className="text-right">
+              <p className="text-xs text-slate-500">4박 2인</p>
               <div className="mt-1 flex items-center justify-end gap-2">
-                <p className="whitespace-nowrap text-xl font-extrabold leading-tight text-teal-700 md:text-2xl">
+                <p className="whitespace-nowrap text-xl font-extrabold leading-tight text-teal-700">
                   ${resort.price.toLocaleString()}
                 </p>
                 <button
                   type="button"
                   onClick={handleViewDetails}
-                  className="whitespace-nowrap rounded-lg bg-slate-950 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
+                  className="h-8 whitespace-nowrap rounded-lg bg-slate-950 px-3 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
                 >
                   상세
                 </button>
