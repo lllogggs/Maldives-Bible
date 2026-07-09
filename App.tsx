@@ -9,13 +9,17 @@ import NavBar from './components/NavBar';
 import ResortSelectionTips from './components/ResortSelectionTips';
 import TravelAgencies from './components/TravelAgencies';
 import FlightInfo from './components/FlightInfo';
+import HoneymoonStarter, { type HoneymoonPreset } from './components/HoneymoonStarter';
 import { POPULARITY_RANKING } from './constants';
 import type { Resort, Filters, SortOption } from './types';
+import { TransportationType } from './types';
 
 type ViteEnvShim = {
   DEV?: boolean;
   MODE?: string;
   VITE_DEV_SERVER_URL?: string;
+  VITE_PREFERENCES_API_BASE_URL?: string;
+  VITE_ENABLE_REMOTE_STATE_IN_DEV?: string;
 };
 
 type View = 'resorts' | 'tips' | 'agencies' | 'flights';
@@ -39,6 +43,10 @@ const getResortPathSegment = (pathname: string): string | null => {
   }
   return decodeURIComponent(match[1]);
 };
+
+const hasDisplayableResortImage = (resort: Pick<Resort, 'imageUrls'>) =>
+  Array.isArray(resort.imageUrls) &&
+  resort.imageUrls.some(url => typeof url === 'string' && url.trim().length > 0);
 
 const normalizeSlug = (raw: string): string | null => {
   const normalized = slugify(raw);
@@ -76,8 +84,48 @@ const DEFAULT_FILTERS: Filters = {
   minRestaurants: 0,
   minBars: 0,
   hasPrivatePool: false,
+  honeymoonPerks: false,
   onlyLiked: false,
 };
+
+const HONEYMOON_PRESETS: HoneymoonPreset[] = [
+  {
+    id: 'budget-first',
+    label: 'Budget',
+    title: '예산 먼저 맞추기',
+    description: '견적이 불안한 커플을 위해 4박 2인 $7,000 이하 후보부터 보여줍니다.',
+    resultHint: '가격 낮은 순 + 허니문 혜택',
+    filters: { maxPrice: 7000, honeymoonPerks: true },
+    sortOption: 'price-asc',
+  },
+  {
+    id: 'easy-transfer',
+    label: 'Transfer',
+    title: '이동 피로 줄이기',
+    description: '장거리 비행 뒤 바로 쉬고 싶은 일정이면 보트 이동권부터 보는 편이 안전합니다.',
+    resultHint: '보트 이동 + 이동시간 짧은 순',
+    filters: { transportation: [TransportationType.Boat], maxPrice: 12000, honeymoonPerks: true },
+    sortOption: 'travelTime-asc',
+  },
+  {
+    id: 'water-pool',
+    label: 'Romance',
+    title: '워터빌라 로망 챙기기',
+    description: '사진, 프라이버시, 객실 만족도를 우선하는 커플을 위한 워터빌라+개인풀 후보입니다.',
+    resultHint: '워터빌라 + 개인풀 + 평점순',
+    filters: { roomTypes: ['water'], hasPrivatePool: true, maxPrice: 18000, honeymoonPerks: true },
+    sortOption: 'rating-desc',
+  },
+  {
+    id: 'reef-first',
+    label: 'Reef',
+    title: '스노클링 만족도 우선',
+    description: '라군만 예쁜 곳보다 물속 경험이 중요한 커플을 위해 수중환경 좋은 순으로 정렬합니다.',
+    resultHint: '허니문 혜택 + 수중환경순',
+    filters: { maxPrice: 14000, honeymoonPerks: true },
+    sortOption: 'snorkeling-desc',
+  },
+];
 
 const parseNumberParam = (value: string | null, fallback: number) => {
   if (!value) {
@@ -108,51 +156,60 @@ type ResortLikesSummary = {
   likedIds: number[];
 };
 
-const buildPreferencesEndpoint = () => {
+type ProfileSession = {
+  profileId: string;
+  token: string;
+};
+
+const PROFILE_ID_STORAGE_KEY = 'resortProfileId';
+const PROFILE_TOKEN_STORAGE_KEY = 'resortProfileToken';
+
+const buildApiEndpoint = (path: string) => {
   const baseUrl = import.meta.env.VITE_PREFERENCES_API_BASE_URL?.replace(/\/$/, '');
   if (baseUrl) {
-    return `${baseUrl}/api/resort-preferences`;
+    return `${baseUrl}${path}`;
   }
 
   if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
     const fallbackBase = 'https://maldives-bible.vercel.app';
-    return `${fallbackBase}/api/resort-preferences`;
+    return `${fallbackBase}${path}`;
   }
 
-  return '/api/resort-preferences';
+  return path;
 };
 
-const PREFERENCES_ENDPOINT = buildPreferencesEndpoint();
+const PREFERENCES_ENDPOINT = buildApiEndpoint('/api/resort-preferences');
+const RESORT_LIKES_ENDPOINT = buildApiEndpoint('/api/resort-likes');
+const PROFILE_SESSION_ENDPOINT = buildApiEndpoint('/api/resort-session');
 
-const buildLikesEndpoint = () => {
-  const baseUrl = import.meta.env.VITE_PREFERENCES_API_BASE_URL?.replace(/\/$/, '');
-  if (baseUrl) {
-    return `${baseUrl}/api/resort-likes`;
+const withProfileTokenHeader = (headers: Record<string, string>, profileToken: string | null) => {
+  if (!profileToken) {
+    return headers;
   }
 
-  if (typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
-    const fallbackBase = 'https://maldives-bible.vercel.app';
-    return `${fallbackBase}/api/resort-likes`;
-  }
-
-  return '/api/resort-likes';
+  return {
+    ...headers,
+    'X-Resort-Profile-Token': profileToken,
+  };
 };
-
-const RESORT_LIKES_ENDPOINT = buildLikesEndpoint();
 
 const canUseRemoteStateApi = () => {
   const env = ((import.meta as unknown as { env?: ViteEnvShim })?.env) ?? {};
-  if (typeof env.VITE_PREFERENCES_API_BASE_URL === 'string' && env.VITE_PREFERENCES_API_BASE_URL.length > 0) {
-    return true;
-  }
-
   if (typeof window === 'undefined') {
     return true;
   }
 
   const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
   const isDevMode = env.DEV ?? env.MODE === 'development';
-  return !(isDevMode && isLocalHost);
+  if (isDevMode && isLocalHost && env.VITE_ENABLE_REMOTE_STATE_IN_DEV !== 'true') {
+    return false;
+  }
+
+  if (typeof env.VITE_PREFERENCES_API_BASE_URL === 'string' && env.VITE_PREFERENCES_API_BASE_URL.length > 0) {
+    return true;
+  }
+
+  return true;
 };
 
 const SHOULD_USE_REMOTE_STATE_API = canUseRemoteStateApi();
@@ -255,6 +312,7 @@ type ResortOverride = {
 
 type UseResortLikesOptions = {
   profileId: string | null;
+  profileToken: string | null;
   ensureProfileId: () => string | null;
   saveLikedResorts: (ids: number[]) => void;
 };
@@ -270,6 +328,7 @@ type UseResortLikesResult = {
 
 const useResortLikes = ({
   profileId,
+  profileToken,
   ensureProfileId,
   saveLikedResorts,
 }: UseResortLikesOptions): UseResortLikesResult => {
@@ -358,7 +417,7 @@ const useResortLikes = ({
         return next;
       });
 
-      if (!SHOULD_USE_REMOTE_STATE_API) {
+      if (!SHOULD_USE_REMOTE_STATE_API || !profileToken) {
         setPendingLikeResortIds(prev => {
           const next = new Set(prev);
           next.delete(resortId);
@@ -370,7 +429,7 @@ const useResortLikes = ({
       try {
         const response = await fetch(RESORT_LIKES_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: withProfileTokenHeader({ 'Content-Type': 'application/json' }, profileToken),
           body: JSON.stringify({ profileId: normalizedProfileId, resortId, liked: !wasLiked }),
         });
 
@@ -439,6 +498,7 @@ const useResortLikes = ({
       likedResortIds,
       likesCountMap,
       pendingLikeResortIds,
+      profileToken,
       saveLikedResorts,
       ensureProfileId,
     ]
@@ -485,6 +545,29 @@ const App: React.FC = () => {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [, setResortOverrides] = useState<Record<number, ResortOverride>>({});
   const [profileId, setProfileId] = useState<string | null>(null);
+  const [profileToken, setProfileToken] = useState<string | null>(null);
+
+  const persistProfileSession = useCallback((nextProfileId: string, nextProfileToken: string | null) => {
+    const normalizedProfileId = nextProfileId.trim();
+    if (!normalizedProfileId) {
+      return null;
+    }
+
+    try {
+      localStorage.setItem(PROFILE_ID_STORAGE_KEY, normalizedProfileId);
+      if (nextProfileToken) {
+        localStorage.setItem(PROFILE_TOKEN_STORAGE_KEY, nextProfileToken);
+      } else {
+        localStorage.removeItem(PROFILE_TOKEN_STORAGE_KEY);
+      }
+    } catch (err) {
+      console.error('프로필 세션을 로컬 스토리지에 저장하지 못했습니다.', err);
+    }
+
+    setProfileId(normalizedProfileId);
+    setProfileToken(nextProfileToken);
+    return normalizedProfileId;
+  }, []);
 
   const ensureProfileId = useCallback((): string | null => {
     if (profileId && profileId.trim().length > 0) {
@@ -495,23 +578,62 @@ const App: React.FC = () => {
       return null;
     }
 
-    const storedProfileId = localStorage.getItem('resortProfileId');
+    const storedProfileId = localStorage.getItem(PROFILE_ID_STORAGE_KEY);
     if (storedProfileId && storedProfileId.trim().length > 0) {
+      const storedProfileToken = localStorage.getItem(PROFILE_TOKEN_STORAGE_KEY);
       setProfileId(storedProfileId);
+      setProfileToken(storedProfileToken);
       return storedProfileId;
     }
 
     const generated = createProfileId();
+    return persistProfileSession(generated, null);
+  }, [persistProfileSession, profileId]);
 
-    try {
-      localStorage.setItem('resortProfileId', generated);
-    } catch (err) {
-      console.error('프로필 ID를 로컬 스토리지에 저장하지 못했습니다.', err);
+  const ensureProfileSession = useCallback(async (): Promise<string | null> => {
+    if (typeof window === 'undefined') {
+      return null;
     }
 
-    setProfileId(generated);
-    return generated;
-  }, [profileId]);
+    if (profileId && (!SHOULD_USE_REMOTE_STATE_API || profileToken)) {
+      return profileId;
+    }
+
+    const storedProfileId = localStorage.getItem(PROFILE_ID_STORAGE_KEY);
+    const storedProfileToken = localStorage.getItem(PROFILE_TOKEN_STORAGE_KEY);
+    if (storedProfileId && (!SHOULD_USE_REMOTE_STATE_API || storedProfileToken)) {
+      return persistProfileSession(storedProfileId, storedProfileToken);
+    }
+
+    if (SHOULD_USE_REMOTE_STATE_API) {
+      try {
+        const response = await fetch(PROFILE_SESSION_ENDPOINT, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to create profile session: ${response.status}`);
+        }
+
+        const payload = (await response.json()) as { data?: Partial<ProfileSession> };
+        const nextProfileId = payload.data?.profileId;
+        const nextProfileToken = payload.data?.token;
+        if (typeof nextProfileId === 'string' && typeof nextProfileToken === 'string') {
+          return persistProfileSession(nextProfileId, nextProfileToken);
+        }
+      } catch (err) {
+        console.warn('원격 프로필 세션을 만들지 못해 로컬 저장으로 전환합니다.', err);
+      }
+    }
+
+    if (storedProfileId) {
+      return persistProfileSession(storedProfileId, null);
+    }
+
+    const generated = createProfileId();
+    return persistProfileSession(generated, null);
+  }, [persistProfileSession, profileId, profileToken]);
 
   const getLocalPreferences = useCallback((): ResortPreferences => ({
     hidden_ids: parseNumberArray(localStorage.getItem('hiddenResorts')),
@@ -537,9 +659,22 @@ const App: React.FC = () => {
     toggleLike,
   } = useResortLikes({
     profileId,
+    profileToken,
     ensureProfileId,
     saveLikedResorts: saveLikedResortsToLocal,
   });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const isCaptureMode = new URLSearchParams(window.location.search).get('capture') === '1';
+    document.documentElement.classList.toggle('capture-board-mode', isCaptureMode);
+    return () => {
+      document.documentElement.classList.remove('capture-board-mode');
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -567,13 +702,13 @@ const App: React.FC = () => {
       return;
     }
 
-    ensureProfileId();
+    void ensureProfileSession();
 
     const localLikes = parseNumberArray(localStorage.getItem('likedResorts'));
     if (localLikes.length > 0) {
       setInitialLikedResorts(localLikes);
     }
-  }, [ensureProfileId, setInitialLikedResorts]);
+  }, [ensureProfileSession, setInitialLikedResorts]);
 
   useEffect(() => {
     if (!toastMessage) {
@@ -585,13 +720,13 @@ const App: React.FC = () => {
   }, [toastMessage]);
 
   const fetchRemotePreferences = useCallback(async (activeProfileId: string | null): Promise<ResortPreferences | null> => {
-    if (!activeProfileId || !SHOULD_USE_REMOTE_STATE_API) {
+    if (!activeProfileId || !SHOULD_USE_REMOTE_STATE_API || !profileToken) {
       return null;
     }
 
     try {
       const response = await fetch(`${PREFERENCES_ENDPOINT}?profileId=${encodeURIComponent(activeProfileId)}`, {
-        headers: { Accept: 'application/json' },
+        headers: withProfileTokenHeader({ Accept: 'application/json' }, profileToken),
       });
 
       if (!response.ok) {
@@ -610,20 +745,20 @@ const App: React.FC = () => {
       console.warn('Failed to fetch remote resort preferences; using local preferences instead', err);
       return null;
     }
-  }, []);
+  }, [profileToken]);
 
   const persistPreferences = useCallback(
     async (hiddenIds: number[], order: number[], deletedUrls?: string[]) => {
       savePreferencesToLocal(hiddenIds, order);
 
-      if (!profileId || !SHOULD_USE_REMOTE_STATE_API) {
+      if (!profileId || !SHOULD_USE_REMOTE_STATE_API || !profileToken) {
         return;
       }
 
       try {
         const response = await fetch(PREFERENCES_ENDPOINT, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: withProfileTokenHeader({ 'Content-Type': 'application/json' }, profileToken),
           body: JSON.stringify({
             profileId,
             hiddenIds,
@@ -662,17 +797,17 @@ const App: React.FC = () => {
         setToastMessage(fallbackMessage);
       }
     },
-    [profileId, savePreferencesToLocal]
+    [profileId, profileToken, savePreferencesToLocal]
   );
 
   const fetchRemoteLikes = useCallback(async (activeProfileId: string | null): Promise<ResortLikesSummary | null> => {
-    if (!activeProfileId || !SHOULD_USE_REMOTE_STATE_API) {
+    if (!activeProfileId || !SHOULD_USE_REMOTE_STATE_API || !profileToken) {
       return null;
     }
 
     try {
       const response = await fetch(`${RESORT_LIKES_ENDPOINT}?profileId=${encodeURIComponent(activeProfileId)}`, {
-        headers: { Accept: 'application/json' },
+        headers: withProfileTokenHeader({ Accept: 'application/json' }, profileToken),
       });
 
       if (!response.ok) {
@@ -690,7 +825,7 @@ const App: React.FC = () => {
       console.warn('Failed to fetch resort likes; using local likes instead', err);
       return null;
     }
-  }, []);
+  }, [profileToken]);
 
 
   useEffect(() => {
@@ -959,6 +1094,7 @@ const App: React.FC = () => {
       minRestaurants: parseNumberParam(params.get('rest'), DEFAULT_FILTERS.minRestaurants),
       minBars: parseNumberParam(params.get('bars'), DEFAULT_FILTERS.minBars),
       hasPrivatePool: params.get('pool') === '1',
+      honeymoonPerks: params.get('honey') === '1',
       onlyLiked: params.get('liked') === '1',
     };
 
@@ -1014,6 +1150,9 @@ const App: React.FC = () => {
     if (filters.hasPrivatePool) {
       processedResorts = processedResorts.filter(resort => resort.hasPrivatePool);
     }
+    if (filters.honeymoonPerks) {
+      processedResorts = processedResorts.filter(resort => resort.honeymoonPerks);
+    }
     processedResorts = processedResorts.filter(resort => resort.restaurants >= filters.minRestaurants);
     processedResorts = processedResorts.filter(resort => resort.bars >= filters.minBars);
     if (filters.onlyLiked) {
@@ -1065,6 +1204,12 @@ const App: React.FC = () => {
         break;
     }
 
+    if (sortOption !== 'custom') {
+      processedResorts.sort(
+        (a, b) => Number(hasDisplayableResortImage(b)) - Number(hasDisplayableResortImage(a))
+      );
+    }
+
     setDisplayedResorts(processedResorts);
   }, [customOrder, filters, hiddenResortIds, initialResorts, likedResortIds, likesCountMap, sortOption]);
 
@@ -1102,6 +1247,9 @@ const App: React.FC = () => {
     }
     if (filters.hasPrivatePool) {
       params.set('pool', '1');
+    }
+    if (filters.honeymoonPerks) {
+      params.set('honey', '1');
     }
     if (filters.onlyLiked) {
       params.set('liked', '1');
@@ -1165,6 +1313,19 @@ const App: React.FC = () => {
 
   const handleSortChange = (option: SortOption) => {
     setSortOption(option);
+  };
+
+  const handleApplyHoneymoonPreset = (preset: HoneymoonPreset) => {
+    setFilters({
+      ...DEFAULT_FILTERS,
+      ...preset.filters,
+    });
+    setSortOption(preset.sortOption);
+    setCurrentView('resorts');
+    setIsCompareViewVisible(false);
+    setSelectedResortId(null);
+    setCurrentPage(1);
+    setToastMessage(`${preset.title} 조건으로 후보를 좁혔습니다.`);
   };
 
   const handleViewChange = (view: View) => {
@@ -1383,71 +1544,6 @@ const App: React.FC = () => {
         onLogoClick={handleLogoClick}
       />
       <main className="mx-auto max-w-[1440px] px-4 py-5 sm:px-6 lg:px-8">
-        <section
-          className="sr-only mb-10 rounded-3xl border border-cyan-100 bg-white p-6 shadow-sm sm:p-8 lg:p-10"
-          aria-labelledby="maldives-bible-intro"
-        >
-          <div className="space-y-6 text-gray-800">
-            <header className="space-y-3">
-              <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">
-                몰디브바이블 SEO 허브
-              </p>
-              <h1
-                id="maldives-bible-intro"
-                className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl"
-              >
-                몰디브 바이블: 몰디브 리조트 비교 · 입문 가이드의 표준
-              </h1>
-              <p className="text-base leading-relaxed sm:text-lg">
-                몰디브 바이블은 방대한 리조트 데이터를 기반으로 <strong>몰디브 리조트 비교</strong>를 돕는 전문
-                플랫폼입니다. 허니문, 가족 여행, 럭셔리 올인클루시브까지 조건별 필터와 실제 여행사 제휴 정보를
-                한 번에 제공하여, 처음 준비하는 <strong>몰디브 리조트 입문</strong>자도 쉽게 방향을 잡을 수 있는
-                한국어 몰디브 데이터베이스를 목표로 합니다.
-              </p>
-            </header>
-            <div className="grid gap-6 lg:grid-cols-3">
-              <article className="rounded-2xl bg-cyan-50/60 p-5 shadow-inner">
-                <h2 className="text-lg font-semibold text-cyan-700">몰디브 리조트 비교 인사이트</h2>
-                <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                  시즌별 프로모션, 수상·수상 콤보 빌라, 수상 스포츠 제공 여부 등 깊이 있는 조건을 중심으로 리조트를
-                  세분화했습니다. 즐겨찾기와 비교함 기능을 활용하면 니치한 검색어로 유입된 사용자도 원하는 후보군을
-                  빠르게 정리할 수 있습니다.
-                </p>
-              </article>
-              <article className="rounded-2xl bg-cyan-50/60 p-5 shadow-inner">
-                <h2 className="text-lg font-semibold text-cyan-700">몰디브 리조트 입문 로드맵</h2>
-                <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                  입문자가 궁금해하는 예산대, 이동 동선, 식사 플랜 차이를 단계별로 소개합니다. "몰디브 리조트 입문"과
-                  같은 키워드로 정보를 찾는 여행자에게 가장 중요한 의사결정 포인트를 FAQ로 정리하여 처음 방문해도 길을
-                  잃지 않도록 돕습니다.
-                </p>
-              </article>
-              <article className="rounded-2xl bg-cyan-50/60 p-5 shadow-inner">
-                <h2 className="text-lg font-semibold text-cyan-700">몰디브 리조트학과 입학(?) 썰</h2>
-                <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                  몰디브 리조트를 처음 알아볼 때 "몰디브 리조트학과 입학했다"고 농담하는 여행자들의 밈을 담았습니다.
-                  진짜 학위나 인턴십 준비가 아니라, 리조트 공부를 빡세게 해보겠다는 마음가짐 정도로 가볍게 웃을 수 있는
-                  스토리텔링을 더해 검색 키워드와 자연스럽게 연결했습니다.
-                </p>
-              </article>
-            </div>
-            <div className="rounded-2xl border border-dashed border-cyan-200 bg-white/70 p-5">
-              <h2 className="text-lg font-semibold text-gray-900">니치 검색어 탐색 팁</h2>
-              <p className="mt-2 text-sm leading-relaxed text-gray-700">
-                몰디브바이블은 검색 수요가 낮지만 예약 전환율이 높은 롱테일 키워드를 적극적으로 다룹니다. 아래 키워드
-                조합을 활용하면 검색엔진에서 경쟁이 낮은 트래픽을 확보할 수 있습니다.
-              </p>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-700">
-                <li>"몰디브 리조트 비교" + "허니문 전용" + 원하는 예산대</li>
-                <li>"몰디브 리조트 입문" + "수상 비행기 vs 스피드보트"</li>
-                <li>"몰디브 리조트학과 입학" 장난 + "친구들에게 썰 풀기"</li>
-                <li>"몰디브 가족 여행" + "키즈 클럽" + 리조트 이름</li>
-                <li>"몰디브바이블" + "실시간 견적"으로 브랜드 검색 유도</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
         <NavBar currentView={currentView} onViewChange={handleViewChange} />
 
         {currentView === 'tips' && <ResortSelectionTips />}
@@ -1488,26 +1584,39 @@ const App: React.FC = () => {
                     </div>
                   )}
                   {!loading && !error && (
-                    <ResortGrid
-                      resorts={paginatedResorts}
-                      sortOption={sortOption}
-                      onSortChange={handleSortChange}
-                      totalResortsCount={displayedResorts.length}
-                      totalAllResortsCount={initialResorts.length}
-                      currentPage={currentPage}
-                      totalPages={totalPages}
-                      onPageChange={handlePageChange}
-                      compareList={compareList}
-                      onToggleCompare={handleToggleCompare}
-                      onOpenFilter={() => setIsFilterOpen(true)}
-                      onCopyShareLink={handleCopyShareLink}
-                      isImageEditMode={isImageEditMode}
-                      likesCountMap={likesCountMap}
-                      likedResortIds={likedResortIds}
-                      onToggleLike={toggleLike}
-                      pendingLikeResortIds={pendingLikeResortIds}
-                      onViewDetails={handleViewDetails}
-                    />
+                    <>
+                      <ResortGrid
+                        resorts={paginatedResorts}
+                        sortOption={sortOption}
+                        onSortChange={handleSortChange}
+                        totalResortsCount={displayedResorts.length}
+                        totalAllResortsCount={initialResorts.length}
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                        compareList={compareList}
+                        onToggleCompare={handleToggleCompare}
+                        onOpenFilter={() => setIsFilterOpen(true)}
+                        onCopyShareLink={handleCopyShareLink}
+                        isImageEditMode={isImageEditMode}
+                        likesCountMap={likesCountMap}
+                        likedResortIds={likedResortIds}
+                        onToggleLike={toggleLike}
+                        pendingLikeResortIds={pendingLikeResortIds}
+                        onViewDetails={handleViewDetails}
+                        honeymoonPresets={HONEYMOON_PRESETS}
+                        onApplyHoneymoonPreset={handleApplyHoneymoonPreset}
+                      />
+                      <div className="mt-10">
+                        <HoneymoonStarter
+                          presets={HONEYMOON_PRESETS}
+                          totalAllResortsCount={initialResorts.length}
+                          totalResortsCount={displayedResorts.length}
+                          onApplyPreset={handleApplyHoneymoonPreset}
+                          onOpenFilter={() => setIsFilterOpen(true)}
+                        />
+                      </div>
+                    </>
                   )}
                 </div>
               </div>

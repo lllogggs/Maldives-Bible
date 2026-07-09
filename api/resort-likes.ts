@@ -1,16 +1,44 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { ApiRequest, ApiResponse } from '../server/api-http';
+import { requireProfileAccess } from '../server/profile-token';
 import { createClient } from '@supabase/supabase-js';
 
-function setCors(req: NextApiRequest, res: NextApiResponse) {
-  const origin = (req.headers.origin as string) || '*';
-  res.setHeader('Access-Control-Allow-Origin', origin);
-  res.setHeader('Vary', 'Origin');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'content-type, authorization, x-requested-with');
-  res.setHeader('Access-Control-Max-Age', '86400');
+function getHeaderValue(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] : value;
 }
 
-function send(res: NextApiResponse, status: number, body?: any) {
+function getAllowedOrigin(origin: string | undefined, host: string | undefined) {
+  if (!origin) {
+    return undefined;
+  }
+
+  const configuredOrigins = (process.env.RESORT_PREFERENCES_ALLOWED_ORIGINS ?? '')
+    .split(',')
+    .map(item => item.trim())
+    .filter(Boolean);
+
+  const sameHostOrigins = host ? [`https://${host}`, `http://${host}`] : [];
+  const allowedOrigins = new Set([...configuredOrigins, ...sameHostOrigins]);
+  return allowedOrigins.has(origin) ? origin : null;
+}
+
+function setCors(req: ApiRequest, res: ApiResponse) {
+  const origin = getHeaderValue(req.headers.origin);
+  const allowedOrigin = getAllowedOrigin(origin, getHeaderValue(req.headers.host));
+  if (allowedOrigin === null) {
+    return false;
+  }
+
+  if (allowedOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+  }
+  res.setHeader('Vary', 'Origin');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'content-type, authorization, x-requested-with, x-resort-profile-token');
+  res.setHeader('Access-Control-Max-Age', '86400');
+  return true;
+}
+
+function send(res: ApiResponse, status: number, body?: any) {
   if (!body) return res.status(status).end();
   return res.status(status).json(body);
 }
@@ -46,45 +74,39 @@ function normalizeCounts(rows: LikeRow[], profileId: string) {
   return { counts, likedIds };
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  setCors(req, res);
+export default async function handler(req: ApiRequest, res: ApiResponse) {
+  if (!setCors(req, res)) {
+    return send(res, 403, { error: 'origin not allowed' });
+  }
   if (req.method === 'OPTIONS') {
     return send(res, 204);
   }
 
   try {
     if (req.method === 'GET') {
-      const profileId = typeof req.query.profileId === 'string' ? req.query.profileId : undefined;
-      if (!profileId) {
-        return send(res, 400, { error: 'missing profileId' });
-      }
+      const access = requireProfileAccess(req, req.query.profileId);
+      if (!access.ok) return send(res, access.status, { error: access.error });
 
       const { data, error } = await supabase
-        .from<LikeRow>('resort_likes')
+        .from('resort_likes')
         .select('resort_id, profile_id');
 
       if (error) {
         return send(res, 500, { error: error.message });
       }
 
-      const summary = normalizeCounts(data ?? [], profileId);
+      const summary = normalizeCounts((data ?? []) as LikeRow[], access.profileId);
       return send(res, 200, { ok: true, data: summary });
     }
 
     if (req.method === 'POST') {
       const { profileId, resortId, liked } = req.body ?? {};
 
-      if (!profileId || typeof profileId !== 'string') {
-        return send(res, 400, { error: 'missing profileId' });
-      }
-
-      const trimmedProfileId = profileId.trim();
-      if (!trimmedProfileId) {
-        return send(res, 400, { error: 'missing profileId' });
-      }
+      const access = requireProfileAccess(req, profileId);
+      if (!access.ok) return send(res, access.status, { error: access.error });
 
       const numericResortId = Number(resortId);
-      if (!Number.isFinite(numericResortId)) {
+      if (!Number.isInteger(numericResortId) || numericResortId <= 0) {
         return send(res, 400, { error: 'invalid resortId' });
       }
 
@@ -102,7 +124,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { error: upsertError } = await supabase
           .from('resort_likes')
           .upsert(
-            { profile_id: trimmedProfileId, resort_id: numericResortId },
+            { profile_id: access.profileId, resort_id: numericResortId },
             { onConflict: 'profile_id,resort_id' }
           );
 
@@ -113,7 +135,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { error: deleteError } = await supabase
           .from('resort_likes')
           .delete()
-          .eq('profile_id', trimmedProfileId)
+          .eq('profile_id', access.profileId)
           .eq('resort_id', numericResortId);
 
         if (deleteError) {
@@ -131,15 +153,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       const { data: likedRows, error: likedRowsError } = await supabase
-        .from<{ resort_id: number | null }>('resort_likes')
+        .from('resort_likes')
         .select('resort_id')
-        .eq('profile_id', trimmedProfileId);
+        .eq('profile_id', access.profileId);
 
       if (likedRowsError) {
         return send(res, 500, { error: likedRowsError.message });
       }
 
-      const likedIds = (likedRows ?? [])
+      const likedIds = ((likedRows ?? []) as Array<{ resort_id: number | null }>)
         .map(row => (row.resort_id ?? undefined))
         .filter((id): id is number => typeof id === 'number' && Number.isFinite(id));
 

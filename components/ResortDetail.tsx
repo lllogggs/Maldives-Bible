@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactNode, useCallback } from 'react';
 import type { Resort } from '../types';
 import { 
   ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon, StarIcon, LocationPinIcon, ClockIcon, DollarIcon,
-  SeaplaneIcon, BoatIcon, DomesticFlightIcon, LinkIcon, CalendarIcon, RestaurantIcon, CheckCircleIcon, XCircleIcon, KidsClubIcon, HeartIcon, GalleryIcon
+  SeaplaneIcon, BoatIcon, DomesticFlightIcon, LinkIcon, CalendarIcon, RestaurantIcon, CheckCircleIcon, XCircleIcon, KidsClubIcon, HeartIcon, GalleryIcon, XIcon
 } from './icons/Icons';
 import { TransportationType } from '../types';
 
@@ -375,9 +375,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
             className="absolute top-4 right-4 text-white hover:text-gray-300"
             aria-label="Close gallery"
           >
-            <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <XIcon className="h-8 w-8" />
           </button>
 
           <button

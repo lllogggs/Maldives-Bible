@@ -63,13 +63,14 @@ npm run check:supabase
    2. 화면 오른쪽에 보이는 **Add Environment Variable** 버튼을 눌러 `Name`, `Value`, `Environment` 입력란이 있는 폼을 연 뒤, 각 란에 아래 값을 하나씩 입력합니다. (버튼을 누르면 스크린샷처럼 페이지 중간에 입력 행이 추가됩니다.)
       - **Key**: `SUPABASE_URL` → **Value**: Supabase `Project URL` (`https://<project-ref>.supabase.co`).
       - **Key**: `SUPABASE_SERVICE_ROLE_KEY` → **Value**: Supabase `service_role` 키.
+      - **Key**: `RESORT_PROFILE_TOKEN_SECRET` → **Value**: 프로필 토큰 서명용 긴 랜덤 문자열. 생략하면 `SUPABASE_SERVICE_ROLE_KEY`를 대신 사용하지만, 별도 값을 권장합니다.
       - **Key**: `RESORT_PREFERENCES_PROFILE_ID` → **Value**: `public` (또는 원하는 프로필 ID, 기본값을 쓴다면 생략 가능).
       - **Key**: `RESORT_PREFERENCES_ALLOWED_ORIGINS` → **Value**: 프런트엔드가 접근하는 도메인(`https://<your-domain>.vercel.app` 등). 여러 도메인을 허용하려면 콤마로 구분합니다.
         - 이 값은 Vercel 프로젝트의 **Settings → Domains**(또는 **Overview** 카드의 “Domains”)에서 확인할 수 있는 기본 도메인입니다. `https://`를 포함한 전체 주소를 그대로 사용하거나, 커스텀 도메인을 연결했다면 해당 주소를 적어 주세요.
       - **Key**: `VITE_PREFERENCES_API_BASE_URL` → **Value**: 프런트엔드가 배포된 Vercel URL(예: `https://<your-domain>.vercel.app`).
         - 프런트엔드에서 API를 호출할 때 사용하는 기준 주소입니다. 위에서 확인한 도메인과 동일한 값을 넣으면 됩니다. 프리뷰/프로덕션 주소가 다르면 각 환경에 맞춰 입력하세요.
    3. `Environment` 항목에는 드롭다운 대신 `Production`, `Preview`, `Development` 라벨이 붙은 토글 버튼이 표시됩니다. 사용하려는 환경을 클릭해서 하이라이트(굵은 테두리) 상태로 만들면 해당 환경에 변수가 저장됩니다. 일반적으로 `Production`과 `Preview`를 모두 켜 두고, 로컬 CLI 배포까지 필요하다면 `Development`도 함께 선택합니다.
-   4. 민감한 값(`SUPABASE_SERVICE_ROLE_KEY`)은 바로 아래에 있는 **Sensitive** 토글을 `Enabled`로 바꿔 저장 후에도 값이 화면에 노출되지 않도록 합니다.
+   4. 민감한 값(`SUPABASE_SERVICE_ROLE_KEY`, `RESORT_PROFILE_TOKEN_SECRET`)은 바로 아래에 있는 **Sensitive** 토글을 `Enabled`로 바꿔 저장 후에도 값이 화면에 노출되지 않도록 합니다.
    5. 필요한 변수를 하나 추가할 때마다 **Add** 버튼으로 저장하고, 계속해서 `Add new`를 눌러 나머지 변수를 입력합니다. 모든 값이 준비되면 페이지 오른쪽 상단의 **Save** 또는 안내에 따라 재배포를 진행하세요. 환경 변수가 누락되면 서버리스 함수가 503을 반환합니다.
 
 4. **로컬 확인**
@@ -79,9 +80,11 @@ npm run check:supabase
      ```env
      SUPABASE_URL="https://<project-ref>.supabase.co"
      SUPABASE_SERVICE_ROLE_KEY="<service-role-key>"
+     RESORT_PROFILE_TOKEN_SECRET="<long-random-token-secret>"
      RESORT_PREFERENCES_PROFILE_ID="public"
      RESORT_PREFERENCES_ALLOWED_ORIGINS="https://<your-domain>.vercel.app"
      VITE_PREFERENCES_API_BASE_URL="https://<your-domain>.vercel.app"
+     VITE_ENABLE_REMOTE_STATE_IN_DEV="false"
      ```
 
      > ℹ️ `VITE_` 접두사가 붙은 키는 Vite가 빌드 타임에 사용하므로, 프런트엔드가 API를 호출할 때도 동일한 도메인을 바라보게 됩니다.
@@ -101,7 +104,8 @@ npm run check:supabase
 
 5. **배포 후 점검**
    - 브라우저에서 `https://<vercel-domain>/api/resorts.json`을 열어 정적 JSON이 제공되는지 확인합니다.
-   - `https://<vercel-domain>/api/resort-preferences`가 JSON을 반환하면 Supabase 연동이 완료된 것입니다. 403/503이 발생하면 Supabase 키나 RLS 정책을 다시 검토하세요.
+   - 앱을 열고 개발자 도구 Network 탭에서 `/api/resort-session`이 200을 반환하는지 확인합니다. `/api/resort-preferences`와 `/api/resort-likes`는 서버가 발급한 프로필 토큰이 있어야 동작하므로, 토큰 없이 직접 열었을 때 401이 나오는 것은 정상입니다.
+   - `/api/resort-session`에서 503이 발생하면 `RESORT_PROFILE_TOKEN_SECRET` 또는 `SUPABASE_SERVICE_ROLE_KEY` 환경 변수를 다시 확인하세요. 403이 발생하면 `RESORT_PREFERENCES_ALLOWED_ORIGINS`에 실제 프런트엔드 도메인이 포함되어 있는지 확인하세요.
 
 6. **오류 메시지 사용자화(선택 사항)**
    - 네트워크 오류 시 UI에 “Failed to fetch” 대신 안내 문구를 보여주고 싶다면 `fetchResorts`의 `catch` 블록에서 `setError('데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.')`처럼 메시지를 고정하면 됩니다.

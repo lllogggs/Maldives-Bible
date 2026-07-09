@@ -37,6 +37,13 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
     { label: '비치빌라 보유', value: 'beach' },
     { label: '워터빌라 보유', value: 'water' },
   ];
+
+  const budgetOptions = [
+    { label: '$7천 이하', value: 7000 },
+    { label: '$1만 이하', value: 10000 },
+    { label: '$1.4만 이하', value: 14000 },
+    { label: '전체', value: 30000 },
+  ];
   
   const handleRoomTypeChange = (roomType: RoomTypeFilter) => {
     const newRoomTypes = filters.roomTypes.includes(roomType)
@@ -105,6 +112,46 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             <span>$0</span>
             <span>$30,000</span>
           </div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {budgetOptions.map(option => (
+              <button
+                key={option.value}
+                type="button"
+                onClick={() => onFilterChange('maxPrice', option.value)}
+                className={`min-h-9 rounded-lg border px-2 py-1 text-xs font-semibold transition-colors ${
+                  filters.maxPrice === option.value
+                    ? 'border-teal-300 bg-teal-50 text-teal-800'
+                    : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </FilterOption>
+
+      <FilterOption title="허니문 핵심 조건">
+        <div className="space-y-2">
+          <label className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-slate-50">
+            <input
+              type="checkbox"
+              checked={filters.honeymoonPerks}
+              onChange={(e) => onFilterChange('honeymoonPerks', e.target.checked)}
+              className="h-4 w-4 rounded border-slate-300 text-teal-700 accent-teal-700 focus:ring-teal-500"
+            />
+            <HeartIcon className="h-5 w-5 text-rose-500" />
+            <span className="text-slate-700">허니문 혜택 있는 곳</span>
+          </label>
+          <label className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-slate-50">
+            <input
+              type="checkbox"
+              checked={filters.hasPrivatePool}
+              onChange={(e) => onFilterChange('hasPrivatePool', e.target.checked)}
+              className="h-4 w-4 rounded border-slate-300 text-teal-700 accent-teal-700 focus:ring-teal-500"
+            />
+            <span className="text-slate-700">개인 풀 포함</span>
+          </label>
         </div>
       </FilterOption>
 
@@ -121,20 +168,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
               <span className="text-slate-700">{type.label}</span>
             </label>
           ))}
-        </div>
-      </FilterOption>
-
-      <FilterOption title="객실 내 개인 풀">
-        <div className="space-y-2">
-            <label className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-slate-50">
-              <input
-                type="checkbox"
-                checked={filters.hasPrivatePool}
-                onChange={(e) => onFilterChange('hasPrivatePool', e.target.checked)}
-                className="h-4 w-4 rounded border-slate-300 text-teal-700 accent-teal-700 focus:ring-teal-500"
-              />
-              <span className="text-slate-700">개인 풀 포함</span>
-            </label>
         </div>
       </FilterOption>
 

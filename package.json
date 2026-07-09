@@ -14,9 +14,11 @@
     "check:supabase": "node ./scripts/check-supabase-connection.mjs"
   },
   "keywords": [
-    "react",
-    "gemini",
-    "maldives"
+    "몰디브 신혼여행 리조트 비교",
+    "몰디브 워터빌라 개인풀",
+    "몰디브 보트 이동 리조트",
+    "몰디브 수상비행기 리조트",
+    "몰디브 스노클링 리조트"
   ],
   "author": "",
   "license": "ISC",
@@ -24,21 +26,21 @@
     "@google/genai": "^1.25.0",
     "@supabase/supabase-js": "^2.48.0",
     "dotenv": "^17.2.3",
+    "lucide-react": "^1.23.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "@vercel/node": "^3.1.2",
-    "@vitejs/plugin-react": "^4.2.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
     "autoprefixer": "^10.4.19",
     "gh-pages": "^6.1.1",
     "postcss": "^8.4.38",
     "prettier": "^3.6.2",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.2.2",
-    "vite": "^5.0.0"
+    "vite": "^8.1.3"
   }
 }

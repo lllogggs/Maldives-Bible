@@ -51,35 +51,50 @@ const ResortCard: React.FC<ResortCardProps> = ({
   onViewDetails,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [failedImageUrls, setFailedImageUrls] = useState<Set<string>>(new Set());
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const isSelectedForCompare = compareList.includes(resort.id);
   const canSelectForCompare = compareList.length < 3 || isSelectedForCompare;
 
-  const actualImageUrls = Array.isArray(resort.imageUrls) ? resort.imageUrls : [];
-  const actualImageCount = actualImageUrls.length;
-  const hasActualImages = actualImageCount > 0;
-  const imageUrls = hasActualImages
-    ? actualImageUrls
-    : ['https://via.placeholder.com/400x224.png?text=Image+Not+Found'];
+  const actualImageUrls = Array.isArray(resort.imageUrls)
+    ? resort.imageUrls.filter((url): url is string => typeof url === 'string' && url.trim().length > 0)
+    : [];
+  const imageUrls = actualImageUrls.filter(url => !failedImageUrls.has(url));
+  const imageCount = imageUrls.length;
+  const hasDisplayImages = imageCount > 0;
+  const currentImageUrl = hasDisplayImages ? imageUrls[currentImageIndex] : null;
+  const honeymoonTags = [
+    resort.honeymoonPerks ? '허니문 혜택' : null,
+    resort.hasWaterVilla ? '워터빌라' : null,
+    resort.hasPrivatePool ? '개인풀' : null,
+    resort.snorkelingQuality >= 4.7 ? '수중환경 강점' : null,
+    resort.travelTime <= 45 ? '이동 짧음' : null,
+  ].filter((tag): tag is string => Boolean(tag));
 
   useEffect(() => {
-    if (hasActualImages) {
-      setCurrentImageIndex(prev => Math.min(prev, actualImageCount - 1));
+    if (hasDisplayImages) {
+      setCurrentImageIndex(prev => Math.min(prev, imageCount - 1));
     } else {
       setCurrentImageIndex(0);
     }
-  }, [hasActualImages, actualImageCount]);
+  }, [hasDisplayImages, imageCount]);
 
   const minSwipeDistance = 50;
 
   const handlePrevImage = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+    if (imageUrls.length < 2) {
+      return;
+    }
     setCurrentImageIndex(prev => (prev - 1 + imageUrls.length) % imageUrls.length);
   };
 
   const handleNextImage = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+    if (imageUrls.length < 2) {
+      return;
+    }
     setCurrentImageIndex(prev => (prev + 1) % imageUrls.length);
   };
 
@@ -117,6 +132,8 @@ const ResortCard: React.FC<ResortCardProps> = ({
   };
 
   const formattedLikesCount = Math.max(0, likesCount ?? 0).toLocaleString();
+  const nightlyPrice = Math.round(resort.price / 4);
+  const coupleTransferCost = Math.max(0, resort.travelCost * 2);
   const likeButtonTitle = isLiked ? '좋아요 취소' : '좋아요 추가';
   const handleLikeClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -126,9 +143,24 @@ const ResortCard: React.FC<ResortCardProps> = ({
     onToggleLike(resort.id);
   };
 
+  const handleImageError = () => {
+    if (!currentImageUrl) {
+      return;
+    }
+
+    setFailedImageUrls(prev => {
+      const next = new Set(prev);
+      next.add(currentImageUrl);
+      return next;
+    });
+  };
+
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
+    <article
+      className="flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+      data-resort-card={resort.id}
+    >
       <div
         className="group relative cursor-pointer overflow-hidden bg-slate-100"
         onClick={handleViewDetails}
@@ -136,7 +168,21 @@ const ResortCard: React.FC<ResortCardProps> = ({
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <img className="h-60 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" src={imageUrls[currentImageIndex]} alt={`${resort.name_en} image ${currentImageIndex + 1}`} />
+        {currentImageUrl ? (
+          <img
+            className="h-60 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            src={currentImageUrl}
+            alt={`${resort.name} 리조트 이미지 ${currentImageIndex + 1}`}
+            onError={handleImageError}
+          />
+        ) : (
+          <div className="flex h-60 w-full flex-col items-center justify-center bg-[linear-gradient(135deg,#e0f2f1,#f8fafc)] px-6 text-center">
+            <p className="text-sm font-bold text-teal-800">{resort.name}</p>
+            <p className="mt-2 text-xs leading-5 text-slate-500">
+              이미지 확인 중입니다. 상세 정보와 조건 비교는 계속 이용할 수 있습니다.
+            </p>
+          </div>
+        )}
 
         {imageUrls.length > 1 && !isImageEditMode && (
           <>
@@ -172,7 +218,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
         <div className="absolute bottom-3 right-3">
             {isFirstCard && (
                 <div className="absolute -top-5 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-950 px-3 py-1 text-xs font-bold text-white shadow-sm">
-                    비교하기
+                    비교함 담기
                     <div className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-x-4 border-t-4 border-x-transparent border-t-slate-950"></div>
                 </div>
             )}
@@ -181,7 +227,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
                 onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
                 disabled={!canSelectForCompare}
                 className="rounded-full bg-white/90 p-2 text-slate-800 shadow-sm backdrop-blur transition-colors hover:bg-white disabled:cursor-not-allowed disabled:bg-slate-200/80"
-                aria-label={isSelectedForCompare ? `Remove ${resort.name} from comparison` : `Add ${resort.name} to comparison`}
+                aria-label={isSelectedForCompare ? `${resort.name} 비교함에서 제거` : `${resort.name} 비교함에 담기`}
                 title={isSelectedForCompare ? '비교 목록에서 제거' : '비교 목록에 추가'}
             >
                 {isSelectedForCompare ? <CheckCircleIcon className="h-5 w-5 text-teal-700" /> : <CartIcon className="h-5 w-5" />}
@@ -203,11 +249,35 @@ const ResortCard: React.FC<ResortCardProps> = ({
             <span className="ml-1">{resort.location} • {resort.travelTime}분</span>
           </div>
           <p className="truncate text-sm text-slate-600">{resort.brand} • {resort.spaBrand}</p>
+
+          {honeymoonTags.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {honeymoonTags.slice(0, 4).map(tag => (
+                <span key={tag} className="rounded-full border border-rose-100 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
           
           <div className="mt-3 flex flex-wrap gap-2">
             {resort.roomTypes.map(type => (
               <span key={type} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700">{type}</span>
             ))}
+          </div>
+          <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="rounded-lg bg-slate-50 px-2 py-2">
+              <span className="block text-slate-500">이동</span>
+              <strong className="mt-1 block text-slate-900">{resort.travelTime}분</strong>
+            </div>
+            <div className="rounded-lg bg-slate-50 px-2 py-2">
+              <span className="block text-slate-500">수중</span>
+              <strong className="mt-1 block text-slate-900">{resort.snorkelingQuality}/5</strong>
+            </div>
+            <div className="rounded-lg bg-slate-50 px-2 py-2">
+              <span className="block text-slate-500">다이닝</span>
+              <strong className="mt-1 block text-slate-900">{resort.restaurants}곳</strong>
+            </div>
           </div>
         </div>
 
@@ -249,6 +319,9 @@ const ResortCard: React.FC<ResortCardProps> = ({
                   상세보기
                 </button>
               </div>
+              <p className="mt-1 text-xs leading-5 text-slate-500">
+                1박 약 ${nightlyPrice.toLocaleString()} · 이동비 2인 왕복 ${coupleTransferCost.toLocaleString()}
+              </p>
             </div>
           </div>
           <p className="mt-2 text-right text-xs text-slate-500">수중환경: {resort.snorkelingQuality}/5점</p>

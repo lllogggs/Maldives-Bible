@@ -19,7 +19,7 @@ const NavButton: React.FC<{
     <button
       type="button"
       onClick={onClick}
-      className={`min-h-11 shrink-0 border-b-2 px-1 text-sm font-semibold transition-colors duration-200 sm:text-base ${isActive ? activeClasses : inactiveClasses}`}
+      className={`min-h-11 shrink-0 border-b-2 px-0.5 text-sm font-semibold transition-colors duration-200 sm:px-1 sm:text-base ${isActive ? activeClasses : inactiveClasses}`}
     >
       {label}
     </button>
@@ -29,7 +29,7 @@ const NavButton: React.FC<{
 const NavBar: React.FC<NavBarProps> = ({ currentView, onViewChange }) => {
   return (
     <nav className="mb-6 overflow-x-auto border-b border-slate-200" aria-label="몰디브 바이블 섹션">
-      <div className="flex min-w-max gap-5 sm:gap-8">
+      <div className="flex min-w-max gap-1 sm:gap-8">
         <NavButton
           label="리조트 목록"
           isActive={currentView === 'resorts'}

@@ -102,16 +102,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://heritancehotels.imgix.net/sites/2/2025/01/AERIAL-1-2.jpg",
-      "https://heritancehotels.imgix.net/sites/2/2025/09/BEACH-VILLA-4.jpg",
-      "https://heritancehotels.imgix.net/sites/2/2025/09/OCEAN-SUITE-2.jpg",
-      "https://heritancehotels.imgix.net/sites/2/2025/09/OCEAN-VILLA-3.jpg",
-      "https://heritancehotels.imgix.net/sites/2/2025/09/OCEAN-SUITE.jpg",
-      "https://heritancehotels.imgix.net/sites/2/2025/01/optimized-75-optimized-75-DJI_0568.jpg",
-      "https://heritancehotels.imgix.net/sites/2/2025/01/AERIAL-4.jpg",
-      "https://heritancehotels.imgix.net/sites/2/2025/01/optimized-75-optimized-75-DJI_0635.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 빌라",
       "오션 스위트"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Resort } from '../types';
-import { GalleryIcon } from './icons/Icons';
+import { GalleryIcon, XIcon } from './icons/Icons';
 
 interface EditModalProps {
   resort: Resort;
@@ -42,9 +42,7 @@ const EditModal: React.FC<EditModalProps> = ({ resort, onSave, onClose }) => {
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
           aria-label="Close modal"
         >
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <XIcon className="h-6 w-6" />
         </button>
         
         <h2 id="edit-modal-title" className="text-2xl font-bold text-gray-900 mb-4">{resort.name} 이미지 수정</h2>

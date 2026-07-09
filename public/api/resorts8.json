@@ -245,7 +245,14 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://www.malahini.mv:9443/web/api/picture/196",
+      "https://www.malahini.mv:9443/web/api/picture/201",
+      "https://www.malahini.mv:9443/web/api/picture/204",
+      "https://www.malahini.mv:9443/web/api/picture/178",
+      "https://www.malahini.mv:9443/web/api/picture/62",
+      "https://www.malahini.mv:9443/web/api/picture/73"
+    ],
     "roomTypes": [
       "슈페리어 룸",
       "비치 빌라"

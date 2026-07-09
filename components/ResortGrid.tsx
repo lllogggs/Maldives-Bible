@@ -1,7 +1,8 @@
 import React from 'react';
 import ResortCard from './ResortCard';
 import type { Resort, SortOption } from '../types';
-import { SortIcon, FilterIcon } from './icons/Icons';
+import type { HoneymoonPreset } from './HoneymoonStarter';
+import { SortIcon, FilterIcon, ChevronDownIcon } from './icons/Icons';
 
 interface ResortGridProps {
   resorts: Resort[];
@@ -22,6 +23,8 @@ interface ResortGridProps {
   onToggleLike: (resortId: number) => void;
   pendingLikeResortIds: Set<number>;
   onViewDetails: (resortId: number) => void;
+  honeymoonPresets: HoneymoonPreset[];
+  onApplyHoneymoonPreset: (preset: HoneymoonPreset) => void;
 }
 
 const ResortGrid: React.FC<ResortGridProps> = ({
@@ -43,6 +46,8 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   onToggleLike,
   pendingLikeResortIds,
   onViewDetails,
+  honeymoonPresets,
+  onApplyHoneymoonPreset,
 }) => {
   const pageNumbers = totalPages === 0
     ? []
@@ -52,7 +57,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
     <div>
       <div className="mb-5 flex flex-col gap-4 border-b border-slate-200 pb-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-slate-950">검색 결과</h2>
+          <h1 className="text-2xl font-bold text-slate-950">허니문 후보 리조트</h1>
           <p className="mt-1 text-sm text-slate-600">
             총 {totalResortsCount}개의 리조트
             {totalResortsCount !== totalAllResortsCount && (
@@ -102,19 +107,37 @@ const ResortGrid: React.FC<ResortGridProps> = ({
                   <option value="likes-desc">좋아요 많은 순</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-600">
-                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
+                  <ChevronDownIcon />
                 </div>
               </div>
             </div>
           </div>
-          <div className="min-h-[1.25rem] flex justify-end items-end">
-            {sortOption === 'popularity' && (
-              <p className="mt-1 text-right text-xs text-slate-500 sm:mt-0">
-                한국 구글 내 몰디브 리조트 검색량 지수 기준
-              </p>
-            )}
+        </div>
+      </div>
+
+      <div className="mb-5 rounded-lg border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-900/5">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center justify-between gap-3">
+            <p className="whitespace-nowrap text-xs font-bold uppercase tracking-[0.12em] text-teal-700">
+              빠른 시작
+            </p>
+            <span className="hidden text-sm text-slate-500 xl:inline">
+              지금 가장 중요한 기준으로 먼저 좁히기
+            </span>
+          </div>
+          <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 md:mx-0 md:justify-end md:pb-0">
+            {honeymoonPresets.map((preset) => (
+              <button
+                key={preset.id}
+                type="button"
+                onClick={() => onApplyHoneymoonPreset(preset)}
+                className="min-h-9 shrink-0 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-900 transition-colors hover:border-teal-300 hover:bg-teal-50 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10"
+                data-quick-preset={preset.id}
+                title={preset.resultHint}
+              >
+                {preset.title}
+              </button>
+            ))}
           </div>
         </div>
       </div>
