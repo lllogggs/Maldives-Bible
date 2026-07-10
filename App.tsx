@@ -11,6 +11,7 @@ import TravelAgencies from './components/TravelAgencies';
 import FlightInfo from './components/FlightInfo';
 import { POPULARITY_RANKING } from './constants';
 import type { Resort, Filters, SortOption } from './types';
+import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
 
 type ViteEnvShim = {
   DEV?: boolean;
@@ -1465,8 +1466,6 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#f6f8f7] pb-32 text-slate-950">
       <Header
-        searchTerm={filters.searchTerm}
-        onSearchChange={handleSearchChange}
         isImageEditMode={isImageEditMode}
         onToggleImageEditMode={handleToggleImageEditMode}
         isImageEditFeatureAvailable={canUseImageEditMode}
@@ -1498,34 +1497,96 @@ const App: React.FC = () => {
                 onDeleteImage={handleDeleteResortImage}
               />
             ) : (
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-                <div className="hidden lg:block">
-                  <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 gap-3 border-b border-slate-200 pb-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6">
+                  <div className="flex items-center justify-between gap-3 lg:hidden">
+                    <button
+                      type="button"
+                      onClick={() => setIsFilterOpen(true)}
+                      className="flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:hidden"
+                    >
+                      <FilterIcon className="h-5 w-5" />
+                      <span>필터</span>
+                    </button>
+                    <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
+                      {displayedResorts.length}개 리조트
+                    </span>
+                  </div>
+
+                  <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center lg:col-start-2">
+                    <div className="relative min-w-0 flex-1">
+                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
+                        <SearchIcon />
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="리조트 이름 검색"
+                        value={filters.searchTerm}
+                        onChange={(event) => handleSearchChange(event.target.value)}
+                        className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-10 pr-4 text-sm text-slate-950 shadow-inner shadow-slate-900/[0.03] transition-all placeholder:text-slate-400 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2 sm:justify-end">
+                      <SortIcon className="h-5 w-5 text-slate-500" />
+                      <div className="relative min-w-[154px] flex-1 sm:flex-none">
+                        <select
+                          id="sort-options"
+                          value={sortOption}
+                          onChange={(event) => handleSortChange(event.target.value as SortOption)}
+                          disabled={isImageEditMode}
+                          className={`h-10 w-full appearance-none rounded-lg border border-slate-200 py-2 pl-3 pr-10 text-center text-sm shadow-sm shadow-slate-900/5 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 ${
+                            isImageEditMode ? 'cursor-not-allowed bg-slate-100 text-slate-400' : 'bg-white text-slate-700'
+                          }`}
+                        >
+                          <option value="custom">추천순</option>
+                          <option value="popularity">인기순</option>
+                          <option value="price-asc">가격 낮은 순</option>
+                          <option value="price-desc">가격 높은 순</option>
+                          <option value="rating-desc">평점 높은 순</option>
+                          <option value="snorkeling-desc">수중환경순</option>
+                          <option value="travelTime-asc">이동시간 짧은 순</option>
+                          <option value="likes-desc">좋아요순</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-600">
+                          <ChevronDownIcon />
+                        </div>
+                      </div>
+                    </div>
+                    <span className="hidden shrink-0 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200 lg:inline-flex">
+                      {displayedResorts.length}개 리조트
+                    </span>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  {loading && (
-                    <div className="rounded-lg border border-slate-200 bg-white px-6 py-16 text-center text-slate-600">
-                      몰디브 리조트 정보를 불러오는 중입니다...
-                    </div>
-                  )}
-                  {error && (
-                    <div className="rounded-lg border border-red-200 bg-red-50 px-6 py-16 text-center text-red-600">
-                      에러: {error}
-                    </div>
-                  )}
-                  {!loading && !error && (
-                    <>
+
+                {isImageEditMode && (
+                  <div className="rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-900">
+                    상세 페이지에서 삭제할 이미지를 선택할 수 있습니다.
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+                  <div className="hidden lg:block">
+                    <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
+                  </div>
+                  <div className="min-w-0">
+                    {loading && (
+                      <div className="rounded-lg border border-slate-200 bg-white px-6 py-16 text-center text-slate-600">
+                        몰디브 리조트 정보를 불러오는 중입니다...
+                      </div>
+                    )}
+                    {error && (
+                      <div className="rounded-lg border border-red-200 bg-red-50 px-6 py-16 text-center text-red-600">
+                        에러: {error}
+                      </div>
+                    )}
+                    {!loading && !error && (
                       <ResortGrid
                         resorts={paginatedResorts}
-                        sortOption={sortOption}
-                        onSortChange={handleSortChange}
-                        totalResortsCount={displayedResorts.length}
                         currentPage={currentPage}
                         totalPages={totalPages}
                         onPageChange={handlePageChange}
                         compareList={compareList}
                         onToggleCompare={handleToggleCompare}
-                        onOpenFilter={() => setIsFilterOpen(true)}
                         isImageEditMode={isImageEditMode}
                         likesCountMap={likesCountMap}
                         likedResortIds={likedResortIds}
@@ -1533,8 +1594,8 @@ const App: React.FC = () => {
                         pendingLikeResortIds={pendingLikeResortIds}
                         onViewDetails={handleViewDetails}
                       />
-                    </>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
             )}

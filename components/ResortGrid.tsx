@@ -1,19 +1,14 @@
 import React from 'react';
 import ResortCard from './ResortCard';
-import type { Resort, SortOption } from '../types';
-import { SortIcon, FilterIcon, ChevronDownIcon } from './icons/Icons';
+import type { Resort } from '../types';
 
 interface ResortGridProps {
   resorts: Resort[];
-  sortOption: SortOption;
-  onSortChange: (option: SortOption) => void;
-  totalResortsCount: number;
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
-  onOpenFilter: () => void;
   isImageEditMode: boolean;
   likesCountMap: Record<number, number>;
   likedResortIds: number[];
@@ -24,15 +19,11 @@ interface ResortGridProps {
 
 const ResortGrid: React.FC<ResortGridProps> = ({
   resorts,
-  sortOption,
-  onSortChange,
-  totalResortsCount,
   currentPage,
   totalPages,
   onPageChange,
   compareList,
   onToggleCompare,
-  onOpenFilter,
   isImageEditMode,
   likesCountMap,
   likedResortIds,
@@ -46,60 +37,6 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 
   return (
     <div>
-      <div className="mb-4 flex flex-col gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h1 className="font-brand-heading text-2xl text-slate-950">몰디브 허니문 리조트</h1>
-          <p className="mt-1 text-sm text-slate-600">
-            {`${totalResortsCount}개 리조트`}
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-2 w-full sm:w-auto sm:items-end">
-          <div className="flex flex-wrap items-center justify-between gap-2 sm:justify-end">
-            <button
-              type="button"
-              onClick={onOpenFilter}
-              className="order-1 flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:hidden"
-            >
-              <FilterIcon className="h-5 w-5" />
-              <span>필터</span>
-            </button>
-            <div className="order-3 flex items-center gap-2 sm:order-none">
-              <SortIcon className="h-5 w-5 text-slate-500" />
-              <div className="relative">
-                <select
-                  id="sort-options"
-                  value={sortOption}
-                  onChange={(e) => onSortChange(e.target.value as SortOption)}
-                  disabled={isImageEditMode}
-                  className={`h-10 w-full appearance-none rounded-lg border border-slate-200 py-2 pl-3 pr-10 text-center text-sm shadow-sm shadow-slate-900/5 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:w-auto ${
-                    isImageEditMode ? 'cursor-not-allowed bg-slate-100 text-slate-400' : 'bg-white text-slate-700'
-                  }`}
-                >
-                  <option value="custom">추천순</option>
-                  <option value="popularity">인기순</option>
-                  <option value="price-asc">가격 낮은 순</option>
-                  <option value="price-desc">가격 높은 순</option>
-                  <option value="rating-desc">평점 높은 순</option>
-                  <option value="snorkeling-desc">수중환경순</option>
-                  <option value="travelTime-asc">이동시간 짧은 순</option>
-                  <option value="likes-desc">좋아요순</option>
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-600">
-                  <ChevronDownIcon />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {isImageEditMode && (
-        <div className="mb-4 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-900">
-          상세 페이지에서 삭제할 이미지를 선택할 수 있습니다.
-        </div>
-      )}
-
       {resorts.length > 0 ? (
         <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
           {resorts.map((resort) => (

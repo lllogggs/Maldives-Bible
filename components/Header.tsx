@@ -1,9 +1,7 @@
 import React from 'react';
-import { SearchIcon, EditIcon } from './icons/Icons';
+import { EditIcon } from './icons/Icons';
 
 interface HeaderProps {
-  searchTerm: string;
-  onSearchChange: (term: string) => void;
   isImageEditMode: boolean;
   onToggleImageEditMode: () => void;
   isImageEditFeatureAvailable: boolean;
@@ -12,8 +10,6 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({
-  searchTerm,
-  onSearchChange,
   isImageEditMode,
   onToggleImageEditMode,
   isImageEditFeatureAvailable,
@@ -23,9 +19,7 @@ const Header: React.FC<HeaderProps> = ({
   const containerSpacing = isCompact ? 'py-2' : 'py-4 sm:py-5';
   const contentSpacing = isCompact ? 'gap-2 sm:gap-4' : 'gap-3 sm:gap-6';
   const logoSize = isCompact ? 'h-11 w-11 sm:h-12 sm:w-12' : 'h-12 w-12 sm:h-14 sm:w-14';
-  const inputSizing = isCompact ? 'py-2 text-sm' : 'py-2.5 text-base';
   const buttonSizing = isCompact ? 'px-3 py-2 text-sm gap-2' : 'px-4 py-2.5 text-sm gap-3';
-  const searchBarSpacing = isCompact ? 'mb-1 sm:mb-0' : '';
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/85 text-slate-950 shadow-sm shadow-slate-900/5 backdrop-blur-xl transition-all duration-300">
@@ -62,18 +56,6 @@ const Header: React.FC<HeaderProps> = ({
               isCompact ? 'gap-2 sm:gap-3' : 'gap-3 sm:gap-4'
             }`}
           >
-            <div className={`relative w-full md:max-w-xl ${searchBarSpacing}`}>
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
-                <SearchIcon />
-              </div>
-              <input
-                type="text"
-                placeholder="리조트 이름 검색"
-                value={searchTerm}
-                onChange={(e) => onSearchChange(e.target.value)}
-                className={`w-full rounded-lg border border-slate-200 bg-white pl-10 pr-4 text-slate-950 shadow-inner shadow-slate-900/[0.03] placeholder:text-slate-400 transition-all duration-300 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10 ${inputSizing}`}
-              />
-            </div>
             {isImageEditFeatureAvailable && (
               <button
                 type="button"
