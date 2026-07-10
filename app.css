@@ -91,6 +91,19 @@
     }
   }
 
+  @keyframes cta-pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 14px 30px rgba(13, 148, 136, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.26);
+      filter: saturate(1.05);
+    }
+
+    50% {
+      box-shadow: 0 18px 42px rgba(20, 184, 166, 0.5), 0 0 0 4px rgba(45, 212, 191, 0.2);
+      filter: saturate(1.2);
+    }
+  }
+
   .cta-shimmer {
     position: relative;
     overflow: hidden;
@@ -109,6 +122,31 @@
   .cta-shimmer > * {
     position: relative;
     z-index: 1;
+  }
+
+  .cta-main-boost {
+    background: linear-gradient(135deg, #0f766e 0%, #14b8a6 42%, #f97316 100%) !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 1px rgba(15, 23, 42, 0.22);
+    animation: cta-pulse-glow 1.9s ease-in-out infinite;
+  }
+
+  .cta-main-boost:hover {
+    background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 46%, #fb923c 100%) !important;
+    transform: translateY(-1px);
+  }
+
+  .cta-main-boost::after {
+    width: 48%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.86), transparent);
+    animation-duration: 1.9s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-main-boost,
+    .cta-shimmer::after {
+      animation: none;
+    }
   }
 }
 
