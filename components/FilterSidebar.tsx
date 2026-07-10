@@ -10,7 +10,7 @@ interface FilterSidebarProps {
 }
 
 const MIN_BUDGET = 0;
-const MAX_BUDGET = 30000;
+const MAX_BUDGET = 50000;
 const BUDGET_STEP = 500;
 
 const FilterOption: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (

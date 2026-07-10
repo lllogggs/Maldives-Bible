@@ -78,7 +78,7 @@ const DEFAULT_FILTERS: Filters = {
   searchTerm: '',
   transportation: [],
   minPrice: 0,
-  maxPrice: 30000,
+  maxPrice: 50000,
   roomTypes: [],
   minRestaurants: 0,
   minBars: 0,
