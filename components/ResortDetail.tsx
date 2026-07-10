@@ -56,6 +56,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
   const displayedImageUrls = actualImageUrls.length > 0
     ? actualImageUrls
     : ['https://via.placeholder.com/1280x720.png?text=Image+Not+Found'];
+  const imageSourceNote = resort.imageSourceNote?.trim();
 
   const canDeleteImages = Boolean(isImageEditMode && onDeleteImage && actualImageUrls.length > 0);
 
@@ -264,6 +265,11 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
              {displayedImageUrls.length > 1 && (
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-semibold px-2 py-1 rounded-full pointer-events-none z-10">
                     {selectedImageIndex + 1} / {displayedImageUrls.length}
+                </div>
+            )}
+            {imageSourceNote && actualImageUrls.length > 0 && (
+                <div className="absolute bottom-3 left-3 z-10 rounded-full bg-black/55 px-2.5 py-1 text-xs font-semibold text-white shadow-sm backdrop-blur">
+                    {imageSourceNote}
                 </div>
             )}
             <button

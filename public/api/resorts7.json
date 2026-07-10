@@ -699,12 +699,19 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1758717152007-6a2eb7299409?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1680422273918-5f1d443272a5?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "워터 빌라 위드 풀",
       "비치 빌라"
     ],
-    "homepageUrl": "https://www.velassaru.com/"
+    "homepageUrl": "https://www.velassaru.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/overwater-bungalows-line-a-clear-turquoise-ocean-foa0rYFpw9k"
   },
   {
     "id": 132,
@@ -840,12 +847,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1680422273918-5f1d443272a5?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1758717152007-6a2eb7299409?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "오버워터 빌라 위드 풀",
       "리프 빌라 위드 풀"
     ],
-    "homepageUrl": "https://www.hilton.com/en/hotels/mleonwa-waldorf-astoria-maldives-ithaafushi/"
+    "homepageUrl": "https://www.hilton.com/en/hotels/mleonwa-waldorf-astoria-maldives-ithaafushi/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-resort-on-a-tropical-island-gWokgJJieDI"
   },
   {
     "id": 137,

@@ -241,13 +241,20 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "오버워터 빌라 위드 풀",
       "비치 빌라 위드 풀",
       "라군 빌라"
     ],
-    "homepageUrl": "https://www.marriott.com/en-us/hotels/mlemd-le-meridien-maldives-resort-and-spa/"
+    "homepageUrl": "https://www.marriott.com/en-us/hotels/mlemd-le-meridien-maldives-resort-and-spa/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/white-house-near-ocean-dikNYTv1qY8"
   },
   {
     "id": 88,
@@ -783,13 +790,20 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "비치 빌라 위드 풀",
       "워터 빌라 위드 풀",
       "그랜드 선셋 레지던스"
     ],
-    "homepageUrl": "https://www.oneandonlyresorts.com/reethi-rah"
+    "homepageUrl": "https://www.oneandonlyresorts.com/reethi-rah",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/aerial-photography-of-resort-rooms-and-island-xPsFXsbXJRg"
   },
   {
     "id": 99,
@@ -865,12 +879,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1688949078626-a358f500e063?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "비치 빌라",
       "워터 빌라",
       "가든 빌라"
     ],
-    "homepageUrl": "https://www.palmbeachmaldives.com/"
+    "homepageUrl": "https://www.palmbeachmaldives.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/gray-building-surrounded-by-body-of-water-DtWyp_4YEes"
   }
 ]

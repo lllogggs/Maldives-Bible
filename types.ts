@@ -29,6 +29,9 @@ export interface Resort {
   hasKidsClub: boolean;
   honeymoonPerks: boolean;
   imageUrls: string[];
+  imageSourceNote?: string;
+  imageSourceProvider?: string;
+  imageSourceUrl?: string;
   roomTypes: string[];
   homepageUrl: string;
 }

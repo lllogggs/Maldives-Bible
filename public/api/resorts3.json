@@ -430,11 +430,18 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1691853735541-a8f1bdd2cd16?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1691849793899-ac59a3bdc08d?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "디럭스 비치 빌라"
     ],
-    "homepageUrl": "https://www.eriyadumaldives.com/"
+    "homepageUrl": "https://www.eriyadumaldives.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-tropical-beach-and-lagoon-Kmf8MZkk9GQ"
   },
   {
     "id": 51,
@@ -526,12 +533,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1680422273918-5f1d443272a5?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "라군 빌라",
       "오션 풀 빌라"
     ],
-    "homepageUrl": "https://www.finolhu.com/"
+    "homepageUrl": "https://www.finolhu.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-tropical-beach-and-lagoon-Kmf8MZkk9GQ"
   },
   {
     "id": 54,
@@ -736,12 +750,19 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "비치 빌라",
       "워터 빌라"
     ],
-    "homepageUrl": "https://www.fushifaru.com/"
+    "homepageUrl": "https://www.fushifaru.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/aerial-photography-of-resort-rooms-and-island-xPsFXsbXJRg"
   },
   {
     "id": 59,
@@ -767,12 +788,19 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1758717152007-6a2eb7299409?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1680422273918-5f1d443272a5?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "클럽 룸",
       "오버워터 빌라"
     ],
-    "homepageUrl": "https://www.gangehiresort.com/"
+    "homepageUrl": "https://www.gangehiresort.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/overwater-bungalows-line-a-clear-turquoise-ocean-foa0rYFpw9k"
   },
   {
     "id": 60,

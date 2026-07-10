@@ -102,12 +102,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "비치 빌라",
       "오션 스위트"
     ],
-    "homepageUrl": "https://www.heritancehotels.com/aarah/"
+    "homepageUrl": "https://www.heritancehotels.com/aarah/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/white-house-near-ocean-dikNYTv1qY8"
   },
   {
     "id": 64,

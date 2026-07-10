@@ -63,12 +63,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1688949078626-a358f500e063?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1758717152007-6a2eb7299409?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "라군 오버워터 빌라",
       "오션 비치 빌라"
     ],
-    "homepageUrl": "https://www.standardhotels.com/maldives/properties/huruvalhi"
+    "homepageUrl": "https://www.standardhotels.com/maldives/properties/huruvalhi",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/aerial-photography-of-resort-villa-on-water-GSZQ_eupukE"
   },
   {
     "id": 143,
@@ -436,12 +443,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "비치 빌라",
       "워터 빌라 위드 플런지 풀"
     ],
-    "homepageUrl": "https://www.kihaamaldives.com/"
+    "homepageUrl": "https://www.kihaamaldives.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/white-house-near-ocean-dikNYTv1qY8"
   },
   {
     "id": 152,
@@ -466,12 +480,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1680422273918-5f1d443272a5?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1758717152007-6a2eb7299409?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "선셋 비치 빌라",
       "선셋 비치 스위트"
     ],
-    "homepageUrl": "https://www.ifuruisland.com/"
+    "homepageUrl": "https://www.ifuruisland.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-resort-on-a-tropical-island-gWokgJJieDI"
   },
   {
     "id": 153,
@@ -497,12 +518,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1688949078626-a358f500e063?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "선셋 비치 빌라",
       "디럭스 워터 빌라 위드 풀"
     ],
-    "homepageUrl": "https://www.hideawaybeachmaldives.com/"
+    "homepageUrl": "https://www.hideawaybeachmaldives.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-resort-in-the-middle-of-the-ocean-kjicxykvfiA"
   },
   {
     "id": 154,
@@ -603,12 +631,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1691853735541-a8f1bdd2cd16?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1691849793899-ac59a3bdc08d?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "선라이즈 비치 방갈로",
       "선셋 비치 방갈로"
     ],
-    "homepageUrl": "https://www.innahura.com/"
+    "homepageUrl": "https://www.innahura.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-tropical-beach-and-lagoon-Kmf8MZkk9GQ"
   },
   {
     "id": 157,
@@ -670,12 +705,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1688949078626-a358f500e063?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1758717152007-6a2eb7299409?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "비치 풀 빌라",
       "워터 풀 빌라"
     ],
-    "homepageUrl": "https://www.jawakara.com/"
+    "homepageUrl": "https://www.jawakara.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/aerial-photography-of-resort-villa-on-water-GSZQ_eupukE"
   },
   {
     "id": 159,

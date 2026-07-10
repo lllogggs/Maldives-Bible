@@ -63,6 +63,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
   const imageCount = imageUrls.length;
   const hasDisplayImages = imageCount > 0;
   const currentImageUrl = hasDisplayImages ? imageUrls[currentImageIndex] : null;
+  const imageSourceNote = resort.imageSourceNote?.trim();
   const featureTags = [
     resort.honeymoonPerks ? '허니문 혜택' : null,
     resort.hasWaterVilla ? '워터빌라' : null,
@@ -162,6 +163,12 @@ const ResortCard: React.FC<ResortCardProps> = ({
         ) : (
           <div className="flex h-56 w-full items-center justify-center bg-[linear-gradient(135deg,#e0f2f1,#f8fafc)] px-6 text-center">
             <p className="text-sm font-bold text-teal-800">{resort.name}</p>
+          </div>
+        )}
+
+        {imageSourceNote && currentImageUrl && (
+          <div className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-slate-950/70 px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm backdrop-blur">
+            {imageSourceNote}
           </div>
         )}
 

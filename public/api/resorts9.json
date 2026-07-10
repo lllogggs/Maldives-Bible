@@ -22,12 +22,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1688949078626-a358f500e063?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "워터 방갈로",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.villahotels.com/sun-island-resort-spa/"
+    "homepageUrl": "https://www.villahotels.com/sun-island-resort-spa/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-resort-in-the-middle-of-the-ocean-kjicxykvfiA"
   },
   {
     "id": 162,
@@ -52,12 +59,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "워터 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.villahotels.com/paradise-island-resort-spa/"
+    "homepageUrl": "https://www.villahotels.com/paradise-island-resort-spa/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/aerial-photography-of-resort-rooms-and-island-xPsFXsbXJRg"
   },
   {
     "id": 163,
@@ -83,12 +97,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1758717152007-6a2eb7299409?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1680422273918-5f1d443272a5?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "자쿠지 워터 빌라",
       "비치 빌라"
     ],
-    "homepageUrl": "https://www.meeru.com/"
+    "homepageUrl": "https://www.meeru.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/overwater-bungalows-line-a-clear-turquoise-ocean-foa0rYFpw9k"
   },
   {
     "id": 164,
@@ -145,12 +166,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1680422273918-5f1d443272a5?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "워터 풀 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.nokuhotels.com/maldives/"
+    "homepageUrl": "https://www.nokuhotels.com/maldives/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-tropical-beach-and-lagoon-Kmf8MZkk9GQ"
   },
   {
     "id": 166,
@@ -346,11 +374,18 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1691853735541-a8f1bdd2cd16?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1691849793899-ac59a3bdc08d?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "디럭스 비치 방갈로"
     ],
-    "homepageUrl": "https://www.makunudu.com/"
+    "homepageUrl": "https://www.makunudu.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-tropical-beach-and-lagoon-Kmf8MZkk9GQ"
   },
   {
     "id": 170,
@@ -418,12 +453,19 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1691853735541-a8f1bdd2cd16?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1691849793899-ac59a3bdc08d?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "비치 방갈로",
       "패밀리 방갈로"
     ],
-    "homepageUrl": "https://www.rihiveli-maldives.com/"
+    "homepageUrl": "https://www.rihiveli-maldives.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-tropical-beach-and-lagoon-Kmf8MZkk9GQ"
   },
   {
     "id": 172,
@@ -448,11 +490,18 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": false,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1599832443368-6758aad8547f?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1612900631470-ee489f0006fd?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80"
+    ],
     "roomTypes": [
       "디럭스 룸",
       "패밀리 룸"
     ],
-    "homepageUrl": "https://guraidhoopalminn.com/"
+    "homepageUrl": "https://guraidhoopalminn.com/",
+    "imageSourceNote": "참고 이미지",
+    "imageSourceProvider": "Unsplash",
+    "imageSourceUrl": "https://unsplash.com/photos/aerial-view-of-city-buildings-near-body-of-water-during-daytime-3ssF8fhmQhE"
   }
 ]
