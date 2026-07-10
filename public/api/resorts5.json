@@ -241,20 +241,13 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "오버워터 빌라 위드 풀",
       "비치 빌라 위드 풀",
       "라군 빌라"
     ],
-    "homepageUrl": "https://www.marriott.com/en-us/hotels/mlemd-le-meridien-maldives-resort-and-spa/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/white-house-near-ocean-dikNYTv1qY8"
+    "homepageUrl": "https://www.marriott.com/en-us/hotels/mlemd-le-meridien-maldives-resort-and-spa/"
   },
   {
     "id": 88,
@@ -791,9 +784,7 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Reef_Beach%2C_Reethi_Rah%2C_Maldives_-_panoramio.jpg/1920px-Reef_Beach%2C_Reethi_Rah%2C_Maldives_-_panoramio.jpg"
     ],
     "roomTypes": [
       "비치 빌라 위드 풀",
@@ -801,9 +792,17 @@
       "그랜드 선셋 레지던스"
     ],
     "homepageUrl": "https://www.oneandonlyresorts.com/reethi-rah",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/aerial-photography-of-resort-rooms-and-island-xPsFXsbXJRg"
+    "imageSourceNote": "Wikimedia",
+    "imageSourceProvider": "Wikimedia Commons",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3AReef_Beach%2C_Reethi_Rah%2C_Maldives_-_panoramio.jpg",
+    "imageCredits": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AReef_Beach%2C_Reethi_Rah%2C_Maldives_-_panoramio.jpg",
+        "creator": "Jlexa",
+        "license": "CC BY 3.0",
+        "provider": "Wikimedia Commons"
+      }
+    ]
   },
   {
     "id": 99,
@@ -880,9 +879,9 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1688949078626-a358f500e063?auto=format&fit=crop&w=1600&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Boat_anchored_at_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_%2811742802094%29.jpg/1920px-Boat_anchored_at_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_%2811742802094%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Mandatory_jetty_shot%2C_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_%2811742406995%29.jpg/1920px-Mandatory_jetty_shot%2C_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_%2811742406995%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Sunset_behind_the_clouds%2C_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_%2811742804384%29.jpg/1920px-Sunset_behind_the_clouds%2C_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_%2811742804384%29.jpg"
     ],
     "roomTypes": [
       "비치 빌라",
@@ -890,8 +889,28 @@
       "가든 빌라"
     ],
     "homepageUrl": "https://www.palmbeachmaldives.com/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/gray-building-surrounded-by-body-of-water-DtWyp_4YEes"
+    "imageSourceNote": "Wikimedia",
+    "imageSourceProvider": "Wikimedia Commons",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3ABoat_anchored_at_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_(11742802094).jpg",
+    "imageCredits": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABoat_anchored_at_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_(11742802094).jpg",
+        "creator": "Romain Pontida",
+        "license": "CC BY-SA 2.0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMandatory_jetty_shot%2C_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_(11742406995).jpg",
+        "creator": "Romain Pontida",
+        "license": "CC BY-SA 2.0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASunset_behind_the_clouds%2C_Madhiriguraidhoo%2C_Lhaviyani_Atoll%2C_Maldives_(11742804384).jpg",
+        "creator": "Romain Pontida",
+        "license": "CC BY-SA 2.0",
+        "provider": "Wikimedia Commons"
+      }
+    ]
   }
 ]

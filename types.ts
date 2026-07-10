@@ -32,8 +32,16 @@ export interface Resort {
   imageSourceNote?: string;
   imageSourceProvider?: string;
   imageSourceUrl?: string;
+  imageCredits?: ImageCredit[];
   roomTypes: string[];
   homepageUrl: string;
+}
+
+export interface ImageCredit {
+  provider?: string;
+  sourceUrl: string;
+  creator?: string;
+  license?: string;
 }
 
 export type RoomTypeFilter = 'beach' | 'water';

@@ -59,18 +59,38 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_21.jpg/1920px-Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_21.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_08.jpg/1920px-Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_08.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_33.jpg/1920px-Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_33.jpg"
     ],
     "roomTypes": [
       "선라이즈 워터 빌라",
       "선셋 워터 빌라"
     ],
     "homepageUrl": "https://www.adaaran.com/prestigevadoo/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/aerial-photography-of-resort-rooms-and-island-xPsFXsbXJRg"
+    "imageSourceNote": "Wikimedia",
+    "imageSourceProvider": "Wikimedia Commons",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3AFlora_of_Adaaran_Prestige_Vadoo%2C_Maldives_21.jpg",
+    "imageCredits": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFlora_of_Adaaran_Prestige_Vadoo%2C_Maldives_21.jpg",
+        "creator": "Rajasekhar1961",
+        "license": "CC0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFlora_of_Adaaran_Prestige_Vadoo%2C_Maldives_08.jpg",
+        "creator": "Rajasekhar1961",
+        "license": "CC0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFlora_of_Adaaran_Prestige_Vadoo%2C_Maldives_33.jpg",
+        "creator": "Rajasekhar1961",
+        "license": "CC0",
+        "provider": "Wikimedia Commons"
+      }
+    ]
   },
   {
     "id": 3,
@@ -703,19 +723,12 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://images.unsplash.com/photo-1688949078626-a358f500e063?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 빌라",
       "워터 빌라"
     ],
-    "homepageUrl": "https://www.barcelo.com/en-ww/barcelo-whale-lagoon-maldives/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-resort-in-the-middle-of-the-ocean-kjicxykvfiA"
+    "homepageUrl": "https://www.barcelo.com/en-ww/barcelo-whale-lagoon-maldives/"
   },
   {
     "id": 18,

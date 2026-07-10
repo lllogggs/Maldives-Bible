@@ -23,18 +23,38 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.unsplash.com/photo-1688949078626-a358f500e063?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sun_island_resort_-_panoramio_%2811%29.jpg/1920px-Sun_island_resort_-_panoramio_%2811%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sun_Island_-_Maldives_-_panoramio.jpg/1920px-Sun_Island_-_Maldives_-_panoramio.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Nalaguraidhoo_Wasserbungalows.JPG/1920px-Nalaguraidhoo_Wasserbungalows.JPG"
     ],
     "roomTypes": [
       "워터 방갈로",
       "비치 풀 빌라"
     ],
     "homepageUrl": "https://www.villahotels.com/sun-island-resort-spa/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-resort-in-the-middle-of-the-ocean-kjicxykvfiA"
+    "imageSourceNote": "Wikimedia",
+    "imageSourceProvider": "Wikimedia Commons",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3ASun_island_resort_-_panoramio_(11).jpg",
+    "imageCredits": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASun_island_resort_-_panoramio_(11).jpg",
+        "creator": "L-BBE",
+        "license": "CC BY 3.0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASun_Island_-_Maldives_-_panoramio.jpg",
+        "creator": "bielyvlk",
+        "license": "CC BY-SA 3.0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ANalaguraidhoo_Wasserbungalows.JPG",
+        "creator": "Dr. Peter Schmidt",
+        "license": "CC BY-SA 3.0",
+        "provider": "Wikimedia Commons"
+      }
+    ]
   },
   {
     "id": 162,
@@ -60,18 +80,38 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Lankanfinolhu_in_2023-09.jpg/1920px-Lankanfinolhu_in_2023-09.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Floating_in_Maldives._%28Unsplash%29.jpg/1920px-Floating_in_Maldives._%28Unsplash%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Lost_in_Heaven_%28Unsplash%29.jpg/1920px-Lost_in_Heaven_%28Unsplash%29.jpg"
     ],
     "roomTypes": [
       "워터 빌라",
       "비치 풀 빌라"
     ],
     "homepageUrl": "https://www.villahotels.com/paradise-island-resort-spa/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/aerial-photography-of-resort-rooms-and-island-xPsFXsbXJRg"
+    "imageSourceNote": "Wikimedia",
+    "imageSourceProvider": "Wikimedia Commons",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3ALankanfinolhu_in_2023-09.jpg",
+    "imageCredits": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ALankanfinolhu_in_2023-09.jpg",
+        "creator": "Renek78",
+        "license": "CC BY-SA 4.0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFloating_in_Maldives._(Unsplash).jpg",
+        "creator": "Ishan @seefromthesky seefromthesky",
+        "license": "CC0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ALost_in_Heaven_(Unsplash).jpg",
+        "creator": "Ishan @seefromthesky seefromthesky",
+        "license": "CC0",
+        "provider": "Wikimedia Commons"
+      }
+    ]
   },
   {
     "id": 163,
@@ -98,18 +138,24 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.unsplash.com/photo-1758717152007-6a2eb7299409?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1470214203634-e436a8848e23?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1680422273918-5f1d443272a5?auto=format&fit=crop&w=1600&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Meeru_Island_Resort_and_Spa%2C_Maldives_%28Unsplash%29.jpg/1920px-Meeru_Island_Resort_and_Spa%2C_Maldives_%28Unsplash%29.jpg"
     ],
     "roomTypes": [
       "자쿠지 워터 빌라",
       "비치 빌라"
     ],
     "homepageUrl": "https://www.meeru.com/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/overwater-bungalows-line-a-clear-turquoise-ocean-foa0rYFpw9k"
+    "imageSourceNote": "Wikimedia",
+    "imageSourceProvider": "Wikimedia Commons",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3AMeeru_Island_Resort_and_Spa%2C_Maldives_(Unsplash).jpg",
+    "imageCredits": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMeeru_Island_Resort_and_Spa%2C_Maldives_(Unsplash).jpg",
+        "creator": "Syd Sujuaan sydsujuaan",
+        "license": "CC0",
+        "provider": "Wikimedia Commons"
+      }
+    ]
   },
   {
     "id": 164,
@@ -166,19 +212,12 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1680422273918-5f1d443272a5?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1600&q=80"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "워터 풀 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.nokuhotels.com/maldives/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-tropical-beach-and-lagoon-Kmf8MZkk9GQ"
+    "homepageUrl": "https://www.nokuhotels.com/maldives/"
   },
   {
     "id": 166,
@@ -375,17 +414,37 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1691853735541-a8f1bdd2cd16?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1691849793899-ac59a3bdc08d?auto=format&fit=crop&w=1600&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/7/7f/A_beach_in_Makunudu_island_in_Maldives.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/c/c1/Sea_turtle_at_Makunudu_island_in_Maldives.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/e/e9/Fishs_in_Maldives_at_Makunudu_island.jpg"
     ],
     "roomTypes": [
       "디럭스 비치 방갈로"
     ],
     "homepageUrl": "https://www.makunudu.com/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-tropical-beach-and-lagoon-Kmf8MZkk9GQ"
+    "imageSourceNote": "Wikimedia",
+    "imageSourceProvider": "Wikimedia Commons",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3AA_beach_in_Makunudu_island_in_Maldives.jpg",
+    "imageCredits": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AA_beach_in_Makunudu_island_in_Maldives.jpg",
+        "creator": "Thibdx",
+        "license": "CC BY 4.0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASea_turtle_at_Makunudu_island_in_Maldives.jpg",
+        "creator": "Thibdx",
+        "license": "CC BY 4.0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFishs_in_Maldives_at_Makunudu_island.jpg",
+        "creator": "Thibdx",
+        "license": "CC BY 4.0",
+        "provider": "Wikimedia Commons"
+      }
+    ]
   },
   {
     "id": 170,
@@ -454,18 +513,38 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://images.unsplash.com/photo-1696580436068-f19c26850e8b?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1691853735541-a8f1bdd2cd16?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1691849793899-ac59a3bdc08d?auto=format&fit=crop&w=1600&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/9/92/RIHIVELI_AS_SEEN_FROM_SUNSET_ISLAND%2C_MALDIVES_10_-_panoramio.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/e/ea/BEAUTIFUL_SUNRISE_ISLAND_NEXT_TO_RIHIVELI_28_-_panoramio.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/2d/SUNSET_ISLAND_NEXT_TO_RIHIVELI%2C_MALDIVES_9_-_panoramio.jpg"
     ],
     "roomTypes": [
       "비치 방갈로",
       "패밀리 방갈로"
     ],
     "homepageUrl": "https://www.rihiveli-maldives.com/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/an-aerial-view-of-a-tropical-beach-and-lagoon-Kmf8MZkk9GQ"
+    "imageSourceNote": "Wikimedia",
+    "imageSourceProvider": "Wikimedia Commons",
+    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3ARIHIVELI_AS_SEEN_FROM_SUNSET_ISLAND%2C_MALDIVES_10_-_panoramio.jpg",
+    "imageCredits": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ARIHIVELI_AS_SEEN_FROM_SUNSET_ISLAND%2C_MALDIVES_10_-_panoramio.jpg",
+        "creator": "otterboris",
+        "license": "CC BY 3.0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABEAUTIFUL_SUNRISE_ISLAND_NEXT_TO_RIHIVELI_28_-_panoramio.jpg",
+        "creator": "otterboris",
+        "license": "CC BY 3.0",
+        "provider": "Wikimedia Commons"
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASUNSET_ISLAND_NEXT_TO_RIHIVELI%2C_MALDIVES_9_-_panoramio.jpg",
+        "creator": "otterboris",
+        "license": "CC BY 3.0",
+        "provider": "Wikimedia Commons"
+      }
+    ]
   },
   {
     "id": 172,
@@ -490,18 +569,11 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": false,
-    "imageUrls": [
-      "https://images.unsplash.com/photo-1599832443368-6758aad8547f?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1612900631470-ee489f0006fd?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1534962086670-5e8e805a0dad?auto=format&fit=crop&w=1600&q=80"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "디럭스 룸",
       "패밀리 룸"
     ],
-    "homepageUrl": "https://guraidhoopalminn.com/",
-    "imageSourceNote": "참고 이미지",
-    "imageSourceProvider": "Unsplash",
-    "imageSourceUrl": "https://unsplash.com/photos/aerial-view-of-city-buildings-near-body-of-water-during-daytime-3ssF8fhmQhE"
+    "homepageUrl": "https://guraidhoopalminn.com/"
   }
 ]

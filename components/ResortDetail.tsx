@@ -41,6 +41,13 @@ const TransportationIcon: React.FC<{type: TransportationType}> = ({ type }) => {
     }
 }
 
+type ImageCredit = NonNullable<Resort['imageCredits']>[number];
+
+const getImageCreditText = (credit: ImageCredit) => {
+  const parts = [credit.creator, credit.license, credit.provider].filter(Boolean);
+  return parts.length > 0 ? `이미지: ${parts.join(' · ')}` : '이미지 출처';
+};
+
 const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEditMode = false, onDeleteImage }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -57,6 +64,9 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
     ? actualImageUrls
     : ['https://via.placeholder.com/1280x720.png?text=Image+Not+Found'];
   const imageSourceNote = resort.imageSourceNote?.trim();
+  const imageCredits = Array.isArray(resort.imageCredits) ? resort.imageCredits : [];
+  const primaryImageCredit = imageCredits[0];
+  const selectedImageCredit = imageCredits[selectedImageIndex] ?? primaryImageCredit;
 
   const canDeleteImages = Boolean(isImageEditMode && onDeleteImage && actualImageUrls.length > 0);
 
@@ -287,6 +297,19 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
               <ChevronRightIcon />
             </button>
         </div>
+        {primaryImageCredit && (
+          <div className="border-t border-slate-100 bg-slate-50 px-4 py-2 text-[11px] leading-4 text-slate-500 md:px-6">
+            <span>{getImageCreditText(primaryImageCredit)}</span>
+            <a
+              href={primaryImageCredit.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-1 font-semibold text-slate-700 underline decoration-slate-300 underline-offset-2 hover:text-slate-950"
+            >
+              출처
+            </a>
+          </div>
+        )}
         
         <div className="p-6 md:p-8">
           {/* Header */}
@@ -425,6 +448,17 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-sm font-semibold px-3 py-1 rounded-full">
               {selectedImageIndex + 1} / {displayedImageUrls.length}
             </div>
+            {selectedImageCredit && (
+              <a
+                href={selectedImageCredit.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 max-w-[90vw] text-center text-xs font-medium text-white/80 underline decoration-white/40 underline-offset-2 hover:text-white"
+                onClick={(event) => event.stopPropagation()}
+              >
+                {getImageCreditText(selectedImageCredit)}
+              </a>
+            )}
           </div>
         </div>
       )}
