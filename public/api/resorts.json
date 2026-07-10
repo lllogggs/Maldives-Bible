@@ -723,12 +723,39 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://dam.melia.com/melia/file/n193GG79TeK692Dr8oFi.jpg",
+      "https://dam.melia.com/melia/file/mLrvnTxh9N2GNpGzerps.jpg",
+      "https://dam.melia.com/melia/file/26HtN5x9smxWG72qPNGB.jpg"
+    ],
     "roomTypes": [
       "비치 빌라",
       "워터 빌라"
     ],
-    "homepageUrl": "https://www.barcelo.com/en-ww/barcelo-whale-lagoon-maldives/"
+    "homepageUrl": "https://www.barcelo.com/en-ww/barcelo-whale-lagoon-maldives/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Meliá official site",
+    "imageSourceUrl": "https://www.melia.com/en/hotels/maldives/south-ari-atoll/hotel-whale-lagoon-maldives-5726",
+    "imageCredits": [
+      {
+        "provider": "Meliá official site",
+        "sourceUrl": "https://www.melia.com/en/hotels/maldives/south-ari-atoll/hotel-whale-lagoon-maldives-5726",
+        "creator": "Meliá Hotels International",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Meliá official site",
+        "sourceUrl": "https://www.melia.com/en/hotels/maldives/south-ari-atoll/hotel-whale-lagoon-maldives-5726",
+        "creator": "Meliá Hotels International",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Meliá official site",
+        "sourceUrl": "https://www.melia.com/en/hotels/maldives/south-ari-atoll/hotel-whale-lagoon-maldives-5726",
+        "creator": "Meliá Hotels International",
+        "license": "공식 사이트 이미지"
+      }
+    ]
   },
   {
     "id": 18,

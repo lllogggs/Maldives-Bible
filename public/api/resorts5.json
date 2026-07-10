@@ -241,13 +241,26 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://mma.prnewswire.com/media/1606710/Le_Meridien_Maldives_Resort___Spa_Sunset_61.jpg?p=publish"
+    ],
     "roomTypes": [
       "오버워터 빌라 위드 풀",
       "비치 빌라 위드 풀",
       "라군 빌라"
     ],
-    "homepageUrl": "https://www.marriott.com/en-us/hotels/mlemd-le-meridien-maldives-resort-and-spa/"
+    "homepageUrl": "https://www.marriott.com/en-us/hotels/mlemd-le-meridien-maldives-resort-and-spa/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "PRNewswire / Marriott",
+    "imageSourceUrl": "https://www.prnewswire.com/news-releases/le-meridien-hotels--resorts-lands-in-the-maldives-with-signature-glamourous-european-spirit-301367394.html",
+    "imageCredits": [
+      {
+        "provider": "PRNewswire / Marriott",
+        "sourceUrl": "https://www.prnewswire.com/news-releases/le-meridien-hotels--resorts-lands-in-the-maldives-with-signature-glamourous-european-spirit-301367394.html",
+        "creator": "Marriott International",
+        "license": "공식 보도자료 이미지"
+      }
+    ]
   },
   {
     "id": 88,

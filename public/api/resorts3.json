@@ -553,12 +553,39 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://eu.vocuspr.com/Publish/519518/vcsPRAsset_519518_198799_fdc0debc-5dc4-4757-86d2-0c577ac3653d_0.jpg",
+      "https://eu.vocuspr.com/Publish/519518/vcsPRAsset_519518_198800_4d08925a-6170-4cd7-9b77-1cb2e25e305a_0.jpg",
+      "https://eu.vocuspr.com/Publish/519518/vcsPRAsset_519518_198801_8f37078e-a84b-4b21-8f75-6cb94364f05b_0.jpg"
+    ],
     "roomTypes": [
       "라군 빌라",
       "오션 풀 빌라"
     ],
-    "homepageUrl": "https://www.finolhu.com/"
+    "homepageUrl": "https://www.finolhu.com/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Design Hotels Press",
+    "imageSourceUrl": "https://eu.vocuspr.com/Newsroom/Query.aspx?Entity=PRAsset&Merge=False&SF_PRAsset_PRAssetID_EQ=198882&SiteName=DesignHotels&XSL=PressRelease",
+    "imageCredits": [
+      {
+        "provider": "Design Hotels Press",
+        "sourceUrl": "https://eu.vocuspr.com/Newsroom/Query.aspx?Entity=PRAsset&Merge=False&SF_PRAsset_PRAssetID_EQ=198882&SiteName=DesignHotels&XSL=PressRelease",
+        "creator": "Design Hotels / Seaside Finolhu",
+        "license": "공식 프레스 이미지"
+      },
+      {
+        "provider": "Design Hotels Press",
+        "sourceUrl": "https://eu.vocuspr.com/Newsroom/Query.aspx?Entity=PRAsset&Merge=False&SF_PRAsset_PRAssetID_EQ=198882&SiteName=DesignHotels&XSL=PressRelease",
+        "creator": "Design Hotels / Seaside Finolhu",
+        "license": "공식 프레스 이미지"
+      },
+      {
+        "provider": "Design Hotels Press",
+        "sourceUrl": "https://eu.vocuspr.com/Newsroom/Query.aspx?Entity=PRAsset&Merge=False&SF_PRAsset_PRAssetID_EQ=198882&SiteName=DesignHotels&XSL=PressRelease",
+        "creator": "Design Hotels / Seaside Finolhu",
+        "license": "공식 프레스 이미지"
+      }
+    ]
   },
   {
     "id": 54,
@@ -763,12 +790,39 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://www.fushifaru.com/wp-content/uploads/2025/01/home-hero-1.webp",
+      "https://www.fushifaru.com/wp-content/uploads/2024/07/Pool-Beach-Villa-Sunrise-1.webp",
+      "https://www.fushifaru.com/wp-content/uploads/2024/07/Jacuzzi-Water-Villa-2.webp"
+    ],
     "roomTypes": [
       "비치 빌라",
       "워터 빌라"
     ],
-    "homepageUrl": "https://www.fushifaru.com/"
+    "homepageUrl": "https://www.fushifaru.com/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Fushifaru official site",
+    "imageSourceUrl": "https://www.fushifaru.com/gallery/",
+    "imageCredits": [
+      {
+        "provider": "Fushifaru official site",
+        "sourceUrl": "https://www.fushifaru.com/gallery/",
+        "creator": "Fushifaru Maldives",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Fushifaru official site",
+        "sourceUrl": "https://www.fushifaru.com/gallery/",
+        "creator": "Fushifaru Maldives",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Fushifaru official site",
+        "sourceUrl": "https://www.fushifaru.com/gallery/",
+        "creator": "Fushifaru Maldives",
+        "license": "공식 사이트 이미지"
+      }
+    ]
   },
   {
     "id": 59,

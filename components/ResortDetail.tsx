@@ -60,9 +60,8 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
     ? resort.imageUrls.filter((url): url is string => typeof url === 'string' && url.trim().length > 0)
     : [];
 
-  const displayedImageUrls = actualImageUrls.length > 0
-    ? actualImageUrls
-    : ['https://via.placeholder.com/1280x720.png?text=Image+Not+Found'];
+  const displayedImageUrls = actualImageUrls;
+  const hasDisplayImages = displayedImageUrls.length > 0;
   const imageSourceNote = resort.imageSourceNote?.trim();
   const imageCredits = Array.isArray(resort.imageCredits) ? resort.imageCredits : [];
   const primaryImageCredit = imageCredits[0];
@@ -81,11 +80,13 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
 
   const goToNext = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
     e?.stopPropagation();
+    if (displayedImageUrls.length === 0) return;
     setSelectedImageIndex(prev => (prev + 1) % displayedImageUrls.length);
   }, [displayedImageUrls.length]);
 
   const goToPrev = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
     e?.stopPropagation();
+    if (displayedImageUrls.length === 0) return;
     setSelectedImageIndex(prev => (prev - 1 + displayedImageUrls.length) % displayedImageUrls.length);
   }, [displayedImageUrls.length]);
 
@@ -193,6 +194,8 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
       <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
         {/* Image Gallery */}
         <div className="relative" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+            {hasDisplayImages ? (
+            <>
             {/* Desktop Grid */}
             <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 md:gap-2 md:h-[450px]">
                 <div
@@ -269,7 +272,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
                     title="현재 이미지를 삭제"
                   >
                     삭제
-                  </button>
+                    </button>
                 )}
             </div>
              {displayedImageUrls.length > 1 && (
@@ -296,6 +299,12 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
             >
               <ChevronRightIcon />
             </button>
+            </>
+            ) : (
+              <div className="flex h-64 w-full items-center justify-center bg-[linear-gradient(135deg,#e0f2f1,#f8fafc)] px-6 text-center md:h-[450px]">
+                <p className="text-lg font-bold text-teal-900">{resort.name}</p>
+              </div>
+            )}
         </div>
         {primaryImageCredit && (
           <div className="border-t border-slate-100 bg-slate-50 px-4 py-2 text-[11px] leading-4 text-slate-500 md:px-6">

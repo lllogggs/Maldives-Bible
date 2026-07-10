@@ -853,12 +853,39 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://hiltoncontenthub-editor.com/wp-content/uploads/2025/09/Waldorf-Astoria-Maldives-Ithaafushi-Private-Island.jpg?w=1920&h=1920&crop=1&q=75",
+      "https://hiltoncontenthub-editor.com/wp-content/uploads/2025/08/Waldorf-Astoria-Maldives-Ithaafushi-Welcome-Center-2.jpg?w=1920&h=1920&crop=1&q=75",
+      "https://hiltoncontenthub-editor.com/wp-content/uploads/2025/08/Waldorf-Astoria-Maldives-Ithaafushi-Two-Bedroom-Reef-Villa.jpg?w=1920&h=1920&crop=1&q=75"
+    ],
     "roomTypes": [
       "오버워터 빌라 위드 풀",
       "리프 빌라 위드 풀"
     ],
-    "homepageUrl": "https://www.hilton.com/en/hotels/mleonwa-waldorf-astoria-maldives-ithaafushi/"
+    "homepageUrl": "https://www.hilton.com/en/hotels/mleonwa-waldorf-astoria-maldives-ithaafushi/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Hilton Content Hub",
+    "imageSourceUrl": "https://hiltoncontenthub.com/property/waldorf-astoria-maldives-ithaafushi",
+    "imageCredits": [
+      {
+        "provider": "Hilton Content Hub",
+        "sourceUrl": "https://hiltoncontenthub.com/property/waldorf-astoria-maldives-ithaafushi",
+        "creator": "Hilton / Waldorf Astoria",
+        "license": "공식 미디어 에셋"
+      },
+      {
+        "provider": "Hilton Content Hub",
+        "sourceUrl": "https://hiltoncontenthub.com/property/waldorf-astoria-maldives-ithaafushi",
+        "creator": "Hilton / Waldorf Astoria",
+        "license": "공식 미디어 에셋"
+      },
+      {
+        "provider": "Hilton Content Hub",
+        "sourceUrl": "https://hiltoncontenthub.com/property/waldorf-astoria-maldives-ithaafushi",
+        "creator": "Hilton / Waldorf Astoria",
+        "license": "공식 미디어 에셋"
+      }
+    ]
   },
   {
     "id": 137,

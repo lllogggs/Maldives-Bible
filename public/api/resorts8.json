@@ -63,12 +63,39 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://duvx7h32ggrur.cloudfront.net/attachments/d73de90a113b4c923e4cdb4fe0cbbc765ea35c4f/store/optimize_v1_webp/1920/70/plane/2aacd7c8b31c4cf7cd8cc17bb8aef7da760a36dc8650e96d65829b17ffcc/the-standard-all-inclusive-resort-maldives-bungalows-white-sand-beach.webp",
+      "https://duvx7h32ggrur.cloudfront.net/attachments/115725c7b309b09b77c4598d39091232601cde07/store/optimize_v1/1920/70/plane/998859964be3ddf62eaa691968eb3478a95f71985ba09db030a373fc8e36/0k1a0362.jpg",
+      "https://duvx7h32ggrur.cloudfront.net/attachments/3fd49fe1f3f47742bd198af9fc4f119bae378352/store/fill/1920/1280/55f446b29cdfd06d81ed7862f2b38bc40cb2060cd5aa6225461ee3608565/main-pool_011_the-standard_huruvalhi-maldives.jpg"
+    ],
     "roomTypes": [
       "라군 오버워터 빌라",
       "오션 비치 빌라"
     ],
-    "homepageUrl": "https://www.standardhotels.com/maldives/properties/huruvalhi"
+    "homepageUrl": "https://www.standardhotels.com/maldives/properties/huruvalhi",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "The Standard official site",
+    "imageSourceUrl": "https://www.standardhotels.com/maldives/properties/huruvalhi",
+    "imageCredits": [
+      {
+        "provider": "The Standard official site",
+        "sourceUrl": "https://www.standardhotels.com/maldives/properties/huruvalhi",
+        "creator": "The Standard Hotels",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "The Standard official site",
+        "sourceUrl": "https://www.standardhotels.com/maldives/properties/huruvalhi",
+        "creator": "The Standard Hotels",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "The Standard official site",
+        "sourceUrl": "https://www.standardhotels.com/maldives/properties/huruvalhi",
+        "creator": "The Standard Hotels",
+        "license": "공식 사이트 이미지"
+      }
+    ]
   },
   {
     "id": 143,
@@ -479,12 +506,39 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://image-tc.galaxy.tf/wipng-e8a30iipzk53n20iuukvyhe00/sunset-beach-villa-outside_standard.png?crop=307%2C0%2C1307%2C980&width=1200",
+      "https://image-tc.galaxy.tf/wipng-a4yolbv0c11411pwvvlzkmlte/sunset-beach-villa-with-pool-outside_standard.png?crop=307%2C0%2C1307%2C980&width=1200",
+      "https://image-tc.galaxy.tf/wipng-7qi8acmj3t68r5xkoxpxilhr/sunset-sky-suite-outside_standard.png?crop=307%2C0%2C1307%2C980&width=1200"
+    ],
     "roomTypes": [
       "선셋 비치 빌라",
       "선셋 비치 스위트"
     ],
-    "homepageUrl": "https://www.ifuruisland.com/"
+    "homepageUrl": "https://www.ifuruisland.com/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Ifuru Island official site",
+    "imageSourceUrl": "https://www.ifuruisland.com/gallery",
+    "imageCredits": [
+      {
+        "provider": "Ifuru Island official site",
+        "sourceUrl": "https://www.ifuruisland.com/gallery",
+        "creator": "Ifuru Island Maldives",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Ifuru Island official site",
+        "sourceUrl": "https://www.ifuruisland.com/gallery",
+        "creator": "Ifuru Island Maldives",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Ifuru Island official site",
+        "sourceUrl": "https://www.ifuruisland.com/gallery",
+        "creator": "Ifuru Island Maldives",
+        "license": "공식 사이트 이미지"
+      }
+    ]
   },
   {
     "id": 153,
@@ -510,12 +564,39 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://www.hideawaybeachmaldives.com/wp-content/uploads/2024/05/1.Cover-9-scaled.jpg",
+      "https://www.hideawaybeachmaldives.com/wp-content/uploads/2024/05/2.Swimming-Pools.jpg",
+      "https://www.hideawaybeachmaldives.com/wp-content/uploads/2024/05/5.Accomodation.jpg"
+    ],
     "roomTypes": [
       "선셋 비치 빌라",
       "디럭스 워터 빌라 위드 풀"
     ],
-    "homepageUrl": "https://www.hideawaybeachmaldives.com/"
+    "homepageUrl": "https://www.hideawaybeachmaldives.com/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Hideaway Beach official site",
+    "imageSourceUrl": "https://www.hideawaybeachmaldives.com/gallery/",
+    "imageCredits": [
+      {
+        "provider": "Hideaway Beach official site",
+        "sourceUrl": "https://www.hideawaybeachmaldives.com/gallery/",
+        "creator": "Hideaway Beach Resort & Spa",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Hideaway Beach official site",
+        "sourceUrl": "https://www.hideawaybeachmaldives.com/gallery/",
+        "creator": "Hideaway Beach Resort & Spa",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Hideaway Beach official site",
+        "sourceUrl": "https://www.hideawaybeachmaldives.com/gallery/",
+        "creator": "Hideaway Beach Resort & Spa",
+        "license": "공식 사이트 이미지"
+      }
+    ]
   },
   {
     "id": 154,
@@ -616,12 +697,39 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://nalamaldives.com/wp-content/uploads/2025/11/Nala_Aerial_2_1600x900.jpg",
+      "https://nalamaldives.com/wp-content/uploads/2025/12/Nala_Water_villas_1600x900.jpg",
+      "https://nalamaldives.com/wp-content/uploads/2025/12/Nala_Romantic_beach_villa_front_view_1600x900.jpg"
+    ],
     "roomTypes": [
       "선라이즈 비치 방갈로",
       "선셋 비치 방갈로"
     ],
-    "homepageUrl": "https://www.innahura.com/"
+    "homepageUrl": "https://www.innahura.com/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Nala Maldives official site",
+    "imageSourceUrl": "https://nalamaldives.com/",
+    "imageCredits": [
+      {
+        "provider": "Nala Maldives official site",
+        "sourceUrl": "https://nalamaldives.com/",
+        "creator": "Nala Maldives",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Nala Maldives official site",
+        "sourceUrl": "https://nalamaldives.com/",
+        "creator": "Nala Maldives",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Nala Maldives official site",
+        "sourceUrl": "https://nalamaldives.com/",
+        "creator": "Nala Maldives",
+        "license": "공식 사이트 이미지"
+      }
+    ]
   },
   {
     "id": 157,
@@ -683,12 +791,39 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://jawakara.com/wp-content/uploads/2023/05/Jawakara_Maldives.jpg",
+      "https://jawakara.com/wp-content/uploads/2023/05/Jawakara-1.jpg",
+      "https://jawakara.com/wp-content/uploads/2022/07/DJI_0967.jpg"
+    ],
     "roomTypes": [
       "비치 풀 빌라",
       "워터 풀 빌라"
     ],
-    "homepageUrl": "https://www.jawakara.com/"
+    "homepageUrl": "https://www.jawakara.com/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Jawakara official site",
+    "imageSourceUrl": "https://jawakara.com/",
+    "imageCredits": [
+      {
+        "provider": "Jawakara official site",
+        "sourceUrl": "https://jawakara.com/",
+        "creator": "Jawakara Islands Maldives",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Jawakara official site",
+        "sourceUrl": "https://jawakara.com/",
+        "creator": "Jawakara Islands Maldives",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Jawakara official site",
+        "sourceUrl": "https://jawakara.com/",
+        "creator": "Jawakara Islands Maldives",
+        "license": "공식 사이트 이미지"
+      }
+    ]
   },
   {
     "id": 159,

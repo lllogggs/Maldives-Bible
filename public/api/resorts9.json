@@ -212,12 +212,32 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://www.ihgplc.com/~/media/Images/I/Ihg-Plc/images/news/2024/ihg-hotels-and-resorts-makes-brand-debut-in-maldives-image-1.jpg",
+      "https://www.ihgplc.com/~/media/Images/I/Ihg-Plc/images/news/2024/ihg-hotels-and-resorts-makes-brand-debut-in-maldives-image-2.jpg"
+    ],
     "roomTypes": [
       "워터 풀 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.nokuhotels.com/maldives/"
+    "homepageUrl": "https://www.nokuhotels.com/maldives/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "IHG Newsroom",
+    "imageSourceUrl": "https://www.ihgplc.com/en/news-and-media/news-releases/2024/ihg-hotels-and-resorts-makes-brand-debut-in-maldives-with-vignette-collection",
+    "imageCredits": [
+      {
+        "provider": "IHG Newsroom",
+        "sourceUrl": "https://www.ihgplc.com/en/news-and-media/news-releases/2024/ihg-hotels-and-resorts-makes-brand-debut-in-maldives-with-vignette-collection",
+        "creator": "IHG Hotels & Resorts",
+        "license": "공식 보도자료 이미지"
+      },
+      {
+        "provider": "IHG Newsroom",
+        "sourceUrl": "https://www.ihgplc.com/en/news-and-media/news-releases/2024/ihg-hotels-and-resorts-makes-brand-debut-in-maldives-with-vignette-collection",
+        "creator": "IHG Hotels & Resorts",
+        "license": "공식 보도자료 이미지"
+      }
+    ]
   },
   {
     "id": 166,

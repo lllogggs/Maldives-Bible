@@ -149,12 +149,32 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://media.radissonhotels.net/image/pr--emea-2020/exteriorview/16256-141184-f71914217_3xl.jpg",
+      "https://media.radissonhotels.net/image/pr--emea-2020/exteriorview/16256-141184-f71914217_3xl.jpg?impolicy=HomeHero"
+    ],
     "roomTypes": [
       "오버워터 빌라 위드 프라이빗 풀",
       "비치 빌라 위드 프라이빗 풀"
     ],
-    "homepageUrl": "https://www.radissonhotels.com/en-us/hotels/radisson-blu-resort-maldives"
+    "homepageUrl": "https://www.radissonhotels.com/en-us/hotels/radisson-blu-resort-maldives",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Radisson Hotels official press",
+    "imageSourceUrl": "https://www.radissonhotels.com/en-us/corporate/media/press-releases/radisson-blu-opens-its-first-resort-in-the-maldives",
+    "imageCredits": [
+      {
+        "provider": "Radisson Hotels official press",
+        "sourceUrl": "https://www.radissonhotels.com/en-us/corporate/media/press-releases/radisson-blu-opens-its-first-resort-in-the-maldives",
+        "creator": "Radisson Hotel Group",
+        "license": "공식 보도자료 이미지"
+      },
+      {
+        "provider": "Radisson Hotels official press",
+        "sourceUrl": "https://www.radissonhotels.com/en-us/corporate/media/press-releases/radisson-blu-opens-its-first-resort-in-the-maldives",
+        "creator": "Radisson Hotel Group",
+        "license": "공식 보도자료 이미지"
+      }
+    ]
   },
   {
     "id": 105,
@@ -179,12 +199,25 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://accor-refonte.epresspack.me/storage/clients/969/1569505984_1388012-raffles-maldives-meradhoo_1753984094.jpg"
+    ],
     "roomTypes": [
       "오버워터 빌라 위드 풀",
       "비치 빌라 위드 풀"
     ],
-    "homepageUrl": "https://www.raffles.com/maldives/"
+    "homepageUrl": "https://www.raffles.com/maldives/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Accor Press",
+    "imageSourceUrl": "https://press.accor.com/raffles-maldives-meradhoo-opens-overwater-villas",
+    "imageCredits": [
+      {
+        "provider": "Accor Press",
+        "sourceUrl": "https://press.accor.com/raffles-maldives-meradhoo-opens-overwater-villas",
+        "creator": "Accor / Raffles",
+        "license": "공식 프레스 이미지"
+      }
+    ]
   },
   {
     "id": 106,
@@ -691,12 +724,39 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [],
+    "imageUrls": [
+      "https://hotelcms-production.imgix.net/villaresorts.com/wp-content/uploads/2022/12/Royal-Island-Aerial-Large.jpg",
+      "https://hotelcms-production.imgix.net/villaresorts.com/wp-content/uploads/2022/11/Royal-Island-Two-Bedroom-Beach-Pool-Residence-Aerial-Large.jpg",
+      "https://hotelcms-production.imgix.net/villaresorts.com/wp-content/uploads/2022/12/Royal-Island-Main-Pool-Aerial-View-Large.jpg"
+    ],
     "roomTypes": [
       "비치 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.villahotels.com/royal-island-resort-spa/"
+    "homepageUrl": "https://www.villahotels.com/royal-island-resort-spa/",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Villa Resorts official site",
+    "imageSourceUrl": "https://villaresorts.com/royal-island/about-us/gallery/",
+    "imageCredits": [
+      {
+        "provider": "Villa Resorts official site",
+        "sourceUrl": "https://villaresorts.com/royal-island/about-us/gallery/",
+        "creator": "Villa Resorts / Royal Island",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Villa Resorts official site",
+        "sourceUrl": "https://villaresorts.com/royal-island/about-us/gallery/",
+        "creator": "Villa Resorts / Royal Island",
+        "license": "공식 사이트 이미지"
+      },
+      {
+        "provider": "Villa Resorts official site",
+        "sourceUrl": "https://villaresorts.com/royal-island/about-us/gallery/",
+        "creator": "Villa Resorts / Royal Island",
+        "license": "공식 사이트 이미지"
+      }
+    ]
   },
   {
     "id": 114,
