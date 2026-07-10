@@ -1,5 +1,10 @@
 import React from 'react';
-import { ClockIcon, CalendarIcon, DomesticFlightIcon, CheckCircleIcon } from './icons/Icons';
+import { ClockIcon, CalendarIcon, DomesticFlightIcon, CheckCircleIcon, ChevronRightIcon } from './icons/Icons';
+
+interface FlightInfoProps {
+  onShowResorts: () => void;
+  onShowQuote: () => void;
+}
 
 const arrivalPlans = [
   {
@@ -36,7 +41,7 @@ const routeRows = [
   ['동남아 경유', '가격을 낮추고 싶은 경우', '수하물 연결, 환승 터미널, 지연 리스크를 확인'],
 ] as const;
 
-const FlightInfo: React.FC = () => {
+const FlightInfo: React.FC<FlightInfoProps> = ({ onShowResorts, onShowQuote }) => {
   return (
     <div className="animate-fade-in space-y-7 pb-10">
       <section className="flex items-center justify-between border-b border-slate-200 pb-4">
@@ -120,6 +125,35 @@ const FlightInfo: React.FC = () => {
               항공권을 먼저 확정하기 전에 리조트 이동 가능 시간, 말레 1박 필요 여부, 귀국편
               대기시간을 같이 맞추면 실패 확률이 줄어듭니다.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="rounded-lg border border-teal-100 bg-[linear-gradient(135deg,#ecfeff,#ffffff)] p-4 shadow-sm shadow-slate-900/5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="font-brand-heading text-lg text-slate-950">일정 감이 잡혔다면 바로 비교하세요</h2>
+            <p className="mt-1 text-sm leading-6 text-slate-600">
+              말레 도착 시간에 맞춰 리조트 후보를 좁히고, 같은 조건으로 견적을 확인하면 됩니다.
+            </p>
+          </div>
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <button
+              type="button"
+              onClick={onShowResorts}
+              className="cta-shimmer cta-main-boost inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-extrabold text-white shadow-sm"
+            >
+              리조트 목록 보기
+              <ChevronRightIcon className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={onShowQuote}
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm transition hover:border-teal-200 hover:bg-teal-50"
+            >
+              견적 문의 보기
+              <ChevronRightIcon className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </section>

@@ -120,7 +120,7 @@ const TravelAgencies: React.FC = () => {
               </div>
             </div>
 
-            <div className="order-first flex justify-center lg:order-none lg:justify-end">
+            <div className="flex justify-center lg:justify-end">
               <div className="flex h-36 w-36 flex-col items-center justify-center rounded-full bg-slate-950 text-center text-white shadow-lg shadow-slate-900/20">
                 <span className="text-xs font-extrabold uppercase tracking-[0.12em] text-teal-200">고객 절감</span>
                 <strong className="mt-1 font-brand-heading text-3xl">$2,000</strong>

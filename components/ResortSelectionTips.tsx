@@ -84,17 +84,6 @@ const quickTerms = [
 const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts }) => {
   return (
     <div className="animate-fade-in pb-12">
-      <section className="mb-3 rounded-lg border border-teal-100 bg-white p-3 shadow-sm shadow-slate-900/5 sm:hidden">
-        <button
-          type="button"
-          onClick={onShowResorts}
-          className="cta-shimmer cta-main-boost flex min-h-11 w-full items-center justify-between rounded-lg bg-slate-950 px-4 py-3 text-left text-sm font-extrabold text-white"
-        >
-          리조트 목록 먼저 보기
-          <ChevronRightIcon className="h-4 w-4" />
-        </button>
-      </section>
-
       <section className="relative mb-6 min-h-[360px] overflow-hidden rounded-lg bg-slate-950 text-white shadow-sm shadow-slate-900/10 sm:min-h-[390px]">
         <img
           src={heroImageUrl}

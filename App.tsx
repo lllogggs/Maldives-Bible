@@ -1291,8 +1291,13 @@ const App: React.FC = () => {
     setCurrentPage(1);
   };
 
-  const handleShowResortsFromTips = () => {
+  const handleShowResorts = () => {
     handleViewChange('resorts');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleShowQuoteFromFlights = () => {
+    handleViewChange('agencies');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -1475,11 +1480,16 @@ const App: React.FC = () => {
       <main className="mx-auto max-w-[1440px] px-4 py-5 sm:px-6 lg:px-8">
         <NavBar currentView={currentView} onViewChange={handleViewChange} />
 
-        {currentView === 'tips' && <ResortSelectionTips onShowResorts={handleShowResortsFromTips} />}
+        {currentView === 'tips' && <ResortSelectionTips onShowResorts={handleShowResorts} />}
 
         {currentView === 'agencies' && <TravelAgencies />}
 
-        {currentView === 'flights' && <FlightInfo />}
+        {currentView === 'flights' && (
+          <FlightInfo
+            onShowResorts={handleShowResorts}
+            onShowQuote={handleShowQuoteFromFlights}
+          />
+        )}
 
         {currentView === 'resorts' && (
           <>
