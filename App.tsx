@@ -1528,7 +1528,6 @@ const App: React.FC = () => {
                         sortOption={sortOption}
                         onSortChange={handleSortChange}
                         totalResortsCount={displayedResorts.length}
-                        totalAllResortsCount={initialResorts.length}
                         currentPage={currentPage}
                         totalPages={totalPages}
                         onPageChange={handlePageChange}

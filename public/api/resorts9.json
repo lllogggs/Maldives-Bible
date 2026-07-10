@@ -565,35 +565,5 @@
         "provider": "Wikimedia Commons"
       }
     ]
-  },
-  {
-    "id": 172,
-    "name": "구라이두 팜 인",
-    "name_en": "Guraidhoo Palm Inn",
-    "brand": "Local Guesthouse",
-    "openYear": 2014,
-    "transportation": "보트",
-    "travelTime": 45,
-    "travelCost": 50,
-    "price": 1200,
-    "rating": 4.2,
-    "snorkelingQuality": 3,
-    "location": "South Male Atoll",
-    "spaBrand": "N/A",
-    "restaurants": 1,
-    "bars": 0,
-    "pools": 0,
-    "hasWaterVilla": false,
-    "hasBeachVilla": false,
-    "hasPrivatePool": false,
-    "hasFamilyRoom": true,
-    "hasKidsClub": false,
-    "honeymoonPerks": false,
-    "imageUrls": [],
-    "roomTypes": [
-      "디럭스 룸",
-      "패밀리 룸"
-    ],
-    "homepageUrl": "https://guraidhoopalminn.com/"
   }
 ]

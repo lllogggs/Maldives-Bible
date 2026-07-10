@@ -8,7 +8,6 @@ interface ResortGridProps {
   sortOption: SortOption;
   onSortChange: (option: SortOption) => void;
   totalResortsCount: number;
-  totalAllResortsCount: number;
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
@@ -28,7 +27,6 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   sortOption,
   onSortChange,
   totalResortsCount,
-  totalAllResortsCount,
   currentPage,
   totalPages,
   onPageChange,
@@ -52,9 +50,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
         <div>
           <h1 className="font-brand-heading text-2xl text-slate-950">몰디브 허니문 리조트</h1>
           <p className="mt-1 text-sm text-slate-600">
-            {totalResortsCount === totalAllResortsCount
-              ? `${totalResortsCount}개 리조트`
-              : `전체 ${totalAllResortsCount}개 중 ${totalResortsCount}개`}
+            {`${totalResortsCount}개 리조트`}
           </p>
         </div>
 
