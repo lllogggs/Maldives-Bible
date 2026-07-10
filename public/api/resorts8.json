@@ -676,9 +676,9 @@
   },
   {
     "id": 156,
-    "name": "인나후라 몰디브 리조트",
-    "name_en": "Innahura Maldives Resort",
-    "brand": "Crown & Champa Resorts",
+    "name": "날라 몰디브",
+    "name_en": "Nala Maldives",
+    "brand": "Nala Maldives",
     "openYear": 2019,
     "transportation": "수상비행기",
     "travelTime": 40,
@@ -706,7 +706,7 @@
       "선라이즈 비치 방갈로",
       "선셋 비치 방갈로"
     ],
-    "homepageUrl": "https://www.innahura.com/",
+    "homepageUrl": "https://nalamaldives.com/",
     "imageSourceNote": "공식 이미지",
     "imageSourceProvider": "Nala Maldives official site",
     "imageSourceUrl": "https://nalamaldives.com/",
