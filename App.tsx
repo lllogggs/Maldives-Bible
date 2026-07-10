@@ -83,7 +83,6 @@ const DEFAULT_FILTERS: Filters = {
   minRestaurants: 0,
   minBars: 0,
   hasPrivatePool: false,
-  honeymoonPerks: false,
   onlyLiked: false,
 };
 
@@ -1062,7 +1061,6 @@ const App: React.FC = () => {
       minRestaurants: parseNumberParam(params.get('rest'), DEFAULT_FILTERS.minRestaurants),
       minBars: parseNumberParam(params.get('bars'), DEFAULT_FILTERS.minBars),
       hasPrivatePool: params.get('pool') === '1',
-      honeymoonPerks: params.get('honey') === '1',
       onlyLiked: params.get('liked') === '1',
     };
 
@@ -1119,9 +1117,6 @@ const App: React.FC = () => {
     }
     if (filters.hasPrivatePool) {
       processedResorts = processedResorts.filter(resort => resort.hasPrivatePool);
-    }
-    if (filters.honeymoonPerks) {
-      processedResorts = processedResorts.filter(resort => resort.honeymoonPerks);
     }
     processedResorts = processedResorts.filter(resort => resort.restaurants >= filters.minRestaurants);
     processedResorts = processedResorts.filter(resort => resort.bars >= filters.minBars);
@@ -1220,9 +1215,6 @@ const App: React.FC = () => {
     }
     if (filters.hasPrivatePool) {
       params.set('pool', '1');
-    }
-    if (filters.honeymoonPerks) {
-      params.set('honey', '1');
     }
     if (filters.onlyLiked) {
       params.set('liked', '1');

@@ -66,7 +66,6 @@ const specs = [
     attributes: [
       { label: '패밀리룸', key: 'hasFamilyRoom', render: (val: boolean) => <BooleanIcon value={val} /> },
       { label: '키즈클럽', key: 'hasKidsClub', render: (val: boolean) => <BooleanIcon value={val} /> },
-      { label: '허니문 혜택', key: 'honeymoonPerks', render: (val: boolean) => <BooleanIcon value={val} /> },
     ]
   },
 ];

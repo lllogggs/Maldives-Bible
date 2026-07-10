@@ -55,7 +55,6 @@ export interface Filters {
   minRestaurants: number;
   minBars: number;
   hasPrivatePool: boolean;
-  honeymoonPerks: boolean;
   onlyLiked: boolean;
 }
 

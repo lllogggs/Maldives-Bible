@@ -173,7 +173,7 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
                 기준이 잡혔다면 바로 비교하세요
               </h2>
               <p className="mt-1 text-sm text-slate-600">
-                필터에서 이동수단, 객실, 허니문 혜택만 골라도 후보가 많이 줄어듭니다.
+                필터에서 이동수단, 예산, 객실 타입만 골라도 후보가 많이 줄어듭니다.
               </p>
             </div>
             <button

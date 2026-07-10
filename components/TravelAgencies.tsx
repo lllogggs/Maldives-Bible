@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinkIcon, KakaoIcon } from './icons/Icons';
+import { BuildingIcon, DollarIcon, LinkIcon, KakaoIcon, UserIcon } from './icons/Icons';
 
 interface Agency {
   name: string;
@@ -22,11 +22,25 @@ const agencies: Agency[] = [
   { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao_channel: 'http://pf.kakao.com/_Hxmxaxexj' },
 ];
 
-const supplySteps = [
-  { from: '리조트', to: '총판', price: '$6,000', caption: '총판에 공급' },
-  { from: '총판', to: '여행사', price: '$7,000', caption: '여행사에 공급' },
-  { from: '여행사', to: '고객', price: '$8,000', caption: '고객에게 공급' },
+const supplyNodes = [
+  { actor: '리조트', caption: '객실 물량', Icon: BuildingIcon },
+  { actor: '총판', caption: '물량 확보', Icon: BuildingIcon },
+  { actor: '여행사', caption: '견적 산출', Icon: DollarIcon },
+  { actor: '고객', caption: '예약', Icon: UserIcon },
 ] as const;
+
+const supplyPrices = ['$6,000 총판 공급', '$7,000 여행사 공급', '$8,000 고객 견적'] as const;
+
+const FlowConnector: React.FC<{ label?: string; muted?: boolean }> = ({ label, muted = false }) => (
+  <div className="relative flex h-10 items-center justify-center md:h-16 md:flex-1">
+    <span className={`h-full w-px md:h-px md:w-full ${muted ? 'bg-slate-300' : 'bg-teal-200'}`} />
+    {label && (
+      <span className={`absolute rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-extrabold shadow-sm ring-1 ${muted ? 'text-slate-700 ring-slate-200' : 'text-teal-800 ring-teal-100'}`}>
+        {label}
+      </span>
+    )}
+  </div>
+);
 
 const TravelAgencies: React.FC = () => {
   return (
@@ -44,41 +58,76 @@ const TravelAgencies: React.FC = () => {
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-700">Price Route</p>
             <h2 className="mt-2 font-brand-heading text-xl text-slate-950">왜 여행사 견적이 더 싸질 수 있나</h2>
           </div>
-          <strong className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-extrabold text-amber-950">
+          <strong className="rounded-lg bg-amber-50 px-4 py-3 text-sm font-extrabold text-amber-950 ring-1 ring-amber-200">
             아래 금액은 이해를 돕기 위한 예시입니다
           </strong>
         </div>
 
-        <div className="grid gap-3 rounded-lg border border-teal-100 bg-white p-3 shadow-sm shadow-slate-900/5 sm:p-4 lg:grid-cols-[170px_1fr_170px] lg:items-stretch">
-          <div className="order-1 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 sm:py-4">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">공식가격 / OTA</p>
-            <strong className="mt-1 block font-brand-heading text-2xl text-slate-950 sm:text-3xl">$10,000</strong>
-          </div>
+        <p className="max-w-4xl text-sm leading-6 text-slate-700">
+          리조트는 객실이 남으면 그날 객실 매출이 발생하지 않기 때문에, 일부 물량을 총판에 낮은 공급가로 넘겨 공실 위험을 줄이고 판매량을 먼저 확보합니다.
+          총판은 그 물량을 여러 여행사에 배분하고, 여행사는 마진을 붙여도 공식가격보다 낮은 견적을 만들 수 있습니다.
+        </p>
 
-          <div className="order-3 grid gap-2 md:grid-cols-3 lg:order-2">
-            {supplySteps.map((step, index) => (
-              <div key={`${step.from}-${step.to}`} className="relative rounded-lg border border-teal-100 bg-teal-50 px-4 py-3 text-teal-950 sm:py-4">
-                <p className="text-xs font-bold text-teal-700">{step.from} → {step.to}</p>
-                <strong className="mt-1 block font-brand-heading text-xl sm:text-2xl">{step.price}</strong>
-                <p className="mt-1 text-xs font-bold">{step.caption}</p>
-                {index < supplySteps.length - 1 && (
-                  <span className="absolute -right-2 top-1/2 hidden h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-white text-lg font-black text-teal-700 ring-1 ring-teal-100 md:flex">
-                    →
-                  </span>
-                )}
+        <div className="rounded-lg bg-[linear-gradient(135deg,#f8fafc,#ecfeff)] px-4 py-5 shadow-sm shadow-slate-900/5 ring-1 ring-teal-100 sm:px-6">
+          <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_160px] lg:items-center">
+            <div className="space-y-7">
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">공식/OTA 경로</p>
+                <div className="mt-3 flex flex-col gap-3 md:flex-row md:items-center">
+                  <div className="flex items-center gap-3 md:min-w-[150px] md:flex-col md:text-center">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-200 text-slate-700">
+                      <DollarIcon className="h-6 w-6" />
+                    </span>
+                    <span>
+                      <span className="block text-xs font-bold text-slate-500">공식가격 / OTA</span>
+                      <strong className="font-brand-heading text-2xl text-slate-950">$10,000</strong>
+                    </span>
+                  </div>
+                  <FlowConnector label="$10,000 예약" muted />
+                  <div className="flex items-center gap-3 md:min-w-[120px] md:flex-col md:text-center">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-200 text-slate-700">
+                      <UserIcon className="h-6 w-6" />
+                    </span>
+                    <span>
+                      <span className="block text-xs font-bold text-slate-500">고객</span>
+                      <strong className="font-brand-heading text-2xl text-slate-950">$10,000</strong>
+                    </span>
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
 
-          <div className="order-2 rounded-lg bg-slate-950 px-4 py-3 text-white sm:py-4 lg:order-3">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-teal-200">고객 절감</p>
-            <strong className="mt-1 block font-brand-heading text-2xl sm:text-3xl">$2,000</strong>
-            <p className="mt-1 text-xs font-semibold text-slate-300">공식/OTA보다 낮은 예시</p>
-          </div>
-        </div>
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-teal-700">총판·여행사 공급 경로</p>
+                <div className="mt-3 flex flex-col gap-3 md:flex-row md:items-center">
+                  {supplyNodes.map((step, index) => {
+                    const Icon = step.Icon;
+                    return (
+                      <React.Fragment key={step.actor}>
+                        <div className="flex items-center gap-3 md:min-w-[118px] md:flex-col md:text-center">
+                          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-700 text-white shadow-sm shadow-teal-900/20">
+                            <Icon className="h-6 w-6" />
+                          </span>
+                          <span>
+                            <span className="block text-sm font-extrabold text-teal-900">{step.actor}</span>
+                            <span className="block text-xs font-bold text-slate-500">{step.caption}</span>
+                          </span>
+                        </div>
+                        {index < supplyNodes.length - 1 && <FlowConnector label={supplyPrices[index]} />}
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
 
-        <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-800">
-          리조트 → 총판 $6,000에 공급 → 여행사 $7,000에 공급 → 고객 $8,000에 공급
+            <div className="order-first flex justify-center lg:order-none lg:justify-end">
+              <div className="flex h-36 w-36 flex-col items-center justify-center rounded-full bg-slate-950 text-center text-white shadow-lg shadow-slate-900/20">
+                <span className="text-xs font-extrabold uppercase tracking-[0.12em] text-teal-200">고객 절감</span>
+                <strong className="mt-1 font-brand-heading text-3xl">$2,000</strong>
+                <span className="mt-1 px-4 text-xs font-bold leading-4 text-slate-300">공식/OTA 대비 예시</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

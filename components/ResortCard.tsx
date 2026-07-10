@@ -65,7 +65,6 @@ const ResortCard: React.FC<ResortCardProps> = ({
   const hasDisplayImages = imageCount > 0;
   const currentImageUrl = hasDisplayImages ? imageUrls[currentImageIndex] : null;
   const featureTags = [
-    resort.honeymoonPerks ? '허니문 혜택' : null,
     resort.hasWaterVilla ? '워터빌라' : null,
     resort.hasPrivatePool ? '개인풀' : null,
     resort.snorkelingQuality >= 4.7 ? '수중환경' : null,

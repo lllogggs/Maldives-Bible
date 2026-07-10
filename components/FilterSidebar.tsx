@@ -308,17 +308,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
         </div>
       </FilterOption>
 
-      <FilterOption title="허니문">
-        <div className="grid gap-1">
-          <CheckboxRow
-            checked={filters.honeymoonPerks}
-            onChange={() => onFilterChange('honeymoonPerks', !filters.honeymoonPerks)}
-          >
-            <span className="text-slate-700">허니문 혜택</span>
-          </CheckboxRow>
-        </div>
-      </FilterOption>
-
       <FilterOption title="개인풀 여부">
         <div className="grid gap-1">
           <CheckboxRow

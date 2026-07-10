@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactNode, useCallback } from 'react';
 import type { Resort } from '../types';
 import { 
   ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon, StarIcon, LocationPinIcon, ClockIcon, DollarIcon,
-  SeaplaneIcon, BoatIcon, DomesticFlightIcon, LinkIcon, CalendarIcon, RestaurantIcon, CheckCircleIcon, XCircleIcon, KidsClubIcon, HeartIcon, GalleryIcon, XIcon
+  SeaplaneIcon, BoatIcon, DomesticFlightIcon, LinkIcon, CalendarIcon, RestaurantIcon, CheckCircleIcon, XCircleIcon, KidsClubIcon, GalleryIcon, XIcon
 } from './icons/Icons';
 import { TransportationType } from '../types';
 import { getTransportationLabel } from './transportationLabels';
@@ -372,14 +372,13 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
                 </div>
             </div>
             <div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">객실 및 혜택</h3>
+                <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">객실 및 시설</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <AmenityItem icon={<CheckCircleIcon />} label="비치빌라" value={resort.hasBeachVilla} />
                     <AmenityItem icon={<CheckCircleIcon />} label="워터빌라" value={resort.hasWaterVilla} />
                     <AmenityItem icon={<CheckCircleIcon />} label="개인풀" value={resort.hasPrivatePool} />
                     <AmenityItem icon={<CheckCircleIcon />} label="패밀리룸" value={resort.hasFamilyRoom} />
                     <AmenityItem icon={<KidsClubIcon />} label="키즈클럽" value={resort.hasKidsClub} />
-                    <AmenityItem icon={<HeartIcon />} label="허니문 혜택" value={resort.honeymoonPerks} />
                 </div>
             </div>
           </div>
