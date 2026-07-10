@@ -22,12 +22,6 @@ interface ResortSelectionTipsProps {
 const heroImageUrl =
   'https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1533275638438-UBGTNUUSBGX41U5GN9W2/Ayada+Maldives+villas+SUNSET+OCEAN+SUITE+%281%29.jpg?format=2500w';
 
-const quickDecisions = [
-  ['예산', '리조트비, 이동비, 항공권'],
-  ['일정', '말레 도착 시간, 리조트 이동'],
-  ['객실', '워터빌라, 비치빌라, 개인풀'],
-] as const;
-
 const decisionRows = [
   ['예산', '리조트비 + 이동비 + 항공권을 같이 봐야 실제 총액이 보입니다.', DollarIcon],
   ['일정', '새벽 도착은 당일 이동, 밤 도착은 말레 1박이 유리합니다.', CalendarIcon],
@@ -94,7 +88,7 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
         <button
           type="button"
           onClick={onShowResorts}
-          className="flex min-h-11 w-full items-center justify-between rounded-lg bg-slate-950 px-4 py-3 text-left text-sm font-extrabold text-white"
+          className="cta-shimmer flex min-h-11 w-full items-center justify-between rounded-lg bg-slate-950 px-4 py-3 text-left text-sm font-extrabold text-white"
         >
           리조트 목록 먼저 보기
           <ChevronRightIcon className="h-4 w-4" />
@@ -123,34 +117,17 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
             <button
               type="button"
               onClick={onShowResorts}
-              className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-extrabold text-slate-950 shadow-sm transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="cta-shimmer inline-flex min-h-11 items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-extrabold text-slate-950 shadow-sm transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               리조트 목록 바로 보기
               <ChevronRightIcon className="h-4 w-4" />
             </button>
-            <a
-              href="#tips-guide"
-              className="inline-flex min-h-11 items-center rounded-lg border border-white/40 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              기준만 읽기
-            </a>
-          </div>
-          <div className="mt-5 grid max-w-2xl grid-cols-1 gap-2 sm:grid-cols-3">
-            {quickDecisions.map(([title, detail]) => (
-              <div
-                key={title}
-                className="rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur"
-              >
-                <p className="text-xs font-bold text-teal-100">{title}</p>
-                <p className="mt-1 text-sm font-semibold text-white">{detail}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
-      <section id="tips-guide" className="space-y-7">
-        <section className="grid gap-3 lg:grid-cols-[1.05fr_1.4fr]">
+      <section id="tips-guide" className="space-y-9">
+        <section>
           <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-900/5">
             <div className="mb-4 flex items-center gap-2">
               <SearchIcon className="h-4 w-4 text-teal-700" />
@@ -171,22 +148,22 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
               ))}
             </div>
           </div>
+        </section>
 
-          <div className="grid gap-3 sm:grid-cols-3">
-            {moodCards.map(({ title, tag, body, Icon }) => (
-              <article
-                key={title}
-                className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5"
-              >
-                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-teal-50 text-teal-800">
-                  <Icon className="h-4 w-4" />
-                </div>
-                <h3 className="font-brand-heading text-lg text-slate-950">{title}</h3>
-                <p className="mt-1 text-xs font-bold text-rose-600">{tag}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{body}</p>
-              </article>
-            ))}
-          </div>
+        <section className="grid gap-3 sm:grid-cols-3">
+          {moodCards.map(({ title, tag, body, Icon }) => (
+            <article
+              key={title}
+              className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5"
+            >
+              <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-teal-50 text-teal-800">
+                <Icon className="h-4 w-4" />
+              </div>
+              <h3 className="font-brand-heading text-lg text-slate-950">{title}</h3>
+              <p className="mt-1 text-xs font-bold text-rose-600">{tag}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{body}</p>
+            </article>
+          ))}
         </section>
 
         <div className="rounded-lg border border-teal-100 bg-teal-50/60 p-4 shadow-sm shadow-slate-900/5">
@@ -202,7 +179,7 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
             <button
               type="button"
               onClick={onShowResorts}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white shadow-sm transition hover:bg-slate-800"
+              className="cta-shimmer inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-extrabold text-white shadow-sm transition hover:bg-slate-800"
             >
               리조트 비교 시작
               <ChevronRightIcon className="h-4 w-4" />

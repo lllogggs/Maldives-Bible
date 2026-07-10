@@ -34,6 +34,8 @@ const getBudgetPercent = (value: number) => {
 
 const formatBudget = (value: number) => `$${value.toLocaleString()}`;
 
+const formatDiningLabel = (value: number) => (value > 0 ? `최소 ${value}곳` : '전체 보기');
+
 const CheckboxRow: React.FC<{
   checked: boolean;
   onChange: () => void;
@@ -254,7 +256,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             checked={filters.honeymoonPerks}
             onChange={() => onFilterChange('honeymoonPerks', !filters.honeymoonPerks)}
           >
-            <HeartIcon className="h-5 w-5 text-rose-500" />
             <span className="text-slate-700">허니문 혜택</span>
           </CheckboxRow>
           <CheckboxRow
@@ -290,17 +291,34 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
         </CheckboxRow>
       </FilterOption>
 
-      <FilterOption title={filters.minRestaurants > 0 ? `다이닝 ${filters.minRestaurants}곳 이상` : '다이닝'}>
-        <input
-          type="range"
-          min="0"
-          max="15"
-          step="1"
-          value={filters.minRestaurants}
-          onChange={e => onFilterChange('minRestaurants', Number(e.target.value))}
-          style={getRangeStyle(filters.minRestaurants, 0, 15)}
-          className="h-2 w-full cursor-pointer appearance-none rounded-lg"
-        />
+      <FilterOption title="다이닝">
+        <div className="space-y-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-3">
+          <div className="flex items-center justify-between gap-3">
+            <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-slate-700 ring-1 ring-slate-200">
+              {formatDiningLabel(filters.minRestaurants)}
+            </span>
+            <span className="rounded-full bg-teal-50 px-3 py-1 text-xs font-bold text-teal-800 ring-1 ring-teal-100">
+              레스토랑 수
+            </span>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="15"
+            step="1"
+            value={filters.minRestaurants}
+            onChange={e => onFilterChange('minRestaurants', Number(e.target.value))}
+            style={getRangeStyle(filters.minRestaurants, 0, 15)}
+            className="h-2 w-full cursor-pointer appearance-none rounded-lg"
+            aria-label="레스토랑 최소 개수"
+          />
+          <div className="flex justify-between text-[11px] font-bold text-slate-400">
+            <span>전체</span>
+            <span>5곳</span>
+            <span>10곳</span>
+            <span>15곳</span>
+          </div>
+        </div>
       </FilterOption>
     </aside>
   );

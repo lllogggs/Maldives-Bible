@@ -23,12 +23,19 @@ const agencies: Agency[] = [
 ];
 
 const bookingReasons = [
-  ['총판 특가', '리조트 프로모션 객실을 먼저 확보'],
-  ['일정 조합', '말레 도착 시간에 맞춘 이동과 1박 판단'],
-  ['허니문 조건', '객실, 식사, 특전을 한 번에 비교'],
+  ['리조트', '공실을 줄이기 위해 일부 객실을 총판에 낮은 공급가로 넘깁니다.'],
+  ['총판', '리조트에서 받은 객실을 여러 여행사에 공급하고 물량을 관리합니다.'],
+  ['여행사', '공급가에 마진을 붙여도 공개가보다 낮게 팔 수 있습니다.'],
 ];
 
 const bookingFlow = ['리조트', '총판', '여행사', '고객'];
+
+const priceExample = [
+  { label: '공식/OTA 공개가', price: '$10,000', note: '직접 예약 기준가' },
+  { label: '총판 공급가', price: '$7,000', note: '공실률을 줄이기 위한 공급가' },
+  { label: '여행사 판매가', price: '$8,000', note: '마진 포함 고객 견적' },
+  { label: '고객 절감', price: '$2,000', note: '공개가 대비 예시' },
+] as const;
 
 const TravelAgencies: React.FC = () => {
   return (
@@ -40,13 +47,13 @@ const TravelAgencies: React.FC = () => {
         </span>
       </section>
 
-      <section className="border-b border-slate-200 pb-5">
-        <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr] lg:items-end">
+      <section className="space-y-4 border-b border-slate-200 pb-5">
+        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="text-xs font-bold text-teal-700">예약 구조</p>
-            <h2 className="mt-2 font-brand-heading text-xl text-slate-950">여행사 견적을 먼저 보는 이유</h2>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-700">Price Structure</p>
+            <h2 className="mt-2 font-brand-heading text-xl text-slate-950">왜 여행사 견적이 더 싸질 수 있나</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-              몰디브는 총판이 리조트 프로모션을 확보하고, 여행사가 이동·식사·허니문 혜택을 고객 일정에 맞춰 조합하는 구조가 많습니다.
+              리조트는 빈 객실을 줄이려고 총판에 객실을 할인 공급하고, 여행사는 그 공급가에 마진을 붙여 고객에게 판매합니다.
             </p>
           </div>
           <div className="grid grid-cols-4 gap-1.5 text-center text-xs font-bold text-slate-700">
@@ -61,7 +68,23 @@ const TravelAgencies: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-4 grid gap-2 md:grid-cols-3">
+        <div className="rounded-lg border border-teal-100 bg-white p-4 shadow-sm shadow-slate-900/5">
+          <div className="grid gap-2 md:grid-cols-4">
+            {priceExample.map(item => (
+              <div key={item.label} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-3">
+                <p className="text-xs font-bold text-slate-500">{item.label}</p>
+                <strong className="mt-1 block font-brand-heading text-2xl text-slate-950">{item.price}</strong>
+                <p className="mt-1 text-xs leading-5 text-slate-500">{item.note}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-sm leading-6 text-slate-700">
+            예를 들어 공개가가 <strong>$10,000</strong>인 객실을 총판이 <strong>$7,000</strong>에 확보하면, 여행사가
+            <strong> $8,000</strong>에 팔아도 고객은 공개가 대비 <strong>$2,000</strong> 낮게 예약할 수 있습니다.
+          </p>
+        </div>
+
+        <div className="grid gap-2 md:grid-cols-3">
           {bookingReasons.map(([title, description]) => (
             <div key={title} className="rounded-lg border border-slate-200 bg-white px-4 py-3">
               <h3 className="text-sm font-bold text-slate-950">{title}</h3>

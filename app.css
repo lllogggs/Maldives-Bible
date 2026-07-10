@@ -79,6 +79,37 @@
   .animate-fade-in {
     animation: fade-in-up 0.5s ease-out forwards;
   }
+
+  @keyframes cta-shine {
+    0% {
+      transform: translateX(-140%) skewX(-18deg);
+    }
+
+    45%,
+    100% {
+      transform: translateX(220%) skewX(-18deg);
+    }
+  }
+
+  .cta-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: -35% auto -35% -45%;
+    width: 38%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.68), transparent);
+    animation: cta-shine 2.8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .cta-shimmer > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 @layer components {
