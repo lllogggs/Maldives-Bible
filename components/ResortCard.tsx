@@ -10,6 +10,7 @@ import {
   HeartIcon,
   HeartFilledIcon,
 } from './icons/Icons';
+import { getTransportationLabel } from './transportationLabels';
 
 interface ResortCardProps {
   resort: Resort;
@@ -191,7 +192,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
         )}
 
         <div className={`absolute left-3 top-3 rounded-full border px-3 py-1 text-xs font-bold shadow-sm backdrop-blur ${getTransportationTagColor(resort.transportation)}`}>
-          {resort.transportation}
+          {getTransportationLabel(resort.transportation)}
         </div>
         <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-sm font-bold text-slate-900 shadow-sm backdrop-blur">
           <StarIcon />

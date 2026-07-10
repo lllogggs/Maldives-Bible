@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
 import { ArrowLeftIcon, StarIcon, CheckCircleIcon, XCircleIcon, SeaplaneIcon, BoatIcon, DomesticFlightIcon, XIcon, RotateDeviceIcon } from './icons/Icons';
+import { getTransportationLabel } from './transportationLabels';
 
 interface CompareViewProps {
   resorts: Resort[];
@@ -21,7 +22,7 @@ const TransportationDisplay: React.FC<{type: TransportationType; className?: str
         [TransportationType.Boat]: BoatIcon,
         [TransportationType.Domestic]: DomesticFlightIcon,
     }[type];
-    return <div className={`flex flex-col items-center gap-1 text-center ${className}`}><Icon className="h-5 w-5 text-gray-600" /><span>{type}</span></div>;
+    return <div className={`flex flex-col items-center gap-1 text-center ${className}`}><Icon className="h-5 w-5 text-gray-600" /><span>{getTransportationLabel(type)}</span></div>;
 }
 
 const specs = [

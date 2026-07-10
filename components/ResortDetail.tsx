@@ -5,6 +5,7 @@ import {
   SeaplaneIcon, BoatIcon, DomesticFlightIcon, LinkIcon, CalendarIcon, RestaurantIcon, CheckCircleIcon, XCircleIcon, KidsClubIcon, HeartIcon, GalleryIcon, XIcon
 } from './icons/Icons';
 import { TransportationType } from '../types';
+import { getTransportationLabel } from './transportationLabels';
 
 interface ResortDetailProps {
   resort: Resort;
@@ -341,7 +342,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
                 ${resort.price.toLocaleString()}
             </InfoCard>
             <InfoCard icon={<TransportationIcon type={resort.transportation} />} title="이동수단">
-                {resort.transportation}
+                {getTransportationLabel(resort.transportation)}
             </InfoCard>
             <InfoCard icon={<ClockIcon />} title="이동시간">
                 {resort.travelTime}분

@@ -2,6 +2,7 @@ import React from 'react';
 import type { Filters, RoomTypeFilter } from '../types';
 import { TransportationType } from '../types';
 import { BoatIcon, DomesticFlightIcon, SeaplaneIcon, FilterIcon, XIcon, HeartIcon } from './icons/Icons';
+import { getTransportationLabel } from './transportationLabels';
 
 interface FilterSidebarProps {
   filters: Filters;
@@ -12,6 +13,8 @@ interface FilterSidebarProps {
 const MIN_BUDGET = 0;
 const MAX_BUDGET = 50000;
 const BUDGET_STEP = 500;
+const MIN_DINING = 0;
+const MAX_DINING = 15;
 
 const FilterOption: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
   <div className="border-b border-slate-200 py-4 last:border-b-0">
@@ -19,13 +22,6 @@ const FilterOption: React.FC<{ title: string; children: React.ReactNode }> = ({ 
     {children}
   </div>
 );
-
-const getRangeStyle = (value: number, min: number, max: number) => {
-  const progress = max > min ? ((value - min) / (max - min)) * 100 : 0;
-  return {
-    background: `linear-gradient(to right, #0f766e ${progress}%, #e2e8f0 ${progress}%)`,
-  };
-};
 
 const getBudgetPercent = (value: number) => {
   const boundedValue = Math.min(Math.max(value, MIN_BUDGET), MAX_BUDGET);
@@ -35,6 +31,11 @@ const getBudgetPercent = (value: number) => {
 const formatBudget = (value: number) => `$${value.toLocaleString()}`;
 
 const formatDiningLabel = (value: number) => (value > 0 ? `최소 ${value}곳` : '전체 보기');
+
+const getDiningPercent = (value: number) => {
+  const boundedValue = Math.min(Math.max(value, MIN_DINING), MAX_DINING);
+  return ((boundedValue - MIN_DINING) / (MAX_DINING - MIN_DINING)) * 100;
+};
 
 const CheckboxRow: React.FC<{
   checked: boolean;
@@ -54,6 +55,7 @@ const CheckboxRow: React.FC<{
 
 const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, onClose }) => {
   const budgetRangeRef = React.useRef<HTMLDivElement>(null);
+  const diningRangeRef = React.useRef<HTMLDivElement>(null);
 
   const handleTransportationChange = (transportType: TransportationType) => {
     const newTransportation = filters.transportation.includes(transportType)
@@ -164,11 +166,67 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
     handleMaxPriceChange(nextValue);
   };
 
+  const getDiningValueFromClientX = (clientX: number) => {
+    const rect = diningRangeRef.current?.getBoundingClientRect();
+    if (!rect || rect.width <= 0) {
+      return MIN_DINING;
+    }
+
+    const ratio = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+    return Math.round(MIN_DINING + ratio * (MAX_DINING - MIN_DINING));
+  };
+
+  const updateDining = (clientX: number) => {
+    onFilterChange('minRestaurants', getDiningValueFromClientX(clientX));
+  };
+
+  const beginDiningDrag = (clientX: number) => {
+    updateDining(clientX);
+
+    const handlePointerMove = (event: PointerEvent) => {
+      updateDining(event.clientX);
+    };
+
+    const handlePointerUp = () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerup', handlePointerUp);
+    };
+
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointerup', handlePointerUp);
+  };
+
+  const handleDiningKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    let nextValue: number | null = null;
+
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+      nextValue = filters.minRestaurants - 1;
+    } else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+      nextValue = filters.minRestaurants + 1;
+    } else if (event.key === 'Home') {
+      nextValue = MIN_DINING;
+    } else if (event.key === 'End') {
+      nextValue = MAX_DINING;
+    }
+
+    if (nextValue === null) {
+      return;
+    }
+
+    event.preventDefault();
+    onFilterChange('minRestaurants', Math.min(Math.max(nextValue, MIN_DINING), MAX_DINING));
+  };
+
   const budgetMinPercent = getBudgetPercent(filters.minPrice);
   const budgetMaxPercent = getBudgetPercent(filters.maxPrice);
   const budgetFillStyle = {
     left: `${budgetMinPercent}%`,
     right: `${100 - budgetMaxPercent}%`,
+  };
+  const diningPercent = getDiningPercent(filters.minRestaurants);
+  const diningFillStyle = {
+    left: '0%',
+    right: `${100 - diningPercent}%`,
   };
 
   return (
@@ -196,7 +254,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
               {type === TransportationType.Boat && <BoatIcon />}
               {type === TransportationType.Seaplane && <SeaplaneIcon />}
               {type === TransportationType.Domestic && <DomesticFlightIcon />}
-              <span className="text-slate-700">{type}</span>
+              <span className="text-slate-700">{getTransportationLabel(type)}</span>
             </CheckboxRow>
           ))}
         </div>
@@ -258,11 +316,16 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
           >
             <span className="text-slate-700">허니문 혜택</span>
           </CheckboxRow>
+        </div>
+      </FilterOption>
+
+      <FilterOption title="개인풀 여부">
+        <div className="grid gap-1">
           <CheckboxRow
             checked={filters.hasPrivatePool}
             onChange={() => onFilterChange('hasPrivatePool', !filters.hasPrivatePool)}
           >
-            <span className="text-slate-700">개인풀</span>
+            <span className="text-slate-700">개인풀 있음</span>
           </CheckboxRow>
         </div>
       </FilterOption>
@@ -292,26 +355,44 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
       </FilterOption>
 
       <FilterOption title="다이닝">
-        <div className="space-y-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-3">
+        <div className="space-y-3">
           <div className="flex items-center justify-between gap-3">
-            <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-slate-700 ring-1 ring-slate-200">
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">
               {formatDiningLabel(filters.minRestaurants)}
             </span>
-            <span className="rounded-full bg-teal-50 px-3 py-1 text-xs font-bold text-teal-800 ring-1 ring-teal-100">
-              레스토랑 수
+            <span className="rounded-full bg-teal-50 px-3 py-1 text-xs font-bold text-teal-800">
+              최대 {MAX_DINING}곳
             </span>
           </div>
-          <input
-            type="range"
-            min="0"
-            max="15"
-            step="1"
-            value={filters.minRestaurants}
-            onChange={e => onFilterChange('minRestaurants', Number(e.target.value))}
-            style={getRangeStyle(filters.minRestaurants, 0, 15)}
-            className="h-2 w-full cursor-pointer appearance-none rounded-lg"
-            aria-label="레스토랑 최소 개수"
-          />
+          <div
+            ref={diningRangeRef}
+            className="budget-range"
+            aria-label="다이닝 최소 개수"
+            onPointerDown={event => {
+              event.preventDefault();
+              beginDiningDrag(event.clientX);
+            }}
+          >
+            <div className="budget-range__track" />
+            <div className="budget-range__fill" style={diningFillStyle} />
+            <button
+              aria-label="다이닝 최소 개수"
+              aria-valuemax={MAX_DINING}
+              aria-valuemin={MIN_DINING}
+              aria-valuenow={filters.minRestaurants}
+              aria-valuetext={formatDiningLabel(filters.minRestaurants)}
+              className="budget-range__handle"
+              onKeyDown={handleDiningKeyDown}
+              onPointerDown={event => {
+                event.preventDefault();
+                event.stopPropagation();
+                beginDiningDrag(event.clientX);
+              }}
+              role="slider"
+              style={{ left: `${diningPercent}%`, zIndex: 4 }}
+              type="button"
+            />
+          </div>
           <div className="flex justify-between text-[11px] font-bold text-slate-400">
             <span>전체</span>
             <span>5곳</span>

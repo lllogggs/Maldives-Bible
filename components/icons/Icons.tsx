@@ -18,6 +18,7 @@ import {
   MessageCircle,
   Pencil,
   Plane,
+  PlaneLanding,
   RotateCwSquare,
   Sailboat,
   Search,
@@ -63,8 +64,11 @@ export const BoatIcon: React.FC<IconProps> = ({ className = 'h-5 w-5 text-gray-6
   <Sailboat className={className} strokeWidth={iconStroke} {...props} />
 );
 
-export const SeaplaneIcon: React.FC<IconProps> = ({ className = 'h-5 w-5 text-gray-600', ...props }) => (
-  <Plane className={className} strokeWidth={iconStroke} {...props} />
+export const SeaplaneIcon: React.FC<IconProps> = ({ className = 'h-5 w-5 text-gray-600' }) => (
+  <span className={`relative inline-block align-middle ${className}`} aria-hidden="true">
+    <PlaneLanding className="absolute left-0 top-0 h-[72%] w-full" strokeWidth={iconStroke} />
+    <Waves className="absolute bottom-0 left-0 h-[48%] w-full" strokeWidth={iconStroke} />
+  </span>
 );
 
 export const DomesticFlightIcon: React.FC<IconProps> = ({ className = 'h-5 w-5 text-gray-600', ...props }) => (
