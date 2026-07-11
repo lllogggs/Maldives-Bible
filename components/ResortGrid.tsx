@@ -15,8 +15,6 @@ interface ResortGridProps {
   onToggleLike: (resortId: number) => void;
   pendingLikeResortIds: Set<number>;
   onViewDetails: (resortId: number) => void;
-  onShareResort: (resort: Resort) => void;
-  isSharePending: boolean;
 }
 
 const ResortGrid: React.FC<ResortGridProps> = ({
@@ -32,8 +30,6 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   onToggleLike,
   pendingLikeResortIds,
   onViewDetails,
-  onShareResort,
-  isSharePending,
 }) => {
   const pageNumbers = totalPages === 0
     ? []
@@ -55,8 +51,6 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               onToggleLike={onToggleLike}
               isLikePending={pendingLikeResortIds.has(resort.id)}
               onViewDetails={onViewDetails}
-              onShare={onShareResort}
-              isSharePending={isSharePending}
             />
           ))}
         </div>

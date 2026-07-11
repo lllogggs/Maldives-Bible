@@ -1838,6 +1838,8 @@ const App: React.FC = () => {
               <ResortDetail
                 resort={selectedResort}
                 onBack={handleGoBackToList}
+                onShare={() => handleShareResort(selectedResort)}
+                isSharePending={isSharePending}
                 isImageEditMode={isImageEditMode}
                 onDeleteImage={handleDeleteResortImage}
               />
@@ -1958,8 +1960,6 @@ const App: React.FC = () => {
                         onToggleLike={toggleLike}
                         pendingLikeResortIds={pendingLikeResortIds}
                         onViewDetails={handleViewDetails}
-                        onShareResort={handleShareResort}
-                        isSharePending={isSharePending}
                       />
                     )}
                   </div>

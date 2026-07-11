@@ -9,7 +9,6 @@ import {
   CheckCircleIcon,
   HeartIcon,
   HeartFilledIcon,
-  ShareIcon,
 } from './icons/Icons';
 import { getTransportationLabel } from './transportationLabels';
 
@@ -23,8 +22,6 @@ interface ResortCardProps {
   onToggleLike: (resortId: number) => void;
   isLikePending: boolean;
   onViewDetails: (resortId: number) => void;
-  onShare: (resort: Resort) => void;
-  isSharePending: boolean;
 }
 
 const getTransportationTagColor = (transportation: TransportationType) => {
@@ -52,8 +49,6 @@ const ResortCard: React.FC<ResortCardProps> = ({
   onToggleLike,
   isLikePending,
   onViewDetails,
-  onShare,
-  isSharePending,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [failedImageUrls, setFailedImageUrls] = useState<Set<string>>(new Set());
@@ -134,13 +129,6 @@ const ResortCard: React.FC<ResortCardProps> = ({
     e.stopPropagation();
     if (!isLikePending) {
       onToggleLike(resort.id);
-    }
-  };
-
-  const handleShareClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!isSharePending) {
-      onShare(resort);
     }
   };
 
@@ -282,40 +270,26 @@ const ResortCard: React.FC<ResortCardProps> = ({
 
         <div className="mt-auto pt-4">
           <div className="flex items-end justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handleLikeClick}
-                disabled={isLikePending}
-                aria-pressed={isLiked}
-                aria-label={`${likeButtonTitle} (현재 ${formattedLikesCount}명)`}
-                title={likeButtonTitle}
-                className={`flex h-9 items-center gap-2 rounded-full border px-3 text-sm font-semibold transition-colors ${
-                  isLiked
-                    ? 'border-rose-300 bg-rose-100 text-rose-600 hover:bg-rose-200'
-                    : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
-                } ${isLikePending ? 'cursor-wait opacity-70' : ''}`}
-              >
-                {isLiked ? (
-                  <HeartFilledIcon className="h-5 w-5 text-rose-500" />
-                ) : (
-                  <HeartIcon className="h-5 w-5 text-rose-500" />
-                )}
-                {shouldShowLikesCount && <span>{formattedLikesCount}</span>}
-              </button>
-              <button
-                type="button"
-                onClick={handleShareClick}
-                disabled={isSharePending}
-                aria-label={`${resort.name} 공유`}
-                aria-busy={isSharePending}
-                title="공유"
-                data-testid={`share-resort-${resort.id}`}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:border-teal-300 hover:bg-teal-50 hover:text-teal-800 disabled:cursor-wait disabled:opacity-60"
-              >
-                <ShareIcon className="h-5 w-5" />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleLikeClick}
+              disabled={isLikePending}
+              aria-pressed={isLiked}
+              aria-label={`${likeButtonTitle} (현재 ${formattedLikesCount}명)`}
+              title={likeButtonTitle}
+              className={`flex h-9 items-center gap-2 rounded-full border px-3 text-sm font-semibold transition-colors ${
+                isLiked
+                  ? 'border-rose-300 bg-rose-100 text-rose-600 hover:bg-rose-200'
+                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+              } ${isLikePending ? 'cursor-wait opacity-70' : ''}`}
+            >
+              {isLiked ? (
+                <HeartFilledIcon className="h-5 w-5 text-rose-500" />
+              ) : (
+                <HeartIcon className="h-5 w-5 text-rose-500" />
+              )}
+              {shouldShowLikesCount && <span>{formattedLikesCount}</span>}
+            </button>
             <div className="text-right">
               <p className="text-xs text-slate-500">4박 2인 · 올인클루시브</p>
               <div className="mt-1 flex items-center justify-end gap-2">

@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactNode, useCallback } from 'react';
 import type { Resort } from '../types';
 import { 
   ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon, StarIcon, LocationPinIcon, ClockIcon, DollarIcon,
-  SeaplaneIcon, BoatIcon, DomesticFlightIcon, LinkIcon, CalendarIcon, RestaurantIcon, CheckCircleIcon, XCircleIcon, KidsClubIcon, GalleryIcon, XIcon
+  SeaplaneIcon, BoatIcon, DomesticFlightIcon, LinkIcon, CalendarIcon, RestaurantIcon, CheckCircleIcon, XCircleIcon, KidsClubIcon, GalleryIcon, XIcon, ShareIcon
 } from './icons/Icons';
 import { TransportationType } from '../types';
 import { getTransportationLabel } from './transportationLabels';
@@ -10,6 +10,8 @@ import { getTransportationLabel } from './transportationLabels';
 interface ResortDetailProps {
   resort: Resort;
   onBack: () => void;
+  onShare: () => void;
+  isSharePending: boolean;
   isImageEditMode?: boolean;
   onDeleteImage?: (resortId: number, imageIndex: number, imageUrl: string) => void;
 }
@@ -49,7 +51,7 @@ const getImageCreditText = (credit: ImageCredit) => {
   return parts.length > 0 ? `이미지: ${parts.join(' · ')}` : '이미지 출처';
 };
 
-const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEditMode = false, onDeleteImage }) => {
+const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, isSharePending, isImageEditMode = false, onDeleteImage }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -178,13 +180,28 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
 
   return (
     <div className="animate-fade-in">
-      <button
-        onClick={onBack}
-        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"
-      >
-        <ArrowLeftIcon className="h-5 w-5" />
-        목록으로 돌아가기
-      </button>
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={onBack}
+          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 transition-colors hover:text-gray-900"
+        >
+          <ArrowLeftIcon className="h-5 w-5" />
+          목록으로 돌아가기
+        </button>
+        <button
+          type="button"
+          onClick={onShare}
+          disabled={isSharePending}
+          aria-label={`${resort.name} 공유`}
+          aria-busy={isSharePending}
+          data-testid={`share-resort-detail-${resort.id}`}
+          className="inline-flex h-10 shrink-0 items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-3 text-sm font-bold text-teal-800 transition-colors hover:border-teal-300 hover:bg-teal-100 disabled:cursor-wait disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 sm:px-4"
+        >
+          <ShareIcon className="h-5 w-5" />
+          <span>공유</span>
+        </button>
+      </div>
 
       {isImageEditMode && (
         <div className="mb-6 rounded-lg border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900">
