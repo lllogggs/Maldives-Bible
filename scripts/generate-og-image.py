@@ -15,6 +15,7 @@ CANVAS_SIZE = (1200, 630)
 SCALE = 3
 
 TITLE_COLOR = (250, 249, 243, 255)
+WORDMARK_GOLD = (232, 213, 171, 255)
 TAGLINE_COLOR = (228, 241, 237, 255)
 SCRIM_COLOR = (0, 47, 61)
 CHAMPAGNE_GOLD = (215, 190, 134, 235)
@@ -134,13 +135,6 @@ def add_brand_details(image: Image.Image) -> Image.Image:
         joint="curve",
     )
 
-    # One restrained hairline separates the wordmark from its tagline.
-    draw.line(
-        ((scale(80), scale(318)), (scale(168), scale(318))),
-        fill=CHAMPAGNE_GOLD,
-        width=scale(1.2),
-    )
-
     return Image.alpha_composite(image, overlay)
 
 
@@ -151,13 +145,14 @@ def draw_tracked_text(
     text_font: ImageFont.FreeTypeFont,
     fill: tuple[int, int, int, int],
     tracking: float,
-) -> None:
+) -> int:
     x, y = position
     for index, character in enumerate(text):
         draw.text((round(x), y), character, font=text_font, fill=fill, anchor="lm")
         x += draw.textlength(character, font=text_font)
         if index < len(text) - 1:
             x += scale(tracking)
+    return round(x)
 
 
 def generate() -> Image.Image:
@@ -177,14 +172,36 @@ def generate() -> Image.Image:
     image = add_brand_details(image)
     draw = ImageDraw.Draw(image)
 
-    title_font = font(FONT_TITLE, 80)
+    title_font = font(FONT_TITLE, 82)
+    title_accent_font = font(FONT_TAGLINE, 66)
     title_position = (scale(76), scale(255))
     draw.text(
         title_position,
-        "몰디브 바이블",
+        "몰디브",
         font=title_font,
         fill=TITLE_COLOR,
         anchor="lm",
+    )
+    title_accent_x = (
+        title_position[0]
+        + round(draw.textlength("몰디브", font=title_font))
+        + scale(25)
+    )
+    title_accent_end = draw_tracked_text(
+        draw,
+        (title_accent_x, scale(257)),
+        "바이블",
+        title_accent_font,
+        WORDMARK_GOLD,
+        tracking=5.5,
+    )
+    draw.line(
+        (
+            (title_accent_x, scale(307)),
+            (title_accent_end, scale(307)),
+        ),
+        fill=WORDMARK_GOLD,
+        width=scale(1.2),
     )
     draw_tracked_text(
         draw,
