@@ -91,6 +91,16 @@
     }
   }
 
+  @keyframes cta-shine-loop {
+    from {
+      transform: translate3d(0, 0, 0) skewX(-18deg);
+    }
+
+    to {
+      transform: translate3d(305%, 0, 0) skewX(-18deg);
+    }
+  }
+
   @keyframes cta-pulse-glow {
     0%,
     100% {
@@ -125,7 +135,9 @@
   }
 
   .cta-shimmer.cta-shimmer-loop::after {
-    animation: cta-shine 2.8s ease-in-out infinite;
+    transform: translate3d(0, 0, 0) skewX(-18deg);
+    animation: cta-shine-loop 1.6s linear infinite;
+    will-change: transform;
   }
 
   .cta-shimmer > * {
