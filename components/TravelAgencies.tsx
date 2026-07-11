@@ -24,9 +24,9 @@ const agencies: Agency[] = [
 
 const supplyNodes = [
   { actor: '리조트', caption: '객실 공급', Icon: BuildingIcon },
-  { actor: '총판', caption: '대량 물량 확보', Icon: BuildingIcon },
-  { actor: '여행사', caption: '조건별 견적 구성', Icon: DollarIcon },
-  { actor: '고객', caption: '비교 후 예약', Icon: UserIcon },
+  { actor: '총판', caption: '물량 확보', Icon: BuildingIcon },
+  { actor: '여행사', caption: '견적 구성', Icon: DollarIcon },
+  { actor: '고객', caption: '예약', Icon: UserIcon },
 ] as const;
 
 const supplyPrices = ['$6,000 총판 공급가', '$7,000 여행사 원가', '$8,000 고객 견적'] as const;
@@ -50,30 +50,12 @@ const TravelAgencies: React.FC = () => {
         </span>
       </section>
 
-      <section className="space-y-4 border-b border-slate-200 pb-5">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-700">Agency Price Route</p>
-            <h2 className="mt-2 font-brand-heading text-xl text-slate-950">여행사 견적은 어디서 시작되는가</h2>
-          </div>
-          <strong className="rounded-lg bg-amber-50 px-4 py-3 text-sm font-extrabold text-amber-950 ring-1 ring-amber-200">
-            표시 금액은 경로 이해용 예시입니다
-          </strong>
-        </div>
-
-        <p className="max-w-4xl text-sm leading-6 text-slate-700">
-          리조트가 일부 객실 물량을 총판에 공급하면, 총판은 그 물량을 여러 여행사에 배분합니다. 여행사는 공식/OTA 판매가가 아니라 총판 공급가에서 시작해
-          고객의 일정과 객실 조건에 맞는 견적을 구성하므로, 마진을 더해도 공개가보다 낮아질 수 있습니다.
-        </p>
-
+      <section className="border-b border-slate-200 pb-5">
         <div className="rounded-xl bg-[linear-gradient(135deg,#f8fafc,#ecfeff)] px-4 py-5 shadow-sm shadow-slate-900/5 ring-1 ring-teal-100 sm:px-6 sm:py-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-teal-700">여행사 견적이 만들어지는 경로</p>
-              <h3 className="mt-2 text-lg font-extrabold text-slate-950">총판 공급가에서 시작해 고객 조건에 맞는 견적으로 완성됩니다</h3>
-            </div>
-            <span className="w-fit rounded-full bg-teal-700 px-3 py-1.5 text-xs font-extrabold text-white shadow-sm shadow-teal-900/15">
-              핵심 경로
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="font-brand-heading text-xl text-slate-950">여행사 견적 경로</h2>
+            <span className="shrink-0 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-slate-500 ring-1 ring-slate-200">
+              금액은 예시
             </span>
           </div>
 
@@ -90,11 +72,6 @@ const TravelAgencies: React.FC = () => {
                     <span>
                       <span className={`block font-extrabold ${isAgency ? 'text-base text-slate-950' : 'text-sm text-teal-900'}`}>{step.actor}</span>
                       <span className="block text-xs font-bold text-slate-500">{step.caption}</span>
-                      {isAgency && (
-                        <span className="mt-1 inline-flex rounded-full bg-teal-100 px-2 py-0.5 text-[10px] font-extrabold text-teal-900">
-                          견적 핵심
-                        </span>
-                      )}
                     </span>
                   </div>
                   {index < supplyNodes.length - 1 && <FlowConnector label={supplyPrices[index]} />}
@@ -103,20 +80,11 @@ const TravelAgencies: React.FC = () => {
             })}
           </div>
 
-          <div className="mt-6 grid gap-3 lg:grid-cols-[minmax(0,1fr)_260px]">
-            <div className="flex items-center gap-3 rounded-lg bg-teal-950 px-4 py-4 text-white">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-teal-100">
-                <BuildingIcon className="h-5 w-5" />
-              </span>
-              <div>
-                <strong className="block text-sm font-extrabold">핵심은 여행사가 총판 공급가로 고객 견적을 만든다는 점입니다</strong>
-                <p className="mt-1 text-xs font-semibold leading-5 text-teal-100">여행사 마진을 더해도 공식/OTA 공개가보다 낮아질 수 있습니다.</p>
-              </div>
-            </div>
-            <div className="flex items-center justify-between gap-4 rounded-lg border border-slate-200 bg-white/90 px-4 py-3 text-slate-700">
+          <div className="mt-5 flex justify-end">
+            <div className="flex w-full items-center justify-between gap-4 rounded-lg border border-slate-200 bg-white/90 px-4 py-3 text-slate-600 sm:w-auto sm:min-w-[260px]">
               <span>
-                <span className="block text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-400">비교 기준 · 예시</span>
-                <span className="mt-1 block text-xs font-bold">공식/OTA 공개가</span>
+                <span className="block text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-400">비교 기준</span>
+                <span className="mt-1 block text-xs font-bold">공식/OTA</span>
               </span>
               <strong className="font-brand-heading text-lg text-slate-700">$10,000</strong>
             </div>
@@ -125,12 +93,8 @@ const TravelAgencies: React.FC = () => {
       </section>
 
       <section className="space-y-4">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-teal-700">여행사별 견적 문의</p>
-            <h2 className="mt-1 font-brand-heading text-xl text-slate-950">같은 조건으로 여러 여행사에 문의해 비교하세요</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">여행사마다 확보한 객실 물량과 프로모션이 달라 같은 리조트도 견적이 달라질 수 있습니다.</p>
-          </div>
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-brand-heading text-xl text-slate-950">여행사에 견적 요청</h2>
           <span className="w-fit rounded-full bg-teal-50 px-3 py-1.5 text-xs font-extrabold text-teal-800 ring-1 ring-teal-200">
             2~3곳 비교 추천
           </span>
