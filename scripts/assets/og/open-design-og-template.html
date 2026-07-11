@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1200, initial-scale=1" />
+    <title>몰디브 바이블 OG 이미지</title>
+    <!--
+      Adapted from Open Design's first-party Image Poster example.
+      Source: https://github.com/nexu-io/open-design/tree/main/design-templates/image-poster
+      License: Apache-2.0. See OPEN-DESIGN-NOTICE.md in this directory.
+    -->
+    <style>
+      @font-face {
+        font-family: 'NanumSquareNeo';
+        src: url('../../../public/fonts/nanum-square-neo/NanumSquareNeoTTF-bRg.woff2') format('woff2');
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+      }
+
+      @font-face {
+        font-family: 'NanumSquareNeo';
+        src: url('../../../public/fonts/nanum-square-neo/NanumSquareNeoTTF-dEb.woff2') format('woff2');
+        font-style: normal;
+        font-weight: 800;
+        font-display: block;
+      }
+
+      :root {
+        --ink: #f7f3e9;
+        --muted: rgba(237, 242, 237, 0.88);
+        --accent: #f18e69;
+        --deep-water: #003746;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        margin: 0;
+        overflow: hidden;
+        background: var(--deep-water);
+      }
+
+      body {
+        font-family: 'NanumSquareNeo', sans-serif;
+      }
+
+      .poster {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .resort {
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        filter: saturate(0.94) contrast(1.035);
+        transform: scale(1.002);
+      }
+
+      .poster::before {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        content: '';
+        background:
+          linear-gradient(
+            90deg,
+            rgba(0, 38, 50, 0.93) 0%,
+            rgba(0, 47, 61, 0.78) 27%,
+            rgba(0, 47, 61, 0.34) 46%,
+            rgba(0, 47, 61, 0.04) 68%,
+            rgba(0, 47, 61, 0) 78%
+          ),
+          linear-gradient(180deg, rgba(0, 23, 31, 0.06), rgba(0, 35, 44, 0.03));
+      }
+
+      /* Open Design Image Poster texture: restrained radial light plus 1 px grain. */
+      .poster::after {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+        content: '';
+        background:
+          radial-gradient(circle at 23% 28%, rgba(255, 255, 255, 0.11), transparent 36%),
+          repeating-linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.018) 0 1px,
+            rgba(0, 23, 31, 0.014) 1px 2px
+          );
+        mix-blend-mode: soft-light;
+        opacity: 0.72;
+      }
+
+      .lockup {
+        position: absolute;
+        top: 213px;
+        left: 80px;
+        z-index: 1;
+        color: var(--ink);
+      }
+
+      .horizon-mark {
+        position: relative;
+        width: 92px;
+        height: 22px;
+        margin-bottom: 20px;
+      }
+
+      .horizon-mark::before {
+        position: absolute;
+        right: 0;
+        bottom: 5px;
+        left: 0;
+        height: 1px;
+        content: '';
+        background: rgba(247, 243, 233, 0.72);
+      }
+
+      .horizon-mark::after {
+        position: absolute;
+        bottom: 6px;
+        left: 55px;
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        content: '';
+        background: var(--accent);
+        box-shadow: 0 0 22px rgba(241, 142, 105, 0.26);
+      }
+
+      .wordmark {
+        margin: 0;
+        font-size: 62px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.035em;
+        text-rendering: geometricprecision;
+        text-shadow: 0 2px 18px rgba(0, 25, 34, 0.18);
+        white-space: nowrap;
+      }
+
+      .tagline {
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: 27px;
+        font-weight: 400;
+        line-height: 1.35;
+        letter-spacing: 0.012em;
+        text-shadow: 0 2px 14px rgba(0, 25, 34, 0.16);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="poster" aria-label="몰디브 바이블, 리조트 비교를 더 쉽게">
+      <img
+        class="resort"
+        src="./fictional-luxury-maldives-resort.png"
+        alt=""
+        width="1200"
+        height="630"
+      />
+      <section class="lockup">
+        <div class="horizon-mark" aria-hidden="true"></div>
+        <h1 class="wordmark">몰디브 바이블</h1>
+        <p class="tagline">리조트 비교를 더 쉽게</p>
+      </section>
+    </main>
+  </body>
+</html>
