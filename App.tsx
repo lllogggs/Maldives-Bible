@@ -139,7 +139,6 @@ const DEFAULT_FILTERS: Filters = {
   maxPrice: 50000,
   roomTypes: [],
   minRestaurants: 0,
-  minBars: 0,
   hasPrivatePool: false,
   onlyLiked: false,
 };
@@ -1238,11 +1237,6 @@ const App: React.FC = () => {
         0,
         15
       )),
-      minBars: Math.trunc(clampNumber(
-        parseNumberParam(params.get('bars'), DEFAULT_FILTERS.minBars),
-        0,
-        15
-      )),
       hasPrivatePool: params.get('pool') === '1',
       onlyLiked: params.get('liked') === '1',
     };
@@ -1302,7 +1296,6 @@ const App: React.FC = () => {
       processedResorts = processedResorts.filter(resort => resort.hasPrivatePool);
     }
     processedResorts = processedResorts.filter(resort => resort.restaurants >= filters.minRestaurants);
-    processedResorts = processedResorts.filter(resort => resort.bars >= filters.minBars);
     if (filters.onlyLiked) {
       processedResorts = processedResorts.filter(resort => likedSet.has(resort.id));
     }
@@ -1393,9 +1386,6 @@ const App: React.FC = () => {
     }
     if (filters.minRestaurants !== DEFAULT_FILTERS.minRestaurants) {
       params.set('rest', String(filters.minRestaurants));
-    }
-    if (filters.minBars !== DEFAULT_FILTERS.minBars) {
-      params.set('bars', String(filters.minBars));
     }
     if (filters.hasPrivatePool) {
       params.set('pool', '1');

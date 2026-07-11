@@ -53,7 +53,6 @@ export interface Filters {
   maxPrice: number;
   roomTypes: RoomTypeFilter[];
   minRestaurants: number;
-  minBars: number;
   hasPrivatePool: boolean;
   onlyLiked: boolean;
 }

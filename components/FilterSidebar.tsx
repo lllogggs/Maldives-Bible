@@ -402,23 +402,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             <span>10곳</span>
             <span>15곳</span>
           </div>
-          <div className="border-t border-slate-200 pt-3">
-            <label className="mb-2 block text-xs font-semibold text-slate-600" htmlFor="minimum-bars">
-              바 최소 개수
-            </label>
-            <select
-              id="minimum-bars"
-              value={filters.minBars}
-              onChange={event => onFilterChange('minBars', Number(event.target.value))}
-              className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-700 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10"
-            >
-              {Array.from({ length: MAX_DINING + 1 }, (_, value) => (
-                <option key={value} value={value}>
-                  {value === 0 ? '전체 보기' : `최소 ${value}곳`}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
       </FilterOption>
     </aside>
