@@ -124,12 +124,20 @@
 
       .wordmark {
         margin: 0;
+        background: linear-gradient(180deg, #fffef9 0%, #f8f2e7 48%, #dfd3bc 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: var(--ink);
         font-size: 62px;
         font-weight: 800;
         line-height: 1;
         letter-spacing: -0.035em;
+        -webkit-text-fill-color: transparent;
         text-rendering: geometricprecision;
-        text-shadow: 0 2px 18px rgba(0, 25, 34, 0.18);
+        filter:
+          drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.1))
+          drop-shadow(0 3px 2px rgba(0, 18, 25, 0.54))
+          drop-shadow(0 12px 28px rgba(0, 20, 28, 0.26));
         white-space: nowrap;
       }
 
@@ -140,7 +148,9 @@
         font-weight: 700;
         line-height: 1.25;
         letter-spacing: -0.01em;
-        text-shadow: 0 2px 14px rgba(0, 25, 34, 0.16);
+        text-shadow:
+          0 2px 1px rgba(0, 18, 25, 0.62),
+          0 8px 18px rgba(0, 20, 28, 0.28);
         white-space: nowrap;
       }
     </style>
