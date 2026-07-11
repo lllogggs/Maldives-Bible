@@ -1,15 +1,7 @@
-# OG background generation prompt
+# OG image generation prompt
 
 Built-in image generation was used with the following prompt:
 
 ```text
-Use case: ads-marketing
-Asset type: Open Graph social sharing background for a Korean Maldives resort comparison website
-Primary request: create a refined, minimal, photorealistic aerial view of a single small Maldives island surrounded by luminous turquoise lagoon water, with one elegant curved line of overwater villas
-Scene/backdrop: calm tropical ocean and pale blue horizon, no people, no boats, no visible brands
-Style/medium: premium natural travel photography, realistic water texture, restrained and editorial rather than glossy stock-photo style
-Composition/framing: wide landscape composition suitable for a 1200x630 crop; island and villas placed mainly in the right half; the left half must remain visually calm with dark-teal-to-transparent natural water tones for later text overlay; generous safe margins
-Lighting/mood: soft early-morning light, tranquil, trustworthy, aspirational
-Color palette: deep teal, turquoise, soft sky blue, tiny warm sand accents
-Constraints: background image only; no text, no letters, no logos, no icons, no badges, no borders, no collage, no watermark; avoid busy details in the left 55%; keep horizon level and realistic
+Create an original, photorealistic luxury travel magazine photograph designed to crop cleanly to a 1200×630 Open Graph card (wide 1.91:1). Eye-level perspective at dawn from a simple weathered timber jetty in the Maldives, the jetty beginning just outside the lower edge and leading diagonally—not perfectly centered—toward one refined open-air pavilion and a small cluster of distant overwater villas. Clear shallow lagoon shifts naturally from pale aqua to deep teal, with visible sand ripples and gentle reflections; soft pearl-blue sky with a trace of warm sunrise, calm and quiet. Architecture should feel authentic, restrained and expensive, not fantastical. Editorial photography for a design-conscious travel journal, understated filmic colors, subtle grain, realistic light and scale, ample sky and water, one memorable focal point. No people, no staged champagne, no boats, no text, no lettering, no logos, no badges, no graphic overlays, no collage, no symmetry, no oversaturated turquoise, no dramatic HDR, no lens flare, no impossible structures. Keep all important content inside a 5% crop-safe margin.
 ```
