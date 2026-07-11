@@ -5,7 +5,6 @@ interface HeaderProps {
   isImageEditMode: boolean;
   onToggleImageEditMode: () => void;
   isImageEditFeatureAvailable: boolean;
-  isCompact: boolean;
   onLogoClick: () => void;
 }
 
@@ -13,27 +12,21 @@ const Header: React.FC<HeaderProps> = ({
   isImageEditMode,
   onToggleImageEditMode,
   isImageEditFeatureAvailable,
-  isCompact,
   onLogoClick,
 }) => {
-  const containerSpacing = isCompact ? 'py-2' : 'py-4 sm:py-5';
-  const contentSpacing = isCompact ? 'gap-2 sm:gap-4' : 'gap-3 sm:gap-6';
-  const logoSize = isCompact ? 'h-11 w-11 sm:h-12 sm:w-12' : 'h-12 w-12 sm:h-14 sm:w-14';
-  const buttonSizing = isCompact ? 'px-3 py-2 text-sm gap-2' : 'px-4 py-2.5 text-sm gap-3';
-
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/85 text-slate-950 shadow-sm shadow-slate-900/5 backdrop-blur-xl transition-all duration-300">
       <div
-        className={`mx-auto max-w-[1440px] px-4 transition-all duration-300 sm:px-6 lg:px-8 ${containerSpacing}`}
+        className="mx-auto max-w-[1440px] px-4 py-2 transition-all duration-300 sm:px-6 lg:px-8"
       >
-        <div className={`grid items-center transition-all duration-300 md:grid-cols-[auto_minmax(0,1fr)] ${contentSpacing}`}>
+        <div className="grid items-center gap-2 transition-all duration-300 sm:gap-4 md:grid-cols-[auto_minmax(0,1fr)]">
           <button
             type="button"
             onClick={onLogoClick}
             aria-label="홈으로 이동"
             className="group flex min-w-0 items-center gap-3 justify-self-start text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
           >
-            <span className={`${logoSize} block shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/10 transition-all duration-300`}>
+            <span className="block h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/10 transition-all duration-300 sm:h-12 sm:w-12">
               <img
                 src="/android-chrome-192x192.png"
                 alt=""
@@ -51,21 +44,17 @@ const Header: React.FC<HeaderProps> = ({
               </span>
             </span>
           </button>
-          <div
-            className={`w-full min-w-0 flex flex-col items-stretch sm:flex-row sm:items-center sm:justify-end transition-all duration-300 ${
-              isCompact ? 'gap-2 sm:gap-3' : 'gap-3 sm:gap-4'
-            }`}
-          >
+          <div className="flex w-full min-w-0 flex-col items-stretch gap-2 transition-all duration-300 sm:flex-row sm:items-center sm:justify-end sm:gap-3">
             {isImageEditFeatureAvailable && (
               <button
                 type="button"
                 onClick={onToggleImageEditMode}
                 aria-pressed={isImageEditMode}
-                className={`flex items-center justify-between rounded-lg border font-semibold transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-teal-500/10 ${
+                className={`flex items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-teal-500/10 ${
                   isImageEditMode
                     ? 'border-teal-300 bg-teal-50 text-teal-800'
                     : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'
-                } ${buttonSizing}`}
+                }`}
               >
                 <span className="flex items-center gap-2">
                   <EditIcon />

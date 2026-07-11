@@ -567,13 +567,6 @@ const App: React.FC = () => {
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
   const [currentView, setCurrentView] = useState<View>(getInitialView);
   const [resortReloadKey, setResortReloadKey] = useState(0);
-  const [isMobileViewport, setIsMobileViewport] = useState<boolean>(() => {
-    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-      return false;
-    }
-
-    return window.matchMedia('(max-width: 640px)').matches;
-  });
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [isImageEditMode, setIsImageEditMode] = useState<boolean>(false);
   const [previousSortOption, setPreviousSortOption] = useState<SortOption>('popularity');
@@ -720,27 +713,6 @@ const App: React.FC = () => {
     return () => {
       document.documentElement.classList.remove('capture-board-mode');
     };
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-      return;
-    }
-
-    const mediaQuery = window.matchMedia('(max-width: 640px)');
-    const handleChange = (event: MediaQueryListEvent) => {
-      setIsMobileViewport(event.matches);
-    };
-
-    setIsMobileViewport(mediaQuery.matches);
-
-    if (typeof mediaQuery.addEventListener === 'function') {
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
-    }
-
-    mediaQuery.addListener(handleChange);
-    return () => mediaQuery.removeListener(handleChange);
   }, []);
 
   useEffect(() => {
@@ -1486,10 +1458,6 @@ const App: React.FC = () => {
     ? (displayedResorts.length > 0 ? 1 : 0)
     : calculatedTotalPages;
 
-  const isResortListFocused =
-    currentView === 'resorts' && !isCompareViewVisible && !(selectedResortId && selectedResort);
-  const isCompactHeader = !isResortListFocused || isMobileViewport;
-
   const performShare = async (payload: ShareData, label: string) => {
     if (sharePendingRef.current) {
       return;
@@ -1807,7 +1775,6 @@ const App: React.FC = () => {
         isImageEditMode={isImageEditMode}
         onToggleImageEditMode={handleToggleImageEditMode}
         isImageEditFeatureAvailable={canUseImageEditMode}
-        isCompact={isCompactHeader}
         onLogoClick={handleLogoClick}
       />
       <main className="mx-auto max-w-[1440px] px-4 py-5 sm:px-6 lg:px-8">
