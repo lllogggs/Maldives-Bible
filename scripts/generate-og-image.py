@@ -1,199 +1,323 @@
 from __future__ import annotations
 
+from math import atan2, cos, degrees, pi, radians, sin
 from pathlib import Path
-from math import cos, hypot, pi, radians, sin
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "public" / "og-image.jpg"
-FONT_TITLE = ROOT / "scripts" / "assets" / "fonts" / "maruburi" / "MaruBuri-SemiBold.otf"
-FONT_MEDIUM = ROOT / "scripts" / "assets" / "fonts" / "pretendard" / "Pretendard-Medium.otf"
+FONT_DIR = ROOT / "public" / "fonts" / "nanum-square-neo"
+FONT_TITLE = FONT_DIR / "NanumSquareNeoTTF-eHv.woff2"
+FONT_TAGLINE = FONT_DIR / "NanumSquareNeoTTF-dEb.woff2"
 CANVAS_SIZE = (1200, 630)
 SCALE = 3
 
-BACKGROUND = (251, 247, 239)
-TITLE_COLOR = (1, 59, 85)
-TAGLINE_COLOR = (49, 95, 102)
-OCEAN_DEEP = (1, 59, 85)
-LAGOON = (5, 187, 186)
-SHALLOW = (150, 237, 220)
-LAGOON_BRIGHT = (2, 216, 207)
-SAND_LIGHT = (255, 248, 231)
-JETTY = (166, 108, 82)
-DECK = (243, 211, 170)
-ROOF = (185, 108, 80)
-CORAL = (253, 151, 93)
+BACKGROUND = (247, 247, 243, 255)
+TITLE_COLOR = (12, 55, 67, 255)
+TAGLINE_COLOR = (61, 88, 94, 255)
+LAGOON = (77, 218, 207, 255)
+LAGOON_LIGHT = (161, 237, 226, 255)
+LAGOON_DEEP = (0, 174, 177, 255)
+SAND = (255, 242, 207, 255)
+SAND_LIGHT = (255, 249, 230, 255)
+PALM_DARK = (12, 91, 67, 255)
+PALM = (23, 126, 88, 255)
+PALM_LIGHT = (62, 157, 103, 255)
+WOOD = (145, 93, 62, 255)
+WOOD_LIGHT = (213, 167, 115, 255)
+ROOF = (190, 102, 72, 255)
+ROOF_LIGHT = (223, 142, 98, 255)
+CORAL = (244, 139, 91, 255)
+
+
+def s(value: float) -> int:
+    return round(value * SCALE)
+
+
+def points(values: list[tuple[float, float]] | tuple[tuple[float, float], ...]) -> list[tuple[int, int]]:
+    return [(s(x), s(y)) for x, y in values]
 
 
 def font(path: Path, size: int) -> ImageFont.FreeTypeFont:
     if not path.exists():
         raise FileNotFoundError(f"Font not found: {path}")
-    return ImageFont.truetype(str(path), size)
+    return ImageFont.truetype(str(path), size * SCALE)
 
 
-def scale(value: float) -> int:
-    return round(value * SCALE)
-
-
-def scale_points(points: list[tuple[float, float]] | tuple[tuple[float, float], ...]) -> list[tuple[int, int]]:
-    return [(scale(x), scale(y)) for x, y in points]
-
-
-def organic_points(
+def organic_shape(
     cx: float,
     cy: float,
     rx: float,
     ry: float,
     phase: float,
-    count: int = 220,
+    rotation: float = 0,
+    count: int = 240,
 ) -> list[tuple[int, int]]:
-    points: list[tuple[float, float]] = []
+    angle_offset = radians(rotation)
+    cosine = cos(angle_offset)
+    sine = sin(angle_offset)
+    result: list[tuple[float, float]] = []
     for index in range(count):
         angle = 2 * pi * index / count
-        x_wobble = 1 + 0.035 * sin(3 * angle + phase) + 0.018 * sin(7 * angle - phase)
-        y_wobble = 1 + 0.028 * cos(4 * angle - phase)
-        points.append(
+        wobble = 1 + 0.035 * sin(3 * angle + phase) + 0.018 * cos(7 * angle - phase)
+        local_x = rx * wobble * cos(angle)
+        local_y = ry * (1 + 0.025 * cos(4 * angle + phase)) * sin(angle)
+        result.append(
             (
-                cx + rx * x_wobble * cos(angle),
-                cy + ry * y_wobble * sin(angle),
+                cx + local_x * cosine - local_y * sine,
+                cy + local_x * sine + local_y * cosine,
             )
         )
-    return scale_points(points)
+    return points(result)
 
 
-def cubic_point(
+def cubic_points(
     p0: tuple[float, float],
     p1: tuple[float, float],
     p2: tuple[float, float],
     p3: tuple[float, float],
-    progress: float,
-) -> tuple[float, float]:
-    inverse = 1 - progress
-    return (
-        inverse**3 * p0[0]
-        + 3 * inverse**2 * progress * p1[0]
-        + 3 * inverse * progress**2 * p2[0]
-        + progress**3 * p3[0],
-        inverse**3 * p0[1]
-        + 3 * inverse**2 * progress * p1[1]
-        + 3 * inverse * progress**2 * p2[1]
-        + progress**3 * p3[1],
-    )
+    count: int = 90,
+) -> list[tuple[float, float]]:
+    result: list[tuple[float, float]] = []
+    for index in range(count + 1):
+        t = index / count
+        inverse = 1 - t
+        result.append(
+            (
+                inverse**3 * p0[0]
+                + 3 * inverse**2 * t * p1[0]
+                + 3 * inverse * t**2 * p2[0]
+                + t**3 * p3[0],
+                inverse**3 * p0[1]
+                + 3 * inverse**2 * t * p1[1]
+                + 3 * inverse * t**2 * p2[1]
+                + t**3 * p3[1],
+            )
+        )
+    return result
 
 
-def sandbank_polygon(max_half_width: float, offset_x: float = 0) -> list[tuple[int, int]]:
-    first = (
-        (820 + offset_x, 230),
-        (915 + offset_x, 160),
-        (1115 + offset_x, 192),
-        (1136 + offset_x, 284),
-    )
-    second = (
-        (1136 + offset_x, 284),
-        (1140 + offset_x, 330),
-        (1055 + offset_x, 355),
-        (990 + offset_x, 430),
-    )
-    centers = [cubic_point(*first, index / 60) for index in range(61)]
-    centers.extend(cubic_point(*second, index / 60) for index in range(1, 61))
-
-    left: list[tuple[float, float]] = []
-    right: list[tuple[float, float]] = []
-    last_index = len(centers) - 1
-    for index, (x, y) in enumerate(centers):
-        previous = centers[max(0, index - 1)]
-        following = centers[min(last_index, index + 1)]
-        tangent_x = following[0] - previous[0]
-        tangent_y = following[1] - previous[1]
-        length = max(hypot(tangent_x, tangent_y), 0.001)
-        normal_x = -tangent_y / length
-        normal_y = tangent_x / length
-        progress = index / last_index
-        half_width = max_half_width * sin(pi * progress) ** 0.72
-        left.append((x + normal_x * half_width, y + normal_y * half_width))
-        right.append((x - normal_x * half_width, y - normal_y * half_width))
-
-    return scale_points(left + list(reversed(right)))
-
-
-def rotated_rectangle(
+def rotated_points(
     cx: float,
     cy: float,
-    width: float,
-    height: float,
+    values: list[tuple[float, float]] | tuple[tuple[float, float], ...],
     angle_degrees: float,
 ) -> list[tuple[int, int]]:
     angle = radians(angle_degrees)
     cosine = cos(angle)
     sine = sin(angle)
-    points: list[tuple[float, float]] = []
-    for x, y in (
-        (-width / 2, -height / 2),
-        (width / 2, -height / 2),
-        (width / 2, height / 2),
-        (-width / 2, height / 2),
+    return points(
+        [
+            (cx + x * cosine - y * sine, cy + x * sine + y * cosine)
+            for x, y in values
+        ]
+    )
+
+
+def draw_soft_shadow(
+    image: Image.Image,
+    shape: list[tuple[int, int]],
+    offset: tuple[float, float],
+    blur: float,
+    opacity: int,
+) -> None:
+    layer = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    shadow = ImageDraw.Draw(layer)
+    shifted = [(x + s(offset[0]), y + s(offset[1])) for x, y in shape]
+    shadow.polygon(shifted, fill=(1, 59, 72, opacity))
+    image.alpha_composite(layer.filter(ImageFilter.GaussianBlur(s(blur))))
+
+
+def draw_palm(draw: ImageDraw.ImageDraw, cx: float, cy: float, radius: float, phase: float) -> None:
+    colors = (PALM_DARK, PALM, PALM_LIGHT, PALM, PALM_DARK, PALM, PALM_LIGHT, PALM)
+    for index, color in enumerate(colors):
+        angle = phase + index * 45 + (index % 2) * 5
+        length = radius * (0.86 + (index % 3) * 0.07)
+        width = radius * 0.27
+        leaf = (
+            (1, -width * 0.12),
+            (length * 0.26, -width * 0.48),
+            (length * 0.68, -width * 0.26),
+            (length, 0),
+            (length * 0.68, width * 0.26),
+            (length * 0.26, width * 0.48),
+            (1, width * 0.12),
+        )
+        draw.polygon(rotated_points(cx, cy, leaf, angle), fill=color)
+    draw.ellipse(
+        (s(cx - 4), s(cy - 4), s(cx + 4), s(cy + 4)),
+        fill=(181, 123, 66, 255),
+    )
+
+
+def draw_villa(
+    draw: ImageDraw.ImageDraw,
+    cx: float,
+    cy: float,
+    angle: float,
+    side: int,
+) -> None:
+    perpendicular = radians(angle + 90)
+    connector_start = (
+        cx - cos(perpendicular) * 5 * side,
+        cy - sin(perpendicular) * 5 * side,
+    )
+    connector_end = (
+        cx + cos(perpendicular) * 29 * side,
+        cy + sin(perpendicular) * 29 * side,
+    )
+    draw.line(points((connector_start, connector_end)), fill=WOOD, width=s(6))
+
+    villa_x = cx + cos(perpendicular) * 40 * side
+    villa_y = cy + sin(perpendicular) * 40 * side
+    draw.polygon(
+        rotated_points(villa_x, villa_y, ((-27, -19), (27, -19), (27, 19), (-27, 19)), angle),
+        fill=WOOD_LIGHT,
+    )
+    draw.polygon(
+        rotated_points(villa_x, villa_y, ((-23, -15), (18, -15), (25, 0), (18, 15), (-23, 15)), angle),
+        fill=ROOF,
+    )
+    draw.polygon(
+        rotated_points(villa_x, villa_y, ((-20, -12), (15, -12), (20, 0), (15, 0), (-20, 0)), angle),
+        fill=ROOF_LIGHT,
+    )
+    pool_x = villa_x - cos(radians(angle)) * 17
+    pool_y = villa_y - sin(radians(angle)) * 17
+    draw.polygon(
+        rotated_points(pool_x, pool_y, ((-8, -13), (6, -13), (6, 13), (-8, 13)), angle),
+        fill=(116, 226, 216, 255),
+    )
+
+
+def draw_lagoon_details(draw: ImageDraw.ImageDraw) -> None:
+    for cx, cy, width, angle in (
+        (738, 150, 52, -16),
+        (1090, 182, 58, 12),
+        (704, 422, 46, 18),
+        (1042, 520, 44, -12),
     ):
-        points.append((cx + x * cosine - y * sine, cy + x * sine + y * cosine))
-    return scale_points(points)
+        line = cubic_points(
+            (cx - width / 2, cy),
+            (cx - width / 6, cy - 6),
+            (cx + width / 6, cy + 6),
+            (cx + width / 2, cy),
+            24,
+        )
+        # Rotate the already-curved line around its midpoint.
+        rotated: list[tuple[float, float]] = []
+        cosine = cos(radians(angle))
+        sine = sin(radians(angle))
+        for x, y in line:
+            local_x, local_y = x - cx, y - cy
+            rotated.append((cx + local_x * cosine - local_y * sine, cy + local_x * sine + local_y * cosine))
+        draw.line(points(rotated), fill=(237, 255, 248, 210), width=s(3))
 
 
 def generate() -> Image.Image:
-    high_res_size = (CANVAS_SIZE[0] * SCALE, CANVAS_SIZE[1] * SCALE)
-    image = Image.new("RGB", high_res_size, BACKGROUND)
+    image = Image.new(
+        "RGBA",
+        (CANVAS_SIZE[0] * SCALE, CANVAS_SIZE[1] * SCALE),
+        BACKGROUND,
+    )
     draw = ImageDraw.Draw(image)
 
-    title_font = font(FONT_TITLE, 82 * SCALE)
-    tagline_font = font(FONT_MEDIUM, 40 * SCALE)
-    motif_offset_x = 0
+    lagoon_shape = organic_shape(915, 310, 280, 236, 0.45, -5)
+    draw_soft_shadow(image, lagoon_shape, (4, 14), 18, 35)
+    draw.polygon(lagoon_shape, fill=LAGOON)
 
-    for points, color in (
-        (organic_points(1035, 315, 325, 270, 0.2), OCEAN_DEEP),
-        (organic_points(1070, 300, 275, 225, 1.1), LAGOON),
-        (organic_points(1015, 338, 215, 158, 2.2), SHALLOW),
-        (organic_points(970, 350, 125, 82, 3.0), LAGOON_BRIGHT),
+    shallow_shape = organic_shape(864, 281, 215, 159, 1.7, -11)
+    draw.polygon(shallow_shape, fill=LAGOON_LIGHT)
+    reef_shape = organic_shape(924, 335, 135, 96, 2.6, -8)
+    draw.polygon(reef_shape, fill=LAGOON_DEEP)
+    draw_lagoon_details(draw)
+
+    for cx, cy, rx, ry in (
+        (746, 359, 11, 6),
+        (783, 405, 7, 4),
+        (1030, 165, 9, 5),
+        (1090, 325, 8, 4),
     ):
-        draw.polygon(points, fill=color)
+        draw.ellipse((s(cx - rx), s(cy - ry), s(cx + rx), s(cy + ry)), fill=(244, 139, 91, 165))
 
-    draw.polygon(sandbank_polygon(24, motif_offset_x), fill=SAND_LIGHT)
+    island_shape = organic_shape(852, 274, 170, 107, 2.1, -12)
+    draw_soft_shadow(image, island_shape, (4, 12), 12, 48)
+    draw.polygon(island_shape, fill=SAND)
+    beach_shape = organic_shape(836, 266, 144, 84, 0.9, -12)
+    draw.polygon(beach_shape, fill=SAND_LIGHT)
+    vegetation_shape = organic_shape(827, 264, 114, 61, 1.5, -13)
+    draw.polygon(vegetation_shape, fill=(48, 143, 91, 255))
+    draw.polygon(
+        organic_shape(817, 274, 78, 39, 2.9, -10),
+        fill=(20, 111, 75, 255),
+    )
 
-    jetty_points = scale_points(
-        (
-            (1045, 355),
-            (1085, 382),
-            (1125, 420),
-            (1170, 466),
+    # A small beach path keeps the island readable as a resort rather than a generic leaf.
+    path_curve = cubic_points((778, 318), (808, 299), (852, 298), (887, 326), 55)
+    draw.line(points(path_curve), fill=(240, 213, 162, 255), width=s(7))
+
+    for palm in (
+        (775, 249, 39, -18),
+        (822, 237, 45, 6),
+        (867, 252, 42, 22),
+        (799, 291, 43, -8),
+        (850, 291, 46, 14),
+        (902, 273, 38, 31),
+    ):
+        draw_palm(draw, *palm)
+
+    jetty = cubic_points((957, 319), (1010, 349), (1086, 435), (1152, 500), 110)
+    draw.line(points([(x + 4, y + 8) for x, y in jetty]), fill=(0, 107, 111, 90), width=s(15))
+    draw.line(points(jetty), fill=WOOD, width=s(13), joint="curve")
+    draw.line(points(jetty), fill=WOOD_LIGHT, width=s(7), joint="curve")
+
+    for index in range(10, len(jetty) - 3, 9):
+        x, y = jetty[index]
+        previous = jetty[index - 2]
+        following = jetty[index + 2]
+        angle = atan2(following[1] - previous[1], following[0] - previous[0])
+        normal = angle + pi / 2
+        draw.line(
+            points(
+                (
+                    (x + cos(normal) * 4, y + sin(normal) * 4),
+                    (x - cos(normal) * 4, y - sin(normal) * 4),
+                )
+            ),
+            fill=(125, 78, 53, 185),
+            width=s(1.5),
         )
-    )
-    draw.line(jetty_points, fill=JETTY, width=scale(6), joint="curve")
 
-    for cx, cy, angle in ((1072, 389, 30), (1115, 425, 42), (1155, 460, 46)):
-        draw.polygon(rotated_rectangle(cx, cy, 45, 6, angle), fill=JETTY)
-        draw.polygon(rotated_rectangle(cx, cy, 38, 20, angle), fill=DECK)
-        draw.polygon(rotated_rectangle(cx, cy, 28, 13, angle), fill=ROOF)
+    for index, side in ((35, 1), (55, -1), (75, 1), (94, -1)):
+        x, y = jetty[index]
+        previous = jetty[index - 2]
+        following = jetty[index + 2]
+        angle = degrees(atan2(following[1] - previous[1], following[0] - previous[0]))
+        draw_villa(draw, x, y, angle, side)
 
-    draw.rounded_rectangle(
-        (scale(90), scale(178), scale(134), scale(183)),
-        radius=scale(2.5),
-        fill=CORAL,
-    )
+    title_font = font(FONT_TITLE, 84)
+    tagline_font = font(FONT_TAGLINE, 38)
     draw.text(
-        (scale(88), scale(238)),
+        (s(78), s(255)),
         "몰디브 바이블",
         font=title_font,
         fill=TITLE_COLOR,
         anchor="lm",
+        stroke_width=0,
     )
     draw.text(
-        (scale(92), scale(354)),
+        (s(82), s(367)),
         "리조트 비교를 더 쉽게",
         font=tagline_font,
         fill=TAGLINE_COLOR,
         anchor="lm",
+        stroke_width=0,
     )
 
-    return image.resize(CANVAS_SIZE, Image.Resampling.LANCZOS)
+    final_image = image.convert("RGB").resize(CANVAS_SIZE, Image.Resampling.LANCZOS)
+    return final_image
 
 
 def main() -> None:
