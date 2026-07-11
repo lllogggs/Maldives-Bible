@@ -42,7 +42,12 @@ const CompareTray: React.FC<CompareTrayProps> = ({ resorts, onRemove, onClear, o
                {resorts.map(resort => (
                 <div key={resort.id} className="bg-gray-200 rounded-full pl-3 pr-2 py-1 flex items-center gap-1 text-sm flex-shrink-0">
                   <span className="font-medium text-gray-800 truncate">{resort.name}</span>
-                  <button onClick={() => onRemove(resort.id)} className="p-0.5 rounded-full bg-gray-400/50 hover:bg-gray-400/80 text-white flex-shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => onRemove(resort.id)}
+                    className="p-0.5 rounded-full bg-gray-400/50 hover:bg-gray-400/80 text-white flex-shrink-0"
+                    aria-label={`${resort.name} 비교에서 제거`}
+                  >
                     <XIcon className="h-3 w-3" />
                   </button>
                 </div>

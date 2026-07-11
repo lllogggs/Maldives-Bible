@@ -24,5 +24,15 @@
     "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "include": ["src", "vite.config.ts", "scripts", "api", "server"]
+  "include": [
+    "App.tsx",
+    "index.tsx",
+    "constants.ts",
+    "types.ts",
+    "vite.config.ts",
+    "components",
+    "scripts",
+    "api",
+    "server"
+  ]
 }

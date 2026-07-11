@@ -291,7 +291,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
               {shouldShowLikesCount && <span>{formattedLikesCount}</span>}
             </button>
             <div className="text-right">
-              <p className="text-xs text-slate-500">4박 2인</p>
+              <p className="text-xs text-slate-500">4박 2인 · 올인클루시브</p>
               <div className="mt-1 flex items-center justify-end gap-2">
                 <p className="whitespace-nowrap text-xl font-extrabold leading-tight text-teal-700">
                   ${resort.price.toLocaleString()}
@@ -305,7 +305,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
                 </button>
               </div>
               <p className="mt-1 text-xs leading-5 text-slate-500">
-                1박 ${nightlyPrice.toLocaleString()} · 이동비 2인 ${coupleTransferCost.toLocaleString()}
+                참고가 · 1박 ${nightlyPrice.toLocaleString()} · 이동비 2인 ${coupleTransferCost.toLocaleString()} 별도
               </p>
             </div>
           </div>

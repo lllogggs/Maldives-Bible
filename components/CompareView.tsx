@@ -33,7 +33,7 @@ const specs = [
       { label: '수중환경', key: 'snorkelingQuality', lowerIsBetter: false, render: (val: number) => <div className="flex items-center justify-center gap-1 font-bold"><StarIcon className="h-4 w-4 text-yellow-400" /> {val}</div> },
       { label: '위치', key: 'location' },
       { label: '브랜드', key: 'brand' },
-      { label: '오픈/리노베이션', key: 'openYear', lowerIsBetter: true, render: (val: number, resort: Resort) => `${val}${resort.renovationYear ? ` / ${resort.renovationYear}` : ''}` },
+      { label: '오픈/리노베이션', key: 'openYear', lowerIsBetter: false, render: (val: number, resort: Resort) => `${val}${resort.renovationYear ? ` / ${resort.renovationYear}` : ''}` },
     ]
   },
    {
@@ -70,30 +70,61 @@ const specs = [
   },
 ];
 
-const CompareHeaderCard: React.FC<{resort: Resort, isBestPrice: boolean}> = ({ resort, isBestPrice }) => (
-    <div className={`border rounded-xl p-2 sm:p-3 relative bg-white h-full flex flex-col transition-all duration-300 ${isBestPrice ? 'border-2 border-cyan-400 shadow-lg' : 'border-gray-200'}`}>
-        <img src={resort.imageUrls[0]} alt={resort.name} className="hidden md:block w-full h-32 object-cover rounded-lg mb-3" />
+const CompareHeaderCard: React.FC<{
+  resort: Resort;
+  isBestPrice: boolean;
+  onRemove: (resortId: number) => void;
+}> = ({ resort, isBestPrice, onRemove }) => {
+  const [imageFailed, setImageFailed] = useState(false);
+  const primaryImage = resort.imageUrls.find(url => typeof url === 'string' && url.trim().length > 0);
+
+  return (
+    <div className={`border rounded-xl p-2 sm:p-3 relative bg-white h-full flex flex-col transition-all duration-300 ${isBestPrice ? 'border-2 border-teal-400 shadow-lg' : 'border-gray-200'}`}>
+        <button
+          type="button"
+          onClick={() => onRemove(resort.id)}
+          className="absolute right-1.5 top-1.5 z-10 rounded-full bg-slate-950/70 p-1 text-white hover:bg-slate-950"
+          aria-label={`${resort.name} 비교에서 제거`}
+        >
+          <XIcon className="h-4 w-4" />
+        </button>
+        {primaryImage && !imageFailed ? (
+          <img
+            src={primaryImage}
+            alt={resort.name}
+            loading="lazy"
+            decoding="async"
+            onError={() => setImageFailed(true)}
+            className="hidden md:block w-full h-32 object-cover rounded-lg mb-3"
+          />
+        ) : (
+          <div className="hidden h-32 items-center justify-center rounded-lg bg-teal-50 px-3 text-center text-sm font-bold text-teal-900 md:flex">
+            {resort.name}
+          </div>
+        )}
         <div className="flex-grow flex flex-col justify-between">
             <div>
                 <h3 className="font-bold text-sm sm:text-base text-gray-800 truncate">{resort.name}</h3>
                 <p className="text-xs sm:text-sm text-gray-500 mb-1 sm:mb-2 truncate">{resort.name_en}</p>
             </div>
-            <div className={`mt-auto transition-all duration-300 ${isBestPrice ? 'bg-cyan-50 rounded-lg -m-2 mt-2 p-2 pt-1 sm:-m-3 sm:mt-3 sm:p-3 sm:pt-2' : 'pt-2'}`}>
-                <p className="text-xs text-gray-500">4박 2인 기준</p>
-                <p className={`text-base sm:text-lg font-extrabold ${isBestPrice ? 'text-cyan-600' : 'text-gray-800'}`}>${resort.price.toLocaleString()}</p>
+            <div className={`mt-auto transition-all duration-300 ${isBestPrice ? 'bg-teal-50 rounded-lg -m-2 mt-2 p-2 pt-1 sm:-m-3 sm:mt-3 sm:p-3 sm:pt-2' : 'pt-2'}`}>
+                <p className="text-xs text-gray-500">4박 2인 · 올인클루시브</p>
+                <p className={`text-base sm:text-lg font-extrabold ${isBestPrice ? 'text-teal-700' : 'text-gray-800'}`}>${resort.price.toLocaleString()}</p>
             </div>
         </div>
     </div>
-);
+  );
+};
 
 
 const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) => {
   const numResorts = resorts.length;
   const [showRotateModal, setShowRotateModal] = useState(false);
+  const [rotateHintDismissed, setRotateHintDismissed] = useState(false);
 
   useEffect(() => {
     const checkOrientation = () => {
-        if (window.innerWidth < 1024 && window.innerHeight > window.innerWidth) {
+        if (!rotateHintDismissed && window.innerWidth < 1024 && window.innerHeight > window.innerWidth) {
             setShowRotateModal(true);
         } else {
             setShowRotateModal(false);
@@ -106,7 +137,7 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) 
     return () => {
         window.removeEventListener('resize', checkOrientation);
     };
-  }, []);
+  }, [rotateHintDismissed]);
   
   const getBestValue = (attributeKey: keyof Resort, lowerIsBetter?: boolean, isBoolean?: boolean) => {
     if (numResorts < 2) return null;
@@ -129,14 +160,17 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) 
   return (
     <>
       {showRotateModal && (
-        <div className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center p-4 pt-20 sm:pt-24 lg:hidden">
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center p-4 pt-20 sm:pt-24 lg:hidden" role="dialog" aria-modal="true" aria-labelledby="rotate-hint-title">
           <div className="bg-white rounded-lg p-6 sm:p-8 text-center max-w-sm shadow-xl w-full max-w-[360px]">
-            <RotateDeviceIcon className="h-16 w-16 mx-auto text-cyan-500 mb-4" />
-            <h3 className="text-xl font-bold text-gray-800 mb-2">가로 화면 추천</h3>
+            <RotateDeviceIcon className="h-16 w-16 mx-auto text-teal-600 mb-4" />
+            <h3 id="rotate-hint-title" className="text-xl font-bold text-gray-800 mb-2">가로 화면 추천</h3>
             <p className="text-gray-600 mb-6">넓은 비교표로 보기</p>
             <button
-              onClick={() => setShowRotateModal(false)}
-              className="w-full bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-cyan-600 transition-colors"
+              onClick={() => {
+                setRotateHintDismissed(true);
+                setShowRotateModal(false);
+              }}
+              className="w-full bg-teal-700 text-white font-bold py-3 px-4 rounded-lg hover:bg-teal-800 transition-colors"
             >
               확인
             </button>
@@ -160,7 +194,11 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) 
                 <div className="sticky top-0 left-0 bg-white z-30 border-b border-gray-200"></div> {/* Top-left corner */}
                 {resorts.map(resort => (
                     <div key={resort.id} className="sticky top-0 bg-white z-20 py-2 border-b border-gray-200">
-                        <CompareHeaderCard resort={resort} isBestPrice={bestPrice !== null && resort.price === bestPrice} />
+                         <CompareHeaderCard
+                           resort={resort}
+                           isBestPrice={bestPrice !== null && resort.price === bestPrice}
+                           onRemove={onRemove}
+                         />
                     </div>
                 ))}
 
@@ -185,8 +223,8 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) 
                                         const value = resort[attr.key as keyof Resort];
                                         const isBest = bestValue !== null && value === bestValue && typeof value !== 'string';
                                         return (
-                                            <div key={`${resort.id}-${attr.key}`} className={`flex items-center justify-center text-center text-xs sm:text-base font-medium text-gray-800 p-2 sm:p-3 border-b transition-colors duration-200 ${isBest ? 'bg-cyan-50' : ''}`}>
-                                                <div className={isBest ? 'font-bold text-cyan-700' : ''}>
+                                            <div key={`${resort.id}-${attr.key}`} className={`flex items-center justify-center text-center text-xs sm:text-base font-medium text-gray-800 p-2 sm:p-3 border-b transition-colors duration-200 ${isBest ? 'bg-teal-50' : ''}`}>
+                                                <div className={isBest ? 'font-bold text-teal-700' : ''}>
                                                     {attr.render ? attr.render(value as any, resort) : String(value)}
                                                 </div>
                                             </div>

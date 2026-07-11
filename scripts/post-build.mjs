@@ -585,8 +585,11 @@ const injectMeta = ({ html, title, description, url, schemaJson }) => {
     .replace(/<script type="application\/ld\+json">\s*\{[\s\S]*?\}\s*<\/script>/, match => `${match}\n<script type="application/ld+json">${schemaJson}</script>`);
 };
 
-const injectStaticRoot = (html, content) =>
-  html.replace(/<div id="root">[\s\S]*?<\/div>\s*<\/body>/, `<div id="root">${content}</div>\n  </body>`);
+const injectStaticRoot = (html, content, { preserveStaticContent = false } = {}) =>
+  html.replace(
+    /<div id="root">[\s\S]*?<\/div>\s*<\/body>/,
+    `<div id="root"${preserveStaticContent ? ' data-static-page="true"' : ''}>${content}</div>\n  </body>`
+  );
 
 const updateSitemap = async (resortSlugs, nicheSlugs) => {
   try {
@@ -698,7 +701,8 @@ try {
     const { html: content, schemaJson } = buildNichePageContent(page, resorts);
     const html = injectStaticRoot(
       injectMeta({ html: template, title: page.title, description: page.description, url, schemaJson }),
-      content
+      content,
+      { preserveStaticContent: true }
     );
     const targetPath = resolve(distDir, page.slug, 'index.html');
     await mkdir(dirname(targetPath), { recursive: true });

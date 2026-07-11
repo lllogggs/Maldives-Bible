@@ -63,6 +63,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
 
   const displayedImageUrls = actualImageUrls;
   const hasDisplayImages = displayedImageUrls.length > 0;
+  const selectedImageUrl = displayedImageUrls[selectedImageIndex] ?? displayedImageUrls[0];
   const imageCredits = Array.isArray(resort.imageCredits) ? resort.imageCredits : [];
   const primaryImageCredit = imageCredits[0];
   const selectedImageCredit = imageCredits[selectedImageIndex] ?? primaryImageCredit;
@@ -202,9 +203,17 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
                     className="col-span-2 row-span-2 cursor-pointer group relative overflow-hidden"
                     onClick={() => openGallery(0)}
                     role="button"
-                    aria-label="View image 1 in gallery"
+                    tabIndex={0}
+                    onKeyDown={event => {
+                      if (event.target !== event.currentTarget) return;
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openGallery(0);
+                      }
+                    }}
+                    aria-label={`${resort.name} 첫 번째 이미지 크게 보기`}
                 >
-                    <img src={displayedImageUrls[0]} alt={`${resort.name_en} main view`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                    <img src={displayedImageUrls[0]} alt={`${resort.name_en} main view`} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
                     {canDeleteImages && (
                       <button
                         type="button"
@@ -225,9 +234,17 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
                       className="col-span-1 row-span-1 cursor-pointer group relative overflow-hidden"
                       onClick={() => openGallery(actualIndex)}
                       role="button"
-                      aria-label={`View image ${actualIndex + 1} in gallery`}
+                      tabIndex={0}
+                      onKeyDown={event => {
+                        if (event.target !== event.currentTarget) return;
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          openGallery(actualIndex);
+                        }
+                      }}
+                      aria-label={`${resort.name} 이미지 ${actualIndex + 1} 크게 보기`}
                     >
-                      <img src={url} alt={`${resort.name_en} view ${actualIndex + 1}`} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                      <img src={url} alt={`${resort.name_en} view ${actualIndex + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
                       {canDeleteImages && (
                         <button
                           type="button"
@@ -251,18 +268,20 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
             </div>
             {/* Mobile Carousel */}
             <div className="md:hidden h-64 w-full overflow-hidden relative">
-                {displayedImageUrls.map((url, index) => (
-                    <button
-                        key={url}
-                        type="button"
-                        aria-label={`${resort.name} 이미지 ${index + 1} 크게 보기`}
-                        className="absolute h-full w-full border-0 bg-transparent p-0 transition-transform duration-300 ease-in-out"
-                        style={{ transform: `translateX(${(index - selectedImageIndex) * 100}%)` }}
-                        onClick={() => openGallery(selectedImageIndex)}
-                    >
-                        <img src={url} alt={`${resort.name_en} view ${index + 1}`} className="w-full h-full object-cover"/>
-                    </button>
-                ))}
+                <button
+                    type="button"
+                    aria-label={`${resort.name} 이미지 ${selectedImageIndex + 1} 크게 보기`}
+                    className="absolute h-full w-full border-0 bg-transparent p-0"
+                    onClick={() => openGallery(selectedImageIndex)}
+                >
+                    <img
+                      src={selectedImageUrl}
+                      alt={`${resort.name_en} view ${selectedImageIndex + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                </button>
                 {canDeleteImages && (
                   <button
                     type="button"
@@ -338,7 +357,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
             <InfoCard icon={<StarIcon />} title="수중환경">
                 {resort.snorkelingQuality} / 5
             </InfoCard>
-            <InfoCard icon={<DollarIcon />} title="4박 2인">
+             <InfoCard icon={<DollarIcon />} title="4박 2인 · 올인클루시브">
                 ${resort.price.toLocaleString()}
             </InfoCard>
             <InfoCard icon={<TransportationIcon type={resort.transportation} />} title="이동수단">
@@ -357,6 +376,10 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, isImageEdit
                 {resort.openYear}{resort.renovationYear && ` / ${resort.renovationYear}`}
             </InfoCard>
           </div>
+
+          <p className="-mt-4 mb-8 rounded-lg border border-teal-100 bg-teal-50 px-4 py-3 text-xs leading-5 text-teal-900">
+            비교용 참고가입니다. 항공권과 리조트 이동비는 별도이며 시즌·세금·환율에 따라 실제 견적이 달라질 수 있습니다.
+          </p>
 
           {/* Details & Amenities */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

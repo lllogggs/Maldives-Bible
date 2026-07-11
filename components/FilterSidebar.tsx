@@ -7,6 +7,7 @@ import { getTransportationLabel } from './transportationLabels';
 interface FilterSidebarProps {
   filters: Filters;
   onFilterChange: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
+  onReset: () => void;
   onClose?: () => void;
 }
 
@@ -53,7 +54,7 @@ const CheckboxRow: React.FC<{
   </label>
 );
 
-const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, onClose }) => {
+const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, onReset, onClose }) => {
   const budgetRangeRef = React.useRef<HTMLDivElement>(null);
   const diningRangeRef = React.useRef<HTMLDivElement>(null);
 
@@ -236,11 +237,20 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
           <FilterIcon className="h-5 w-5 text-teal-700" />
           필터
         </h2>
-        {onClose && (
-          <button type="button" onClick={onClose} className="p-1 text-slate-500 hover:text-slate-900 lg:hidden" aria-label="필터 닫기">
-            <XIcon className="h-6 w-6" />
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onReset}
+            className="rounded-md px-2 py-1 text-xs font-semibold text-teal-700 hover:bg-teal-50"
+          >
+            전체 초기화
           </button>
-        )}
+          {onClose && (
+            <button type="button" onClick={onClose} className="p-1 text-slate-500 hover:text-slate-900 lg:hidden" aria-label="필터 닫기">
+              <XIcon className="h-6 w-6" />
+            </button>
+          )}
+        </div>
       </div>
 
       <FilterOption title="이동">
@@ -345,6 +355,9 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
 
       <FilterOption title="다이닝">
         <div className="space-y-3">
+          <label className="block text-xs font-semibold text-slate-600" htmlFor="minimum-restaurants">
+            레스토랑 최소 개수
+          </label>
           <div className="flex items-center justify-between gap-3">
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">
               {formatDiningLabel(filters.minRestaurants)}
@@ -365,6 +378,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             <div className="budget-range__track" />
             <div className="budget-range__fill" style={diningFillStyle} />
             <button
+              id="minimum-restaurants"
               aria-label="다이닝 최소 개수"
               aria-valuemax={MAX_DINING}
               aria-valuemin={MIN_DINING}
@@ -387,6 +401,23 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             <span>5곳</span>
             <span>10곳</span>
             <span>15곳</span>
+          </div>
+          <div className="border-t border-slate-200 pt-3">
+            <label className="mb-2 block text-xs font-semibold text-slate-600" htmlFor="minimum-bars">
+              바 최소 개수
+            </label>
+            <select
+              id="minimum-bars"
+              value={filters.minBars}
+              onChange={event => onFilterChange('minBars', Number(event.target.value))}
+              className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-700 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10"
+            >
+              {Array.from({ length: MAX_DINING + 1 }, (_, value) => (
+                <option key={value} value={value}>
+                  {value === 0 ? '전체 보기' : `최소 ${value}곳`}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </FilterOption>

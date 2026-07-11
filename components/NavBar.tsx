@@ -19,6 +19,7 @@ const NavButton: React.FC<{
     <button
       type="button"
       onClick={onClick}
+      aria-current={isActive ? 'page' : undefined}
       className={`min-h-11 shrink-0 rounded-sm border-b-2 px-0.5 text-sm font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f8f7] sm:px-1 sm:text-base ${isActive ? activeClasses : inactiveClasses}`}
     >
       {label}
@@ -41,12 +42,12 @@ const NavBar: React.FC<NavBarProps> = ({ currentView, onViewChange }) => {
           onClick={() => onViewChange('resorts')}
         />
         <NavButton
-          label="견적 문의"
+          label="견적 비교"
           isActive={currentView === 'agencies'}
           onClick={() => onViewChange('agencies')}
         />
         <NavButton
-          label="항공 일정"
+          label="항공 가이드"
           isActive={currentView === 'flights'}
           onClick={() => onViewChange('flights')}
         />

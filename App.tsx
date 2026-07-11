@@ -10,7 +10,7 @@ import ResortSelectionTips from './components/ResortSelectionTips';
 import TravelAgencies from './components/TravelAgencies';
 import FlightInfo from './components/FlightInfo';
 import { POPULARITY_RANKING } from './constants';
-import type { Resort, Filters, SortOption } from './types';
+import { TransportationType, type Resort, type Filters, type SortOption } from './types';
 import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
 
 type ViteEnvShim = {
@@ -22,6 +22,25 @@ type ViteEnvShim = {
 };
 
 type View = 'resorts' | 'tips' | 'agencies' | 'flights';
+
+const VALID_VIEWS: readonly View[] = ['resorts', 'tips', 'agencies', 'flights'];
+const VALID_SORT_OPTIONS: readonly SortOption[] = [
+  'custom',
+  'popularity',
+  'price-asc',
+  'price-desc',
+  'rating-desc',
+  'snorkeling-desc',
+  'travelTime-asc',
+  'likes-desc',
+];
+const VALID_ROOM_TYPES: readonly Filters['roomTypes'][number][] = ['beach', 'water'];
+
+const isView = (value: string | null): value is View =>
+  Boolean(value && VALID_VIEWS.includes(value as View));
+
+const isSortOption = (value: string | null): value is SortOption =>
+  Boolean(value && VALID_SORT_OPTIONS.includes(value as SortOption));
 
 const slugify = (value: string): string =>
   value
@@ -95,6 +114,9 @@ const parseNumberParam = (value: string | null, fallback: number) => {
   return Number.isFinite(parsed) ? parsed : fallback;
 };
 
+const clampNumber = (value: number, min: number, max: number) =>
+  Math.min(Math.max(value, min), max);
+
 const parseCsvParam = (value: string | null): string[] => {
   if (!value) {
     return [];
@@ -103,6 +125,19 @@ const parseCsvParam = (value: string | null): string[] => {
     .split(',')
     .map(item => item.trim())
     .filter(item => item.length > 0);
+};
+
+const getInitialView = (): View => {
+  if (typeof window === 'undefined') {
+    return 'tips';
+  }
+
+  if (getResortPathSegment(window.location.pathname)) {
+    return 'resorts';
+  }
+
+  const queryView = new URLSearchParams(window.location.search).get('view');
+  return isView(queryView) ? queryView : 'tips';
 };
 
 type ResortPreferences = {
@@ -487,7 +522,8 @@ const App: React.FC = () => {
   const previousSelectedResortIdRef = useRef<number | null>(null);
   const [compareList, setCompareList] = useState<number[]>([]);
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
-  const [currentView, setCurrentView] = useState<View>('tips');
+  const [currentView, setCurrentView] = useState<View>(getInitialView);
+  const [resortReloadKey, setResortReloadKey] = useState(0);
   const [isMobileViewport, setIsMobileViewport] = useState<boolean>(() => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
       return false;
@@ -657,6 +693,26 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (!isFilterOpen || typeof document === 'undefined') {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsFilterOpen(false);
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isFilterOpen]);
+
+  useEffect(() => {
     if (typeof window === 'undefined') {
       return;
     }
@@ -803,6 +859,7 @@ const App: React.FC = () => {
     const fetchResorts = async () => {
       try {
         setLoading(true);
+        setError(null);
 
         const basePath = (import.meta.env.BASE_URL ?? '/').replace(/\/+$/, '');
         const resortFileUrls = Array.from({ length: 9 }, (_, i) => {
@@ -811,18 +868,38 @@ const App: React.FC = () => {
           return url.startsWith('/') ? url : `/${url}`;
         });
 
-        const responses = await Promise.all(resortFileUrls.map(url => fetch(url)));
-
-        for (const response of responses) {
+        const resortResults = await Promise.allSettled(
+          resortFileUrls.map(async url => {
+            const response = await fetch(url);
             if (!response.ok) {
-                throw new Error(`리조트 데이터를 불러오는 데 실패했습니다: ${response.statusText} (${response.url})`);
+              throw new Error(`${response.status} ${response.statusText}`.trim());
             }
+
+            const payload = await response.json();
+            if (!Array.isArray(payload)) {
+              throw new Error('잘못된 리조트 데이터 형식');
+            }
+            return payload as Resort[];
+          })
+        );
+        const resortsDataArrays = resortResults.flatMap(result =>
+          result.status === 'fulfilled' ? [result.value] : []
+        );
+
+        if (resortsDataArrays.length === 0) {
+          throw new Error('리조트 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.');
+        }
+        if (resortsDataArrays.length < resortFileUrls.length) {
+          setToastMessage(
+            `일부 리조트 정보를 불러오지 못해 ${resortsDataArrays.flat().length}개만 표시합니다.`
+          );
         }
 
-        const resortsDataArrays: Resort[][] = await Promise.all(responses.map(res => res.json()));
-
         const combinedData = resortsDataArrays.flat();
-        const storedOverrides = JSON.parse(localStorage.getItem('resortOverrides') || '{}') as Record<string, ResortOverride>;
+        const storedOverrides =
+          parseJsonSafely<Record<string, ResortOverride>>(
+            localStorage.getItem('resortOverrides') || '{}'
+          ) ?? {};
         const normalizedOverrides: Record<number, ResortOverride> = {};
 
         Object.entries(storedOverrides).forEach(([key, value]) => {
@@ -908,6 +985,7 @@ const App: React.FC = () => {
     getLocalPreferences,
     hydrateLikesState,
     profileId,
+    resortReloadKey,
     savePreferencesToLocal,
   ]);
 
@@ -915,6 +993,7 @@ const App: React.FC = () => {
     const handleHashChange = () => {
       const hashResortId = parseResortIdFromHash(window.location.hash);
       if (hashResortId) {
+        setCurrentView('resorts');
         setSelectedResortId(hashResortId);
         window.scrollTo(0, 0);
         return;
@@ -946,6 +1025,7 @@ const App: React.FC = () => {
 
       if (initialResorts.length === 0) {
         if (hashResortId) {
+          setCurrentView('resorts');
           setSelectedResortId(hashResortId);
         }
         return;
@@ -954,6 +1034,7 @@ const App: React.FC = () => {
       if (slug) {
         const matched = initialResorts.find(resort => getResortSlug(resort) === slug);
         if (matched) {
+          setCurrentView('resorts');
           setSelectedResortId(matched.id);
           window.scrollTo(0, 0);
           return;
@@ -965,6 +1046,7 @@ const App: React.FC = () => {
         if (Number.isFinite(numericSegment)) {
           const matchedById = initialResorts.find(resort => resort.id === numericSegment);
           if (matchedById) {
+            setCurrentView('resorts');
             setSelectedResortId(matchedById.id);
             const matchedSlug = getResortSlug(matchedById);
             if (matchedSlug) {
@@ -979,6 +1061,7 @@ const App: React.FC = () => {
       }
 
       if (hashResortId) {
+        setCurrentView('resorts');
         setSelectedResortId(hashResortId);
         const matchedById = initialResorts.find(resort => resort.id === hashResortId);
         if (matchedById) {
@@ -994,6 +1077,8 @@ const App: React.FC = () => {
       }
 
       setSelectedResortId(null);
+      const queryView = new URLSearchParams(window.location.search).get('view');
+      setCurrentView(isView(queryView) ? queryView : 'tips');
     };
 
     const handlePopState = () => {
@@ -1052,35 +1137,61 @@ const App: React.FC = () => {
     }
 
     const params = new URLSearchParams(window.location.search);
+    const parsedMinPrice = clampNumber(
+      parseNumberParam(params.get('min'), DEFAULT_FILTERS.minPrice),
+      DEFAULT_FILTERS.minPrice,
+      DEFAULT_FILTERS.maxPrice
+    );
+    const parsedMaxPrice = clampNumber(
+      parseNumberParam(params.get('max'), DEFAULT_FILTERS.maxPrice),
+      DEFAULT_FILTERS.minPrice,
+      DEFAULT_FILTERS.maxPrice
+    );
+    const validTransportation = parseCsvParam(params.get('t')).filter(
+      (item): item is TransportationType =>
+        Object.values(TransportationType).includes(item as TransportationType)
+    );
+    const validRoomTypes = parseCsvParam(params.get('room')).filter(
+      (item): item is Filters['roomTypes'][number] =>
+        VALID_ROOM_TYPES.includes(item as Filters['roomTypes'][number])
+    );
     const parsedFilters: Filters = {
       ...DEFAULT_FILTERS,
-      searchTerm: params.get('q') ?? DEFAULT_FILTERS.searchTerm,
-      transportation: parseCsvParam(params.get('t')) as Filters['transportation'],
-      minPrice: parseNumberParam(params.get('min'), DEFAULT_FILTERS.minPrice),
-      maxPrice: parseNumberParam(params.get('max'), DEFAULT_FILTERS.maxPrice),
-      roomTypes: parseCsvParam(params.get('room')) as Filters['roomTypes'],
-      minRestaurants: parseNumberParam(params.get('rest'), DEFAULT_FILTERS.minRestaurants),
-      minBars: parseNumberParam(params.get('bars'), DEFAULT_FILTERS.minBars),
+      searchTerm: (params.get('q') ?? DEFAULT_FILTERS.searchTerm).slice(0, 120),
+      transportation: validTransportation,
+      minPrice: Math.min(parsedMinPrice, parsedMaxPrice),
+      maxPrice: Math.max(parsedMinPrice, parsedMaxPrice),
+      roomTypes: validRoomTypes,
+      minRestaurants: Math.trunc(clampNumber(
+        parseNumberParam(params.get('rest'), DEFAULT_FILTERS.minRestaurants),
+        0,
+        15
+      )),
+      minBars: Math.trunc(clampNumber(
+        parseNumberParam(params.get('bars'), DEFAULT_FILTERS.minBars),
+        0,
+        15
+      )),
       hasPrivatePool: params.get('pool') === '1',
       onlyLiked: params.get('liked') === '1',
     };
 
     setFilters(parsedFilters);
 
-    const sort = params.get('sort') as SortOption | null;
-    if (sort) {
+    const sort = params.get('sort');
+    if (isSortOption(sort)) {
       setSortOption(sort);
     }
 
-    const view = params.get('view') as View | null;
-    if (view) {
+    const view = params.get('view');
+    if (getResortPathSegment(window.location.pathname)) {
+      setCurrentView('resorts');
+    } else if (isView(view)) {
       setCurrentView(view);
     }
 
-    const page = parseNumberParam(params.get('page'), 1);
-    if (page > 0) {
-      setCurrentPage(page);
-    }
+    const page = Math.trunc(clampNumber(parseNumberParam(params.get('page'), 1), 1, 10000));
+    setCurrentPage(page);
 
     setIsQueryHydrated(true);
   }, []);
@@ -1123,6 +1234,13 @@ const App: React.FC = () => {
     processedResorts = processedResorts.filter(resort => resort.bars >= filters.minBars);
     if (filters.onlyLiked) {
       processedResorts = processedResorts.filter(resort => likedSet.has(resort.id));
+    }
+
+    // 이미지 유무는 사용자가 고른 정렬 기준이 같은 경우에만 보조 기준으로 사용합니다.
+    if (sortOption !== 'custom') {
+      processedResorts.sort(
+        (a, b) => Number(hasDisplayableResortImage(b)) - Number(hasDisplayableResortImage(a))
+      );
     }
 
     // Sorting logic...
@@ -1168,12 +1286,6 @@ const App: React.FC = () => {
           return likesB - likesA;
         });
         break;
-    }
-
-    if (sortOption !== 'custom') {
-      processedResorts.sort(
-        (a, b) => Number(hasDisplayableResortImage(b)) - Number(hasDisplayableResortImage(a))
-      );
     }
 
     setDisplayedResorts(processedResorts);
@@ -1223,10 +1335,10 @@ const App: React.FC = () => {
     if (sortOption !== 'popularity') {
       params.set('sort', sortOption);
     }
-    if (currentView !== 'tips') {
+    if (currentView !== 'tips' && !getResortPathSegment(window.location.pathname)) {
       params.set('view', currentView);
     }
-    if (currentPage !== 1) {
+    if (currentPage !== 1 && !getResortPathSegment(window.location.pathname)) {
       params.set('page', String(currentPage));
     }
 
@@ -1277,6 +1389,12 @@ const App: React.FC = () => {
     setFilters(prev => ({ ...prev, [key]: value }));
   };
 
+  const handleResetFilters = () => {
+    setFilters({ ...DEFAULT_FILTERS });
+    setSortOption('popularity');
+    setCurrentPage(1);
+  };
+
   const handleSortChange = (option: SortOption) => {
     setSortOption(option);
   };
@@ -1308,19 +1426,30 @@ const App: React.FC = () => {
 
   const handleGoBackToList = () => {
     const queryString = window.location.search;
+    setSelectedResortId(null);
+    setCurrentView('resorts');
     window.history.replaceState(null, '', `/${queryString}`);
     window.location.hash = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleViewDetails = (resortId: number) => {
     setIsCompareViewVisible(false);
+    setCurrentView('resorts');
     setSelectedResortId(resortId);
     if (typeof window !== 'undefined') {
       const resort = initialResorts.find(item => item.id === resortId);
       const slug = resort ? getResortSlug(resort) : null;
       if (slug) {
-        const queryString = window.location.search;
-        window.history.replaceState(null, '', `/resorts/${slug}/${queryString}`);
+        const detailParams = new URLSearchParams(window.location.search);
+        detailParams.delete('view');
+        detailParams.delete('page');
+        const detailQuery = detailParams.toString();
+        window.history.pushState(
+          null,
+          '',
+          `/resorts/${slug}/${detailQuery ? `?${detailQuery}` : ''}`
+        );
       }
       window.location.hash = '';
       window.scrollTo(0, 0);
@@ -1530,6 +1659,7 @@ const App: React.FC = () => {
                       </div>
                       <input
                         type="text"
+                        aria-label="리조트 이름 검색"
                         placeholder="리조트 이름 검색"
                         value={filters.searchTerm}
                         onChange={(event) => handleSearchChange(event.target.value)}
@@ -1541,6 +1671,7 @@ const App: React.FC = () => {
                       <div className="relative min-w-[154px] flex-1 sm:flex-none">
                         <select
                           id="sort-options"
+                          aria-label="리조트 정렬 기준"
                           value={sortOption}
                           onChange={(event) => handleSortChange(event.target.value as SortOption)}
                           disabled={isImageEditMode}
@@ -1576,17 +1707,35 @@ const App: React.FC = () => {
 
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
                   <div className="hidden lg:block">
-                    <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
+                    <FilterSidebar
+                      filters={filters}
+                      onFilterChange={handleFilterChange}
+                      onReset={handleResetFilters}
+                    />
                   </div>
                   <div className="min-w-0">
                     {loading && (
-                      <div className="rounded-lg border border-slate-200 bg-white px-6 py-16 text-center text-slate-600">
+                      <div
+                        className="rounded-lg border border-slate-200 bg-white px-6 py-16 text-center text-slate-600"
+                        role="status"
+                        aria-live="polite"
+                      >
                         몰디브 리조트 정보를 불러오는 중입니다...
                       </div>
                     )}
                     {error && (
-                      <div className="rounded-lg border border-red-200 bg-red-50 px-6 py-16 text-center text-red-600">
-                        에러: {error}
+                      <div
+                        className="rounded-lg border border-red-200 bg-red-50 px-6 py-12 text-center text-red-700"
+                        role="alert"
+                      >
+                        <p className="font-semibold">{error}</p>
+                        <button
+                          type="button"
+                          onClick={() => setResortReloadKey(value => value + 1)}
+                          className="mt-4 rounded-lg bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800"
+                        >
+                          다시 시도
+                        </button>
                       </div>
                     )}
                     {!loading && !error && (
@@ -1612,19 +1761,30 @@ const App: React.FC = () => {
           </>
         )}
       </main>
+      <footer className="mx-auto max-w-[1440px] px-4 pb-4 text-xs leading-5 text-slate-500 sm:px-6 lg:px-8">
+        <div className="border-t border-slate-200 pt-5">
+          가격은 4박·성인 2인 올인클루시브 기준의 비교용 참고가입니다. 항공권과 리조트 이동비는 별도이며,
+          시즌·세금·환율에 따라 실제 견적이 달라질 수 있습니다. 예약 전 공식 홈페이지와 여행사 견적을 확인해 주세요.
+        </div>
+      </footer>
       {isFilterOpen && (
         <div
           className="fixed inset-0 z-50 bg-slate-950/45 backdrop-blur-sm transition-opacity duration-300 lg:hidden"
           onClick={() => setIsFilterOpen(false)}
+          role="presentation"
         >
           <div 
             className="h-full w-4/5 max-w-sm translate-x-0 bg-white shadow-xl transition-transform duration-300"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="리조트 필터"
           >
             <div className="h-full overflow-y-auto">
               <FilterSidebar 
                 filters={filters} 
                 onFilterChange={handleFilterChange} 
+                onReset={handleResetFilters}
                 onClose={() => setIsFilterOpen(false)}
               />
             </div>
@@ -1640,7 +1800,11 @@ const App: React.FC = () => {
         />
       )}
       {toastMessage && (
-        <div className="fixed bottom-4 right-4 z-50 max-w-xs rounded-lg bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg">
+        <div
+          className="fixed bottom-4 right-4 z-50 max-w-xs rounded-lg bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg"
+          role="status"
+          aria-live="polite"
+        >
           {toastMessage}
         </div>
       )}
