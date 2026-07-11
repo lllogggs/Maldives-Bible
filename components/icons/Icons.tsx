@@ -22,6 +22,7 @@ import {
   RotateCwSquare,
   Sailboat,
   Search,
+  Share2,
   ShoppingCart,
   SlidersHorizontal,
   Sparkles,
@@ -93,6 +94,10 @@ export const ArrowLeftIcon: React.FC<IconProps> = ({ className = 'h-6 w-6', ...p
 
 export const LinkIcon: React.FC<IconProps> = ({ className = 'h-5 w-5', ...props }) => (
   <ExternalLink className={className} strokeWidth={iconStroke} {...props} />
+);
+
+export const ShareIcon: React.FC<IconProps> = ({ className = 'h-5 w-5', ...props }) => (
+  <Share2 className={className} strokeWidth={iconStroke} {...props} />
 );
 
 export const CalendarIcon: React.FC<IconProps> = ({ className = 'h-5 w-5', ...props }) => (

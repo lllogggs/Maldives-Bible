@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
-import { ArrowLeftIcon, StarIcon, CheckCircleIcon, XCircleIcon, SeaplaneIcon, BoatIcon, DomesticFlightIcon, XIcon, RotateDeviceIcon } from './icons/Icons';
+import { ArrowLeftIcon, StarIcon, CheckCircleIcon, XCircleIcon, SeaplaneIcon, BoatIcon, DomesticFlightIcon, XIcon, RotateDeviceIcon, ShareIcon } from './icons/Icons';
 import { getTransportationLabel } from './transportationLabels';
 
 interface CompareViewProps {
   resorts: Resort[];
   onBack: () => void;
   onRemove: (resortId: number) => void;
+  onShare: () => void;
+  isSharePending: boolean;
 }
 
 const BooleanIcon: React.FC<{ value: boolean }> = ({ value }) => {
@@ -117,7 +119,7 @@ const CompareHeaderCard: React.FC<{
 };
 
 
-const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) => {
+const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, onShare, isSharePending }) => {
   const numResorts = resorts.length;
   const [showRotateModal, setShowRotateModal] = useState(false);
   const [rotateHintDismissed, setRotateHintDismissed] = useState(false);
@@ -187,7 +189,20 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove }) 
       </button>
 
       <div className="bg-white p-2 sm:p-6 rounded-lg border border-gray-200 shadow-md">
-        <h1 className="text-xl sm:text-3xl font-bold text-gray-900">리조트 비교</h1>
+        <div className="flex items-center justify-between gap-3">
+          <h1 className="text-xl sm:text-3xl font-bold text-gray-900">리조트 비교</h1>
+          <button
+            type="button"
+            onClick={onShare}
+            disabled={isSharePending || resorts.length < 2}
+            aria-busy={isSharePending}
+            data-testid="share-comparison"
+            className="inline-flex h-11 shrink-0 items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-3 text-sm font-bold text-teal-800 transition-colors hover:border-teal-300 hover:bg-teal-100 disabled:cursor-wait disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 sm:px-4"
+          >
+            <ShareIcon className="h-5 w-5" />
+            <span>결과 공유</span>
+          </button>
+        </div>
         <div className="relative mt-4 sm:mt-6 overflow-x-auto">
             <div className="grid gap-x-2 sm:gap-x-4" style={{ gridTemplateColumns: `minmax(100px, auto) repeat(${numResorts}, max-content)`}}>
                 {/* Row 1: Headers */}

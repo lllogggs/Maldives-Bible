@@ -12,6 +12,7 @@ import FlightInfo from './components/FlightInfo';
 import { POPULARITY_RANKING } from './constants';
 import { TransportationType, type Resort, type Filters, type SortOption } from './types';
 import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
+import { shareOrCopy, type ShareResult } from './utils/share';
 
 type ViteEnvShim = {
   DEV?: boolean;
@@ -80,6 +81,43 @@ const parseResortIdFromHash = (hash: string): number | null => {
   const match = hash.match(/^#\/resort\/(\d+)$/);
   return match ? Number(match[1]) : null;
 };
+
+const parseCompareSlugsFromHash = (hash: string): string[] => {
+  const match = hash.match(/^#\/compare\/([^?#]+)$/);
+  if (!match || match[1].length > 600) {
+    return [];
+  }
+
+  let decoded = match[1];
+  try {
+    decoded = decodeURIComponent(decoded);
+  } catch {
+    return [];
+  }
+
+  const seen = new Set<string>();
+  const slugs: string[] = [];
+  decoded.split(',').forEach(item => {
+    const slug = normalizeSlug(item);
+    if (!slug || seen.has(slug) || slugs.length >= 3) {
+      return;
+    }
+    seen.add(slug);
+    slugs.push(slug);
+  });
+
+  return slugs;
+};
+
+const buildCompareHash = (resorts: Resort[]): string => {
+  const slugs = resorts
+    .map(getResortSlug)
+    .filter((slug): slug is string => Boolean(slug))
+    .slice(0, 3);
+  return slugs.length >= 2 ? `#/compare/${slugs.join(',')}` : '';
+};
+
+const CANONICAL_SITE_ORIGIN = 'https://www.maldivesbible.com';
 
 const resolveImageEditAvailability = (): boolean => {
   const env = ((import.meta as unknown as { env?: ViteEnvShim })?.env) ?? {};
@@ -302,6 +340,11 @@ const createProfileId = (): string => {
 
 type ResortOverride = {
   imageUrls?: string[];
+};
+
+type ToastState = {
+  id: number;
+  message: string;
 };
 
 type UseResortLikesOptions = {
@@ -537,10 +580,18 @@ const App: React.FC = () => {
   const [customOrder, setCustomOrder] = useState<number[]>([]);
   const [hiddenResortIds, setHiddenResortIds] = useState<number[]>([]);
   const [, setDeletedImageUrls] = useState<string[]>([]);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<ToastState | null>(null);
+  const toastIdRef = useRef(0);
+  const [isSharePending, setIsSharePending] = useState(false);
+  const sharePendingRef = useRef(false);
   const [, setResortOverrides] = useState<Record<number, ResortOverride>>({});
   const [profileId, setProfileId] = useState<string | null>(null);
   const [profileToken, setProfileToken] = useState<string | null>(null);
+
+  const showToast = useCallback((message: string) => {
+    toastIdRef.current += 1;
+    setToastMessage({ id: toastIdRef.current, message });
+  }, []);
 
   const persistProfileSession = useCallback((nextProfileId: string, nextProfileToken: string | null) => {
     const normalizedProfileId = nextProfileId.trim();
@@ -809,10 +860,10 @@ const App: React.FC = () => {
           err instanceof Error && err.message
             ? err.message
             : '변경 사항을 저장하지 못했습니다. 네트워크 상태를 확인해주세요.';
-        setToastMessage(fallbackMessage);
+        showToast(fallbackMessage);
       }
     },
-    [profileId, profileToken, savePreferencesToLocal]
+    [profileId, profileToken, savePreferencesToLocal, showToast]
   );
 
   const fetchRemoteLikes = useCallback(async (activeProfileId: string | null): Promise<ResortLikesSummary | null> => {
@@ -890,7 +941,7 @@ const App: React.FC = () => {
           throw new Error('리조트 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.');
         }
         if (resortsDataArrays.length < resortFileUrls.length) {
-          setToastMessage(
+          showToast(
             `일부 리조트 정보를 불러오지 못해 ${resortsDataArrays.flat().length}개만 표시합니다.`
           );
         }
@@ -987,10 +1038,50 @@ const App: React.FC = () => {
     profileId,
     resortReloadKey,
     savePreferencesToLocal,
+    showToast,
   ]);
 
   useEffect(() => {
     const handleHashChange = () => {
+      const hasCompareHash = window.location.hash.startsWith('#/compare/');
+      const compareSlugs = parseCompareSlugsFromHash(window.location.hash);
+
+      if (hasCompareHash) {
+        setCurrentView('resorts');
+        setSelectedResortId(null);
+
+        if (compareSlugs.length === 0) {
+          setCompareList([]);
+          setIsCompareViewVisible(false);
+          window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+          return;
+        }
+
+        if (initialResorts.length === 0) {
+          setIsCompareViewVisible(false);
+          return;
+        }
+
+        const resortBySlug = new Map(initialResorts.map(resort => [getResortSlug(resort), resort] as const));
+        const matchedResorts = compareSlugs.map(slug => resortBySlug.get(slug)).filter((resort): resort is Resort => Boolean(resort));
+        const matchedIds = matchedResorts.map(resort => resort.id);
+
+        setCompareList(matchedIds);
+        if (matchedResorts.length >= 2) {
+          setIsCompareViewVisible(true);
+          const canonicalHash = buildCompareHash(matchedResorts);
+          if (window.location.hash !== canonicalHash) {
+            window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${canonicalHash}`);
+          }
+          window.scrollTo(0, 0);
+        } else {
+          setIsCompareViewVisible(false);
+          window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+        }
+        return;
+      }
+
+      setIsCompareViewVisible(false);
       const hashResortId = parseResortIdFromHash(window.location.hash);
       if (hashResortId) {
         setCurrentView('resorts');
@@ -1005,12 +1096,14 @@ const App: React.FC = () => {
     };
 
     window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleHashChange);
     handleHashChange(); // 초기 로드 시에도 해시를 확인합니다.
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handleHashChange);
     };
-  }, []);
+  }, [initialResorts]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -1018,6 +1111,12 @@ const App: React.FC = () => {
     }
 
     const syncFromPath = () => {
+      if (window.location.hash.startsWith('#/compare/')) {
+        setCurrentView('resorts');
+        setSelectedResortId(null);
+        return;
+      }
+
       const pathname = window.location.pathname;
       const segment = getResortPathSegment(pathname);
       const slug = segment ? normalizeSlug(segment) : null;
@@ -1347,6 +1446,28 @@ const App: React.FC = () => {
     window.history.replaceState(null, '', nextUrl);
   }, [filters, sortOption, currentView, currentPage, isQueryHydrated]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || !isCompareViewVisible || initialResorts.length === 0) {
+      return;
+    }
+
+    const resortById = new Map(initialResorts.map(resort => [resort.id, resort] as const));
+    const selectedResorts = compareList.map(id => resortById.get(id)).filter((resort): resort is Resort => Boolean(resort));
+
+    if (selectedResorts.length < 2) {
+      setIsCompareViewVisible(false);
+      if (window.location.hash.startsWith('#/compare/')) {
+        window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+      }
+      return;
+    }
+
+    const expectedHash = buildCompareHash(selectedResorts);
+    if (expectedHash && window.location.hash !== expectedHash) {
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${expectedHash}`);
+    }
+  }, [compareList, initialResorts, isCompareViewVisible]);
+
   const selectedResort = initialResorts.find(r => r.id === selectedResortId);
   const calculatedTotalPages = displayedResorts.length === 0
     ? 0
@@ -1368,6 +1489,69 @@ const App: React.FC = () => {
   const isResortListFocused =
     currentView === 'resorts' && !isCompareViewVisible && !(selectedResortId && selectedResort);
   const isCompactHeader = !isResortListFocused || isMobileViewport;
+
+  const performShare = async (payload: ShareData, label: string) => {
+    if (sharePendingRef.current) {
+      return;
+    }
+
+    sharePendingRef.current = true;
+    setIsSharePending(true);
+    try {
+      const result: ShareResult = await shareOrCopy(payload);
+      if (result.status === 'shared') {
+        showToast(`${label} 공유를 완료했습니다.`);
+      } else if (result.status === 'copied') {
+        showToast(`${label} 링크를 복사했습니다.`);
+      } else if (result.status === 'failed') {
+        showToast('공유 링크를 만들지 못했습니다. 다시 시도해 주세요.');
+      }
+    } finally {
+      sharePendingRef.current = false;
+      setIsSharePending(false);
+    }
+  };
+
+  const handleShareResort = (resort: Resort) => {
+    const slug = getResortSlug(resort);
+    if (!slug) {
+      showToast('이 리조트의 공유 링크를 만들지 못했습니다.');
+      return;
+    }
+
+    const url = new URL(`/resorts/${slug}/`, CANONICAL_SITE_ORIGIN).toString();
+    void performShare(
+      {
+        title: `몰디브 바이블 | ${resort.name}`,
+        text: `${resort.name} 리조트 정보를 확인해 보세요.`,
+        url,
+      },
+      resort.name,
+    );
+  };
+
+  const handleShareComparison = () => {
+    const resortById = new Map(initialResorts.map(resort => [resort.id, resort] as const));
+    const selectedResorts = compareList.map(id => resortById.get(id)).filter((resort): resort is Resort => Boolean(resort));
+    const compareHash = buildCompareHash(selectedResorts);
+
+    if (selectedResorts.length < 2 || !compareHash) {
+      showToast('비교할 리조트를 2개 이상 선택해 주세요.');
+      return;
+    }
+
+    const url = new URL('/', CANONICAL_SITE_ORIGIN);
+    url.searchParams.set('view', 'resorts');
+    url.hash = compareHash.slice(1);
+    void performShare(
+      {
+        title: '몰디브 바이블 | 리조트 비교',
+        text: `${selectedResorts.map(resort => resort.name).join(', ')} 비교 결과를 확인해 보세요.`,
+        url: url.toString(),
+      },
+      '비교 결과',
+    );
+  };
 
   useEffect(() => {
     if (totalPages > 0 && currentPage > totalPages) {
@@ -1403,7 +1587,7 @@ const App: React.FC = () => {
     setCurrentView(view);
     setIsCompareViewVisible(false);
     setSelectedResortId(null);
-    if (view !== 'resorts') {
+    if (view !== 'resorts' || window.location.hash.startsWith('#/compare/')) {
       window.location.hash = '';
     }
     setCurrentPage(1);
@@ -1471,15 +1655,35 @@ const App: React.FC = () => {
 
   const handleClearCompare = () => {
     setCompareList([]);
+    setIsCompareViewVisible(false);
+    if (window.location.hash.startsWith('#/compare/')) {
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
   };
 
   const handleShowCompare = () => {
+    const resortById = new Map(initialResorts.map(resort => [resort.id, resort] as const));
+    const selectedResorts = compareList.map(id => resortById.get(id)).filter((resort): resort is Resort => Boolean(resort));
+    const compareHash = buildCompareHash(selectedResorts);
+
+    if (!compareHash) {
+      showToast('비교할 리조트를 2개 이상 선택해 주세요.');
+      return;
+    }
+
+    setCurrentView('resorts');
     setIsCompareViewVisible(true);
+    if (window.location.hash !== compareHash) {
+      window.location.hash = compareHash.slice(1);
+    }
     window.scrollTo(0, 0);
   };
 
   const handleHideCompare = () => {
     setIsCompareViewVisible(false);
+    if (window.location.hash.startsWith('#/compare/')) {
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
   };
 
   const handleLogoClick = () => {
@@ -1505,7 +1709,7 @@ const App: React.FC = () => {
 
   const handleToggleImageEditMode = () => {
     if (!canUseImageEditMode) {
-      setToastMessage('이미지 편집은 개발 서버(npm run dev)에서만 사용할 수 있습니다.');
+      showToast('이미지 편집은 개발 서버(npm run dev)에서만 사용할 수 있습니다.');
       return;
     }
 
@@ -1627,6 +1831,8 @@ const App: React.FC = () => {
                 resorts={resortsToCompare} 
                 onBack={handleHideCompare}
                 onRemove={handleToggleCompare}
+                onShare={handleShareComparison}
+                isSharePending={isSharePending}
               />
             ) : selectedResortId && selectedResort ? (
               <ResortDetail
@@ -1752,6 +1958,8 @@ const App: React.FC = () => {
                         onToggleLike={toggleLike}
                         pendingLikeResortIds={pendingLikeResortIds}
                         onViewDetails={handleViewDetails}
+                        onShareResort={handleShareResort}
+                        isSharePending={isSharePending}
                       />
                     )}
                   </div>
@@ -1801,11 +2009,16 @@ const App: React.FC = () => {
       )}
       {toastMessage && (
         <div
-          className="fixed bottom-4 right-4 z-50 max-w-xs rounded-lg bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg"
+          key={toastMessage.id}
+          className={`fixed right-4 z-50 max-w-xs rounded-lg bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg ${
+            !isCompareViewVisible && currentView === 'resorts' && !isImageEditMode && resortsToCompare.length > 0
+              ? 'bottom-24 sm:bottom-40'
+              : 'bottom-4'
+          }`}
           role="status"
           aria-live="polite"
         >
-          {toastMessage}
+          {toastMessage.message}
         </div>
       )}
     </div>
