@@ -106,7 +106,7 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
             <button
               type="button"
               onClick={onShowResorts}
-              className="cta-shimmer cta-main-boost inline-flex min-h-11 items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-extrabold text-slate-950 shadow-sm transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="cta-shimmer cta-shimmer-loop cta-main-boost inline-flex min-h-11 items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-extrabold text-slate-950 shadow-sm transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               리조트 목록 바로 보기
               <ChevronRightIcon className="h-4 w-4" />

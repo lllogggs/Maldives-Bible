@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({
           >
             <span className={`${logoSize} block shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/10 transition-all duration-300`}>
               <img
-                src="/brand/maldives-bible-logo.png"
+                src="/android-chrome-192x192.png"
                 alt=""
                 className="h-full w-full object-cover"
                 width={112}
@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({
                 Maldives Bible
               </span>
               <span className="font-brand-heading block truncate text-base text-slate-950 group-hover:text-teal-700">
-                몰디브 리조트
+                몰디브 바이블
               </span>
             </span>
           </button>
