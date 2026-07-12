@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
 import { ArrowLeftIcon, StarIcon, CheckCircleIcon, XCircleIcon, SeaplaneIcon, BoatIcon, DomesticFlightIcon, XIcon, RotateDeviceIcon, ShareIcon } from './icons/Icons';
@@ -13,9 +13,16 @@ interface CompareViewProps {
 }
 
 const BooleanIcon: React.FC<{ value: boolean }> = ({ value }) => {
-  return value 
-    ? <CheckCircleIcon className="h-6 w-6 text-green-500 mx-auto" /> 
-    : <XCircleIcon className="h-6 w-6 text-red-400 mx-auto" />;
+  return (
+    <span className="inline-flex items-center justify-center">
+      <span aria-hidden="true">
+        {value
+          ? <CheckCircleIcon className="h-6 w-6 text-green-500" />
+          : <XCircleIcon className="h-6 w-6 text-red-400" />}
+      </span>
+      <span className="sr-only">{value ? '제공' : '미제공'}</span>
+    </span>
+  );
 };
 
 const TransportationDisplay: React.FC<{type: TransportationType; className?: string}> = ({ type, className }) => {
@@ -27,31 +34,43 @@ const TransportationDisplay: React.FC<{type: TransportationType; className?: str
     return <div className={`flex flex-col items-center gap-1 text-center ${className}`}><Icon className="h-5 w-5 text-gray-600" /><span>{getTransportationLabel(type)}</span></div>;
 }
 
-const specs = [
+type SpecAttribute = {
+  label: string;
+  key: keyof Resort;
+  lowerIsBetter?: boolean;
+  render?: (resort: Resort) => React.ReactNode;
+};
+
+type SpecSection = {
+  category: string;
+  attributes: SpecAttribute[];
+};
+
+const specs: SpecSection[] = [
   {
     category: '기본',
     attributes: [
-      { label: '평점', key: 'rating', lowerIsBetter: false, render: (val: number) => <div className="flex items-center justify-center gap-1 font-bold"><StarIcon className="h-4 w-4 text-yellow-400" /> {val.toFixed(1)}</div> },
-      { label: '수중환경', key: 'snorkelingQuality', lowerIsBetter: false, render: (val: number) => <div className="flex items-center justify-center gap-1 font-bold"><StarIcon className="h-4 w-4 text-yellow-400" /> {val}</div> },
+      { label: '평점', key: 'rating', lowerIsBetter: false, render: resort => <div className="flex items-center justify-center gap-1 font-bold"><StarIcon className="h-4 w-4 text-yellow-400" /> {resort.rating.toFixed(1)}</div> },
+      { label: '수중환경', key: 'snorkelingQuality', lowerIsBetter: false, render: resort => <div className="flex items-center justify-center gap-1 font-bold"><StarIcon className="h-4 w-4 text-yellow-400" /> {resort.snorkelingQuality}</div> },
       { label: '위치', key: 'location' },
       { label: '브랜드', key: 'brand' },
-      { label: '오픈/리노베이션', key: 'openYear', lowerIsBetter: false, render: (val: number, resort: Resort) => `${val}${resort.renovationYear ? ` / ${resort.renovationYear}` : ''}` },
+      { label: '오픈/리노베이션', key: 'openYear', lowerIsBetter: false, render: resort => `${resort.openYear}${resort.renovationYear ? ` / ${resort.renovationYear}` : ''}` },
     ]
   },
    {
     category: '룸타입',
     attributes: [
-      { label: '비치빌라', key: 'hasBeachVilla', render: (val: boolean) => <BooleanIcon value={val} /> },
-      { label: '워터빌라', key: 'hasWaterVilla', render: (val: boolean) => <BooleanIcon value={val} /> },
-      { label: '개인풀', key: 'hasPrivatePool', render: (val: boolean) => <BooleanIcon value={val} /> },
+      { label: '비치빌라', key: 'hasBeachVilla', render: resort => <BooleanIcon value={resort.hasBeachVilla} /> },
+      { label: '워터빌라', key: 'hasWaterVilla', render: resort => <BooleanIcon value={resort.hasWaterVilla} /> },
+      { label: '개인풀', key: 'hasPrivatePool', render: resort => <BooleanIcon value={resort.hasPrivatePool} /> },
     ]
   },
   {
     category: '이동',
     attributes: [
-      { label: '이동수단', key: 'transportation', render: (val: TransportationType) => <TransportationDisplay type={val} /> },
+      { label: '이동수단', key: 'transportation', render: resort => <TransportationDisplay type={resort.transportation} /> },
       { label: '이동시간 (분)', key: 'travelTime', lowerIsBetter: true },
-      { label: '이동비 1인 ($)', key: 'travelCost', lowerIsBetter: true, render: (val: number) => val.toLocaleString() },
+      { label: '이동비 1인 ($)', key: 'travelCost', lowerIsBetter: true, render: resort => resort.travelCost.toLocaleString() },
     ]
   },
   {
@@ -66,8 +85,8 @@ const specs = [
   {
     category: '혜택',
     attributes: [
-      { label: '패밀리룸', key: 'hasFamilyRoom', render: (val: boolean) => <BooleanIcon value={val} /> },
-      { label: '키즈클럽', key: 'hasKidsClub', render: (val: boolean) => <BooleanIcon value={val} /> },
+      { label: '패밀리룸', key: 'hasFamilyRoom', render: resort => <BooleanIcon value={resort.hasFamilyRoom} /> },
+      { label: '키즈클럽', key: 'hasKidsClub', render: resort => <BooleanIcon value={resort.hasKidsClub} /> },
     ]
   },
 ];
@@ -123,6 +142,10 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
   const numResorts = resorts.length;
   const [showRotateModal, setShowRotateModal] = useState(false);
   const [rotateHintDismissed, setRotateHintDismissed] = useState(false);
+  const rotateDialogRef = useRef<HTMLDivElement>(null);
+  const rotateConfirmRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  const compareHeadingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const checkOrientation = () => {
@@ -140,13 +163,72 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
         window.removeEventListener('resize', checkOrientation);
     };
   }, [rotateHintDismissed]);
+
+  useEffect(() => {
+    if (!showRotateModal) {
+      return;
+    }
+
+    previousFocusRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+    const focusFrame = window.requestAnimationFrame(() => rotateConfirmRef.current?.focus());
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      const previousFocus = previousFocusRef.current;
+      if (previousFocus?.isConnected && previousFocus !== document.body) {
+        previousFocus.focus();
+      } else {
+        compareHeadingRef.current?.focus();
+      }
+    };
+  }, [showRotateModal]);
+
+  const dismissRotateHint = () => {
+    setRotateHintDismissed(true);
+    setShowRotateModal(false);
+  };
+
+  const handleRotateDialogKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      dismissRotateHint();
+      return;
+    }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const focusableElements = Array.from(
+      rotateDialogRef.current?.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ) ?? [],
+    ).filter(element => element.getClientRects().length > 0);
+
+    if (focusableElements.length === 0) {
+      event.preventDefault();
+      return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  };
   
-  const getBestValue = (attributeKey: keyof Resort, lowerIsBetter?: boolean, isBoolean?: boolean) => {
+  const getBestValue = (attributeKey: keyof Resort, lowerIsBetter?: boolean) => {
     if (numResorts < 2) return null;
 
     const values = resorts.map(r => r[attributeKey]);
     
-    if (isBoolean || (typeof values[0] === 'boolean' && lowerIsBetter === undefined)) {
+    if (typeof values[0] === 'boolean' && lowerIsBetter === undefined) {
         return values.some(v => v === true) ? true : null;
     }
 
@@ -162,16 +244,23 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
   return (
     <>
       {showRotateModal && (
-        <div className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center p-4 pt-20 sm:pt-24 lg:hidden" role="dialog" aria-modal="true" aria-labelledby="rotate-hint-title">
+        <div
+          ref={rotateDialogRef}
+          className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center p-4 pt-20 sm:pt-24 lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="rotate-hint-title"
+          aria-describedby="rotate-hint-description"
+          onKeyDown={handleRotateDialogKeyDown}
+        >
           <div className="bg-white rounded-lg p-6 sm:p-8 text-center max-w-sm shadow-xl w-full max-w-[360px]">
             <RotateDeviceIcon className="h-16 w-16 mx-auto text-teal-600 mb-4" />
             <h3 id="rotate-hint-title" className="text-xl font-bold text-gray-800 mb-2">가로 화면 추천</h3>
-            <p className="text-gray-600 mb-6">넓은 비교표로 보기</p>
+            <p id="rotate-hint-description" className="text-gray-600 mb-6">넓은 비교표로 보기</p>
             <button
-              onClick={() => {
-                setRotateHintDismissed(true);
-                setShowRotateModal(false);
-              }}
+              ref={rotateConfirmRef}
+              type="button"
+              onClick={dismissRotateHint}
               className="w-full bg-teal-700 text-white font-bold py-3 px-4 rounded-lg hover:bg-teal-800 transition-colors"
             >
               확인
@@ -190,7 +279,7 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
 
       <div className="bg-white p-2 sm:p-6 rounded-lg border border-gray-200 shadow-md">
         <div className="flex items-center justify-between gap-3">
-          <h1 className="text-xl sm:text-3xl font-bold text-gray-900">리조트 비교</h1>
+          <h1 ref={compareHeadingRef} tabIndex={-1} className="text-xl sm:text-3xl font-bold text-gray-900 outline-none">리조트 비교</h1>
           <button
             type="button"
             onClick={onShare}
@@ -204,48 +293,67 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
           </button>
         </div>
         <div className="relative mt-4 sm:mt-6 overflow-x-auto">
-            <div className="grid gap-x-2 sm:gap-x-4" style={{ gridTemplateColumns: `minmax(100px, auto) repeat(${numResorts}, max-content)`}}>
+            <div
+              role="table"
+              aria-label="리조트 비교 결과"
+              aria-colcount={numResorts + 1}
+              aria-rowcount={1 + specs.length + specs.reduce((total, section) => total + section.attributes.length, 0)}
+              className="grid gap-x-2 sm:gap-x-4"
+              style={{ gridTemplateColumns: `minmax(100px, auto) repeat(${numResorts}, max-content)`}}
+            >
                 {/* Row 1: Headers */}
-                <div className="sticky top-0 left-0 bg-white z-30 border-b border-gray-200"></div> {/* Top-left corner */}
-                {resorts.map(resort => (
-                    <div key={resort.id} className="sticky top-0 bg-white z-20 py-2 border-b border-gray-200">
+                <div role="row" className="contents">
+                  <div role="columnheader" className="sticky top-0 left-0 bg-white z-30 border-b border-gray-200">
+                    <span className="sr-only">비교 항목</span>
+                  </div>
+                  {resorts.map(resort => (
+                    <div
+                      key={resort.id}
+                      role="columnheader"
+                      aria-label={`${resort.name}, 4박 2인 올인클루시브 ${resort.price.toLocaleString()}달러${bestPrice !== null && resort.price === bestPrice ? ', 최저가' : ''}`}
+                      className="sticky top-0 bg-white z-20 py-2 border-b border-gray-200"
+                    >
                          <CompareHeaderCard
                            resort={resort}
                            isBestPrice={bestPrice !== null && resort.price === bestPrice}
                            onRemove={onRemove}
                          />
                     </div>
-                ))}
+                  ))}
+                </div>
 
                 {/* Subsequent Rows: Specs */}
                 {specs.map(section => (
                     <React.Fragment key={section.category}>
                         {/* Section Header */}
-                        <div className="col-span-full text-base sm:text-xl font-semibold text-gray-800 my-2 sm:my-4 py-2 sm:py-3 border-b-2 border-t-2 border-gray-100 bg-gray-50 -mx-2 sm:-mx-6 px-2 sm:px-6 sticky left-0 z-10">
-                          {section.category}
+                        <div role="row" className="contents">
+                          <div role="columnheader" aria-colspan={numResorts + 1} className="col-span-full text-base sm:text-xl font-semibold text-gray-800 my-2 sm:my-4 py-2 sm:py-3 border-b-2 border-t-2 border-gray-100 bg-gray-50 -mx-2 sm:-mx-6 px-2 sm:px-6 sticky left-0 z-10">
+                            {section.category}
+                          </div>
                         </div>
                         
                         {/* Attribute Rows */}
                         {section.attributes.map(attr => {
-                            const bestValue = getBestValue(attr.key as keyof Resort, attr.lowerIsBetter);
+                            const bestValue = getBestValue(attr.key, attr.lowerIsBetter);
                             
                             return (
-                                <React.Fragment key={attr.key}>
-                                    <div className="font-semibold text-gray-600 text-xs sm:text-sm flex items-center p-2 sm:p-3 sticky left-0 bg-white z-10 border-b">
+                                <div key={attr.key} role="row" className="contents">
+                                    <div role="rowheader" className="font-semibold text-gray-600 text-xs sm:text-sm flex items-center p-2 sm:p-3 sticky left-0 bg-white z-10 border-b">
                                         {attr.label}
                                     </div>
                                     {resorts.map(resort => {
-                                        const value = resort[attr.key as keyof Resort];
+                                        const value = resort[attr.key];
                                         const isBest = bestValue !== null && value === bestValue && typeof value !== 'string';
                                         return (
-                                            <div key={`${resort.id}-${attr.key}`} className={`flex items-center justify-center text-center text-xs sm:text-base font-medium text-gray-800 p-2 sm:p-3 border-b transition-colors duration-200 ${isBest ? 'bg-teal-50' : ''}`}>
+                                            <div role="cell" key={`${resort.id}-${attr.key}`} className={`flex items-center justify-center text-center text-xs sm:text-base font-medium text-gray-800 p-2 sm:p-3 border-b transition-colors duration-200 ${isBest ? 'bg-teal-50' : ''}`}>
                                                 <div className={isBest ? 'font-bold text-teal-700' : ''}>
-                                                    {attr.render ? attr.render(value as any, resort) : String(value)}
+                                                    {isBest && <span className="sr-only">최적 값: </span>}
+                                                    {attr.render ? attr.render(resort) : String(value)}
                                                 </div>
                                             </div>
                                         );
                                     })}
-                                </React.Fragment>
+                                </div>
                             );
                         })}
                     </React.Fragment>

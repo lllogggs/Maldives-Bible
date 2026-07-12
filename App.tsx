@@ -143,6 +143,23 @@ const DEFAULT_FILTERS: Filters = {
   onlyLiked: false,
 };
 
+const areFilterValuesEqual = <K extends keyof Filters>(left: Filters[K], right: Filters[K]) => {
+  if (Array.isArray(left) && Array.isArray(right)) {
+    return left.length === right.length && left.every((item, index) => item === right[index]);
+  }
+  return Object.is(left, right);
+};
+
+const areFiltersEqual = (left: Filters, right: Filters) =>
+  left.searchTerm === right.searchTerm &&
+  areFilterValuesEqual(left.transportation, right.transportation) &&
+  left.minPrice === right.minPrice &&
+  left.maxPrice === right.maxPrice &&
+  areFilterValuesEqual(left.roomTypes, right.roomTypes) &&
+  left.minRestaurants === right.minRestaurants &&
+  left.hasPrivatePool === right.hasPrivatePool &&
+  left.onlyLiked === right.onlyLiked;
+
 const parseNumberParam = (value: string | null, fallback: number) => {
   if (!value) {
     return fallback;
@@ -567,6 +584,10 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>(getInitialView);
   const [resortReloadKey, setResortReloadKey] = useState(0);
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  const filterTriggerRef = useRef<HTMLButtonElement>(null);
+  const filterDialogRef = useRef<HTMLDivElement>(null);
+  const filterPreviousFocusRef = useRef<HTMLElement | null>(null);
+  const resortSearchRef = useRef<HTMLInputElement>(null);
   const [isImageEditMode, setIsImageEditMode] = useState<boolean>(false);
   const [previousSortOption, setPreviousSortOption] = useState<SortOption>('popularity');
   const [customOrder, setCustomOrder] = useState<number[]>([]);
@@ -720,17 +741,77 @@ const App: React.FC = () => {
     }
 
     const previousOverflow = document.body.style.overflow;
+    const dialog = filterDialogRef.current;
+    const restoreFilterFocus = () => {
+      const previousFocus = filterPreviousFocusRef.current;
+      const trigger = filterTriggerRef.current;
+      const focusTarget = previousFocus?.isConnected && previousFocus.getClientRects().length > 0
+        ? previousFocus
+        : trigger?.getClientRects().length
+          ? trigger
+          : resortSearchRef.current;
+      focusTarget?.focus();
+      filterPreviousFocusRef.current = null;
+    };
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+    const getFocusableElements = () =>
+      dialog
+        ? Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector)).filter(
+            element => !element.hasAttribute('hidden') && element.getAttribute('aria-hidden') !== 'true'
+          )
+        : [];
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        event.preventDefault();
+        setIsFilterOpen(false);
+        return;
+      }
+
+      if (event.key !== 'Tab' || !dialog) {
+        return;
+      }
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        dialog.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement;
+      if (event.shiftKey && (activeElement === firstElement || !dialog.contains(activeElement))) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && (activeElement === lastElement || !dialog.contains(activeElement))) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
         setIsFilterOpen(false);
       }
     };
 
     document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleKeyDown);
+    const firstFocusableElement = getFocusableElements()[0];
+    (firstFocusableElement ?? dialog)?.focus();
+    document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('resize', handleResize);
     return () => {
       document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
+      restoreFilterFocus();
     };
   }, [isFilterOpen]);
 
@@ -1360,10 +1441,6 @@ const App: React.FC = () => {
   }, [applyFiltersAndSort]);
 
   useEffect(() => {
-    setCurrentPage(1);
-  }, [filters, sortOption, hiddenResortIds, customOrder, initialResorts]);
-
-  useEffect(() => {
     if (!isQueryHydrated || typeof window === 'undefined') {
       return;
     }
@@ -1524,21 +1601,36 @@ const App: React.FC = () => {
   }, [selectedResortId, initialResorts, selectedResort]);
 
   const handleSearchChange = (term: string) => {
+    if (filters.searchTerm === term) {
+      return;
+    }
     setFilters(prev => ({ ...prev, searchTerm: term }));
+    setCurrentPage(1);
   };
 
   const handleFilterChange = <K extends keyof Filters>(key: K, value: Filters[K]) => {
+    if (areFilterValuesEqual(filters[key], value)) {
+      return;
+    }
     setFilters(prev => ({ ...prev, [key]: value }));
+    setCurrentPage(1);
   };
 
   const handleResetFilters = () => {
+    if (areFiltersEqual(filters, DEFAULT_FILTERS) && sortOption === 'popularity') {
+      return;
+    }
     setFilters({ ...DEFAULT_FILTERS });
     setSortOption('popularity');
     setCurrentPage(1);
   };
 
   const handleSortChange = (option: SortOption) => {
+    if (sortOption === option) {
+      return;
+    }
     setSortOption(option);
+    setCurrentPage(1);
   };
 
   const handleViewChange = (view: View) => {
@@ -1567,12 +1659,26 @@ const App: React.FC = () => {
   };
 
   const handleGoBackToList = () => {
-    const queryString = window.location.search;
+    const params = new URLSearchParams(window.location.search);
+    params.set('view', 'resorts');
+    if (currentPage > 1) {
+      params.set('page', String(currentPage));
+    } else {
+      params.delete('page');
+    }
+    const queryString = params.toString();
     setSelectedResortId(null);
     setCurrentView('resorts');
-    window.history.replaceState(null, '', `/${queryString}`);
+    window.history.replaceState(null, '', `/${queryString ? `?${queryString}` : ''}`);
     window.location.hash = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenFilter = () => {
+    filterPreviousFocusRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : filterTriggerRef.current;
+    setIsFilterOpen(true);
   };
 
   const handleViewDetails = (resortId: number) => {
@@ -1805,8 +1911,9 @@ const App: React.FC = () => {
                 <div className="grid grid-cols-1 gap-3 border-b border-slate-200 pb-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6">
                   <div className="flex items-center justify-between gap-3 lg:hidden">
                     <button
+                      ref={filterTriggerRef}
                       type="button"
-                      onClick={() => setIsFilterOpen(true)}
+                      onClick={handleOpenFilter}
                       className="flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:hidden"
                     >
                       <FilterIcon className="h-5 w-5" />
@@ -1823,6 +1930,7 @@ const App: React.FC = () => {
                         <SearchIcon />
                       </div>
                       <input
+                        ref={resortSearchRef}
                         type="text"
                         aria-label="리조트 이름 검색"
                         placeholder="리조트 이름 검색"
@@ -1939,11 +2047,13 @@ const App: React.FC = () => {
           role="presentation"
         >
           <div 
+            ref={filterDialogRef}
             className="h-full w-4/5 max-w-sm translate-x-0 bg-white shadow-xl transition-transform duration-300"
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
             aria-label="리조트 필터"
+            tabIndex={-1}
           >
             <div className="h-full overflow-y-auto">
               <FilterSidebar 

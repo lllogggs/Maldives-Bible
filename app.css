@@ -177,6 +177,7 @@
     height: 2.75rem;
     padding: 1rem 0;
     cursor: pointer;
+    touch-action: none;
   }
 
   .budget-range__track,

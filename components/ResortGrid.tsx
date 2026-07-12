@@ -33,7 +33,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
 }) => {
   const pageNumbers = totalPages === 0
     ? []
-    : Array.from({ length: Math.min(12, totalPages) }, (_, index) => index + 1);
+    : Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
     <div>

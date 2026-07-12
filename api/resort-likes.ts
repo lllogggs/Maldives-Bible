@@ -213,7 +213,9 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
   try {
     if (req.method === 'GET') {
       const access = requireProfileAccess(req, req.query.profileId);
-      if (!access.ok) return send(res, access.status, { error: access.error });
+      if (access.ok !== true || typeof access.profileId !== 'string') {
+        return send(res, access.status ?? 401, { error: access.error ?? 'invalid profile access' });
+      }
 
       const summary = await readLikes(access.profileId);
       return send(res, 200, {
@@ -226,7 +228,9 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       const { profileId, resortId, liked } = req.body ?? {};
 
       const access = requireProfileAccess(req, profileId);
-      if (!access.ok) return send(res, access.status, { error: access.error });
+      if (access.ok !== true || typeof access.profileId !== 'string') {
+        return send(res, access.status ?? 401, { error: access.error ?? 'invalid profile access' });
+      }
 
       const numericResortId = Number(resortId);
       if (!Number.isInteger(numericResortId) || numericResortId <= 0) {

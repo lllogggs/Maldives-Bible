@@ -228,12 +228,7 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://ns.clubmed.com/dream/RESORTS_3T-4T/Asie_et_Ocean_indien/Finolhu_Villas/83546-1-master.jpg",
-      "https://ns.clubmed.com/dream/RESORTS_3T-4T/Asie_et_Ocean_indien/Finolhu_Villas/83561-1-master.jpg",
-      "https://ns.clubmed.com/dream/RESORTS_3T-4T/Asie_et_Ocean_indien/Finolhu_Villas/83556-1-master.jpg",
-      "https://ns.clubmed.com/dream/RESORTS_3T-4T/Asie_et_Ocean_indien/Finolhu_Villas/83558-1-master.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "선라이즈 오버워터 빌라",
       "선셋 비치 빌라"
@@ -347,18 +342,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.cococollection.com/images/uploads/galleries/126/coco_palm_dhuni_kolhu_conch_bar7046__small.jpg",
-      "https://www.cococollection.com/images/uploads/galleries/124/coco_palm_dhuni_kolhu_beach_bar6676__small.jpg",
-      "https://www.cococollection.com/images/uploads/galleries/121/coco_palm_dhuni_kolhu_cowerie4125__small.jpg",
-      "https://www.cococollection.com/images/uploads/galleries/109/coco_palm_dhuni_kolhu_beach_villa3146__small.jpg",
-      "https://www.cococollection.com/images/uploads/galleries/113/coco_palm_sunset_beach_villa2688__small.jpg",
-      "https://www.cococollection.com/images/uploads/galleries/111/coco_palm_dhuni_kolhu_deluxe_villa3277__small.jpg",
-      "https://www.cococollection.com/images/uploads/galleries/115/coco_palm_dk_lagoon_villa5318__small.jpg",
-      "https://www.cococollection.com/images/uploads/galleries/117/cpdk_lagoon-villa_-(11)__small.jpg",
-      "https://www.cococollection.com/images/uploads/galleries/547/cpdk_deluxe-pool-villa---06__small.jpg",
-      "https://www.cococollection.com/images/uploads/galleries/561/img_0088_logo-2__small.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 빌라",
       "라군 빌라"
@@ -458,9 +442,7 @@
       "https://bfldr.constancehotels.com/4HTSVWZZ/at/2hkxpf697jchwcp3g37p77g/Constance-Halaveli-Hotel_Exterior_and_Aerial_Views-Aerial_Views-17.jpg?format=webp&width=1239&height=826&fit=crop",
       "https://bfldr.constancehotels.com/4HTSVWZZ/at/v5fw3vp43jgqc855qqp92w/Constance-Halaveli-Pool-09.jpg?format=webp&width=1239&height=826&fit=crop",
       "https://bfldr.constancehotels.com/4HTSVWZZ/at/8nfwbr78nj8n2hpcgrwftkj/Constance-Halaveli-Pool-11.jpg?format=webp&width=1239&height=826&fit=crop",
-      "https://bfldr.constancehotels.com/4HTSVWZZ/at/38g3hrpsbxfz5z9w7k9swt5/Constance-Halaveli-Accommodation-Water_Villa-11.jpg?format=webp&width=1800",
       "https://bfldr.constancehotels.com/4HTSVWZZ/at/rbs53s53q53v2qh7hk26k3/Constance-Halaveli-Accommodation-Water_Villa-13.jpg?format=webp&width=507&height=676&fit=crop",
-      "https://bfldr.constancehotels.com/4HTSVWZZ/at/g7gtj3jssh2v35mzmwt5wj8h/Constance-Halaveli-Accommodation-Water_Villa-05.jpg?format=webp&width=1800",
       "https://bfldr.constancehotels.com/4HTSVWZZ/at/7ts8v3bwfrncf6fjk77t7n/Constance-Halaveli-Beach-24.jpg?format=webp&width=1239&height=826&fit=crop",
       "https://bfldr.constancehotels.com/4HTSVWZZ/at/qmqzxwh3nt4859srchb3j6fn/Constance-Halaveli-Restaurants_and_Bars-Kaika_Sushi_Bar-08.jpg?format=webp&width=1239&height=826&fit=crop"
     ],
@@ -676,9 +658,7 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.conradmaldives.com/wp-content/uploads/2024/06/ConradMaldives_TwinIsland_Aerial_JohnAthimaritis_1-small-500x500.png",
-      "https://www.conradmaldives.com/wp-content/uploads/2025/05/Conrad-Maldives-Rangali-Island_Ufaa-by-Jereme-Leung_4-500x500.jpg",
-      "https://www.conradmaldives.com/wp-content/uploads/2025/05/Conrad-Maldives-Rangali-Island_Ufaa-By-Jereme-Leung_Yash-Lightroom-500x500.jpg"
+      "https://www.conradmaldives.com/wp-content/uploads/2026/06/Oliver-Godbold-Photo-2026_48A3421-sm.jpg"
     ],
     "roomTypes": [
       "비치 빌라",
@@ -770,7 +750,7 @@
       "비치프론트 빌라",
       "비치프론트 젯 풀 빌라"
     ],
-    "homepageUrl": "https://www.dhawa.com/maldives/ihuru"
+    "homepageUrl": "https://www.dhawa.com/maldives/dhawa-ihuru"
   },
   {
     "id": 39,
@@ -796,11 +776,7 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://cdn-ileccol.nitrocdn.com/uXyjqRFaYHAcfuIzddolKLMKlymQOcEi/assets/images/optimized/rev-d6638a0/www.dhigali.com/wp-content/uploads/2025/07/DS_Exterior.webp",
-      "https://cdn-ileccol.nitrocdn.com/uXyjqRFaYHAcfuIzddolKLMKlymQOcEi/assets/images/optimized/rev-d6638a0/www.dhigali.com/wp-content/uploads/2025/07/Water-Villas-gallery-2.jpg",
-      "https://cdn-ileccol.nitrocdn.com/uXyjqRFaYHAcfuIzddolKLMKlymQOcEi/assets/images/optimized/rev-d6638a0/www.dhigali.com/wp-content/uploads/2025/07/Water-Villas-gallery-2.jpg",
-      "https://cdn-ileccol.nitrocdn.com/uXyjqRFaYHAcfuIzddolKLMKlymQOcEi/assets/images/optimized/rev-d6638a0/www.dhigali.com/wp-content/uploads/2025/07/Beach-Bungalows-f-img.jpg",
-      "https://cdn-ileccol.nitrocdn.com/uXyjqRFaYHAcfuIzddolKLMKlymQOcEi/assets/images/optimized/rev-d6638a0/www.dhigali.com/wp-content/uploads/2025/07/beach-bunglaow.jpg"
+      "https://www.nivadhigali.com/wp-content/uploads/2026/07/dhigali-hp-vdo-placeholder.webp"
     ],
     "roomTypes": [
       "비치 방갈로",

@@ -22,12 +22,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.kudadoo.com/wp-content/uploads/2019/11/kudadoo-maldives-residences.jpg",
-      "https://www.kudadoo.com/wp-content/uploads/2019/11/kudadoo-maldives-one-bedroom-residence.jpg",
-      "https://www.kudadoo.com/wp-content/uploads/2019/11/kudadoo-maldives-the-retreat.jpg",
-      "https://www.kudadoo.com/wp-content/uploads/2019/11/kudadoo-maldives-sulha-spa.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "원베드룸 오션 레지던스",
       "투베드룸 오션 레지던스"
@@ -135,10 +130,7 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.movenpick.com/dam/jcr:a8564f84-93ad-4e63-9993-4a11b66df21a/Aerial-view-of-the-resort.jpg",
-      "https://www.movenpick.com/dam/jcr:b2d0e0f0-3d3f-4e1e-b2d0-e0f03d3f4e1e/Overwater-Pool-Villa-Lagoon.jpg",
-      "https://www.movenpick.com/dam/jcr:c7b9e0f0-3d3f-4e1e-b2d0-e0f03d3f4e1e/Bodumas-Restaurant.jpg",
-      "https://www.movenpick.com/dam/jcr:e1c43276-f5de-99a4-c520-86c2d159491c/Latitude-5-5-Bar.jpg"
+      "https://www.ahstatic.com/photos/b4p5_ho_00_p_1024x768.jpg"
     ],
     "roomTypes": [
       "오버워터 풀 빌라 라군",
@@ -170,12 +162,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.kuredu.com/wp-content/uploads/2019/11/Kuredu-Sangu-Water-Villa-Honeymoon-Suite.jpg",
-      "https://www.kuredu.com/wp-content/uploads/2019/11/Kuredu-Jacuzzi-Beach-Villa.jpg",
-      "https://www.kuredu.com/wp-content/uploads/2019/11/Kuredu-The-Beach-Shack-Restaurant.jpg",
-      "https://www.kuredu.com/wp-content/uploads/2019/11/Kuredu-Sai-Kotari-Tea-House.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "자쿠지 비치 빌라",
       "상구 워터 빌라"
@@ -338,7 +325,7 @@
       "로맨틱 풀 워터 빌라",
       "워터 빌라"
     ],
-    "homepageUrl": "https://www.luxresorts.com/en/maldives/hotel/luxsouthariatoll"
+    "homepageUrl": "https://www.luxresorts.com/en/maldives/resort/luxsouthariatoll"
   },
   {
     "id": 90,
@@ -364,18 +351,13 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://media.voihotels.com/3/1351/maayafushi-vista-aerea.jpg?w=1920",
-      "https://media.voihotels.com/3/1352/maayafushi-overwater.jpg?w=1920",
-      "https://media.voihotels.com/3/1353/maayafushi-beach-bungalow.jpg?w=1920",
-      "https://media.voihotels.com/3/1354/maayafushi-ristorante.jpg?w=1920"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 방갈로",
       "오버워터 방갈로",
       "가든 빌라"
     ],
-    "homepageUrl": "https://www.voihotels.com/it/voi-maayafushi-resort"
+    "homepageUrl": "https://maayafushi.nakairesorts.com/en/"
   },
   {
     "id": 91,
@@ -467,12 +449,7 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.mirihi.com/wp-content/uploads/2020/07/Mirihi-Aerial-View.jpg",
-      "https://www.mirihi.com/wp-content/uploads/2020/07/Mirihi-Water-Villa-Exterior.jpg",
-      "https://www.mirihi.com/wp-content/uploads/2020/07/Mirihi-Dhonveli-Restaurant.jpg",
-      "https://www.mirihi.com/wp-content/uploads/2020/07/Mirihi-Anba-Bar.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "워터 빌라",
       "비치 빌라"
@@ -503,12 +480,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.nikaisland.it/wp-content/uploads/2018/06/Nika-Drone-1.jpg",
-      "https://www.nikaisland.it/wp-content/uploads/2018/06/Water-Villa-1.jpg",
-      "https://www.nikaisland.it/wp-content/uploads/2018/06/Restaurant-1.jpg",
-      "https://www.nikaisland.it/wp-content/uploads/2018/06/Coffee-Shop-1.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 빌라",
       "워터 빌라",
@@ -539,28 +511,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Water-Villa-with-Pool-Sunset-Aerial-15-aspect-ratio-365-365.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Helens-Bar-Interior-2-aspect-ratio-1000-900-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Raga-Route-Interior-3-aspect-ratio-1920-950.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Full-Island-Aerial-1-aspect-ratio-365-365.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Water-Villa-with-Pool-Sunset-Aerial-11-aspect-ratio-365-365-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Family-Beach-Villa-with-Pool-Interior-01-3-aspect-ratio-365-365.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/07/ONHs-Water-Suite-with-Pool-Aerial-04-aspect-ratio-800-800-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Just-Grill-Interior-3-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/07/ONHs-Honeymoon-Sunset-Water-Villa-with-Pool-Bedroom-Interior-2-aspect-ratio-800-800-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Water-Villa-with-Pool-Sunset-Aerial-16-aspect-ratio-1000-900.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/07/OBLU-NATURE-Helengeli-by-SENTIDO-Full-Island-Aerial-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/07/ONHs-Water-Suite-with-Pool-Bedroom-01-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/07/ONHs-Water-Suite-with-Pool-Sunset-Outdoor-Deck-02-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/07/ONHs-Water-Suite-with-Pool-Living-Room-01-aspect-ratio-800-800-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Water-Villa-with-Pool-Sunset-Aerial-16-aspect-ratio-1920-950.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Full-Island-Aerial-1-aspect-ratio-1920-950-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/07/ONHs-Water-Suite-with-Pool-Sunset-Outdoor-Deck-01-aspect-ratio-800-800-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/07/ONHs-Water-Suite-with-Pool-Aerial-03-aspect-ratio-800-800-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Water-Villa-with-Pool-Interior-800x800-1-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/03/OBLU-NATURE-Helengeli-by-SENTIDO-Water-Villa-with-Pool-Aerial-1-aspect-ratio-1000-900.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "디럭스 비치 빌라",
       "워터 빌라 위드 풀"
@@ -681,28 +632,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-AERIAL-VIEW-Island-Aerial-01-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-AERIAL-VIEW-Honeymoon-Select-Ocean-Villa-03-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2025/05/OBLU-SELECT-Sangeli-Island-Aerials-LIFESTYLE-12_2024-01-aspect-ratio-1920-950.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-LIFESTYLE-Adults-only-Pool-POOL-02-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2025/05/OBLU-SELECT-Sangeli-SANGS-Bar-and-Pool-LIFESTYLE-12_2024-02-aspect-ratio-1920-950.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-LIFESTYLE-Sangs-Bar-Pool-View-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-AERIAL-VIEW-Island-Aerial-02-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2025/05/OBLU-SELECT-Sangeli-Island-Aerials-LIFESTYLE-12_2024-01-aspect-ratio-1000-900.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2025/05/OBLU-SELECT-Sangeli-Island-Aerials-LIFESTYLE-12_2024-03-aspect-ratio-1000-900-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-AERIAL-VIEW-Honeymoon-Select-Ocean-Villa-04-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-LIFESTYLE-Honeymoon-Select-Ocean-Villa-Interior-with-View-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-LIFESTYLE-Honeymoon-Select-Ocean-Villa-POOL-Deck-02-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-AERIAL-VIEW-Honeymoon-Villas-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-AERIAL-VIEW-Water-Villas-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-AERIAL-VIEW-Sangs-Bar-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2025/05/OBLU-SELECT-Sangeli-SANGS-Bar-and-Pool-LIFESTYLE-12_2024-02-aspect-ratio-1000-900.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-LIFESTYLE-Sangs-Bar-Pool-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-AT-SANGELI-DELUXE-BEACH-VILLA-WITH-POOL-EXTERIOR-DAY-TIME-VIEW-sangeli-1as-2-1-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-LIFESTYLE-Honeymoon-Select-Ocean-Villa-POOL-01-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-SELECT-at-Sangeli-LIFESTYLE-GYM-02-aspect-ratio-800-800.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 빌라",
       "워터 빌라 위드 풀"
@@ -732,40 +662,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-Full-Island-01-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-La-Promenade-Exterior-01-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-X360-Pool-Bar-Aerial-03-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-Family-Villas-02-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-X360-Bar-Counter-Night-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-Family-Villas-02-scaled-aspect-ratio-1920-950-3.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/06/OBLU-Xperience-Ailafushi-Aerials-and-Generics-Element-X-02-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/06/DSC06133-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-Water-Villas-01-scaled-aspect-ratio-1920-950.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-Element-X-Buffet-03-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-X360-Seating-Area-01-scaled-aspect-ratio-1000-900.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-La-Promenade-Interior-01-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Activities-and-Services-ELENA-The-Spa-Entrance-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Activities-and-Services-Kids-Club-Pool-01-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-Element-X-Seating-03-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-X360-Seating-Area-01-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-Arrival-Jetty-at-Sunset-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-X360-Seating-Area-01-scaled-aspect-ratio-1920-950.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-Water-Villas-01-scaled-aspect-ratio-1000-900.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-Copper-Pot_-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Activities-and-Services-ELENA-The-Spa-Lobby-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-Family-Villas-02-scaled-aspect-ratio-1000-900-2.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-X360-Pool-Bar-Aerial-03-scaled-aspect-ratio-1920-950-2.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-La-Promenade-Interior-02-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-X360-Pool-Bar-Aerial-03-scaled-aspect-ratio-1000-900-2.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/06/OBLU-Xperience-Ailafushi-Activities-Services-ROV-1-aspect-ratio-800-800-3.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2021/06/OBLU_NATURE_HELENGELI_BEACH_PRIVATE_DINING_1900x850-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/06/DSC05103-aspect-ratio-800-800-1.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Aerials-and-Generics-Water-Villas-01-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Activities-and-Services-Kids-Club-Arcade-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-Element-X-Seating-01-scaled-aspect-ratio-800-800.jpg",
-      "https://www.coloursofoblu.com/wp-content/uploads/2024/05/OBLU-Xperience-Ailafushi-Outlets-and-Dining-X360-Seating-Area-02-scaled-aspect-ratio-800-800.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "오션뷰 룸",
       "워터 빌라"
@@ -842,23 +739,7 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.outrigger.com/AdaptiveImages/optimizely/57fd7a3b-e656-40dd-a9fa-d13d6a96be04/fairway-villas-waikoloa-by-outrigger-exterior-1.jpg?quality=100&width=1400&height=933&stamp=a7d440ae5907571a48f7d579a2ed5567fce8206f",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/f0fb4126-258c-4c53-8462-e0c58428e871/poipu-beach.jpg?quality=100&width=1400&height=933&stamp=85415a4fa65532a3f8b85b31e7a32479939f4987",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/fab01e1c-7849-4e77-ae53-879448f35c6e/honua-kai-resort-and-spa-suite-lifestyle-lanai-3.jpg?quality=100&width=1400&height=933&stamp=2b36fb725f600b574336f284c4e48fd9c09e00c4",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/d2231f46-aeb3-4c61-9985-833a9e4b018c/kuhio-shores-114-oceanfront-2bed-26.jpg?quality=100&width=1400&height=1048&stamp=f1f7ba12e846fa73b9cadf5a47880abd2ce4d0b7",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/fc1b0a3a-6954-4369-858d-f6ea1ba43d43/kaanapalibeachhoteldrone-11.jpg?quality=100&width=1400&height=933&stamp=abfbab904d81b9514556ecc1fcc99c9241a6b506",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/0967f04d-3961-470c-97eb-a41ee1a7041b/outrigger-kauai-beach-resort-water-slide-2.jpg?quality=100&width=420&height=280&stamp=004909e535a350e39329128ca4d5b4e952626cb0",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/1da340aa-b88c-46e7-b9cd-fdd1ec030365/waikoloa-beach-villas-pool3.jpg?quality=100&width=1400&height=933&stamp=f62be532e12199f751da3a28f015dba3f52be2ed",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/6bd42a2b-6924-4956-b075-5b01b90e3c24/istock-1191604237.jpg?quality=100&width=1400&height=934&stamp=84965b412bb33f5279c0ead2dc9bad71e221c0be",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/c2980780-4451-411d-ba99-be3f29c1c567/outrigger-maldives-maafushivaru-resort-aerial8.jpg?quality=100&width=1400&height=933&stamp=ffdb10a39e17d1ada270688c9569d0c1f7f62062",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/00c80a07-4d3a-4ce6-ab1c-a327033153ab/outrigger-reef-waikiki-beach-resort-voyager47-21.jpg?quality=100&width=1400&height=912&stamp=20cbbb037fa6e75692c3347ac6c9c7f925c846c1",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/f4713293-1e2c-4964-977d-9d2786411c04/royal-kahana-maui-by-outrigger-exterior-pool6.jpg?quality=100&width=1400&height=919&stamp=572ae5cdfaca7a485477cf4139939add0d5c4ca1",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/52ffaea3-44fd-4dc0-9d20-2ea9294ba9fd/honua-kai-resort-and-spa-aerial-7.jpg?quality=100&width=1400&height=1520&stamp=efbd19149a70271993d63dcd5519e141d9d3041d",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/c2dbbaac-6483-4266-9dd3-7888d4cbed1d/pearl-harbor-arizona-memorial-oahu-hawaii.jpg?cropleft=733&cropright=2496&croptop=408&cropbottom=1583&quality=100&width=1400&height=933&stamp=48f1ee0e0adba9f820bfda9a6b8198a413314896",
-      "https://www.outrigger.com/globalassets/outrigger/images/icons/japan.png",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/7792657a-9635-4e52-b7db-5a705dee4f58/waikiki-beachcomber-outrigger-pool23_ret.jpg?quality=100&width=1400&height=933&stamp=08d901f922a0a0cb5c5ac1770f46f63f2f11de28",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/fa2eb37b-4bdd-4660-8410-9fb5d4d2a2be/istock-1371880849.jpg?quality=100&width=1400&height=933&stamp=4250cfd2084165a9703276f117c25a29aafc7b2b",
-      "https://www.outrigger.com/AdaptiveImages/optimizely/7153ca52-6b3a-4530-b3d5-72fcdbc779f4/lae-nani-resort-kauai-by-outrigger-aerial.jpg?quality=100&width=1400&height=1400&stamp=abcd095c14b677f1bd0846bacae0f48bc44af558"
+      "https://www.outrigger.com/AdaptiveImages/optimizely/c2980780-4451-411d-ba99-be3f29c1c567/outrigger-maldives-maafushivaru-resort-aerial8.jpg?quality=100&width=1400&height=933&stamp=ffdb10a39e17d1ada270688c9569d0c1f7f62062"
     ],
     "roomTypes": [
       "비치 빌라",

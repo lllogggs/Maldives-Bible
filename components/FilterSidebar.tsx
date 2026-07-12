@@ -57,6 +57,50 @@ const CheckboxRow: React.FC<{
 const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, onReset, onClose }) => {
   const budgetRangeRef = React.useRef<HTMLDivElement>(null);
   const diningRangeRef = React.useRef<HTMLDivElement>(null);
+  const minimumRestaurantsId = React.useId();
+  const activeDragCleanupRef = React.useRef<(() => void) | null>(null);
+
+  React.useEffect(() => () => {
+    activeDragCleanupRef.current?.();
+    activeDragCleanupRef.current = null;
+  }, []);
+
+  const beginPointerDrag = (
+    pointerId: number,
+    initialClientX: number,
+    onMove: (clientX: number) => void,
+  ) => {
+    activeDragCleanupRef.current?.();
+    onMove(initialClientX);
+
+    function handlePointerMove(event: PointerEvent) {
+      if (event.pointerId !== pointerId) {
+        return;
+      }
+      event.preventDefault();
+      onMove(event.clientX);
+    }
+
+    function handlePointerEnd(event: PointerEvent) {
+      if (event.pointerId === pointerId) {
+        cleanup();
+      }
+    }
+
+    function cleanup() {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerup', handlePointerEnd);
+      window.removeEventListener('pointercancel', handlePointerEnd);
+      if (activeDragCleanupRef.current === cleanup) {
+        activeDragCleanupRef.current = null;
+      }
+    }
+
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointerup', handlePointerEnd);
+    window.addEventListener('pointercancel', handlePointerEnd);
+    activeDragCleanupRef.current = cleanup;
+  };
 
   const handleTransportationChange = (transportType: TransportationType) => {
     const newTransportation = filters.transportation.includes(transportType)
@@ -107,20 +151,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
     handleMaxPriceChange(nextValue);
   };
 
-  const beginBudgetDrag = (handle: 'min' | 'max', clientX: number) => {
-    updateBudgetHandle(handle, clientX);
-
-    const handlePointerMove = (event: PointerEvent) => {
-      updateBudgetHandle(handle, event.clientX);
-    };
-
-    const handlePointerUp = () => {
-      window.removeEventListener('pointermove', handlePointerMove);
-      window.removeEventListener('pointerup', handlePointerUp);
-    };
-
-    window.addEventListener('pointermove', handlePointerMove);
-    window.addEventListener('pointerup', handlePointerUp);
+  const beginBudgetDrag = (handle: 'min' | 'max', clientX: number, pointerId: number) => {
+    beginPointerDrag(pointerId, clientX, nextClientX => updateBudgetHandle(handle, nextClientX));
   };
 
   const handleBudgetTrackPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -128,13 +160,13 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
     const nextValue = getBudgetValueFromClientX(event.clientX);
     const distanceToMin = Math.abs(nextValue - filters.minPrice);
     const distanceToMax = Math.abs(nextValue - filters.maxPrice);
-    beginBudgetDrag(distanceToMin <= distanceToMax ? 'min' : 'max', event.clientX);
+    beginBudgetDrag(distanceToMin <= distanceToMax ? 'min' : 'max', event.clientX, event.pointerId);
   };
 
   const handleBudgetHandlePointerDown = (handle: 'min' | 'max', event: React.PointerEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    beginBudgetDrag(handle, event.clientX);
+    beginBudgetDrag(handle, event.clientX, event.pointerId);
   };
 
   const handleBudgetKeyDown = (handle: 'min' | 'max', event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -181,20 +213,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
     onFilterChange('minRestaurants', getDiningValueFromClientX(clientX));
   };
 
-  const beginDiningDrag = (clientX: number) => {
-    updateDining(clientX);
-
-    const handlePointerMove = (event: PointerEvent) => {
-      updateDining(event.clientX);
-    };
-
-    const handlePointerUp = () => {
-      window.removeEventListener('pointermove', handlePointerMove);
-      window.removeEventListener('pointerup', handlePointerUp);
-    };
-
-    window.addEventListener('pointermove', handlePointerMove);
-    window.addEventListener('pointerup', handlePointerUp);
+  const beginDiningDrag = (clientX: number, pointerId: number) => {
+    beginPointerDrag(pointerId, clientX, updateDining);
   };
 
   const handleDiningKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -355,7 +375,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
 
       <FilterOption title="다이닝">
         <div className="space-y-3">
-          <label className="block text-xs font-semibold text-slate-600" htmlFor="minimum-restaurants">
+          <label className="block text-xs font-semibold text-slate-600" htmlFor={minimumRestaurantsId}>
             레스토랑 최소 개수
           </label>
           <div className="flex items-center justify-between gap-3">
@@ -372,13 +392,13 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             aria-label="다이닝 최소 개수"
             onPointerDown={event => {
               event.preventDefault();
-              beginDiningDrag(event.clientX);
+              beginDiningDrag(event.clientX, event.pointerId);
             }}
           >
             <div className="budget-range__track" />
             <div className="budget-range__fill" style={diningFillStyle} />
             <button
-              id="minimum-restaurants"
+              id={minimumRestaurantsId}
               aria-label="다이닝 최소 개수"
               aria-valuemax={MAX_DINING}
               aria-valuemin={MIN_DINING}
@@ -389,7 +409,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
               onPointerDown={event => {
                 event.preventDefault();
                 event.stopPropagation();
-                beginDiningDrag(event.clientX);
+                beginDiningDrag(event.clientX, event.pointerId);
               }}
               role="slider"
               style={{ left: `${diningPercent}%`, zIndex: 4 }}

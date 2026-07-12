@@ -8,18 +8,18 @@ interface Agency {
 }
 
 const agencies: Agency[] = [
-  { name: '투어민', website: 'https://www.tourmin.co.kr', kakao_channel: 'http://pf.kakao.com/_LxbYBM' },
-  { name: '푸른여행클럽', website: 'https://cafe.naver.com/honeymoonp', kakao_channel: 'http://pf.kakao.com/_UZNxgd' },
-  { name: '리얼몰디브', website: 'http://realmaldives.co.kr', kakao_channel: 'http://pf.kakao.com/_NcnxaG' },
-  { name: '트레비아', website: 'https://www.trevia.co.kr', kakao_channel: 'http://pf.kakao.com/_xixjNQl' },
+  { name: '투어민', website: 'https://www.tourmin.co.kr', kakao_channel: 'https://pf.kakao.com/_LxbYBM' },
+  { name: '푸른여행클럽', website: 'https://cafe.naver.com/honeymoonp', kakao_channel: 'https://pf.kakao.com/_UZNxgd' },
+  { name: '리얼몰디브', website: 'https://realmaldives.co.kr', kakao_channel: 'https://pf.kakao.com/_NcnxaG' },
+  { name: '트레비아', website: 'https://www.trevia.co.kr', kakao_channel: 'https://pf.kakao.com/_xixjNQl' },
   { name: '나래여행사', website: 'http://www.nadree.net/', kakao_channel: null },
-  { name: '하이몰디브', website: 'http://www.himaldives.co.kr/', kakao_channel: null },
-  { name: '여행산책', website: 'https://www.tourw.co.kr/', kakao_channel: 'http://pf.kakao.com/_Dlrtb' },
-  { name: '잇츠마이트래블', website: 'http://itsmytravel.co.kr/', kakao_channel: 'http://pf.kakao.com/_qgDUxd' },
-  { name: '투어플래닛', website: 'http://www.tour-planet.co.kr/', kakao_channel: 'http://pf.kakao.com/_LYSSl' },
-  { name: '허니문리조트', website: 'http://www.honeymoonresort.co.kr/', kakao_channel: 'http://pf.kakao.com/_gkKlE' },
-  { name: '천생연분닷컴', website: 'http://www.1000syb.com/', kakao_channel: null },
-  { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao_channel: 'http://pf.kakao.com/_Hxmxaxexj' },
+  { name: '하이몰디브', website: 'https://www.himaldives.co.kr/', kakao_channel: null },
+  { name: '여행산책', website: 'https://www.tourw.co.kr/', kakao_channel: null },
+  { name: '잇츠마이트래블', website: 'http://itsmytravel.co.kr/', kakao_channel: 'https://pf.kakao.com/_qgDUxd' },
+  { name: '투어플래닛', website: 'http://www.tour-planet.co.kr/', kakao_channel: 'https://pf.kakao.com/_LYSSl' },
+  { name: '허니문리조트', website: 'http://www.honeymoonresort.co.kr/', kakao_channel: 'https://pf.kakao.com/_gkKlE' },
+  { name: '천생연분닷컴', website: 'https://www.1000syb.com/', kakao_channel: null },
+  { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao_channel: 'https://pf.kakao.com/_Hxmxaxexj' },
 ];
 
 interface RouteStep {
@@ -165,6 +165,7 @@ const TravelAgencies: React.FC = () => {
                   href={agency.website}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${agency.name} 홈페이지 새 창에서 열기`}
                   className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50"
                 >
                   <LinkIcon className="h-3.5 w-3.5" />
@@ -177,6 +178,7 @@ const TravelAgencies: React.FC = () => {
                   href={agency.kakao_channel}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${agency.name} 카카오톡 채널 새 창에서 열기`}
                   className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#FAE100] px-3 text-xs font-bold text-[#371D1E] transition-colors hover:bg-[#f5dc00]"
                 >
                   <KakaoIcon className="h-3.5 w-3.5" />

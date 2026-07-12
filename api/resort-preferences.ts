@@ -200,7 +200,9 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
   try {
     if (req.method === 'GET') {
       const access = requireProfileAccess(req, req.query.profileId);
-      if (!access.ok) return send(res, access.status, { error: access.error });
+      if (access.ok !== true || typeof access.profileId !== 'string') {
+        return send(res, access.status ?? 401, { error: access.error ?? 'invalid profile access' });
+      }
 
       const data = await readPreferences(access.profileId);
       return send(res, 200, {
@@ -213,9 +215,11 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     if (req.method === 'PUT') {
       const { profileId, hiddenIds, customOrder, deletedImageUrls } = req.body ?? {};
       const access = requireProfileAccess(req, profileId);
-      if (!access.ok) return send(res, access.status, { error: access.error });
+      if (access.ok !== true || typeof access.profileId !== 'string') {
+        return send(res, access.status ?? 401, { error: access.error ?? 'invalid profile access' });
+      }
 
-      const payload = {
+      const payload: ResortPreferences = {
         profile_id: access.profileId,
         hidden_ids: normalizeNumberArray(hiddenIds),
         custom_order: normalizeNumberArray(customOrder),

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode, useCallback } from 'react';
+import React, { useState, useEffect, ReactNode, useCallback, useRef } from 'react';
 import type { Resort } from '../types';
 import { 
   ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon, StarIcon, LocationPinIcon, ClockIcon, DollarIcon,
@@ -28,10 +28,15 @@ const InfoCard: React.FC<{ icon: ReactNode; title: string; children: ReactNode }
 
 const AmenityItem: React.FC<{ icon: ReactNode; label: string; value: boolean }> = ({ icon, label, value }) => (
   <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-md">
-    {value 
-      ? <CheckCircleIcon className="h-6 w-6 text-green-500" /> 
-      : <XCircleIcon className="h-6 w-6 text-red-400" />}
-    <span className="text-gray-700">{label}</span>
+    <span aria-hidden="true">
+      {value
+        ? <CheckCircleIcon className="h-6 w-6 text-green-500" />
+        : <XCircleIcon className="h-6 w-6 text-red-400" />}
+    </span>
+    <span className="text-gray-700">
+      {label}
+      <span className="sr-only">: {value ? '제공' : '미제공'}</span>
+    </span>
   </div>
 );
 
@@ -46,6 +51,11 @@ const TransportationIcon: React.FC<{type: TransportationType}> = ({ type }) => {
 
 type ImageCredit = NonNullable<Resort['imageCredits']>[number];
 
+type DisplayImage = {
+  url: string;
+  originalIndex: number;
+};
+
 const getImageCreditText = (credit: ImageCredit) => {
   const parts = [credit.creator, credit.license, credit.provider].filter(Boolean);
   return parts.length > 0 ? `이미지: ${parts.join(' · ')}` : '이미지 출처';
@@ -54,44 +64,79 @@ const getImageCreditText = (credit: ImageCredit) => {
 const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, isSharePending, isImageEditMode = false, onDeleteImage }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [failedImageUrls, setFailedImageUrls] = useState<Set<string>>(new Set());
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
+  const galleryTitleId = `resort-gallery-title-${resort.id}`;
 
   const minSwipeDistance = 50;
 
-  const actualImageUrls = Array.isArray(resort.imageUrls)
-    ? resort.imageUrls.filter((url): url is string => typeof url === 'string' && url.trim().length > 0)
+  const actualImages: DisplayImage[] = Array.isArray(resort.imageUrls)
+    ? resort.imageUrls
+        .map((url, originalIndex) => ({ url, originalIndex }))
+        .filter((image): image is DisplayImage => typeof image.url === 'string' && image.url.trim().length > 0)
     : [];
 
-  const displayedImageUrls = actualImageUrls;
-  const hasDisplayImages = displayedImageUrls.length > 0;
-  const selectedImageUrl = displayedImageUrls[selectedImageIndex] ?? displayedImageUrls[0];
+  const displayedImages = actualImages.filter(image => !failedImageUrls.has(image.url));
+  const hasDisplayImages = displayedImages.length > 0;
+  const safeSelectedImageIndex = hasDisplayImages
+    ? Math.min(selectedImageIndex, displayedImages.length - 1)
+    : 0;
+  const selectedImage = displayedImages[safeSelectedImageIndex];
   const imageCredits = Array.isArray(resort.imageCredits) ? resort.imageCredits : [];
-  const primaryImageCredit = imageCredits[0];
-  const selectedImageCredit = imageCredits[selectedImageIndex] ?? primaryImageCredit;
+  const primaryImageCredit = displayedImages[0]
+    ? imageCredits[displayedImages[0].originalIndex]
+    : undefined;
+  const selectedImageCredit = selectedImage
+    ? imageCredits[selectedImage.originalIndex] ?? primaryImageCredit
+    : undefined;
 
-  const canDeleteImages = Boolean(isImageEditMode && onDeleteImage && actualImageUrls.length > 0);
+  const canDeleteImages = Boolean(isImageEditMode && onDeleteImage && actualImages.length > 0);
+
+  const markImageAsFailed = useCallback((url: string) => {
+    setFailedImageUrls(previousUrls => {
+      if (previousUrls.has(url)) {
+        return previousUrls;
+      }
+
+      const nextUrls = new Set(previousUrls);
+      nextUrls.add(url);
+      return nextUrls;
+    });
+  }, []);
 
   const openGallery = (index: number) => {
+    if (!displayedImages[index]) {
+      return;
+    }
+
+    previouslyFocusedElementRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
     setSelectedImageIndex(index);
     setIsGalleryOpen(true);
   };
 
   const closeGallery = useCallback(() => {
     setIsGalleryOpen(false);
+    window.setTimeout(() => {
+      previouslyFocusedElementRef.current?.focus();
+    }, 0);
   }, []);
 
   const goToNext = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
     e?.stopPropagation();
-    if (displayedImageUrls.length === 0) return;
-    setSelectedImageIndex(prev => (prev + 1) % displayedImageUrls.length);
-  }, [displayedImageUrls.length]);
+    if (displayedImages.length < 2) return;
+    setSelectedImageIndex(prev => (prev + 1) % displayedImages.length);
+  }, [displayedImages.length]);
 
   const goToPrev = useCallback((e?: React.MouseEvent | KeyboardEvent) => {
     e?.stopPropagation();
-    if (displayedImageUrls.length === 0) return;
-    setSelectedImageIndex(prev => (prev - 1 + displayedImageUrls.length) % displayedImageUrls.length);
-  }, [displayedImageUrls.length]);
+    if (displayedImages.length < 2) return;
+    setSelectedImageIndex(prev => (prev - 1 + displayedImages.length) % displayedImages.length);
+  }, [displayedImages.length]);
 
   const requestImageDelete = useCallback(
     (index: number) => (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -101,12 +146,12 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
         return;
       }
 
-      const targetUrl = actualImageUrls[index];
-      if (!targetUrl) {
+      const targetImage = displayedImages[index];
+      if (!targetImage) {
         return;
       }
 
-      const confirmMessage = actualImageUrls.length === 1
+      const confirmMessage = actualImages.length === 1
         ? `${resort.name}의 마지막 이미지를 삭제할까요?`
         : `${resort.name}의 이미지를 삭제할까요?`;
 
@@ -114,42 +159,115 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
         return;
       }
 
-      onDeleteImage?.(resort.id, index, targetUrl);
+      onDeleteImage?.(resort.id, targetImage.originalIndex, targetImage.url);
+
+      if (displayedImages.length === 1) {
+        closeGallery();
+      }
 
       setSelectedImageIndex(prevIndex => {
         if (prevIndex > index) {
           return prevIndex - 1;
         }
 
-        if (prevIndex === index && index >= actualImageUrls.length - 1) {
+        if (prevIndex === index && index >= displayedImages.length - 1) {
           return Math.max(0, prevIndex - 1);
         }
 
         return prevIndex;
       });
     },
-    [actualImageUrls, canDeleteImages, onDeleteImage, resort.id, resort.name]
+    [actualImages.length, canDeleteImages, closeGallery, displayedImages, onDeleteImage, resort.id, resort.name]
   );
   
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeGallery();
-      if (e.key === 'ArrowRight') goToNext(e);
-      if (e.key === 'ArrowLeft') goToPrev(e);
-    };
-    if (isGalleryOpen) {
-      window.addEventListener('keydown', handleKeyDown);
+    setFailedImageUrls(new Set());
+    setSelectedImageIndex(0);
+    setIsGalleryOpen(false);
+  }, [resort.id]);
+
+  useEffect(() => {
+    if (!isGalleryOpen) {
+      return;
     }
+
+    const previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const focusGallery = window.requestAnimationFrame(() => {
+      const closeButton = galleryRef.current?.querySelector<HTMLElement>('[data-gallery-close]');
+      (closeButton ?? galleryRef.current)?.focus();
+    });
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeGallery();
+        return;
+      }
+
+      if (event.key === 'ArrowRight') {
+        goToNext(event);
+        return;
+      }
+
+      if (event.key === 'ArrowLeft') {
+        goToPrev(event);
+        return;
+      }
+
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      const dialog = galleryRef.current;
+      if (!dialog) {
+        return;
+      }
+
+      const focusableElements = Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter(element => element.getClientRects().length > 0);
+
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        dialog.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
+      window.cancelAnimationFrame(focusGallery);
       window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousBodyOverflow;
     };
   }, [isGalleryOpen, closeGallery, goToNext, goToPrev]);
 
   useEffect(() => {
-    if (selectedImageIndex >= displayedImageUrls.length) {
-      setSelectedImageIndex(Math.max(0, displayedImageUrls.length - 1));
+    if (selectedImageIndex >= displayedImages.length) {
+      setSelectedImageIndex(Math.max(0, displayedImages.length - 1));
     }
-  }, [displayedImageUrls.length, selectedImageIndex]);
+  }, [displayedImages.length, selectedImageIndex]);
+
+  useEffect(() => {
+    if (isGalleryOpen && !hasDisplayImages) {
+      closeGallery();
+    }
+  }, [closeGallery, hasDisplayImages, isGalleryOpen]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(0);
@@ -176,7 +294,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
     setTouchEnd(0);
   };
 
-  const gridImages = displayedImageUrls.slice(1, 5);
+  const gridImages = displayedImages.slice(1, 5);
 
   return (
     <div className="animate-fade-in">
@@ -216,21 +334,22 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
             <>
             {/* Desktop Grid */}
             <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 md:gap-2 md:h-[450px]">
-                <div
-                    className="col-span-2 row-span-2 cursor-pointer group relative overflow-hidden"
-                    onClick={() => openGallery(0)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={event => {
-                      if (event.target !== event.currentTarget) return;
-                      if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        openGallery(0);
-                      }
-                    }}
-                    aria-label={`${resort.name} 첫 번째 이미지 크게 보기`}
-                >
-                    <img src={displayedImageUrls[0]} alt={`${resort.name_en} main view`} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                <div className="col-span-2 row-span-2 group relative overflow-hidden">
+                    <button
+                      type="button"
+                      className="h-full w-full cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-teal-400"
+                      onClick={() => openGallery(0)}
+                      aria-label={`${resort.name} 첫 번째 이미지 크게 보기`}
+                    >
+                      <img
+                        src={displayedImages[0].url}
+                        alt={`${resort.name_en} main view`}
+                        loading="lazy"
+                        decoding="async"
+                        onError={() => markImageAsFailed(displayedImages[0].url)}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </button>
                     {canDeleteImages && (
                       <button
                         type="button"
@@ -243,40 +362,43 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
                       </button>
                     )}
                 </div>
-                {gridImages.map((url, index) => {
-                  const actualIndex = index + 1;
+                {gridImages.map((image, index) => {
+                  const displayIndex = index + 1;
                   return (
                     <div
-                      key={actualIndex}
-                      className="col-span-1 row-span-1 cursor-pointer group relative overflow-hidden"
-                      onClick={() => openGallery(actualIndex)}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={event => {
-                        if (event.target !== event.currentTarget) return;
-                        if (event.key === 'Enter' || event.key === ' ') {
-                          event.preventDefault();
-                          openGallery(actualIndex);
-                        }
-                      }}
-                      aria-label={`${resort.name} 이미지 ${actualIndex + 1} 크게 보기`}
+                      key={`${image.originalIndex}-${image.url}`}
+                      className="col-span-1 row-span-1 group relative overflow-hidden"
                     >
-                      <img src={url} alt={`${resort.name_en} view ${actualIndex + 1}`} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                      <button
+                        type="button"
+                        className="h-full w-full cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-teal-400"
+                        onClick={() => openGallery(displayIndex)}
+                        aria-label={`${resort.name} 이미지 ${displayIndex + 1} 크게 보기`}
+                      >
+                        <img
+                          src={image.url}
+                          alt={`${resort.name_en} view ${displayIndex + 1}`}
+                          loading="lazy"
+                          decoding="async"
+                          onError={() => markImageAsFailed(image.url)}
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </button>
                       {canDeleteImages && (
                         <button
                           type="button"
-                          onClick={requestImageDelete(actualIndex)}
+                          onClick={requestImageDelete(displayIndex)}
                           className="absolute top-2 right-2 inline-flex items-center gap-1 rounded-full bg-red-600/90 px-2.5 py-1 text-[11px] font-semibold text-white shadow-md transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
-                          aria-label={`${resort.name} 이미지 ${actualIndex + 1} 삭제`}
+                          aria-label={`${resort.name} 이미지 ${displayIndex + 1} 삭제`}
                           title="이 이미지를 삭제"
                         >
                           삭제
                         </button>
                       )}
-                      {index === gridImages.length - 1 && displayedImageUrls.length > 5 && (
+                      {index === gridImages.length - 1 && displayedImages.length > 5 && (
                         <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white font-bold text-lg pointer-events-none">
                           <GalleryIcon />
-                          <span className="mt-2 text-sm whitespace-nowrap">사진 모두보기 ({displayedImageUrls.length}장)</span>
+                          <span className="mt-2 text-sm whitespace-nowrap">사진 모두보기 ({displayedImages.length}장)</span>
                         </div>
                       )}
                     </div>
@@ -287,22 +409,23 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
             <div className="md:hidden h-64 w-full overflow-hidden relative">
                 <button
                     type="button"
-                    aria-label={`${resort.name} 이미지 ${selectedImageIndex + 1} 크게 보기`}
+                    aria-label={`${resort.name} 이미지 ${safeSelectedImageIndex + 1} 크게 보기`}
                     className="absolute h-full w-full border-0 bg-transparent p-0"
-                    onClick={() => openGallery(selectedImageIndex)}
+                    onClick={() => openGallery(safeSelectedImageIndex)}
                 >
                     <img
-                      src={selectedImageUrl}
-                      alt={`${resort.name_en} view ${selectedImageIndex + 1}`}
+                      src={selectedImage.url}
+                      alt={`${resort.name_en} view ${safeSelectedImageIndex + 1}`}
                       loading="lazy"
                       decoding="async"
+                      onError={() => markImageAsFailed(selectedImage.url)}
                       className="w-full h-full object-cover"
                     />
                 </button>
                 {canDeleteImages && (
                   <button
                     type="button"
-                    onClick={requestImageDelete(selectedImageIndex)}
+                    onClick={requestImageDelete(safeSelectedImageIndex)}
                     className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-red-600/90 px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300 z-20"
                     aria-label={`${resort.name} 현재 이미지 삭제`}
                     title="현재 이미지를 삭제"
@@ -311,29 +434,41 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
                     </button>
                 )}
             </div>
-             {displayedImageUrls.length > 1 && (
+             {displayedImages.length > 1 && (
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 text-white text-xs font-semibold px-2 py-1 rounded-full pointer-events-none z-10">
-                    {selectedImageIndex + 1} / {displayedImageUrls.length}
+                    {safeSelectedImageIndex + 1} / {displayedImages.length}
                 </div>
             )}
-            <button
-                onClick={(e) => goToPrev(e)}
-                className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition-all z-10"
-                aria-label="Previous image"
-            >
-              <ChevronLeftIcon />
-            </button>
-            <button
-                onClick={(e) => goToNext(e)}
-                className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition-all z-10"
-                aria-label="Next image"
-            >
-              <ChevronRightIcon />
-            </button>
+            {displayedImages.length > 1 && (
+              <>
+                <button
+                    type="button"
+                    onClick={(e) => goToPrev(e)}
+                    className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition-all z-10"
+                    aria-label={`${resort.name} 이전 이미지`}
+                >
+                  <ChevronLeftIcon />
+                </button>
+                <button
+                    type="button"
+                    onClick={(e) => goToNext(e)}
+                    className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60 transition-all z-10"
+                    aria-label={`${resort.name} 다음 이미지`}
+                >
+                  <ChevronRightIcon />
+                </button>
+              </>
+            )}
             </>
             ) : (
-              <div className="flex h-64 w-full items-center justify-center bg-[linear-gradient(135deg,#e0f2f1,#f8fafc)] px-6 text-center md:h-[450px]">
-                <p className="text-lg font-bold text-teal-900">{resort.name}</p>
+              <div className="relative flex h-64 w-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.98),transparent_32%),radial-gradient(circle_at_82%_82%,rgba(45,212,191,0.22),transparent_38%),linear-gradient(145deg,#dff8f5,#eef9ff_55%,#f8fafc)] px-6 text-center md:h-[450px]">
+                <span aria-hidden="true" className="absolute -bottom-28 -left-16 h-64 w-[34rem] rounded-[50%] border-[28px] border-white/60" />
+                <span aria-hidden="true" className="absolute -right-20 -top-24 h-64 w-64 rounded-full border-[28px] border-teal-200/35" />
+                <div className="relative flex flex-col items-center gap-3">
+                  <img src="/android-chrome-192x192.png" alt="" className="h-14 w-14 rounded-2xl object-cover opacity-90 shadow-sm md:h-16 md:w-16" />
+                  <p className="font-brand-heading text-lg font-bold text-teal-950 md:text-xl">{resort.name}</p>
+                  <p className="text-xs font-semibold tracking-wide text-teal-700 md:text-sm">리조트 이미지 준비 중</p>
+                </div>
               </div>
             )}
         </div>
@@ -359,7 +494,13 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
               <p className="text-gray-700 font-semibold">{resort.brand}</p>
               {resort.homepageUrl && (
-                <a href={resort.homepageUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-semibold text-sm">
+                <a
+                  href={resort.homepageUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${resort.name} 공식 홈페이지 새 창에서 열기`}
+                  className="inline-flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-semibold text-sm"
+                >
                   공식 홈페이지 <LinkIcon className="h-4 w-4" />
                 </a>
               )}
@@ -437,40 +578,52 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
 
         </div>
       </div>
-       {isGalleryOpen && (
+       {isGalleryOpen && selectedImage && (
         <div 
+          ref={galleryRef}
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" 
           onClick={closeGallery}
           role="dialog"
           aria-modal="true"
+          aria-labelledby={galleryTitleId}
+          tabIndex={-1}
         >
+          <h2 id={galleryTitleId} className="sr-only">{resort.name} 이미지 갤러리</h2>
           <button 
+            type="button"
             onClick={closeGallery}
-            className="absolute top-4 right-4 text-white hover:text-gray-300"
-            aria-label="Close gallery"
+            className="absolute top-4 right-4 text-white hover:text-gray-300 focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            aria-label={`${resort.name} 이미지 갤러리 닫기`}
+            data-gallery-close
           >
             <XIcon className="h-8 w-8" />
           </button>
 
-          <button
-            onClick={goToPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors"
-            aria-label="Previous image"
-          >
-            <ChevronLeftIcon className="h-8 w-8" />
-          </button>
-          <button
-            onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors"
-            aria-label="Next image"
-          >
-            <ChevronRightIcon className="h-8 w-8" />
-          </button>
+          {displayedImages.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={goToPrev}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                aria-label={`${resort.name} 이전 이미지`}
+              >
+                <ChevronLeftIcon className="h-8 w-8" />
+              </button>
+              <button
+                type="button"
+                onClick={goToNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                aria-label={`${resort.name} 다음 이미지`}
+              >
+                <ChevronRightIcon className="h-8 w-8" />
+              </button>
+            </>
+          )}
 
           {canDeleteImages && (
             <button
               type="button"
-              onClick={requestImageDelete(selectedImageIndex)}
+              onClick={requestImageDelete(safeSelectedImageIndex)}
               className="absolute top-16 right-4 inline-flex items-center gap-2 rounded-full bg-red-600/90 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
               aria-label={`${resort.name} 갤러리 이미지 삭제`}
               title="현재 이미지를 삭제"
@@ -484,12 +637,13 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={displayedImageUrls[selectedImageIndex]}
-              alt={`Resort image ${selectedImageIndex + 1}`}
+              src={selectedImage.url}
+              alt={`${resort.name} 리조트 이미지 ${safeSelectedImageIndex + 1}`}
+              onError={() => markImageAsFailed(selectedImage.url)}
               className="max-w-full max-h-full object-contain rounded-lg"
             />
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-sm font-semibold px-3 py-1 rounded-full">
-              {selectedImageIndex + 1} / {displayedImageUrls.length}
+              {safeSelectedImageIndex + 1} / {displayedImages.length}
             </div>
             {selectedImageCredit && (
               <a

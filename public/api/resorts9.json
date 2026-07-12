@@ -31,7 +31,7 @@
       "워터 방갈로",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.villahotels.com/sun-island-resort-spa/",
+    "homepageUrl": "https://villaresorts.com/villa-park/",
     "imageSourceNote": "Wikimedia",
     "imageSourceProvider": "Wikimedia Commons",
     "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3ASun_island_resort_-_panoramio_(11).jpg",
@@ -88,7 +88,7 @@
       "워터 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.villahotels.com/paradise-island-resort-spa/",
+    "homepageUrl": "https://villaresorts.com/villa-nautica/",
     "imageSourceNote": "Wikimedia",
     "imageSourceProvider": "Wikimedia Commons",
     "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3ALankanfinolhu_in_2023-09.jpg",
@@ -180,9 +180,7 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://media.onyx-hospitality.com/-/media/project/amari/common/main-banner/full_404.jpg?rev=d0f0ab8ea6784448a731861c5bb0ae78"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "오버워터 빌라",
       "비치 빌라"
@@ -354,10 +352,7 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.adaaran.com/prestigewatervillas/wp-content/themes/adaaran-theme/assets/img/menu.jpg",
-      "https://adaaran.imgix.net/sites/6/2025/08/Adaaran-Select-Meedhupparu-Hero-Image.jpg?w=1920&h=1080&fit=crop&crop=center&auto=format,compress,enhance&q=50"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "워터 빌라 선라이즈",
       "워터 빌라 선셋"
@@ -490,16 +485,7 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/BO_6575-Aerial.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0155.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2019/01/2014-04-29.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0313.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0095-E.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0126.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0094.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2019/01/medhufushi-68-5421.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/BO_6932.jpg",
-      "https://medhufushiisland.com/wp-content/uploads/2018/12/DJI_0316-1.jpg"
+      "https://aaaresorts.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-17-at-4.27.15-PM.jpeg"
     ],
     "roomTypes": [
       "비치 빌라",

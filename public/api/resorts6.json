@@ -81,10 +81,7 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.patinahotels.com/maldives-fari-islands/wp-content/uploads/sites/6/2021/05/patina-maldives-fari-islands-aerial-view-1.jpg",
-      "https://www.patinahotels.com/maldives-fari-islands/wp-content/uploads/sites/6/2021/05/patina-maldives-fari-islands-one-bedroom-water-pool-villa-1.jpg",
-      "https://www.patinahotels.com/maldives-fari-islands/wp-content/uploads/sites/6/2021/05/patina-maldives-fari-islands-helios-restaurant-1.jpg",
-      "https://www.patinahotels.com/maldives-fari-islands/wp-content/uploads/sites/6/2021/05/patina-maldives-fari-islands-flow-spa-1.jpg"
+      "https://patinahotels.com/media_1f6a085ca2671fa1af58f9e2ec78b8590f7b78aa3.jpg?width=1200&format=pjpg&optimize=medium"
     ],
     "roomTypes": [
       "원베드룸 워터 풀 빌라",
@@ -624,7 +621,7 @@
       "라군 풀 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.ritzcarlton.com/en/hotels/mleor-the-ritz-carlton-maldives-fari-islands/overview/"
+    "homepageUrl": "https://www.ritzcarlton.com/en/hotels/mlera-the-ritz-carlton-maldives-fari-islands/overview/"
   },
   {
     "id": 111,
@@ -733,7 +730,7 @@
       "비치 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.villahotels.com/royal-island-resort-spa/",
+    "homepageUrl": "https://villaresorts.com/royal-island/",
     "imageSourceNote": "공식 이미지",
     "imageSourceProvider": "Villa Resorts official site",
     "imageSourceUrl": "https://villaresorts.com/royal-island/about-us/gallery/",
@@ -874,7 +871,7 @@
       "비치 방갈로",
       "워터 방갈로"
     ],
-    "homepageUrl": "https://bathala.sandies-resorts.com/",
+    "homepageUrl": "https://bathalamaldives.sandies-resorts.com/",
     "imageSourceNote": "Wikimedia",
     "imageSourceProvider": "Wikimedia Commons",
     "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3AFloatplane_at_Bathala_(Maldives).jpg",
@@ -1410,7 +1407,7 @@
       "오션 워터 풀 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://www.so-maldives.com/",
+    "homepageUrl": "https://so-hotels.com/en/maldives/",
     "imageSourceNote": "Wikimedia",
     "imageSourceProvider": "Wikimedia Commons",
     "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3ASunset_at_Lagoon%2C_Emboodhoo%2C_Male%2C_Maldives.jpg",

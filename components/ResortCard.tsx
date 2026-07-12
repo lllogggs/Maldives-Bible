@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
 import {
@@ -54,6 +54,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
   const [failedImageUrls, setFailedImageUrls] = useState<Set<string>>(new Set());
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const didSwipeImageRef = useRef(false);
   const isSelectedForCompare = compareList.includes(resort.id);
   const canSelectForCompare = compareList.length < 3 || isSelectedForCompare;
 
@@ -63,7 +64,8 @@ const ResortCard: React.FC<ResortCardProps> = ({
   const imageUrls = actualImageUrls.filter(url => !failedImageUrls.has(url));
   const imageCount = imageUrls.length;
   const hasDisplayImages = imageCount > 0;
-  const currentImageUrl = hasDisplayImages ? imageUrls[currentImageIndex] : null;
+  const safeImageIndex = hasDisplayImages ? Math.min(currentImageIndex, imageCount - 1) : 0;
+  const currentImageUrl = hasDisplayImages ? imageUrls[safeImageIndex] : null;
   const featureTags = [
     resort.hasWaterVilla ? '워터빌라' : null,
     resort.hasPrivatePool ? '개인풀' : null,
@@ -95,10 +97,16 @@ const ResortCard: React.FC<ResortCardProps> = ({
 
   const handleViewDetails = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+    if (didSwipeImageRef.current) {
+      didSwipeImageRef.current = false;
+      e.preventDefault();
+      return;
+    }
     onViewDetails(resort.id);
   };
 
   const onTouchStart = (e: React.TouchEvent) => {
+    didSwipeImageRef.current = false;
     setTouchEnd(0);
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -111,8 +119,10 @@ const ResortCard: React.FC<ResortCardProps> = ({
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     if (distance > minSwipeDistance) {
+      didSwipeImageRef.current = true;
       handleNextImage(e);
     } else if (distance < -minSwipeDistance) {
+      didSwipeImageRef.current = true;
       handlePrevImage(e);
     }
     setTouchStart(0);
@@ -146,25 +156,40 @@ const ResortCard: React.FC<ResortCardProps> = ({
       className="flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
       data-resort-card={resort.id}
     >
-      <div
-        className="group relative cursor-pointer overflow-hidden bg-slate-100"
-        onClick={handleViewDetails}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
-        {currentImageUrl ? (
-          <img
-            className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            src={currentImageUrl}
-            alt={`${resort.name} 리조트 이미지 ${currentImageIndex + 1}`}
-            onError={handleImageError}
-          />
-        ) : (
-          <div className="flex h-56 w-full items-center justify-center bg-[linear-gradient(135deg,#e0f2f1,#f8fafc)] px-6 text-center">
-            <p className="text-sm font-bold text-teal-800">{resort.name}</p>
-          </div>
-        )}
+      <div className="group relative overflow-hidden bg-slate-100">
+        <button
+          type="button"
+          className="block w-full cursor-pointer overflow-hidden text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-teal-500"
+          onClick={handleViewDetails}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          onTouchCancel={() => {
+            didSwipeImageRef.current = false;
+            setTouchStart(0);
+            setTouchEnd(0);
+          }}
+          aria-label={`${resort.name} 상세 보기`}
+        >
+          {currentImageUrl ? (
+            <img
+              className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              src={currentImageUrl}
+              alt={`${resort.name} 리조트 이미지 ${safeImageIndex + 1}`}
+              onError={handleImageError}
+            />
+          ) : (
+            <span className="relative flex h-56 w-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.95),transparent_32%),radial-gradient(circle_at_82%_82%,rgba(45,212,191,0.2),transparent_36%),linear-gradient(145deg,#dff8f5,#eef9ff_55%,#f8fafc)] px-6 text-center">
+              <span aria-hidden="true" className="absolute -bottom-16 -left-10 h-36 w-72 rounded-[50%] border-[18px] border-white/55" />
+              <span aria-hidden="true" className="absolute -right-12 -top-16 h-36 w-36 rounded-full border-[18px] border-teal-200/35" />
+              <span className="relative flex flex-col items-center gap-2">
+                <img src="/android-chrome-192x192.png" alt="" className="h-10 w-10 rounded-xl object-cover opacity-90 shadow-sm" />
+                <span className="font-brand-heading text-sm font-bold text-teal-950">{resort.name}</span>
+                <span className="text-[11px] font-semibold text-teal-700">리조트 이미지 준비 중</span>
+              </span>
+            </span>
+          )}
+        </button>
 
         {imageUrls.length > 1 && !isImageEditMode && (
           <>
@@ -172,7 +197,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
               type="button"
               onClick={handlePrevImage}
               className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur transition-all hover:bg-white focus:opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
-              aria-label="이전 이미지"
+              aria-label={`${resort.name} 이전 이미지`}
             >
               <ChevronLeftIcon />
             </button>
@@ -180,20 +205,20 @@ const ResortCard: React.FC<ResortCardProps> = ({
               type="button"
               onClick={handleNextImage}
               className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur transition-all hover:bg-white focus:opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
-              aria-label="다음 이미지"
+              aria-label={`${resort.name} 다음 이미지`}
             >
               <ChevronRightIcon />
             </button>
             <div className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-slate-950/70 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">
-              {currentImageIndex + 1} / {imageUrls.length}
+              {safeImageIndex + 1} / {imageUrls.length}
             </div>
           </>
         )}
 
-        <div className={`absolute left-3 top-3 rounded-full border px-3 py-1 text-xs font-bold shadow-sm backdrop-blur ${getTransportationTagColor(resort.transportation)}`}>
+        <div className={`pointer-events-none absolute left-3 top-3 rounded-full border px-3 py-1 text-xs font-bold shadow-sm backdrop-blur ${getTransportationTagColor(resort.transportation)}`}>
           {getTransportationLabel(resort.transportation)}
         </div>
-        <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-sm font-bold text-slate-900 shadow-sm backdrop-blur">
+        <div className="pointer-events-none absolute right-3 top-3 flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-sm font-bold text-slate-900 shadow-sm backdrop-blur">
           <StarIcon />
           <span>{resort.rating.toFixed(1)}</span>
         </div>
@@ -223,11 +248,15 @@ const ResortCard: React.FC<ResortCardProps> = ({
           </div>
         )}
 
-        <h3
-          className="font-brand-heading line-clamp-2 cursor-pointer text-lg leading-tight text-slate-950 transition-colors hover:text-teal-700"
-          onClick={handleViewDetails}
-        >
-          {resort.name}
+        <h3 className="font-brand-heading text-lg leading-tight text-slate-950">
+          <button
+            type="button"
+            className="line-clamp-2 w-full text-left transition-colors hover:text-teal-700 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+            onClick={handleViewDetails}
+            aria-label={`${resort.name} 상세 보기`}
+          >
+            {resort.name}
+          </button>
         </h3>
         <p className="line-clamp-1 mt-0.5 text-sm leading-5 text-slate-500">{resort.name_en}</p>
 
@@ -299,6 +328,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
                 <button
                   type="button"
                   onClick={handleViewDetails}
+                  aria-label={`${resort.name} 상세 보기`}
                   className="h-8 whitespace-nowrap rounded-lg bg-slate-950 px-3 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
                 >
                   보기
