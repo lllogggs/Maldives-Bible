@@ -112,7 +112,7 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
               <ChevronRightIcon className="h-4 w-4" />
             </button>
             <a
-              href="/몰디브-리조트-비교/"
+              href="/maldives-resort-comparison/"
               className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-3 py-2.5 text-sm font-bold text-white underline decoration-white/50 underline-offset-4 transition hover:bg-white/10 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               몰디브 리조트 비교 가이드

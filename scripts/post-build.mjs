@@ -18,7 +18,7 @@ const toAbsoluteUrl = (slug) => `${siteUrl}${toUrlPath(slug)}`;
 
 const nichePages = [
   {
-    slug: '몰디브-리조트-비교',
+    slug: 'maldives-resort-comparison',
     title: `${currentYear} 몰디브 리조트 비교 | 몰디브 바이블`,
     description:
       '몰디브 리조트의 예산, 이동수단과 시간, 객실 유형, 수중환경 데이터를 한눈에 비교하고 여행 취향에 맞는 후보를 찾아보세요.',
@@ -49,7 +49,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-신혼여행-워터빌라-개인풀',
+    slug: 'maldives-honeymoon-water-villa-private-pool',
     title: '몰디브 신혼여행 워터빌라 개인풀 리조트 비교 | 몰디브 바이블',
     description:
       '몰디브 신혼여행에서 워터빌라와 개인풀을 함께 보는 커플을 위해 예산, 이동시간, 수중환경 기준으로 후보 리조트를 비교합니다.',
@@ -74,7 +74,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-신혼여행-처음-준비',
+    slug: 'maldives-honeymoon-first-time-guide',
     title: '몰디브 신혼여행 처음 준비 | 리조트 고르기 전에 볼 기준',
     description:
       '몰디브 신혼여행을 처음 알아보는 예비부부를 위해 예산, 일정, 이동수단, 객실타입, 식사플랜, 스노클링 기준을 먼저 정리합니다.',
@@ -111,7 +111,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-리조트-선택-기준',
+    slug: 'maldives-resort-selection-guide',
     title: '몰디브 리조트 선택 기준 | 예산·이동·객실·수중환경',
     description:
       '몰디브 리조트 선택이 어려운 커플을 위해 예산, 이동수단, 워터빌라, 개인풀, 라군, 수중환경 기준을 한국어로 정리합니다.',
@@ -148,7 +148,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-신혼여행-비용-감잡기',
+    slug: 'maldives-honeymoon-cost-guide',
     title: '몰디브 신혼여행 비용 감잡기 | 4박 2인 예산 기준',
     description:
       '몰디브 신혼여행을 처음 알아보는 커플을 위해 리조트 숙박비, 이동비, 항공권을 나눠 예산 감을 잡는 방법을 정리합니다.',
@@ -185,7 +185,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-신혼여행-일정-4박6일-5박7일',
+    slug: 'maldives-honeymoon-itinerary-4-nights-6-days-5-nights-7-days',
     title: '몰디브 신혼여행 일정 | 4박 6일·5박 7일 차이',
     description:
       '몰디브 신혼여행을 처음 계획하는 커플을 위해 4박 6일과 5박 7일 일정에서 리조트 선택과 이동 피로도가 어떻게 달라지는지 정리합니다.',
@@ -222,7 +222,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-리조트-이동수단-차이',
+    slug: 'maldives-resort-transfer-guide',
     title: '몰디브 리조트 이동수단 차이 | 보트·수상비행기·국내선',
     description:
       '몰디브 신혼여행 초보자를 위해 말레공항에서 리조트까지 이동하는 보트, 수상비행기, 국내선의 차이와 선택 기준을 정리합니다.',
@@ -259,7 +259,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-워터빌라-비치빌라-차이',
+    slug: 'maldives-water-villa-vs-beach-villa',
     title: '몰디브 워터빌라 비치빌라 차이 | 신혼여행 객실 선택',
     description:
       '몰디브 신혼여행에서 워터빌라와 비치빌라 중 고민하는 커플을 위해 사진 감성, 동선, 예산, 프라이버시 차이를 정리합니다.',
@@ -296,7 +296,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-하프보드-풀보드-올인클루시브-차이',
+    slug: 'maldives-meal-plan-comparison',
     title: '몰디브 하프보드 풀보드 올인클루시브 차이 | 식사플랜 입문',
     description:
       '몰디브 리조트 예약 전 헷갈리는 하프보드, 풀보드, 올인클루시브 식사플랜 차이와 초보자 체크 포인트를 정리합니다.',
@@ -333,7 +333,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-보트-이동-리조트',
+    slug: 'maldives-speedboat-resorts-honeymoon',
     title: '몰디브 보트 이동 리조트 비교 | 신혼여행 이동 피로 줄이기',
     description:
       '장거리 비행 뒤 이동 피로가 걱정되는 커플을 위해 말레 공항에서 보트로 이동하는 몰디브 허니문 리조트를 비교합니다.',
@@ -358,7 +358,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-수상비행기-리조트',
+    slug: 'maldives-seaplane-resorts-comparison',
     title: '몰디브 수상비행기 리조트 비교 | 라군·수중환경 중심 후보',
     description:
       '몰디브 수상비행기 이동 리조트를 라군, 수중환경, 이동시간, 예산 기준으로 비교해 신혼여행 후보를 좁힙니다.',
@@ -383,7 +383,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-스노클링-좋은-리조트',
+    slug: 'maldives-snorkeling-house-reef-resorts',
     title: '몰디브 스노클링 좋은 리조트 비교 | 하우스리프·수중환경 기준',
     description:
       '몰디브에서 스노클링과 하우스리프를 중요하게 보는 커플을 위해 수중환경 점수, 이동수단, 예산 기준으로 리조트를 비교합니다.',
@@ -408,7 +408,7 @@ const nichePages = [
     ],
   },
   {
-    slug: '몰디브-올인클루시브-신혼여행',
+    slug: 'maldives-all-inclusive-honeymoon-resorts',
     title: '몰디브 올인클루시브 신혼여행 리조트 비교 | 예산·다이닝 기준',
     description:
       '몰디브 신혼여행 예산을 잡기 쉽게 4박 2인 기준 가격, 레스토랑 수, 허니문 혜택을 중심으로 올인클루시브 후보를 비교합니다.',
@@ -509,7 +509,7 @@ const buildResortPageContent = (resort) => {
         <p style="margin:0 0 20px;">${badges
           .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
           .join('')}</p>
-        <a href="${toAbsoluteUrl('몰디브-리조트-비교')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
+        <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
         <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
         <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
       </article>
@@ -579,7 +579,7 @@ const buildNichePageContent = (page, resorts) => {
             )
             .join('\n')}
           <p style="margin:24px 0 0;">
-            <a href="${toAbsoluteUrl('몰디브-리조트-비교')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
+            <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
             <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
             <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
           </p>
