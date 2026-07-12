@@ -722,7 +722,7 @@ const buildComparisonLandingContent = (page, resorts) => {
   return {
     html: `
       <style>
-        .comparison-landing a:focus-visible { outline:3px solid #0f172a; outline-offset:3px; border-radius:4px; }
+        .comparison-landing a:focus-visible { outline:3px solid #0f172a; outline-offset:3px; }
         .comparison-landing__grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
         .comparison-landing__hero-actions { display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px; }
         .comparison-landing__hero-primary,
