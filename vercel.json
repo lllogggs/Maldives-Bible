@@ -1,6 +1,16 @@
 {
   "redirects": [
     {
+      "source": "/maldives-resort-comparison",
+      "destination": "/몰디브-리조트-비교/",
+      "permanent": true
+    },
+    {
+      "source": "/maldives-resort-comparison/",
+      "destination": "/몰디브-리조트-비교/",
+      "permanent": true
+    },
+    {
       "source": "/maldives-honeymoon-water-villa-private-pool",
       "destination": "/몰디브-신혼여행-워터빌라-개인풀/",
       "permanent": true
@@ -50,9 +60,5 @@
       "destination": "/몰디브-올인클루시브-신혼여행/",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    { "source": "/resorts/:slug", "destination": "/" },
-    { "source": "/resorts/:slug/", "destination": "/" }
   ]
 }

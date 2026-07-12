@@ -8,11 +8,46 @@ const resortsDataPath = resolve(distDir, 'api', 'resorts.json');
 const sourceResortsPath = resolve(process.cwd(), 'public', 'api', 'resorts.json');
 const sitemapPath = resolve(distDir, 'sitemap.xml');
 const siteUrl = 'https://www.maldivesbible.com';
+const currentYear = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Asia/Seoul',
+  year: 'numeric',
+}).format(new Date());
 
 const toUrlPath = (slug) => `/${encodeURI(slug)}/`;
 const toAbsoluteUrl = (slug) => `${siteUrl}${toUrlPath(slug)}`;
 
 const nichePages = [
+  {
+    slug: '몰디브-리조트-비교',
+    title: `${currentYear} 몰디브 리조트 비교 | 몰디브 바이블`,
+    description:
+      '몰디브 리조트의 예산, 이동수단과 시간, 객실 유형, 수중환경 데이터를 한눈에 비교하고 여행 취향에 맞는 후보를 찾아보세요.',
+    heading: `${currentYear} 몰디브 리조트 비교`,
+    comparisonLanding: true,
+    ogImageAlt: '몰디브 리조트 예산, 이동, 객실, 수중환경 비교 안내',
+    faq: [
+      {
+        question: '몰디브 리조트는 어떤 순서로 비교하는 것이 좋나요?',
+        answer:
+          '먼저 4박 2인 기준 예산을 정하고 말레 공항 이후 이동수단과 시간을 확인하세요. 그다음 워터빌라와 개인풀 여부, 수중환경, 식사 선택지를 비교하면 후보를 효율적으로 줄일 수 있습니다.',
+      },
+      {
+        question: '표에 표시된 가격은 실제 예약 금액인가요?',
+        answer:
+          '표의 가격은 리조트 간 차이를 이해하기 위한 4박 2인 비교용 예시입니다. 여행 날짜, 객실과 식사 플랜, 프로모션에 따라 실제 견적은 달라질 수 있습니다.',
+      },
+      {
+        question: '보트와 수상비행기 이동은 무엇이 다른가요?',
+        answer:
+          '보트는 공항 도착 후 비교적 빠르게 출발할 수 있고, 수상비행기는 먼 환초까지 이동하며 몰디브의 풍경을 볼 수 있습니다. 수상비행기는 운항 시간과 대기 시간을 일정에 함께 고려해야 합니다.',
+      },
+      {
+        question: '수중환경 점수가 높으면 라군도 예쁜가요?',
+        answer:
+          '수중환경과 라군은 서로 다른 기준입니다. 수중환경은 스노클링과 산호 접근성을 보는 지표이고, 밝고 넓은 라군의 풍경은 별도로 확인하는 것이 좋습니다.',
+      },
+    ],
+  },
   {
     slug: '몰디브-신혼여행-워터빌라-개인풀',
     title: '몰디브 신혼여행 워터빌라 개인풀 리조트 비교 | 몰디브 바이블',
@@ -474,7 +509,9 @@ const buildResortPageContent = (resort) => {
         <p style="margin:0 0 20px;">${badges
           .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
           .join('')}</p>
-        <a href="${siteUrl}/" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 전체 비교로 돌아가기</a>
+        <a href="${toAbsoluteUrl('몰디브-리조트-비교')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
+        <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
+        <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
       </article>
     </main>`;
 };
@@ -541,10 +578,237 @@ const buildNichePageContent = (page, resorts) => {
                 </article>`
             )
             .join('\n')}
-          <p style="margin:24px 0 0;"><a href="${siteUrl}/" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 전체 필터로 돌아가기</a></p>
+          <p style="margin:24px 0 0;">
+            <a href="${toAbsoluteUrl('몰디브-리조트-비교')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
+            <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
+            <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
+          </p>
         </section>
       </main>`,
     schemaJson: `${itemListSchema}</script>\n<script type="application/ld+json">${faqSchema}`,
+  };
+};
+
+const buildComparisonLandingContent = (page, resorts) => {
+  const resortUrl = (resort) => `${siteUrl}/resorts/${slugify(resort.name_en || resort.name)}/`;
+  const validPrice = (resort) => Number.isFinite(resort.price) && resort.price > 0;
+  const validTravelTime = (resort) => Number.isFinite(resort.travelTime) && resort.travelTime > 0;
+
+  const criteria = [
+    {
+      title: '1. 예산은 숙박비와 이동비를 함께 보기',
+      body:
+        '숙박비가 비슷해도 보트, 수상비행기, 국내선 비용에 따라 총액이 달라집니다. 먼저 4박 2인 비교용 가격과 2인 왕복 이동비를 함께 확인하세요.',
+      resorts: [...resorts]
+        .filter(validPrice)
+        .sort((a, b) => a.price - b.price || a.travelCost - b.travelCost)
+        .slice(0, 3),
+    },
+    {
+      title: '2. 이동수단과 시간을 일정에 맞추기',
+      body:
+        '짧은 일정이라면 공항 도착 후 이동시간이 만족도에 크게 영향을 줍니다. 보트, 수상비행기, 국내선의 특징과 예상 소요시간을 같이 비교하세요.',
+      resorts: [...resorts]
+        .filter(validTravelTime)
+        .sort((a, b) => a.travelTime - b.travelTime || a.price - b.price)
+        .slice(0, 3),
+    },
+    {
+      title: '3. 원하는 객실 조건부터 좁히기',
+      body:
+        '워터빌라, 비치빌라, 개인풀은 여행 경험과 예산을 바꾸는 핵심 조건입니다. 꼭 필요한 객실 조건을 먼저 선택하면 비교할 후보가 빠르게 줄어듭니다.',
+      resorts: [...resorts]
+        .filter((resort) => resort.hasWaterVilla && resort.hasPrivatePool)
+        .sort((a, b) => b.rating - a.rating || a.price - b.price)
+        .slice(0, 3),
+    },
+    {
+      title: '4. 수중환경과 부대시설을 취향대로 보기',
+      body:
+        '스노클링을 중요하게 보면 수중환경 점수를, 식사 선택을 중요하게 보면 레스토랑 수를 확인하세요. 사진 한 장보다 실제 활동 취향에 맞춰 보는 편이 정확합니다.',
+      resorts: [...resorts]
+        .filter((resort) => Number.isFinite(resort.snorkelingQuality))
+        .sort((a, b) => b.snorkelingQuality - a.snorkelingQuality || b.restaurants - a.restaurants)
+        .slice(0, 3),
+    },
+  ];
+
+  const representativeResorts = Array.from(
+    new Map(criteria.flatMap((criterion) => criterion.resorts).map((resort) => [resort.id, resort])).values()
+  );
+  const updatedAt = new Intl.DateTimeFormat('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(new Date());
+
+  const breadcrumbSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: '몰디브 바이블',
+        item: `${siteUrl}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: page.heading,
+        item: toAbsoluteUrl(page.slug),
+      },
+    ],
+  });
+  const itemListSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: '몰디브 리조트 비교 대표 후보',
+    numberOfItems: representativeResorts.length,
+    itemListElement: representativeResorts.map((resort, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: resort.name,
+      url: resortUrl(resort),
+    })),
+  });
+  const faqSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: page.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  });
+
+  const criterionCards = criteria
+    .map(
+      (criterion) => `
+        <article style="border:1px solid #dbe7e4;border-radius:16px;background:#fff;padding:22px;box-shadow:0 8px 30px rgba(15,118,110,.06);">
+          <h2 style="margin:0 0 10px;font-size:21px;line-height:1.4;color:#0f172a;">${escapeHtml(criterion.title)}</h2>
+          <p style="margin:0;color:#475569;line-height:1.75;">${escapeHtml(criterion.body)}</p>
+          <p style="margin:16px 0 0;color:#64748b;font-size:14px;line-height:1.7;">
+            데이터 예시: ${criterion.resorts
+              .map((resort) => `<a href="${resortUrl(resort)}" style="color:#0f766e;font-weight:700;text-decoration:none;">${escapeHtml(resort.name)}</a>`)
+              .join(' · ')}
+          </p>
+        </article>`
+    )
+    .join('\n');
+
+  const comparisonRows = representativeResorts
+    .map((resort) => {
+      const roomFeatures = [
+        resort.hasWaterVilla ? '워터빌라' : null,
+        resort.hasBeachVilla ? '비치빌라' : null,
+        resort.hasPrivatePool ? '개인풀' : null,
+      ].filter(Boolean);
+      return `
+        <tr>
+          <th scope="row" style="padding:14px;text-align:left;border-bottom:1px solid #e2e8f0;min-width:170px;">
+            <a href="${resortUrl(resort)}" style="color:#0f766e;font-weight:800;text-decoration:none;">${escapeHtml(resort.name)}</a>
+          </th>
+          <td style="padding:14px;border-bottom:1px solid #e2e8f0;white-space:nowrap;">${formatUsd(resort.price)}</td>
+          <td style="padding:14px;border-bottom:1px solid #e2e8f0;white-space:nowrap;">${escapeHtml(resort.transportation || '-')} · ${resort.travelTime || '-'}분</td>
+          <td style="padding:14px;border-bottom:1px solid #e2e8f0;min-width:170px;">${escapeHtml(roomFeatures.join(' · ') || '정보 확인 중')}</td>
+          <td style="padding:14px;border-bottom:1px solid #e2e8f0;white-space:nowrap;">${resort.snorkelingQuality || '-'} / 5</td>
+          <td style="padding:14px;border-bottom:1px solid #e2e8f0;white-space:nowrap;">${resort.restaurants || 0}곳</td>
+        </tr>`;
+    })
+    .join('\n');
+
+  return {
+    html: `
+      <style>
+        .comparison-landing a:focus-visible { outline:3px solid #14b8a6; outline-offset:3px; border-radius:4px; }
+        .comparison-landing__grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+        @media (max-width:720px) {
+          .comparison-landing__grid { grid-template-columns:1fr; }
+          .comparison-landing__title { font-size:36px !important; }
+        }
+      </style>
+      <main class="comparison-landing" style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(180deg,#effcfb 0,#f8fafc 440px);color:#0f172a;min-height:100vh;padding:24px 18px 56px;">
+        <div style="max-width:1120px;margin:0 auto;">
+          <nav aria-label="현재 위치" style="margin:0 0 28px;color:#64748b;font-size:14px;">
+            <a href="/" style="color:#0f766e;text-decoration:none;">홈</a>
+            <span aria-hidden="true" style="margin:0 8px;">/</span>
+            <span aria-current="page">몰디브 리조트 비교</span>
+          </nav>
+
+          <header style="max-width:860px;margin:0 0 32px;">
+            <p style="margin:0 0 10px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.13em;">MALDIVES RESORT DATA</p>
+            <h1 class="comparison-landing__title" style="margin:0;font-size:48px;line-height:1.15;letter-spacing:-.035em;">${escapeHtml(page.heading)}</h1>
+            <p style="margin:18px 0 0;color:#334155;font-size:18px;line-height:1.8;">
+              몰디브 바이블이 정리한 ${resorts.length}개 리조트 데이터를 바탕으로 예산, 이동, 객실, 수중환경을 같은 기준에서 살펴보세요. 이름보다 여행 조건을 먼저 정하면 나에게 맞는 후보를 더 빠르게 찾을 수 있습니다.
+            </p>
+            <p style="margin:14px 0 0;color:#64748b;font-size:14px;">페이지 업데이트 ${escapeHtml(updatedAt)} · 가격은 4박 2인 비교용 예시</p>
+          </header>
+
+          <section aria-labelledby="comparison-criteria-title" style="margin:0 0 36px;">
+            <h2 id="comparison-criteria-title" style="margin:0 0 16px;font-size:28px;letter-spacing:-.02em;">비교할 때 먼저 볼 네 가지 기준</h2>
+            <div class="comparison-landing__grid">${criterionCards}</div>
+          </section>
+
+          <section aria-labelledby="comparison-table-title" style="margin:0 0 36px;">
+            <div style="display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 14px;">
+              <div>
+                <h2 id="comparison-table-title" style="margin:0;font-size:28px;letter-spacing:-.02em;">대표 리조트 데이터 비교</h2>
+                <p id="comparison-table-note" style="margin:8px 0 0;color:#64748b;line-height:1.6;">각 기준에서 뽑은 데이터 예시이며 순위나 예약가를 의미하지 않습니다.</p>
+              </div>
+              <a href="/?view=resorts" style="display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;background:#0f766e;color:#fff;font-weight:800;text-decoration:none;">${resorts.length}개 전체 찾아보기</a>
+            </div>
+            <div style="overflow-x:auto;border:1px solid #dbe7e4;border-radius:16px;background:#fff;box-shadow:0 8px 30px rgba(15,118,110,.06);">
+              <table aria-describedby="comparison-table-note" style="width:100%;border-collapse:collapse;color:#334155;font-size:15px;">
+                <thead style="background:#f0fdfa;color:#0f172a;">
+                  <tr>
+                    <th scope="col" style="padding:14px;text-align:left;white-space:nowrap;">리조트</th>
+                    <th scope="col" style="padding:14px;text-align:left;white-space:nowrap;">4박 2인</th>
+                    <th scope="col" style="padding:14px;text-align:left;white-space:nowrap;">이동</th>
+                    <th scope="col" style="padding:14px;text-align:left;white-space:nowrap;">객실 조건</th>
+                    <th scope="col" style="padding:14px;text-align:left;white-space:nowrap;">수중환경</th>
+                    <th scope="col" style="padding:14px;text-align:left;white-space:nowrap;">레스토랑</th>
+                  </tr>
+                </thead>
+                <tbody>${comparisonRows}</tbody>
+              </table>
+            </div>
+          </section>
+
+          <section aria-labelledby="comparison-method-title" style="margin:0 0 36px;border:1px solid #dbe7e4;border-radius:16px;background:#fff;padding:24px;box-shadow:0 8px 30px rgba(15,118,110,.06);">
+            <h2 id="comparison-method-title" style="margin:0 0 12px;font-size:28px;letter-spacing:-.02em;">데이터 기준과 이용 안내</h2>
+            <p style="margin:0;color:#475569;line-height:1.8;">
+              몰디브 바이블은 리조트가 공개한 정보와 공개 자료를 참고해 이동수단, 객실 조건, 다이닝 정보를 자체 형식으로 정리합니다. 수중환경 등 점수형 항목은 공식 등급이 아니라 후보 비교를 돕기 위한 몰디브 바이블의 자체 지표입니다. 한 리조트의 장점만 강조하기보다 여행 일정과 취향에 따라 달라지는 선택 기준을 함께 보여주는 것을 원칙으로 합니다.
+            </p>
+            <ul style="margin:16px 0 0;padding-left:20px;color:#475569;line-height:1.85;">
+              <li>가격은 리조트 간 규모를 이해하기 위한 4박 2인 비교용 예시이며 실시간 예약가가 아닙니다.</li>
+              <li>이동시간은 공항 도착 이후의 예상 소요시간으로 대기와 날씨에 따라 달라질 수 있습니다.</li>
+              <li>최종 예약 전에는 여행 날짜의 객실, 식사 플랜, 세금과 이동비가 포함된 여행사 견적을 다시 확인하세요.</li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="comparison-faq-title" style="border-top:1px solid #dbe7e4;padding-top:30px;">
+            <h2 id="comparison-faq-title" style="margin:0 0 18px;font-size:28px;letter-spacing:-.02em;">자주 묻는 질문</h2>
+            ${page.faq
+              .map(
+                (item) => `
+                  <article style="margin:0 0 16px;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:20px;">
+                    <h3 style="margin:0 0 8px;font-size:18px;line-height:1.5;">${escapeHtml(item.question)}</h3>
+                    <p style="margin:0;color:#475569;line-height:1.75;">${escapeHtml(item.answer)}</p>
+                  </article>`
+              )
+              .join('\n')}
+          </section>
+
+          <section style="margin:32px 0 0;border-radius:18px;background:#0f766e;padding:28px;color:#fff;text-align:center;">
+            <h2 style="margin:0;font-size:26px;">내 조건으로 직접 비교해 보세요</h2>
+            <p style="margin:10px auto 18px;max-width:680px;color:#ccfbf1;line-height:1.7;">예산과 취향으로 후보를 찾고 최대 3개 리조트의 차이를 한 화면에서 확인할 수 있습니다.</p>
+            <a href="/?view=resorts" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:#fff;color:#0f766e;font-weight:900;text-decoration:none;">몰디브 리조트 비교 시작하기</a>
+          </section>
+        </div>
+      </main>`,
+    schemaJson: `${breadcrumbSchema}</script>\n<script type="application/ld+json">${itemListSchema}</script>\n<script type="application/ld+json">${faqSchema}`,
   };
 };
 
@@ -557,9 +821,6 @@ const buildResortSchema = (resort, canonicalUrl) => {
     url: canonicalUrl,
     image: Array.isArray(resort.imageUrls) ? resort.imageUrls.slice(0, 3) : undefined,
     address: resort.location ? { '@type': 'PostalAddress', addressLocality: resort.location } : undefined,
-    aggregateRating: resort.rating
-      ? { '@type': 'AggregateRating', ratingValue: resort.rating, ratingCount: 1 }
-      : undefined,
   };
 
   return JSON.stringify(schema);
@@ -571,7 +832,7 @@ const replaceMetaContent = (html, attribute, value, content) =>
     `<meta ${attribute}="${value}" content="${escapeHtml(content)}" />`
   );
 
-const injectMeta = ({ html, title, description, url, schemaJson }) => {
+const injectMeta = ({ html, title, description, url, schemaJson, ogImageAlt, removeTemplateFaq = false }) => {
   let updated = html.replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`);
   updated = replaceMetaContent(updated, 'name', 'description', description);
   updated = replaceMetaContent(updated, 'property', 'og:title', title);
@@ -579,25 +840,36 @@ const injectMeta = ({ html, title, description, url, schemaJson }) => {
   updated = replaceMetaContent(updated, 'property', 'og:url', url);
   updated = replaceMetaContent(updated, 'name', 'twitter:title', title);
   updated = replaceMetaContent(updated, 'name', 'twitter:description', description);
+  if (ogImageAlt) {
+    updated = replaceMetaContent(updated, 'property', 'og:image:alt', ogImageAlt);
+    updated = replaceMetaContent(updated, 'name', 'twitter:image:alt', ogImageAlt);
+  }
+  if (removeTemplateFaq) {
+    updated = updated.replace(
+      /<script type="application\/ld\+json">[\s\S]*?<\/script>/g,
+      (script) => (/"@type"\s*:\s*"FAQPage"/.test(script) ? '' : script)
+    );
+  }
   return updated
     .replace(/<link rel="canonical" href=".*?"\s*\/>/, `<link rel="canonical" href="${escapeHtml(url)}" />`)
     .replace(/<link rel="alternate" href=".*?" hreflang="ko(?:-KR)?"\s*\/>/, `<link rel="alternate" href="${escapeHtml(url)}" hreflang="ko-KR" />`)
     .replace(/<script type="application\/ld\+json">\s*\{[\s\S]*?\}\s*<\/script>/, match => `${match}\n<script type="application/ld+json">${schemaJson}</script>`);
 };
 
-const injectStaticRoot = (html, content, { preserveStaticContent = false } = {}) =>
-  html.replace(
+const injectStaticRoot = (html, content, { preserveStaticContent = false } = {}) => {
+  const updated = html.replace(
     /<div id="root">[\s\S]*?<\/div>\s*<\/body>/,
     `<div id="root"${preserveStaticContent ? ' data-static-page="true"' : ''}>${content}</div>\n  </body>`
   );
+  return preserveStaticContent
+    ? updated.replace(/\s*<script type="module"[^>]*src="[^"]+"[^>]*><\/script>/i, '')
+    : updated;
+};
 
 const updateSitemap = async (resortSlugs, nicheSlugs) => {
   try {
     const staticEntries = [
       `${siteUrl}/`,
-      `${siteUrl}/?view=tips`,
-      `${siteUrl}/?view=agencies`,
-      `${siteUrl}/?view=flights`,
       ...nicheSlugs.map((slug) => toAbsoluteUrl(slug)),
     ];
 
@@ -698,9 +970,19 @@ try {
   const nicheSlugs = [];
   for (const page of nichePages) {
     const url = toAbsoluteUrl(page.slug);
-    const { html: content, schemaJson } = buildNichePageContent(page, resorts);
+    const { html: content, schemaJson } = page.comparisonLanding
+      ? buildComparisonLandingContent(page, resorts)
+      : buildNichePageContent(page, resorts);
     const html = injectStaticRoot(
-      injectMeta({ html: template, title: page.title, description: page.description, url, schemaJson }),
+      injectMeta({
+        html: template,
+        title: page.title,
+        description: page.description,
+        url,
+        schemaJson,
+        ogImageAlt: page.ogImageAlt,
+        removeTemplateFaq: page.comparisonLanding,
+      }),
       content,
       { preserveStaticContent: true }
     );
