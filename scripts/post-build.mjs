@@ -24,7 +24,7 @@ const nichePages = [
       '몰디브 리조트의 예산, 이동수단과 시간, 객실 유형, 수중환경 데이터를 한눈에 비교하고 여행 취향에 맞는 후보를 찾아보세요.',
     heading: `${currentYear} 몰디브 리조트 비교`,
     comparisonLanding: true,
-    ogImageAlt: '몰디브 리조트 예산, 이동, 객실, 수중환경 비교 안내',
+    ogImageAlt: '몰디브 바이블, 리조트 비교를 더 쉽게',
     faq: [
       {
         question: '몰디브 리조트는 어떤 순서로 비교하는 것이 좋나요?',
@@ -636,13 +636,18 @@ const buildComparisonLandingContent = (page, resorts) => {
   const representativeResorts = Array.from(
     new Map(criteria.flatMap((criterion) => criterion.resorts).map((resort) => [resort.id, resort])).values()
   );
-  const updatedAt = new Intl.DateTimeFormat('ko-KR', {
-    timeZone: 'Asia/Seoul',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date());
-
+  const showcaseNames = [
+    'Soneva Jani',
+    'Cheval Blanc Randheli',
+    'Waldorf Astoria Maldives Ithaafushi',
+  ];
+  const showcaseSlugs = showcaseNames
+    .map((name) => resorts.find((resort) => resort.name_en === name))
+    .filter(Boolean)
+    .map((resort) => slugify(resort.name_en || resort.name));
+  const showcaseCompareHref = showcaseSlugs.length === showcaseNames.length
+    ? `/?view=resorts#/compare/${showcaseSlugs.join(',')}`
+    : '/?view=resorts';
   const breadcrumbSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -685,13 +690,14 @@ const buildComparisonLandingContent = (page, resorts) => {
 
   const criterionCards = criteria
     .map(
-      (criterion) => `
-        <article style="border:1px solid #dbe7e4;border-radius:16px;background:#fff;padding:22px;box-shadow:0 8px 30px rgba(15,118,110,.06);">
-          <h2 style="margin:0 0 10px;font-size:21px;line-height:1.4;color:#0f172a;">${escapeHtml(criterion.title)}</h2>
-          <p style="margin:0;color:#475569;line-height:1.75;">${escapeHtml(criterion.body)}</p>
-          <p style="margin:16px 0 0;color:#64748b;font-size:14px;line-height:1.7;">
+      (criterion, index) => `
+        <article class="comparison-landing__criterion-card">
+          <span class="comparison-landing__criterion-number" aria-hidden="true">0${index + 1}</span>
+          <h3>${escapeHtml(criterion.title.replace(/^\d+\.\s*/, ''))}</h3>
+          <p>${escapeHtml(criterion.body)}</p>
+          <p class="comparison-landing__criterion-examples">
             데이터 예시: ${criterion.resorts
-              .map((resort) => `<a href="${resortUrl(resort)}" style="color:#0f766e;font-weight:700;text-decoration:none;">${escapeHtml(resort.name)}</a>`)
+              .map((resort) => `<a href="${resortUrl(resort)}">${escapeHtml(resort.name)}</a>`)
               .join(' · ')}
           </p>
         </article>`
@@ -722,70 +728,193 @@ const buildComparisonLandingContent = (page, resorts) => {
   return {
     html: `
       <style>
-        .comparison-landing a:focus-visible { outline:3px solid #0f172a; outline-offset:3px; }
-        .comparison-landing__grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
-        .comparison-landing__hero-actions { display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px; }
-        .comparison-landing__hero-primary,
-        .comparison-landing__hero-secondary { display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;font-weight:900;text-decoration:none;box-sizing:border-box; }
-        .comparison-landing__hero-primary { background:#0f766e;color:#fff;box-shadow:0 12px 30px rgba(15,118,110,.24); }
-        .comparison-landing__hero-primary:hover { background:#115e59;transform:translateY(-1px); }
-        .comparison-landing__hero-secondary { border:1px solid #99d5cf;background:rgba(255,255,255,.72);color:#0f766e; }
-        .comparison-landing__hero-secondary:hover { background:#fff;border-color:#0f766e; }
+        .comparison-landing { min-height:100vh;background:#f8f5ef;color:#102a34;font-family:'NanumSquareNeo','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; }
+        .comparison-landing * { box-sizing:border-box; }
+        .comparison-landing a:focus-visible,.comparison-landing summary:focus-visible { outline:3px solid #0f172a;outline-offset:3px; }
+        .comparison-landing__container { width:min(1180px,calc(100% - 40px));margin:0 auto; }
+        .comparison-landing__sitebar { position:sticky;z-index:60;top:0;border-bottom:1px solid rgba(15,69,74,.1);background:rgba(255,252,246,.94);backdrop-filter:blur(18px); }
+        .comparison-landing__sitebar-inner { display:flex;align-items:center;justify-content:space-between;min-height:76px;gap:20px; }
+        .comparison-landing__brand { display:inline-flex;align-items:center;gap:12px;color:#102a34;text-decoration:none; }
+        .comparison-landing__brand-mark { display:block;width:48px;height:48px;border:1px solid rgba(15,69,74,.14);border-radius:14px;box-shadow:0 8px 22px rgba(6,46,58,.12); }
+        .comparison-landing__brand-copy small { display:block;margin-bottom:3px;color:#0f766e;font-size:10px;font-weight:900;letter-spacing:.17em; }
+        .comparison-landing__brand-copy strong { display:block;font-family:'NanumSquareNeoExtraBold','NanumSquareNeo',sans-serif;font-size:17px;letter-spacing:-.02em; }
+        .comparison-landing__home-button { display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 17px;border-radius:999px;background:#0b6b66;color:#fff;font-size:14px;font-weight:900;text-decoration:none;box-shadow:0 10px 24px rgba(11,107,102,.22); }
+        .comparison-landing__home-button:hover { background:#075853;transform:translateY(-1px); }
+        .comparison-landing__hero { position:relative;overflow:hidden;background:linear-gradient(128deg,#062e3a 0%,#075159 48%,#0a7771 100%);color:#fff; }
+        .comparison-landing__hero::before { content:'';position:absolute;width:620px;height:620px;right:-180px;top:-340px;border:1px solid rgba(192,255,239,.16);border-radius:50%;box-shadow:0 0 0 80px rgba(191,255,239,.04),0 0 0 180px rgba(191,255,239,.035); }
+        .comparison-landing__hero::after { content:'';position:absolute;left:-120px;bottom:-250px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(68,226,205,.18),rgba(68,226,205,0) 68%); }
+        .comparison-landing__hero-grid { position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,.93fr) minmax(500px,1.07fr);align-items:center;gap:56px;min-height:620px;padding:64px 0 72px; }
+        .comparison-landing__eyebrow { display:inline-flex;align-items:center;gap:9px;margin:0 0 18px;color:#b9fff1;font-size:12px;font-weight:900;letter-spacing:.13em; }
+        .comparison-landing__eyebrow::before { content:'';width:28px;height:1px;background:#f7ad87; }
+        .comparison-landing__title { margin:0;font-family:'NanumSquareNeoExtraBold','NanumSquareNeoBold','NanumSquareNeo',sans-serif;font-size:58px;line-height:1.12;letter-spacing:-.052em;text-wrap:balance; }
+        .comparison-landing__title span { display:block;white-space:nowrap; }
+        .comparison-landing__lead { max-width:620px;margin:22px 0 0;color:#e3f7f4;font-size:18px;line-height:1.85;letter-spacing:-.015em; }
+        .comparison-landing__hero-actions { display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:28px; }
+        .comparison-landing__hero-primary,.comparison-landing__hero-secondary { display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 22px;border-radius:999px;font-weight:900;text-decoration:none; }
+        .comparison-landing__hero-primary { background:#f7ad87;color:#102a34;box-shadow:0 14px 32px rgba(1,30,37,.28); }
+        .comparison-landing__hero-primary:hover { background:#ffc09f;transform:translateY(-2px); }
+        .comparison-landing__hero-secondary { border:1px solid rgba(255,255,255,.48);background:rgba(255,255,255,.08);color:#fff; }
+        .comparison-landing__hero-secondary:hover { border-color:#fff;background:rgba(255,255,255,.16); }
+        .comparison-landing__hero a:focus-visible { outline-color:#ffe4d3;box-shadow:0 0 0 6px rgba(4,36,44,.9); }
+        .comparison-landing__trust { display:flex;flex-wrap:wrap;gap:10px 18px;margin:26px 0 0;padding:0;list-style:none;color:#cfeeea;font-size:13px;font-weight:800; }
+        .comparison-landing__trust li { display:inline-flex;align-items:center;gap:7px; }
+        .comparison-landing__trust li::before { content:'✓';display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(186,255,240,.15);color:#baffef;font-size:12px; }
+        .comparison-landing__preview { position:relative;margin:0;border:1px solid rgba(255,255,255,.34);border-radius:22px;background:#fff;box-shadow:0 30px 70px rgba(1,23,30,.4);overflow:hidden;transform:rotate(1deg); }
+        .comparison-landing__preview::after { content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(15,23,42,.05);pointer-events:none; }
+        .comparison-landing__preview-toolbar { display:flex;align-items:center;gap:12px;min-height:43px;padding:0 14px;border-bottom:1px solid #e6edf0;background:#f7f9fa;color:#64748b;font-size:11px; }
+        .comparison-landing__preview-dots { display:flex;gap:5px; }
+        .comparison-landing__preview-dots span { width:8px;height:8px;border-radius:50%;background:#cbd5e1; }
+        .comparison-landing__preview-dots span:first-child { background:#f29b7b; }
+        .comparison-landing__preview-address { flex:1;overflow:hidden;padding:7px 12px;border:1px solid #e2e8f0;border-radius:999px;background:#fff;text-align:center;text-overflow:ellipsis;white-space:nowrap; }
+        .comparison-landing__preview-badge { flex:none;color:#0f766e;font-weight:900; }
+        .comparison-landing__preview img { display:block;width:100%;height:auto;aspect-ratio:1216/632;object-fit:cover;background:#e8f3f2; }
+        .comparison-landing__preview-caption { display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px 18px;color:#334155; }
+        .comparison-landing__preview-caption strong { display:block;margin-bottom:3px;color:#102a34;font-size:15px; }
+        .comparison-landing__preview-caption span { font-size:12px;line-height:1.5; }
+        .comparison-landing__preview-link { display:inline-flex;align-items:center;justify-content:center;flex:none;min-height:40px;padding:0 14px;border-radius:999px;background:#0b6b66;color:#fff;font-size:12px;font-weight:900;text-decoration:none; }
+        .comparison-landing__content { padding:76px 0 64px; }
+        .comparison-landing__section { margin:0 0 68px; }
+        .comparison-landing__section-head { display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:22px; }
+        .comparison-landing__section-kicker { margin:0 0 8px;color:#a34835;font-size:12px;font-weight:900;letter-spacing:.13em; }
+        .comparison-landing__section h2 { margin:0;color:#102a34;font-family:'NanumSquareNeoExtraBold','NanumSquareNeo',sans-serif;font-size:32px;line-height:1.32;letter-spacing:-.035em; }
+        .comparison-landing__section-intro { max-width:650px;margin:10px 0 0;color:#58686f;line-height:1.7; }
+        .comparison-landing__grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px; }
+        .comparison-landing__criterion-card { position:relative;overflow:hidden;min-height:250px;padding:30px 30px 26px;border:1px solid #dfe8e5;border-radius:22px;background:#fff;box-shadow:0 12px 35px rgba(17,52,58,.07); }
+        .comparison-landing__criterion-card::after { content:'';position:absolute;right:-30px;bottom:-56px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,#d8f4ee 0,rgba(216,244,238,0) 72%); }
+        .comparison-landing__criterion-number { display:inline-grid;place-items:center;width:44px;height:44px;margin-bottom:24px;border-radius:14px;background:#e5f6f2;color:#0b6b66;font-size:13px;font-weight:900; }
+        .comparison-landing__criterion-card h3 { position:relative;z-index:1;margin:0 0 11px;color:#102a34;font-family:'NanumSquareNeoExtraBold','NanumSquareNeo',sans-serif;font-size:21px;line-height:1.45; }
+        .comparison-landing__criterion-card > p { position:relative;z-index:1;margin:0;color:#53646c;line-height:1.78; }
+        .comparison-landing__criterion-examples { margin-top:18px !important;padding-top:16px;border-top:1px solid #edf2f1;color:#5d6d74 !important;font-size:13px; }
+        .comparison-landing__criterion-examples a { color:#0b6b66;font-weight:900;text-decoration:none; }
+        .comparison-landing__table-button { display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;background:#0b6b66;color:#fff;font-weight:900;text-decoration:none;box-shadow:0 10px 24px rgba(11,107,102,.18); }
+        .comparison-landing__table-wrap { overflow-x:auto;border:1px solid #dbe5e3;border-radius:22px;background:#fff;box-shadow:0 16px 42px rgba(17,52,58,.08); }
+        .comparison-landing__table-wrap tbody tr:hover { background:#f5fbf9; }
+        .comparison-landing__method { display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:34px;padding:34px;border:1px solid #eadfce;border-radius:24px;background:#fffaf2; }
+        .comparison-landing__method p,.comparison-landing__method ul { color:#586971;line-height:1.82; }
+        .comparison-landing__method ul { margin:0;padding-left:20px; }
+        .comparison-landing__faq-list { display:grid;gap:12px; }
+        .comparison-landing__faq-list details { border:1px solid #dfe8e5;border-radius:18px;background:#fff;box-shadow:0 8px 24px rgba(17,52,58,.05); }
+        .comparison-landing__faq-list summary { position:relative;padding:21px 56px 21px 22px;color:#102a34;font-family:'NanumSquareNeoBold','NanumSquareNeo',sans-serif;font-size:17px;font-weight:900;line-height:1.5;cursor:pointer;list-style:none; }
+        .comparison-landing__faq-list summary::-webkit-details-marker { display:none; }
+        .comparison-landing__faq-list summary::after { content:'+';position:absolute;right:22px;top:50%;width:26px;height:26px;transform:translateY(-50%);color:#0b6b66;font-size:24px;line-height:24px;text-align:center; }
+        .comparison-landing__faq-list details[open] summary::after { content:'–'; }
+        .comparison-landing__faq-list p { margin:0;padding:0 22px 22px;color:#5d6d75;line-height:1.78; }
+        .comparison-landing__final { position:relative;overflow:hidden;padding:42px;border-radius:28px;background:linear-gradient(122deg,#07323e,#0a6868);color:#fff;text-align:left; }
+        .comparison-landing__final::after { content:'';position:absolute;right:-80px;top:-110px;width:310px;height:310px;border:1px solid rgba(255,255,255,.16);border-radius:50%;box-shadow:0 0 0 55px rgba(255,255,255,.04); }
+        .comparison-landing__final h2 { position:relative;z-index:1;color:#fff;font-size:30px; }
+        .comparison-landing__final p { position:relative;z-index:1;max-width:650px;margin:12px 0 22px;color:#d4efec;line-height:1.72; }
+        .comparison-landing__final a { position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:999px;background:#f7ad87;color:#102a34;font-weight:900;text-decoration:none; }
         .comparison-landing__mobile-cta { display:none; }
         #comparison-table-title { scroll-margin-top:24px; }
         @media (prefers-reduced-motion:no-preference) {
-          .comparison-landing__hero-primary,
-          .comparison-landing__hero-secondary { transition:background-color .18s ease,border-color .18s ease,transform .18s ease; }
+          .comparison-landing__home-button,.comparison-landing__hero-primary,.comparison-landing__hero-secondary,.comparison-landing__preview,.comparison-landing__preview-link,.comparison-landing__table-button { transition:background-color .18s ease,border-color .18s ease,transform .18s ease; }
+          .comparison-landing__preview:hover { transform:rotate(0) translateY(-3px); }
           html { scroll-behavior:smooth; }
         }
+        @media (max-width:980px) {
+          .comparison-landing__hero-grid { grid-template-columns:1fr;gap:42px;padding:58px 0 68px; }
+          .comparison-landing__hero-copy { max-width:760px; }
+          .comparison-landing__preview { max-width:760px;transform:none; }
+          .comparison-landing__method { grid-template-columns:1fr;gap:14px; }
+        }
         @media (max-width:720px) {
-          .comparison-landing { padding-bottom:112px !important; }
+          .comparison-landing { padding-bottom:92px; }
+          .comparison-landing__container { width:min(100% - 28px,1180px); }
+          .comparison-landing__sitebar-inner { min-height:68px; }
+          .comparison-landing__brand { gap:9px; }
+          .comparison-landing__brand-mark { width:42px;height:42px;border-radius:12px; }
+          .comparison-landing__brand-copy small { font-size:9px; }
+          .comparison-landing__brand-copy strong { font-size:15px; }
+          .comparison-landing__home-button { min-height:42px;padding:0 13px;font-size:12px; }
+          .comparison-landing__hero-grid { gap:36px;min-height:0;padding:46px 0 56px; }
+          .comparison-landing__title { font-size:40px;line-height:1.16; }
+          .comparison-landing__lead { margin-top:18px;font-size:16px;line-height:1.78; }
           .comparison-landing__grid { grid-template-columns:1fr; }
-          .comparison-landing__title { font-size:36px !important; }
           .comparison-landing__hero-actions { align-items:stretch;flex-direction:column; }
           .comparison-landing__hero-primary,
           .comparison-landing__hero-secondary { width:100%; }
+          .comparison-landing__trust { display:grid;grid-template-columns:1fr 1fr; }
+          .comparison-landing__preview-toolbar { padding:0 10px; }
+          .comparison-landing__preview-address { display:none; }
+          .comparison-landing__preview img { width:calc(100% + clamp(140px,30vw,240px));max-width:none;aspect-ratio:auto;transform:translateX(clamp(-120px,-15vw,-70px)); }
+          .comparison-landing__preview-caption { align-items:flex-start;flex-direction:column;padding:15px; }
+          .comparison-landing__preview-link { width:100%; }
+          .comparison-landing__content { padding:52px 0 28px; }
+          .comparison-landing__section { margin-bottom:52px; }
+          .comparison-landing__section-head { align-items:flex-start;flex-direction:column; }
+          .comparison-landing__section h2 { font-size:26px; }
+          .comparison-landing__criterion-card { min-height:0;padding:24px; }
+          .comparison-landing__criterion-number { margin-bottom:18px; }
+          .comparison-landing__table-button { width:100%; }
+          .comparison-landing__method { padding:25px; }
+          .comparison-landing__final { padding:30px 24px; }
+          .comparison-landing__final h2 { font-size:25px; }
           .comparison-landing__mobile-cta { position:fixed;z-index:50;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));align-items:center;justify-content:center;min-height:54px;padding:0 18px;border:1px solid rgba(255,255,255,.34);border-radius:16px;background:#0f766e;color:#fff;font-weight:900;text-decoration:none;box-shadow:0 16px 40px rgba(15,23,42,.28); }
           .comparison-landing__mobile-cta.is-visible { display:flex; }
         }
       </style>
-      <main class="comparison-landing" style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(180deg,#effcfb 0,#f8fafc 440px);color:#0f172a;min-height:100vh;padding:24px 18px 56px;">
-        <div style="max-width:1120px;margin:0 auto;">
-          <nav aria-label="현재 위치" style="margin:0 0 28px;color:#64748b;font-size:14px;">
-            <a href="/" style="color:#0f766e;text-decoration:none;">홈</a>
-            <span aria-hidden="true" style="margin:0 8px;">/</span>
-            <span aria-current="page">몰디브 리조트 비교</span>
-          </nav>
+      <main class="comparison-landing">
+        <div class="comparison-landing__sitebar">
+          <div class="comparison-landing__container comparison-landing__sitebar-inner">
+            <a class="comparison-landing__brand" href="/" aria-label="몰디브 바이블 홈으로 이동">
+              <img class="comparison-landing__brand-mark" src="/android-chrome-192x192.png" alt="" width="48" height="48" />
+              <span class="comparison-landing__brand-copy"><small>MALDIVES BIBLE</small><strong>몰디브 바이블</strong></span>
+            </a>
+            <a class="comparison-landing__home-button" href="/">
+              <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+              몰디브 바이블 홈
+            </a>
+          </div>
+        </div>
 
-          <header style="max-width:860px;margin:0 0 32px;">
-            <p style="margin:0 0 10px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.13em;">MALDIVES RESORT DATA</p>
-            <h1 class="comparison-landing__title" style="margin:0;font-size:48px;line-height:1.15;letter-spacing:-.035em;">${escapeHtml(page.heading)}</h1>
-            <p style="margin:18px 0 0;color:#334155;font-size:18px;line-height:1.8;">
-              몰디브 바이블이 정리한 ${resorts.length}개 리조트 데이터를 바탕으로 예산, 이동, 객실, 수중환경을 같은 기준에서 살펴보세요. 이름보다 여행 조건을 먼저 정하면 나에게 맞는 후보를 더 빠르게 찾을 수 있습니다.
-            </p>
-            <div class="comparison-landing__hero-actions" role="group" aria-label="리조트 비교 시작">
-              <a class="comparison-landing__hero-primary" data-compare-cta="hero" href="/?view=resorts">내 조건으로 리조트 비교하기 <span aria-hidden="true" style="margin-left:8px;">→</span></a>
-              <a class="comparison-landing__hero-secondary" href="#comparison-table-title">대표 비교표 먼저 보기</a>
+        <section class="comparison-landing__hero" aria-labelledby="comparison-hero-title">
+          <div class="comparison-landing__container comparison-landing__hero-grid">
+            <div class="comparison-landing__hero-copy">
+              <p class="comparison-landing__eyebrow">RESORT COMPARISON · ${resorts.length} RESORTS</p>
+              <h1 id="comparison-hero-title" class="comparison-landing__title"><span>${escapeHtml(currentYear)} 몰디브</span> <span>리조트 비교</span></h1>
+              <p class="comparison-landing__lead">예산, 이동수단, 객실, 수중환경을 한 화면에서 비교하세요. 유명한 이름보다 내 여행 조건을 먼저 고르면 맞는 리조트가 훨씬 빨리 보입니다.</p>
+              <div class="comparison-landing__hero-actions" role="group" aria-label="리조트 비교 시작">
+                <a class="comparison-landing__hero-primary" data-compare-cta="hero" href="/?view=resorts">내 조건으로 리조트 비교하기 <span aria-hidden="true" style="margin-left:8px;">→</span></a>
+                <a class="comparison-landing__hero-secondary" href="#comparison-preview">실제 비교 화면 보기</a>
+              </div>
+              <ul class="comparison-landing__trust" aria-label="비교 서비스 특징">
+                <li>${resorts.length}개 리조트 데이터</li><li>최대 3개 나란히 비교</li><li>광고성 순위 없음</li>
+              </ul>
             </div>
-            <p style="margin:14px 0 0;color:#64748b;font-size:14px;">페이지 업데이트 ${escapeHtml(updatedAt)} · 가격은 4박 2인 비교용 예시</p>
-          </header>
 
-          <section aria-labelledby="comparison-criteria-title" style="margin:0 0 36px;">
-            <h2 id="comparison-criteria-title" style="margin:0 0 16px;font-size:28px;letter-spacing:-.02em;">비교할 때 먼저 볼 네 가지 기준</h2>
+            <figure id="comparison-preview" class="comparison-landing__preview">
+              <div class="comparison-landing__preview-toolbar" aria-hidden="true">
+                <span class="comparison-landing__preview-dots"><span></span><span></span><span></span></span>
+                <span class="comparison-landing__preview-address">maldivesbible.com · 리조트 비교</span>
+                <span class="comparison-landing__preview-badge">LIVE PREVIEW</span>
+              </div>
+              <img src="/brand/resort-comparison-preview.jpg" alt="소네바 자니, 슈발 블랑 란델리, 월도프 아스토리아 몰디브 비교 화면" width="1216" height="632" fetchpriority="high" />
+              <figcaption class="comparison-landing__preview-caption">
+                <span><strong>실제 비교 결과 화면</strong>사진과 가격, 이동, 객실 조건의 차이를 한 번에 확인합니다.</span>
+                <a class="comparison-landing__preview-link" data-compare-cta="preview" href="${showcaseCompareHref}">이 조합으로 비교 보기 →</a>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <div class="comparison-landing__container comparison-landing__content">
+          <section class="comparison-landing__section" aria-labelledby="comparison-criteria-title">
+            <div class="comparison-landing__section-head"><div><p class="comparison-landing__section-kicker">START WITH FOUR</p><h2 id="comparison-criteria-title">비교할 때 먼저 볼 네 가지 기준</h2><p class="comparison-landing__section-intro">리조트 이름을 외우기 전에 아래 네 가지만 정하면 수많은 후보를 빠르게 줄일 수 있습니다.</p></div></div>
             <div class="comparison-landing__grid">${criterionCards}</div>
           </section>
 
-          <section aria-labelledby="comparison-table-title" style="margin:0 0 36px;">
-            <div style="display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 14px;">
+          <section class="comparison-landing__section" aria-labelledby="comparison-table-title">
+            <div class="comparison-landing__section-head">
               <div>
-                <h2 id="comparison-table-title" style="margin:0;font-size:28px;letter-spacing:-.02em;">대표 리조트 데이터 비교</h2>
-                <p id="comparison-table-note" style="margin:8px 0 0;color:#64748b;line-height:1.6;">각 기준에서 뽑은 데이터 예시이며 순위나 예약가를 의미하지 않습니다.</p>
+                <p class="comparison-landing__section-kicker">DATA SAMPLE</p>
+                <h2 id="comparison-table-title">대표 리조트 데이터 비교</h2>
+                <p id="comparison-table-note" class="comparison-landing__section-intro">각 기준에서 뽑은 데이터 예시이며 순위나 실시간 예약가를 의미하지 않습니다.</p>
               </div>
-              <a data-compare-cta="table" href="/?view=resorts" style="display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;background:#0f766e;color:#fff;font-weight:800;text-decoration:none;">전체 ${resorts.length}개 리조트에서 찾기</a>
+              <a class="comparison-landing__table-button" data-compare-cta="table" href="/?view=resorts">전체 ${resorts.length}개 리조트에서 찾기</a>
             </div>
-            <div style="overflow-x:auto;border:1px solid #dbe7e4;border-radius:16px;background:#fff;box-shadow:0 8px 30px rgba(15,118,110,.06);">
+            <div class="comparison-landing__table-wrap">
               <table aria-describedby="comparison-table-note" style="width:100%;border-collapse:collapse;color:#334155;font-size:15px;">
-                <thead style="background:#f0fdfa;color:#0f172a;">
+                <thead style="background:#e9f5f2;color:#102a34;">
                   <tr>
                     <th scope="col" style="padding:14px;text-align:left;white-space:nowrap;">리조트</th>
                     <th scope="col" style="padding:14px;text-align:left;white-space:nowrap;">4박 2인</th>
@@ -800,35 +929,35 @@ const buildComparisonLandingContent = (page, resorts) => {
             </div>
           </section>
 
-          <section aria-labelledby="comparison-method-title" style="margin:0 0 36px;border:1px solid #dbe7e4;border-radius:16px;background:#fff;padding:24px;box-shadow:0 8px 30px rgba(15,118,110,.06);">
-            <h2 id="comparison-method-title" style="margin:0 0 12px;font-size:28px;letter-spacing:-.02em;">데이터 기준과 이용 안내</h2>
-            <p style="margin:0;color:#475569;line-height:1.8;">
+          <section class="comparison-landing__section comparison-landing__method" aria-labelledby="comparison-method-title">
+            <div><p class="comparison-landing__section-kicker">HOW WE COMPARE</p><h2 id="comparison-method-title">데이터 기준과 이용 안내</h2></div>
+            <div><p style="margin:0 0 16px;">
               몰디브 바이블은 리조트가 공개한 정보와 공개 자료를 참고해 이동수단, 객실 조건, 다이닝 정보를 자체 형식으로 정리합니다. 수중환경 등 점수형 항목은 공식 등급이 아니라 후보 비교를 돕기 위한 몰디브 바이블의 자체 지표입니다. 한 리조트의 장점만 강조하기보다 여행 일정과 취향에 따라 달라지는 선택 기준을 함께 보여주는 것을 원칙으로 합니다.
             </p>
-            <ul style="margin:16px 0 0;padding-left:20px;color:#475569;line-height:1.85;">
+            <ul>
               <li>가격은 리조트 간 규모를 이해하기 위한 4박 2인 비교용 예시이며 실시간 예약가가 아닙니다.</li>
               <li>이동시간은 공항 도착 이후의 예상 소요시간으로 대기와 날씨에 따라 달라질 수 있습니다.</li>
               <li>최종 예약 전에는 여행 날짜의 객실, 식사 플랜, 세금과 이동비가 포함된 여행사 견적을 다시 확인하세요.</li>
-            </ul>
+            </ul></div>
           </section>
 
-          <section aria-labelledby="comparison-faq-title" style="border-top:1px solid #dbe7e4;padding-top:30px;">
-            <h2 id="comparison-faq-title" style="margin:0 0 18px;font-size:28px;letter-spacing:-.02em;">자주 묻는 질문</h2>
-            ${page.faq
+          <section class="comparison-landing__section" aria-labelledby="comparison-faq-title">
+            <div class="comparison-landing__section-head"><div><p class="comparison-landing__section-kicker">QUICK ANSWERS</p><h2 id="comparison-faq-title">자주 묻는 질문</h2></div></div>
+            <div class="comparison-landing__faq-list">${page.faq
               .map(
                 (item) => `
-                  <article style="margin:0 0 16px;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:20px;">
-                    <h3 style="margin:0 0 8px;font-size:18px;line-height:1.5;">${escapeHtml(item.question)}</h3>
-                    <p style="margin:0;color:#475569;line-height:1.75;">${escapeHtml(item.answer)}</p>
-                  </article>`
+                  <details>
+                    <summary>${escapeHtml(item.question)}</summary>
+                    <p>${escapeHtml(item.answer)}</p>
+                  </details>`
               )
-              .join('\n')}
+              .join('\n')}</div>
           </section>
 
-          <section style="margin:32px 0 0;border-radius:18px;background:#0f766e;padding:28px;color:#fff;text-align:center;">
-            <h2 style="margin:0;font-size:26px;">내 조건으로 직접 비교해 보세요</h2>
-            <p style="margin:10px auto 18px;max-width:680px;color:#ccfbf1;line-height:1.7;">예산과 취향으로 후보를 찾고 최대 3개 리조트의 차이를 한 화면에서 확인할 수 있습니다.</p>
-            <a data-compare-cta="footer" href="/?view=resorts" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:#fff;color:#0f766e;font-weight:900;text-decoration:none;">내 조건으로 리조트 비교하기</a>
+          <section class="comparison-landing__final">
+            <h2>이제 내 조건으로 직접 비교해 보세요</h2>
+            <p>예산과 취향으로 후보를 고르고 최대 3개 리조트의 차이를 실제 비교 화면에서 확인할 수 있습니다.</p>
+            <a data-compare-cta="footer" href="/?view=resorts">내 조건으로 리조트 비교하기 →</a>
           </section>
 
           <a class="comparison-landing__mobile-cta" data-compare-cta="mobile_sticky" href="/?view=resorts">리조트 비교 시작하기 <span aria-hidden="true" style="margin-left:8px;">→</span></a>
@@ -844,17 +973,18 @@ const buildComparisonLandingContent = (page, resorts) => {
           });
         });
         (function () {
-          var heroCta = document.querySelector('[data-compare-cta="hero"]');
           var mobileCta = document.querySelector('[data-compare-cta="mobile_sticky"]');
-          if (!heroCta || !mobileCta) return;
-          if (!('IntersectionObserver' in window)) {
-            mobileCta.classList.add('is-visible');
-            return;
-          }
+          var observedCtas = document.querySelectorAll('[data-compare-cta]:not([data-compare-cta="mobile_sticky"])');
+          if (!mobileCta || observedCtas.length === 0 || !('IntersectionObserver' in window)) return;
+          var visibleCtas = new Set();
           var observer = new IntersectionObserver(function (entries) {
-            mobileCta.classList.toggle('is-visible', !entries[0].isIntersecting);
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) visibleCtas.add(entry.target);
+              else visibleCtas.delete(entry.target);
+            });
+            mobileCta.classList.toggle('is-visible', visibleCtas.size === 0);
           }, { threshold: 0.2 });
-          observer.observe(heroCta);
+          observedCtas.forEach(function (cta) { observer.observe(cta); });
         })();
       </script>`,
     schemaJson: `${breadcrumbSchema}</script>\n<script type="application/ld+json">${itemListSchema}</script>\n<script type="application/ld+json">${faqSchema}`,
