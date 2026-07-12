@@ -722,11 +722,31 @@ const buildComparisonLandingContent = (page, resorts) => {
   return {
     html: `
       <style>
-        .comparison-landing a:focus-visible { outline:3px solid #14b8a6; outline-offset:3px; border-radius:4px; }
+        .comparison-landing a:focus-visible { outline:3px solid #0f172a; outline-offset:3px; border-radius:4px; }
         .comparison-landing__grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+        .comparison-landing__hero-actions { display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px; }
+        .comparison-landing__hero-primary,
+        .comparison-landing__hero-secondary { display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;font-weight:900;text-decoration:none;box-sizing:border-box; }
+        .comparison-landing__hero-primary { background:#0f766e;color:#fff;box-shadow:0 12px 30px rgba(15,118,110,.24); }
+        .comparison-landing__hero-primary:hover { background:#115e59;transform:translateY(-1px); }
+        .comparison-landing__hero-secondary { border:1px solid #99d5cf;background:rgba(255,255,255,.72);color:#0f766e; }
+        .comparison-landing__hero-secondary:hover { background:#fff;border-color:#0f766e; }
+        .comparison-landing__mobile-cta { display:none; }
+        #comparison-table-title { scroll-margin-top:24px; }
+        @media (prefers-reduced-motion:no-preference) {
+          .comparison-landing__hero-primary,
+          .comparison-landing__hero-secondary { transition:background-color .18s ease,border-color .18s ease,transform .18s ease; }
+          html { scroll-behavior:smooth; }
+        }
         @media (max-width:720px) {
+          .comparison-landing { padding-bottom:112px !important; }
           .comparison-landing__grid { grid-template-columns:1fr; }
           .comparison-landing__title { font-size:36px !important; }
+          .comparison-landing__hero-actions { align-items:stretch;flex-direction:column; }
+          .comparison-landing__hero-primary,
+          .comparison-landing__hero-secondary { width:100%; }
+          .comparison-landing__mobile-cta { position:fixed;z-index:50;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));align-items:center;justify-content:center;min-height:54px;padding:0 18px;border:1px solid rgba(255,255,255,.34);border-radius:16px;background:#0f766e;color:#fff;font-weight:900;text-decoration:none;box-shadow:0 16px 40px rgba(15,23,42,.28); }
+          .comparison-landing__mobile-cta.is-visible { display:flex; }
         }
       </style>
       <main class="comparison-landing" style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(180deg,#effcfb 0,#f8fafc 440px);color:#0f172a;min-height:100vh;padding:24px 18px 56px;">
@@ -743,6 +763,10 @@ const buildComparisonLandingContent = (page, resorts) => {
             <p style="margin:18px 0 0;color:#334155;font-size:18px;line-height:1.8;">
               몰디브 바이블이 정리한 ${resorts.length}개 리조트 데이터를 바탕으로 예산, 이동, 객실, 수중환경을 같은 기준에서 살펴보세요. 이름보다 여행 조건을 먼저 정하면 나에게 맞는 후보를 더 빠르게 찾을 수 있습니다.
             </p>
+            <div class="comparison-landing__hero-actions" role="group" aria-label="리조트 비교 시작">
+              <a class="comparison-landing__hero-primary" data-compare-cta="hero" href="/?view=resorts">내 조건으로 리조트 비교하기 <span aria-hidden="true" style="margin-left:8px;">→</span></a>
+              <a class="comparison-landing__hero-secondary" href="#comparison-table-title">대표 비교표 먼저 보기</a>
+            </div>
             <p style="margin:14px 0 0;color:#64748b;font-size:14px;">페이지 업데이트 ${escapeHtml(updatedAt)} · 가격은 4박 2인 비교용 예시</p>
           </header>
 
@@ -757,7 +781,7 @@ const buildComparisonLandingContent = (page, resorts) => {
                 <h2 id="comparison-table-title" style="margin:0;font-size:28px;letter-spacing:-.02em;">대표 리조트 데이터 비교</h2>
                 <p id="comparison-table-note" style="margin:8px 0 0;color:#64748b;line-height:1.6;">각 기준에서 뽑은 데이터 예시이며 순위나 예약가를 의미하지 않습니다.</p>
               </div>
-              <a href="/?view=resorts" style="display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;background:#0f766e;color:#fff;font-weight:800;text-decoration:none;">${resorts.length}개 전체 찾아보기</a>
+              <a data-compare-cta="table" href="/?view=resorts" style="display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;background:#0f766e;color:#fff;font-weight:800;text-decoration:none;">전체 ${resorts.length}개 리조트에서 찾기</a>
             </div>
             <div style="overflow-x:auto;border:1px solid #dbe7e4;border-radius:16px;background:#fff;box-shadow:0 8px 30px rgba(15,118,110,.06);">
               <table aria-describedby="comparison-table-note" style="width:100%;border-collapse:collapse;color:#334155;font-size:15px;">
@@ -804,10 +828,35 @@ const buildComparisonLandingContent = (page, resorts) => {
           <section style="margin:32px 0 0;border-radius:18px;background:#0f766e;padding:28px;color:#fff;text-align:center;">
             <h2 style="margin:0;font-size:26px;">내 조건으로 직접 비교해 보세요</h2>
             <p style="margin:10px auto 18px;max-width:680px;color:#ccfbf1;line-height:1.7;">예산과 취향으로 후보를 찾고 최대 3개 리조트의 차이를 한 화면에서 확인할 수 있습니다.</p>
-            <a href="/?view=resorts" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:#fff;color:#0f766e;font-weight:900;text-decoration:none;">몰디브 리조트 비교 시작하기</a>
+            <a data-compare-cta="footer" href="/?view=resorts" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:#fff;color:#0f766e;font-weight:900;text-decoration:none;">내 조건으로 리조트 비교하기</a>
           </section>
+
+          <a class="comparison-landing__mobile-cta" data-compare-cta="mobile_sticky" href="/?view=resorts">리조트 비교 시작하기 <span aria-hidden="true" style="margin-left:8px;">→</span></a>
         </div>
-      </main>`,
+      </main>
+      <script>
+        document.querySelectorAll('[data-compare-cta]').forEach(function (link) {
+          link.addEventListener('click', function () {
+            if (typeof window.gtag !== 'function') return;
+            window.gtag('event', 'resort_compare_start', {
+              cta_placement: link.getAttribute('data-compare-cta') || 'unknown'
+            });
+          });
+        });
+        (function () {
+          var heroCta = document.querySelector('[data-compare-cta="hero"]');
+          var mobileCta = document.querySelector('[data-compare-cta="mobile_sticky"]');
+          if (!heroCta || !mobileCta) return;
+          if (!('IntersectionObserver' in window)) {
+            mobileCta.classList.add('is-visible');
+            return;
+          }
+          var observer = new IntersectionObserver(function (entries) {
+            mobileCta.classList.toggle('is-visible', !entries[0].isIntersecting);
+          }, { threshold: 0.2 });
+          observer.observe(heroCta);
+        })();
+      </script>`,
     schemaJson: `${breadcrumbSchema}</script>\n<script type="application/ld+json">${itemListSchema}</script>\n<script type="application/ld+json">${faqSchema}`,
   };
 };
