@@ -100,7 +100,7 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
             <span className="block">리조트 고르기</span>
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-7 text-slate-100 sm:text-base">
-            처음이면 예산, 일정, 객실만 먼저 잡고 리조트 목록에서 바로 비교하세요.
+            예약이나 상품 판매 없이, 처음 준비하는 분이 예산·일정·객실 기준으로 리조트를 간편하게 비교하도록 돕는 가이드입니다.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             <button
