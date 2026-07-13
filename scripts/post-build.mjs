@@ -596,7 +596,7 @@ const buildComparisonLandingContent = (page, resorts) => {
 
   const criteria = [
     {
-      title: '1. 예산은 숙박비와 이동비를 함께 보기',
+      title: '1. 숙박비와 이동비',
       body:
         '숙박비가 비슷해도 보트, 수상비행기, 국내선 비용에 따라 총액이 달라집니다. 먼저 4박 2인 비교용 가격과 2인 왕복 이동비를 함께 확인하세요.',
       resorts: [...resorts]
@@ -605,7 +605,7 @@ const buildComparisonLandingContent = (page, resorts) => {
         .slice(0, 3),
     },
     {
-      title: '2. 이동수단과 시간을 일정에 맞추기',
+      title: '2. 이동수단과 시간',
       body:
         '짧은 일정이라면 공항 도착 후 이동시간이 만족도에 크게 영향을 줍니다. 보트, 수상비행기, 국내선의 특징과 예상 소요시간을 같이 비교하세요.',
       resorts: [...resorts]
@@ -614,7 +614,7 @@ const buildComparisonLandingContent = (page, resorts) => {
         .slice(0, 3),
     },
     {
-      title: '3. 원하는 객실 조건부터 좁히기',
+      title: '3. 객실과 개인풀',
       body:
         '워터빌라, 비치빌라, 개인풀은 여행 경험과 예산을 바꾸는 핵심 조건입니다. 꼭 필요한 객실 조건을 먼저 선택하면 비교할 후보가 빠르게 줄어듭니다.',
       resorts: [...resorts]
@@ -623,7 +623,7 @@ const buildComparisonLandingContent = (page, resorts) => {
         .slice(0, 3),
     },
     {
-      title: '4. 수중환경과 부대시설을 취향대로 보기',
+      title: '4. 수중환경과 다이닝',
       body:
         '스노클링을 중요하게 보면 수중환경 점수를, 식사 선택을 중요하게 보면 레스토랑 수를 확인하세요. 사진 한 장보다 실제 활동 취향에 맞춰 보는 편이 정확합니다.',
       resorts: [...resorts]
@@ -730,16 +730,18 @@ const buildComparisonLandingContent = (page, resorts) => {
       <style>
         .comparison-landing { min-height:100vh;background:#f8f5ef;color:#102a34;font-family:'NanumSquareNeo','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; }
         .comparison-landing * { box-sizing:border-box; }
+        .comparison-landing :is(h1,h2,h3,summary,.comparison-landing__eyebrow,.comparison-landing__header-action,.comparison-landing__hero-primary,.comparison-landing__hero-secondary,.comparison-landing__table-button,.comparison-landing__final a) { word-break:keep-all; }
         .comparison-landing a:focus-visible,.comparison-landing summary:focus-visible { outline:3px solid #0f172a;outline-offset:3px; }
         .comparison-landing__container { width:min(1180px,calc(100% - 40px));margin:0 auto; }
         .comparison-landing__sitebar { position:sticky;z-index:60;top:0;border-bottom:1px solid rgba(15,69,74,.1);background:rgba(255,252,246,.94);backdrop-filter:blur(18px); }
         .comparison-landing__sitebar-inner { display:flex;align-items:center;justify-content:space-between;min-height:76px;gap:20px; }
-        .comparison-landing__brand { display:inline-flex;align-items:center;gap:12px;color:#102a34;text-decoration:none; }
+        .comparison-landing__brand { display:inline-flex;align-items:center;flex:1 1 auto;min-width:0;gap:12px;color:#102a34;text-decoration:none; }
         .comparison-landing__brand-mark { display:block;width:48px;height:48px;border:1px solid rgba(15,69,74,.14);border-radius:14px;box-shadow:0 8px 22px rgba(6,46,58,.12); }
         .comparison-landing__brand-copy small { display:block;margin-bottom:3px;color:#0f766e;font-size:10px;font-weight:900;letter-spacing:.17em; }
-        .comparison-landing__brand-copy strong { display:block;font-family:'NanumSquareNeoExtraBold','NanumSquareNeo',sans-serif;font-size:17px;letter-spacing:-.02em; }
-        .comparison-landing__home-button { display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 17px;border-radius:999px;background:#0b6b66;color:#fff;font-size:14px;font-weight:900;text-decoration:none;box-shadow:0 10px 24px rgba(11,107,102,.22); }
-        .comparison-landing__home-button:hover { background:#075853;transform:translateY(-1px); }
+        .comparison-landing__brand-copy strong { display:block;font-family:'NanumSquareNeoExtraBold','NanumSquareNeo',sans-serif;font-size:17px;letter-spacing:-.02em;white-space:nowrap; }
+        .comparison-landing__header-action { display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;gap:8px;min-height:44px;padding:0 17px;border-radius:999px;background:#0b6b66;color:#fff;font-size:14px;font-weight:900;text-decoration:none;box-shadow:0 10px 24px rgba(11,107,102,.22);white-space:nowrap; }
+        .comparison-landing__header-action:hover { background:#075853;transform:translateY(-1px); }
+        .comparison-landing__header-action-short { display:none; }
         .comparison-landing__hero { position:relative;overflow:hidden;background:linear-gradient(128deg,#062e3a 0%,#075159 48%,#0a7771 100%);color:#fff; }
         .comparison-landing__hero::before { content:'';position:absolute;width:620px;height:620px;right:-180px;top:-340px;border:1px solid rgba(192,255,239,.16);border-radius:50%;box-shadow:0 0 0 80px rgba(191,255,239,.04),0 0 0 180px rgba(191,255,239,.035); }
         .comparison-landing__hero::after { content:'';position:absolute;left:-120px;bottom:-250px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(68,226,205,.18),rgba(68,226,205,0) 68%); }
@@ -785,7 +787,7 @@ const buildComparisonLandingContent = (page, resorts) => {
         .comparison-landing__criterion-card h3 { position:relative;z-index:1;margin:0 0 11px;color:#102a34;font-family:'NanumSquareNeoExtraBold','NanumSquareNeo',sans-serif;font-size:21px;line-height:1.45; }
         .comparison-landing__criterion-card > p { position:relative;z-index:1;margin:0;color:#53646c;line-height:1.78; }
         .comparison-landing__criterion-examples { margin-top:18px !important;padding-top:16px;border-top:1px solid #edf2f1;color:#5d6d74 !important;font-size:13px; }
-        .comparison-landing__criterion-examples a { color:#0b6b66;font-weight:900;text-decoration:none; }
+        .comparison-landing__criterion-examples a { color:#0b6b66;font-weight:900;text-decoration:none;overflow-wrap:anywhere; }
         .comparison-landing__table-button { display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;background:#0b6b66;color:#fff;font-weight:900;text-decoration:none;box-shadow:0 10px 24px rgba(11,107,102,.18); }
         .comparison-landing__table-wrap { overflow-x:auto;border:1px solid #dbe5e3;border-radius:22px;background:#fff;box-shadow:0 16px 42px rgba(17,52,58,.08); }
         .comparison-landing__table-wrap tbody tr:hover { background:#f5fbf9; }
@@ -804,10 +806,10 @@ const buildComparisonLandingContent = (page, resorts) => {
         .comparison-landing__final h2 { position:relative;z-index:1;color:#fff;font-size:30px; }
         .comparison-landing__final p { position:relative;z-index:1;max-width:650px;margin:12px 0 22px;color:#d4efec;line-height:1.72; }
         .comparison-landing__final a { position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:999px;background:#f7ad87;color:#102a34;font-weight:900;text-decoration:none; }
-        .comparison-landing__mobile-cta { display:none; }
-        #comparison-table-title { scroll-margin-top:24px; }
+        #comparison-preview,#comparison-table-title { scroll-margin-top:84px; }
+        .comparison-landing__table-swipe { display:none; }
         @media (prefers-reduced-motion:no-preference) {
-          .comparison-landing__home-button,.comparison-landing__hero-primary,.comparison-landing__hero-secondary,.comparison-landing__preview,.comparison-landing__preview-link,.comparison-landing__table-button { transition:background-color .18s ease,border-color .18s ease,transform .18s ease; }
+          .comparison-landing__header-action,.comparison-landing__hero-primary,.comparison-landing__hero-secondary,.comparison-landing__preview,.comparison-landing__preview-link,.comparison-landing__table-button { transition:background-color .18s ease,border-color .18s ease,transform .18s ease; }
           .comparison-landing__preview:hover { transform:rotate(0) translateY(-3px); }
           html { scroll-behavior:smooth; }
         }
@@ -818,16 +820,15 @@ const buildComparisonLandingContent = (page, resorts) => {
           .comparison-landing__method { grid-template-columns:1fr;gap:14px; }
         }
         @media (max-width:720px) {
-          .comparison-landing { padding-bottom:92px; }
           .comparison-landing__container { width:min(100% - 28px,1180px); }
           .comparison-landing__sitebar-inner { min-height:68px; }
           .comparison-landing__brand { gap:9px; }
           .comparison-landing__brand-mark { width:42px;height:42px;border-radius:12px; }
           .comparison-landing__brand-copy small { font-size:9px; }
           .comparison-landing__brand-copy strong { font-size:15px; }
-          .comparison-landing__home-button { min-height:42px;padding:0 13px;font-size:12px; }
+          .comparison-landing__header-action { min-height:42px;padding:0 13px;font-size:12px; }
           .comparison-landing__hero-grid { gap:36px;min-height:0;padding:46px 0 56px; }
-          .comparison-landing__title { font-size:40px;line-height:1.16; }
+          .comparison-landing__title { font-size:clamp(34px,10.5vw,40px);line-height:1.16; }
           .comparison-landing__lead { margin-top:18px;font-size:16px;line-height:1.78; }
           .comparison-landing__grid { grid-template-columns:1fr; }
           .comparison-landing__hero-actions { align-items:stretch;flex-direction:column; }
@@ -836,7 +837,7 @@ const buildComparisonLandingContent = (page, resorts) => {
           .comparison-landing__trust { display:grid;grid-template-columns:1fr 1fr; }
           .comparison-landing__preview-toolbar { padding:0 10px; }
           .comparison-landing__preview-address { display:none; }
-          .comparison-landing__preview img { width:calc(100% + clamp(140px,30vw,240px));max-width:none;aspect-ratio:auto;transform:translateX(clamp(-120px,-15vw,-70px)); }
+          .comparison-landing__preview img { width:100%;max-width:100%;aspect-ratio:1216/632;transform:none; }
           .comparison-landing__preview-caption { align-items:flex-start;flex-direction:column;padding:15px; }
           .comparison-landing__preview-link { width:100%; }
           .comparison-landing__content { padding:52px 0 28px; }
@@ -846,11 +847,34 @@ const buildComparisonLandingContent = (page, resorts) => {
           .comparison-landing__criterion-card { min-height:0;padding:24px; }
           .comparison-landing__criterion-number { margin-bottom:18px; }
           .comparison-landing__table-button { width:100%; }
-          .comparison-landing__method { padding:25px; }
+          .comparison-landing__table-swipe { display:block;margin:0 0 10px;color:#58686f;font-size:12px;font-weight:800;text-align:right; }
+          .comparison-landing__table-wrap { -webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain; }
+          .comparison-landing__table-wrap th:first-child { position:sticky;left:0;z-index:2;background:#fff; }
+          .comparison-landing__table-wrap thead th:first-child { z-index:3;background:#e9f5f2; }
+          .comparison-landing__method { padding:22px; }
+          .comparison-landing__method p,.comparison-landing__method ul { font-size:15px; }
+          .comparison-landing__method li + li { margin-top:8px; }
+          .comparison-landing__faq-list summary { padding:18px 48px 18px 18px;font-size:16px; }
+          .comparison-landing__faq-list summary::after { right:16px; }
+          .comparison-landing__faq-list p { padding:0 18px 20px;font-size:15px; }
           .comparison-landing__final { padding:30px 24px; }
-          .comparison-landing__final h2 { font-size:25px; }
-          .comparison-landing__mobile-cta { position:fixed;z-index:50;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));align-items:center;justify-content:center;min-height:54px;padding:0 18px;border:1px solid rgba(255,255,255,.34);border-radius:16px;background:#0f766e;color:#fff;font-weight:900;text-decoration:none;box-shadow:0 16px 40px rgba(15,23,42,.28); }
-          .comparison-landing__mobile-cta.is-visible { display:flex; }
+          .comparison-landing__final h2 { font-family:'NanumSquareNeoExtraBold','NanumSquareNeo',sans-serif;font-size:25px;font-weight:900;line-height:1.4; }
+          .comparison-landing__final a { width:100%; }
+        }
+        @media (max-width:420px) {
+          .comparison-landing__container { width:calc(100% - 20px); }
+          .comparison-landing__sitebar-inner { gap:8px; }
+          .comparison-landing__brand-mark { width:38px;height:38px; }
+          .comparison-landing__brand-copy small { display:none; }
+          .comparison-landing__brand-copy strong { font-size:14px; }
+          .comparison-landing__header-action { min-height:40px;padding:0 11px; }
+          .comparison-landing__header-action-full { display:none; }
+          .comparison-landing__header-action-short { display:inline; }
+        }
+        @media (max-width:380px) {
+          .comparison-landing__trust { grid-template-columns:1fr;gap:9px; }
+          .comparison-landing__eyebrow { font-size:10px;letter-spacing:.08em; }
+          .comparison-landing__criterion-card { padding:21px; }
         }
       </style>
       <main class="comparison-landing">
@@ -860,9 +884,9 @@ const buildComparisonLandingContent = (page, resorts) => {
               <img class="comparison-landing__brand-mark" src="/android-chrome-192x192.png" alt="" width="48" height="48" />
               <span class="comparison-landing__brand-copy"><small>MALDIVES BIBLE</small><strong>몰디브 바이블</strong></span>
             </a>
-            <a class="comparison-landing__home-button" href="/">
-              <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
-              몰디브 바이블 홈
+            <a class="comparison-landing__header-action" href="/?view=resorts" aria-label="리조트 목록 바로 보기">
+              <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg>
+              <span class="comparison-landing__header-action-full">리조트 바로보기</span><span class="comparison-landing__header-action-short">리조트 보기</span>
             </a>
           </div>
         </div>
@@ -870,15 +894,15 @@ const buildComparisonLandingContent = (page, resorts) => {
         <section class="comparison-landing__hero" aria-labelledby="comparison-hero-title">
           <div class="comparison-landing__container comparison-landing__hero-grid">
             <div class="comparison-landing__hero-copy">
-              <p class="comparison-landing__eyebrow">RESORT COMPARISON · ${resorts.length} RESORTS</p>
+              <p class="comparison-landing__eyebrow">${resorts.length} RESORTS · COMPARE</p>
               <h1 id="comparison-hero-title" class="comparison-landing__title"><span>${escapeHtml(currentYear)} 몰디브</span> <span>리조트 비교</span></h1>
-              <p class="comparison-landing__lead">예산, 이동수단, 객실, 수중환경을 한 화면에서 비교하세요. 유명한 이름보다 내 여행 조건을 먼저 고르면 맞는 리조트가 훨씬 빨리 보입니다.</p>
+              <p class="comparison-landing__lead">예산·이동·객실·수중환경을 한눈에 비교하세요. 내 조건을 먼저 고르면 맞는 리조트가 더 빨리 보입니다.</p>
               <div class="comparison-landing__hero-actions" role="group" aria-label="리조트 비교 시작">
                 <a class="comparison-landing__hero-primary" data-compare-cta="hero" href="/?view=resorts">내 조건으로 리조트 비교하기 <span aria-hidden="true" style="margin-left:8px;">→</span></a>
                 <a class="comparison-landing__hero-secondary" href="#comparison-preview">실제 비교 화면 보기</a>
               </div>
               <ul class="comparison-landing__trust" aria-label="비교 서비스 특징">
-                <li>${resorts.length}개 리조트 데이터</li><li>최대 3개 나란히 비교</li><li>광고성 순위 없음</li>
+                <li>${resorts.length}개 리조트</li><li>최대 3곳 비교</li><li>광고 순위 없음</li>
               </ul>
             </div>
 
@@ -912,6 +936,7 @@ const buildComparisonLandingContent = (page, resorts) => {
               </div>
               <a class="comparison-landing__table-button" data-compare-cta="table" href="/?view=resorts">전체 ${resorts.length}개 리조트에서 찾기</a>
             </div>
+            <p class="comparison-landing__table-swipe" aria-hidden="true">← 옆으로 밀어 전체 보기 →</p>
             <div class="comparison-landing__table-wrap">
               <table aria-describedby="comparison-table-note" style="width:100%;border-collapse:collapse;color:#334155;font-size:15px;">
                 <thead style="background:#e9f5f2;color:#102a34;">
@@ -960,7 +985,6 @@ const buildComparisonLandingContent = (page, resorts) => {
             <a data-compare-cta="footer" href="/?view=resorts">내 조건으로 리조트 비교하기 →</a>
           </section>
 
-          <a class="comparison-landing__mobile-cta" data-compare-cta="mobile_sticky" href="/?view=resorts">리조트 비교 시작하기 <span aria-hidden="true" style="margin-left:8px;">→</span></a>
         </div>
       </main>
       <script>
@@ -972,20 +996,6 @@ const buildComparisonLandingContent = (page, resorts) => {
             });
           });
         });
-        (function () {
-          var mobileCta = document.querySelector('[data-compare-cta="mobile_sticky"]');
-          var observedCtas = document.querySelectorAll('[data-compare-cta]:not([data-compare-cta="mobile_sticky"])');
-          if (!mobileCta || observedCtas.length === 0 || !('IntersectionObserver' in window)) return;
-          var visibleCtas = new Set();
-          var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) visibleCtas.add(entry.target);
-              else visibleCtas.delete(entry.target);
-            });
-            mobileCta.classList.toggle('is-visible', visibleCtas.size === 0);
-          }, { threshold: 0.2 });
-          observedCtas.forEach(function (cta) { observer.observe(cta); });
-        })();
       </script>`,
     schemaJson: `${breadcrumbSchema}</script>\n<script type="application/ld+json">${itemListSchema}</script>\n<script type="application/ld+json">${faqSchema}`,
   };

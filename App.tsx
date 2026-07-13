@@ -1637,8 +1637,13 @@ const App: React.FC = () => {
     setCurrentView(view);
     setIsCompareViewVisible(false);
     setSelectedResortId(null);
-    if (view !== 'resorts' || window.location.hash.startsWith('#/compare/')) {
-      window.location.hash = '';
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams();
+      if (view !== 'tips') {
+        params.set('view', view);
+      }
+      const queryString = params.toString();
+      window.history.replaceState(null, '', `/${queryString ? `?${queryString}` : ''}`);
     }
     setCurrentPage(1);
   };
