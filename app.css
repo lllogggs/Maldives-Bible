@@ -61,6 +61,58 @@
     overflow: hidden;
   }
 
+  .compare-header-name {
+    display: -webkit-box;
+    min-height: 2rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .compare-results-grid {
+    grid-template-columns: minmax(92px, 104px) repeat(var(--compare-count), minmax(140px, 1fr));
+    column-gap: 1rem;
+  }
+
+  @media (max-width: 639px) {
+    .compare-results-scroll {
+      scroll-snap-type: x proximity;
+      scroll-padding-left: 76px;
+      overscroll-behavior-inline: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .compare-results-grid {
+      grid-template-columns: 72px repeat(var(--compare-count), minmax(116px, 1fr));
+      column-gap: 4px;
+    }
+
+    .compare-resort-header {
+      scroll-snap-align: start;
+    }
+  }
+
+  @media (max-width: 359px) {
+    .compare-results-scroll {
+      scroll-padding-left: 67px;
+    }
+
+    .compare-results-grid {
+      grid-template-columns: 64px repeat(var(--compare-count), minmax(92px, 1fr));
+      column-gap: 3px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .compare-header-name {
+      display: block;
+      min-height: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
   .capture-board-mode .sticky,
   .capture-board-mode [class~="lg:sticky"] {
     position: static !important;

@@ -100,7 +100,7 @@ const CompareHeaderCard: React.FC<{
   const primaryImage = resort.imageUrls.find(url => typeof url === 'string' && url.trim().length > 0);
 
   return (
-    <div className={`border rounded-xl p-2 sm:p-3 relative bg-white h-full flex flex-col transition-all duration-300 ${isBestPrice ? 'border-2 border-teal-400 shadow-lg' : 'border-gray-200'}`}>
+    <div className={`relative flex h-full flex-col rounded-xl border bg-white p-1.5 transition-all duration-300 sm:p-3 ${isBestPrice ? 'border-2 border-teal-400 shadow-lg' : 'border-gray-200'}`}>
         <button
           type="button"
           onClick={() => onRemove(resort.id)}
@@ -125,12 +125,12 @@ const CompareHeaderCard: React.FC<{
         )}
         <div className="flex-grow flex flex-col justify-between">
             <div>
-                <h3 className="font-bold text-sm sm:text-base text-gray-800 truncate">{resort.name}</h3>
-                <p className="text-xs sm:text-sm text-gray-500 mb-1 sm:mb-2 truncate">{resort.name_en}</p>
+                <h3 className="compare-header-name font-bold text-xs leading-4 text-gray-800 sm:text-base">{resort.name}</h3>
+                <p className="mb-1 hidden truncate text-xs text-gray-500 sm:mb-2 sm:block sm:text-sm">{resort.name_en}</p>
             </div>
-            <div className={`mt-auto transition-all duration-300 ${isBestPrice ? 'bg-teal-50 rounded-lg -m-2 mt-2 p-2 pt-1 sm:-m-3 sm:mt-3 sm:p-3 sm:pt-2' : 'pt-2'}`}>
-                <p className="text-xs text-gray-500">4박 2인 · 올인클루시브</p>
-                <p className={`text-base sm:text-lg font-extrabold ${isBestPrice ? 'text-teal-700' : 'text-gray-800'}`}>${resort.price.toLocaleString()}</p>
+            <div className={`mt-auto transition-all duration-300 ${isBestPrice ? 'rounded-lg bg-teal-50 -m-1.5 mt-1.5 p-1.5 pt-1 sm:-m-3 sm:mt-3 sm:p-3 sm:pt-2' : 'pt-1.5 sm:pt-2'}`}>
+                <p className="text-[10px] leading-4 text-gray-500 sm:text-xs">4박 2인 <span className="hidden sm:inline">· 올인클루시브</span></p>
+                <p className={`text-sm font-extrabold leading-5 sm:text-lg ${isBestPrice ? 'text-teal-700' : 'text-gray-800'}`}>${resort.price.toLocaleString()}</p>
             </div>
         </div>
     </div>
@@ -186,16 +186,16 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
           </button>
         </div>
         <p className="mt-3 rounded-lg bg-teal-50 px-3 py-2 text-center text-xs font-bold text-teal-800 lg:hidden">
-          ↔ 좌우로 밀어 리조트별 차이를 확인하세요
+          {numResorts > 2 ? '한 화면에 2곳씩 · 옆으로 밀면 3번째' : '두 리조트의 차이를 한 화면에서 확인하세요'}
         </p>
-        <div className="relative mt-4 sm:mt-6 overflow-x-auto">
+        <div className="compare-results-scroll relative mt-4 overflow-x-auto sm:mt-6">
             <div
               role="table"
               aria-label="리조트 비교 결과"
               aria-colcount={numResorts + 1}
               aria-rowcount={1 + specs.length + specs.reduce((total, section) => total + section.attributes.length, 0)}
-              className="grid gap-x-2 sm:gap-x-4"
-              style={{ gridTemplateColumns: `minmax(92px, 104px) repeat(${numResorts}, minmax(140px, 1fr))`}}
+              className="compare-results-grid grid"
+              style={{ '--compare-count': numResorts } as React.CSSProperties}
             >
                 {/* Row 1: Headers */}
                 <div role="row" className="contents">
@@ -207,7 +207,7 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
                       key={resort.id}
                       role="columnheader"
                       aria-label={`${resort.name}, 4박 2인 올인클루시브 ${resort.price.toLocaleString()}달러${bestPrice !== null && resort.price === bestPrice ? ', 최저가' : ''}`}
-                      className="sticky top-0 bg-white z-20 py-2 border-b border-gray-200"
+                      className="compare-resort-header sticky top-0 z-20 border-b border-gray-200 bg-white py-1 sm:py-2"
                     >
                          <CompareHeaderCard
                            resort={resort}
@@ -223,7 +223,7 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
                     <React.Fragment key={section.category}>
                         {/* Section Header */}
                         <div role="row" className="contents">
-                          <div role="columnheader" aria-colspan={numResorts + 1} className="col-span-full text-base sm:text-xl font-semibold text-gray-800 my-2 sm:my-4 py-2 sm:py-3 border-b-2 border-t-2 border-gray-100 bg-gray-50 -mx-2 sm:-mx-6 px-2 sm:px-6 sticky left-0 z-10">
+                          <div role="columnheader" aria-colspan={numResorts + 1} className="sticky left-0 z-10 col-span-full my-2 border-y-2 border-gray-100 bg-gray-50 px-2 py-2 text-base font-semibold text-gray-800 sm:my-4 sm:px-6 sm:py-3 sm:text-xl">
                             {section.category}
                           </div>
                         </div>
@@ -234,14 +234,14 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
                             
                             return (
                                 <div key={attr.key} role="row" className="contents">
-                                    <div role="rowheader" className="font-semibold text-gray-600 text-xs sm:text-sm flex items-center p-2 sm:p-3 sticky left-0 bg-white z-10 border-b">
+                                    <div role="rowheader" className="sticky left-0 z-10 flex items-center border-b bg-white p-1.5 text-[11px] font-semibold leading-4 text-gray-600 sm:p-3 sm:text-sm">
                                         {attr.label}
                                     </div>
                                     {resorts.map(resort => {
                                         const value = resort[attr.key];
                                         const isBest = bestValue !== null && value === bestValue && typeof value !== 'string';
                                         return (
-                                            <div role="cell" key={`${resort.id}-${attr.key}`} className={`flex items-center justify-center text-center text-xs sm:text-base font-medium text-gray-800 p-2 sm:p-3 border-b transition-colors duration-200 ${isBest ? 'bg-teal-50' : ''}`}>
+                                            <div role="cell" key={`${resort.id}-${attr.key}`} className={`flex items-center justify-center border-b p-1.5 text-center text-[11px] font-medium leading-4 text-gray-800 transition-colors duration-200 sm:p-3 sm:text-base ${isBest ? 'bg-teal-50' : ''}`}>
                                                 <div className={isBest ? 'font-bold text-teal-700' : ''}>
                                                     {isBest && <span className="sr-only">최적 값: </span>}
                                                     {attr.render ? attr.render(resort) : String(value)}
