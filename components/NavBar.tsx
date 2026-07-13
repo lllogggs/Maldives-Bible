@@ -20,7 +20,7 @@ const NavButton: React.FC<{
       type="button"
       onClick={onClick}
       aria-current={isActive ? 'page' : undefined}
-      className={`min-h-11 shrink-0 rounded-sm border-b-2 px-0.5 text-sm font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f8f7] sm:px-1 sm:text-base ${isActive ? activeClasses : inactiveClasses}`}
+      className={`min-h-11 w-full rounded-sm border-b-2 px-0.5 text-[13px] font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f8f7] sm:w-auto sm:shrink-0 sm:px-1 sm:text-base ${isActive ? activeClasses : inactiveClasses}`}
     >
       {label}
     </button>
@@ -29,8 +29,8 @@ const NavButton: React.FC<{
 
 const NavBar: React.FC<NavBarProps> = ({ currentView, onViewChange }) => {
   return (
-    <nav className="mb-6 overflow-x-auto border-b border-slate-200" aria-label="몰디브 바이블 섹션">
-      <div className="flex min-w-max gap-1 sm:gap-8">
+    <nav className="mb-6 border-b border-slate-200" aria-label="몰디브 바이블 섹션">
+      <div className="grid grid-cols-4 gap-0 sm:flex sm:gap-8">
         <NavButton
           label="선택 기준"
           isActive={currentView === 'tips'}

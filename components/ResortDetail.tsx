@@ -17,11 +17,11 @@ interface ResortDetailProps {
 }
 
 const InfoCard: React.FC<{ icon: ReactNode; title: string; children: ReactNode }> = ({ icon, title, children }) => (
-  <div className="flex items-start p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
-    <div className="mr-4 text-cyan-500">{icon}</div>
-    <div>
-      <p className="text-sm font-semibold text-gray-500">{title}</p>
-      <div className="text-lg font-bold text-gray-800">{children}</div>
+  <div className="flex h-full min-w-0 flex-col gap-2 rounded-lg border border-gray-200 bg-white p-3 shadow-sm sm:flex-row sm:items-start sm:gap-3 sm:p-4">
+    <div className="shrink-0 text-cyan-500">{icon}</div>
+    <div className="min-w-0">
+      <p className="text-xs font-semibold leading-5 text-gray-500 sm:text-sm">{title}</p>
+      <div className="text-base font-bold leading-snug text-gray-800 sm:text-lg">{children}</div>
     </div>
   </div>
 );
@@ -486,7 +486,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
           </div>
         )}
         
-        <div className="p-6 md:p-8">
+        <div className="p-4 sm:p-6 md:p-8">
           {/* Header */}
           <div className="mb-6">
             <h1 className="text-3xl md:text-4xl font-extrabold leading-tight text-gray-900">{resort.name}</h1>
@@ -508,14 +508,14 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
           </div>
 
           {/* Key Info Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="mb-6 grid grid-cols-2 gap-2 sm:gap-4 md:mb-8 md:grid-cols-4">
             <InfoCard icon={<StarIcon />} title="평점">
                 {resort.rating.toFixed(1)} / 5.0
             </InfoCard>
             <InfoCard icon={<StarIcon />} title="수중환경">
                 {resort.snorkelingQuality} / 5
             </InfoCard>
-             <InfoCard icon={<DollarIcon />} title="4박 2인 · 올인클루시브">
+             <InfoCard icon={<DollarIcon />} title="4박 2인 참고가">
                 ${resort.price.toLocaleString()}
             </InfoCard>
             <InfoCard icon={<TransportationIcon type={resort.transportation} />} title="이동수단">
@@ -535,7 +535,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
             </InfoCard>
           </div>
 
-          <p className="-mt-4 mb-8 rounded-lg border border-teal-100 bg-teal-50 px-4 py-3 text-xs leading-5 text-teal-900">
+          <p className="-mt-2 mb-8 rounded-lg border border-teal-100 bg-teal-50 px-4 py-3 text-xs leading-5 text-teal-900">
             비교용 참고가입니다. 항공권과 리조트 이동비는 별도이며 시즌·세금·환율에 따라 실제 견적이 달라질 수 있습니다.
           </p>
 
@@ -543,7 +543,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
                 <h3 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">시설</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">
                     <InfoCard icon={<RestaurantIcon />} title="레스토랑">{resort.restaurants}개</InfoCard>
                     <InfoCard icon={<RestaurantIcon />} title="바">{resort.bars}개</InfoCard>
                     <InfoCard icon={<RestaurantIcon />} title="수영장">{resort.pools}개</InfoCard>

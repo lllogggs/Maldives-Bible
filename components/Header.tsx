@@ -19,14 +19,14 @@ const Header: React.FC<HeaderProps> = ({
       <div
         className="mx-auto max-w-[1440px] px-4 py-2 transition-all duration-300 sm:px-6 lg:px-8"
       >
-        <div className="grid items-center gap-2 transition-all duration-300 sm:gap-4 md:grid-cols-[auto_minmax(0,1fr)]">
+        <div className="flex flex-wrap items-center justify-between gap-3 transition-all duration-300 sm:gap-4">
           <button
             type="button"
             onClick={onLogoClick}
             aria-label="홈으로 이동"
             className="group flex min-w-0 items-center gap-3 justify-self-start text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
           >
-            <span className="block h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/10 transition-all duration-300 sm:h-12 sm:w-12">
+            <span className="block h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/10 transition-all duration-300 sm:h-12 sm:w-12">
               <img
                 src="/android-chrome-192x192.png"
                 alt=""
@@ -35,22 +35,22 @@ const Header: React.FC<HeaderProps> = ({
                 height={112}
               />
             </span>
-            <span className="hidden min-w-0 sm:block">
-              <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700">
+            <span className="min-w-0">
+              <span className="hidden text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700 sm:block">
                 Maldives Bible
               </span>
-              <span className="font-brand-heading block truncate text-base text-slate-950 group-hover:text-teal-700">
+              <span className="font-brand-heading block truncate text-sm text-slate-950 group-hover:text-teal-700 sm:text-base">
                 몰디브 바이블
               </span>
             </span>
           </button>
-          <div className="flex w-full min-w-0 flex-col items-stretch gap-2 transition-all duration-300 sm:flex-row sm:items-center sm:justify-end sm:gap-3">
-            {isImageEditFeatureAvailable && (
+          {isImageEditFeatureAvailable && (
+            <div className="flex w-full min-w-0 items-center justify-end transition-all duration-300 sm:w-auto">
               <button
                 type="button"
                 onClick={onToggleImageEditMode}
                 aria-pressed={isImageEditMode}
-                className={`flex items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-teal-500/10 ${
+                className={`flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:w-auto ${
                   isImageEditMode
                     ? 'border-teal-300 bg-teal-50 text-teal-800'
                     : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'
@@ -68,8 +68,8 @@ const Header: React.FC<HeaderProps> = ({
                   {isImageEditMode ? 'ON' : 'OFF'}
                 </span>
               </button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </header>

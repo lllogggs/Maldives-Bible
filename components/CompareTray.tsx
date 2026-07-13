@@ -15,8 +15,8 @@ const CompareTray: React.FC<CompareTrayProps> = ({ resorts, onRemove, onClear, o
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md shadow-[0_-4px_12px_rgba(0,0,0,0.1)] z-40 animate-fade-in">
-      <div className="max-w-screen-xl mx-auto px-2 sm:px-4 py-2">
+    <div className="fixed bottom-0 left-0 right-0 z-40 animate-fade-in bg-white/80 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_12px_rgba(0,0,0,0.1)] backdrop-blur-md">
+      <div className="mx-auto max-w-screen-xl px-2 py-2 sm:px-4">
         <div className="flex items-center justify-between gap-2 sm:gap-4">
           <div className="flex-1 min-w-0">
             <h3 className="hidden sm:block text-lg font-bold text-gray-800 mb-2">비교 리조트 ({resorts.length}/3)</h3>
@@ -45,8 +45,8 @@ const CompareTray: React.FC<CompareTrayProps> = ({ resorts, onRemove, onClear, o
 
             <div className="sm:hidden flex items-center gap-2 overflow-x-auto pb-1">
                {resorts.map(resort => (
-                <div key={resort.id} className="bg-gray-200 rounded-full pl-3 pr-2 py-1 flex items-center gap-1 text-sm flex-shrink-0">
-                  <span className="font-medium text-gray-800 truncate">{resort.name}</span>
+                <div key={resort.id} className="flex max-w-[132px] flex-shrink-0 items-center gap-1 rounded-full bg-gray-200 py-1 pl-3 pr-2 text-sm">
+                  <span className="truncate font-medium text-gray-800">{resort.name}</span>
                   <button
                     type="button"
                     onClick={() => onRemove(resort.id)}

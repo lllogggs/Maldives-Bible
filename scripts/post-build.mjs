@@ -731,6 +731,7 @@ const buildComparisonLandingContent = (page, resorts) => {
         .comparison-landing { min-height:100vh;background:#f8f5ef;color:#102a34;font-family:'NanumSquareNeo','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; }
         .comparison-landing * { box-sizing:border-box; }
         .comparison-landing :is(h1,h2,h3,summary,.comparison-landing__eyebrow,.comparison-landing__header-action,.comparison-landing__hero-primary,.comparison-landing__hero-secondary,.comparison-landing__table-button,.comparison-landing__final a) { word-break:keep-all; }
+        .comparison-landing :is(.comparison-landing__lead,.comparison-landing__section-intro,.comparison-landing__criterion-card > p,.comparison-landing__method p,.comparison-landing__method li,.comparison-landing__faq-list p,.comparison-landing__preview-caption,.comparison-landing__final p) { word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty; }
         .comparison-landing a:focus-visible,.comparison-landing summary:focus-visible { outline:3px solid #0f172a;outline-offset:3px; }
         .comparison-landing__container { width:min(1180px,calc(100% - 40px));margin:0 auto; }
         .comparison-landing__sitebar { position:sticky;z-index:60;top:0;border-bottom:1px solid rgba(15,69,74,.1);background:rgba(255,252,246,.94);backdrop-filter:blur(18px); }
@@ -793,7 +794,10 @@ const buildComparisonLandingContent = (page, resorts) => {
         .comparison-landing__table-wrap tbody tr:hover { background:#f5fbf9; }
         .comparison-landing__method { display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:34px;padding:34px;border:1px solid #eadfce;border-radius:24px;background:#fffaf2; }
         .comparison-landing__method p,.comparison-landing__method ul { color:#586971;line-height:1.82; }
-        .comparison-landing__method ul { margin:0;padding-left:20px; }
+        .comparison-landing__method-list { display:grid;gap:10px;margin:0;padding:0;list-style:none; }
+        .comparison-landing__method-list li { padding:12px 14px;border:1px solid #eadfce;border-radius:13px;background:rgba(255,255,255,.74); }
+        .comparison-landing__method-list strong { display:block;margin-bottom:2px;color:#0b6b66;font-size:13px; }
+        .comparison-landing__method-list span { color:#586971;font-size:14px;line-height:1.65; }
         .comparison-landing__faq-list { display:grid;gap:12px; }
         .comparison-landing__faq-list details { border:1px solid #dfe8e5;border-radius:18px;background:#fff;box-shadow:0 8px 24px rgba(17,52,58,.05); }
         .comparison-landing__faq-list summary { position:relative;padding:21px 56px 21px 22px;color:#102a34;font-family:'NanumSquareNeoBold','NanumSquareNeo',sans-serif;font-size:17px;font-weight:900;line-height:1.5;cursor:pointer;list-style:none; }
@@ -834,7 +838,9 @@ const buildComparisonLandingContent = (page, resorts) => {
           .comparison-landing__hero-actions { align-items:stretch;flex-direction:column; }
           .comparison-landing__hero-primary,
           .comparison-landing__hero-secondary { width:100%; }
-          .comparison-landing__trust { display:grid;grid-template-columns:1fr 1fr; }
+          .comparison-landing__trust { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:22px; }
+          .comparison-landing__trust li { min-height:60px;flex-direction:column;justify-content:center;gap:4px;padding:7px 3px;border:1px solid rgba(186,255,239,.18);border-radius:13px;background:rgba(255,255,255,.07);font-size:11px;line-height:1.35;text-align:center; }
+          .comparison-landing__trust li::before { width:18px;height:18px;font-size:10px; }
           .comparison-landing__preview-toolbar { padding:0 10px; }
           .comparison-landing__preview-address { display:none; }
           .comparison-landing__preview img { width:100%;max-width:100%;aspect-ratio:1216/632;transform:none; }
@@ -853,10 +859,13 @@ const buildComparisonLandingContent = (page, resorts) => {
           .comparison-landing__table-wrap thead th:first-child { z-index:3;background:#e9f5f2; }
           .comparison-landing__method { padding:22px; }
           .comparison-landing__method p,.comparison-landing__method ul { font-size:15px; }
-          .comparison-landing__method li + li { margin-top:8px; }
-          .comparison-landing__faq-list summary { padding:18px 48px 18px 18px;font-size:16px; }
+          .comparison-landing__faq-list { gap:8px; }
+          .comparison-landing__faq-list details { border-radius:14px; }
+          .comparison-landing__faq-list details[open] { border-color:#a9d9d3;box-shadow:0 10px 28px rgba(11,107,102,.1); }
+          .comparison-landing__faq-list summary { padding:17px 46px 17px 16px;font-size:15px;line-height:1.55;letter-spacing:-.025em;text-wrap:pretty; }
           .comparison-landing__faq-list summary::after { right:16px; }
-          .comparison-landing__faq-list p { padding:0 18px 20px;font-size:15px; }
+          .comparison-landing__faq-list details[open] summary { border-bottom:1px solid #e5efed; }
+          .comparison-landing__faq-list p { padding:15px 16px 18px;font-size:14px;line-height:1.75; }
           .comparison-landing__final { padding:30px 24px; }
           .comparison-landing__final h2 { font-family:'NanumSquareNeoExtraBold','NanumSquareNeo',sans-serif;font-size:25px;font-weight:900;line-height:1.4; }
           .comparison-landing__final a { width:100%; }
@@ -872,7 +881,6 @@ const buildComparisonLandingContent = (page, resorts) => {
           .comparison-landing__header-action-short { display:inline; }
         }
         @media (max-width:380px) {
-          .comparison-landing__trust { grid-template-columns:1fr;gap:9px; }
           .comparison-landing__eyebrow { font-size:10px;letter-spacing:.08em; }
           .comparison-landing__criterion-card { padding:21px; }
         }
@@ -957,12 +965,12 @@ const buildComparisonLandingContent = (page, resorts) => {
           <section class="comparison-landing__section comparison-landing__method" aria-labelledby="comparison-method-title">
             <div><p class="comparison-landing__section-kicker">HOW WE COMPARE</p><h2 id="comparison-method-title">데이터 기준과 이용 안내</h2></div>
             <div><p style="margin:0 0 16px;">
-              몰디브 바이블은 리조트가 공개한 정보와 공개 자료를 참고해 이동수단, 객실 조건, 다이닝 정보를 자체 형식으로 정리합니다. 수중환경 등 점수형 항목은 공식 등급이 아니라 후보 비교를 돕기 위한 몰디브 바이블의 자체 지표입니다. 한 리조트의 장점만 강조하기보다 여행 일정과 취향에 따라 달라지는 선택 기준을 함께 보여주는 것을 원칙으로 합니다.
+              공개된 리조트 정보와 자료를 바탕으로 이동, 객실, 다이닝을 같은 기준으로 정리합니다. 수중환경 점수는 후보 비교를 돕는 몰디브 바이블의 자체 지표입니다.
             </p>
-            <ul>
-              <li>가격은 리조트 간 규모를 이해하기 위한 4박 2인 비교용 예시이며 실시간 예약가가 아닙니다.</li>
-              <li>이동시간은 공항 도착 이후의 예상 소요시간으로 대기와 날씨에 따라 달라질 수 있습니다.</li>
-              <li>최종 예약 전에는 여행 날짜의 객실, 식사 플랜, 세금과 이동비가 포함된 여행사 견적을 다시 확인하세요.</li>
+            <ul class="comparison-landing__method-list">
+              <li><strong>가격</strong><span>4박 2인 비교 예시이며 실시간 예약가가 아닙니다.</span></li>
+              <li><strong>이동</strong><span>공항 이후 예상 시간으로 대기와 날씨에 따라 달라집니다.</span></li>
+              <li><strong>예약 전 확인</strong><span>객실·식사·세금·이동비가 포함된 여행사 견적을 확인하세요.</span></li>
             </ul></div>
           </section>
 

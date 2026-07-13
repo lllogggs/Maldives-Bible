@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
-import { ArrowLeftIcon, StarIcon, CheckCircleIcon, XCircleIcon, SeaplaneIcon, BoatIcon, DomesticFlightIcon, XIcon, RotateDeviceIcon, ShareIcon } from './icons/Icons';
+import { ArrowLeftIcon, StarIcon, CheckCircleIcon, XCircleIcon, SeaplaneIcon, BoatIcon, DomesticFlightIcon, XIcon, ShareIcon } from './icons/Icons';
 import { getTransportationLabel } from './transportationLabels';
 
 interface CompareViewProps {
@@ -140,88 +140,7 @@ const CompareHeaderCard: React.FC<{
 
 const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, onShare, isSharePending }) => {
   const numResorts = resorts.length;
-  const [showRotateModal, setShowRotateModal] = useState(false);
-  const [rotateHintDismissed, setRotateHintDismissed] = useState(false);
-  const rotateDialogRef = useRef<HTMLDivElement>(null);
-  const rotateConfirmRef = useRef<HTMLButtonElement>(null);
-  const previousFocusRef = useRef<HTMLElement | null>(null);
   const compareHeadingRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    const checkOrientation = () => {
-        if (!rotateHintDismissed && window.innerWidth < 1024 && window.innerHeight > window.innerWidth) {
-            setShowRotateModal(true);
-        } else {
-            setShowRotateModal(false);
-        }
-    };
-
-    checkOrientation();
-    window.addEventListener('resize', checkOrientation);
-
-    return () => {
-        window.removeEventListener('resize', checkOrientation);
-    };
-  }, [rotateHintDismissed]);
-
-  useEffect(() => {
-    if (!showRotateModal) {
-      return;
-    }
-
-    previousFocusRef.current = document.activeElement instanceof HTMLElement
-      ? document.activeElement
-      : null;
-    const focusFrame = window.requestAnimationFrame(() => rotateConfirmRef.current?.focus());
-
-    return () => {
-      window.cancelAnimationFrame(focusFrame);
-      const previousFocus = previousFocusRef.current;
-      if (previousFocus?.isConnected && previousFocus !== document.body) {
-        previousFocus.focus();
-      } else {
-        compareHeadingRef.current?.focus();
-      }
-    };
-  }, [showRotateModal]);
-
-  const dismissRotateHint = () => {
-    setRotateHintDismissed(true);
-    setShowRotateModal(false);
-  };
-
-  const handleRotateDialogKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      dismissRotateHint();
-      return;
-    }
-
-    if (event.key !== 'Tab') {
-      return;
-    }
-
-    const focusableElements = Array.from(
-      rotateDialogRef.current?.querySelectorAll<HTMLElement>(
-        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-      ) ?? [],
-    ).filter(element => element.getClientRects().length > 0);
-
-    if (focusableElements.length === 0) {
-      event.preventDefault();
-      return;
-    }
-
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-    if (event.shiftKey && document.activeElement === firstElement) {
-      event.preventDefault();
-      lastElement.focus();
-    } else if (!event.shiftKey && document.activeElement === lastElement) {
-      event.preventDefault();
-      firstElement.focus();
-    }
-  };
   
   const getBestValue = (attributeKey: keyof Resort, lowerIsBetter?: boolean) => {
     if (numResorts < 2) return null;
@@ -242,33 +161,7 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
   const bestPrice = numResorts > 1 ? Math.min(...prices) : null;
 
   return (
-    <>
-      {showRotateModal && (
-        <div
-          ref={rotateDialogRef}
-          className="fixed inset-0 bg-black/70 z-50 flex items-start justify-center p-4 pt-20 sm:pt-24 lg:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="rotate-hint-title"
-          aria-describedby="rotate-hint-description"
-          onKeyDown={handleRotateDialogKeyDown}
-        >
-          <div className="bg-white rounded-lg p-6 sm:p-8 text-center max-w-sm shadow-xl w-full max-w-[360px]">
-            <RotateDeviceIcon className="h-16 w-16 mx-auto text-teal-600 mb-4" />
-            <h3 id="rotate-hint-title" className="text-xl font-bold text-gray-800 mb-2">가로 화면 추천</h3>
-            <p id="rotate-hint-description" className="text-gray-600 mb-6">넓은 비교표로 보기</p>
-            <button
-              ref={rotateConfirmRef}
-              type="button"
-              onClick={dismissRotateHint}
-              className="w-full bg-teal-700 text-white font-bold py-3 px-4 rounded-lg hover:bg-teal-800 transition-colors"
-            >
-              확인
-            </button>
-          </div>
-        </div>
-      )}
-      <div className="animate-fade-in">
+    <div className="animate-fade-in">
       <button
         onClick={onBack}
         className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"
@@ -292,6 +185,9 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
             <span>결과 공유</span>
           </button>
         </div>
+        <p className="mt-3 rounded-lg bg-teal-50 px-3 py-2 text-center text-xs font-bold text-teal-800 lg:hidden">
+          ↔ 좌우로 밀어 리조트별 차이를 확인하세요
+        </p>
         <div className="relative mt-4 sm:mt-6 overflow-x-auto">
             <div
               role="table"
@@ -299,7 +195,7 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
               aria-colcount={numResorts + 1}
               aria-rowcount={1 + specs.length + specs.reduce((total, section) => total + section.attributes.length, 0)}
               className="grid gap-x-2 sm:gap-x-4"
-              style={{ gridTemplateColumns: `minmax(100px, auto) repeat(${numResorts}, max-content)`}}
+              style={{ gridTemplateColumns: `minmax(92px, 104px) repeat(${numResorts}, minmax(140px, 1fr))`}}
             >
                 {/* Row 1: Headers */}
                 <div role="row" className="contents">
@@ -362,7 +258,6 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
         </div>
       </div>
       </div>
-    </>
   );
 };
 

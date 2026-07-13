@@ -2053,7 +2053,7 @@ const App: React.FC = () => {
         >
           <div 
             ref={filterDialogRef}
-            className="h-full w-4/5 max-w-sm translate-x-0 bg-white shadow-xl transition-transform duration-300"
+            className="h-full w-[min(92vw,360px)] translate-x-0 bg-white pb-[env(safe-area-inset-bottom)] shadow-xl transition-transform duration-300"
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"

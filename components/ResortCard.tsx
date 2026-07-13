@@ -173,13 +173,13 @@ const ResortCard: React.FC<ResortCardProps> = ({
         >
           {currentImageUrl ? (
             <img
-              className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              className="aspect-[16/10] h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] sm:aspect-auto sm:h-56"
               src={currentImageUrl}
               alt={`${resort.name} 리조트 이미지 ${safeImageIndex + 1}`}
               onError={handleImageError}
             />
           ) : (
-            <span className="relative flex h-56 w-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.95),transparent_32%),radial-gradient(circle_at_82%_82%,rgba(45,212,191,0.2),transparent_36%),linear-gradient(145deg,#dff8f5,#eef9ff_55%,#f8fafc)] px-6 text-center">
+            <span className="relative flex aspect-[16/10] h-auto w-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.95),transparent_32%),radial-gradient(circle_at_82%_82%,rgba(45,212,191,0.2),transparent_36%),linear-gradient(145deg,#dff8f5,#eef9ff_55%,#f8fafc)] px-6 text-center sm:aspect-auto sm:h-56">
               <span aria-hidden="true" className="absolute -bottom-16 -left-10 h-36 w-72 rounded-[50%] border-[18px] border-white/55" />
               <span aria-hidden="true" className="absolute -right-12 -top-16 h-36 w-36 rounded-full border-[18px] border-teal-200/35" />
               <span className="relative flex flex-col items-center gap-2">
@@ -319,7 +319,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
               )}
               {shouldShowLikesCount && <span>{formattedLikesCount}</span>}
             </button>
-            <div className="text-right">
+            <div className="min-w-0 flex-1 text-right">
               <p className="text-xs text-slate-500">4박 2인 · 올인클루시브</p>
               <div className="mt-1 flex items-center justify-end gap-2">
                 <p className="whitespace-nowrap text-xl font-extrabold leading-tight text-teal-700">
@@ -334,11 +334,11 @@ const ResortCard: React.FC<ResortCardProps> = ({
                   보기
                 </button>
               </div>
-              <p className="mt-1 text-xs leading-5 text-slate-500">
-                참고가 · 1박 ${nightlyPrice.toLocaleString()} · 이동비 2인 ${coupleTransferCost.toLocaleString()} 별도
-              </p>
             </div>
           </div>
+          <p className="mt-2 text-left text-xs leading-5 text-slate-500">
+            참고가 · 1박 ${nightlyPrice.toLocaleString()} · 이동비 2인 ${coupleTransferCost.toLocaleString()} 별도
+          </p>
         </div>
       </div>
     </article>
