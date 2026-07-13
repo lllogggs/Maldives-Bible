@@ -66,16 +66,16 @@ const ResortGrid: React.FC<ResortGridProps> = ({
           className="mt-8 flex flex-col items-center gap-3"
           aria-label="Resort pagination"
         >
-          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+          <div className="flex max-w-full flex-wrap items-center justify-center gap-1">
             {pageNumbers.map(page => (
               <button
                 key={page}
                 type="button"
                 onClick={() => onPageChange(page)}
-                className={`px-1 text-sm font-semibold transition-colors ${
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-full text-sm font-semibold transition-colors ${
                   page === currentPage
-                    ? 'text-teal-700 underline underline-offset-4 decoration-2'
-                    : 'text-slate-700 hover:text-teal-700'
+                    ? 'bg-teal-700 text-white shadow-sm'
+                    : 'text-slate-700 hover:bg-teal-50 hover:text-teal-700'
                 }`}
                 aria-current={page === currentPage ? 'page' : undefined}
               >
@@ -88,7 +88,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               type="button"
               onClick={() => onPageChange(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
+              className="inline-flex h-11 min-w-[76px] items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
               aria-label="이전 페이지"
             >
               이전
@@ -100,7 +100,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               type="button"
               onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
-              className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
+              className="inline-flex h-11 min-w-[76px] items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
               aria-label="다음 페이지"
             >
               다음

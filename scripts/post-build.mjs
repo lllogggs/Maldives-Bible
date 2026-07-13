@@ -495,8 +495,15 @@ const buildResortPageContent = (resort) => {
   ].filter(Boolean);
 
   return `
-    <main style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
-      <article style="max-width:920px;margin:0 auto;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:26px;">
+    <style>
+      @media (max-width:480px) {
+        .seo-resort-page { padding:22px 12px !important; }
+        .seo-resort-card { padding:18px !important; }
+        .seo-resort-card h1 { font-size:clamp(28px,9vw,34px) !important;line-height:1.22 !important;letter-spacing:-.035em;overflow-wrap:anywhere; }
+      }
+    </style>
+    <main class="seo-resort-page" style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
+      <article class="seo-resort-card" style="max-width:920px;margin:0 auto;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:26px;">
         <p style="margin:0 0 8px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">몰디브 리조트 상세</p>
         <h1 style="margin:0;font-size:38px;line-height:1.18;">${escapeHtml(name)}</h1>
         <p style="margin:8px 0 18px;color:#64748b;font-size:17px;">${escapeHtml(resort.name_en || '')}</p>
@@ -544,19 +551,29 @@ const buildNichePageContent = (page, resorts) => {
 
   return {
     html: `
-      <main style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
-        <section style="max-width:1120px;margin:0 auto 24px;">
+      <style>
+        @media (max-width:480px) {
+          .seo-niche-page { padding:22px 12px !important; }
+          .seo-niche-hero h1 { font-size:clamp(28px,9vw,34px) !important;line-height:1.22 !important;letter-spacing:-.035em;overflow-wrap:anywhere; }
+          .seo-niche-sections,.seo-niche-grid { grid-template-columns:minmax(0,1fr) !important; }
+          .seo-niche-card { padding:16px !important; }
+          .seo-niche-footer-links { display:flex;flex-direction:column;align-items:flex-start;gap:12px; }
+          .seo-niche-footer-links span { display:none; }
+        }
+      </style>
+      <main class="seo-niche-page" style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
+        <section class="seo-niche-hero" style="max-width:1120px;margin:0 auto 24px;">
           <p style="margin:0 0 8px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">${escapeHtml(page.eyebrow)}</p>
           <h1 style="margin:0;font-size:38px;line-height:1.18;">${escapeHtml(page.heading)}</h1>
           <p style="max-width:760px;margin:14px 0 0;color:#475569;font-size:17px;line-height:1.8;">${escapeHtml(page.intro)}</p>
           <p style="margin:14px 0 0;color:#64748b;">${page.keywords.map((keyword) => escapeHtml(keyword)).join(' · ')}</p>
         </section>
         ${sections.length > 0
-          ? `<section style="max-width:1120px;margin:0 auto 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+          ? `<section class="seo-niche-sections" style="max-width:1120px;margin:0 auto 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
               ${sections
                 .map(
                   (section) => `
-                    <article style="border:1px solid #dbe7e4;border-radius:12px;background:#fff;padding:18px;">
+                    <article class="seo-niche-card" style="border:1px solid #dbe7e4;border-radius:12px;background:#fff;padding:18px;">
                       <h2 style="margin:0 0 8px;font-size:20px;color:#0f172a;">${escapeHtml(section.title)}</h2>
                       <p style="margin:0;color:#475569;line-height:1.7;">${escapeHtml(section.body)}</p>
                     </article>`
@@ -564,7 +581,7 @@ const buildNichePageContent = (page, resorts) => {
                 .join('\n')}
             </section>`
           : ''}
-        <section style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+        <section class="seo-niche-grid" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
           ${selected.map(resortCard).join('\n')}
         </section>
         <section style="max-width:1120px;margin:28px auto 0;border-top:1px solid #dbe7e4;padding-top:22px;">
@@ -578,7 +595,7 @@ const buildNichePageContent = (page, resorts) => {
                 </article>`
             )
             .join('\n')}
-          <p style="margin:24px 0 0;">
+          <p class="seo-niche-footer-links" style="margin:24px 0 0;">
             <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
             <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
             <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
@@ -853,10 +870,23 @@ const buildComparisonLandingContent = (page, resorts) => {
           .comparison-landing__criterion-card { min-height:0;padding:24px; }
           .comparison-landing__criterion-number { margin-bottom:18px; }
           .comparison-landing__table-button { width:100%; }
-          .comparison-landing__table-swipe { display:block;margin:0 0 10px;color:#58686f;font-size:12px;font-weight:800;text-align:right; }
-          .comparison-landing__table-wrap { -webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain; }
-          .comparison-landing__table-wrap th:first-child { position:sticky;left:0;z-index:2;background:#fff; }
-          .comparison-landing__table-wrap thead th:first-child { z-index:3;background:#e9f5f2; }
+          .comparison-landing__table-swipe { display:block;margin:0 0 10px;color:#58686f;font-size:12px;font-weight:800;text-align:left; }
+          .comparison-landing__table-wrap { overflow:visible;border:0;background:transparent;box-shadow:none; }
+          .comparison-landing__data-table { display:block;width:100% !important;table-layout:auto;font-size:13px !important; }
+          .comparison-landing__data-table thead { position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap; }
+          .comparison-landing__data-table tbody { display:grid;gap:12px; }
+          .comparison-landing__data-table tr { display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden;border:1px solid #dbe5e3;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(17,52,58,.06); }
+          .comparison-landing__data-table :is(th,td) { display:block;min-width:0 !important;width:auto !important;padding:11px 12px !important;border:0 !important;white-space:normal !important;overflow-wrap:anywhere;line-height:1.5; }
+          .comparison-landing__data-table th:first-child { grid-column:1/-1;padding:14px 12px !important;background:#e9f5f2; }
+          .comparison-landing__data-table td { position:relative;padding-top:30px !important; }
+          .comparison-landing__data-table td:nth-child(2) { white-space:nowrap !important; }
+          .comparison-landing__data-table td:nth-child(4) { grid-column:1/-1;border-top:1px solid #edf2f1 !important;border-bottom:1px solid #edf2f1 !important; }
+          .comparison-landing__data-table td::before { position:absolute;left:12px;top:9px;color:#718087;font-size:10px;font-weight:900;letter-spacing:.02em; }
+          .comparison-landing__data-table td:nth-child(2)::before { content:'4박 2인'; }
+          .comparison-landing__data-table td:nth-child(3)::before { content:'이동'; }
+          .comparison-landing__data-table td:nth-child(4)::before { content:'객실 조건'; }
+          .comparison-landing__data-table td:nth-child(5)::before { content:'수중환경'; }
+          .comparison-landing__data-table td:nth-child(6)::before { content:'레스토랑'; }
           .comparison-landing__method { padding:22px; }
           .comparison-landing__method p,.comparison-landing__method ul { font-size:15px; }
           .comparison-landing__faq-list { gap:8px; }
@@ -876,7 +906,7 @@ const buildComparisonLandingContent = (page, resorts) => {
           .comparison-landing__brand-mark { width:38px;height:38px; }
           .comparison-landing__brand-copy small { display:none; }
           .comparison-landing__brand-copy strong { font-size:14px; }
-          .comparison-landing__header-action { min-height:40px;padding:0 11px; }
+          .comparison-landing__header-action { min-height:44px;padding:0 11px; }
           .comparison-landing__header-action-full { display:none; }
           .comparison-landing__header-action-short { display:inline; }
         }
@@ -944,9 +974,9 @@ const buildComparisonLandingContent = (page, resorts) => {
               </div>
               <a class="comparison-landing__table-button" data-compare-cta="table" href="/?view=resorts">전체 ${resorts.length}개 리조트에서 찾기</a>
             </div>
-            <p class="comparison-landing__table-swipe" aria-hidden="true">← 옆으로 밀어 전체 보기 →</p>
+            <p class="comparison-landing__table-swipe" aria-hidden="true">모바일에서는 리조트별 조건을 카드로 정리해 보여드려요</p>
             <div class="comparison-landing__table-wrap">
-              <table aria-describedby="comparison-table-note" style="width:100%;border-collapse:collapse;color:#334155;font-size:15px;">
+              <table class="comparison-landing__data-table" aria-describedby="comparison-table-note" style="width:100%;border-collapse:collapse;color:#334155;font-size:15px;">
                 <thead style="background:#e9f5f2;color:#102a34;">
                   <tr>
                     <th scope="col" style="padding:14px;text-align:left;white-space:nowrap;">리조트</th>

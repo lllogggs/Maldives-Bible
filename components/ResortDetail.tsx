@@ -67,6 +67,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
   const [failedImageUrls, setFailedImageUrls] = useState<Set<string>>(new Set());
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const didSwipeImageRef = useRef(false);
   const galleryRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
   const galleryTitleId = `resort-gallery-title-${resort.id}`;
@@ -117,6 +118,15 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
       : null;
     setSelectedImageIndex(index);
     setIsGalleryOpen(true);
+  };
+
+  const handleGalleryOpen = (index: number) => {
+    if (didSwipeImageRef.current) {
+      didSwipeImageRef.current = false;
+      return;
+    }
+
+    openGallery(index);
   };
 
   const closeGallery = useCallback(() => {
@@ -270,6 +280,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
   }, [closeGallery, hasDisplayImages, isGalleryOpen]);
 
   const onTouchStart = (e: React.TouchEvent) => {
+    didSwipeImageRef.current = false;
     setTouchEnd(0);
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -285,9 +296,17 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
     const isRightSwipe = distance < -minSwipeDistance;
 
     if (isLeftSwipe) {
+      didSwipeImageRef.current = true;
       goToNext();
     } else if (isRightSwipe) {
+      didSwipeImageRef.current = true;
       goToPrev();
+    }
+
+    if (isLeftSwipe || isRightSwipe) {
+      window.setTimeout(() => {
+        didSwipeImageRef.current = false;
+      }, 400);
     }
     
     setTouchStart(0);
@@ -302,7 +321,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 transition-colors hover:text-gray-900"
+          className="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
         >
           <ArrowLeftIcon className="h-5 w-5" />
           목록으로 돌아가기
@@ -314,7 +333,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
           aria-label={`${resort.name} 공유`}
           aria-busy={isSharePending}
           data-testid={`share-resort-detail-${resort.id}`}
-          className="inline-flex h-10 shrink-0 items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-3 text-sm font-bold text-teal-800 transition-colors hover:border-teal-300 hover:bg-teal-100 disabled:cursor-wait disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 sm:px-4"
+          className="inline-flex h-11 shrink-0 items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-3 text-sm font-bold text-teal-800 transition-colors hover:border-teal-300 hover:bg-teal-100 disabled:cursor-wait disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 sm:px-4"
         >
           <ShareIcon className="h-5 w-5" />
           <span>공유</span>
@@ -338,7 +357,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
                     <button
                       type="button"
                       className="h-full w-full cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-teal-400"
-                      onClick={() => openGallery(0)}
+                      onClick={() => handleGalleryOpen(0)}
                       aria-label={`${resort.name} 첫 번째 이미지 크게 보기`}
                     >
                       <img
@@ -372,7 +391,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
                       <button
                         type="button"
                         className="h-full w-full cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-teal-400"
-                        onClick={() => openGallery(displayIndex)}
+                        onClick={() => handleGalleryOpen(displayIndex)}
                         aria-label={`${resort.name} 이미지 ${displayIndex + 1} 크게 보기`}
                       >
                         <img
@@ -411,7 +430,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
                     type="button"
                     aria-label={`${resort.name} 이미지 ${safeSelectedImageIndex + 1} 크게 보기`}
                     className="absolute h-full w-full border-0 bg-transparent p-0"
-                    onClick={() => openGallery(safeSelectedImageIndex)}
+                    onClick={() => handleGalleryOpen(safeSelectedImageIndex)}
                 >
                     <img
                       src={selectedImage.url}
@@ -581,7 +600,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
        {isGalleryOpen && selectedImage && (
         <div 
           ref={galleryRef}
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" 
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4"
           onClick={closeGallery}
           role="dialog"
           aria-modal="true"
@@ -592,7 +611,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
           <button 
             type="button"
             onClick={closeGallery}
-            className="absolute top-4 right-4 text-white hover:text-gray-300 focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-white hover:bg-black/55 hover:text-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             aria-label={`${resort.name} 이미지 갤러리 닫기`}
             data-gallery-close
           >
@@ -604,7 +623,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
               <button
                 type="button"
                 onClick={goToPrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="absolute left-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-white transition-colors hover:bg-black/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:left-4"
                 aria-label={`${resort.name} 이전 이미지`}
               >
                 <ChevronLeftIcon className="h-8 w-8" />
@@ -612,7 +631,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
               <button
                 type="button"
                 onClick={goToNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="absolute right-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-white transition-colors hover:bg-black/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-4"
                 aria-label={`${resort.name} 다음 이미지`}
               >
                 <ChevronRightIcon className="h-8 w-8" />
@@ -633,14 +652,14 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
           )}
 
           <div
-            className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center justify-center"
+            className="relative flex max-h-[calc(100dvh-2rem)] max-w-[90vw] flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             <img
               src={selectedImage.url}
               alt={`${resort.name} 리조트 이미지 ${safeSelectedImageIndex + 1}`}
               onError={() => markImageAsFailed(selectedImage.url)}
-              className="max-w-full max-h-full object-contain rounded-lg"
+              className="max-h-[calc(100dvh-6.5rem)] max-w-full rounded-lg object-contain"
             />
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white text-sm font-semibold px-3 py-1 rounded-full">
               {safeSelectedImageIndex + 1} / {displayedImages.length}

@@ -57,6 +57,16 @@ const ResortCard: React.FC<ResortCardProps> = ({
   const didSwipeImageRef = useRef(false);
   const isSelectedForCompare = compareList.includes(resort.id);
   const canSelectForCompare = compareList.length < 3 || isSelectedForCompare;
+  const compareButtonLabel = isSelectedForCompare
+    ? `${resort.name} 비교에서 제거`
+    : canSelectForCompare
+      ? `${resort.name} 비교에 추가`
+      : `${resort.name} 비교는 최대 3개까지 선택 가능`;
+  const compareButtonTitle = isSelectedForCompare
+    ? '비교에서 제거'
+    : canSelectForCompare
+      ? '비교에 추가'
+      : '최대 3개 선택됨';
 
   const actualImageUrls = Array.isArray(resort.imageUrls)
     ? resort.imageUrls.filter((url): url is string => typeof url === 'string' && url.trim().length > 0)
@@ -227,16 +237,16 @@ const ResortCard: React.FC<ResortCardProps> = ({
             type="button"
             onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
             disabled={!canSelectForCompare}
-            className={`inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-xs font-bold shadow-sm backdrop-blur transition-colors disabled:cursor-not-allowed disabled:bg-slate-200/80 ${
+            className={`inline-flex h-11 items-center gap-1.5 whitespace-nowrap rounded-full px-3 text-xs font-bold shadow-sm backdrop-blur transition-colors disabled:cursor-not-allowed disabled:bg-slate-200/90 disabled:text-slate-500 ${
               isSelectedForCompare
                 ? 'bg-teal-700 text-white hover:bg-teal-800'
                 : 'bg-white/90 text-slate-800 hover:bg-white'
             }`}
-            aria-label={isSelectedForCompare ? `${resort.name} 비교에서 제거` : `${resort.name} 비교에 추가`}
-            title={isSelectedForCompare ? '비교에서 제거' : '비교에 추가'}
+            aria-label={compareButtonLabel}
+            title={compareButtonTitle}
           >
             {isSelectedForCompare && <CheckCircleIcon className="h-4 w-4" />}
-            비교
+            {!canSelectForCompare ? '3개 선택됨' : '비교'}
           </button>
         </div>
       </div>
@@ -306,7 +316,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
               aria-pressed={isLiked}
               aria-label={`${likeButtonTitle} (현재 ${formattedLikesCount}명)`}
               title={likeButtonTitle}
-              className={`flex h-9 items-center gap-2 rounded-full border px-3 text-sm font-semibold transition-colors ${
+              className={`flex h-11 min-w-11 items-center gap-2 rounded-full border px-3 text-sm font-semibold transition-colors ${
                 isLiked
                   ? 'border-rose-300 bg-rose-100 text-rose-600 hover:bg-rose-200'
                   : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
@@ -329,7 +339,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
                   type="button"
                   onClick={handleViewDetails}
                   aria-label={`${resort.name} 상세 보기`}
-                  className="h-8 whitespace-nowrap rounded-lg bg-slate-950 px-3 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
+                  className="h-11 whitespace-nowrap rounded-lg bg-slate-950 px-3 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
                 >
                   보기
                 </button>

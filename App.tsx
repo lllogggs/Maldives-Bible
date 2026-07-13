@@ -1869,9 +1869,14 @@ const App: React.FC = () => {
   const resortsToCompare = initialResorts
     .filter(r => compareList.includes(r.id))
     .sort((a, b) => compareList.indexOf(a.id) - compareList.indexOf(b.id));
+  const shouldShowCompareTray =
+    !isCompareViewVisible &&
+    currentView === 'resorts' &&
+    !isImageEditMode &&
+    resortsToCompare.length > 0;
 
   return (
-    <div className="min-h-screen bg-[#f6f8f7] pb-32 text-slate-950">
+    <div className={`min-h-screen bg-[#f6f8f7] text-slate-950 ${shouldShowCompareTray ? 'pb-[calc(11rem+env(safe-area-inset-bottom))] sm:pb-[calc(12rem+env(safe-area-inset-bottom))]' : 'pb-0'}`}>
       <Header
         isImageEditMode={isImageEditMode}
         onToggleImageEditMode={handleToggleImageEditMode}
@@ -2071,7 +2076,7 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
-      {!isCompareViewVisible && currentView === 'resorts' && !isImageEditMode && (
+      {shouldShowCompareTray && (
         <CompareTray
           resorts={resortsToCompare}
           onRemove={handleToggleCompare}
@@ -2083,8 +2088,8 @@ const App: React.FC = () => {
         <div
           key={toastMessage.id}
           className={`fixed right-4 z-50 max-w-xs rounded-lg bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg ${
-            !isCompareViewVisible && currentView === 'resorts' && !isImageEditMode && resortsToCompare.length > 0
-              ? 'bottom-24 sm:bottom-40'
+            shouldShowCompareTray
+              ? 'bottom-[calc(11rem+env(safe-area-inset-bottom))] sm:bottom-[calc(12rem+env(safe-area-inset-bottom))]'
               : 'bottom-4'
           }`}
           role="status"

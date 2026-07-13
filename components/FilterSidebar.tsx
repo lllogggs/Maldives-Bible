@@ -266,7 +266,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
             전체 초기화
           </button>
           {onClose && (
-            <button type="button" onClick={onClose} className="p-1 text-slate-500 hover:text-slate-900 lg:hidden" aria-label="필터 닫기">
+            <button type="button" onClick={onClose} className="inline-flex h-11 w-11 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-900 lg:hidden" aria-label="필터 닫기">
               <XIcon className="h-6 w-6" />
             </button>
           )}

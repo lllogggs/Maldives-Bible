@@ -146,7 +146,7 @@ const TravelAgencies: React.FC = () => {
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
           <h2 className="font-brand-heading text-xl text-slate-950">여행사에 견적 요청</h2>
           <span className="w-fit rounded-full bg-teal-50 px-3 py-1.5 text-xs font-extrabold text-teal-800 ring-1 ring-teal-200">
             2~3곳 비교 추천
@@ -166,7 +166,7 @@ const TravelAgencies: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${agency.name} 홈페이지 새 창에서 열기`}
-                  className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50"
+                  className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50"
                 >
                   <LinkIcon className="h-3.5 w-3.5" />
                   홈페이지
@@ -179,7 +179,7 @@ const TravelAgencies: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${agency.name} 카카오톡 채널 새 창에서 열기`}
-                  className="inline-flex h-9 flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#FAE100] px-3 text-xs font-bold text-[#371D1E] transition-colors hover:bg-[#f5dc00]"
+                  className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#FAE100] px-3 text-xs font-bold text-[#371D1E] transition-colors hover:bg-[#f5dc00]"
                 >
                   <KakaoIcon className="h-3.5 w-3.5" />
                   카톡

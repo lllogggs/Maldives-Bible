@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { Resort } from '../types';
 import { TransportationType } from '../types';
 import { ArrowLeftIcon, StarIcon, CheckCircleIcon, XCircleIcon, SeaplaneIcon, BoatIcon, DomesticFlightIcon, XIcon, ShareIcon } from './icons/Icons';
@@ -104,7 +104,7 @@ const CompareHeaderCard: React.FC<{
         <button
           type="button"
           onClick={() => onRemove(resort.id)}
-          className="absolute right-1.5 top-1.5 z-10 rounded-full bg-slate-950/70 p-1 text-white hover:bg-slate-950"
+          className="z-10 mb-1 ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-950/70 text-white hover:bg-slate-950 md:absolute md:right-1.5 md:top-1.5 md:mb-0"
           aria-label={`${resort.name} 비교에서 제거`}
         >
           <XIcon className="h-4 w-4" />
@@ -141,6 +141,10 @@ const CompareHeaderCard: React.FC<{
 const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, onShare, isSharePending }) => {
   const numResorts = resorts.length;
   const compareHeadingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    compareHeadingRef.current?.focus({ preventScroll: true });
+  }, []);
   
   const getBestValue = (attributeKey: keyof Resort, lowerIsBetter?: boolean) => {
     if (numResorts < 2) return null;
@@ -163,8 +167,9 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
   return (
     <div className="animate-fade-in">
       <button
+        type="button"
         onClick={onBack}
-        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"
+        className="mb-6 inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
       >
         <ArrowLeftIcon className="h-5 w-5" />
         목록으로 돌아가기
