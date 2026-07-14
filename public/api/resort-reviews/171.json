@@ -4,11 +4,18 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 1,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "[ 몰디브 ] 리조트 데이트립... 투어- 리히벨리 리조트 최고다...",
+        "url": "https://blog.naver.com/angalaxy/221274758832",
+        "blogName": "내 생애의 그 어떤 시간",
+        "publishedAt": "2018-07-16",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

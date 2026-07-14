@@ -14,8 +14,7 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -32,6 +31,13 @@
         "url": "https://blog.naver.com/hoji0602/224075097492",
         "blogName": "::HOZY PHOTOGRAPHY:: 정적인 사진관",
         "publishedAt": "2025-11-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 2탄 (feat. 시나몬 돈벨리 몰디브 리조트 )",
+        "url": "https://blog.naver.com/hamassakki/222562413730",
+        "blogName": "✨야옹포포로그✨",
+        "publishedAt": "2021-11-08",
         "independenceUnknown": false
       }
     ]

@@ -4,11 +4,39 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "비행기, 자와카라 아일랜드 몰디브 체크인, 2월 날씨...",
+        "url": "https://blog.naver.com/namannodogs/224223251271",
+        "blogName": "그냥, 파이퍼",
+        "publishedAt": "2026-03-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자와카라 최저가 내돈내산 후기 : 몰디브 7월 우기 날씨...",
+        "url": "https://blog.naver.com/whyso0502/224161813051",
+        "blogName": "Live the life you love",
+        "publishedAt": "2026-01-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자와카라 리조트 워터풀빌라 및 시설 정리, 허니문 특전",
+        "url": "https://blog.naver.com/77susu0_0/224139347996",
+        "blogName": "근꽁의 일상",
+        "publishedAt": "2026-01-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신상 리조트 Jawakara Islands Maldives Mabin Water...",
+        "url": "https://blog.naver.com/momoda0704/223885949118",
+        "blogName": "다정한 다정이 다정하게",
+        "publishedAt": "2025-06-02",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

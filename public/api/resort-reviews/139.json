@@ -4,11 +4,25 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 2,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 ' 아밀라 푸시' 리조트 오션리프하우스 솔직 룸 후기 !",
+        "url": "https://blog.naver.com/secretsm22/221183754436",
+        "blogName": "신뚱이야기",
+        "publishedAt": "2018-01-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아밀라 푸시 리조트 에서 나이트록스 교육받고 다이빙한 후기",
+        "url": "https://blog.naver.com/chocobbana/222856726977",
+        "blogName": "초코빠나 해피 블로그",
+        "publishedAt": "2022-08-24",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

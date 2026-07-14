@@ -46,8 +46,7 @@ const template = `<!doctype html>
 const reviewSummary = {
   basis: 'naver-blog-search-snippets',
   reviewedAt: '2026-07-13T03:00:00.000Z',
-  searchedCount: 10,
-  sourceCount: 4,
+  sourceCount: 10,
   evidenceStatus: 'sufficient',
   pros: [
     '라군과 객실 전망이 좋다는 언급이 많음 <script>alert("x")</script>',
@@ -66,6 +65,12 @@ const reviewSource = {
   blogName: '여행 블로그',
   publishedAt: '2026-07-01',
 };
+
+const reviewSources = Array.from({ length: 10 }, (_, index) => ({
+  ...reviewSource,
+  title: `직접 확인한 후기 출처 ${index + 1}`,
+  url: `https://blog.naver.com/example/${index + 1}`,
+}));
 
 const baseResort = {
   id: 1,
@@ -102,10 +107,8 @@ const insufficientReviewResort = {
 const insufficientReviewSummary = {
   basis: 'naver-blog-search-snippets',
   reviewedAt: '2026-07-13',
-  searchedCount: 8,
   sourceCount: 0,
   evidenceStatus: 'insufficient',
-  evidenceNote: '서로 다른 후기에서 반복된 장단점을 확인하지 못했어요.',
   pros: [],
   cons: [],
 };
@@ -140,7 +143,7 @@ try {
     ),
     writeFile(
       reviewDetailTarget,
-      JSON.stringify({ resortId: 1, reviewSummary: { ...reviewSummary, sources: [reviewSource] } }),
+      JSON.stringify({ resortId: 1, reviewSummary: { ...reviewSummary, sources: reviewSources } }),
       'utf8'
     ),
     writeFile(
@@ -173,11 +176,12 @@ try {
     'utf8'
   );
 
-  assert.match(reviewHtml, /여행자 후기 한눈에/);
-  assert.match(reviewHtml, /공개 후기 4개 참고 · 2026-07-13 업데이트/);
-  assert.match(reviewHtml, /참고한 여행 후기 1개/);
+  assert.match(reviewHtml, /실제 후기 한눈에/);
+  assert.match(reviewHtml, /실제 후기 10개 참고 · 2026-07-13 업데이트/);
+  assert.match(reviewHtml, /참고한 실제 후기 10개/);
   assert.doesNotMatch(reviewHtml, /10건 검토|4건 근거|근거:/);
-  assert.match(reviewHtml, /https:\/\/blog\.naver\.com\/example\/123/);
+  assert.match(reviewHtml, /https:\/\/blog\.naver\.com\/example\/1/);
+  assert.match(reviewHtml, /https:\/\/blog\.naver\.com\/example\/10/);
   assert.match(reviewHtml, /직원 응대가 친절하다는 후기가 반복됨/);
   assert.match(reviewHtml, /공항 이동 비용이 부담스럽다는 언급이 있음/);
   assert.match(reviewHtml, /&lt;script&gt;alert\(&quot;x&quot;\)&lt;\/script&gt;/);

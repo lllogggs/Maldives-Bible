@@ -14,8 +14,7 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -25,6 +24,27 @@
         "url": "https://blog.naver.com/ilovetour520/224039740509",
         "blogName": "wishtravely",
         "publishedAt": "2025-10-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 #7 몰디브 코모 코코아 아일랜드 리조트 도니 워터...",
+        "url": "https://blog.naver.com/viele_blumen/223706869816",
+        "blogName": "먹고 즐기는 라이프",
+        "publishedAt": "2024-12-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 코모 코코아 아일랜드 샌드뱅크",
+        "url": "https://blog.naver.com/jinjoy999/224184551875",
+        "blogName": "찐맛집,여행 정보만 공유하는 트리플J",
+        "publishedAt": "2026-02-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 코모 코코아 아일랜드 올인클루시브 솔직 후기",
+        "url": "https://blog.naver.com/intp_kr/224175471648",
+        "blogName": "특가와 시간만있다면, 어디든지 갈수 있어,",
+        "publishedAt": "2026-02-10",
         "independenceUnknown": false
       }
     ]

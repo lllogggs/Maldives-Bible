@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -27,6 +26,20 @@
         "url": "https://blog.naver.com/gksthf9431/223367863744",
         "blogName": "피노랑 닝구랑",
         "publishedAt": "2024-02-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 8박10일 브레니아 후기 와 스리랑카 경유로 다녀온...",
+        "url": "https://blog.naver.com/moogstar1004/223929887926",
+        "blogName": "여행 일기장",
+        "publishedAt": "2025-07-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "11월 두바이· 몰디브 신혼여행 후기 ｜에미레이트항공부터...",
+        "url": "https://blog.naver.com/dasul9442/224115390927",
+        "blogName": "가즈아 슬코스!",
+        "publishedAt": "2025-12-19",
         "independenceUnknown": false
       }
     ]

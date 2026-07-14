@@ -4,11 +4,81 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 10,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 여행 신혼여행 추천 웨스틴 미리안두 리조트 후기",
+        "url": "https://blog.naver.com/sfly81/224329959919",
+        "blogName": "바쁜아이타이완다이어리",
+        "publishedAt": "2026-06-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 더 웨스틴 몰디브 미리안두 리조트 ① - 투어민 후기 ...",
+        "url": "https://blog.naver.com/lhj258369/224094035671",
+        "blogName": "해딘",
+        "publishedAt": "2025-12-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "드디어 신혼여행 - 몰디브 도착 + 웨스틴 미리안두 리조트 1️⃣",
+        "url": "https://blog.naver.com/happy_vegetable/223637464290",
+        "blogName": "베지타블-로그",
+        "publishedAt": "2024-10-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 4박 - 1탄 (더 웨스틴 몰디브 미리안두 리조트 )",
+        "url": "https://blog.naver.com/rrose56/223942512461",
+        "blogName": "lazy 우미의 블로그 ♥",
+        "publishedAt": "2025-07-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 웨스틴 미리안두 후기 (객실, 리조트 시설) 1편",
+        "url": "https://blog.naver.com/tripjoong/224007778534",
+        "blogName": "도쿄완짱은 오늘도 여행중",
+        "publishedAt": "2025-09-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 웨스틴 미리안두 리조트 까지! - 말레공항...",
+        "url": "https://blog.naver.com/park___yang/223595202900",
+        "blogName": "그해답 (그냥 해도 돼, 답을 몰라도 괜찮아)",
+        "publishedAt": "2024-09-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "쿠알라룸푸르에서 몰디브 로, 더 웨스틴 미리안두 리조트",
+        "url": "https://blog.naver.com/pomi54/223772709545",
+        "blogName": "포미의 블로그",
+        "publishedAt": "2025-02-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행일기 (1) _ 더 웨스틴 몰디브 미리안두 리조트 ...",
+        "url": "https://blog.naver.com/dormidor478/223773981689",
+        "blogName": "도르미도르",
+        "publishedAt": "2025-02-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "(6월의 몰디브 , 웨스틴 미리안두 ) 01. 수상비행기 타고 리조트 ...",
+        "url": "https://blog.naver.com/oili932/223506572338",
+        "blogName": "저장소",
+        "publishedAt": "2024-07-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가족여행 01_ 말레 공항/ 웨스틴 미리안두 라운지...",
+        "url": "https://blog.naver.com/zollindeut/224293660082",
+        "blogName": "집에 갈까",
+        "publishedAt": "2026-05-22",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

@@ -4,11 +4,18 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 1,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 48번째 리조트 더스탠다드후루발리 25.8.4-8.7",
+        "url": "https://blog.naver.com/garamsg/223969196174",
+        "blogName": "♡maldives♡",
+        "publishedAt": "2025-08-13",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

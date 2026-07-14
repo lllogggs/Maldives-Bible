@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -27,6 +26,20 @@
         "url": "https://blog.naver.com/olive__juice/224239314242",
         "blogName": "오리조리",
         "publishedAt": "2026-04-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 코쿤 몰디브 리조트 ] 몰디브 신행2부/ 비치스윗위드풀빌라 후기",
+        "url": "https://blog.naver.com/olive__juice/224243622430",
+        "blogName": "오리조리",
+        "publishedAt": "2026-04-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "두바이 경유 몰디브 신혼여행 몰디브 편( 코쿤몰디브 리조트 ...",
+        "url": "https://blog.naver.com/aledma5077/224218447011",
+        "blogName": "미둠 일상기록｡·͜·｡",
+        "publishedAt": "2026-03-16",
         "independenceUnknown": false
       }
     ]

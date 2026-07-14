@@ -4,11 +4,18 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 1,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "더 노틸러스 몰디브 4박 후기 | 몰디브 하이엔드 리조트 추천",
+        "url": "https://blog.naver.com/apeach25714/224237709552",
+        "blogName": "소소한 대학생 여행/일상 기록",
+        "publishedAt": "2026-04-02",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

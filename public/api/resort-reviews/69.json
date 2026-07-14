@@ -14,8 +14,7 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 5,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -25,6 +24,34 @@
         "url": "https://blog.naver.com/junior8956/223566075014",
         "blogName": "junior8956님의 블로그",
         "publishedAt": "2024-08-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 인터컨티넨탈 마무나가우 예약 가는 법 객실 후기",
+        "url": "https://blog.naver.com/bonniegets/224328499706",
+        "blogName": "보니앤조의 세계여행",
+        "publishedAt": "2026-06-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "M2 인터컨티넨탈몰디브 마무나가우 라운지",
+        "url": "https://blog.naver.com/angelcall/223747991854",
+        "blogName": "뭉치언냐의 지극히 평범한 일상",
+        "publishedAt": "2025-02-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 3일차 인터컨티넨탈 몰디브 마무나가우 (Cafe Umi 메뉴)",
+        "url": "https://blog.naver.com/lovelypharao/222883766011",
+        "blogName": "경제적 자유를 찾아서",
+        "publishedAt": "2022-09-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 비용 인터컨티넨탈 객실 하프보드 트레비아 후기",
+        "url": "https://blog.naver.com/mi1891/223599760139",
+        "blogName": "류쁨의 소소한 이야기",
+        "publishedAt": "2024-09-28",
         "independenceUnknown": false
       }
     ]

@@ -111,6 +111,15 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
       if (typeof source?.possibleSalesContent !== 'boolean') {
         errors.push(`${sourcePrefix}: possibleSalesContent는 boolean이어야 합니다.`);
       }
+      if (source?.selection !== 'relevant') {
+        errors.push(`${sourcePrefix}: 공개 실제 후기는 selection=relevant여야 합니다.`);
+      }
+      if (source?.commercialDisclosure === true || source?.possibleSalesContent === true) {
+        errors.push(`${sourcePrefix}: 광고·판매 가능성이 있는 글은 실제 후기 목록으로 발행할 수 없습니다.`);
+      }
+      if (source?.sourceKind !== 'firsthand-personal') {
+        errors.push(`${sourcePrefix}: 실제 후기 목록에는 sourceKind=firsthand-personal 확인이 필요합니다.`);
+      }
     }
 
     const minimumSources = evidenceStatus === 'sufficient' ? 2 : 1;
@@ -146,8 +155,7 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
     const reviewSummary = {
       pros,
       cons,
-      sourceCount: evidenceSources.length,
-      searchedCount: sources.length,
+      sourceCount: sources.length,
       reviewedAt: item.reviewedAt,
       basis: UI_BASIS,
       evidenceStatus,
@@ -161,7 +169,7 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
       resortId: item.resortId,
       reviewSummary: {
         ...reviewSummary,
-        sources: evidenceSources.map((source) => ({
+        sources: sources.map((source) => ({
           title: String(source.title).trim(),
           url: source.url,
           blogName: String(source.bloggerName ?? '').trim(),

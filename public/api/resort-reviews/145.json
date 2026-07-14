@@ -4,11 +4,32 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 허니문 숙소 추천... 5성급 리우 팰리스 리조트 장점...",
+        "url": "https://blog.naver.com/tingky423/224200784957",
+        "blogName": "워니스픽",
+        "publishedAt": "2026-03-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Day 5 몰디브 리우 팰리스 신혼여행 후기 | 딱 하나 추천하는...",
+        "url": "https://blog.naver.com/nahansol92/223771006605",
+        "blogName": "물빛반짝, 반짝이는 삶을 향해",
+        "publishedAt": "2025-02-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "나의 인생 첫 여행 후기 ( 몰디브 리우팰리스 ) 1",
+        "url": "https://blog.naver.com/coffee7621/223242877541",
+        "blogName": "자유월드",
+        "publishedAt": "2023-10-21",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

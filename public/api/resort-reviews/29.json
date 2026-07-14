@@ -9,8 +9,7 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 2,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,13 @@
         "url": "https://blog.naver.com/be_chacha/130091137982",
         "blogName": "blahblah",
         "publishedAt": "2010-07-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 코코팜 두니콜루 리조트 ① 몰디브 야 오랜만이다....",
+        "url": "https://blog.naver.com/jhkim110/50178757517",
+        "blogName": "플라이앤플레이 - 파비똥꼬",
+        "publishedAt": "2013-09-03",
         "independenceUnknown": false
       }
     ]

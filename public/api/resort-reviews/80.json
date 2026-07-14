@@ -14,8 +14,7 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 9,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -32,6 +31,55 @@
         "url": "https://blog.naver.com/gaengni_/224159182636",
         "blogName": "갱일리",
         "publishedAt": "2026-01-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 쿠다빌링길리 리조트 , 플로팅조식 스노클링 선셋투어...",
+        "url": "https://blog.naver.com/yoyonglife/224064893487",
+        "blogName": "행복한 뚜니 life",
+        "publishedAt": "2025-11-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행ep.2_ 쿠다빌링길리 리조트 내부, 꿀팁까지...",
+        "url": "https://blog.naver.com/rosea_0907/223622367132",
+        "blogName": "로쥬의 일상",
+        "publishedAt": "2024-10-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 신혼여행 후기 쿠다빌링길리 리조트 5박6일",
+        "url": "https://blog.naver.com/ari_vlog/223980016137",
+        "blogName": "신혼쀼의 일상",
+        "publishedAt": "2025-08-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "쿠다빌링길리 몰디브 리조트 워터빌라 장점 단점 솔직 후기",
+        "url": "https://blog.naver.com/junjoo0210/223845147054",
+        "blogName": "세계여행가 미식가주니",
+        "publishedAt": "2025-04-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행은 역시 몰디브 , 리조트 후기 _ 쿠다빌링길리 1...",
+        "url": "https://blog.naver.com/iiining/223549050614",
+        "blogName": "플래의 일상 한 스푼✨",
+        "publishedAt": "2024-08-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[여행/ 몰디브 ] 신혼여행... Kuda Villingili Resort Maldives )",
+        "url": "https://blog.naver.com/kk___2/223829612155",
+        "blogName": "오늘도 깎꿍",
+        "publishedAt": "2025-04-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브리조트 ... Kuda Villingili Resort Maldives )...",
+        "url": "https://blog.naver.com/hy_zeen/223375206679",
+        "blogName": "我心里只有你",
+        "publishedAt": "2024-03-06",
         "independenceUnknown": false
       }
     ]

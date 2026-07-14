@@ -499,10 +499,6 @@ const normalizeReviewSummary = (reviewSummary) => {
   const sourceCount = Number.isInteger(numericSourceCount) && numericSourceCount > 0
     ? Math.min(numericSourceCount, 9999)
     : null;
-  const numericSearchedCount = Number(reviewSummary.searchedCount);
-  const searchedCount = Number.isInteger(numericSearchedCount) && numericSearchedCount > 0
-    ? Math.min(numericSearchedCount, 9999)
-    : null;
   const reviewDateValue = reviewSummary.reviewedAt ?? reviewSummary.searchedAt;
   const reviewedAt = typeof reviewDateValue === 'string'
     ? reviewDateValue.match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? null
@@ -524,9 +520,9 @@ const normalizeReviewSummary = (reviewSummary) => {
         publishedAt: String(source?.publishedAt ?? '').match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? '',
       }];
     })
-    .slice(0, 6);
+    .slice(0, 10);
 
-  return { pros, cons, sourceCount, searchedCount, reviewedAt, basis, evidenceStatus, sources };
+  return { pros, cons, sourceCount, reviewedAt, basis, evidenceStatus, sources };
 };
 
 const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
@@ -539,7 +535,7 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
   const pros = summary.pros.slice(0, limit);
   const cons = summary.cons.slice(0, limit);
   const basis = [
-    summary.sourceCount ? `공개 후기 ${summary.sourceCount}개 참고` : '공개 여행 후기 참고',
+    summary.sourceCount ? `실제 후기 ${summary.sourceCount}개 참고` : '실제 후기 참고',
     summary.reviewedAt ? `${summary.reviewedAt} 업데이트` : null,
   ].filter(Boolean).join(' · ');
 
@@ -561,13 +557,13 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
 
   return `
     <section class="seo-resort-reviews" aria-labelledby="seo-resort-reviews-title" style="margin:24px 0 22px;border-top:1px solid #dbe7e4;padding-top:22px;">
-      <p style="margin:0 0 7px;color:#0f766e;font-size:12px;font-weight:800;letter-spacing:.1em;">TRAVELER NOTES</p>
-      <h2 id="seo-resort-reviews-title" style="margin:0 0 14px;font-size:23px;color:#0f172a;">여행자 후기 한눈에</h2>
+      <p style="margin:0 0 7px;color:#0f766e;font-size:12px;font-weight:800;letter-spacing:.1em;">REAL REVIEWS</p>
+      <h2 id="seo-resort-reviews-title" style="margin:0 0 14px;font-size:23px;color:#0f172a;">실제 후기 한눈에</h2>
       <div class="seo-resort-review-grid" style="display:grid;grid-template-columns:${pros.length > 0 && cons.length > 0 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'};gap:12px;">
         ${pros.length > 0 ? `<section style="border-radius:12px;background:#effaf7;padding:15px 16px;"><h3 style="margin:0;color:#0f766e;font-size:16px;">장점</h3><ul style="margin:5px 0 0;padding-left:19px;color:#334155;">${pointList(pros)}</ul></section>` : ''}
         ${cons.length > 0 ? `<section style="border-radius:12px;background:#fff8f0;padding:15px 16px;"><h3 style="margin:0;color:#9a5b31;font-size:16px;">아쉬운 점</h3><ul style="margin:5px 0 0;padding-left:19px;color:#334155;">${pointList(cons)}</ul></section>` : ''}
       </div>
-      ${sourceLinks ? `<details style="margin-top:12px;border-top:1px solid #dbe7e4;padding-top:10px;"><summary style="cursor:pointer;color:#0f766e;font-size:13px;font-weight:700;">참고한 여행 후기 ${summary.sources.length}개</summary><ul style="margin:5px 0 0;padding-left:19px;color:#334155;font-size:12px;line-height:1.6;">${sourceLinks}</ul></details>` : ''}
+      ${sourceLinks ? `<details style="margin-top:12px;border-top:1px solid #dbe7e4;padding-top:10px;"><summary style="cursor:pointer;color:#0f766e;font-size:13px;font-weight:700;">참고한 실제 후기 ${summary.sources.length}개</summary><ul style="margin:5px 0 0;padding-left:19px;color:#334155;font-size:12px;line-height:1.6;">${sourceLinks}</ul></details>` : ''}
       <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${escapeHtml(basis)}. 선택에 도움이 되는 내용을 보기 쉽게 정리했으며, 여행 시기와 객실 유형에 따라 경험은 달라질 수 있습니다.</p>
     </section>`;
 };

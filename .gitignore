@@ -29,6 +29,5 @@ dist-ssr
 *.sw?
 .vercel
 
-# NAVER blog-search research cache (raw titles/snippets/source metadata)
-.research/naver-blog-reviews/raw/
-.research/naver-blog-reviews/parts/
+# NAVER blog-search research cache and local review-audit artifacts
+.research/

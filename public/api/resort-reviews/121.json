@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,20 @@
         "url": "https://blog.naver.com/jeeeee_o/223971488174",
         "blogName": "멍때리다가 가끔 어딘가 다녀오는 집순이의 일상 기록",
         "publishedAt": "2025-08-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[내인생에 몰디브 #2] 몰디브 소네바푸시 리조트",
+        "url": "https://blog.naver.com/arti76/223739025142",
+        "blogName": "느긋한사자,호랭 그리고 고양이들",
+        "publishedAt": "2025-01-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 소네바푸시 & 소네바 자니 후기 (1)",
+        "url": "https://blog.naver.com/c5316/223711935694",
+        "blogName": "GDP 블로그",
+        "publishedAt": "2025-01-01",
         "independenceUnknown": false
       }
     ]

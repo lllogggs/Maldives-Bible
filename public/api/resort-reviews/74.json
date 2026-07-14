@@ -4,11 +4,18 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 1,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "신혼여행지 주메이라 올하할리 리조트 22년10월 1일차 후기",
+        "url": "https://blog.naver.com/tnwlsdl702/222910133843",
+        "blogName": "책상에서 즐기는 여행 이야기",
+        "publishedAt": "2022-10-25",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

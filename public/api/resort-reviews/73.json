@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -27,6 +26,20 @@
         "url": "https://blog.naver.com/subinii1/224099843312",
         "blogName": "오슈님의 블로그",
         "publishedAt": "2025-12-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "리조트 가격 / 스피드보트/경비행기/ 조이아일랜드 솔직 후기 ...",
+        "url": "https://blog.naver.com/smartoktokyi/224240823880",
+        "blogName": "똑똑이",
+        "publishedAt": "2026-04-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 리조트 ] 올인 클루시브 조이 아일랜드 액티비티 (요가...",
+        "url": "https://blog.naver.com/bin4438/223619994649",
+        "blogName": "지구 모험 일기",
+        "publishedAt": "2024-10-15",
         "independenceUnknown": false
       }
     ]

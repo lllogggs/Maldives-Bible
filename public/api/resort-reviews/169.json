@@ -4,11 +4,18 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 1,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "싱가포르 경유 몰디브 ( 마쿠누두 리조트 )",
+        "url": "https://blog.naver.com/you4757/223189416634",
+        "blogName": "검은발빠닥의 여행흔적 남기기",
+        "publishedAt": "2023-08-21",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

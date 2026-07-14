@@ -13,8 +13,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -31,6 +30,20 @@
         "url": "https://blog.naver.com/yulri39/223877327635",
         "blogName": "나를 채우는, 일상의 기록",
         "publishedAt": "2025-05-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 반도스 리조트 (Bandos Maldives) 투어 예약 / 부대...",
+        "url": "https://blog.naver.com/saseum87/223935893967",
+        "blogName": "조글렛의 일상다반사.",
+        "publishedAt": "2025-07-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2023 신혼여행 ( 몰디브 반도스 리조트 )",
+        "url": "https://blog.naver.com/blingyum/223513610713",
+        "blogName": "여기는 윰로그",
+        "publishedAt": "2024-07-19",
         "independenceUnknown": false
       }
     ]

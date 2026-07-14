@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 7,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,48 @@
         "url": "https://blog.naver.com/john_travel/223569235202",
         "blogName": "존트레블",
         "publishedAt": "2024-09-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 2 - 몰디브 도착!! | 말라히니 쿠다반도스",
+        "url": "https://blog.naver.com/dbql1114/223869664853",
+        "blogName": "오늘은 둠스데이",
+        "publishedAt": "2025-05-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 말라히니 쿠다 반도스 리조트 2일차",
+        "url": "https://blog.naver.com/jidolv/221205951343",
+        "blogName": "사소하지만 괜찮은 순간들",
+        "publishedAt": "2018-02-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "02.10 - 2024.02.19 일정중 말라히니 쿠다 반도스 리조트 1",
+        "url": "https://blog.naver.com/saartheater/223363525363",
+        "blogName": "saartheater님의블로그",
+        "publishedAt": "2024-02-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 숙소 추천 말라히니 쿠다 반도스 리조트 / 몰디브 신혼여행지",
+        "url": "https://blog.naver.com/cheetoworld/223200643487",
+        "blogName": "치토월드",
+        "publishedAt": "2023-09-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 바다, 블루바, 말라히니 쿠다 반도스 리조트 (부제...",
+        "url": "https://blog.naver.com/yesntya5616/221712460001",
+        "blogName": "엔티 라이프 ✨",
+        "publishedAt": "2019-11-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "드디어 몰디브 리조트 로! 말라히니 쿠다 반도스 리조트 후기",
+        "url": "https://blog.naver.com/hjinai/221391653606",
+        "blogName": "희구리 세상",
+        "publishedAt": "2018-11-05",
         "independenceUnknown": false
       }
     ]

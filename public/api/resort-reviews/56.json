@@ -4,11 +4,67 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 8,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "① - 1박 600만원 몰디브 포시즌스 리조트 란다 기라바루",
+        "url": "https://blog.naver.com/hapbb_/223931421471",
+        "blogName": "Privé Moment",
+        "publishedAt": "2025-07-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "네버엔딩 포 시즌스 몰디브 앳 란다 기라바루 리조트 도착기",
+        "url": "https://blog.naver.com/noveltyfunsy/223761307113",
+        "blogName": "Novelty funsy",
+        "publishedAt": "2025-02-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "세 아이와 함께한 몰디브 여행, 포시즌스 란다기라바루 솔직 후기",
+        "url": "https://blog.naver.com/gksqls0426/223945330939",
+        "blogName": "도전하는 엄마, 다둥이 엄마의 세계여행",
+        "publishedAt": "2025-07-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "01ㅣ Four Seasons Resort Maldives at Landaa Giraavaru",
+        "url": "https://blog.naver.com/sagereal/220425138071",
+        "blogName": "SAGE PANORAMA",
+        "publishedAt": "2015-07-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "도착 ( Four Seasons Resort Maldives at Landaa Giraavaru 비행기...",
+        "url": "https://blog.naver.com/giligiraa/220612562957",
+        "blogName": "배불둘이의 몰디브 한 잔",
+        "publishedAt": "2016-01-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Four Seasons Resort Maldives at Landaa Giraavaru , 포시즌...",
+        "url": "https://blog.naver.com/m2ps3/220424978708",
+        "blogName": "빠미와 뽀미",
+        "publishedAt": "2015-07-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Four Seasons Resort Maldives at Landaa Giraavaru ) 선라이즈...",
+        "url": "https://blog.naver.com/nana1610/90171358899",
+        "blogName": "M&N 의 여행일기 ♪",
+        "publishedAt": "2013-04-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "GO..GO.. Four Seasons Resort Maldives at Landaa Giraavaru",
+        "url": "https://blog.naver.com/girlishi/20103010062",
+        "blogName": ":+:+:+: 삶의 향기 :+:+:+:",
+        "publishedAt": "2010-03-29",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

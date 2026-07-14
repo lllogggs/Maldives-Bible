@@ -4,11 +4,46 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 5,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "️[ 몰디브 하드락호텔 ] 공항 15분 거리 리조트 ! 실버스카이...",
+        "url": "https://blog.naver.com/parang_dori/224051739806",
+        "blogName": "파랑돌이의 여행일기✈️",
+        "publishedAt": "2025-10-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 후기 하드락호텔 리조트 항공권 환승 정보",
+        "url": "https://blog.naver.com/bluewindowss/224214803589",
+        "blogName": "임스의 생활 작업실",
+        "publishedAt": "2026-03-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 올인클루시브 리조트 추천 하드락 호텔 총정리",
+        "url": "https://blog.naver.com/trueloveu/224247918845",
+        "blogName": "티아라여행, T r a v e l o g u e",
+        "publishedAt": "2026-04-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행_ 하드락 호텔 올인클루시브 리조트 _식당편",
+        "url": "https://blog.naver.com/manjo_o/224340265626",
+        "blogName": "One thing",
+        "publishedAt": "2026-07-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 하드락 리조트 후기 | 실버 비치 스튜디오 객실, 체크인...",
+        "url": "https://blog.naver.com/daily720/224220138700",
+        "blogName": "네모메모",
+        "publishedAt": "2026-03-17",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

@@ -4,11 +4,60 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 7,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "홀리데이 인 리조트 몰디브 칸두마 (2) - 체크인, 패밀리 트윈...",
+        "url": "https://blog.naver.com/yomiz99/223926431638",
+        "blogName": "여행놀이",
+        "publishedAt": "2025-07-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 프롤로그 홀리데이인 칸두마 리조트 룸타입 가격",
+        "url": "https://blog.naver.com/leelee-bubu/224140748792",
+        "blogName": "리리부부의 잘 먹고 잘 살기",
+        "publishedAt": "2026-01-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 여행 날씨 및 필수... 꿀팁 ( 칸두마 홀리데이 인 리조트 ...",
+        "url": "https://blog.naver.com/freena_s2/223114995832",
+        "blogName": "프리나 여행가자✈️",
+        "publishedAt": "2023-05-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가족여행 홀리데이인 칸두마 리조트 로 다녀왔어요",
+        "url": "https://blog.naver.com/fntlem85/221525603199",
+        "blogName": "Bum's mom... ♥",
+        "publishedAt": "2019-04-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아기랑여행, 몰디브 홀리데이인 칸두마 리조트후기 , 몰디브 행...",
+        "url": "https://blog.naver.com/daejimr/221436763971",
+        "blogName": "R A N I D A I L Y",
+        "publishedAt": "2019-01-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 허니문 - 홀리데이 인 칸두마",
+        "url": "https://blog.naver.com/sky48jw/220170339428",
+        "blogName": "부부와 아이 이야기.",
+        "publishedAt": "2014-11-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아기와 함께 몰디브 여행 : Holiday inn Kandooma Maldives",
+        "url": "https://blog.naver.com/flower1219/221186309510",
+        "blogName": "똥글이와 세계여행",
+        "publishedAt": "2018-01-16",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

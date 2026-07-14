@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 6,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,41 @@
         "url": "https://blog.naver.com/ilovetour520/223984015579",
         "blogName": "wishtravely",
         "publishedAt": "2025-08-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 코코기리 리조트 워터빌라 후기",
+        "url": "https://blog.naver.com/guri316/224102879119",
+        "blogName": "HaHaHoHo ~ 복치의 여행기록 : )",
+        "publishedAt": "2025-12-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행기록 ( 코코기리 리조트 , 몰디브 벨레나공항)",
+        "url": "https://blog.naver.com/bom_1114/223904231112",
+        "blogName": "봄테마이(봄TMI)",
+        "publishedAt": "2025-06-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 말레공항 입국 스피드보트 코코기리 리조트 체크인)",
+        "url": "https://blog.naver.com/whtmddn24/223617211933",
+        "blogName": "푸푸패밀리",
+        "publishedAt": "2024-10-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 말레] 리조트 가기 전 몰디브 도시 말레 찍먹",
+        "url": "https://blog.naver.com/jenny9801/224341623224",
+        "blogName": "잰잰's 냥냥한 하루",
+        "publishedAt": "2026-07-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "(h78 Maldives, 코코기리 리조트 Cocogiri Island Resort Maldives)",
+        "url": "https://blog.naver.com/everx3/223955991192",
+        "blogName": "언제라도oo",
+        "publishedAt": "2025-08-02",
         "independenceUnknown": false
       }
     ]

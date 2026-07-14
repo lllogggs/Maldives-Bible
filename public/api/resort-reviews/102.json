@@ -4,11 +4,39 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 파티나 리조트 | 빌라 앞에서 물고기를 만날 수 있는...",
+        "url": "https://blog.naver.com/miuriu/224154973007",
+        "blogName": "정젤리의 일상",
+        "publishedAt": "2026-01-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 룩 날씨 환전 예산 파티나 파리아일랜드 리조트 후기",
+        "url": "https://blog.naver.com/nabongfeel/223325297242",
+        "blogName": "똑부러지는 여행일기",
+        "publishedAt": "2024-01-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 파티나 리조트 신혼여행 첫째날 후기 (입국, 비치빌라...",
+        "url": "https://blog.naver.com/pororidiary/223663890780",
+        "blogName": "포로리의 일기장",
+        "publishedAt": "2024-11-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 파티나 리조트 후기 (스파 센터 &VELI 메인 바...",
+        "url": "https://blog.naver.com/jewelkmy/223831214663",
+        "blogName": "꼬리의 파라다이스",
+        "publishedAt": "2025-04-14",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

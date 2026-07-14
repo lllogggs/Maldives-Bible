@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,20 @@
         "url": "https://blog.naver.com/ugi0489/223600712773",
         "blogName": "해지음의 TraveLife-Log",
         "publishedAt": "2024-09-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 수중환경 좋은 샌디스 바탈라 리조트 도착",
+        "url": "https://blog.naver.com/blossomflower/222511563481",
+        "blogName": "꽃을 피우다, 피움",
+        "publishedAt": "2021-09-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "바탈라 후기 (5) - 총평",
+        "url": "https://blog.naver.com/emaldives/223577729696",
+        "blogName": "몰디브 그 라군.......",
+        "publishedAt": "2024-09-09",
         "independenceUnknown": false
       }
     ]

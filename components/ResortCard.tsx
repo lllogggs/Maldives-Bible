@@ -153,6 +153,14 @@ const ResortCard: React.FC<ResortCardProps> = ({
     }
   };
 
+  const handleCardClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('button, a, input, select, textarea, summary, [role="button"], [data-card-action]')) {
+      return;
+    }
+    handleViewDetails(e);
+  };
+
   const handleImageError = () => {
     if (!currentImageUrl) return;
     setFailedImageUrls(prev => {
@@ -164,8 +172,9 @@ const ResortCard: React.FC<ResortCardProps> = ({
 
   return (
     <article
-      className="flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+      className="group/card relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:-translate-y-1.5 hover:z-10 hover:border-teal-200 hover:shadow-2xl hover:shadow-teal-950/15 motion-reduce:transform-none"
       data-resort-card={resort.id}
+      onClick={handleCardClick}
     >
       <div className="group relative overflow-hidden bg-slate-100">
         <button
@@ -184,7 +193,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
         >
           {currentImageUrl ? (
             <img
-              className="aspect-[16/10] h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] sm:aspect-auto sm:h-56"
+              className="aspect-[16/10] h-auto w-full object-cover transition-transform duration-500 group-hover/card:scale-[1.04] sm:aspect-auto sm:h-56"
               src={currentImageUrl}
               alt={`${resort.name} 리조트 이미지 ${safeImageIndex + 1}`}
               onError={handleImageError}

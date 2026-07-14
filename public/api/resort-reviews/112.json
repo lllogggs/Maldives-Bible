@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 7,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -27,6 +26,41 @@
         "url": "https://blog.naver.com/eunjina27/223816672892",
         "blogName": "강동반영구/천호눈썹문신 바이제이브로우",
         "publishedAt": "2025-03-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "투어민 몰디브 여행 3~7일차 ( 로빈슨클럽누누 리조트 )",
+        "url": "https://blog.naver.com/dwj139/223989642848",
+        "blogName": "모묘롱의 성장일기",
+        "publishedAt": "2025-08-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 로빈슨 누누 리조트 내돈내산 솔직 후기 | 음식...",
+        "url": "https://blog.naver.com/onlthe/224275484771",
+        "blogName": "변망고의 갓생 말고 사부작생",
+        "publishedAt": "2026-05-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 허니문 리조트 추천 로빈슨 누누 신혼여행 숙소",
+        "url": "https://blog.naver.com/dbslghksl/224183139907",
+        "blogName": "@슈나 * 사진에 담은 여행이야기",
+        "publishedAt": "2026-02-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 리조트 추천 로빈슨 누누 시간 올인클루시브",
+        "url": "https://blog.naver.com/msjh1012/224151673016",
+        "blogName": "Nehir Travelog",
+        "publishedAt": "2026-01-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 로빈슨클럽누누 워터풀빌라 : 여행 꿀팁과 후기",
+        "url": "https://blog.naver.com/352kjh/223715187893",
+        "blogName": "둔둔",
+        "publishedAt": "2025-01-05",
         "independenceUnknown": false
       }
     ]

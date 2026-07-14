@@ -13,8 +13,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -31,6 +30,20 @@
         "url": "https://blog.naver.com/bluebeigeday/220449712483",
         "blogName": "The Bluebeige Day",
         "publishedAt": "2015-08-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 가성비 리조트 다이아몬드 투두푸시 워터빌라...",
+        "url": "https://blog.naver.com/jangyah/224060587214",
+        "blogName": "보네르의 여행스토리",
+        "publishedAt": "2025-10-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 투두푸시 후기",
+        "url": "https://blog.naver.com/elec0907/224011733685",
+        "blogName": "테일러조",
+        "publishedAt": "2025-09-17",
         "independenceUnknown": false
       }
     ]

@@ -4,11 +4,60 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 7,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 선 아쿠아 이루 벨리 프라이빗 풀 객실 조식 디너",
+        "url": "https://blog.naver.com/danans/223657077571",
+        "blogName": "다사다난 여행 리뷰",
+        "publishedAt": "2024-11-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행✈️ 몰디브 리조트 추천! 선시암 이루 밸리...",
+        "url": "https://blog.naver.com/gm0804ltn/224174425507",
+        "blogName": "일기는 미뤄도 블로그는 써야지",
+        "publishedAt": "2026-02-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 가격 코스 몰디브 리조트 선시암 이루벨리 후기",
+        "url": "https://blog.naver.com/namhansh/223655786778",
+        "blogName": "프로 세계여행러 떠네르",
+        "publishedAt": "2024-11-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 선시암이루 밸리 돌핀오션스윗위드풀 2박 후기",
+        "url": "https://blog.naver.com/dunkelheitr/223340582256",
+        "blogName": "이슬이랑 하루",
+        "publishedAt": "2024-02-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행: 선시암 이루벨리( Sun Siyam Iru Veli ) 리조트 후기 ♥",
+        "url": "https://blog.naver.com/dailysoo-/223695291874",
+        "blogName": "DAILY SOO",
+        "publishedAt": "2024-12-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 도착 , 선아쿠아 이루벨리 ( Sun Aqua Iru Veli )",
+        "url": "https://blog.naver.com/dbwls8873/221951588178",
+        "blogName": "신비로 가득한 행복의 blog",
+        "publishedAt": "2020-05-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Maldives [ Sun Siyam Iru Veli ] _2 (비치빌라,워터빌라)",
+        "url": "https://blog.naver.com/shinhye654/222811834861",
+        "blogName": "My home",
+        "publishedAt": "2022-07-14",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

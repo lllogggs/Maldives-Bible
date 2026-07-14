@@ -4,11 +4,32 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "말레 공항에서 포시즌스 리조트 몰디브 앳 쿠다 후라 ...",
+        "url": "https://blog.naver.com/rachael726/224090475224",
+        "blogName": "아름다운 나의 청춘에게",
+        "publishedAt": "2025-11-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 포시즌스 리조트 몰디브 앳 쿠다 후라 (1) ,허니문...",
+        "url": "https://blog.naver.com/dborasoo/223958087032",
+        "blogName": "드보라의 블로그",
+        "publishedAt": "2025-08-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 포시즌 리조트 ( Four seasons resort at Kuda Huraa )",
+        "url": "https://blog.naver.com/jhkim18/110172283453",
+        "blogName": "빠박이의 입안의 행복 스토리",
+        "publishedAt": "2013-07-17",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

@@ -14,8 +14,7 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 2,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -25,6 +24,13 @@
         "url": "https://blog.naver.com/gloriousld/220536197561",
         "blogName": "이니그마의 사람을 만나는 여행, 마음을 담는 사진",
         "publishedAt": "2015-11-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "이츠마이트래블 몰디브리조트 콘스탄스 할라벨리 리조트",
+        "url": "https://blog.naver.com/jhkim110/50176583958",
+        "blogName": "플라이앤플레이 - 파비똥꼬",
+        "publishedAt": "2013-08-01",
         "independenceUnknown": false
       }
     ]

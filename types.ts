@@ -54,16 +54,13 @@ export interface ResortReviewSource {
 export interface ResortReviewSummary {
   pros: ResortReviewPoint[];
   cons: ResortReviewPoint[];
-  /** Number of public sources that directly support at least one displayed point. */
+  /** Number of verified firsthand review links available to the user. */
   sourceCount: number;
-  /** Number of NAVER search results inspected before relevance/evidence filtering. */
-  searchedCount: number;
   /** ISO date for the latest review/curation pass. */
   reviewedAt: string;
   basis: 'naver-blog-search-snippets' | 'manual-curation';
   /** sufficient = repeated by 2+ independent sources; limited = one clear firsthand source. */
   evidenceStatus: 'sufficient' | 'limited' | 'insufficient';
-  evidenceNote?: string;
   sources?: ResortReviewSource[];
 }
 

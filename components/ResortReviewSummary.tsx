@@ -88,6 +88,43 @@ const DetailPoint: React.FC<{ point: ResortReviewPoint; tone: 'pro' | 'con' }> =
   </li>
 );
 
+const ReviewSources: React.FC<{ sources: ResortReviewSummaryData['sources'] }> = ({ sources = [] }) => {
+  if (sources.length === 0) return null;
+
+  return (
+    <details className="mt-3 border-t border-teal-100 pt-3">
+      <summary className="min-h-11 cursor-pointer py-2 text-sm font-bold text-teal-800 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500">
+        참고한 실제 후기 {sources.length}개 보기
+      </summary>
+      <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+        {sources.map((source, index) => {
+          const publishedAt = formatDate(source.publishedAt);
+
+          return (
+            <li key={`${source.url}-${index}`} className="min-w-0 rounded-lg border border-slate-200 bg-white px-3 py-2.5">
+              <a
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="line-clamp-2 text-sm font-semibold leading-5 text-slate-800 underline decoration-slate-300 underline-offset-2 hover:text-teal-700"
+              >
+                {source.title}
+              </a>
+              {(source.blogName || publishedAt) && (
+                <p className="mt-1 text-xs text-slate-500">
+                  {source.blogName}
+                  {source.blogName && publishedAt && <span aria-hidden="true"> · </span>}
+                  {publishedAt}
+                </p>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </details>
+  );
+};
+
 const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, resortName, summary, variant }) => {
   const [detailState, setDetailState] = useState({ resortId, summary });
 
@@ -97,7 +134,7 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
       variant !== 'detail'
       || !summary
       || summary.sources?.length
-      || summary.evidenceStatus === 'insufficient'
+      || !summary.sourceCount
     ) return;
 
     const controller = new AbortController();
@@ -139,24 +176,30 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
   if (variant === 'compact') {
     const compactPros = pros.slice(0, 2);
     const compactCons = cons.slice(0, 1);
+    const sourceCount = Math.max(0, Math.floor(activeSummary.sourceCount || 0));
 
     return (
       <section
         className={`mt-3 overflow-hidden rounded-xl border border-teal-100 bg-gradient-to-br from-teal-50/90 to-sky-50/60 px-3 py-2.5 ${
           evidenceStatus === 'insufficient' ? 'h-[5.5rem]' : 'h-[7.75rem]'
         }`}
-        aria-label={`${resortName} 여행자 후기`}
+        aria-label={`${resortName} 실제 후기`}
       >
-        <div className="mb-1.5 flex items-center gap-2">
+        <div className="mb-1.5 flex items-center justify-between gap-2">
           <h4 className="text-[11px] font-extrabold tracking-tight text-teal-900">
             {evidenceStatus === 'insufficient'
               ? '후기 요약 준비 중'
-              : '여행자 후기 한눈에'}
+              : '실제 후기 한눈에'}
           </h4>
+          {sourceCount > 0 && (
+            <span className="shrink-0 text-[10px] font-semibold text-slate-500">실제 후기 {sourceCount}개</span>
+          )}
         </div>
         {evidenceStatus === 'insufficient' ? (
           <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-slate-600">
-            실제 여행 후기를 더 확인하고 있어요. 정리가 끝나면 핵심 장단점을 알려드릴게요.
+            {sourceCount > 0
+              ? `실제 후기 ${sourceCount}개를 확인했고, 핵심 장단점을 정리하고 있어요.`
+              : '실제 후기를 더 확인하고 있어요. 정리가 끝나면 핵심 장단점을 알려드릴게요.'}
           </p>
         ) : (
           <ul className="space-y-1">
@@ -182,21 +225,24 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
         className="mb-8 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6"
         aria-labelledby={`review-summary-title-${resortId}`}
       >
-        <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Traveler notes</p>
+        <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Real reviews</p>
         <h2 id={`review-summary-title-${resortId}`} className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl">
-          여행자 후기를 더 모으고 있어요
+          실제 후기를 더 모으고 있어요
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
-          확인된 내용이 충분히 모이면 선택에 도움 되는 핵심 장단점으로 정리해드릴게요.
+          {activeSummary.sourceCount > 0
+            ? `실제 후기 ${activeSummary.sourceCount}개를 확인했어요. 선택에 도움 되는 핵심 장단점도 이어서 정리할게요.`
+            : '확인된 내용이 충분히 모이면 선택에 도움 되는 핵심 장단점으로 정리해드릴게요.'}
         </p>
+        <ReviewSources sources={sources} />
       </section>
     );
   }
 
   const reviewedAt = formatDate(activeSummary.reviewedAt);
   const basisLabel = evidenceStatus === 'limited'
-    ? '공개된 여행 후기에서 확인한 내용을 보기 쉽게 정리했어요.'
-    : '여러 공개 여행 후기에서 자주 언급된 내용을 보기 쉽게 정리했어요.';
+    ? '공개된 실제 후기에서 확인한 내용을 보기 쉽게 정리했어요.'
+    : '여러 실제 후기에서 자주 언급된 내용을 보기 쉽게 정리했어요.';
 
   return (
     <section
@@ -205,12 +251,12 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-teal-700">Traveler notes</p>
+          <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-teal-700">Real reviews</p>
           <h2
             id={`review-summary-title-${resortId}`}
             className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl"
           >
-            여행자 후기 한눈에
+            실제 후기 한눈에
           </h2>
         </div>
         {reviewedAt && <p className="text-xs leading-5 text-slate-500">{reviewedAt} 업데이트</p>}
@@ -241,38 +287,7 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
 
       <p className="mt-4 text-xs leading-5 text-slate-500">{basisLabel} 여행 시기와 객실 유형에 따라 경험은 달라질 수 있어요.</p>
 
-      {sources.length > 0 && (
-        <details className="mt-3 border-t border-teal-100 pt-3">
-          <summary className="min-h-11 cursor-pointer py-2 text-sm font-bold text-teal-800 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500">
-            참고한 여행 후기 {sources.length}개 보기
-          </summary>
-          <ul className="mt-2 grid gap-2 sm:grid-cols-2">
-            {sources.map((source, index) => {
-              const publishedAt = formatDate(source.publishedAt);
-
-              return (
-                <li key={`${source.url}-${index}`} className="min-w-0 rounded-lg border border-slate-200 bg-white px-3 py-2.5">
-                  <a
-                    href={source.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="line-clamp-2 text-sm font-semibold leading-5 text-slate-800 underline decoration-slate-300 underline-offset-2 hover:text-teal-700"
-                  >
-                    {source.title}
-                  </a>
-                  {(source.blogName || publishedAt) && (
-                    <p className="mt-1 text-xs text-slate-500">
-                      {source.blogName}
-                      {source.blogName && publishedAt && <span aria-hidden="true"> · </span>}
-                      {publishedAt}
-                    </p>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </details>
-      )}
+      <ReviewSources sources={sources} />
     </section>
   );
 };

@@ -4,11 +4,67 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 8,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 벨라사루 리조트 1일차 - 체크인 & 첫 끼 Turquoise",
+        "url": "https://blog.naver.com/mincha09/224247800865",
+        "blogName": "Cha’s log",
+        "publishedAt": "2026-04-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행2] 몰디브 DAY1 벨라사루 리조트 솔직 후기",
+        "url": "https://blog.naver.com/smile_tion/224222247169",
+        "blogName": "여행 일상⭐️",
+        "publishedAt": "2026-03-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 벨라사루 리조트 후기 1탄/말레공항주류보관...",
+        "url": "https://blog.naver.com/om_rud/223894023129",
+        "blogName": "My footprints✨",
+        "publishedAt": "2025-06-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "6박9일 두바이/ 몰디브 신혼여행 : 벨라사루 리조트 워터방갈로...",
+        "url": "https://blog.naver.com/hoandky/224003823952",
+        "blogName": "추억이 방울방울♩",
+        "publishedAt": "2025-09-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 입국신고서... 싱가포르 항공, 벨라사루 리조트",
+        "url": "https://blog.naver.com/the_goyuhan/223739367960",
+        "blogName": "PILATESSAGE(필라테사지)",
+        "publishedAt": "2025-01-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 몰디브 졸업하다!! 벨라사루 velassaru 후기",
+        "url": "https://blog.naver.com/ghjm0207/224206873538",
+        "blogName": "천방지축 ESFP 부부의 지끈지끈한 일상",
+        "publishedAt": "2026-03-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "웹투어 몰디브 벨라사루 리조트 워터방갈로 위드풀 룸투어",
+        "url": "https://blog.naver.com/wldn24wldn/223720345453",
+        "blogName": "야무진 쀼의 맛집여행",
+        "publishedAt": "2025-01-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 숙소 벨라사루 후기 (비치빌라위드풀)",
+        "url": "https://blog.naver.com/tlsalswn000/223544473993",
+        "blogName": "도원쀼 오늘은 어디가?",
+        "publishedAt": "2024-08-11",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

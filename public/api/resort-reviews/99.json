@@ -9,8 +9,7 @@
         "mentions": 2
       }
     ],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 9,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -27,6 +26,55 @@
         "url": "https://blog.naver.com/rapperkjm/223562163733",
         "blogName": "한껏 게을러터진 냥이 집사의 일기장",
         "publishedAt": "2024-08-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행 몰디브 리조트 ] 아웃리거 마푸시바루 부대시설...",
+        "url": "https://blog.naver.com/jukk2/223716548269",
+        "blogName": "꼬마장군 블로그",
+        "publishedAt": "2025-01-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 아웃리거 마푸시바루 : 워터풀빌라 vs...",
+        "url": "https://blog.naver.com/lseoyoungl/224107565459",
+        "blogName": "나의 작은 세계",
+        "publishedAt": "2025-12-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 아웃리거 마푸시바루 리조트 후기 2일차",
+        "url": "https://blog.naver.com/kisstv321/223740706549",
+        "blogName": "준우네 육아일기 :)⑅",
+        "publishedAt": "2025-01-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아웃리거 마푸시바루 신혼여행 리조트 상어투어 후기",
+        "url": "https://blog.naver.com/csa218/224052757749",
+        "blogName": "미니트 블로그",
+        "publishedAt": "2025-10-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아웃리거 마푸시바루 비치풀빌라 후기",
+        "url": "https://blog.naver.com/kimhb9189/224029546122",
+        "blogName": "찌든 직장인 햅찌의 방방곡곡",
+        "publishedAt": "2025-10-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아웃리거 몰디브 마푸시바루 | 비치빌라 | 마사지 솔직 후기",
+        "url": "https://blog.naver.com/kimmy1dys/224324180351",
+        "blogName": "키미의 이곳저곳 탐방일기",
+        "publishedAt": "2026-06-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[#1. 몰디브 숙소] 몰디브 마푸시바루 아웃리거 워터 풀빌라 후기 ...",
+        "url": "https://blog.naver.com/dayharu1128/224324267957",
+        "blogName": "항스 초이스",
+        "publishedAt": "2026-06-23",
         "independenceUnknown": false
       }
     ]

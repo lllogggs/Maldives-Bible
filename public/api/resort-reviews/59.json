@@ -4,11 +4,18 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 1,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "[ 몰디브 숙소추천] 라군이... 있는 ' Gangehi island resort '",
+        "url": "https://blog.naver.com/cloud9_traveller/223025676204",
+        "blogName": "Lemonee-Lemon-Lemon",
+        "publishedAt": "2023-02-23",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

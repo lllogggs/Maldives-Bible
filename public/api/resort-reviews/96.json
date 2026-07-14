@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 8,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,55 @@
         "url": "https://blog.naver.com/173_02/224170526649",
         "blogName": "영이어게인",
         "publishedAt": "2026-02-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 오블루 셀렉트 상겔리 리조트 4박5일 프롤로그",
+        "url": "https://blog.naver.com/jinicupid/224224961821",
+        "blogName": "김큐트의 세계자유여행",
+        "publishedAt": "2026-03-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2024.02 몰디브 여행 5편 - 오블루 셀렉트 상겔리 워터빌라...",
+        "url": "https://blog.naver.com/a_ryan/223786514104",
+        "blogName": "ARYANLOG",
+        "publishedAt": "2025-03-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 추천 - 오블루 상겔리 체크인 후기",
+        "url": "https://blog.naver.com/ggflove77/224297604580",
+        "blogName": "ggflove77님의블로그",
+        "publishedAt": "2026-05-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 오블루 셀렉트 상겔리",
+        "url": "https://blog.naver.com/pspitt/224271635575",
+        "blogName": "여행, 서하네",
+        "publishedAt": "2026-05-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 오블루 셀렉트 상겔리 다녀와서",
+        "url": "https://blog.naver.com/kub1231/223905990794",
+        "blogName": "벤자민 여행 일기",
+        "publishedAt": "2025-06-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 오블루 상겔리 리조트 허니문 신혼여행 3~5일차 후기",
+        "url": "https://blog.naver.com/0jerry486/223534135090",
+        "blogName": "파워J 제집사로그",
+        "publishedAt": "2024-08-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 오블루 상겔리 리조트 (1)체크인",
+        "url": "https://blog.naver.com/ssssimon/223560055152",
+        "blogName": "Simon Says :",
+        "publishedAt": "2024-08-25",
         "independenceUnknown": false
       }
     ]

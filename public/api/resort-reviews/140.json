@@ -4,11 +4,25 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 2,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 럭셔리 리조트 니야마 프라이빗 아일랜드 수상비행기...",
+        "url": "https://blog.naver.com/cluture_/223784748144",
+        "blogName": "그래도 여행!",
+        "publishedAt": "2025-03-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "#07. 우기 몰디브 니야마 리조트 후기 - 비치 빌라 위드 풀 (2일차)",
+        "url": "https://blog.naver.com/subineee_blog/223803243418",
+        "blogName": "수비니, 하쿠나마타타",
+        "publishedAt": "2025-03-20",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

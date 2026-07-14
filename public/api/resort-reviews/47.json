@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -27,6 +26,20 @@
         "url": "https://blog.naver.com/blossomflower/222431580601",
         "blogName": "꽃을 피우다, 피움",
         "publishedAt": "2021-07-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[제바부부 세계여행] 몰디브 ( 엠부두빌리지 리조트 , noomoo 호텔)",
+        "url": "https://blog.naver.com/jejubaram2025/223854147505",
+        "blogName": "걷는여행과 책읽기_제주바람",
+        "publishedAt": "2025-05-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "라운지에서 몰디브 엠부두 빌리지 도착! (Embudu village)",
+        "url": "https://blog.naver.com/heracho7/220261918558",
+        "blogName": "아름답고 건강하게 *^^*",
+        "publishedAt": "2015-02-06",
         "independenceUnknown": false
       }
     ]

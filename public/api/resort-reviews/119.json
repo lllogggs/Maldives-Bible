@@ -4,11 +4,46 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 5,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 리조트 추천 식스센스라무 라군 워터빌라 후기",
+        "url": "https://blog.naver.com/lalalalife101/223870911099",
+        "blogName": "넷이 걷는 세계지도",
+        "publishedAt": "2025-05-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 추천 몰디브 럭셔리 리조트 식스센스 라무",
+        "url": "https://blog.naver.com/scurugi/223377975281",
+        "blogName": "스크루지의 여행 ~ing",
+        "publishedAt": "2024-03-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "(신혼여행, 허니문, 몰디브 , 식스센스 라무 리조트 )",
+        "url": "https://blog.naver.com/aturbo28/220045156120",
+        "blogName": "사진찍는 남자 짝퉁에릭",
+        "publishedAt": "2014-06-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] 신혼여행 in 식스센스 라무 리조트 (SIX...",
+        "url": "https://blog.naver.com/lucete7601/220514651706",
+        "blogName": "오늘의 초대권",
+        "publishedAt": "2015-10-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "식스센스 라무 | 내돈내산 라군 워터 빌라 신혼여행 후기 (오션...",
+        "url": "https://blog.naver.com/8pm_suppertime/224220063615",
+        "blogName": "기억력 유지 프로젝트",
+        "publishedAt": "2026-03-17",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

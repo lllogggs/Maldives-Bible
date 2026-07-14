@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 2,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,13 @@
         "url": "https://blog.naver.com/theyunny_/223643640035",
         "blogName": "YunnySideUp",
         "publishedAt": "2024-11-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "^^ 몰디브 리조트 , 섬머 아일랜드( Summer Island Maldives )...",
+        "url": "https://blog.naver.com/kj_2020/221819800084",
+        "blogName": "호텔홀릭",
+        "publishedAt": "2020-02-22",
         "independenceUnknown": false
       }
     ]

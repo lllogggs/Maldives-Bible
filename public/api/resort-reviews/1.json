@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,27 @@
         "url": "https://blog.naver.com/eternalkkanbu/223792384324",
         "blogName": "영원한깐부",
         "publishedAt": "2025-03-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아다란 클럽 란날히 [Adaaran Club Rannalhi]",
+        "url": "https://blog.naver.com/wprlfkf48/221707679651",
+        "blogName": "뚜뚜루뚜뚜뚜",
+        "publishedAt": "2019-11-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 선시암 올후벨리] 가성비 리조트 숙소 추천 마푸시에서...",
+        "url": "https://blog.naver.com/gadoling/223721723192",
+        "blogName": "가도링(gadol ing) | 가도리의 현재 진행형",
+        "publishedAt": "2025-01-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 로컬섬 마푸시 자유여행 완전정복②｜마푸시 투어 후기 편",
+        "url": "https://blog.naver.com/hckim1608/223962942238",
+        "blogName": "집돌순의 아쿠아로드",
+        "publishedAt": "2025-08-07",
         "independenceUnknown": false
       }
     ]

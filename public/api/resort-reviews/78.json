@@ -9,8 +9,7 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 2,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,13 @@
         "url": "https://blog.naver.com/tpsprkftm/220359412882",
         "blogName": "슈르까's aqua trip",
         "publishedAt": "2015-05-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 몰디브 리조트 추천 \" 칸돌루 \" 리조트",
+        "url": "https://blog.naver.com/co831/223546168469",
+        "blogName": "지지블링 데일리노트",
+        "publishedAt": "2024-08-13",
         "independenceUnknown": false
       }
     ]

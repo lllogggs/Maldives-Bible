@@ -4,11 +4,32 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 리조트 추천 가성비 빌라파크 선아일랜드 ...",
+        "url": "https://blog.naver.com/smupe0214/223472750439",
+        "blogName": "안녕, 세계여행",
+        "publishedAt": "2024-06-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "숙소 썬 아일랜드 리조트 Sun Island Resort & Spa 숙박 후기",
+        "url": "https://blog.naver.com/faststart/222981453737",
+        "blogName": "싼타킴의 힐링 여행백서",
+        "publishedAt": "2023-01-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 _직항 전세기_썬 아일랜드 리조트 앤 스파_(1)_(인천- 리조트 )",
+        "url": "https://blog.naver.com/saezuru/120114939011",
+        "blogName": "지저귀다.",
+        "publishedAt": "2010-09-12",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

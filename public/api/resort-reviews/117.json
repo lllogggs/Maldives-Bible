@@ -4,11 +4,81 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 10,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "[신혼여행] 몰디브 쉐라톤 풀문 리조트 앤 스파 후기",
+        "url": "https://blog.naver.com/wyb1012/224314694370",
+        "blogName": "윱니의 끄적끄적",
+        "publishedAt": "2026-06-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 :: 쉐라톤 풀문 리조트 가성비 리조트 추천",
+        "url": "https://blog.naver.com/hjk8427_/223707166808",
+        "blogName": "엘리의 영국라이프",
+        "publishedAt": "2024-12-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "쉐라톤 몰디브 풀문 리조트 & 스파 ' 올인클루시브 서비스 후기",
+        "url": "https://blog.naver.com/eunmiring/224000135887",
+        "blogName": "앎으로 삶에 덤비지 않도록",
+        "publishedAt": "2025-09-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 경비, 쉐라톤 리조트 플로팅 조식 레스토랑 스파 후기",
+        "url": "https://blog.naver.com/kim4993300/224336126567",
+        "blogName": "네이버 여행 인플루언서_일상도 여행처럼",
+        "publishedAt": "2026-07-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 말레 근처 리조트 추천 쉐라톤 워터빌라 객실 가성비...",
+        "url": "https://blog.naver.com/hellogome/224318980248",
+        "blogName": "welcome to dalgomi' world!",
+        "publishedAt": "2026-06-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 럭셔리 리조트 쉐라톤 몰디브 풀문 리조트 스파 ...",
+        "url": "https://blog.naver.com/neweunha/223285135550",
+        "blogName": "여행작가 박은하",
+        "publishedAt": "2023-12-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "쉐라톤몰디브풀문리조트&스파 레스토랑 후기",
+        "url": "https://blog.naver.com/nana7654/223021509991",
+        "blogName": "Alice in Wonderland :)",
+        "publishedAt": "2023-02-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "5.12월 홍콩 몰디브 여행 : 몰디브 쉐라톤 풀문 리조트&스파",
+        "url": "https://blog.naver.com/allreadylim/221474494996",
+        "blogName": "초보엄마의 고군분투 육아일상",
+        "publishedAt": "2019-02-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아이랑 쉐라톤 몰디브 풀문 리조트 & 스파 / 워터 방갈로 후기",
+        "url": "https://blog.naver.com/ccbily/223214133567",
+        "blogName": "빈이랑 함께하는 집",
+        "publishedAt": "2023-09-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "4인가족여행 쉐라톤 몰디브 풀문리조트&스파 워터방갈로 후기",
+        "url": "https://blog.naver.com/marodaing/223690415090",
+        "blogName": "마로 MARO",
+        "publishedAt": "2024-12-11",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

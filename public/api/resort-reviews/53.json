@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 1,
-    "searchedCount": 10,
+    "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -20,6 +19,27 @@
         "url": "https://blog.naver.com/joey___/223641882363",
         "blogName": "joey___님의 블로그",
         "publishedAt": "2024-10-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2일차: 몰디브 도착! 피놀루 바아톨 (Finolhu Baa Atoll...",
+        "url": "https://blog.naver.com/kkurikkuri_/223793668506",
+        "blogName": "꿀꾸리의 한 입 일상:)",
+        "publishedAt": "2025-03-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "웨딩 : 몰디브 신혼여행 피놀루 리조트 후기 ④",
+        "url": "https://blog.naver.com/damdam_he/224205957378",
+        "blogName": "남편이랑나랑별이랑",
+        "publishedAt": "2026-03-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 - 바 아톨 - 피놀루 - 샌드뱅크에 위치한 Crab Shack)...",
+        "url": "https://blog.naver.com/gaintour/223758109180",
+        "blogName": "프리미엄 개인·단체 맞춤형 여행, 가인투어",
+        "publishedAt": "2025-02-12",
         "independenceUnknown": false
       }
     ]

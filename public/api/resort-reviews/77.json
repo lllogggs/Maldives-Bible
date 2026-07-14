@@ -4,11 +4,32 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "몰디브 가족 여행, 칸디마 Kandima 리조트 후기",
+        "url": "https://blog.naver.com/lovely_sine/224164894520",
+        "blogName": "퇴사후 떠나는 여행ミ⛧",
+        "publishedAt": "2026-01-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "결혼 1주년 기념 가성비 몰디브 여행 Part.3 칸디마 리조트 ...",
+        "url": "https://blog.naver.com/demin1129/224142890762",
+        "blogName": "2nd step",
+        "publishedAt": "2026-01-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "리조트 , 칸디마 몰디브 ... 솔직 후기 (feat.AquaHolics)",
+        "url": "https://blog.naver.com/channy_archives/224055349710",
+        "blogName": "For Love and Linen",
+        "publishedAt": "2025-10-27",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

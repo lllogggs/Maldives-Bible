@@ -9,8 +9,7 @@
       }
     ],
     "cons": [],
-    "sourceCount": 2,
-    "searchedCount": 10,
+    "sourceCount": 7,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -27,6 +26,41 @@
         "url": "https://blog.naver.com/h0h0gangdi/221057855115",
         "blogName": "강디네이야기",
         "publishedAt": "2017-07-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 2 - 몰디브 클럽메드 피놀루 빌라",
+        "url": "https://blog.naver.com/amarese/220864353448",
+        "blogName": "Amare Se - 마르의 블로그✿",
+        "publishedAt": "2016-11-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 올인클루시브 리조트 ... 클럽메드 피놀루빌라",
+        "url": "https://blog.naver.com/qls4875/221462044697",
+        "blogName": "Where is mine?",
+        "publishedAt": "2019-02-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 강추 몰디브 클럽메드 카니말고 피놀루빌라 > 후기 !! 1편",
+        "url": "https://blog.naver.com/h0h0gangdi/221055257254",
+        "blogName": "강디네이야기",
+        "publishedAt": "2017-07-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 : 클럽 메드 피놀루 (Club Med Finolhu Villas)...",
+        "url": "https://blog.naver.com/lina1919/221747404505",
+        "blogName": "lina1919님의 블로그",
+        "publishedAt": "2019-12-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 숙소 추천 클럽메드 피놀루빌라 추천 (선셋, 선라이즈...",
+        "url": "https://blog.naver.com/jisu909/222856078615",
+        "blogName": "음식과 여행을 사랑하는 슘도리",
+        "publishedAt": "2022-08-23",
         "independenceUnknown": false
       }
     ]

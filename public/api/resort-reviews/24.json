@@ -4,11 +4,32 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "타고 숙소 \" 시나몬 하쿠라 후라 몰디브 \" 도착 & 숙소 적응 중~",
+        "url": "https://blog.naver.com/ipsae72/223690186172",
+        "blogName": "Daily life and Travel",
+        "publishedAt": "2024-12-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 후기 시나몬 하쿠라후라 리조트 산책하기",
+        "url": "https://blog.naver.com/myk_2007/221113874604",
+        "blogName": "MYK 추억여행",
+        "publishedAt": "2017-10-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "3. 몰디브 시나몬 하쿠라 후라 리조트",
+        "url": "https://blog.naver.com/july073000/222869543708",
+        "blogName": "HAPPY♡",
+        "publishedAt": "2022-09-07",
+        "independenceUnknown": false
+      }
+    ]
   }
 }

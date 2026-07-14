@@ -4,11 +4,18 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 0,
-    "searchedCount": 10,
+    "sourceCount": 1,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
-    "sources": []
+    "sources": [
+      {
+        "title": "[해외여행] 몰디브 쿠다푸시 리조트 최악의 후기 ...",
+        "url": "https://blog.naver.com/muffin_meringue/220997565864",
+        "blogName": "쉥이네 월드투어",
+        "publishedAt": "2017-05-03",
+        "independenceUnknown": false
+      }
+    ]
   }
 }
