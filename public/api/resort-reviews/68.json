@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 68,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "워터빌라가 매우 아름다웠다는 실제 투숙 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 최고급 리조트 후바펜푸시 > 스피드 보트부터...",
+        "url": "https://blog.naver.com/dornrqnfry/223775507021",
+        "blogName": "송소리 일상 '◡'✿",
+        "publishedAt": "2025-02-26",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

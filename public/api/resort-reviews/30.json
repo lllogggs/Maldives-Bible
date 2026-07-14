@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "resortId": 30,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "사람이 적고 조용해 객실 중심 휴양에 잘 맞았음",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "활동과 다양한 체험을 중시하면 다소 지루할 수 있음",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "깨달았던 몰디브 힐링 리조트 - 코모 코코아 아일랜드 후기 (3)",
+        "url": "https://blog.naver.com/ilovetour520/224039740509",
+        "blogName": "wishtravely",
+        "publishedAt": "2025-10-13",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

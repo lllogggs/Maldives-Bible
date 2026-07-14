@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 168,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "일주일 동안 기대했던 하늘·바다·분위기가 빠짐없이 충족됐다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "에메랄드 파루푸시 몰디브 리조트 리뷰ㅣ 신혼여행 리조트 ...",
+        "url": "https://blog.naver.com/baepauline/223950333946",
+        "blogName": "On Green",
+        "publishedAt": "2025-07-28",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

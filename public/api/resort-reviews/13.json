@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 13,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "음식이 깔끔하고 맛있다는 평가가 반복됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "아야다 몰디브 리조트 올인클루시브 마구 레스토랑 후기",
+        "url": "https://blog.naver.com/hinglog91/223674468783",
+        "blogName": "히잉로그:)",
+        "publishedAt": "2024-11-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아야다 리조트 레스토랑 (허니문특전)",
+        "url": "https://blog.naver.com/dpwls00710/224090019780",
+        "blogName": "별자매⭐️위시",
+        "publishedAt": "2025-11-27",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

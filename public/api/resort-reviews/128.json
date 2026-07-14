@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 128,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 바로 앞바다의 물빛이 매우 아름다웠다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 리조트 타지 엑조티카 후기 - 부대시설 (수영장/ 스파 ...",
+        "url": "https://blog.naver.com/ckrgkstjsdud/224046735115",
+        "blogName": "끼토산님의 블로그",
+        "publishedAt": "2025-10-19",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

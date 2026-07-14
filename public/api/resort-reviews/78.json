@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 78,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [
+      {
+        "text": "리조트 내 스쿠버다이빙 비용이 매우 비쌌다는 후기",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "칸돌루 (Kandolhu) 리조트 수중환경_스쿠버 다이빙 / 몰디브",
+        "url": "https://blog.naver.com/tpsprkftm/220359412882",
+        "blogName": "슈르까's aqua trip",
+        "publishedAt": "2015-05-14",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

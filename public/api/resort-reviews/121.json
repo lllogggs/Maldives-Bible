@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 121,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "수중환경이 좋았다는 실제 투숙 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 소네바 자니• 소네바푸시 후기 -(3)",
+        "url": "https://blog.naver.com/jeeeee_o/223971488174",
+        "blogName": "멍때리다가 가끔 어딘가 다녀오는 집순이의 일상 기록",
+        "publishedAt": "2025-08-18",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

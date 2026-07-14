@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 26,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "허니문 휴양지로 만족도가 높다는 평가가 반복됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행, 클럽메드 피놀루빌라 후기 (fea. 4박 6일)",
+        "url": "https://blog.naver.com/beandoll2/222962149156",
+        "blogName": "mini의 취미클럽",
+        "publishedAt": "2022-12-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "넘나 좋았던 몰디브 신혼여행 강추 클럽메드 피놀루빌라 후기 !...",
+        "url": "https://blog.naver.com/h0h0gangdi/221057855115",
+        "blogName": "강디네이야기",
+        "publishedAt": "2017-07-23",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

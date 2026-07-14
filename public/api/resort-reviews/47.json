@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 47,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "바다 상태와 수중환경이 좋다는 평가가 반복됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 > 엠부두 빌리지 (Embudu village)에서 데이 유스...",
+        "url": "https://blog.naver.com/behash/120201987617",
+        "blogName": "샨티부부의 세계일주 도전기",
+        "publishedAt": "2013-11-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "마쿠누두 리조트 vs 엠부두 빌리지 리조트 in 몰디브",
+        "url": "https://blog.naver.com/blossomflower/222431580601",
+        "blogName": "꽃을 피우다, 피움",
+        "publishedAt": "2021-07-14",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

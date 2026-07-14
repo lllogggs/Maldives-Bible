@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 154,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "다양한 물고기를 볼 수 있고 다시 방문하고 싶을 만큼 만족했다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 리조트 추천 서머 아일랜드 몰디브 에서...",
+        "url": "https://blog.naver.com/theyunny_/223643640035",
+        "blogName": "YunnySideUp",
+        "publishedAt": "2024-11-02",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

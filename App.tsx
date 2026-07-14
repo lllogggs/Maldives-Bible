@@ -24,6 +24,13 @@ type ViteEnvShim = {
 
 type View = 'resorts' | 'tips' | 'agencies' | 'flights';
 
+type ResortReviewInsightsPayload = {
+  items?: Array<{
+    resortId: number;
+    reviewSummary: NonNullable<Resort['reviewSummary']>;
+  }>;
+};
+
 const VALID_VIEWS: readonly View[] = ['resorts', 'tips', 'agencies', 'flights'];
 const VALID_SORT_OPTIONS: readonly SortOption[] = [
   'custom',
@@ -970,7 +977,23 @@ const App: React.FC = () => {
           const url = `${basePath}/api/${fileName}`;
           return url.startsWith('/') ? url : `/${url}`;
         });
+        const reviewInsightsPath = `${basePath}/api/resort-review-insights.json`;
+        const reviewInsightsUrl = reviewInsightsPath.startsWith('/')
+          ? reviewInsightsPath
+          : `/${reviewInsightsPath}`;
 
+        const reviewInsightsPromise = fetch(reviewInsightsUrl)
+          .then(async response => {
+            if (response.status === 404) return null;
+            if (!response.ok) {
+              throw new Error(`${response.status} ${response.statusText}`.trim());
+            }
+            return (await response.json()) as ResortReviewInsightsPayload;
+          })
+          .catch(err => {
+            console.warn('Failed to fetch optional resort review insights', err);
+            return null;
+          });
         const resortResults = await Promise.allSettled(
           resortFileUrls.map(async url => {
             const response = await fetch(url);
@@ -1073,6 +1096,22 @@ const App: React.FC = () => {
         setHiddenResortIds(validHiddenIds);
         setCustomOrder(finalOrder);
         setInitialResorts(mergedData);
+
+        void reviewInsightsPromise.then(reviewInsights => {
+          const reviewSummaryByResortId = new Map(
+            (Array.isArray(reviewInsights?.items) ? reviewInsights.items : [])
+              .filter(item => Number.isInteger(item?.resortId) && item?.reviewSummary)
+              .map(item => [item.resortId, item.reviewSummary] as const)
+          );
+          if (reviewSummaryByResortId.size === 0) return;
+
+          setInitialResorts(currentResorts => currentResorts.map(resort => ({
+            ...resort,
+            ...(reviewSummaryByResortId.has(resort.id)
+              ? { reviewSummary: reviewSummaryByResortId.get(resort.id) }
+              : {}),
+          })));
+        });
       } catch (err) {
         console.error(err);
         setError(err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.');

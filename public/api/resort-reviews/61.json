@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 61,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "비슷한 등급의 숙소보다 가격 부담이 낮다는 평가가 반복됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 가성비 리조트 (하지만 완벽) 그랜드파크 코디파루 ...",
+        "url": "https://blog.naver.com/suzie38317/223916478019",
+        "blogName": "Mrs.Moon House",
+        "publishedAt": "2025-06-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 그랜드파크 코디파루 워터빌라 후기",
+        "url": "https://blog.naver.com/2yummy2/224187838440",
+        "blogName": "여니로그 ꒰ღ˘‿˘ற꒱",
+        "publishedAt": "2026-02-19",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

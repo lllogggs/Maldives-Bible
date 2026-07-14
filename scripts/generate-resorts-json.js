@@ -7,6 +7,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+throw new Error(
+  '안전하지 않은 레거시 전체 재생성기를 비활성화했습니다. 현재 171개 리조트의 고정 ID를 보존하는 검증·원자적 갱신 도구를 먼저 구현해야 합니다.'
+);
+
 // Gemini API 클라이언트 초기화
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 

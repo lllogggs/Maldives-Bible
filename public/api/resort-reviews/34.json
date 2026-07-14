@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 34,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "라군의 색감과 도착 풍경이 인상적이라는 평가",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "코쿤 몰디브 라군 색감에 반함... 객실 올인클루시브 여행 후기",
+        "url": "https://blog.naver.com/ilovetour520/224245494660",
+        "blogName": "wishtravely",
+        "publishedAt": "2026-04-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 코쿤 몰디브 리조트 ] 몰디브 신행 1부 / 수상비행기, 라운지 리뷰",
+        "url": "https://blog.naver.com/olive__juice/224239314242",
+        "blogName": "오리조리",
+        "publishedAt": "2026-04-03",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

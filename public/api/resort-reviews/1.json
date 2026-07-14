@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 1,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 데이트립 경험이 매우 만족스러워 추천함",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 마푸시섬에서 리조트 투어한 후기 / 아다란 ...",
+        "url": "https://blog.naver.com/eternalkkanbu/223792384324",
+        "blogName": "영원한깐부",
+        "publishedAt": "2025-03-12",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

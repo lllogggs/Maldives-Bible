@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 157,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "로그인으로 일정 확인과 식당·액티비티 예약이 가능해 스마트하다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "신혼여행 몰디브 노바 리조트 ( Nova Maldives Resort)...",
+        "url": "https://blog.naver.com/hichica/223356159862",
+        "blogName": "딘듀의 작은 일기장",
+        "publishedAt": "2024-02-17",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

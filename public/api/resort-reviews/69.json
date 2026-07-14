@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "resortId": 69,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "비용 부담에도 후회 없을 만큼 만족했다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "숙박비가 비싸 예산 부담이 컸다는 후기",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "' 인터컨티넨탈 몰디브 마무나가우 리조트 ' 내돈내산 숙박기(1)...",
+        "url": "https://blog.naver.com/junior8956/223566075014",
+        "blogName": "junior8956님의 블로그",
+        "publishedAt": "2024-08-30",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

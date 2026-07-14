@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 164,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "바다를 감상하며 먹는 조식 풍경이 아름다웠다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "아마리 하보다 몰디브 리조트 02.",
+        "url": "https://blog.naver.com/anima2666/224137543129",
+        "blogName": "DANDI VARA",
+        "publishedAt": "2026-01-07",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

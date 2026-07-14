@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 18,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "바다와 하늘 풍경이 다른 곳보다 특별하게 느껴졌음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "바로스 몰디브 리조트 #01 ㅣ Baros Maldives",
+        "url": "https://blog.naver.com/sagereal/220459156635",
+        "blogName": "SAGE PANORAMA",
+        "publishedAt": "2015-08-23",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

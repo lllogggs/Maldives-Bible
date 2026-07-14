@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "resortId": 23,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "해당 후기에서는 1박 100만원 이하로 이용해 가성비가 좋았음",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "올인클루시브 식음 부분은 추천하기 어려웠음",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "올인클루시브 리조트 시나몬 돈벨리 몰디브 식음 후기",
+        "url": "https://blog.naver.com/hoji0602/224109697270",
+        "blogName": "::HOZY PHOTOGRAPHY:: 정적인 사진관",
+        "publishedAt": "2025-12-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "시나몬 돈벨리 몰디브 리조트 수중 환경, 수영장 리얼 후기",
+        "url": "https://blog.naver.com/hoji0602/224075097492",
+        "blogName": "::HOZY PHOTOGRAPHY:: 정적인 사진관",
+        "publishedAt": "2025-11-13",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

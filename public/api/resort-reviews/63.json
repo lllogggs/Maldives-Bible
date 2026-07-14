@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "resortId": 63,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "선셋 비치 풀빌라 선택에 전반적으로 매우 만족했다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "조식 가능한 식당이 제한적이고 메뉴가 비슷했다는 후기",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 리조트 후기 I 헤리턴스아라 선셋비치 풀빌라 I...",
+        "url": "https://blog.naver.com/yi__jj/224098243837",
+        "blogName": "푸르의 하루",
+        "publishedAt": "2025-12-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 행복했던 신혼여행: 헤리턴스 아라 리조트 (2)",
+        "url": "https://blog.naver.com/highbubu/223955071126",
+        "blogName": "어제 모했지? 오늘 모하지?",
+        "publishedAt": "2025-08-08",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

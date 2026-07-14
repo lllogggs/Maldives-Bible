@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "resortId": 57,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "sourceCount": 0,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "evidenceNote": "동일 예약 후기가 여러 블로그에 복제되어 독립 근거로 사용할 수 없음.",
+    "sources": []
+  }
+}

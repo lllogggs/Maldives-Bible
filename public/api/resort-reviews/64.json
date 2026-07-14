@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 64,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "힐튼 포인트로 예약할 수 있다는 점이 장점으로 언급됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "힐튼 몰디브 아밍기리 리조트 앤 스파 Hilton Maldives...",
+        "url": "https://blog.naver.com/kiha16/223765883135",
+        "blogName": "알을 깨고 나오다",
+        "publishedAt": "2025-02-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아밍기리( Hilton Maldives Amingiri Resort & Spa ) 포인트...",
+        "url": "https://blog.naver.com/forraraland/222699030225",
+        "blogName": "RaRaLand",
+        "publishedAt": "2022-04-12",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

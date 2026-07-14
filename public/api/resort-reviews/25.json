@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 25,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "도착 때 직원들이 친절하게 맞아줘 첫인상이 좋았음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 #3. 말레 벨라나... 타고 시나몬 벨리푸시 리조트 로 고고~",
+        "url": "https://blog.naver.com/darenian87/223579718009",
+        "blogName": "달달한 이야기들 ♥",
+        "publishedAt": "2024-09-11",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

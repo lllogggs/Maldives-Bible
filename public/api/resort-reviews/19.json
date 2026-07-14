@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 19,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "전체 숙박 만족도가 높고 추천·재방문 의향이 언급됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 리조트 오젠 리저브 볼리푸시 추천 및 예약 팁...",
+        "url": "https://blog.naver.com/iriwana/224048409246",
+        "blogName": "이리집사의 나들이",
+        "publishedAt": "2025-10-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 고급 리조트 추천, 오젠리저브볼리푸시 , 몰디브리조트 선...",
+        "url": "https://blog.naver.com/sooneunclinic/223793369692",
+        "blogName": "착한진료, 진심을 담은 시술을 하는 원장님개인블로그",
+        "publishedAt": "2025-03-12",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

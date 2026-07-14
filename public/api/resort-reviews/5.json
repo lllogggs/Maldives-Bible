@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 5,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 음식이 기대보다 맛있고 만족스러웠음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 신혼여행 ep.05] 알릴라 코타이파루 후기 | 씨솔트...",
+        "url": "https://blog.naver.com/atom_mooo/223939694298",
+        "blogName": "일상을 찾을 수 있을까?",
+        "publishedAt": "2025-07-19",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

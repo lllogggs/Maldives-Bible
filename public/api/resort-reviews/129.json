@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 129,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [
+      {
+        "text": "스피드보트 이동 내내 멀미 대비가 필요하다는 후기",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 여행일기4] 툴하기리 리조트 스피드보트/슈페리어...",
+        "url": "https://blog.naver.com/hye6372_/223591187656",
+        "blogName": "혜찌네 여행일기♥️",
+        "publishedAt": "2024-09-21",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

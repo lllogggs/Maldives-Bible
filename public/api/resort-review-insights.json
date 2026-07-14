@@ -1,0 +1,2605 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-14T06:34:25.259Z",
+  "items": [
+    {
+      "resortId": 1,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트 데이트립 경험이 매우 만족스러워 추천함",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 2,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "360도로 펼쳐진 에메랄드 해변 전망이 인상적이었음",
+            "mentions": 1
+          }
+        ],
+        "cons": [
+          {
+            "text": "배정 객실에서 공사장 전망이 보여 아쉬웠음",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 3,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "라스트미닛 예약으로 이용한 가성비 리조트",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 4,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "가격 평가는 한 개인 선택 기록과 소개형 비교 글에만 있어 독립 후기 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 5,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트 음식이 기대보다 맛있고 만족스러웠음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 6,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "검색 후보 대부분이 다른 리조트 문서라 유효 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 7,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트 경관과 객실 주변 풍경이 아름답다는 평가",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 8,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "벨리와 날라두 결과가 혼재하고 개인 후기 반복 근거가 없음."
+      }
+    },
+    {
+      "resortId": 9,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "상위 결과가 여행사 소개와 다른 리조트 문서에 치우침."
+      }
+    },
+    {
+      "resortId": 10,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 0,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "상위 후보가 없어 반복 의견을 확인할 수 없음."
+      }
+    },
+    {
+      "resortId": 11,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "개인 투숙 후기와 반복되는 구체적 평가가 부족함."
+      }
+    },
+    {
+      "resortId": 12,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "수중환경과 레스토랑 선택지가 좋아 첫 몰디브 여행에 추천함",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 13,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "음식이 깔끔하고 맛있다는 평가가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 14,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "상위 결과가 소개·예약형 콘텐츠 위주라 독립 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 15,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "가격 부담이 비교적 낮은 가성비 리조트였음",
+            "mentions": 1
+          },
+          {
+            "text": "선셋 워터빌라 숙박 만족도가 매우 높았음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 16,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "자연친화적인 분위기와 우수한 수중환경이 인상적이었음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 17,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "얕고 투명한 라군에서 몰디브다운 바다 풍경을 즐길 수 있었음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 18,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "바다와 하늘 풍경이 다른 곳보다 특별하게 느껴졌음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 19,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "전체 숙박 만족도가 높고 추천·재방문 의향이 언급됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 20,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "가격 대비 만족도가 높은 리조트라는 평가",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 21,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "구체적 체험 평가는 한 블로거에 집중되어 독립 반복 조건을 충족하지 못함."
+      }
+    },
+    {
+      "resortId": 22,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "여행사와 소개형 콘텐츠가 대부분이라 독립 후기 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 23,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "해당 후기에서는 1박 100만원 이하로 이용해 가성비가 좋았음",
+            "mentions": 1
+          }
+        ],
+        "cons": [
+          {
+            "text": "올인클루시브 식음 부분은 추천하기 어려웠음",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 24,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "개인 여행 기록이 한 블로거에 집중되고 나머지는 홍보성 소개 위주임."
+      }
+    },
+    {
+      "resortId": 25,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "도착 때 직원들이 친절하게 맞아줘 첫인상이 좋았음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 26,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "허니문 휴양지로 만족도가 높다는 평가가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 27,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "카니와 피놀루 내용이 섞여 개별 리조트의 반복 평가를 분리하기 어려움."
+      }
+    },
+    {
+      "resortId": 28,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "워터빌라 분위기가 로맨틱하고 만족스럽다는 평가",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 29,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [
+          {
+            "text": "신혼여행 베드 장식이 소박해 아쉬웠음",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 30,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "사람이 적고 조용해 객실 중심 휴양에 잘 맞았음",
+            "mentions": 1
+          }
+        ],
+        "cons": [
+          {
+            "text": "활동과 다양한 체험을 중시하면 다소 지루할 수 있음",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 31,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "스페셜티 레스토랑의 디너와 와인 경험이 인상적이었음",
+            "mentions": 1
+          }
+        ],
+        "cons": [
+          {
+            "text": "주류 가격이 매우 비싸 부담스러웠음",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 32,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트와 주변 풍경이 아름답다는 평가가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 33,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트 음식이 전반적으로 맛있었음",
+            "mentions": 1
+          }
+        ],
+        "cons": [
+          {
+            "text": "식당 수가 적어 선택 폭이 아쉬웠음",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 34,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "라군의 색감과 도착 풍경이 인상적이라는 평가",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 35,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트 하우스리프에서 거북이를 두 번 볼 수 있었음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 36,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "공항 마중부터 라운지 안내까지 세심하게 케어받았음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 37,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "가격대를 감안하면 가성비가 좋은 리조트였음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 38,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "하우스리프에서 니모를 관찰하기 좋다는 후기가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 39,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "구체적인 실제 체험 평가가 독립적으로 반복되지 않음."
+      }
+    },
+    {
+      "resortId": 40,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "깨끗한 수중환경이 리조트의 뚜렷한 장점이었음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 41,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "가격 측면의 매력이 크다는 평가가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 42,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "이탈리아 음식과 다이빙 경험이 만족스러웠음",
+            "mentions": 1
+          },
+          {
+            "text": "올인클루시브 숙박 만족도가 높아 추천할 만했음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 43,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [
+          {
+            "text": "섬 안의 호수는 기대와 달리 큰 매력으로 느껴지지 않았음",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 44,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "검색 문구가 유사한 소개형 콘텐츠 위주라 독립 후기 반복 근거가 약함."
+      }
+    },
+    {
+      "resortId": 45,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "워터프론트 풀빌라 객실 만족도가 매우 높았음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 46,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "가성비는 사전 비교 글에만 있고 다이빙은 지점 소개와 단순 사실이라 반복 평가가 아님."
+      }
+    },
+    {
+      "resortId": 47,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "바다 상태와 수중환경이 좋다는 평가가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 48,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "개인 후기의 구체적 평가는 있으나 같은 측면의 독립 반복이 확인되지 않음."
+      }
+    },
+    {
+      "resortId": 49,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "상위 글의 상당수가 소개형이며 개인 후기 간 반복 평가가 부족함."
+      }
+    },
+    {
+      "resortId": 50,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "실제 여행 기록은 있으나 동일 장단점을 말하는 독립 출처가 부족함."
+      }
+    },
+    {
+      "resortId": 51,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트 주변 바다에서 다양한 물고기와 아기상어를 볼 수 있었음",
+            "mentions": 1
+          },
+          {
+            "text": "한적하고 조용해 힐링 휴양지로 추천할 만했음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 52,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "유효 후보가 적고 나머지 검색 결과는 다른 리조트 문서임."
+      }
+    },
+    {
+      "resortId": 53,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "에메랄드빛 바다와 금빛 모래의 첫인상이 매우 아름다웠음",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 54,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "보아바가 아닌 쿠다후라·란다기라바루 결과가 대부분이라 근거가 없음."
+      }
+    },
+    {
+      "resortId": 55,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "상위 결과가 홍보·시설 소개 위주라 개인 후기 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 56,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "1박 비용은 명시됐지만 가격이 높다는 직접 평가가 없어 단일출처 주장으로도 채택하지 않음."
+      }
+    },
+    {
+      "resortId": 57,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "동일 예약 후기가 여러 블로그에 복제되어 독립 근거로 사용할 수 없음."
+      }
+    },
+    {
+      "resortId": 58,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "한 글은 추후 후기 예고이고 다른 글은 매체형 소개라 독립 체험 평가로 쓰지 않음."
+      }
+    },
+    {
+      "resortId": 59,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "실제 투숙 후기가 적고 다른 리조트 결과가 섞여 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 60,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "라군빌라에서 밤하늘을 보며 큰 행복감을 느꼈다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 61,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "비슷한 등급의 숙소보다 가격 부담이 낮다는 평가가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 62,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "모던한 분위기 평가는 한 체험 글과 일반 소개 글 조합이라 반복 근거로 쓰지 않음."
+      }
+    },
+    {
+      "resortId": 63,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "선셋 비치 풀빌라 선택에 전반적으로 매우 만족했다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [
+          {
+            "text": "조식 가능한 식당이 제한적이고 메뉴가 비슷했다는 후기",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 64,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "힐튼 포인트로 예약할 수 있다는 점이 장점으로 언급됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 65,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "판매·숙소 정보 글이 중심이라 독립 실제 후기의 반복 장단점이 부족함."
+      }
+    },
+    {
+      "resortId": 66,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "후보 대부분이 마디푸시 등 다른 리조트 결과라 분석 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 67,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "여행사·재게시형 소개가 대부분이라 독립 후기 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 68,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "워터빌라가 매우 아름다웠다는 실제 투숙 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 69,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "비용 부담에도 후회 없을 만큼 만족했다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [
+          {
+            "text": "숙박비가 비싸 예산 부담이 컸다는 후기",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 70,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "조용히 쉬기 좋은 휴양형 분위기가 강점으로 언급됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 71,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "여행사·소개 글 위주로 실제 투숙 후기 2건의 반복 의견이 없음."
+      }
+    },
+    {
+      "resortId": 72,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "여행사·프로모션 문서와 다른 리조트 혼동 결과가 많아 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 73,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "올인클루시브 식사가 만족스럽다는 후기가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 74,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "여행사·공식·지원받은 글 중심이라 독립 후기 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 75,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "동일 블로거 연재와 소개성 문서가 많아 독립 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 76,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "두 글 모두 선택 단계의 기록으로 실제 스노클링 만족을 확인할 수 없어 미채택."
+      }
+    },
+    {
+      "resortId": 77,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "가격·선택지 평가는 한 실제 후기와 일반 소개형 글에 의존해 독립 반복으로 보지 않음."
+      }
+    },
+    {
+      "resortId": 78,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [
+          {
+            "text": "리조트 내 스쿠버다이빙 비용이 매우 비쌌다는 후기",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 79,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "서로 다른 블로그에 동일 문구가 재사용되어 독립 근거로 보기 어려움."
+      }
+    },
+    {
+      "resortId": 80,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "후회 없는 선택이었고 전반적으로 매우 만족했다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [
+          {
+            "text": "플로팅 조식은 예상보다 먹을 것이 적었다는 후기",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 81,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "판매·소개 문서 중심이고 실제 투숙자가 반복한 구체 장단점이 없음."
+      }
+    },
+    {
+      "resortId": 82,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "무관한 결과와 소개성 글이 많아 독립적인 반복 의견이 부족함."
+      }
+    },
+    {
+      "resortId": 83,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "실제 방문 내용은 있으나 전문 매체형 운영 성격을 배제하기 어려워 제한 근거로 채택하지 않음."
+      }
+    },
+    {
+      "resortId": 84,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "여행사·일반 소개와 생성형 문체 문서가 많아 독립 후기 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 85,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "재게시된 이용후기와 판매성 글 위주라 독립 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 86,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "두 출처 모두 일반 추천형 문구에 가까워 실제 이동 경험의 독립 근거로 쓰지 않음."
+      }
+    },
+    {
+      "resortId": 87,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "신혼여행 숙소 선택 만족도가 높다는 후기가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 88,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "한 개인 후기와 여행업계 소개 글 조합이라 식사 장점의 독립 반복으로 보지 않음."
+      }
+    },
+    {
+      "resortId": 89,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "즐길 엔터테인먼트가 많고 신혼여행 만족도가 높았다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 90,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "검색 결과가 마디푸시·메이야푸시 등 다른 리조트와 혼동되어 근거가 없음."
+      }
+    },
+    {
+      "resortId": 91,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "비치 풀빌라에서 몰디브다운 만족감을 느꼈다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 92,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "검색 결과 대부분이 일반 소개·생성형 문체로 독립 실제 후기 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 93,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 8,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "관련 후기 수가 적고 다른 리조트 결과가 섞여 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 94,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "객실과 시설을 고려하면 가성비가 좋다는 평가가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 95,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "아일라푸시 이용은 확인되지만 두 글이 사전 선택 기록이라 체험 장점으로는 미채택."
+      }
+    },
+    {
+      "resortId": 96,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "수중환경 중심 리조트로 투숙 만족도가 매우 높았다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 97,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "가격 대비 만족도가 좋은 가성비 리조트라는 평가",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 98,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "인공섬 단점은 사전 선택 글과 일반 소개 글 조합이라 실제 투숙 평가로 쓰지 않음."
+      }
+    },
+    {
+      "resortId": 99,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [
+          {
+            "text": "여러 이동 수단을 거치는 여정이 길고 피로하다는 후기",
+            "mentions": 2
+          }
+        ],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 100,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "마디푸시·사파리 아일랜드 등 무관한 결과가 대부분이라 분석할 수 없음."
+      }
+    },
+    {
+      "resortId": 101,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "한 글은 실제 체험이지만 다른 글은 사전 선택 기록이라 반복 근거로 쓰지 않음."
+      }
+    },
+    {
+      "resortId": 102,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "공식·여행사·패키지 소개 위주로 독립 후기 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 103,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "오션 풀빌라가 몰디브다운 숙소로 만족스러웠다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 104,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "관련 후기 제목은 많지만 스니펫에 반복되는 구체 장단점이 없음."
+      }
+    },
+    {
+      "resortId": 105,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "침실에서 보이는 에메랄드빛 바다 전망이 인상적이었다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 106,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "후기 재게시·일반 소개가 많아 독립 투숙자 반복 평가를 확인하지 못함."
+      }
+    },
+    {
+      "resortId": 107,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "검색 결과가 생성형 일반 소개 위주여서 독립 실제 후기 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 108,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "예약형 레스토랑을 포함해 식당 선택지가 다양함",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 109,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "여행사 문서가 대부분이고 실제 투숙 후기 두 건의 공통 평가가 없음."
+      }
+    },
+    {
+      "resortId": 110,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트 전반과 제공 어메니티 품질에 매우 만족했다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 111,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "여행사·매거진 소개 비중이 높아 실제 투숙자 반복 평가가 부족함."
+      }
+    },
+    {
+      "resortId": 112,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "스노클링과 수중환경 만족도가 높다는 후기가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 113,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "상위 두 문서가 동일 문구를 재사용했고 나머지는 무관 결과가 많음."
+      }
+    },
+    {
+      "resortId": 114,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "한 글은 다른 후기를 인용한 수중평가이고 다른 글은 라군 평가라 같은 체험 근거가 아님."
+      }
+    },
+    {
+      "resortId": 115,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "비치 객실에서 바로 바다로 나갈 수 있어 매우 좋았다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 116,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "수중환경이 훌륭했다는 실제 투숙 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 117,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "후기형 결과는 있으나 같은 장단점이 두 독립 블로거에서 반복되지 않음."
+      }
+    },
+    {
+      "resortId": 118,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "예약 유도형 정형 문구가 대부분이라 독립적인 투숙 후기 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 119,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "여행사와 프로모션 글을 제외하면 반복되는 평가를 확인할 수 없음."
+      }
+    },
+    {
+      "resortId": 120,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "상위 결과 대부분이 다른 리조트 후기라 유효한 독립 출처가 두 개 미만임."
+      }
+    },
+    {
+      "resortId": 134,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "선셋크루즈와 고래상어 투어 등 익스커션이 지루하지 않았다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 121,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "수중환경이 좋았다는 실제 투숙 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 122,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "청량한 바다를 바라보는 조식 자리가 매우 좋았다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 123,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "서양식이 물릴 때 동양식 국물 요리가 만족스러웠다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 124,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "노을과 바다 풍경이 아름답고 수중환경도 좋았다는 후기",
+            "mentions": 1
+          },
+          {
+            "text": "음식이 거의 모두 맛있었다는 실제 투숙 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 125,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "가족 단위가 이용하기 좋은 객실·아동 조건이 언급됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 126,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "관련 결과가 여행사 글에 치우쳐 독립 투숙 후기의 반복 평가가 부족함."
+      }
+    },
+    {
+      "resortId": 127,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "무관한 비교 글과 판매 글이 많아 두 독립 후기의 공통 평가를 찾지 못함."
+      }
+    },
+    {
+      "resortId": 128,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트 바로 앞바다의 물빛이 매우 아름다웠다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 129,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [
+          {
+            "text": "스피드보트 이동 내내 멀미 대비가 필요하다는 후기",
+            "mentions": 1
+          }
+        ],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 130,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "라군과 수중환경 평가는 한 개인 후기에서만 확인돼 독립 반복 기준에 못 미침."
+      }
+    },
+    {
+      "resortId": 131,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "개인 후기 결과는 있으나 스니펫에 구체적인 공통 장단점이 나타나지 않음."
+      }
+    },
+    {
+      "resortId": 132,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "수상비행기 이동이 15~20분으로 짧고 전반적으로 매우 만족했다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 133,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "4박 5일 신혼여행의 비용 대비 만족도가 높았다는 내돈내산 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 135,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "수중환경과 디자인 평가는 있었으나 비판매성 독립 출처 두 곳에서 반복되지 않음."
+      }
+    },
+    {
+      "resortId": 136,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "실제 방문 스니펫이 적고 나머지는 판매·예약 유도 글이라 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 137,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "두 글은 추가 이동 단계만 설명했으며 접근이 불편하다는 동일 평가는 명시하지 않음."
+      }
+    },
+    {
+      "resortId": 138,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "리조트 안에서 즐길 프로그램과 놀거리가 다양함",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 139,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "넓은 객실 언급은 일반 소개·후기 재인용 중심이라 독립 투숙 평가로 쓰기 어려움."
+      }
+    },
+    {
+      "resortId": 140,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "리조트 구조 소개는 반복되지만 여행사 글 비중이 높아 후기성 평가 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 141,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "다른 세상에 온 듯한 풍경이 사진으로 다시 봐도 매우 좋았다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 142,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "검색 결과가 예약·할인 유도 및 정형 소개글 중심이라 독립 후기 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 143,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "성인 전용과 수중 레스토랑 언급은 있으나 비판매성 독립 후기에서 반복되지 않음."
+      }
+    },
+    {
+      "resortId": 144,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "유효 개인 후기가 소수 블로거의 연재에 집중돼 독립적인 공통 평가가 부족함."
+      }
+    },
+    {
+      "resortId": 145,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "상위 결과 대부분이 여행사 요금표와 할인 유도 글이라 투숙 후기 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 146,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "실제 개인 투숙 후기는 한 건뿐이고 나머지는 소개·판매 글이라 반복 평가가 없음."
+      }
+    },
+    {
+      "resortId": 147,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "조식 구성이 매우 잘 나왔다는 실제 투숙 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 148,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "검색 결과가 여행사와 제휴 할인 글에 치우쳐 독립 투숙 후기 자료가 부족함."
+      }
+    },
+    {
+      "resortId": 149,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "동명이거나 다른 지역·리조트 결과가 대부분이라 유효한 출처가 두 개 미만임."
+      }
+    },
+    {
+      "resortId": 150,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "객실에 들어선 첫인상이 숨이 멎을 만큼 인상적이었다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 151,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "정형 소개·할인 글과 다른 리조트 결과가 많아 독립적인 반복 평가를 찾지 못함."
+      }
+    },
+    {
+      "resortId": 152,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "실질적으로 관련된 결과가 한 블로거의 소개 글 두 건뿐이라 독립 출처가 부족함."
+      }
+    },
+    {
+      "resortId": 153,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "후기 대부분이 한 블로거의 연재이며 다른 독립 후기와 겹치는 평가가 없음."
+      }
+    },
+    {
+      "resortId": 154,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "다양한 물고기를 볼 수 있고 다시 방문하고 싶을 만큼 만족했다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 155,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "검색 상위 결과가 모두 다른 리조트 또는 일반 비교 글이라 유효 후기가 없음."
+      }
+    },
+    {
+      "resortId": 156,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "신규 리조트라 판매·예약 전 글이 대부분이며 실제 투숙 후기의 반복 근거가 없음."
+      }
+    },
+    {
+      "resortId": 157,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "로그인으로 일정 확인과 식당·액티비티 예약이 가능해 스마트하다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 158,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "식당과 프로그램 언급은 있으나 여행사 글을 제외하면 독립적인 반복 평가가 없음."
+      }
+    },
+    {
+      "resortId": 159,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "기대보다 더 좋았다는 실제 신혼여행 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 160,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "아이 동반 가족여행에 잘 맞는다는 평가가 반복됨",
+            "mentions": 2
+          }
+        ],
+        "cons": [],
+        "sourceCount": 2,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "sufficient"
+      }
+    },
+    {
+      "resortId": 161,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "가성비 평가는 개인 후기 한 곳과 후기 재인용 글에만 있어 독립 반복 근거가 부족함."
+      }
+    },
+    {
+      "resortId": 162,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "상위 두 글의 후기 문구가 사실상 동일해 독립 출처로 보기 어렵고 추가 반복 근거가 없음."
+      }
+    },
+    {
+      "resortId": 163,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "자쿠지 비치빌라를 가성비가 매우 좋은 숙소로 평가한 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 164,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "바다를 감상하며 먹는 조식 풍경이 아름다웠다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 165,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "해초와 자연환경 평가가 서로 엇갈리고 대부분 판매 글이라 반복 합의가 없음."
+      }
+    },
+    {
+      "resortId": 166,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "유사한 후기 인용문이 복제된 결과가 많아 서로 독립된 평가로 보기 어려움."
+      }
+    },
+    {
+      "resortId": 167,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "가성비 언급은 있으나 정형 소개 글을 제외하면 개인 후기 한 곳에만 남음."
+      }
+    },
+    {
+      "resortId": 168,
+      "reviewSummary": {
+        "pros": [
+          {
+            "text": "일주일 동안 기대했던 하늘·바다·분위기가 빠짐없이 충족됐다는 후기",
+            "mentions": 1
+          }
+        ],
+        "cons": [],
+        "sourceCount": 1,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "limited"
+      }
+    },
+    {
+      "resortId": 169,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "소박한 객실과 수중환경 평가는 각각 한 출처뿐이라 독립 반복 근거가 없음."
+      }
+    },
+    {
+      "resortId": 170,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "반복되는 가격·이동 정보가 대부분 2012~2014년 자료라 현재 평가로 쓰기 어려움."
+      }
+    },
+    {
+      "resortId": 171,
+      "reviewSummary": {
+        "pros": [],
+        "cons": [],
+        "sourceCount": 0,
+        "searchedCount": 10,
+        "reviewedAt": "2026-07-14",
+        "basis": "naver-blog-search-snippets",
+        "evidenceStatus": "insufficient",
+        "evidenceNote": "다른 리조트와 동명 숙소 결과가 섞여 유효한 독립 후기와 반복 평가가 부족함."
+      }
+    }
+  ]
+}

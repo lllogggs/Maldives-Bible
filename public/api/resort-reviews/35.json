@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 35,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 하우스리프에서 거북이를 두 번 볼 수 있었음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 코모 말리푸시( Como Maalifushi ) 리조트 - 후기 와...",
+        "url": "https://blog.naver.com/mini9618/223277272036",
+        "blogName": "그때가 되면 되어 있다",
+        "publishedAt": "2023-11-28",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

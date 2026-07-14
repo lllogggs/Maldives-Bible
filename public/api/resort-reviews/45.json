@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 45,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "워터프론트 풀빌라 객실 만족도가 매우 높았음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 리조트 추천 두짓타니 워터프론트 풀빌라 룸 컨디션",
+        "url": "https://blog.naver.com/kikiroad_/223653881929",
+        "blogName": "키키라이프",
+        "publishedAt": "2024-11-09",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

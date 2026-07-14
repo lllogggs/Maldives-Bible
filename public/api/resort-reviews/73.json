@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 73,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "올인클루시브 식사가 만족스럽다는 후기가 반복됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 조이 아일랜드 올인클루시브 밀플랜 후기 ｜더마켓 뷔페...",
+        "url": "https://blog.naver.com/deunzzangu/224323596860",
+        "blogName": "든짱구와 함께라면 뭐든지 할 수 있어!",
+        "publishedAt": "2026-06-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "251120 신혼여행 몰디브 4일차 - 조이 아일랜드 리조트",
+        "url": "https://blog.naver.com/subinii1/224099843312",
+        "blogName": "오슈님의 블로그",
+        "publishedAt": "2025-12-06",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

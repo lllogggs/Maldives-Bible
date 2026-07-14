@@ -11,7 +11,13 @@
     "vercel-build": "npm install --include=dev && npm run build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "generate-data": "node ./scripts/generate-resorts-json.js"
+    "generate-data": "node ./scripts/generate-resorts-json.js",
+    "reviews:collect": "node ./scripts/naver-reviews/collect.mjs",
+    "reviews:init": "node ./scripts/naver-reviews/init-curation.mjs",
+    "reviews:merge": "node ./scripts/naver-reviews/merge-parts.mjs",
+    "reviews:validate": "node ./scripts/naver-reviews/compile.mjs --check",
+    "reviews:compile": "node ./scripts/naver-reviews/compile.mjs",
+    "reviews:test": "node --test ./scripts/naver-reviews/*.test.mjs"
   },
   "keywords": [
     "몰디브 신혼여행 처음 준비",

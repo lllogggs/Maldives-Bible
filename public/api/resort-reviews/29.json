@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 29,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [
+      {
+        "text": "신혼여행 베드 장식이 소박해 아쉬웠음",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "Coco Palm Dhuni Kolhu (2) - 프론트 & 비치빌라 내부",
+        "url": "https://blog.naver.com/be_chacha/130091137982",
+        "blogName": "blahblah",
+        "publishedAt": "2010-07-31",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

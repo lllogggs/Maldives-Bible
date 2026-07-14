@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 28,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "워터빌라 분위기가 로맨틱하고 만족스럽다는 평가",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "W11. 신혼여행(3) - 몰디브 코코보두히티 워터빌라에서의 2박",
+        "url": "https://blog.naver.com/nijj_ez/224279048741",
+        "blogName": "keep a diary",
+        "publishedAt": "2026-05-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "W-77허니문 리조트 몰디브 코코보두히티 워터빌라 2박 후기",
+        "url": "https://blog.naver.com/hee321kr/224342944885",
+        "blogName": "또랑또랑하게 결혼준비",
+        "publishedAt": "2026-07-10",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

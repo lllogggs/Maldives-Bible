@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 89,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "즐길 엔터테인먼트가 많고 신혼여행 만족도가 높았다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "여행 | 럭스 사우스 아리아톨 올익스클루시브 후기 | 리조트 ...",
+        "url": "https://blog.naver.com/dahyun023/224049117707",
+        "blogName": "흥얼흥얼 MELODY ♬",
+        "publishedAt": "2025-10-21",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

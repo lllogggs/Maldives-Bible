@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 40,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "깨끗한 수중환경이 리조트의 뚜렷한 장점이었음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 추천 디구파루 리조트 후기",
+        "url": "https://blog.naver.com/neweunha/223996414792",
+        "blogName": "여행작가 박은하",
+        "publishedAt": "2025-09-05",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

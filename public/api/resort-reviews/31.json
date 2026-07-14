@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "resortId": 31,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "스페셜티 레스토랑의 디너와 와인 경험이 인상적이었음",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "주류 가격이 매우 비싸 부담스러웠음",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "디너 & 와인테이스팅 @ 콘스탄스 할라벨리 리조트 , 몰디브 신혼여행",
+        "url": "https://blog.naver.com/gloriousld/220536197561",
+        "blogName": "이니그마의 사람을 만나는 여행, 마음을 담는 사진",
+        "publishedAt": "2015-11-11",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

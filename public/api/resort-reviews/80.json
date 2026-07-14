@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "resortId": 80,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "후회 없는 선택이었고 전반적으로 매우 만족했다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "플로팅 조식은 예상보다 먹을 것이 적었다는 후기",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 #2 | 쿠다빌링길리 리조트 몰디브 ...",
+        "url": "https://blog.naver.com/gaengni_/224152636653",
+        "blogName": "갱일리",
+        "publishedAt": "2026-01-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 #9 | 쿠다빌링길리 리조트 몰디브 ...",
+        "url": "https://blog.naver.com/gaengni_/224159182636",
+        "blogName": "갱일리",
+        "publishedAt": "2026-01-25",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

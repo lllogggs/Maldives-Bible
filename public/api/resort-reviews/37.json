@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 37,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "가격대를 감안하면 가성비가 좋은 리조트였음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "가치를 보여준 가성비 몰디브 리조트 - 코코기리 아일랜드 후기 (2)",
+        "url": "https://blog.naver.com/ilovetour520/223984015579",
+        "blogName": "wishtravely",
+        "publishedAt": "2025-08-26",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

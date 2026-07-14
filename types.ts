@@ -35,6 +35,36 @@ export interface Resort {
   imageCredits?: ImageCredit[];
   roomTypes: string[];
   homepageUrl: string;
+  reviewSummary?: ResortReviewSummary;
+}
+
+export interface ResortReviewPoint {
+  text: string;
+  /** Number of independent review sources that mention this point. */
+  mentions?: number;
+}
+
+export interface ResortReviewSource {
+  title: string;
+  url: string;
+  blogName?: string;
+  publishedAt?: string;
+}
+
+export interface ResortReviewSummary {
+  pros: ResortReviewPoint[];
+  cons: ResortReviewPoint[];
+  /** Number of public sources that directly support at least one displayed point. */
+  sourceCount: number;
+  /** Number of NAVER search results inspected before relevance/evidence filtering. */
+  searchedCount: number;
+  /** ISO date for the latest review/curation pass. */
+  reviewedAt: string;
+  basis: 'naver-blog-search-snippets' | 'manual-curation';
+  /** sufficient = repeated by 2+ independent sources; limited = one clear firsthand source. */
+  evidenceStatus: 'sufficient' | 'limited' | 'insufficient';
+  evidenceNote?: string;
+  sources?: ResortReviewSource[];
 }
 
 export interface ImageCredit {

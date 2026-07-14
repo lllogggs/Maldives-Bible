@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 3,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "라스트미닛 예약으로 이용한 가성비 리조트",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "D+146 몰디브 가성비 리조트 아다란 후두란푸시 후기 (1)",
+        "url": "https://blog.naver.com/gusdk021/223072766058",
+        "blogName": "2종2의 일상",
+        "publishedAt": "2023-04-12",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

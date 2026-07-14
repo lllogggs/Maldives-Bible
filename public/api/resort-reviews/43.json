@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 43,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [
+      {
+        "text": "섬 안의 호수는 기대와 달리 큰 매력으로 느껴지지 않았음",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 드림랜드 유니크 아일 랜드 커플 여행 후기",
+        "url": "https://blog.naver.com/ongsky/221688301435",
+        "blogName": "마늘님의 소소한 하루",
+        "publishedAt": "2019-10-25",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

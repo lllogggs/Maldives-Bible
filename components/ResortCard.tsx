@@ -11,6 +11,7 @@ import {
   HeartFilledIcon,
 } from './icons/Icons';
 import { getTransportationLabel } from './transportationLabels';
+import ResortReviewSummary from './ResortReviewSummary';
 
 interface ResortCardProps {
   resort: Resort;
@@ -306,6 +307,8 @@ const ResortCard: React.FC<ResortCardProps> = ({
             <strong className="mt-1 block text-slate-900">{resort.restaurants}곳</strong>
           </div>
         </div>
+
+        <ResortReviewSummary resortId={resort.id} resortName={resort.name} summary={resort.reviewSummary} variant="compact" />
 
         <div className="mt-auto pt-4">
           <div className="flex items-end justify-between gap-3">

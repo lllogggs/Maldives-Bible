@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "resortId": 101,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "sourceCount": 0,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "evidenceNote": "한 글은 실제 체험이지만 다른 글은 사전 선택 기록이라 반복 근거로 쓰지 않음.",
+    "sources": []
+  }
+}

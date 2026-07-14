@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "resortId": 33,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 음식이 전반적으로 맛있었음",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "식당 수가 적어 선택 폭이 아쉬웠음",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "코라코라 몰디브 리조트 , 자유... 경비 특전 혜택 일정 등 후기",
+        "url": "https://blog.naver.com/gkgk319/224218992752",
+        "blogName": "남아나모하나",
+        "publishedAt": "2026-03-17",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

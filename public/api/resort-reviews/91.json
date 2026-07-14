@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 91,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "비치 풀빌라에서 몰디브다운 만족감을 느꼈다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "후기 _001] 밀라이두 리조트 ( Milaidhoo Island Maldives )...",
+        "url": "https://blog.naver.com/gardenfamily_/222590470344",
+        "blogName": "혼자 간직하기엔 아까운,",
+        "publishedAt": "2021-12-08",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

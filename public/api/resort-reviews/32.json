@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 32,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트와 주변 풍경이 아름답다는 평가가 반복됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 여행 후기 ｜ 콘스탄스 무푸시 리조트 의 모든 것 #시설소개",
+        "url": "https://blog.naver.com/eksql1205/221450769723",
+        "blogName": "흔적남기기",
+        "publishedAt": "2019-01-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 콘스탄스 무푸시 리조트 의 시간들, 혼자 떠나는 몰디브 ...",
+        "url": "https://blog.naver.com/gloriousld/220528637168",
+        "blogName": "이니그마의 사람을 만나는 여행, 마음을 담는 사진",
+        "publishedAt": "2015-11-04",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

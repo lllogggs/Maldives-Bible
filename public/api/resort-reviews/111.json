@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "resortId": 111,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "sourceCount": 0,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "evidenceNote": "여행사·매거진 소개 비중이 높아 실제 투숙자 반복 평가가 부족함.",
+    "sources": []
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 105,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "침실에서 보이는 에메랄드빛 바다 전망이 인상적이었다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 ] 래플스 메라두 리조트 오버워터빌라 4박",
+        "url": "https://blog.naver.com/lyzelog/223747655011",
+        "blogName": "ZELOG",
+        "publishedAt": "2025-02-04",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

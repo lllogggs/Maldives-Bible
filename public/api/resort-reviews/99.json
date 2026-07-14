@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 99,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [
+      {
+        "text": "여러 이동 수단을 거치는 여정이 길고 피로하다는 후기",
+        "mentions": 2
+      }
+    ],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 2탄 - 아웃리거 몰디브 마푸시바루 리조트 워터풀빌라...",
+        "url": "https://blog.naver.com/mmalbum/223549808564",
+        "blogName": "댕로그",
+        "publishedAt": "2024-08-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "리조트 ” ( Outrigger Maldives Maafushivaru Resort )",
+        "url": "https://blog.naver.com/rapperkjm/223562163733",
+        "blogName": "한껏 게을러터진 냥이 집사의 일기장",
+        "publishedAt": "2024-08-27",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

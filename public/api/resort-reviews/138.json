@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 138,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 안에서 즐길 프로그램과 놀거리가 다양함",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 준비물, 아마리 라야 럭셔리 리조트 후기",
+        "url": "https://blog.naver.com/jeongwon84/223360961022",
+        "blogName": "깜썰,리준 그리고 깜리",
+        "publishedAt": "2024-02-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "즐길거리] 몰디브 리조트 후기 / Amari Raaya Maldives / 구....",
+        "url": "https://blog.naver.com/yhl2923/223291473941",
+        "blogName": "부산양양이의 소확행 ♪",
+        "publishedAt": "2023-12-13",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

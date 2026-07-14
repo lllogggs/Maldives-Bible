@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 38,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "하우스리프에서 니모를 관찰하기 좋다는 후기가 반복됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 반얀트리 바빈파루 Day4 : 다와이후루 하우스리프 니모...",
+        "url": "https://blog.naver.com/baechunsik/223547393482",
+        "blogName": "오늘도 배고픈 춘식이",
+        "publishedAt": "2024-08-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "6 : 라군, 조식, 다와이후루 룸컨디션, 수중환경, 몰디브 니모",
+        "url": "https://blog.naver.com/kimbit-/223313490916",
+        "blogName": "• • Summer • •",
+        "publishedAt": "2024-01-05",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

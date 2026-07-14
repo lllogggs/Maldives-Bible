@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 132,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "수상비행기 이동이 15~20분으로 짧고 전반적으로 매우 만족했다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "벨리간두 아일랜드 리조트 몰디브 Veligandu Island",
+        "url": "https://blog.naver.com/land-agent/221719165920",
+        "blogName": "빌딩",
+        "publishedAt": "2019-11-26",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

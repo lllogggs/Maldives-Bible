@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 36,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "공항 마중부터 라운지 안내까지 세심하게 케어받았음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "자유여행(3) 수상비행기타고 콘래드 몰디브 랑갈리 아일랜드",
+        "url": "https://blog.naver.com/basis1111023/224211711859",
+        "blogName": "인허플레이스",
+        "publishedAt": "2026-03-10",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

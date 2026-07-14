@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 103,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "오션 풀빌라가 몰디브다운 숙소로 만족스러웠다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "풀만 마무타 몰디브 리조트 오션풀빌라 : 룸체인지, 수중환경과...",
+        "url": "https://blog.naver.com/lgirlsbravol/223471889942",
+        "blogName": "러블릴리의 탐방일기",
+        "publishedAt": "2024-06-07",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

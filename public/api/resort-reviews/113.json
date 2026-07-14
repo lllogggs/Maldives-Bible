@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "resortId": 113,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "sourceCount": 0,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "evidenceNote": "상위 두 문서가 동일 문구를 재사용했고 나머지는 무관 결과가 많음.",
+    "sources": []
+  }
+}

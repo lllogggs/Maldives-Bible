@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 70,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "조용히 쉬기 좋은 휴양형 분위기가 강점으로 언급됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "심심한 섬이라고 했나! 몰디브 자마나파루 바쁜 신혼여행 후기",
+        "url": "https://blog.naver.com/minsanity-/223783775772",
+        "blogName": "갓생 서약서",
+        "publishedAt": "2025-03-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자 마나파루 5박 후기 ①｜비치빌라 2박 + 워터빌라...",
+        "url": "https://blog.naver.com/yubunamnote/224181128584",
+        "blogName": "결혼 3년차 유부남 라이프 노트",
+        "publishedAt": "2026-02-12",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

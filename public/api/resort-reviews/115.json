@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 115,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "비치 객실에서 바로 바다로 나갈 수 있어 매우 좋았다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 여행 리조트 추천 사이라군 호텔 SAII LAGOON...",
+        "url": "https://blog.naver.com/smurfshouse/223954922168",
+        "blogName": "개구쟁이파파! 어디가?",
+        "publishedAt": "2025-08-01",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

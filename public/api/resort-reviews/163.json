@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 163,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "자쿠지 비치빌라를 가성비가 매우 좋은 숙소로 평가한 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 미루 아일랜드 리조트 : 자쿠지 비치빌라 후기 가성비 추천!",
+        "url": "https://blog.naver.com/jimicoya/221611295396",
+        "blogName": "지미코야 데이즈",
+        "publishedAt": "2019-08-09",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

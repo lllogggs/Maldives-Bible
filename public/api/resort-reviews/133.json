@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 133,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "4박 5일 신혼여행의 비용 대비 만족도가 높았다는 내돈내산 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행, 600만... VARU by Atmosphere (내돈내산)",
+        "url": "https://blog.naver.com/lifestyle731/224265315335",
+        "blogName": "라스의 순수 제품리뷰",
+        "publishedAt": "2026-04-26",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

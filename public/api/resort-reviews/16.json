@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 16,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "자연친화적인 분위기와 우수한 수중환경이 인상적이었음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 반얀트리 리조트 Banyan Tree Vabbinfaru - Free...",
+        "url": "https://blog.naver.com/kzzp2819/223145196247",
+        "blogName": "인생 2회차, 언제나 도전하는 중년",
+        "publishedAt": "2023-07-03",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

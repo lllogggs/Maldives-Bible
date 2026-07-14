@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 147,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "조식 구성이 매우 잘 나왔다는 실제 투숙 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "추천 말라히니 쿠다 반도스 리조트 조식 후기 액티비티 투어 및...",
+        "url": "https://blog.naver.com/john_travel/223569235202",
+        "blogName": "존트레블",
+        "publishedAt": "2024-09-11",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

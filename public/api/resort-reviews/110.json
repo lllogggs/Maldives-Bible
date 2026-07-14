@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 110,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 전반과 제공 어메니티 품질에 매우 만족했다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "리조트 , 신혼여행 추천 ' 리츠칼튼 몰디브 , 파리 아일랜드 ' 후기",
+        "url": "https://blog.naver.com/ekdms0518/224090085281",
+        "blogName": "단여와! 세계&국내 여행 이야기",
+        "publishedAt": "2025-11-27",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 17,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "얕고 투명한 라군에서 몰디브다운 바다 풍경을 즐길 수 있었음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 멜리아 웨일라군 후기 , 신혼여행 리조트 로 선택한 이유...",
+        "url": "https://blog.naver.com/hoons-01/224343525782",
+        "blogName": "훈네집 리빙로그",
+        "publishedAt": "2026-07-11",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

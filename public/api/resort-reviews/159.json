@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 159,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "기대보다 더 좋았다는 실제 신혼여행 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 신혼여행] 몰디브 리조트 추천 * 센타라 그랜드 ...",
+        "url": "https://blog.naver.com/kyladiary/224197614903",
+        "blogName": "카일라 다이어리",
+        "publishedAt": "2026-02-27",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

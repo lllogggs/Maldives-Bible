@@ -4,10 +4,16 @@ import { resolve, dirname } from 'path';
 const distDir = resolve(process.cwd(), 'dist');
 const source = resolve(distDir, 'index.html');
 const target = resolve(distDir, '404.html');
-const resortsDataPath = resolve(distDir, 'api', 'resorts.json');
-const sourceResortsPath = resolve(process.cwd(), 'public', 'api', 'resorts.json');
+const reviewInsightsDataPath = resolve(distDir, 'api', 'resort-review-insights.json');
+const sourceReviewInsightsPath = resolve(process.cwd(), 'public', 'api', 'resort-review-insights.json');
+const reviewDetailsDir = resolve(distDir, 'api', 'resort-reviews');
+const sourceReviewDetailsDir = resolve(process.cwd(), 'public', 'api', 'resort-reviews');
 const sitemapPath = resolve(distDir, 'sitemap.xml');
 const siteUrl = 'https://www.maldivesbible.com';
+const expectedResortCount = Number(process.env.EXPECTED_RESORT_COUNT ?? 171);
+if (!Number.isInteger(expectedResortCount) || expectedResortCount < 1) {
+  throw new Error('EXPECTED_RESORT_COUNT는 1 이상의 정수여야 합니다.');
+}
 const currentYear = new Intl.DateTimeFormat('en-US', {
   timeZone: 'Asia/Seoul',
   year: 'numeric',
@@ -449,6 +455,142 @@ const escapeHtml = (value = '') =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
+const serializeJsonLd = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
+
+const safeHttpUrl = (value) => {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'http:' || url.protocol === 'https:' ? url.toString() : null;
+  } catch {
+    return null;
+  }
+};
+
+const toReviewPointText = (point) => {
+  const value = typeof point === 'string' ? point : point?.text ?? point?.label ?? '';
+  const normalized = String(value).replace(/\s+/g, ' ').trim();
+  if (!normalized) {
+    return null;
+  }
+  return normalized.length > 140 ? `${normalized.slice(0, 139).trimEnd()}…` : normalized;
+};
+
+const normalizeReviewSummary = (reviewSummary) => {
+  if (!reviewSummary || typeof reviewSummary !== 'object' || Array.isArray(reviewSummary)) {
+    return null;
+  }
+
+  const normalizePoints = (points) =>
+    Array.isArray(points) ? points.map(toReviewPointText).filter(Boolean) : [];
+  const pros = normalizePoints(reviewSummary.pros);
+  const cons = normalizePoints(reviewSummary.cons);
+  const evidenceStatus = reviewSummary.evidenceStatus === 'insufficient'
+    ? 'insufficient'
+    : reviewSummary.evidenceStatus === 'limited'
+      ? 'limited'
+    : reviewSummary.evidenceStatus === 'sufficient' || pros.length > 0 || cons.length > 0
+      ? 'sufficient'
+      : null;
+  if (!evidenceStatus || (evidenceStatus !== 'insufficient' && pros.length === 0 && cons.length === 0)) {
+    return null;
+  }
+
+  const numericSourceCount = Number(reviewSummary.sourceCount ?? reviewSummary.sampleSize);
+  const sourceCount = Number.isInteger(numericSourceCount) && numericSourceCount > 0
+    ? Math.min(numericSourceCount, 9999)
+    : null;
+  const numericSearchedCount = Number(reviewSummary.searchedCount);
+  const searchedCount = Number.isInteger(numericSearchedCount) && numericSearchedCount > 0
+    ? Math.min(numericSearchedCount, 9999)
+    : null;
+  const reviewDateValue = reviewSummary.reviewedAt ?? reviewSummary.searchedAt;
+  const reviewedAt = typeof reviewDateValue === 'string'
+    ? reviewDateValue.match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? null
+    : null;
+  const basis = typeof reviewSummary.basis === 'string'
+    ? reviewSummary.basis.trim().slice(0, 80)
+    : /naver|네이버/i.test(reviewSummary.source || '')
+      ? 'naver-blog-search-snippets'
+    : '';
+  const evidenceNote = typeof reviewSummary.evidenceNote === 'string'
+    ? reviewSummary.evidenceNote.replace(/\s+/g, ' ').trim().slice(0, 180)
+    : '';
+  const sources = (Array.isArray(reviewSummary.sources) ? reviewSummary.sources : [])
+    .flatMap((source) => {
+      const url = safeHttpUrl(source?.url);
+      const title = String(source?.title ?? '').replace(/\s+/g, ' ').trim();
+      if (!url || !title) return [];
+      return [{
+        url,
+        title: title.slice(0, 180),
+        blogName: String(source?.blogName ?? '').replace(/\s+/g, ' ').trim().slice(0, 80),
+        publishedAt: String(source?.publishedAt ?? '').match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? '',
+      }];
+    })
+    .slice(0, 6);
+
+  return { pros, cons, sourceCount, searchedCount, reviewedAt, basis, evidenceStatus, evidenceNote, sources };
+};
+
+const reviewBasisLabels = (basis) => {
+  if (basis === 'naver-blog-search-snippets') {
+    return {
+      heading: '네이버 블로그 검색 결과 요약',
+      source: '네이버 블로그 관련 후보',
+    };
+  }
+  if (basis === 'manual-curation') {
+    return { heading: '여행 후기 요약', source: '직접 검토한 공개 후기' };
+  }
+  return { heading: '여행 후기 요약', source: '공개된 여행 후기' };
+};
+
+const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
+  const summary = normalizeReviewSummary(reviewSummary);
+  if (!summary || summary.evidenceStatus === 'insufficient') {
+    return '';
+  }
+
+  const limit = compact ? 1 : 2;
+  const pros = summary.pros.slice(0, limit);
+  const cons = summary.cons.slice(0, limit);
+  const labels = reviewBasisLabels(summary.basis);
+  const basis = [
+    labels.source,
+    summary.searchedCount ? `${summary.searchedCount}건 검토` : null,
+    summary.sourceCount ? `${summary.sourceCount}건 근거` : null,
+    summary.reviewedAt ? `${summary.reviewedAt} 검토` : null,
+  ].filter(Boolean).join(' · ');
+
+  if (compact) {
+    return `
+      <div style="margin:0 0 14px;border-top:1px solid #e2e8f0;padding-top:12px;">
+        <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;">후기 요약</p>
+        ${pros.length > 0 ? `<p style="margin:0 0 5px;color:#334155;font-size:14px;line-height:1.55;"><strong style="color:#0f766e;">장점</strong> ${escapeHtml(pros[0])}</p>` : ''}
+        ${cons.length > 0 ? `<p style="margin:0;color:#334155;font-size:14px;line-height:1.55;"><strong style="color:#9a5b31;">아쉬운 점</strong> ${escapeHtml(cons[0])}</p>` : ''}
+      </div>`;
+  }
+
+  const pointList = (points) => points
+    .map((point) => `<li style="margin-top:7px;line-height:1.65;">${escapeHtml(point)}</li>`)
+    .join('');
+  const sourceLinks = summary.sources
+    .map((source) => `<li style="margin-top:7px;"><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">${escapeHtml(source.title)}</a>${source.blogName || source.publishedAt ? `<span style="color:#64748b;"> · ${escapeHtml([source.blogName, source.publishedAt].filter(Boolean).join(' · '))}</span>` : ''}</li>`)
+    .join('');
+
+  return `
+    <section class="seo-resort-reviews" aria-labelledby="seo-resort-reviews-title" style="margin:24px 0 22px;border-top:1px solid #dbe7e4;padding-top:22px;">
+      <p style="margin:0 0 7px;color:#0f766e;font-size:12px;font-weight:800;letter-spacing:.1em;">TRAVELER NOTES</p>
+      <h2 id="seo-resort-reviews-title" style="margin:0 0 14px;font-size:23px;color:#0f172a;">${escapeHtml(labels.heading)}</h2>
+      <div class="seo-resort-review-grid" style="display:grid;grid-template-columns:${pros.length > 0 && cons.length > 0 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'};gap:12px;">
+        ${pros.length > 0 ? `<section style="border-radius:12px;background:#effaf7;padding:15px 16px;"><h3 style="margin:0;color:#0f766e;font-size:16px;">장점</h3><ul style="margin:5px 0 0;padding-left:19px;color:#334155;">${pointList(pros)}</ul></section>` : ''}
+        ${cons.length > 0 ? `<section style="border-radius:12px;background:#fff8f0;padding:15px 16px;"><h3 style="margin:0;color:#9a5b31;font-size:16px;">아쉬운 점</h3><ul style="margin:5px 0 0;padding-left:19px;color:#334155;">${pointList(cons)}</ul></section>` : ''}
+      </div>
+      ${sourceLinks ? `<details style="margin-top:12px;border-top:1px solid #dbe7e4;padding-top:10px;"><summary style="cursor:pointer;color:#0f766e;font-size:13px;font-weight:700;">참고한 후기 출처 ${summary.sources.length}개</summary><ul style="margin:5px 0 0;padding-left:19px;color:#334155;font-size:12px;line-height:1.6;">${sourceLinks}</ul></details>` : ''}
+      <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">근거: ${escapeHtml(basis)}. ${summary.evidenceStatus === 'limited' ? '관련 개인 후기에서 명확히 확인한 내용을 요약했으며 반복 의견으로 일반화하지 않았습니다.' : '서로 다른 공개 후기에서 반복적으로 언급된 내용을 요약했습니다.'} 원문 전체 평가가 아니며 경험과 여행 시기에 따라 달라질 수 있습니다.</p>
+    </section>`;
+};
+
 const buildResortDescription = (resort) => {
   const displayName = resort.name || resort.name_en;
   const englishName = resort.name_en && resort.name_en !== displayName ? `(${resort.name_en})` : null;
@@ -471,6 +613,7 @@ const resortCard = (resort) => {
     resort.hasPrivatePool ? '개인풀' : null,
     resort.honeymoonPerks ? '허니문 혜택' : null,
   ].filter(Boolean);
+  const reviewSummaryContent = buildReviewSummaryContent(resort.reviewSummary, { compact: true });
 
   return `
     <article style="border:1px solid #dbe7e4;border-radius:12px;padding:18px;background:#fff;">
@@ -481,6 +624,7 @@ const resortCard = (resort) => {
       <p style="margin:0 0 14px;">${badges
         .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
         .join('')}</p>
+      ${reviewSummaryContent}
       <a href="${siteUrl}/resorts/${slug}/" style="color:#0f766e;font-weight:700;text-decoration:none;">${escapeHtml(resort.name)} 상세 보기</a>
     </article>`;
 };
@@ -493,6 +637,7 @@ const buildResortPageContent = (resort) => {
     resort.hasPrivatePool ? '개인풀 보유' : null,
     resort.honeymoonPerks ? '허니문 혜택' : null,
   ].filter(Boolean);
+  const reviewSummaryContent = buildReviewSummaryContent(resort.reviewSummary);
 
   return `
     <style>
@@ -500,6 +645,7 @@ const buildResortPageContent = (resort) => {
         .seo-resort-page { padding:22px 12px !important; }
         .seo-resort-card { padding:18px !important; }
         .seo-resort-card h1 { font-size:clamp(28px,9vw,34px) !important;line-height:1.22 !important;letter-spacing:-.035em;overflow-wrap:anywhere; }
+        .seo-resort-review-grid { grid-template-columns:minmax(0,1fr) !important; }
       }
     </style>
     <main class="seo-resort-page" style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
@@ -516,6 +662,7 @@ const buildResortPageContent = (resort) => {
         <p style="margin:0 0 20px;">${badges
           .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
           .join('')}</p>
+        ${reviewSummaryContent}
         <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
         <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
         <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
@@ -533,13 +680,13 @@ const buildNichePageContent = (page, resorts) => {
       name: resort.name,
       url: `${siteUrl}/resorts/${slugify(resort.name_en || resort.name)}/`,
     }));
-  const itemListSchema = JSON.stringify({
+  const itemListSchema = serializeJsonLd({
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: page.heading,
     itemListElement: listItems,
   });
-  const faqSchema = JSON.stringify({
+  const faqSchema = serializeJsonLd({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: page.faq.map((item) => ({
@@ -665,7 +812,7 @@ const buildComparisonLandingContent = (page, resorts) => {
   const showcaseCompareHref = showcaseSlugs.length === showcaseNames.length
     ? `/?view=resorts#/compare/${showcaseSlugs.join(',')}`
     : '/?view=resorts';
-  const breadcrumbSchema = JSON.stringify({
+  const breadcrumbSchema = serializeJsonLd({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
@@ -683,7 +830,7 @@ const buildComparisonLandingContent = (page, resorts) => {
       },
     ],
   });
-  const itemListSchema = JSON.stringify({
+  const itemListSchema = serializeJsonLd({
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: '몰디브 리조트 비교 대표 후보',
@@ -695,7 +842,7 @@ const buildComparisonLandingContent = (page, resorts) => {
       url: resortUrl(resort),
     })),
   });
-  const faqSchema = JSON.stringify({
+  const faqSchema = serializeJsonLd({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: page.faq.map((item) => ({
@@ -1050,7 +1197,7 @@ const buildResortSchema = (resort, canonicalUrl) => {
     address: resort.location ? { '@type': 'PostalAddress', addressLocality: resort.location } : undefined,
   };
 
-  return JSON.stringify(schema);
+  return serializeJsonLd(schema);
 };
 
 const replaceMetaContent = (html, attribute, value, content) =>
@@ -1094,27 +1241,32 @@ const injectStaticRoot = (html, content, { preserveStaticContent = false } = {})
 };
 
 const updateSitemap = async (resortSlugs, nicheSlugs) => {
+  const staticEntries = [
+    `${siteUrl}/`,
+    ...nicheSlugs.map((slug) => toAbsoluteUrl(slug)),
+  ];
+
+  const urlEntries = [
+    ...staticEntries.map(
+      (loc) =>
+        `  <url>\n    <loc>${loc}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`
+    ),
+    ...resortSlugs.map(
+      (slug) =>
+        `  <url>\n    <loc>${siteUrl}/resorts/${slug}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`
+    ),
+  ].join('\n');
+
+  const sitemap = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n${urlEntries}\n</urlset>`;
+  await writeFile(sitemapPath, sitemap, 'utf-8');
+};
+
+const readBuiltOrSourceFile = async (builtPath, sourcePath) => {
   try {
-    const staticEntries = [
-      `${siteUrl}/`,
-      ...nicheSlugs.map((slug) => toAbsoluteUrl(slug)),
-    ];
-
-    const urlEntries = [
-      ...staticEntries.map(
-        (loc) =>
-          `  <url>\n    <loc>${loc}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`
-      ),
-      ...resortSlugs.map(
-        (slug) =>
-          `  <url>\n    <loc>${siteUrl}/resorts/${slug}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`
-      ),
-    ].join('\n');
-
-    const sitemap = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n${urlEntries}\n</urlset>`;
-    await writeFile(sitemapPath, sitemap, 'utf-8');
+    return await readFile(builtPath, 'utf-8');
   } catch (error) {
-    console.error('Failed to update sitemap with resort URLs', error);
+    if (error?.code !== 'ENOENT') throw error;
+    return readFile(sourcePath, 'utf-8');
   }
 };
 
@@ -1138,19 +1290,59 @@ const readAllResorts = async () => {
   const sourceApiDir = resolve(process.cwd(), 'public', 'api');
   const chunks = await Promise.all(
     files.map((file) =>
-      readFile(resolve(apiDir, file), 'utf-8').catch(() => readFile(resolve(sourceApiDir, file), 'utf-8'))
+      readBuiltOrSourceFile(resolve(apiDir, file), resolve(sourceApiDir, file))
     )
   );
+  const resorts = chunks.flatMap((chunk) => JSON.parse(chunk));
   const seen = new Set();
-  return chunks
-    .flatMap((chunk) => JSON.parse(chunk))
-    .filter((resort) => {
-      if (!resort?.id || seen.has(resort.id)) {
-        return false;
-      }
-      seen.add(resort.id);
-      return true;
-    });
+  for (const resort of resorts) {
+    if (!Number.isInteger(resort?.id) || !resort?.name || !resort?.name_en) {
+      throw new Error('리조트 데이터에 필수 필드(id, name, name_en)가 없습니다.');
+    }
+    if (seen.has(resort.id)) throw new Error(`중복 리조트 id: ${resort.id}`);
+    seen.add(resort.id);
+  }
+  if (resorts.length !== expectedResortCount) {
+    throw new Error(`리조트 수가 예상과 다릅니다. expected=${expectedResortCount}, actual=${resorts.length}`);
+  }
+
+  const reviewInsights = JSON.parse(
+    await readBuiltOrSourceFile(reviewInsightsDataPath, sourceReviewInsightsPath)
+  );
+  if (!Array.isArray(reviewInsights?.items)) {
+    throw new Error('resort-review-insights.json의 items가 배열이 아닙니다.');
+  }
+  if (reviewInsights.items.length !== expectedResortCount) {
+    throw new Error(`후기 인덱스 수가 예상과 다릅니다. expected=${expectedResortCount}, actual=${reviewInsights.items.length}`);
+  }
+  const reviewIds = new Set();
+  for (const item of reviewInsights.items) {
+    if (!Number.isInteger(item?.resortId) || !item?.reviewSummary || !seen.has(item.resortId)) {
+      throw new Error(`후기 인덱스에 잘못된 리조트 id가 있습니다: ${item?.resortId ?? 'unknown'}`);
+    }
+    if (reviewIds.has(item.resortId)) throw new Error(`중복 후기 인덱스 id: ${item.resortId}`);
+    reviewIds.add(item.resortId);
+  }
+  const reviewSummaryEntries = await Promise.all(
+    reviewInsights.items.map(async (item) => {
+        const detail = JSON.parse(await readBuiltOrSourceFile(
+          resolve(reviewDetailsDir, `${item.resortId}.json`),
+          resolve(sourceReviewDetailsDir, `${item.resortId}.json`)
+        ));
+        if (detail?.resortId !== item.resortId || !detail?.reviewSummary) {
+          throw new Error(`리조트 ${item.resortId}의 후기 상세 파일 형식이 올바르지 않습니다.`);
+        }
+        return [item.resortId, { ...item.reviewSummary, ...detail.reviewSummary }];
+      })
+  );
+  const reviewSummaryByResortId = new Map(reviewSummaryEntries);
+
+  return resorts.map((resort) => ({
+    ...resort,
+    ...(reviewSummaryByResortId.has(resort.id)
+      ? { reviewSummary: reviewSummaryByResortId.get(resort.id) }
+      : {}),
+  }));
 };
 
 try {
@@ -1159,7 +1351,7 @@ try {
 
   const [template, resorts] = await Promise.all([
     readFile(source, 'utf-8'),
-    readAllResorts().catch(async () => JSON.parse(await readFile(resortsDataPath, 'utf-8').catch(() => readFile(sourceResortsPath, 'utf-8')))),
+    readAllResorts(),
   ]);
 
   const slugs = [];

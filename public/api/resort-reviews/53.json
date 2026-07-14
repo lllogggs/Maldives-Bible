@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 53,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "에메랄드빛 바다와 금빛 모래의 첫인상이 매우 아름다웠음",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[신혼 여행 Ep. 2] 피놀루 바아톨 몰디브 첫째날 (1)",
+        "url": "https://blog.naver.com/joey___/223641882363",
+        "blogName": "joey___님의 블로그",
+        "publishedAt": "2024-10-31",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

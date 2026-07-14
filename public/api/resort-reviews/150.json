@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 150,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "객실에 들어선 첫인상이 숨이 멎을 만큼 인상적이었다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 마디푸시 프라이빗 아일랜드 세레나 풀빌라 후기",
+        "url": "https://blog.naver.com/malangdog01/224232844734",
+        "blogName": "T없이맑은말랑이의 일상",
+        "publishedAt": "2026-03-29",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

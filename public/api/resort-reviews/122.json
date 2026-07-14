@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 122,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "청량한 바다를 바라보는 조식 자리가 매우 좋았다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "청량한 바다 보며 조식을 즐긴 소네바자니 몰디브 리조트",
+        "url": "https://blog.naver.com/coconutday/223631375545",
+        "blogName": "코코넛데이 Coconut Day",
+        "publishedAt": "2024-10-24",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

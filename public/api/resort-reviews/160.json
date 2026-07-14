@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 160,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "아이 동반 가족여행에 잘 맞는다는 평가가 반복됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 가족여행 아난타라 디구 리조트 후기 | 비치풀 3박...",
+        "url": "https://blog.naver.com/yun12kaa/224134114197",
+        "blogName": "힐링스토리",
+        "publishedAt": "2026-01-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 후기 _아난타라_ Anantara Dhigu Maldives ...",
+        "url": "https://blog.naver.com/rpm_7800/224168641179",
+        "blogName": "Ich freue mich Sie kennen zu lernen ^^",
+        "publishedAt": "2026-02-02",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

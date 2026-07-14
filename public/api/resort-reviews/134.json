@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 134,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "선셋크루즈와 고래상어 투어 등 익스커션이 지루하지 않았다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 빌라멘두 리조트 허니문 후기",
+        "url": "https://blog.naver.com/bgekim/220880511910",
+        "blogName": "살며, 사랑하며.",
+        "publishedAt": "2016-12-07",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

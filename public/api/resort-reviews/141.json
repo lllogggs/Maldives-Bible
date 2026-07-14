@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 141,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "다른 세상에 온 듯한 풍경이 사진으로 다시 봐도 매우 좋았다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 / 신혼여행 ] 몰디브 오젠 라이프 마두 리조트 후기 ...",
+        "url": "https://blog.naver.com/jtt8972/223701331945",
+        "blogName": "미래의 나를 위한 기록",
+        "publishedAt": "2024-12-21",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

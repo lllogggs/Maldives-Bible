@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "resortId": 124,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "노을과 바다 풍경이 아름답고 수중환경도 좋았다는 후기",
+        "mentions": 1
+      },
+      {
+        "text": "음식이 거의 모두 맛있었다는 실제 투숙 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 여행 - 몰디브 리조트 선시암 이루푸시 비치빌라 숙박 후기",
+        "url": "https://blog.naver.com/jjaa87/223133344436",
+        "blogName": "콩이언니",
+        "publishedAt": "2023-06-19",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

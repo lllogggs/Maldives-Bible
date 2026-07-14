@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 60,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "라군빌라에서 밤하늘을 보며 큰 행복감을 느꼈다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 신혼여행] 길리 란칸푸시 리조트 6박 7일 꿈 같았던...",
+        "url": "https://blog.naver.com/zn_woo/223596854024",
+        "blogName": "하루의 기록",
+        "publishedAt": "2024-09-26",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

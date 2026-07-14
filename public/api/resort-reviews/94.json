@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 94,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "객실과 시설을 고려하면 가성비가 좋다는 평가가 반복됨",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "오블루 네이처 헬렝겔리 , 몰디브 가성비 리조트 추천",
+        "url": "https://blog.naver.com/shootar/223915840363",
+        "blogName": "홍차왕자의 비밀지도",
+        "publishedAt": "2025-06-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "여행 리조트 추천 올인클루시브 오블루 네이처 헬렝겔리 ...",
+        "url": "https://blog.naver.com/suzie38317/223920714580",
+        "blogName": "Mrs.Moon House",
+        "publishedAt": "2025-07-03",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

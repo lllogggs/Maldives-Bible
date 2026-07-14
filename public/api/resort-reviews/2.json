@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "resortId": 2,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "360도로 펼쳐진 에메랄드 해변 전망이 인상적이었음",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "배정 객실에서 공사장 전망이 보여 아쉬웠음",
+        "mentions": 1
+      }
+    ],
+    "sourceCount": 2,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 여행♥] 2. 아다란 프레스티지 바두 리조트",
+        "url": "https://blog.naver.com/covergirl830/221630310732",
+        "blogName": "Y O o N *",
+        "publishedAt": "2019-08-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아다란 프레스티지 바두 리조트 : 공사장 뷰만 빼면 완벽",
+        "url": "https://blog.naver.com/aquarius37k/221431869190",
+        "blogName": "외식하는 집순이✨",
+        "publishedAt": "2019-01-01",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

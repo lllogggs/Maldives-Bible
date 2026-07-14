@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 96,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "수중환경 중심 리조트로 투숙 만족도가 매우 높았다는 후기",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "낭만 치사량 100% 몰디브 오블루 셀렉트 상겔리",
+        "url": "https://blog.naver.com/173_02/224170526649",
+        "blogName": "영이어게인",
+        "publishedAt": "2026-02-03",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

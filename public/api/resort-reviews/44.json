@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "resortId": 44,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "sourceCount": 0,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "evidenceNote": "검색 문구가 유사한 소개형 콘텐츠 위주라 독립 후기 반복 근거가 약함.",
+    "sources": []
+  }
+}

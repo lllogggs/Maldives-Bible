@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "resortId": 12,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "수중환경과 레스토랑 선택지가 좋아 첫 몰디브 여행에 추천함",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "sourceCount": 1,
+    "searchedCount": 10,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "아바니 플러스 파레스 몰디브 리조트",
+        "url": "https://blog.naver.com/mary_go_travel/223995790508",
+        "blogName": "메리쫑쫑",
+        "publishedAt": "2025-09-05",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}
