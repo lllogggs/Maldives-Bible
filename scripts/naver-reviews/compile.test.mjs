@@ -53,7 +53,7 @@ test('compiles compact summary and separate detail with independent-source menti
   assert.match(`${failure.stdout}\n${failure.stderr}`, /독립 출처가 2개 이상/);
 });
 
-test('keeps an honest insufficient-evidence state without publishing candidate links', async (context) => {
+test('keeps the internal insufficient state without publishing notes or candidate links', async (context) => {
   const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'maldives-reviews-insufficient-'));
   context.after(() => fs.rm(tempDir, { recursive: true, force: true }));
   const input = path.join(tempDir, 'curated.json');
@@ -83,7 +83,8 @@ test('keeps an honest insufficient-evidence state without publishing candidate l
   assert.equal(summary.items[0].reviewSummary.searchedCount, 1);
   assert.equal(summary.items[0].reviewSummary.sourceCount, 0);
   assert.deepEqual(detail.reviewSummary.sources, []);
-  assert.match(summary.items[0].reviewSummary.evidenceNote, /반복된 장단점/);
+  assert.equal('evidenceNote' in summary.items[0].reviewSummary, false);
+  assert.equal('evidenceNote' in detail.reviewSummary, false);
 });
 
 test('labels one clear firsthand source as limited evidence', async (context) => {

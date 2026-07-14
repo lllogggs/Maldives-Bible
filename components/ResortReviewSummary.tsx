@@ -136,13 +136,6 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
 
   if (pros.length === 0 && cons.length === 0 && evidenceStatus !== 'insufficient') return null;
 
-  const sourceCount = Number.isFinite(activeSummary.sourceCount) && activeSummary.sourceCount > 0
-    ? Math.floor(activeSummary.sourceCount)
-    : 0;
-  const searchedCount = Number.isFinite(activeSummary.searchedCount) && activeSummary.searchedCount > 0
-    ? Math.floor(activeSummary.searchedCount)
-    : 0;
-
   if (variant === 'compact') {
     const compactPros = pros.slice(0, 2);
     const compactCons = cons.slice(0, 1);
@@ -152,27 +145,18 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
         className={`mt-3 overflow-hidden rounded-xl border border-teal-100 bg-gradient-to-br from-teal-50/90 to-sky-50/60 px-3 py-2.5 ${
           evidenceStatus === 'insufficient' ? 'h-[5.5rem]' : 'h-[7.75rem]'
         }`}
-        aria-label={`${resortName} 후기 장단점 요약`}
+        aria-label={`${resortName} 여행자 후기`}
       >
-        <div className="mb-1.5 flex items-center justify-between gap-2">
+        <div className="mb-1.5 flex items-center gap-2">
           <h4 className="text-[11px] font-extrabold tracking-tight text-teal-900">
             {evidenceStatus === 'insufficient'
-              ? '네이버 후기 근거 확인'
-              : evidenceStatus === 'limited'
-              ? '네이버 후기에서 확인했어요'
-              : activeSummary.basis === 'naver-blog-search-snippets'
-              ? '네이버 후기에서 반복됐어요'
-              : '후기에서 자주 언급돼요'}
+              ? '후기 요약 준비 중'
+              : '여행자 후기 한눈에'}
           </h4>
-          {(searchedCount > 0 || sourceCount > 0) && (
-            <span className="shrink-0 text-[10px] font-semibold text-slate-500">
-              {searchedCount > 0 ? `${searchedCount}건 검토` : `${sourceCount}건 근거`}
-            </span>
-          )}
         </div>
         {evidenceStatus === 'insufficient' ? (
           <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-slate-600">
-            {activeSummary.evidenceNote || '서로 다른 후기에서 반복된 장단점을 아직 확인하지 못했어요.'}
+            실제 여행 후기를 더 확인하고 있어요. 정리가 끝나면 핵심 장단점을 알려드릴게요.
           </p>
         ) : (
           <ul className="space-y-1">
@@ -188,15 +172,9 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
     );
   }
 
-  const reviewedAt = formatDate(activeSummary.reviewedAt);
   const sources = (Array.isArray(activeSummary.sources) ? activeSummary.sources : []).filter(
     source => source && typeof source.title === 'string' && source.title.trim() && isSafeSourceUrl(source.url),
   );
-  const basisLabel = activeSummary.basis === 'naver-blog-search-snippets'
-    ? evidenceStatus === 'limited'
-      ? '네이버 블로그 검색 결과 중 관련 개인 후기에서 명확히 확인된 내용을 요약했어요. 반복 의견으로 일반화하지 않았어요.'
-      : '네이버 블로그 검색 결과에서 서로 다른 후기마다 반복된 내용을 요약했어요.'
-    : '여러 후기에서 반복적으로 확인된 내용을 편집해 요약했어요.';
 
   if (evidenceStatus === 'insufficient') {
     return (
@@ -204,21 +182,21 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
         className="mb-8 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6"
         aria-labelledby={`review-summary-title-${resortId}`}
       >
-        <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Review evidence</p>
+        <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Traveler notes</p>
         <h2 id={`review-summary-title-${resortId}`} className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl">
-          반복해서 확인된 후기 근거가 부족해요
+          여행자 후기를 더 모으고 있어요
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
-          {activeSummary.evidenceNote || '검색 결과를 검토했지만 서로 다른 후기에서 같은 장단점이 반복되지 않아 요약을 보류했어요.'}
-        </p>
-        <p className="mt-3 text-xs text-slate-500">
-          {searchedCount > 0 && <span>네이버 검색 결과 {searchedCount}건 검토</span>}
-          {searchedCount > 0 && reviewedAt && <span aria-hidden="true"> · </span>}
-          {reviewedAt && <span>{reviewedAt} 기준</span>}
+          확인된 내용이 충분히 모이면 선택에 도움 되는 핵심 장단점으로 정리해드릴게요.
         </p>
       </section>
     );
   }
+
+  const reviewedAt = formatDate(activeSummary.reviewedAt);
+  const basisLabel = evidenceStatus === 'limited'
+    ? '공개된 여행 후기에서 확인한 내용을 보기 쉽게 정리했어요.'
+    : '여러 공개 여행 후기에서 자주 언급된 내용을 보기 쉽게 정리했어요.';
 
   return (
     <section
@@ -227,25 +205,15 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-teal-700">Review highlights</p>
+          <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-teal-700">Traveler notes</p>
           <h2
             id={`review-summary-title-${resortId}`}
             className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl"
           >
-            {activeSummary.basis === 'naver-blog-search-snippets'
-              ? evidenceStatus === 'limited'
-                ? '네이버 개인 후기에서 본 장단점'
-                : '네이버 후기 검색에서 본 장단점'
-              : '여행 후기에서 본 장단점'}
+            여행자 후기 한눈에
           </h2>
         </div>
-        <p className="text-xs leading-5 text-slate-500">
-          {searchedCount > 0 && <span>검색 {searchedCount}건</span>}
-          {searchedCount > 0 && sourceCount > 0 && <span aria-hidden="true"> · </span>}
-          {sourceCount > 0 && <span>근거 {sourceCount}건</span>}
-          {(searchedCount > 0 || sourceCount > 0) && reviewedAt && <span aria-hidden="true"> · </span>}
-          {reviewedAt && <span>{reviewedAt} 검토</span>}
-        </p>
+        {reviewedAt && <p className="text-xs leading-5 text-slate-500">{reviewedAt} 업데이트</p>}
       </div>
 
       <div className={`mt-4 grid gap-3 ${pros.length > 0 && cons.length > 0 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
@@ -276,7 +244,7 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
       {sources.length > 0 && (
         <details className="mt-3 border-t border-teal-100 pt-3">
           <summary className="min-h-11 cursor-pointer py-2 text-sm font-bold text-teal-800 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500">
-            참고한 후기 출처 {sources.length}개 보기
+            참고한 여행 후기 {sources.length}개 보기
           </summary>
           <ul className="mt-2 grid gap-2 sm:grid-cols-2">
             {sources.map((source, index) => {

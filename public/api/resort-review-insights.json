@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-14T06:34:25.259Z",
+  "generatedAt": "2026-07-14T06:57:10.765Z",
   "items": [
     {
       "resortId": 1,
@@ -67,8 +67,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "가격 평가는 한 개인 선택 기록과 소개형 비교 글에만 있어 독립 후기 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -97,8 +96,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "검색 후보 대부분이 다른 리조트 문서라 유효 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -127,8 +125,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "벨리와 날라두 결과가 혼재하고 개인 후기 반복 근거가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -140,8 +137,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "상위 결과가 여행사 소개와 다른 리조트 문서에 치우침."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -153,8 +149,7 @@
         "searchedCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "상위 후보가 없어 반복 의견을 확인할 수 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -166,8 +161,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "개인 투숙 후기와 반복되는 구체적 평가가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -213,8 +207,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "상위 결과가 소개·예약형 콘텐츠 위주라 독립 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -332,8 +325,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "구체적 체험 평가는 한 블로거에 집중되어 독립 반복 조건을 충족하지 못함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -345,8 +337,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "여행사와 소개형 콘텐츠가 대부분이라 독립 후기 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -380,8 +371,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "개인 여행 기록이 한 블로거에 집중되고 나머지는 홍보성 소개 위주임."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -427,8 +417,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "카니와 피놀루 내용이 섞여 개별 리조트의 반복 평가를 분리하기 어려움."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -642,8 +631,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "구체적인 실제 체험 평가가 독립적으로 반복되지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -727,8 +715,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "검색 문구가 유사한 소개형 콘텐츠 위주라 독립 후기 반복 근거가 약함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -757,8 +744,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "가성비는 사전 비교 글에만 있고 다이빙은 지점 소개와 단순 사실이라 반복 평가가 아님."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -787,8 +773,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "개인 후기의 구체적 평가는 있으나 같은 측면의 독립 반복이 확인되지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -800,8 +785,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "상위 글의 상당수가 소개형이며 개인 후기 간 반복 평가가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -813,8 +797,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "실제 여행 기록은 있으나 동일 장단점을 말하는 독립 출처가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -847,8 +830,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "유효 후보가 적고 나머지 검색 결과는 다른 리조트 문서임."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -877,8 +859,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "보아바가 아닌 쿠다후라·란다기라바루 결과가 대부분이라 근거가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -890,8 +871,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "상위 결과가 홍보·시설 소개 위주라 개인 후기 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -903,8 +883,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "1박 비용은 명시됐지만 가격이 높다는 직접 평가가 없어 단일출처 주장으로도 채택하지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -916,8 +895,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "동일 예약 후기가 여러 블로그에 복제되어 독립 근거로 사용할 수 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -929,8 +907,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "한 글은 추후 후기 예고이고 다른 글은 매체형 소개라 독립 체험 평가로 쓰지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -942,8 +919,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "실제 투숙 후기가 적고 다른 리조트 결과가 섞여 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -989,8 +965,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "모던한 분위기 평가는 한 체험 글과 일반 소개 글 조합이라 반복 근거로 쓰지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1041,8 +1016,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "판매·숙소 정보 글이 중심이라 독립 실제 후기의 반복 장단점이 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1054,8 +1028,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "후보 대부분이 마디푸시 등 다른 리조트 결과라 분석 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1067,8 +1040,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "여행사·재게시형 소개가 대부분이라 독립 후기 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1136,8 +1108,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "여행사·소개 글 위주로 실제 투숙 후기 2건의 반복 의견이 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1149,8 +1120,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "여행사·프로모션 문서와 다른 리조트 혼동 결과가 많아 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1179,8 +1149,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "여행사·공식·지원받은 글 중심이라 독립 후기 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1192,8 +1161,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "동일 블로거 연재와 소개성 문서가 많아 독립 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1205,8 +1173,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "두 글 모두 선택 단계의 기록으로 실제 스노클링 만족을 확인할 수 없어 미채택."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1218,8 +1185,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "가격·선택지 평가는 한 실제 후기와 일반 소개형 글에 의존해 독립 반복으로 보지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1248,8 +1214,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "서로 다른 블로그에 동일 문구가 재사용되어 독립 근거로 보기 어려움."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1283,8 +1248,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "판매·소개 문서 중심이고 실제 투숙자가 반복한 구체 장단점이 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1296,8 +1260,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "무관한 결과와 소개성 글이 많아 독립적인 반복 의견이 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1309,8 +1272,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "실제 방문 내용은 있으나 전문 매체형 운영 성격을 배제하기 어려워 제한 근거로 채택하지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1322,8 +1284,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "여행사·일반 소개와 생성형 문체 문서가 많아 독립 후기 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1335,8 +1296,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "재게시된 이용후기와 판매성 글 위주라 독립 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1348,8 +1308,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "두 출처 모두 일반 추천형 문구에 가까워 실제 이동 경험의 독립 근거로 쓰지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1378,8 +1337,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "한 개인 후기와 여행업계 소개 글 조합이라 식사 장점의 독립 반복으로 보지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1408,8 +1366,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "검색 결과가 마디푸시·메이야푸시 등 다른 리조트와 혼동되어 근거가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1438,8 +1395,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "검색 결과 대부분이 일반 소개·생성형 문체로 독립 실제 후기 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1451,8 +1407,7 @@
         "searchedCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "관련 후기 수가 적고 다른 리조트 결과가 섞여 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1481,8 +1436,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "아일라푸시 이용은 확인되지만 두 글이 사전 선택 기록이라 체험 장점으로는 미채택."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1528,8 +1482,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "인공섬 단점은 사전 선택 글과 일반 소개 글 조합이라 실제 투숙 평가로 쓰지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1558,8 +1511,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "마디푸시·사파리 아일랜드 등 무관한 결과가 대부분이라 분석할 수 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1571,8 +1523,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "한 글은 실제 체험이지만 다른 글은 사전 선택 기록이라 반복 근거로 쓰지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1584,8 +1535,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "공식·여행사·패키지 소개 위주로 독립 후기 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1614,8 +1564,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "관련 후기 제목은 많지만 스니펫에 반복되는 구체 장단점이 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1644,8 +1593,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "후기 재게시·일반 소개가 많아 독립 투숙자 반복 평가를 확인하지 못함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1657,8 +1605,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "검색 결과가 생성형 일반 소개 위주여서 독립 실제 후기 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1687,8 +1634,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "여행사 문서가 대부분이고 실제 투숙 후기 두 건의 공통 평가가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1717,8 +1663,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "여행사·매거진 소개 비중이 높아 실제 투숙자 반복 평가가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1747,8 +1692,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "상위 두 문서가 동일 문구를 재사용했고 나머지는 무관 결과가 많음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1760,8 +1704,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "한 글은 다른 후기를 인용한 수중평가이고 다른 글은 라군 평가라 같은 체험 근거가 아님."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1807,8 +1750,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "후기형 결과는 있으나 같은 장단점이 두 독립 블로거에서 반복되지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1820,8 +1762,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "예약 유도형 정형 문구가 대부분이라 독립적인 투숙 후기 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1833,8 +1774,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "여행사와 프로모션 글을 제외하면 반복되는 평가를 확인할 수 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1846,8 +1786,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "상위 결과 대부분이 다른 리조트 후기라 유효한 독립 출처가 두 개 미만임."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1965,8 +1904,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "관련 결과가 여행사 글에 치우쳐 독립 투숙 후기의 반복 평가가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -1978,8 +1916,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "무관한 비교 글과 판매 글이 많아 두 독립 후기의 공통 평가를 찾지 못함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2025,8 +1962,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "라군과 수중환경 평가는 한 개인 후기에서만 확인돼 독립 반복 기준에 못 미침."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2038,8 +1974,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "개인 후기 결과는 있으나 스니펫에 구체적인 공통 장단점이 나타나지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2085,8 +2020,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "수중환경과 디자인 평가는 있었으나 비판매성 독립 출처 두 곳에서 반복되지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2098,8 +2032,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "실제 방문 스니펫이 적고 나머지는 판매·예약 유도 글이라 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2111,8 +2044,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "두 글은 추가 이동 단계만 설명했으며 접근이 불편하다는 동일 평가는 명시하지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2141,8 +2073,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "넓은 객실 언급은 일반 소개·후기 재인용 중심이라 독립 투숙 평가로 쓰기 어려움."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2154,8 +2085,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "리조트 구조 소개는 반복되지만 여행사 글 비중이 높아 후기성 평가 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2184,8 +2114,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "검색 결과가 예약·할인 유도 및 정형 소개글 중심이라 독립 후기 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2197,8 +2126,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "성인 전용과 수중 레스토랑 언급은 있으나 비판매성 독립 후기에서 반복되지 않음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2210,8 +2138,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "유효 개인 후기가 소수 블로거의 연재에 집중돼 독립적인 공통 평가가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2223,8 +2150,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "상위 결과 대부분이 여행사 요금표와 할인 유도 글이라 투숙 후기 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2236,8 +2162,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "실제 개인 투숙 후기는 한 건뿐이고 나머지는 소개·판매 글이라 반복 평가가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2266,8 +2191,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "검색 결과가 여행사와 제휴 할인 글에 치우쳐 독립 투숙 후기 자료가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2279,8 +2203,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "동명이거나 다른 지역·리조트 결과가 대부분이라 유효한 출처가 두 개 미만임."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2309,8 +2232,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "정형 소개·할인 글과 다른 리조트 결과가 많아 독립적인 반복 평가를 찾지 못함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2322,8 +2244,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "실질적으로 관련된 결과가 한 블로거의 소개 글 두 건뿐이라 독립 출처가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2335,8 +2256,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "후기 대부분이 한 블로거의 연재이며 다른 독립 후기와 겹치는 평가가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2365,8 +2285,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "검색 상위 결과가 모두 다른 리조트 또는 일반 비교 글이라 유효 후기가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2378,8 +2297,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "신규 리조트라 판매·예약 전 글이 대부분이며 실제 투숙 후기의 반복 근거가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2408,8 +2326,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "식당과 프로그램 언급은 있으나 여행사 글을 제외하면 독립적인 반복 평가가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2455,8 +2372,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "가성비 평가는 개인 후기 한 곳과 후기 재인용 글에만 있어 독립 반복 근거가 부족함."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2468,8 +2384,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "상위 두 글의 후기 문구가 사실상 동일해 독립 출처로 보기 어렵고 추가 반복 근거가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2515,8 +2430,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "해초와 자연환경 평가가 서로 엇갈리고 대부분 판매 글이라 반복 합의가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2528,8 +2442,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "유사한 후기 인용문이 복제된 결과가 많아 서로 독립된 평가로 보기 어려움."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2541,8 +2454,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "가성비 언급은 있으나 정형 소개 글을 제외하면 개인 후기 한 곳에만 남음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2571,8 +2483,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "소박한 객실과 수중환경 평가는 각각 한 출처뿐이라 독립 반복 근거가 없음."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2584,8 +2495,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "반복되는 가격·이동 정보가 대부분 2012~2014년 자료라 현재 평가로 쓰기 어려움."
+        "evidenceStatus": "insufficient"
       }
     },
     {
@@ -2597,8 +2507,7 @@
         "searchedCount": 10,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
-        "evidenceStatus": "insufficient",
-        "evidenceNote": "다른 리조트와 동명 숙소 결과가 섞여 유효한 독립 후기와 반복 평가가 부족함."
+        "evidenceStatus": "insufficient"
       }
     }
   ]

@@ -143,10 +143,6 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
         errors.push(`${prefix}: 공개 장단점의 모든 인용 출처에는 sourceKind=firsthand-personal 확인이 필요합니다: ${source.url}`);
       }
     }
-    const evidenceNote = evidenceStatus === 'insufficient'
-      ? String(item.curatorNote ?? '').replace(/\s+/g, ' ').trim().slice(0, 120)
-        || '검색 결과에서 서로 다른 후기의 반복된 장단점을 확인하지 못했어요.'
-      : undefined;
     const reviewSummary = {
       pros,
       cons,
@@ -155,7 +151,6 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
       reviewedAt: item.reviewedAt,
       basis: UI_BASIS,
       evidenceStatus,
-      ...(evidenceNote ? { evidenceNote } : {}),
     };
     compiledItems.push({
       resortId: item.resortId,

@@ -173,9 +173,10 @@ try {
     'utf8'
   );
 
-  assert.match(reviewHtml, /네이버 블로그 검색 결과 요약/);
-  assert.match(reviewHtml, /네이버 블로그 관련 후보 · 10건 검토 · 4건 근거 · 2026-07-13 검토/);
-  assert.match(reviewHtml, /참고한 후기 출처 1개/);
+  assert.match(reviewHtml, /여행자 후기 한눈에/);
+  assert.match(reviewHtml, /공개 후기 4개 참고 · 2026-07-13 업데이트/);
+  assert.match(reviewHtml, /참고한 여행 후기 1개/);
+  assert.doesNotMatch(reviewHtml, /10건 검토|4건 근거|근거:/);
   assert.match(reviewHtml, /https:\/\/blog\.naver\.com\/example\/123/);
   assert.match(reviewHtml, /직원 응대가 친절하다는 후기가 반복됨/);
   assert.match(reviewHtml, /공항 이동 비용이 부담스럽다는 언급이 있음/);
