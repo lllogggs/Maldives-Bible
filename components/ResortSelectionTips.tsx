@@ -6,7 +6,6 @@ import {
   RestaurantIcon,
   PoolIcon,
   BuildingIcon,
-  CheckCircleIcon,
   DollarIcon,
   CalendarIcon,
   ClockIcon,
@@ -48,21 +47,6 @@ const moodCards = [
     tag: '라군 · 수중환경',
     body: '맑은 라군은 사진이 좋고, 수중환경이 좋은 곳은 스노클링 만족도가 높습니다.',
     Icon: PoolIcon,
-  },
-] as const;
-
-const guideCards = [
-  {
-    title: '몰디브 신혼여행 처음 준비',
-    body: '처음에는 유명 리조트 이름보다 예산, 일정, 이동수단, 객실 타입, 식사 플랜을 먼저 잡는 편이 빠릅니다.',
-  },
-  {
-    title: '몰디브 신혼여행 비용 감 잡기',
-    body: '4박 6일 기준 리조트 숙박비에 항공권, 말레공항 이후 이동비, 식사 플랜 차이를 더해야 실제 총액에 가까워집니다.',
-  },
-  {
-    title: '몰디브 리조트 선택 기준',
-    body: '워터빌라와 비치빌라 차이, 개인풀 여부, 라군과 수중환경, 리조트 이동 시간을 같이 보면 선택지가 정리됩니다.',
   },
 ] as const;
 
@@ -163,21 +147,6 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
             </button>
           </div>
         </div>
-
-        <section className="grid gap-3 lg:grid-cols-3">
-          {guideCards.map(({ title, body }) => (
-            <article
-              key={title}
-              className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5"
-            >
-              <div className="mb-3 flex items-center gap-2">
-                <CheckCircleIcon className="h-4 w-4 text-teal-700" />
-                <h2 className="font-brand-heading text-lg text-slate-950">{title}</h2>
-              </div>
-              <p className="text-sm leading-7 text-slate-600">{body}</p>
-            </article>
-          ))}
-        </section>
 
         <section>
           <h2 className="font-brand-heading mb-3 text-lg text-slate-950">이동수단 감 잡기</h2>

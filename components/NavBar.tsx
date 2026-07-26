@@ -20,7 +20,7 @@ const NavButton: React.FC<{
       type="button"
       onClick={onClick}
       aria-current={isActive ? 'page' : undefined}
-      className={`min-h-11 w-full rounded-sm border-b-2 px-0.5 text-[13px] font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f8f7] sm:w-auto sm:shrink-0 sm:px-1 sm:text-base ${isActive ? activeClasses : inactiveClasses}`}
+      className={`min-h-11 w-full whitespace-nowrap rounded-sm border-b-2 px-0.5 text-[13px] font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f8f7] sm:w-auto sm:shrink-0 sm:px-1 sm:text-base ${isActive ? activeClasses : inactiveClasses}`}
     >
       {label}
     </button>
