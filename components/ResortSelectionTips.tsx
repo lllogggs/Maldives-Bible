@@ -4,12 +4,9 @@ import {
   SeaplaneIcon,
   DomesticFlightIcon,
   RestaurantIcon,
-  PoolIcon,
   BuildingIcon,
   DollarIcon,
   CalendarIcon,
-  ClockIcon,
-  HeartIcon,
   SearchIcon,
   ChevronRightIcon,
 } from './icons/Icons';
@@ -34,19 +31,16 @@ const moodCards = [
     title: '사진이 중요한 커플',
     tag: '워터빌라 · 개인풀 · 선셋',
     body: '객실 사진, 선셋 방향, 프라이버시를 먼저 보면 후보가 빠르게 줄어듭니다.',
-    Icon: HeartIcon,
   },
   {
     title: '일정 효율이 중요한 커플',
     tag: '새벽 도착 · 보트 이동',
     body: '짧은 일정일수록 말레 도착 시간과 리조트 이동 편수를 먼저 확인하세요.',
-    Icon: ClockIcon,
   },
   {
     title: '바다가 중요한 커플',
     tag: '라군 · 수중환경',
     body: '맑은 라군은 사진이 좋고, 수중환경이 좋은 곳은 스노클링 만족도가 높습니다.',
-    Icon: PoolIcon,
   },
 ] as const;
 
@@ -114,14 +108,11 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
         </section>
 
         <section className="grid gap-3 sm:grid-cols-3">
-          {moodCards.map(({ title, tag, body, Icon }) => (
+          {moodCards.map(({ title, tag, body }) => (
             <article
               key={title}
               className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5"
             >
-              <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-teal-50 text-teal-800">
-                <Icon className="h-4 w-4" />
-              </div>
               <h3 className="font-brand-heading text-lg text-slate-950">{title}</h3>
               <p className="mt-1 text-xs font-bold text-rose-600">{tag}</p>
               <p className="mt-3 text-sm leading-6 text-slate-600">{body}</p>
