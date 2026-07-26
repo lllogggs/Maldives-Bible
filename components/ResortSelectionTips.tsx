@@ -66,15 +66,17 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,0.84),rgba(15,23,42,0.48),rgba(15,23,42,0.12))]" />
-        <div className="relative flex min-h-[310px] max-w-3xl flex-col justify-end px-5 py-6 sm:min-h-[390px] sm:px-8 sm:py-8">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-teal-100">
-            Maldives Honeymoon Guide
-          </p>
-          <h1 className="font-brand-heading max-w-2xl text-3xl leading-tight sm:text-5xl">
-            몰디브 신혼여행
-            <span className="block">리조트 고르기</span>
-          </h1>
-          <div className="mt-6">
+        <div className="relative flex min-h-[310px] max-w-3xl flex-col justify-between px-5 py-6 sm:min-h-[390px] sm:px-8 sm:py-8">
+          <div>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-teal-100">
+              Maldives Honeymoon Guide
+            </p>
+            <h1 className="font-brand-heading max-w-2xl text-3xl leading-tight sm:text-5xl">
+              몰디브 신혼여행
+              <span className="block">리조트 고르기</span>
+            </h1>
+          </div>
+          <div>
             <button
               type="button"
               onClick={onShowResorts}
