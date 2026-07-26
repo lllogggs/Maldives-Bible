@@ -115,6 +115,7 @@ const insufficientReviewSummary = {
 
 try {
   const postBuildTarget = join(sandbox, 'scripts', 'post-build.mjs');
+  const glossaryTarget = join(sandbox, 'data', 'maldives-glossary.mjs');
   const templateTarget = join(sandbox, 'dist', 'index.html');
   const dataTarget = join(sandbox, 'dist', 'api', 'resorts.json');
   const reviewInsightsTarget = join(sandbox, 'dist', 'api', 'resort-review-insights.json');
@@ -123,11 +124,13 @@ try {
   const insufficientReviewDetailTarget = join(sandbox, 'dist', 'api', 'resort-reviews', '3.json');
   await Promise.all([
     mkdir(dirname(postBuildTarget), { recursive: true }),
+    mkdir(dirname(glossaryTarget), { recursive: true }),
     mkdir(dirname(dataTarget), { recursive: true }),
     mkdir(dirname(reviewDetailTarget), { recursive: true }),
   ]);
   await Promise.all([
     copyFile(join(projectRoot, 'scripts', 'post-build.mjs'), postBuildTarget),
+    copyFile(join(projectRoot, 'data', 'maldives-glossary.mjs'), glossaryTarget),
     writeFile(templateTarget, template, 'utf8'),
     writeFile(dataTarget, JSON.stringify([baseResort, noReviewResort, insufficientReviewResort]), 'utf8'),
     writeFile(

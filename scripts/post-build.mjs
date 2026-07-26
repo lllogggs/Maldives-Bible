@@ -1,5 +1,6 @@
 import { copyFile, mkdir, readFile, readdir, writeFile } from 'fs/promises';
 import { resolve, dirname } from 'path';
+import { maldivesGlossaryCategories } from '../data/maldives-glossary.mjs';
 
 const distDir = resolve(process.cwd(), 'dist');
 const source = resolve(distDir, 'index.html');
@@ -22,28 +23,38 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
 const toUrlPath = (slug) => `/${encodeURI(slug)}/`;
 const toAbsoluteUrl = (slug) => `${siteUrl}${toUrlPath(slug)}`;
 
-const mealPlanTerms = [
-  ['BB', 'Bed & Breakfast', '베드 앤 브렉퍼스트', '일반적으로 조식 포함'],
-  ['HB', 'Half Board', '하프보드', '보통 조식 + 석식'],
-  ['FB', 'Full Board', '풀보드', '보통 조식 + 중식 + 석식'],
-  ['AI', 'All Inclusive', '올인클루시브', '식사 + 음료 중심'],
-];
-
-const buildMealPlanGlossaryContent = ({ maxWidth = '1120px' } = {}) => `
-  <section aria-labelledby="meal-plan-glossary-title" style="max-width:${maxWidth};margin:32px auto 0;border-top:1px solid #dbe7e4;padding-top:22px;">
-    <p style="margin:0;color:#0f766e;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;">Meal plan glossary</p>
+const buildMaldivesGlossaryContent = ({ maxWidth = '1120px' } = {}) => `
+  <style>
+    .maldives-glossary summary:focus { outline: none; }
+    .maldives-glossary summary:focus-visible { outline: 2px solid #14b8a6; outline-offset: -2px; }
+  </style>
+  <section class="maldives-glossary" aria-labelledby="maldives-glossary-title" style="max-width:${maxWidth};margin:32px auto 0;border-top:1px solid #dbe7e4;padding-top:22px;">
+    <p style="margin:0;color:#0f766e;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;">Maldives glossary</p>
     <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:8px 18px;margin-top:5px;">
-      <h2 id="meal-plan-glossary-title" style="margin:0;color:#0f172a;font-size:21px;">몰디브 식사 플랜 용어</h2>
-      <a href="${toAbsoluteUrl('maldives-meal-plan-comparison')}" style="color:#0f766e;font-size:13px;font-weight:800;text-underline-offset:3px;">식사 플랜 차이 자세히 보기</a>
+      <div>
+        <h2 id="maldives-glossary-title" style="margin:0;color:#0f172a;font-size:21px;">몰디브 관련 용어</h2>
+        <p style="margin:5px 0 0;color:#64748b;font-size:12px;line-height:1.65;">처음 알아볼 때 자주 만나는 표현을 분야별로 모았어요. 눌러서 뜻을 확인하세요.</p>
+      </div>
+      <a href="${toAbsoluteUrl('maldives-honeymoon-first-time-guide')}" style="color:#0f766e;font-size:13px;font-weight:800;text-underline-offset:3px;">몰디브 입문 가이드 보기</a>
     </div>
-    <dl style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px;margin:14px 0 0;">
-      ${mealPlanTerms.map(([abbreviation, english, korean, inclusion]) => `
-        <div style="border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;">
-          <dt style="color:#0f172a;font-size:13px;"><strong style="margin-right:7px;color:#0f766e;">${abbreviation}</strong>${english}</dt>
-          <dd style="margin:5px 0 0;color:#64748b;font-size:12px;line-height:1.55;">${korean} · ${inclusion}</dd>
-        </div>`).join('')}
-    </dl>
-    <p style="margin:10px 0 0;color:#64748b;font-size:11px;line-height:1.65;">같은 이름의 식사 플랜도 리조트마다 음료, 미니바, 레스토랑과 액티비티 포함 범위가 다를 수 있습니다.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:start;gap:9px;margin-top:14px;">
+      ${maldivesGlossaryCategories.map(category => `
+        <details data-glossary-category="${category.id}" style="overflow:hidden;border:1px solid #dbe7e4;border-radius:10px;background:#fff;">
+          <summary style="min-height:46px;box-sizing:border-box;cursor:pointer;padding:10px 12px;color:#0f172a;font-size:13px;">
+            <strong>${category.title}</strong>
+            <span style="display:block;margin-top:3px;color:#64748b;font-size:11px;">${category.preview} · ${category.terms.length}개</span>
+          </summary>
+          <dl style="margin:0;border-top:1px solid #e2e8f0;">
+            ${category.terms.map(term => `
+              <div style="padding:9px 12px;border-bottom:1px solid #f1f5f9;">
+                <dt style="color:#0f172a;font-size:12px;"><strong style="margin-right:7px;color:#0f766e;">${term.name}</strong>${term.english}</dt>
+                <dd style="margin:4px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${term.description}</dd>
+              </div>`).join('')}
+          </dl>
+          <p style="margin:0;padding:8px 12px;background:#f0fdfa;color:#475569;font-size:11px;line-height:1.65;">${category.note}</p>
+          <a href="${siteUrl}${category.href}" style="display:block;border-top:1px solid #e2e8f0;padding:9px 12px;color:#0f766e;font-size:12px;font-weight:800;text-decoration:none;">${category.linkLabel} →</a>
+        </details>`).join('')}
+    </div>
   </section>`;
 
 const nichePages = [
@@ -667,7 +678,7 @@ const buildResortPageContent = (resort) => {
         <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
         <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
         <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
-        ${buildMealPlanGlossaryContent({ maxWidth: '100%' })}
+        ${buildMaldivesGlossaryContent({ maxWidth: '100%' })}
       </article>
     </main>`;
 };
@@ -749,7 +760,7 @@ const buildNichePageContent = (page, resorts) => {
             <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
           </p>
         </section>
-        ${buildMealPlanGlossaryContent()}
+        ${buildMaldivesGlossaryContent()}
       </main>`,
     schemaJson: `${itemListSchema}</script>\n<script type="application/ld+json">${faqSchema}`,
   };
@@ -1172,7 +1183,7 @@ const buildComparisonLandingContent = (page, resorts) => {
             <a data-compare-cta="footer" href="/?view=resorts">내 조건으로 리조트 비교하기 →</a>
           </section>
 
-          ${buildMealPlanGlossaryContent({ maxWidth: '100%' })}
+          ${buildMaldivesGlossaryContent({ maxWidth: '100%' })}
 
         </div>
       </main>

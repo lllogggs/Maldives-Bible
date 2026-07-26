@@ -1,72 +1,79 @@
 import React from 'react';
-
-const mealPlans = [
-  {
-    abbreviation: 'BB',
-    english: 'Bed & Breakfast',
-    korean: '베드 앤 브렉퍼스트',
-    inclusion: '일반적으로 조식 포함',
-  },
-  {
-    abbreviation: 'HB',
-    english: 'Half Board',
-    korean: '하프보드',
-    inclusion: '보통 조식 + 석식',
-  },
-  {
-    abbreviation: 'FB',
-    english: 'Full Board',
-    korean: '풀보드',
-    inclusion: '보통 조식 + 중식 + 석식',
-  },
-  {
-    abbreviation: 'AI',
-    english: 'All Inclusive',
-    korean: '올인클루시브',
-    inclusion: '식사 + 음료 중심',
-  },
-] as const;
+import { maldivesGlossaryCategories } from '../data/maldives-glossary.mjs';
+import { ChevronDownIcon } from './icons/Icons';
 
 const SiteFooter: React.FC = () => (
   <footer className="mx-auto max-w-[1440px] px-4 pb-5 sm:px-6 lg:px-8">
     <section
       className="border-t border-slate-200 pt-6"
-      aria-labelledby="meal-plan-glossary-title"
+      aria-labelledby="maldives-glossary-title"
     >
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
         <div>
           <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-teal-700">
-            Meal plan glossary
+            Maldives glossary
           </p>
-          <h2 id="meal-plan-glossary-title" className="font-brand-heading mt-1 text-lg text-slate-950">
-            몰디브 식사 플랜 용어
+          <h2 id="maldives-glossary-title" className="font-brand-heading mt-1 text-lg text-slate-950">
+            몰디브 관련 용어
           </h2>
+          <p className="mt-1 text-xs leading-5 text-slate-500">
+            처음 알아볼 때 자주 만나는 표현을 분야별로 모았어요. 눌러서 뜻을 확인하세요.
+          </p>
         </div>
         <a
-          href="/maldives-meal-plan-comparison/"
-          className="w-fit text-xs font-bold text-teal-700 underline decoration-teal-200 underline-offset-4 hover:text-teal-900"
+          href="/maldives-honeymoon-first-time-guide/"
+          className="w-fit shrink-0 text-xs font-bold text-teal-700 underline decoration-teal-200 underline-offset-4 hover:text-teal-900"
         >
-          식사 플랜 차이 자세히 보기
+          몰디브 입문 가이드 보기
         </a>
       </div>
 
-      <dl className="mt-4 grid grid-cols-2 gap-2 xl:grid-cols-4">
-        {mealPlans.map(plan => (
-          <div key={plan.abbreviation} className="rounded-lg border border-slate-200 bg-white px-3 py-3 shadow-sm shadow-slate-900/[0.03]">
-            <dt className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2">
-              <strong className="text-sm font-black text-teal-800">{plan.abbreviation}</strong>
-              <span className="text-xs font-bold text-slate-900">{plan.english}</span>
-            </dt>
-            <dd className="mt-1 text-xs leading-5 text-slate-600">
-              {plan.korean} · {plan.inclusion}
-            </dd>
-          </div>
-        ))}
-      </dl>
+      <div className="mt-4 grid items-start gap-2 md:grid-cols-2 xl:grid-cols-3">
+        {maldivesGlossaryCategories.map(category => (
+          <details
+            key={category.id}
+            data-glossary-category={category.id}
+            className="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/[0.03]"
+          >
+            <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-3 px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-teal-500 [&::-webkit-details-marker]:hidden">
+              <span className="min-w-0">
+                <strong className="block text-sm font-black text-slate-950">{category.title}</strong>
+                <span className="mt-0.5 block truncate text-[11px] text-slate-500">{category.preview}</span>
+              </span>
+              <span className="flex shrink-0 items-center gap-1.5 text-[11px] font-bold text-teal-700">
+                {category.terms.length}개
+                <ChevronDownIcon
+                  aria-hidden="true"
+                  className="h-4 w-4 transition-transform duration-200 group-open:rotate-180"
+                />
+              </span>
+            </summary>
 
-      <p className="mt-3 text-[11px] leading-5 text-slate-500">
-        같은 이름의 식사 플랜도 리조트마다 음료, 미니바, 레스토랑과 액티비티 포함 범위가 다를 수 있습니다.
-      </p>
+            <div className="border-t border-slate-100">
+              <dl className="divide-y divide-slate-100">
+                {category.terms.map(term => (
+                  <div key={`${category.id}-${term.name}`} className="px-3 py-2.5">
+                    <dt className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                      <strong className="text-xs font-black text-teal-800">{term.name}</strong>
+                      <span className="text-[11px] font-bold text-slate-700">{term.english}</span>
+                    </dt>
+                    <dd className="mt-1 text-xs leading-5 text-slate-600">{term.description}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="border-t border-teal-100 bg-teal-50/50 px-3 py-2 text-[11px] leading-5 text-slate-600">
+                {category.note}
+              </p>
+              <a
+                href={category.href}
+                className="block border-t border-slate-100 px-3 py-2.5 text-xs font-bold text-teal-700 hover:bg-teal-50 hover:text-teal-900"
+              >
+                {category.linkLabel} →
+              </a>
+            </div>
+          </details>
+        ))}
+      </div>
     </section>
 
     <p className="mt-5 border-t border-slate-200 pt-5 text-xs leading-5 text-slate-500">
