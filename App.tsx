@@ -9,6 +9,7 @@ import NavBar from './components/NavBar';
 import ResortSelectionTips from './components/ResortSelectionTips';
 import TravelAgencies from './components/TravelAgencies';
 import FlightInfo from './components/FlightInfo';
+import SiteFooter from './components/SiteFooter';
 import { POPULARITY_RANKING } from './constants';
 import { TransportationType, type Resort, type Filters, type SortOption } from './types';
 import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
@@ -1016,9 +1017,7 @@ const App: React.FC = () => {
           throw new Error('리조트 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.');
         }
         if (resortsDataArrays.length < resortFileUrls.length) {
-          showToast(
-            `일부 리조트 정보를 불러오지 못해 ${resortsDataArrays.flat().length}개만 표시합니다.`
-          );
+          showToast('일부 정보를 불러오지 못했습니다. 새로고침하면 다시 확인할 수 있습니다.');
         }
 
         const combinedData = resortsDataArrays.flat();
@@ -1114,7 +1113,7 @@ const App: React.FC = () => {
         });
       } catch (err) {
         console.error(err);
-        setError(err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.');
+        setError('리조트 정보를 표시하지 못했습니다. 잠시 후 다시 시도해 주세요.');
       } finally {
         setLoading(false);
       }
@@ -2083,12 +2082,7 @@ const App: React.FC = () => {
           </>
         )}
       </main>
-      <footer className="mx-auto max-w-[1440px] px-4 pb-4 text-xs leading-5 text-slate-500 sm:px-6 lg:px-8">
-        <div className="border-t border-slate-200 pt-5">
-          가격은 4박·성인 2인 올인클루시브 기준의 비교용 참고가입니다. 항공권과 리조트 이동비는 별도이며,
-          시즌·세금·환율에 따라 실제 견적이 달라질 수 있습니다. 예약 전 공식 홈페이지와 여행사 견적을 확인해 주세요.
-        </div>
-      </footer>
+      <SiteFooter />
       {isFilterOpen && (
         <div
           className="fixed inset-0 z-50 bg-slate-950/45 backdrop-blur-sm transition-opacity duration-300 lg:hidden"

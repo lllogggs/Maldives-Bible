@@ -72,26 +72,17 @@ const transferRows = [
   ['국내선', '먼 환초 리조트', '여유 일정에 적합', DomesticFlightIcon],
 ] as const;
 
-const quickTerms = [
-  ['HB', '조식 + 석식'],
-  ['FB', '조식 + 중식 + 석식'],
-  ['올인클루시브', '식사 + 음료 포함'],
-  ['라군', '맑고 얕은 바다'],
-  ['하우스리프', '리조트 주변 산호와 스노클링 포인트'],
-  ['트랜스퍼', '공항에서 리조트까지 이동'],
-] as const;
-
 const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts }) => {
   return (
     <div className="animate-fade-in pb-12">
-      <section className="relative mb-6 min-h-[360px] overflow-hidden rounded-lg bg-slate-950 text-white shadow-sm shadow-slate-900/10 sm:min-h-[390px]">
+      <section className="relative mb-6 min-h-[310px] overflow-hidden rounded-lg bg-slate-950 text-white shadow-sm shadow-slate-900/10 sm:min-h-[390px]">
         <img
           src={heroImageUrl}
           alt="몰디브 워터빌라와 바다"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,0.84),rgba(15,23,42,0.48),rgba(15,23,42,0.12))]" />
-        <div className="relative flex min-h-[360px] max-w-3xl flex-col justify-end px-5 py-6 sm:min-h-[390px] sm:px-8 sm:py-8">
+        <div className="relative flex min-h-[310px] max-w-3xl flex-col justify-end px-5 py-6 sm:min-h-[390px] sm:px-8 sm:py-8">
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-teal-100">
             Maldives Honeymoon Guide
           </p>
@@ -99,10 +90,7 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
             몰디브 신혼여행
             <span className="block">리조트 고르기</span>
           </h1>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-slate-100 sm:text-base">
-            예약이나 상품 판매 없이, 처음 준비하는 분이 예산·일정·객실 기준으로 리조트를 간편하게 비교하도록 돕는 가이드입니다.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-6">
             <button
               type="button"
               onClick={onShowResorts}
@@ -111,13 +99,6 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
               리조트 목록 바로 보기
               <ChevronRightIcon className="h-4 w-4" />
             </button>
-            <a
-              href="/maldives-resort-comparison/"
-              className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-3 py-2.5 text-sm font-bold text-white underline decoration-white/50 underline-offset-4 transition hover:bg-white/10 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-            >
-              몰디브 리조트 비교 가이드
-              <ChevronRightIcon className="h-4 w-4" />
-            </a>
           </div>
         </div>
       </section>
@@ -133,13 +114,13 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
               {decisionRows.map(([title, detail, Icon]) => (
                 <div
                   key={title}
-                  className="grid gap-2 py-3 text-sm sm:grid-cols-[96px_1fr] sm:items-center"
+                  className="grid grid-cols-[72px_minmax(0,1fr)] items-start gap-3 py-2.5 text-sm sm:grid-cols-[96px_1fr] sm:items-center sm:py-3"
                 >
                   <div className="flex items-center gap-2 font-bold text-slate-950">
                     <Icon className="h-4 w-4 text-teal-700" />
                     {title}
                   </div>
-                  <p className="text-slate-600">{detail}</p>
+                  <p className="leading-5 text-slate-600">{detail}</p>
                 </div>
               ))}
             </div>
@@ -217,23 +198,6 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
           </div>
         </section>
 
-        <section>
-          <div className="mb-3 flex items-center gap-2">
-            <PoolIcon className="h-4 w-4 text-teal-700" />
-            <h2 className="font-brand-heading text-lg text-slate-950">용어 정리</h2>
-          </div>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {quickTerms.map(([term, desc]) => (
-              <div
-                key={term}
-                className="grid grid-cols-[104px_1fr] items-center gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm shadow-slate-900/5"
-              >
-                <strong className="text-slate-950">{term}</strong>
-                <span className="text-slate-600">{desc}</span>
-              </div>
-            ))}
-          </div>
-        </section>
       </section>
     </div>
   );

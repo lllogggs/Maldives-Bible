@@ -174,43 +174,33 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
   if (pros.length === 0 && cons.length === 0 && evidenceStatus !== 'insufficient') return null;
 
   if (variant === 'compact') {
+    if (evidenceStatus === 'insufficient') return null;
+
     const compactPros = pros.slice(0, 2);
     const compactCons = cons.slice(0, 1);
     const sourceCount = Math.max(0, Math.floor(activeSummary.sourceCount || 0));
 
     return (
       <section
-        className={`mt-3 overflow-hidden rounded-xl border border-teal-100 bg-gradient-to-br from-teal-50/90 to-sky-50/60 px-3 py-2.5 ${
-          evidenceStatus === 'insufficient' ? 'h-[5.5rem]' : 'h-[7.75rem]'
-        }`}
+        className="mt-3 h-[7.75rem] overflow-hidden rounded-xl border border-teal-100 bg-gradient-to-br from-teal-50/90 to-sky-50/60 px-3 py-2.5"
         aria-label={`${resortName} 실제 후기`}
       >
         <div className="mb-1.5 flex items-center justify-between gap-2">
           <h4 className="text-[11px] font-extrabold tracking-tight text-teal-900">
-            {evidenceStatus === 'insufficient'
-              ? '후기 요약 준비 중'
-              : '실제 후기 한눈에'}
+            실제 후기 한눈에
           </h4>
           {sourceCount > 0 && (
             <span className="shrink-0 text-[10px] font-semibold text-slate-500">실제 후기 {sourceCount}개</span>
           )}
         </div>
-        {evidenceStatus === 'insufficient' ? (
-          <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-slate-600">
-            {sourceCount > 0
-              ? `실제 후기 ${sourceCount}개를 확인했고, 핵심 장단점을 정리하고 있어요.`
-              : '실제 후기를 더 확인하고 있어요. 정리가 끝나면 핵심 장단점을 알려드릴게요.'}
-          </p>
-        ) : (
-          <ul className="space-y-1">
-            {compactPros.map((point, index) => (
-              <CompactPoint key={`pro-${index}-${point.text}`} point={point} tone="pro" />
-            ))}
-            {compactCons.map((point, index) => (
-              <CompactPoint key={`con-${index}-${point.text}`} point={point} tone="con" />
-            ))}
-          </ul>
-        )}
+        <ul className="space-y-1">
+          {compactPros.map((point, index) => (
+            <CompactPoint key={`pro-${index}-${point.text}`} point={point} tone="pro" />
+          ))}
+          {compactCons.map((point, index) => (
+            <CompactPoint key={`con-${index}-${point.text}`} point={point} tone="con" />
+          ))}
+        </ul>
       </section>
     );
   }
@@ -220,6 +210,8 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
   );
 
   if (evidenceStatus === 'insufficient') {
+    if (sources.length === 0) return null;
+
     return (
       <section
         className="mb-8 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6"
@@ -227,12 +219,10 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
       >
         <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Real reviews</p>
         <h2 id={`review-summary-title-${resortId}`} className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl">
-          실제 후기를 더 모으고 있어요
+          실제 후기 원문
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
-          {activeSummary.sourceCount > 0
-            ? `실제 후기 ${activeSummary.sourceCount}개를 확인했어요. 선택에 도움 되는 핵심 장단점도 이어서 정리할게요.`
-            : '확인된 내용이 충분히 모이면 선택에 도움 되는 핵심 장단점으로 정리해드릴게요.'}
+          객실, 식사, 서비스와 수중환경을 직접 경험한 여행자 후기를 확인해 보세요.
         </p>
         <ReviewSources sources={sources} />
       </section>
@@ -241,8 +231,8 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
 
   const reviewedAt = formatDate(activeSummary.reviewedAt);
   const basisLabel = evidenceStatus === 'limited'
-    ? '공개된 실제 후기에서 확인한 내용을 보기 쉽게 정리했어요.'
-    : '여러 실제 후기에서 자주 언급된 내용을 보기 쉽게 정리했어요.';
+    ? '한 여행자의 실제 경험을 바탕으로 정리한 내용입니다.'
+    : '여러 여행자의 실제 후기에서 공통으로 언급된 내용입니다.';
 
   return (
     <section

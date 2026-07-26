@@ -205,7 +205,6 @@ const ResortCard: React.FC<ResortCardProps> = ({
               <span className="relative flex flex-col items-center gap-2">
                 <img src="/android-chrome-192x192.png" alt="" className="h-10 w-10 rounded-xl object-cover opacity-90 shadow-sm" />
                 <span className="font-brand-heading text-sm font-bold text-teal-950">{resort.name}</span>
-                <span className="text-[11px] font-semibold text-teal-700">리조트 이미지 준비 중</span>
               </span>
             </span>
           )}

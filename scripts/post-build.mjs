@@ -22,6 +22,30 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
 const toUrlPath = (slug) => `/${encodeURI(slug)}/`;
 const toAbsoluteUrl = (slug) => `${siteUrl}${toUrlPath(slug)}`;
 
+const mealPlanTerms = [
+  ['BB', 'Bed & Breakfast', '베드 앤 브렉퍼스트', '일반적으로 조식 포함'],
+  ['HB', 'Half Board', '하프보드', '보통 조식 + 석식'],
+  ['FB', 'Full Board', '풀보드', '보통 조식 + 중식 + 석식'],
+  ['AI', 'All Inclusive', '올인클루시브', '식사 + 음료 중심'],
+];
+
+const buildMealPlanGlossaryContent = ({ maxWidth = '1120px' } = {}) => `
+  <section aria-labelledby="meal-plan-glossary-title" style="max-width:${maxWidth};margin:32px auto 0;border-top:1px solid #dbe7e4;padding-top:22px;">
+    <p style="margin:0;color:#0f766e;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;">Meal plan glossary</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:8px 18px;margin-top:5px;">
+      <h2 id="meal-plan-glossary-title" style="margin:0;color:#0f172a;font-size:21px;">몰디브 식사 플랜 용어</h2>
+      <a href="${toAbsoluteUrl('maldives-meal-plan-comparison')}" style="color:#0f766e;font-size:13px;font-weight:800;text-underline-offset:3px;">식사 플랜 차이 자세히 보기</a>
+    </div>
+    <dl style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px;margin:14px 0 0;">
+      ${mealPlanTerms.map(([abbreviation, english, korean, inclusion]) => `
+        <div style="border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;">
+          <dt style="color:#0f172a;font-size:13px;"><strong style="margin-right:7px;color:#0f766e;">${abbreviation}</strong>${english}</dt>
+          <dd style="margin:5px 0 0;color:#64748b;font-size:12px;line-height:1.55;">${korean} · ${inclusion}</dd>
+        </div>`).join('')}
+    </dl>
+    <p style="margin:10px 0 0;color:#64748b;font-size:11px;line-height:1.65;">같은 이름의 식사 플랜도 리조트마다 음료, 미니바, 레스토랑과 액티비티 포함 범위가 다를 수 있습니다.</p>
+  </section>`;
+
 const nichePages = [
   {
     slug: 'maldives-resort-comparison',
@@ -564,7 +588,7 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
         ${cons.length > 0 ? `<section style="border-radius:12px;background:#fff8f0;padding:15px 16px;"><h3 style="margin:0;color:#9a5b31;font-size:16px;">아쉬운 점</h3><ul style="margin:5px 0 0;padding-left:19px;color:#334155;">${pointList(cons)}</ul></section>` : ''}
       </div>
       ${sourceLinks ? `<details style="margin-top:12px;border-top:1px solid #dbe7e4;padding-top:10px;"><summary style="cursor:pointer;color:#0f766e;font-size:13px;font-weight:700;">참고한 실제 후기 ${summary.sources.length}개</summary><ul style="margin:5px 0 0;padding-left:19px;color:#334155;font-size:12px;line-height:1.6;">${sourceLinks}</ul></details>` : ''}
-      <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${escapeHtml(basis)}. 선택에 도움이 되는 내용을 보기 쉽게 정리했으며, 여행 시기와 객실 유형에 따라 경험은 달라질 수 있습니다.</p>
+      <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${escapeHtml(basis)}. 여행 시기와 객실 유형에 따라 경험은 달라질 수 있습니다.</p>
     </section>`;
 };
 
@@ -643,6 +667,7 @@ const buildResortPageContent = (resort) => {
         <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
         <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
         <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
+        ${buildMealPlanGlossaryContent({ maxWidth: '100%' })}
       </article>
     </main>`;
 };
@@ -690,7 +715,6 @@ const buildNichePageContent = (page, resorts) => {
           <p style="margin:0 0 8px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">${escapeHtml(page.eyebrow)}</p>
           <h1 style="margin:0;font-size:38px;line-height:1.18;">${escapeHtml(page.heading)}</h1>
           <p style="max-width:760px;margin:14px 0 0;color:#475569;font-size:17px;line-height:1.8;">${escapeHtml(page.intro)}</p>
-          <p style="margin:14px 0 0;color:#64748b;">${page.keywords.map((keyword) => escapeHtml(keyword)).join(' · ')}</p>
         </section>
         ${sections.length > 0
           ? `<section class="seo-niche-sections" style="max-width:1120px;margin:0 auto 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
@@ -725,6 +749,7 @@ const buildNichePageContent = (page, resorts) => {
             <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
           </p>
         </section>
+        ${buildMealPlanGlossaryContent()}
       </main>`,
     schemaJson: `${itemListSchema}</script>\n<script type="application/ld+json">${faqSchema}`,
   };
@@ -837,7 +862,7 @@ const buildComparisonLandingContent = (page, resorts) => {
           <h3>${escapeHtml(criterion.title.replace(/^\d+\.\s*/, ''))}</h3>
           <p>${escapeHtml(criterion.body)}</p>
           <p class="comparison-landing__criterion-examples">
-            데이터 예시: ${criterion.resorts
+            조건에 맞는 대표 후보: ${criterion.resorts
               .map((resort) => `<a href="${resortUrl(resort)}">${escapeHtml(resort.name)}</a>`)
               .join(' · ')}
           </p>
@@ -859,7 +884,7 @@ const buildComparisonLandingContent = (page, resorts) => {
           </th>
           <td style="padding:14px;border-bottom:1px solid #e2e8f0;white-space:nowrap;">${formatUsd(resort.price)}</td>
           <td style="padding:14px;border-bottom:1px solid #e2e8f0;white-space:nowrap;">${escapeHtml(resort.transportation || '-')} · ${resort.travelTime || '-'}분</td>
-          <td style="padding:14px;border-bottom:1px solid #e2e8f0;min-width:170px;">${escapeHtml(roomFeatures.join(' · ') || '정보 확인 중')}</td>
+          <td style="padding:14px;border-bottom:1px solid #e2e8f0;min-width:170px;">${escapeHtml(roomFeatures.join(' · ') || '—')}</td>
           <td style="padding:14px;border-bottom:1px solid #e2e8f0;white-space:nowrap;">${resort.snorkelingQuality || '-'} / 5</td>
           <td style="padding:14px;border-bottom:1px solid #e2e8f0;white-space:nowrap;">${resort.restaurants || 0}곳</td>
         </tr>`;
@@ -1072,7 +1097,7 @@ const buildComparisonLandingContent = (page, resorts) => {
               <div class="comparison-landing__preview-toolbar" aria-hidden="true">
                 <span class="comparison-landing__preview-dots"><span></span><span></span><span></span></span>
                 <span class="comparison-landing__preview-address">maldivesbible.com · 리조트 비교</span>
-                <span class="comparison-landing__preview-badge">LIVE PREVIEW</span>
+                <span class="comparison-landing__preview-badge">COMPARE PREVIEW</span>
               </div>
               <img src="/brand/resort-comparison-preview.jpg" alt="소네바 자니, 슈발 블랑 란델리, 월도프 아스토리아 몰디브 비교 화면" width="1216" height="632" fetchpriority="high" />
               <figcaption class="comparison-landing__preview-caption">
@@ -1092,9 +1117,9 @@ const buildComparisonLandingContent = (page, resorts) => {
           <section class="comparison-landing__section" aria-labelledby="comparison-table-title">
             <div class="comparison-landing__section-head">
               <div>
-                <p class="comparison-landing__section-kicker">DATA SAMPLE</p>
-                <h2 id="comparison-table-title">대표 리조트 데이터 비교</h2>
-                <p id="comparison-table-note" class="comparison-landing__section-intro">각 기준에서 뽑은 데이터 예시이며 순위나 실시간 예약가를 의미하지 않습니다.</p>
+                <p class="comparison-landing__section-kicker">AT A GLANCE</p>
+                <h2 id="comparison-table-title">대표 리조트 한눈에 비교</h2>
+                <p id="comparison-table-note" class="comparison-landing__section-intro">비교 기준별 대표 후보이며 순위나 실시간 예약가를 의미하지 않습니다.</p>
               </div>
               <a class="comparison-landing__table-button" data-compare-cta="table" href="/?view=resorts">전체 ${resorts.length}개 리조트에서 찾기</a>
             </div>
@@ -1146,6 +1171,8 @@ const buildComparisonLandingContent = (page, resorts) => {
             <p>예산과 취향으로 후보를 고르고 최대 3개 리조트의 차이를 실제 비교 화면에서 확인할 수 있습니다.</p>
             <a data-compare-cta="footer" href="/?view=resorts">내 조건으로 리조트 비교하기 →</a>
           </section>
+
+          ${buildMealPlanGlossaryContent({ maxWidth: '100%' })}
 
         </div>
       </main>

@@ -481,13 +481,16 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
             )}
             </>
             ) : (
-              <div className="relative flex h-64 w-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.98),transparent_32%),radial-gradient(circle_at_82%_82%,rgba(45,212,191,0.22),transparent_38%),linear-gradient(145deg,#dff8f5,#eef9ff_55%,#f8fafc)] px-6 text-center md:h-[450px]">
+              <div
+                className="relative flex h-64 w-full items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.98),transparent_32%),radial-gradient(circle_at_82%_82%,rgba(45,212,191,0.22),transparent_38%),linear-gradient(145deg,#dff8f5,#eef9ff_55%,#f8fafc)] px-6 text-center md:h-[450px]"
+                role="img"
+                aria-label={`${resort.name} 대표 이미지 없음`}
+              >
                 <span aria-hidden="true" className="absolute -bottom-28 -left-16 h-64 w-[34rem] rounded-[50%] border-[28px] border-white/60" />
                 <span aria-hidden="true" className="absolute -right-20 -top-24 h-64 w-64 rounded-full border-[28px] border-teal-200/35" />
                 <div className="relative flex flex-col items-center gap-3">
                   <img src="/android-chrome-192x192.png" alt="" className="h-14 w-14 rounded-2xl object-cover opacity-90 shadow-sm md:h-16 md:w-16" />
                   <p className="font-brand-heading text-lg font-bold text-teal-950 md:text-xl">{resort.name}</p>
-                  <p className="text-xs font-semibold tracking-wide text-teal-700 md:text-sm">리조트 이미지 준비 중</p>
                 </div>
               </div>
             )}
