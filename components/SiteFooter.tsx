@@ -21,10 +21,10 @@ const SiteFooter: React.FC = () => (
           </p>
         </div>
         <a
-          href="/maldives-honeymoon-first-time-guide/"
+          href="/maldives-glossary/"
           className="w-fit shrink-0 text-xs font-bold text-teal-700 underline decoration-teal-200 underline-offset-4 hover:text-teal-900"
         >
-          몰디브 입문 가이드 보기
+          43개 용어 전체 보기
         </a>
       </div>
 
@@ -76,7 +76,13 @@ const SiteFooter: React.FC = () => (
       </div>
     </section>
 
-    <p className="mt-5 border-t border-slate-200 pt-5 text-xs leading-5 text-slate-500">
+    <nav aria-label="사이트 정보" className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-slate-200 pt-5 text-xs font-bold">
+      <a href="/maldives-resorts/" className="text-teal-700 hover:text-teal-900">전체 리조트 목록</a>
+      <a href="/maldives-glossary/" className="text-teal-700 hover:text-teal-900">몰디브 용어집</a>
+      <a href="/about/" className="text-teal-700 hover:text-teal-900">소개·편집 기준</a>
+    </nav>
+
+    <p className="mt-4 text-xs leading-5 text-slate-500">
       가격은 4박·성인 2인 올인클루시브 기준의 비교용 참고가입니다. 항공권과 리조트 이동비는 별도이며,
       시즌·세금·환율에 따라 실제 견적이 달라질 수 있습니다. 예약 전 공식 홈페이지와 여행사 견적을 확인해 주세요.
     </p>

@@ -15,10 +15,6 @@
     <meta name="author" content="몰디브 바이블" />
     <meta name="robots" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
-    <meta
-      name="google-site-verification"
-      content="%VITE_GOOGLE_SITE_VERIFICATION%"
-    />
     <meta property="og:locale" content="ko_KR" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="몰디브 리조트 비교·입문 가이드 | 몰디브 바이블" />
@@ -72,32 +68,47 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "몰디브 바이블",
-        "alternateName": ["Maldives Bible", "몰디브바이블"],
-        "url": "https://www.maldivesbible.com/",
-        "inLanguage": "ko-KR",
-        "description": "몰디브 바이블은 171개 몰디브 리조트의 예산·이동·객실·수중환경을 한눈에 비교하고, 허니문과 가족여행에 맞는 선택 기준을 제공하는 한국어 입문 가이드입니다.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "몰디브 바이블",
-          "url": "https://www.maldivesbible.com/",
-          "logo": "https://www.maldivesbible.com/android-chrome-512x512.png"
-        },
-        "image": "https://www.maldivesbible.com/og-image.jpg?v=20260712-01",
-        "keywords": [
-          "몰디브 신혼여행 처음 준비",
-          "몰디브 리조트 선택 기준",
-          "몰디브 신혼여행 비용",
-          "몰디브 신혼여행 일정",
-          "몰디브 리조트 이동수단",
-          "몰디브 신혼여행 리조트 비교"
-        ],
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.maldivesbible.com/?view=resorts&q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.maldivesbible.com/#organization",
+            "name": "몰디브 바이블",
+            "alternateName": ["Maldives Bible", "몰디브바이블"],
+            "url": "https://www.maldivesbible.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.maldivesbible.com/android-chrome-512x512.png"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.maldivesbible.com/#website",
+            "name": "몰디브 바이블",
+            "alternateName": ["Maldives Bible", "몰디브바이블"],
+            "url": "https://www.maldivesbible.com/",
+            "inLanguage": "ko-KR",
+            "description": "몰디브 바이블은 171개 몰디브 리조트의 예산·이동·객실·수중환경을 한눈에 비교하고, 허니문과 가족여행에 맞는 선택 기준을 제공하는 한국어 입문 가이드입니다.",
+            "publisher": { "@id": "https://www.maldivesbible.com/#organization" },
+            "image": "https://www.maldivesbible.com/og-image.jpg?v=20260712-01",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.maldivesbible.com/?view=resorts&q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.maldivesbible.com/#webpage",
+            "url": "https://www.maldivesbible.com/",
+            "name": "몰디브 리조트 비교·입문 가이드 | 몰디브 바이블",
+            "description": "몰디브 바이블은 171개 몰디브 리조트의 예산·이동·객실·수중환경을 한눈에 비교하고, 허니문과 가족여행에 맞는 선택 기준을 제공하는 한국어 입문 가이드입니다.",
+            "inLanguage": "ko-KR",
+            "isPartOf": { "@id": "https://www.maldivesbible.com/#website" },
+            "about": { "@id": "https://www.maldivesbible.com/#organization" },
+            "datePublished": "2025-11-02",
+            "dateModified": "2026-07-27"
+          }
+        ]
       }
     </script>
     <!-- Tailwind styles are bundled via Vite build -->

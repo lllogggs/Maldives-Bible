@@ -40,6 +40,13 @@ const getTransportationTagColor = (transportation: TransportationType) => {
 
 const chipClass = 'inline-flex h-7 items-center rounded-full px-2.5 text-xs font-semibold leading-none';
 
+const getResortSlug = (resort: Pick<Resort, 'name' | 'name_en'>): string =>
+  (resort.name_en || resort.name || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+    .trim();
+
 const ResortCard: React.FC<ResortCardProps> = ({
   resort,
   compareList,
@@ -68,6 +75,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
     : canSelectForCompare
       ? '비교에 추가'
       : '최대 3개 선택됨';
+  const detailHref = `/resorts/${getResortSlug(resort)}/`;
 
   const actualImageUrls = Array.isArray(resort.imageUrls)
     ? resort.imageUrls.filter((url): url is string => typeof url === 'string' && url.trim().length > 0)
@@ -106,13 +114,19 @@ const ResortCard: React.FC<ResortCardProps> = ({
     setCurrentImageIndex(prev => (prev + 1) % imageUrls.length);
   };
 
-  const handleViewDetails = (e: React.SyntheticEvent) => {
+  const handleDetailLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.stopPropagation();
     if (didSwipeImageRef.current) {
       didSwipeImageRef.current = false;
       e.preventDefault();
       return;
     }
+
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+      return;
+    }
+
+    e.preventDefault();
     onViewDetails(resort.id);
   };
 
@@ -153,14 +167,6 @@ const ResortCard: React.FC<ResortCardProps> = ({
     }
   };
 
-  const handleCardClick = (e: React.MouseEvent<HTMLElement>) => {
-    const target = e.target as HTMLElement;
-    if (target.closest('button, a, input, select, textarea, summary, [role="button"], [data-card-action]')) {
-      return;
-    }
-    handleViewDetails(e);
-  };
-
   const handleImageError = () => {
     if (!currentImageUrl) return;
     setFailedImageUrls(prev => {
@@ -174,23 +180,26 @@ const ResortCard: React.FC<ResortCardProps> = ({
     <article
       className="group/card relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm shadow-slate-900/5 transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:-translate-y-1.5 hover:z-10 hover:border-teal-200 hover:shadow-2xl hover:shadow-teal-950/15 motion-reduce:transform-none"
       data-resort-card={resort.id}
-      onClick={handleCardClick}
     >
+      <a
+        href={detailHref}
+        onClick={handleDetailLinkClick}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={() => {
+          didSwipeImageRef.current = false;
+          setTouchStart(0);
+          setTouchEnd(0);
+        }}
+        aria-label={`${resort.name} 상세 보기`}
+        className="absolute inset-0 z-10 rounded-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-teal-500"
+      >
+        <span className="sr-only">{resort.name} 상세 보기</span>
+      </a>
+
       <div className="group relative overflow-hidden bg-slate-100">
-        <button
-          type="button"
-          className="block w-full cursor-pointer overflow-hidden text-left focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-teal-500"
-          onClick={handleViewDetails}
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-          onTouchCancel={() => {
-            didSwipeImageRef.current = false;
-            setTouchStart(0);
-            setTouchEnd(0);
-          }}
-          aria-label={`${resort.name} 상세 보기`}
-        >
+        <div className="block w-full overflow-hidden text-left">
           {currentImageUrl ? (
             <img
               className="aspect-[16/10] h-auto w-full object-cover transition-transform duration-500 group-hover/card:scale-[1.04] sm:aspect-auto sm:h-56"
@@ -208,14 +217,14 @@ const ResortCard: React.FC<ResortCardProps> = ({
               </span>
             </span>
           )}
-        </button>
+        </div>
 
         {imageUrls.length > 1 && !isImageEditMode && (
           <>
             <button
               type="button"
               onClick={handlePrevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur transition-all hover:bg-white focus:opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
+              className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur transition-all hover:bg-white focus:opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
               aria-label={`${resort.name} 이전 이미지`}
             >
               <ChevronLeftIcon />
@@ -223,7 +232,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
             <button
               type="button"
               onClick={handleNextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur transition-all hover:bg-white focus:opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
+              className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/85 p-2 text-slate-800 shadow-sm backdrop-blur transition-all hover:bg-white focus:opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
               aria-label={`${resort.name} 다음 이미지`}
             >
               <ChevronRightIcon />
@@ -241,7 +250,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
           <StarIcon />
           <span>{resort.rating.toFixed(1)}</span>
         </div>
-        <div className="absolute bottom-3 right-3">
+        <div className="absolute bottom-3 right-3 z-20">
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
@@ -268,14 +277,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
         )}
 
         <h3 className="font-brand-heading text-lg leading-tight text-slate-950">
-          <button
-            type="button"
-            className="line-clamp-2 w-full text-left transition-colors hover:text-teal-700 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
-            onClick={handleViewDetails}
-            aria-label={`${resort.name} 상세 보기`}
-          >
-            {resort.name}
-          </button>
+          <span className="line-clamp-2 transition-colors group-hover/card:text-teal-700">{resort.name}</span>
         </h3>
         <p className="line-clamp-1 mt-0.5 text-sm leading-5 text-slate-500">{resort.name_en}</p>
 
@@ -327,7 +329,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
               aria-pressed={isLiked}
               aria-label={`${likeButtonTitle} (현재 ${formattedLikesCount}명)`}
               title={likeButtonTitle}
-              className={`flex h-11 min-w-11 items-center gap-2 rounded-full border px-3 text-sm font-semibold transition-colors ${
+              className={`relative z-20 flex h-11 min-w-11 items-center gap-2 rounded-full border px-3 text-sm font-semibold transition-colors ${
                 isLiked
                   ? 'border-rose-300 bg-rose-100 text-rose-600 hover:bg-rose-200'
                   : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
@@ -346,14 +348,9 @@ const ResortCard: React.FC<ResortCardProps> = ({
                 <p className="whitespace-nowrap text-xl font-extrabold leading-tight text-teal-700">
                   ${resort.price.toLocaleString()}
                 </p>
-                <button
-                  type="button"
-                  onClick={handleViewDetails}
-                  aria-label={`${resort.name} 상세 보기`}
-                  className="h-11 whitespace-nowrap rounded-lg bg-slate-950 px-3 text-xs font-semibold text-white transition-colors hover:bg-slate-800"
-                >
+                <span className="inline-flex h-11 items-center whitespace-nowrap rounded-lg bg-slate-950 px-3 text-xs font-semibold text-white transition-colors group-hover/card:bg-slate-800">
                   보기
-                </button>
+                </span>
               </div>
             </div>
           </div>

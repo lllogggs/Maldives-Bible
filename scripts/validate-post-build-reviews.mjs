@@ -116,6 +116,7 @@ const insufficientReviewSummary = {
 try {
   const postBuildTarget = join(sandbox, 'scripts', 'post-build.mjs');
   const glossaryTarget = join(sandbox, 'data', 'maldives-glossary.mjs');
+  const editorialPolicyTarget = join(sandbox, 'data', 'editorial-policy.mjs');
   const templateTarget = join(sandbox, 'dist', 'index.html');
   const dataTarget = join(sandbox, 'dist', 'api', 'resorts.json');
   const reviewInsightsTarget = join(sandbox, 'dist', 'api', 'resort-review-insights.json');
@@ -125,12 +126,14 @@ try {
   await Promise.all([
     mkdir(dirname(postBuildTarget), { recursive: true }),
     mkdir(dirname(glossaryTarget), { recursive: true }),
+    mkdir(dirname(editorialPolicyTarget), { recursive: true }),
     mkdir(dirname(dataTarget), { recursive: true }),
     mkdir(dirname(reviewDetailTarget), { recursive: true }),
   ]);
   await Promise.all([
     copyFile(join(projectRoot, 'scripts', 'post-build.mjs'), postBuildTarget),
     copyFile(join(projectRoot, 'data', 'maldives-glossary.mjs'), glossaryTarget),
+    copyFile(join(projectRoot, 'data', 'editorial-policy.mjs'), editorialPolicyTarget),
     writeFile(templateTarget, template, 'utf8'),
     writeFile(dataTarget, JSON.stringify([baseResort, noReviewResort, insufficientReviewResort]), 'utf8'),
     writeFile(
@@ -178,6 +181,11 @@ try {
     join(sandbox, 'dist', 'resorts', 'insufficient-review-resort', 'index.html'),
     'utf8'
   );
+  const homeHtml = await readFile(join(sandbox, 'dist', 'index.html'), 'utf8');
+  const glossaryHtml = await readFile(join(sandbox, 'dist', 'maldives-glossary', 'index.html'), 'utf8');
+  const aboutHtml = await readFile(join(sandbox, 'dist', 'about', 'index.html'), 'utf8');
+  const directoryHtml = await readFile(join(sandbox, 'dist', 'maldives-resorts', 'index.html'), 'utf8');
+  const sitemap = await readFile(join(sandbox, 'dist', 'sitemap.xml'), 'utf8');
 
   assert.match(reviewHtml, /실제 후기 한눈에/);
   assert.match(reviewHtml, /실제 후기 10개 참고 · 2026-07-13 업데이트/);
@@ -195,6 +203,14 @@ try {
   assert.match(reviewHtml, /\\u003c\/script>\\u003cscript>alert\(1\)\\u003c\/script>/);
   assert.doesNotMatch(noReviewHtml, /seo-resort-reviews|후기 요약/);
   assert.doesNotMatch(insufficientReviewHtml, /seo-resort-reviews|반복해서 확인된 후기 근거가 부족해요/);
+  assert.match(homeHtml, /<h1>몰디브 리조트 비교/);
+  assert.match(homeHtml, /href="https:\/\/www\.maldivesbible\.com\/maldives-resorts\/"/);
+  assert.match(glossaryHtml, /"@type":"DefinedTermSet"/);
+  assert.equal((glossaryHtml.match(/"@type":"DefinedTerm"/g) || []).length, 43);
+  assert.match(aboutHtml, /"@type":"AboutPage"/);
+  assert.match(directoryHtml, /\/resorts\/review-resort\//);
+  assert.doesNotMatch(reviewHtml, /"@type":"WebSite"/);
+  assert.match(sitemap, /<lastmod>2026-07-27<\/lastmod>/);
 
   console.log('Validated optional review summary rendering, escaping, omission, and schema safety.');
 } finally {

@@ -1,5 +1,6 @@
 import { copyFile, mkdir, readFile, readdir, writeFile } from 'fs/promises';
 import { resolve, dirname } from 'path';
+import { editorialPolicyPage } from '../data/editorial-policy.mjs';
 import { maldivesGlossaryCategories } from '../data/maldives-glossary.mjs';
 
 const distDir = resolve(process.cwd(), 'dist');
@@ -11,6 +12,15 @@ const reviewDetailsDir = resolve(distDir, 'api', 'resort-reviews');
 const sourceReviewDetailsDir = resolve(process.cwd(), 'public', 'api', 'resort-reviews');
 const sitemapPath = resolve(distDir, 'sitemap.xml');
 const siteUrl = 'https://www.maldivesbible.com';
+const organizationId = `${siteUrl}/#organization`;
+const websiteId = `${siteUrl}/#website`;
+const siteDates = {
+  resortPagesPublished: '2026-07-09',
+  guidesPublished: '2026-07-09',
+  comparisonPublished: '2026-07-12',
+  glossaryPublished: '2026-07-27',
+  modified: '2026-07-27',
+};
 const expectedResortCount = Number(process.env.EXPECTED_RESORT_COUNT ?? 171);
 if (!Number.isInteger(expectedResortCount) || expectedResortCount < 1) {
   throw new Error('EXPECTED_RESORT_COUNT는 1 이상의 정수여야 합니다.');
@@ -25,37 +35,38 @@ const toAbsoluteUrl = (slug) => `${siteUrl}${toUrlPath(slug)}`;
 
 const buildMaldivesGlossaryContent = ({ maxWidth = '1120px' } = {}) => `
   <style>
-    .maldives-glossary summary:focus { outline: none; }
-    .maldives-glossary summary:focus-visible { outline: 2px solid #14b8a6; outline-offset: -2px; }
+    .maldives-glossary a:focus-visible { outline:2px solid #14b8a6;outline-offset:3px; }
+    @media (max-width:480px) {
+      .maldives-glossary__links { grid-template-columns:minmax(0,1fr) !important; }
+    }
   </style>
   <section class="maldives-glossary" aria-labelledby="maldives-glossary-title" style="max-width:${maxWidth};margin:32px auto 0;border-top:1px solid #dbe7e4;padding-top:22px;">
     <p style="margin:0;color:#0f766e;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;">Maldives glossary</p>
-    <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:8px 18px;margin-top:5px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:10px 18px;margin-top:5px;">
       <div>
         <h2 id="maldives-glossary-title" style="margin:0;color:#0f172a;font-size:21px;">몰디브 관련 용어</h2>
-        <p style="margin:5px 0 0;color:#64748b;font-size:12px;line-height:1.65;">처음 알아볼 때 자주 만나는 표현을 분야별로 모았어요. 눌러서 뜻을 확인하세요.</p>
+        <p style="margin:5px 0 0;color:#64748b;font-size:12px;line-height:1.65;">이동·객실·바다·식사·비용에서 자주 만나는 표현을 분야별로 정리했어요.</p>
       </div>
-      <a href="${toAbsoluteUrl('maldives-honeymoon-first-time-guide')}" style="color:#0f766e;font-size:13px;font-weight:800;text-underline-offset:3px;">몰디브 입문 가이드 보기</a>
+      <a href="${toAbsoluteUrl('maldives-glossary')}" style="color:#0f766e;font-size:13px;font-weight:800;text-underline-offset:3px;">43개 용어 한 번에 보기 →</a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:start;gap:9px;margin-top:14px;">
+    <div class="maldives-glossary__links" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:14px;">
       ${maldivesGlossaryCategories.map(category => `
-        <details data-glossary-category="${category.id}" style="overflow:hidden;border:1px solid #dbe7e4;border-radius:10px;background:#fff;">
-          <summary style="min-height:46px;box-sizing:border-box;cursor:pointer;padding:10px 12px;color:#0f172a;font-size:13px;">
-            <strong>${category.title}</strong>
-            <span style="display:block;margin-top:3px;color:#64748b;font-size:11px;">${category.preview} · ${category.terms.length}개</span>
-          </summary>
-          <dl style="margin:0;border-top:1px solid #e2e8f0;">
-            ${category.terms.map(term => `
-              <div style="padding:9px 12px;border-bottom:1px solid #f1f5f9;">
-                <dt style="color:#0f172a;font-size:12px;"><strong style="margin-right:7px;color:#0f766e;">${term.name}</strong>${term.english}</dt>
-                <dd style="margin:4px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${term.description}</dd>
-              </div>`).join('')}
-          </dl>
-          <p style="margin:0;padding:8px 12px;background:#f0fdfa;color:#475569;font-size:11px;line-height:1.65;">${category.note}</p>
-          <a href="${siteUrl}${category.href}" style="display:block;border-top:1px solid #e2e8f0;padding:9px 12px;color:#0f766e;font-size:12px;font-weight:800;text-decoration:none;">${category.linkLabel} →</a>
-        </details>`).join('')}
+        <a href="${toAbsoluteUrl('maldives-glossary')}#${category.id}" style="display:block;border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;color:#0f172a;text-decoration:none;">
+          <strong style="font-size:13px;">${category.title}</strong>
+          <span style="display:block;margin-top:4px;color:#64748b;font-size:11px;line-height:1.5;">${category.preview}</span>
+        </a>`).join('')}
     </div>
   </section>`;
+
+const buildEditorialFooter = ({ maxWidth = '1120px' } = {}) => `
+  <footer style="max-width:${maxWidth};margin:28px auto 0;border-top:1px solid #dbe7e4;padding:18px 0 8px;color:#64748b;font-size:12px;line-height:1.7;">
+    <p style="margin:0 0 8px;">몰디브 바이블 편집 · 최종 업데이트 2026.07.27</p>
+    <nav aria-label="사이트 정보" style="display:flex;flex-wrap:wrap;gap:8px 16px;">
+      <a href="${toAbsoluteUrl('maldives-resorts')}" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 목록</a>
+      <a href="${toAbsoluteUrl('maldives-glossary')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 용어집</a>
+      <a href="${toAbsoluteUrl('about')}" style="color:#0f766e;font-weight:800;text-decoration:none;">소개·편집 기준</a>
+    </nav>
+  </footer>`;
 
 const nichePages = [
   {
@@ -492,6 +503,67 @@ const escapeHtml = (value = '') =>
 
 const serializeJsonLd = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
 
+const buildSchemaGraph = (nodes) => serializeJsonLd({
+  '@context': 'https://schema.org',
+  '@graph': nodes.filter(Boolean),
+});
+
+const buildBreadcrumbNode = ({ url, name, parents = [] }) => ({
+  '@type': 'BreadcrumbList',
+  '@id': `${url}#breadcrumb`,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '몰디브 바이블', item: `${siteUrl}/` },
+    ...parents.map((parent, index) => ({
+      '@type': 'ListItem',
+      position: index + 2,
+      name: parent.name,
+      item: parent.url,
+    })),
+    {
+      '@type': 'ListItem',
+      position: parents.length + 2,
+      name,
+      item: url,
+    },
+  ],
+});
+
+const buildWebPageNode = ({
+  url,
+  name,
+  description,
+  type = 'WebPage',
+  publishedAt,
+  modifiedAt,
+  mainEntityId,
+  breadcrumbId = `${url}#breadcrumb`,
+  subjectOfId,
+}) => ({
+  '@type': type,
+  '@id': `${url}#webpage`,
+  url,
+  name,
+  description,
+  inLanguage: 'ko-KR',
+  isPartOf: { '@id': websiteId },
+  publisher: { '@id': organizationId },
+  breadcrumb: { '@id': breadcrumbId },
+  datePublished: publishedAt,
+  dateModified: modifiedAt,
+  mainEntity: mainEntityId ? { '@id': mainEntityId } : undefined,
+  subjectOf: subjectOfId ? { '@id': subjectOfId } : undefined,
+});
+
+const buildFaqNode = (url, items) => ({
+  '@type': 'FAQPage',
+  '@id': `${url}#faq`,
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+});
+
 const safeHttpUrl = (value) => {
   try {
     const url = new URL(value);
@@ -679,11 +751,14 @@ const buildResortPageContent = (resort) => {
         <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
         <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
         ${buildMaldivesGlossaryContent({ maxWidth: '100%' })}
+        ${buildEditorialFooter({ maxWidth: '100%' })}
       </article>
     </main>`;
 };
 
 const buildNichePageContent = (page, resorts) => {
+  const url = toAbsoluteUrl(page.slug);
+  const isGuide = Array.isArray(page.sections) && page.sections.length > 0;
   const selected = resorts.filter(page.filter).sort(page.sort).slice(0, 12);
   const sections = Array.isArray(page.sections) ? page.sections : [];
   const listItems = selected
@@ -693,21 +768,45 @@ const buildNichePageContent = (page, resorts) => {
       name: resort.name,
       url: `${siteUrl}/resorts/${slugify(resort.name_en || resort.name)}/`,
     }));
-  const itemListSchema = serializeJsonLd({
-    '@context': 'https://schema.org',
+  const itemListNode = {
     '@type': 'ItemList',
+    '@id': `${url}#itemlist`,
     name: page.heading,
+    numberOfItems: listItems.length,
     itemListElement: listItems,
-  });
-  const faqSchema = serializeJsonLd({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: page.faq.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  });
+  };
+  const articleNode = isGuide
+    ? {
+        '@type': 'Article',
+        '@id': `${url}#article`,
+        headline: page.heading,
+        description: page.description,
+        inLanguage: 'ko-KR',
+        mainEntityOfPage: { '@id': `${url}#webpage` },
+        author: { '@id': organizationId },
+        publisher: { '@id': organizationId },
+        datePublished: siteDates.guidesPublished,
+        dateModified: siteDates.modified,
+        keywords: page.keywords,
+      }
+    : null;
+  const mainEntityId = isGuide ? `${url}#article` : `${url}#itemlist`;
+  const schemaNodes = [
+    buildWebPageNode({
+      url,
+      name: page.heading,
+      description: page.description,
+      type: isGuide ? 'WebPage' : 'CollectionPage',
+      publishedAt: siteDates.guidesPublished,
+      modifiedAt: siteDates.modified,
+      mainEntityId,
+      subjectOfId: `${url}#faq`,
+    }),
+    buildBreadcrumbNode({ url, name: page.heading }),
+    articleNode,
+    itemListNode,
+    buildFaqNode(url, page.faq),
+  ];
 
   return {
     html: `
@@ -761,12 +860,14 @@ const buildNichePageContent = (page, resorts) => {
           </p>
         </section>
         ${buildMaldivesGlossaryContent()}
+        ${buildEditorialFooter()}
       </main>`,
-    schemaJson: `${itemListSchema}</script>\n<script type="application/ld+json">${faqSchema}`,
+    schemaNodes,
   };
 };
 
 const buildComparisonLandingContent = (page, resorts) => {
+  const url = toAbsoluteUrl(page.slug);
   const resortUrl = (resort) => `${siteUrl}/resorts/${slugify(resort.name_en || resort.name)}/`;
   const validPrice = (resort) => Number.isFinite(resort.price) && resort.price > 0;
   const validTravelTime = (resort) => Number.isFinite(resort.travelTime) && resort.travelTime > 0;
@@ -825,27 +926,9 @@ const buildComparisonLandingContent = (page, resorts) => {
   const showcaseCompareHref = showcaseSlugs.length === showcaseNames.length
     ? `/?view=resorts#/compare/${showcaseSlugs.join(',')}`
     : '/?view=resorts';
-  const breadcrumbSchema = serializeJsonLd({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: '몰디브 바이블',
-        item: `${siteUrl}/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: page.heading,
-        item: toAbsoluteUrl(page.slug),
-      },
-    ],
-  });
-  const itemListSchema = serializeJsonLd({
-    '@context': 'https://schema.org',
+  const itemListNode = {
     '@type': 'ItemList',
+    '@id': `${url}#itemlist`,
     name: '몰디브 리조트 비교 대표 후보',
     numberOfItems: representativeResorts.length,
     itemListElement: representativeResorts.map((resort, index) => ({
@@ -854,16 +937,22 @@ const buildComparisonLandingContent = (page, resorts) => {
       name: resort.name,
       url: resortUrl(resort),
     })),
-  });
-  const faqSchema = serializeJsonLd({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: page.faq.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  });
+  };
+  const schemaNodes = [
+    buildWebPageNode({
+      url,
+      name: page.heading,
+      description: page.description,
+      type: 'CollectionPage',
+      publishedAt: siteDates.comparisonPublished,
+      modifiedAt: siteDates.modified,
+      mainEntityId: `${url}#itemlist`,
+      subjectOfId: `${url}#faq`,
+    }),
+    buildBreadcrumbNode({ url, name: page.heading }),
+    itemListNode,
+    buildFaqNode(url, page.faq),
+  ];
 
   const criterionCards = criteria
     .map(
@@ -1184,6 +1273,7 @@ const buildComparisonLandingContent = (page, resorts) => {
           </section>
 
           ${buildMaldivesGlossaryContent({ maxWidth: '100%' })}
+          ${buildEditorialFooter({ maxWidth: '100%' })}
 
         </div>
       </main>
@@ -1197,22 +1287,343 @@ const buildComparisonLandingContent = (page, resorts) => {
           });
         });
       </script>`,
-    schemaJson: `${breadcrumbSchema}</script>\n<script type="application/ld+json">${itemListSchema}</script>\n<script type="application/ld+json">${faqSchema}`,
+    schemaNodes,
   };
 };
 
-const buildResortSchema = (resort, canonicalUrl) => {
-  const schema = {
-    '@context': 'https://schema.org',
+const buildStaticSiteHeader = () => `
+  <header class="seo-static__header">
+    <div class="seo-static__header-inner">
+      <a class="seo-static__brand" href="${siteUrl}/">
+        <img src="${siteUrl}/android-chrome-192x192.png" width="42" height="42" alt="" />
+        <span><small>MALDIVES BIBLE</small><strong>몰디브 바이블</strong></span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <a href="${siteUrl}/?view=resorts">리조트</a>
+        <a href="${toAbsoluteUrl('maldives-resort-comparison')}">비교 가이드</a>
+        <a href="${toAbsoluteUrl('maldives-glossary')}">용어집</a>
+      </nav>
+    </div>
+  </header>`;
+
+const buildStandaloneStyles = () => `
+  <style>
+    .seo-static { min-height:100vh;background:#f5f8f7;color:#0f172a;font-family:Inter,'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; }
+    .seo-static * { box-sizing:border-box; }
+    .seo-static a:focus-visible { outline:3px solid #14b8a6;outline-offset:3px; }
+    .seo-static__header { border-bottom:1px solid #dbe7e4;background:rgba(255,255,255,.96); }
+    .seo-static__header-inner { width:min(1120px,calc(100% - 36px));min-height:72px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:22px; }
+    .seo-static__brand { display:flex;align-items:center;gap:10px;color:#0f172a;text-decoration:none; }
+    .seo-static__brand img { border-radius:12px;box-shadow:0 7px 18px rgba(15,118,110,.13); }
+    .seo-static__brand small,.seo-static__brand strong { display:block; }
+    .seo-static__brand small { color:#0f766e;font-size:9px;font-weight:900;letter-spacing:.14em; }
+    .seo-static__brand strong { margin-top:2px;font-size:16px;letter-spacing:-.02em; }
+    .seo-static__header nav { display:flex;gap:18px; }
+    .seo-static__header nav a { color:#475569;font-size:13px;font-weight:800;text-decoration:none; }
+    .seo-static__content { width:min(1120px,calc(100% - 36px));margin:0 auto;padding:52px 0 36px; }
+    .seo-static__eyebrow { margin:0 0 10px;color:#0f766e;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase; }
+    .seo-static h1 { margin:0;color:#102a34;font-size:clamp(34px,5vw,54px);line-height:1.14;letter-spacing:-.045em;word-break:keep-all; }
+    .seo-static__lead { max-width:760px;margin:18px 0 0;color:#475569;font-size:17px;line-height:1.8;word-break:keep-all; }
+    .seo-static__actions { display:flex;flex-wrap:wrap;gap:10px;margin-top:26px; }
+    .seo-static__action { display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;background:#0f766e;color:#fff;font-size:14px;font-weight:900;text-decoration:none;box-shadow:0 10px 24px rgba(15,118,110,.18); }
+    .seo-static__action--secondary { border:1px solid #b9d8d2;background:#fff;color:#0f766e;box-shadow:none; }
+    .seo-static__section { margin-top:42px; }
+    .seo-static__section h2 { margin:0 0 14px;font-size:25px;letter-spacing:-.03em; }
+    .seo-static__grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px; }
+    .seo-static__card { display:block;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:18px;color:#0f172a;text-decoration:none;box-shadow:0 8px 20px rgba(15,23,42,.035); }
+    .seo-static__card strong { display:block;font-size:16px;line-height:1.45;word-break:keep-all; }
+    .seo-static__card span { display:block;margin-top:6px;color:#64748b;font-size:13px;line-height:1.65; }
+    .seo-static__note { border:1px solid #c6e7e0;border-radius:14px;background:#edfbf8;padding:18px;color:#335e5b;line-height:1.75; }
+    @media (max-width:760px) {
+      .seo-static__header-inner { min-height:64px; }
+      .seo-static__header nav a:not(:first-child) { display:none; }
+      .seo-static__content { padding-top:34px; }
+      .seo-static__lead { font-size:15px;line-height:1.72; }
+      .seo-static__grid { grid-template-columns:minmax(0,1fr); }
+      .seo-static__action { width:100%; }
+    }
+  </style>`;
+
+const buildHomeStaticFallback = () => {
+  const guideLinks = nichePages.map((page) => `
+    <a class="seo-home-static__guide" href="${toAbsoluteUrl(page.slug)}">
+      <strong>${escapeHtml(page.heading)}</strong>
+      <span>${escapeHtml(page.description)}</span>
+    </a>`).join('');
+
+  return `
+    ${buildStandaloneStyles()}
+    <style>
+      .seo-home-static__hero { background:linear-gradient(135deg,#062f3b 0%,#08746d 100%);color:#fff; }
+      .seo-home-static__hero-inner { width:min(1120px,calc(100% - 36px));margin:0 auto;padding:70px 0 74px; }
+      .seo-home-static__hero h1 { color:#fff; }
+      .seo-home-static__hero .seo-static__lead { color:#d8f4ef; }
+      .seo-home-static__guide { display:block;border-bottom:1px solid #e2e8f0;padding:14px 2px;color:#0f172a;text-decoration:none; }
+      .seo-home-static__guide strong { display:block;font-size:15px; }
+      .seo-home-static__guide span { display:block;margin-top:4px;color:#64748b;font-size:12px;line-height:1.6; }
+      @media (max-width:760px) { .seo-home-static__hero-inner { padding:46px 0 50px; } }
+    </style>
+    <div class="seo-static seo-home-static">
+      ${buildStaticSiteHeader()}
+      <main>
+        <section class="seo-home-static__hero">
+          <div class="seo-home-static__hero-inner">
+            <p class="seo-static__eyebrow" style="color:#b9fff1;">MALDIVES RESORT GUIDE</p>
+            <h1>몰디브 리조트 비교,<br />처음부터 쉽게</h1>
+            <p class="seo-static__lead">171개 몰디브 리조트의 예산·이동·객실·수중환경을 같은 기준으로 보고, 허니문과 가족여행에 맞는 후보를 빠르게 좁혀보세요.</p>
+            <div class="seo-static__actions">
+              <a class="seo-static__action" href="${siteUrl}/?view=resorts">리조트 목록 바로 보기 →</a>
+              <a class="seo-static__action seo-static__action--secondary" href="${toAbsoluteUrl('maldives-resort-comparison')}">비교 방법 먼저 보기</a>
+            </div>
+          </div>
+        </section>
+        <div class="seo-static__content">
+          <section aria-labelledby="home-static-start">
+            <p class="seo-static__eyebrow">START HERE</p>
+            <h2 id="home-static-start" style="margin:0;font-size:26px;">처음이라면 이 순서로 보세요</h2>
+            <div class="seo-static__grid" style="margin-top:16px;">
+              <a class="seo-static__card" href="${toAbsoluteUrl('maldives-honeymoon-first-time-guide')}"><strong>1. 선택 기준 익히기</strong><span>예산·일정·이동·객실 기준부터 정리해요.</span></a>
+              <a class="seo-static__card" href="${toAbsoluteUrl('maldives-resorts')}"><strong>2. 전체 리조트 살펴보기</strong><span>171개 리조트 상세 정보를 목록에서 확인해요.</span></a>
+              <a class="seo-static__card" href="${siteUrl}/?view=resorts"><strong>3. 내 조건으로 비교하기</strong><span>필터로 후보를 고르고 최대 3곳을 나란히 비교해요.</span></a>
+            </div>
+          </section>
+          <section class="seo-static__section" aria-labelledby="home-static-guides">
+            <h2 id="home-static-guides">몰디브 입문·비교 가이드</h2>
+            <div>${guideLinks}</div>
+          </section>
+          ${buildMaldivesGlossaryContent()}
+          ${buildEditorialFooter()}
+        </div>
+      </main>
+    </div>`;
+};
+
+const buildGlossaryPage = () => {
+  const url = toAbsoluteUrl('maldives-glossary');
+  const termNodes = [];
+  const categorySections = maldivesGlossaryCategories.map((category) => {
+    const terms = category.terms.map((term, index) => {
+      const termId = `term-${category.id}-${index + 1}`;
+      termNodes.push({
+        '@type': 'DefinedTerm',
+        '@id': `${url}#${termId}`,
+        name: term.name,
+        alternateName: term.english,
+        description: term.description,
+        inDefinedTermSet: { '@id': `${url}#termset` },
+      });
+      return `
+        <div id="${termId}" style="padding:14px 0;border-bottom:1px solid #edf2f2;scroll-margin-top:20px;">
+          <dt style="font-size:15px;color:#0f172a;"><strong style="margin-right:8px;color:#0f766e;">${escapeHtml(term.name)}</strong>${escapeHtml(term.english)}</dt>
+          <dd style="margin:5px 0 0;color:#475569;font-size:13px;line-height:1.7;">${escapeHtml(term.description)}</dd>
+        </div>`;
+    }).join('');
+    return `
+      <section id="${category.id}" class="seo-static__card" style="scroll-margin-top:20px;padding:22px;">
+        <p class="seo-static__eyebrow" style="margin-bottom:5px;">${category.terms.length} TERMS</p>
+        <h2 style="margin:0;font-size:23px;">${escapeHtml(category.title)}</h2>
+        <p style="margin:7px 0 0;color:#64748b;font-size:13px;line-height:1.65;">${escapeHtml(category.note)}</p>
+        <dl style="margin:12px 0 0;">${terms}</dl>
+        <a href="${siteUrl}${category.href}" style="display:inline-block;margin-top:14px;color:#0f766e;font-size:13px;font-weight:900;text-decoration:none;">${escapeHtml(category.linkLabel)} →</a>
+      </section>`;
+  }).join('');
+  const termSetNode = {
+    '@type': 'DefinedTermSet',
+    '@id': `${url}#termset`,
+    name: '몰디브 관련 용어 43개',
+    description: '몰디브 여행을 처음 알아볼 때 자주 만나는 지역, 이동, 객실, 바다, 식사와 비용 용어를 정리한 한국어 용어집입니다.',
+    inLanguage: 'ko-KR',
+    url,
+    hasDefinedTerm: termNodes.map((term) => ({ '@id': term['@id'] })),
+  };
+  return {
+    slug: 'maldives-glossary',
+    title: '몰디브 관련 용어 43개 | 식사·이동·객실·비용 용어집',
+    description: 'HB, FB, AI, 하우스리프, 라군, 수상비행기, 그린택스 등 몰디브 여행을 처음 준비할 때 자주 만나는 43개 용어를 쉽게 설명합니다.',
+    modifiedAt: siteDates.modified,
+    html: `
+      ${buildStandaloneStyles()}
+      <div class="seo-static">
+        ${buildStaticSiteHeader()}
+        <main class="seo-static__content">
+          <p class="seo-static__eyebrow">MALDIVES GLOSSARY</p>
+          <h1>몰디브 관련 용어 43개</h1>
+          <p class="seo-static__lead">식사 플랜부터 리조트 이동, 객실과 바다, 세금·비용까지 처음 알아볼 때 막히기 쉬운 표현을 한곳에 모았어요.</p>
+          <nav class="seo-static__actions" aria-label="용어 분야">
+            ${maldivesGlossaryCategories.map((category) => `<a class="seo-static__action seo-static__action--secondary" href="#${category.id}">${escapeHtml(category.title)}</a>`).join('')}
+          </nav>
+          <div class="seo-static__grid seo-static__section">${categorySections}</div>
+          ${buildEditorialFooter()}
+        </main>
+      </div>`,
+    schemaNodes: [
+      buildWebPageNode({
+        url,
+        name: '몰디브 관련 용어 43개',
+        description: '몰디브 여행을 처음 알아볼 때 자주 만나는 지역, 이동, 객실, 바다, 식사와 비용 용어를 정리한 한국어 용어집입니다.',
+        publishedAt: siteDates.glossaryPublished,
+        modifiedAt: siteDates.modified,
+        mainEntityId: `${url}#termset`,
+      }),
+      buildBreadcrumbNode({ url, name: '몰디브 관련 용어' }),
+      termSetNode,
+      ...termNodes,
+    ],
+  };
+};
+
+const buildResortDirectoryPage = (resorts) => {
+  const url = toAbsoluteUrl('maldives-resorts');
+  const sorted = [...resorts].sort((a, b) => String(a.name || a.name_en).localeCompare(String(b.name || b.name_en), 'ko'));
+  const links = sorted.map((resort) => {
+    const name = resort.name || resort.name_en;
+    const slug = slugify(resort.name_en || resort.name);
+    return `
+      <a class="seo-static__card" href="${siteUrl}/resorts/${slug}/">
+        <strong>${escapeHtml(name)}</strong>
+        <span>${escapeHtml(resort.name_en && resort.name_en !== name ? resort.name_en : resort.location || '')}</span>
+      </a>`;
+  }).join('');
+  const itemListNode = {
+    '@type': 'ItemList',
+    '@id': `${url}#itemlist`,
+    name: `몰디브 리조트 ${sorted.length}곳`,
+    numberOfItems: sorted.length,
+    itemListElement: sorted.map((resort, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: resort.name || resort.name_en,
+      url: `${siteUrl}/resorts/${slugify(resort.name_en || resort.name)}/`,
+    })),
+  };
+  return {
+    slug: 'maldives-resorts',
+    title: `몰디브 리조트 목록 ${sorted.length}곳 | 몰디브 바이블`,
+    description: `몰디브 바이블에 정리된 ${sorted.length}개 리조트를 한눈에 보고 각 리조트의 예산, 이동, 객실, 수중환경과 실제 후기 정보를 확인하세요.`,
+    modifiedAt: siteDates.modified,
+    html: `
+      ${buildStandaloneStyles()}
+      <div class="seo-static">
+        ${buildStaticSiteHeader()}
+        <main class="seo-static__content">
+          <p class="seo-static__eyebrow">RESORT DIRECTORY</p>
+          <h1>몰디브 리조트 ${sorted.length}곳</h1>
+          <p class="seo-static__lead">이름으로 리조트를 찾아 상세 정보를 확인하거나, 필터 화면에서 예산과 취향에 맞는 후보를 골라보세요.</p>
+          <div class="seo-static__actions">
+            <a class="seo-static__action" href="${siteUrl}/?view=resorts">조건으로 리조트 찾기 →</a>
+            <a class="seo-static__action seo-static__action--secondary" href="${toAbsoluteUrl('maldives-resort-comparison')}">비교 기준 먼저 보기</a>
+          </div>
+          <section class="seo-static__section" aria-labelledby="resort-directory-title">
+            <h2 id="resort-directory-title">전체 리조트</h2>
+            <div class="seo-static__grid">${links}</div>
+          </section>
+          ${buildEditorialFooter()}
+        </main>
+      </div>`,
+    schemaNodes: [
+      buildWebPageNode({
+        url,
+        name: `몰디브 리조트 목록 ${sorted.length}곳`,
+        description: `몰디브 바이블에 정리된 ${sorted.length}개 리조트의 상세 정보 목록입니다.`,
+        type: 'CollectionPage',
+        publishedAt: siteDates.resortPagesPublished,
+        modifiedAt: siteDates.modified,
+        mainEntityId: `${url}#itemlist`,
+      }),
+      buildBreadcrumbNode({ url, name: '몰디브 리조트 목록' }),
+      itemListNode,
+    ],
+  };
+};
+
+const buildEditorialPolicyPage = () => {
+  const page = editorialPolicyPage;
+  const url = `${siteUrl}${page.canonicalPath}`;
+  const comparisonCards = page.comparisonCriteria.items.map((item) => `
+    <article class="seo-static__card">
+      <strong>${escapeHtml(item.title)}</strong>
+      <span>${escapeHtml(item.summary)}</span>
+      <ul style="margin:10px 0 0;padding-left:18px;color:#475569;font-size:13px;line-height:1.7;">${item.details.map((detail) => `<li>${escapeHtml(detail)}</li>`).join('')}</ul>
+    </article>`).join('');
+  const policySection = (id, title, introduction, items) => `
+    <section id="${id}" class="seo-static__section" aria-labelledby="${id}-title">
+      <h2 id="${id}-title">${escapeHtml(title)}</h2>
+      ${introduction ? `<p style="max-width:800px;margin:-4px 0 14px;color:#475569;line-height:1.75;">${escapeHtml(introduction)}</p>` : ''}
+      <div class="seo-static__note"><ul style="margin:0;padding-left:20px;">${items.map((item) => `<li style="margin:6px 0;">${escapeHtml(item)}</li>`).join('')}</ul></div>
+    </section>`;
+  return {
+    slug: page.slug,
+    title: page.title,
+    description: page.description,
+    modifiedAt: page.updatedAt,
+    html: `
+      ${buildStandaloneStyles()}
+      <div class="seo-static">
+        ${buildStaticSiteHeader()}
+        <main class="seo-static__content">
+          <p class="seo-static__eyebrow">${escapeHtml(page.eyebrow)}</p>
+          <h1>${escapeHtml(page.heading)}</h1>
+          <p class="seo-static__lead">${escapeHtml(page.introduction)}</p>
+          <p class="seo-static__note" style="margin-top:24px;">${escapeHtml(page.serviceNotice)}</p>
+          <section class="seo-static__section" aria-labelledby="comparison-policy-title">
+            <h2 id="comparison-policy-title">${escapeHtml(page.comparisonCriteria.title)}</h2>
+            <p style="color:#475569;line-height:1.75;">${escapeHtml(page.comparisonCriteria.introduction)}</p>
+            <div class="seo-static__grid">${comparisonCards}</div>
+          </section>
+          ${policySection('review-policy', page.reviewPolicy.title, page.reviewPolicy.introduction, [...page.reviewPolicy.principles, page.reviewPolicy.sourceNote])}
+          ${policySection('metric-policy', page.metricDisclosure.title, page.metricDisclosure.introduction, page.metricDisclosure.notices)}
+          ${policySection('update-policy', page.updatePolicy.title, '', page.updatePolicy.principles)}
+          ${buildEditorialFooter()}
+        </main>
+      </div>`,
+    schemaNodes: [
+      buildWebPageNode({
+        url,
+        name: page.heading,
+        description: page.description,
+        type: 'AboutPage',
+        publishedAt: page.publishedAt,
+        modifiedAt: page.updatedAt,
+      }),
+      buildBreadcrumbNode({ url, name: '소개·편집 기준' }),
+    ],
+  };
+};
+
+const buildResortSchemaNodes = (resort, canonicalUrl, description) => {
+  const name = resort.name || resort.name_en;
+  const hotelId = `${canonicalUrl}#hotel`;
+  const hotelNode = {
     '@type': 'Hotel',
-    name: resort.name || resort.name_en,
+    '@id': hotelId,
+    name,
     alternateName: resort.name_en && resort.name_en !== resort.name ? resort.name_en : undefined,
     url: canonicalUrl,
     image: Array.isArray(resort.imageUrls) ? resort.imageUrls.slice(0, 3) : undefined,
     address: resort.location ? { '@type': 'PostalAddress', addressLocality: resort.location } : undefined,
   };
 
-  return serializeJsonLd(schema);
+  return [
+    buildWebPageNode({
+      url: canonicalUrl,
+      name: `${name} 리조트 정보`,
+      description,
+      publishedAt: siteDates.resortPagesPublished,
+      modifiedAt: siteDates.modified,
+      mainEntityId: hotelId,
+    }),
+    buildBreadcrumbNode({
+      url: canonicalUrl,
+      name,
+      parents: [
+        {
+          name: '몰디브 리조트 비교',
+          url: toAbsoluteUrl('maldives-resort-comparison'),
+        },
+      ],
+    }),
+    hotelNode,
+  ];
 };
 
 const replaceMetaContent = (html, attribute, value, content) =>
@@ -1221,7 +1632,7 @@ const replaceMetaContent = (html, attribute, value, content) =>
     `<meta ${attribute}="${value}" content="${escapeHtml(content)}" />`
   );
 
-const injectMeta = ({ html, title, description, url, schemaJson, ogImageAlt, removeTemplateFaq = false }) => {
+const injectMeta = ({ html, title, description, url, schemaNodes, ogImageAlt }) => {
   let updated = html.replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`);
   updated = replaceMetaContent(updated, 'name', 'description', description);
   updated = replaceMetaContent(updated, 'property', 'og:title', title);
@@ -1233,16 +1644,14 @@ const injectMeta = ({ html, title, description, url, schemaJson, ogImageAlt, rem
     updated = replaceMetaContent(updated, 'property', 'og:image:alt', ogImageAlt);
     updated = replaceMetaContent(updated, 'name', 'twitter:image:alt', ogImageAlt);
   }
-  if (removeTemplateFaq) {
-    updated = updated.replace(
-      /<script type="application\/ld\+json">[\s\S]*?<\/script>/g,
-      (script) => (/"@type"\s*:\s*"FAQPage"/.test(script) ? '' : script)
-    );
-  }
-  return updated
+  updated = updated
     .replace(/<link rel="canonical" href=".*?"\s*\/>/, `<link rel="canonical" href="${escapeHtml(url)}" />`)
     .replace(/<link rel="alternate" href=".*?" hreflang="ko(?:-KR)?"\s*\/>/, `<link rel="alternate" href="${escapeHtml(url)}" hreflang="ko-KR" />`)
-    .replace(/<script type="application\/ld\+json">\s*\{[\s\S]*?\}\s*<\/script>/, match => `${match}\n<script type="application/ld+json">${schemaJson}</script>`);
+    .replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+  return updated.replace(
+    /<\/head>/,
+    `  <script type="application/ld+json">${buildSchemaGraph(schemaNodes)}</script>\n</head>`
+  );
 };
 
 const injectStaticRoot = (html, content, { preserveStaticContent = false } = {}) => {
@@ -1255,22 +1664,25 @@ const injectStaticRoot = (html, content, { preserveStaticContent = false } = {})
     : updated;
 };
 
-const updateSitemap = async (resortSlugs, nicheSlugs) => {
-  const staticEntries = [
-    `${siteUrl}/`,
-    ...nicheSlugs.map((slug) => toAbsoluteUrl(slug)),
+const updateSitemap = async (resortEntries, staticPageEntries) => {
+  const entries = [
+    { loc: `${siteUrl}/`, lastmod: siteDates.modified, priority: '1.0' },
+    ...staticPageEntries.map((entry) => ({
+      loc: toAbsoluteUrl(entry.slug),
+      lastmod: entry.lastmod,
+      priority: entry.priority ?? '0.8',
+    })),
+    ...resortEntries.map((entry) => ({
+      loc: `${siteUrl}/resorts/${entry.slug}/`,
+      lastmod: entry.lastmod,
+      priority: '0.6',
+    })),
   ];
 
-  const urlEntries = [
-    ...staticEntries.map(
-      (loc) =>
-        `  <url>\n    <loc>${loc}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`
-    ),
-    ...resortSlugs.map(
-      (slug) =>
-        `  <url>\n    <loc>${siteUrl}/resorts/${slug}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`
-    ),
-  ].join('\n');
+  const urlEntries = entries.map((entry) => {
+    const lastmod = entry.lastmod ? `\n    <lastmod>${entry.lastmod}</lastmod>` : '';
+    return `  <url>\n    <loc>${entry.loc}</loc>${lastmod}\n    <changefreq>weekly</changefreq>\n    <priority>${entry.priority}</priority>\n  </url>`;
+  }).join('\n');
 
   const sitemap = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n${urlEntries}\n</urlset>`;
   await writeFile(sitemapPath, sitemap, 'utf-8');
@@ -1369,7 +1781,7 @@ try {
     readAllResorts(),
   ]);
 
-  const slugs = [];
+  const resortEntries = [];
   const usedSlugs = new Set();
 
   for (const resort of resorts) {
@@ -1385,15 +1797,15 @@ try {
       continue;
     }
     usedSlugs.add(slug);
-    slugs.push(slug);
+    resortEntries.push({ slug, lastmod: siteDates.modified });
 
     const title = `${resort.name || name} 리조트 정보 | 몰디브 바이블`;
     const description = buildResortDescription(resort);
     const url = `${siteUrl}/resorts/${slug}/`;
-    const schemaJson = buildResortSchema(resort, url);
+    const schemaNodes = buildResortSchemaNodes(resort, url, description);
 
     const html = injectStaticRoot(
-      injectMeta({ html: template, title, description, url, schemaJson }),
+      injectMeta({ html: template, title, description, url, schemaNodes }),
       buildResortPageContent(resort)
     );
     const targetPath = resolve(distDir, 'resorts', slug, 'index.html');
@@ -1401,10 +1813,10 @@ try {
     await writeFile(targetPath, html, 'utf-8');
   }
 
-  const nicheSlugs = [];
+  const staticPageEntries = [];
   for (const page of nichePages) {
     const url = toAbsoluteUrl(page.slug);
-    const { html: content, schemaJson } = page.comparisonLanding
+    const { html: content, schemaNodes } = page.comparisonLanding
       ? buildComparisonLandingContent(page, resorts)
       : buildNichePageContent(page, resorts);
     const html = injectStaticRoot(
@@ -1413,9 +1825,8 @@ try {
         title: page.title,
         description: page.description,
         url,
-        schemaJson,
+        schemaNodes,
         ogImageAlt: page.ogImageAlt,
-        removeTemplateFaq: page.comparisonLanding,
       }),
       content,
       { preserveStaticContent: true }
@@ -1423,11 +1834,40 @@ try {
     const targetPath = resolve(distDir, page.slug, 'index.html');
     await mkdir(dirname(targetPath), { recursive: true });
     await writeFile(targetPath, html, 'utf-8');
-    nicheSlugs.push(page.slug);
+    staticPageEntries.push({
+      slug: page.slug,
+      lastmod: siteDates.modified,
+      priority: page.comparisonLanding ? '0.9' : '0.8',
+    });
   }
 
-  await updateSitemap(slugs, nicheSlugs);
-  console.log(`Generated ${slugs.length} resort pages, ${nicheSlugs.length} niche pages, and updated sitemap.`);
+  const standalonePages = [
+    buildGlossaryPage(),
+    buildResortDirectoryPage(resorts),
+    buildEditorialPolicyPage(),
+  ];
+  for (const page of standalonePages) {
+    const url = toAbsoluteUrl(page.slug);
+    const html = injectStaticRoot(
+      injectMeta({
+        html: template,
+        title: page.title,
+        description: page.description,
+        url,
+        schemaNodes: page.schemaNodes,
+      }),
+      page.html,
+      { preserveStaticContent: true }
+    );
+    const targetPath = resolve(distDir, page.slug, 'index.html');
+    await mkdir(dirname(targetPath), { recursive: true });
+    await writeFile(targetPath, html, 'utf-8');
+    staticPageEntries.push({ slug: page.slug, lastmod: page.modifiedAt, priority: '0.8' });
+  }
+
+  await writeFile(source, injectStaticRoot(template, buildHomeStaticFallback()), 'utf-8');
+  await updateSitemap(resortEntries, staticPageEntries);
+  console.log(`Generated ${resortEntries.length} resort pages, ${staticPageEntries.length} static pages, a crawlable home fallback, and updated sitemap.`);
 } catch (error) {
   console.error('Post-build step failed', error);
   process.exitCode = 1;
