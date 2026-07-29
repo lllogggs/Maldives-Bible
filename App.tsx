@@ -1130,6 +1130,43 @@ const App: React.FC = () => {
     }
   }, [profileToken]);
 
+  const syncRemoteLikedResorts = useCallback(
+    async (
+      activeProfileId: string | null,
+      likedIds: number[],
+    ): Promise<ResortLikesSummary | null> => {
+      if (!activeProfileId || !SHOULD_USE_REMOTE_STATE_API || !profileToken) {
+        return null;
+      }
+
+      try {
+        const response = await fetch(RESORT_LIKES_ENDPOINT, {
+          method: 'PUT',
+          headers: withProfileTokenHeader({ 'Content-Type': 'application/json' }, profileToken),
+          body: JSON.stringify({ profileId: activeProfileId, likedIds }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to sync likes: ${response.statusText}`);
+        }
+
+        const payload = (await response.json()) as { data?: Partial<ResortLikesSummary> };
+        if (!payload.data?.counts || !payload.data?.likedIds) {
+          return null;
+        }
+
+        return {
+          counts: ensureNumberRecord(payload.data.counts),
+          likedIds: ensureNumberArray(payload.data.likedIds),
+        };
+      } catch (err) {
+        console.warn('Failed to sync local resort likes to Supabase', err);
+        return null;
+      }
+    },
+    [profileToken],
+  );
+
 
   useEffect(() => {
     if (!profileId) {
@@ -1227,10 +1264,27 @@ const App: React.FC = () => {
         }));
 
         const localPreferences = getLocalPreferences();
-        const [remotePreferences, remoteLikes] = await Promise.all([
+        const resortIds = mergedData.map(resort => resort.id);
+        const resortIdSet = new Set(resortIds);
+        const validLocalLikedIds = parseNumberArray(localStorage.getItem('likedResorts'))
+          .filter(id => resortIdSet.has(id));
+        const [remotePreferences, fetchedRemoteLikes] = await Promise.all([
           fetchRemotePreferences(profileId),
           fetchRemoteLikes(profileId),
         ]);
+        let remoteLikes = fetchedRemoteLikes;
+
+        if (remoteLikes && validLocalLikedIds.length > 0) {
+          const remoteLikedIdSet = new Set(remoteLikes.likedIds);
+          const missingLocalLikedIds = validLocalLikedIds.filter(id => !remoteLikedIdSet.has(id));
+          if (missingLocalLikedIds.length > 0) {
+            const syncedLikes = await syncRemoteLikedResorts(profileId, validLocalLikedIds);
+            remoteLikes = syncedLikes ?? {
+              counts: remoteLikes.counts,
+              likedIds: Array.from(new Set([...remoteLikes.likedIds, ...validLocalLikedIds])),
+            };
+          }
+        }
 
         if (remotePreferences) {
           setDeletedImageUrls(remotePreferences.deleted_image_urls);
@@ -1243,8 +1297,6 @@ const App: React.FC = () => {
           ])
         );
 
-        const resortIds = mergedData.map(resort => resort.id);
-        const resortIdSet = new Set(resortIds);
         const validHiddenIds = mergedHiddenIds.filter(id => resortIdSet.has(id));
         const hiddenSet = new Set(validHiddenIds);
 
@@ -1298,6 +1350,7 @@ const App: React.FC = () => {
     resortReloadKey,
     savePreferencesToLocal,
     showToast,
+    syncRemoteLikedResorts,
   ]);
 
   useEffect(() => {

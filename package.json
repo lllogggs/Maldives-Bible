@@ -19,7 +19,11 @@
     "reviews:validate": "node ./scripts/naver-reviews/compile.mjs --check",
     "reviews:compile": "node ./scripts/naver-reviews/compile.mjs",
     "reviews:test": "node --test ./scripts/naver-reviews/*.test.mjs",
-    "seo:validate": "node ./scripts/validate-seo-build.mjs"
+    "seo:validate": "node ./scripts/validate-seo-build.mjs",
+    "supabase:projects": "supabase projects list",
+    "supabase:link": "supabase link",
+    "supabase:migrations": "supabase migration list",
+    "supabase:push": "supabase db push"
   },
   "keywords": [
     "몰디브 신혼여행 처음 준비",
@@ -48,6 +52,7 @@
     "gh-pages": "^6.1.1",
     "postcss": "^8.5.23",
     "prettier": "^3.6.2",
+    "supabase": "^2.110.0",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.2.2",
     "vite": "^8.1.3"

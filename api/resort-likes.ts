@@ -1,5 +1,10 @@
 import type { ApiRequest, ApiResponse } from '../server/api-http';
 import { requireProfileAccess } from '../server/profile-token.js';
+import {
+  SupabaseConfigurationError,
+  SupabaseRestError,
+  supabaseRestRequest,
+} from '../server/supabase-rest.js';
 
 function getHeaderValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
@@ -31,7 +36,7 @@ function setCors(req: ApiRequest, res: ApiResponse) {
     res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
   }
   res.setHeader('Vary', 'Origin');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'content-type, authorization, x-requested-with, x-resort-profile-token');
   res.setHeader('Access-Control-Max-Age', '86400');
   return true;
@@ -52,154 +57,206 @@ type LikesUpdate = {
   likedIds: number[];
 };
 
-type RedisResult<T> = {
-  result?: T;
-  error?: string;
+type LikeRow = {
+  resort_id?: number | string | null;
+  profile_id?: string | null;
 };
 
-const REDIS_COUNTS_KEY = 'maldives-bible:likes:counts';
-const REDIS_RESORT_PREFIX = 'maldives-bible:likes:resort:';
-const REDIS_PROFILE_PREFIX = 'maldives-bible:likes:profile:';
+type LikeCountRow = LikeRow & {
+  likes_count?: number | string | null;
+};
 
-function getRedisConfig() {
-  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) {
-    return null;
-  }
+const PAGE_SIZE = 1000;
+const MAX_SYNCED_LIKE_IDS = 500;
 
-  return {
-    url: url.replace(/\/$/, ''),
-    token,
-  };
+function normalizeResortId(value: unknown): number | null {
+  const resortId = Number(value);
+  return Number.isInteger(resortId) && resortId > 0 ? resortId : null;
 }
 
-async function redisCommand<T>(command: Array<string | number>) {
-  const config = getRedisConfig();
-  if (!config) {
-    throw new Error('redis_not_configured');
+async function readRowsPaginated(pathBuilder: (offset: number) => string): Promise<LikeRow[]> {
+  const rows: LikeRow[] = [];
+
+  for (let offset = 0; ; offset += PAGE_SIZE) {
+    const { data } = await supabaseRestRequest<LikeRow[]>(pathBuilder(offset));
+    if (!Array.isArray(data)) {
+      throw new SupabaseRestError(502, 'invalid_supabase_response');
+    }
+
+    rows.push(...data);
+    if (data.length < PAGE_SIZE) {
+      return rows;
+    }
   }
-
-  const response = await fetch(config.url, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${config.token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(command),
-  });
-
-  const payload = (await response.json()) as RedisResult<T>;
-  if (!response.ok || payload.error) {
-    throw new Error(payload.error || `redis_request_failed_${response.status}`);
-  }
-
-  return payload.result as T;
 }
 
-function normalizeRedisCounts(raw: unknown): Record<number, number> {
+async function readLikedIds(profileId: string): Promise<number[]> {
+  const encodedProfileId = encodeURIComponent(profileId);
+  const rows = await readRowsPaginated(offset =>
+    `resort_likes?select=resort_id&profile_id=eq.${encodedProfileId}&order=resort_id.asc&limit=${PAGE_SIZE}&offset=${offset}`
+  );
+
+  return Array.from(
+    new Set(
+      rows
+        .map(row => normalizeResortId(row.resort_id))
+        .filter((resortId): resortId is number => resortId !== null)
+    )
+  );
+}
+
+async function readCountsFromRows(): Promise<Record<number, number>> {
+  const rows = await readRowsPaginated(offset =>
+    `resort_likes?select=resort_id,profile_id&order=resort_id.asc,profile_id.asc&limit=${PAGE_SIZE}&offset=${offset}`
+  );
   const counts: Record<number, number> = {};
 
-  if (Array.isArray(raw)) {
-    for (let index = 0; index < raw.length; index += 2) {
-      const resortId = Number(raw[index]);
-      const count = Number(raw[index + 1]);
-      if (Number.isFinite(resortId) && Number.isFinite(count) && count > 0) {
-        counts[resortId] = Math.floor(count);
-      }
+  rows.forEach(row => {
+    const resortId = normalizeResortId(row.resort_id);
+    if (resortId !== null) {
+      counts[resortId] = (counts[resortId] ?? 0) + 1;
     }
-    return counts;
-  }
-
-  if (raw && typeof raw === 'object') {
-    Object.entries(raw as Record<string, unknown>).forEach(([key, value]) => {
-      const resortId = Number(key);
-      const count = Number(value);
-      if (Number.isFinite(resortId) && Number.isFinite(count) && count > 0) {
-        counts[resortId] = Math.floor(count);
-      }
-    });
-  }
+  });
 
   return counts;
 }
 
-function normalizeRedisIds(raw: unknown): number[] {
-  if (!Array.isArray(raw)) {
-    return [];
-  }
+async function readLikeCounts(): Promise<Record<number, number>> {
+  try {
+    const { data } = await supabaseRestRequest<LikeCountRow[]>('rpc/get_resort_like_counts', {
+      method: 'POST',
+      body: '{}',
+    });
+    if (!Array.isArray(data)) {
+      throw new SupabaseRestError(502, 'invalid_supabase_response');
+    }
 
-  return raw
-    .map(item => Number(item))
-    .filter((item): item is number => Number.isInteger(item) && item > 0);
+    const counts: Record<number, number> = {};
+    data.forEach(row => {
+      const resortId = normalizeResortId(row.resort_id);
+      const count = Number(row.likes_count);
+      if (resortId !== null && Number.isFinite(count) && count > 0) {
+        counts[resortId] = Math.floor(count);
+      }
+    });
+    return counts;
+  } catch (error) {
+    if (error instanceof SupabaseConfigurationError) {
+      throw error;
+    }
+
+    console.warn('Supabase likes count RPC unavailable; using paginated rows', error);
+    return readCountsFromRows();
+  }
 }
 
-async function readLikesFromRedis(profileId: string): Promise<LikesSummary> {
-  const [countsRaw, likedRaw] = await Promise.all([
-    redisCommand<unknown>(['HGETALL', REDIS_COUNTS_KEY]),
-    redisCommand<unknown>(['SMEMBERS', `${REDIS_PROFILE_PREFIX}${profileId}`]),
+async function readLikes(profileId: string): Promise<LikesSummary> {
+  const [counts, likedIds] = await Promise.all([
+    readLikeCounts(),
+    readLikedIds(profileId),
   ]);
 
-  return {
-    counts: normalizeRedisCounts(countsRaw),
-    likedIds: normalizeRedisIds(likedRaw),
-  };
+  return { counts, likedIds };
 }
 
-async function updateLikesInRedis(profileId: string, resortId: number, shouldLike: boolean): Promise<LikesUpdate> {
-  const resortKey = `${REDIS_RESORT_PREFIX}${resortId}`;
-  const profileKey = `${REDIS_PROFILE_PREFIX}${profileId}`;
+function parseExactCount(contentRange: string | null): number | null {
+  if (!contentRange) {
+    return null;
+  }
+
+  const separatorIndex = contentRange.lastIndexOf('/');
+  if (separatorIndex < 0) {
+    return null;
+  }
+
+  const count = Number(contentRange.slice(separatorIndex + 1));
+  return Number.isInteger(count) && count >= 0 ? count : null;
+}
+
+async function readResortLikeCount(resortId: number): Promise<number> {
+  const { response } = await supabaseRestRequest<LikeRow[]>(
+    `resort_likes?select=resort_id&resort_id=eq.${resortId}`,
+    {
+      headers: {
+        Prefer: 'count=exact',
+        Range: '0-0',
+      },
+    },
+  );
+
+  const exactCount = parseExactCount(response.headers.get('content-range'));
+  if (exactCount === null) {
+    throw new SupabaseRestError(502, 'missing_supabase_count');
+  }
+
+  return exactCount;
+}
+
+async function updateLikes(
+  profileId: string,
+  resortId: number,
+  shouldLike: boolean,
+): Promise<LikesUpdate> {
+  const encodedProfileId = encodeURIComponent(profileId);
 
   if (shouldLike) {
-    const changed = Number(await redisCommand<number>(['SADD', resortKey, profileId]));
-    await redisCommand<number>(['SADD', profileKey, resortId]);
-    if (changed > 0) {
-      await redisCommand<number>(['HINCRBY', REDIS_COUNTS_KEY, resortId, 1]);
-    }
+    await supabaseRestRequest<void>(
+      'resort_likes?on_conflict=profile_id%2Cresort_id',
+      {
+        method: 'POST',
+        headers: { Prefer: 'resolution=ignore-duplicates,return=minimal' },
+        body: JSON.stringify({ profile_id: profileId, resort_id: resortId }),
+      },
+    );
   } else {
-    const changed = Number(await redisCommand<number>(['SREM', resortKey, profileId]));
-    await redisCommand<number>(['SREM', profileKey, resortId]);
-    if (changed > 0) {
-      const nextCount = Number(await redisCommand<number>(['HINCRBY', REDIS_COUNTS_KEY, resortId, -1]));
-      if (nextCount <= 0) {
-        await redisCommand<number>(['HDEL', REDIS_COUNTS_KEY, resortId]);
-      }
-    }
+    await supabaseRestRequest<void>(
+      `resort_likes?profile_id=eq.${encodedProfileId}&resort_id=eq.${resortId}`,
+      {
+        method: 'DELETE',
+        headers: { Prefer: 'return=minimal' },
+      },
+    );
   }
 
-  const [likesCount, likedRaw] = await Promise.all([
-    redisCommand<number>(['SCARD', resortKey]),
-    redisCommand<unknown>(['SMEMBERS', profileKey]),
+  const [likesCount, likedIds] = await Promise.all([
+    readResortLikeCount(resortId),
+    readLikedIds(profileId),
   ]);
 
-  return {
-    likesCount: Math.max(0, Number(likesCount) || 0),
-    likedIds: normalizeRedisIds(likedRaw),
-  };
+  return { likesCount, likedIds };
 }
 
-async function readLikes(profileId: string): Promise<LikesSummary | null> {
-  if (getRedisConfig()) {
-    try {
-      return await readLikesFromRedis(profileId);
-    } catch (error) {
-      console.warn('Redis likes storage unavailable; falling back', error);
-    }
+function normalizeSyncedLikeIds(value: unknown): number[] | null {
+  if (!Array.isArray(value) || value.length > MAX_SYNCED_LIKE_IDS) {
+    return null;
   }
 
-  return null;
+  const resortIds = new Set<number>();
+  value.forEach(item => {
+    const resortId = normalizeResortId(item);
+    if (resortId !== null) {
+      resortIds.add(resortId);
+    }
+  });
+
+  return Array.from(resortIds);
 }
 
-async function updateLikes(profileId: string, resortId: number, shouldLike: boolean): Promise<LikesUpdate | null> {
-  if (getRedisConfig()) {
-    try {
-      return await updateLikesInRedis(profileId, resortId, shouldLike);
-    } catch (error) {
-      console.warn('Redis likes storage unavailable; falling back', error);
-    }
+async function syncLikes(profileId: string, resortIds: number[]): Promise<LikesSummary> {
+  if (resortIds.length > 0) {
+    await supabaseRestRequest<void>(
+      'resort_likes?on_conflict=profile_id%2Cresort_id',
+      {
+        method: 'POST',
+        headers: { Prefer: 'resolution=ignore-duplicates,return=minimal' },
+        body: JSON.stringify(
+          resortIds.map(resortId => ({ profile_id: profileId, resort_id: resortId }))
+        ),
+      },
+    );
   }
 
-  return null;
+  return readLikes(profileId);
 }
 
 export default async function handler(req: ApiRequest, res: ApiResponse) {
@@ -220,7 +277,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       const summary = await readLikes(access.profileId);
       return send(res, 200, {
         ok: true,
-        data: summary ?? { storage: 'local' },
+        data: summary,
       });
     }
 
@@ -250,13 +307,32 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       const update = await updateLikes(access.profileId, numericResortId, shouldLike);
       return send(res, 200, {
         ok: true,
-        data: update ?? { storage: 'local' },
+        data: update,
       });
     }
 
-    res.setHeader('Allow', 'GET,POST,OPTIONS');
+    if (req.method === 'PUT') {
+      const { profileId, likedIds } = req.body ?? {};
+
+      const access = requireProfileAccess(req, profileId);
+      if (access.ok !== true || typeof access.profileId !== 'string') {
+        return send(res, access.status ?? 401, { error: access.error ?? 'invalid profile access' });
+      }
+
+      const normalizedLikedIds = normalizeSyncedLikeIds(likedIds);
+      if (normalizedLikedIds === null) {
+        return send(res, 400, { error: 'invalid likedIds' });
+      }
+
+      const summary = await syncLikes(access.profileId, normalizedLikedIds);
+      return send(res, 200, { ok: true, data: summary });
+    }
+
+    res.setHeader('Allow', 'GET,POST,PUT,OPTIONS');
     return send(res, 405, { error: 'Method Not Allowed' });
   } catch (error: any) {
-    return send(res, 500, { error: error?.message ?? 'internal_error' });
+    console.error('Resort likes storage request failed', error);
+    const status = error instanceof SupabaseConfigurationError ? 503 : 502;
+    return send(res, status, { error: 'likes storage unavailable' });
   }
 }
