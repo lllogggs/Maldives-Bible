@@ -38,7 +38,7 @@ const routeRows = [
     '밤 출발 선택지가 필요하거나 좌석 컨디션을 중시하는 경우',
     '총 이동시간과 새벽 도착 여부를 확인',
   ],
-  ['동남아 경유', '가격을 낮추고 싶은 경우', '수하물 연결, 환승 터미널, 지연 리스크를 확인'],
+  ['동남아 경유', '운임과 일정의 균형을 보고 싶은 경우', '수하물 연결, 환승 터미널, 지연 리스크를 확인'],
 ] as const;
 
 const FlightInfo: React.FC<FlightInfoProps> = ({ onShowResorts, onShowQuote }) => {
@@ -47,7 +47,7 @@ const FlightInfo: React.FC<FlightInfoProps> = ({ onShowResorts, onShowQuote }) =
       <section className="flex items-center justify-between border-b border-slate-200 pb-4">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-teal-700">Flight Plan</p>
-          <h1 className="font-brand-heading mt-1 text-2xl text-slate-950">항공 일정</h1>
+          <h1 className="font-brand-heading mt-1 text-2xl text-slate-950">몰디브 항공 일정 가이드</h1>
         </div>
         <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
           ICN → MLE

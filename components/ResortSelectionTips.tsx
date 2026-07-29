@@ -13,10 +13,17 @@ import {
 
 interface ResortSelectionTipsProps {
   onShowResorts: () => void;
+  variant?: 'home' | 'start';
 }
 
-const heroImageUrl =
-  'https://images.squarespace-cdn.com/content/v1/5b4f0c8d89c17294e53d4ffc/1533275638438-UBGTNUUSBGX41U5GN9W2/Ayada+Maldives+villas+SUNSET+OCEAN+SUITE+%281%29.jpg?format=2500w';
+const heroImageUrl = '/images/seo/maldives-resort-aerial.jpg';
+
+const serviceLinks = [
+  ['/start/', '시작하기', '예산·일정·객실·식사 기준 잡기'],
+  ['/maldives-resort-comparison/', '몰디브 리조트 비교', '171개 리조트를 조건별로 비교'],
+  ['/quote-comparison/', '몰디브 여행사 견적 비교', '같은 조건으로 견적 확인하기'],
+  ['/flight-guide/', '몰디브 항공 가이드', '말레 도착과 경유 일정 확인'],
+] as const;
 
 const decisionRows = [
   ['예산', '리조트비 + 이동비 + 항공권을 같이 봐야 실제 총액이 보입니다.', DollarIcon],
@@ -50,25 +57,40 @@ const transferRows = [
   ['국내선', '먼 환초 리조트', '여유 일정에 적합', DomesticFlightIcon],
 ] as const;
 
-const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts }) => {
+const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({
+  onShowResorts,
+  variant = 'start',
+}) => {
+  const isHome = variant === 'home';
+
   return (
     <div className="animate-fade-in pb-12">
       <section className="relative mb-6 min-h-[310px] overflow-hidden rounded-lg bg-slate-950 text-white shadow-sm shadow-slate-900/10 sm:min-h-[390px]">
         <img
           src={heroImageUrl}
           alt="몰디브 워터빌라와 바다"
+          width={1200}
+          height={630}
+          fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,0.84),rgba(15,23,42,0.48),rgba(15,23,42,0.12))]" />
         <div className="relative flex min-h-[310px] max-w-3xl flex-col justify-between px-5 py-6 sm:min-h-[390px] sm:px-8 sm:py-8">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-teal-100">
-              Maldives Honeymoon Guide
+              {isHome ? 'Maldives Bible' : 'Maldives Travel Guide'}
             </p>
             <h1 className="font-brand-heading max-w-2xl text-3xl leading-tight sm:text-5xl">
-              몰디브 신혼여행
-              <span className="block">리조트 고르기</span>
+              {isHome ? '몰디브 여행,' : '몰디브 여행'}
+              <span className="block">
+                {isHome ? '기준부터 비교까지 한곳에서' : '시작하기'}
+              </span>
             </h1>
+            <p className="mt-4 max-w-2xl text-sm font-medium leading-6 text-white/90 sm:text-base">
+              {isHome
+                ? '리조트 비교부터 견적 확인과 항공 일정까지, 처음 준비하는 순서대로 살펴보세요.'
+                : '몰디브는 리조트 이름부터 찾기보다 예산, 일정, 이동수단, 객실 타입과 식사 플랜을 먼저 정하면 후보를 훨씬 빠르게 줄일 수 있습니다.'}
+            </p>
           </div>
           <div>
             <button
@@ -83,6 +105,30 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
         </div>
       </section>
 
+      {isHome ? (
+        <section aria-labelledby="home-services-heading">
+          <h2 id="home-services-heading" className="font-brand-heading mb-3 text-xl text-slate-950">
+            몰디브 여행 준비 메뉴
+          </h2>
+          <nav
+            aria-label="주요 서비스"
+            className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {serviceLinks.map(([href, label, description]) => (
+              <a
+                key={href}
+                href={href}
+                className="group rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5 transition hover:-translate-y-0.5 hover:border-teal-200 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+              >
+                <strong className="block text-sm font-extrabold text-slate-950 group-hover:text-teal-800">
+                  {label}
+                </strong>
+                <span className="mt-2 block text-sm leading-5 text-slate-600">{description}</span>
+              </a>
+            ))}
+          </nav>
+        </section>
+      ) : (
       <section id="tips-guide" className="space-y-9">
         <section>
           <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-900/5">
@@ -161,6 +207,7 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({ onShowResorts
         </section>
 
       </section>
+      )}
     </div>
   );
 };

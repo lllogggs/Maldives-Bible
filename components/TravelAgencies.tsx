@@ -37,8 +37,8 @@ const publicRoute: RouteStep[] = [
 const agencyRoute: RouteStep[] = [
   { actor: '리조트', caption: '공실 부담 감소', Icon: BuildingIcon },
   { actor: '리조트 총판', caption: '계약 물량 확보', Icon: BuildingIcon },
-  { actor: '여행사', caption: '도매가로 견적', Icon: DollarIcon },
-  { actor: '고객', caption: '더 낮은 가격', Icon: UserIcon },
+  { actor: '여행사', caption: '계약 공급가 반영', Icon: DollarIcon },
+  { actor: '고객', caption: '조건별 견적 확인', Icon: UserIcon },
 ];
 
 const FlowConnector: React.FC<{ label: string; emphasized?: boolean }> = ({ label, emphasized = false }) => (
@@ -95,7 +95,7 @@ const PriceRoute: React.FC<{
       </div>
 
       <div className={`rounded-lg px-4 py-3 text-center lg:min-w-[132px] ${emphasized ? 'bg-slate-950 text-white shadow-lg shadow-slate-900/15' : 'bg-slate-100 text-slate-500'}`}>
-        <span className="block text-[10px] font-extrabold uppercase tracking-[0.12em]">고객 견적</span>
+        <span className="block text-[10px] font-extrabold uppercase tracking-[0.12em]">비교용 금액 지수</span>
         <strong className={`mt-1 block font-brand-heading ${emphasized ? 'text-3xl' : 'text-xl'}`}>{price}</strong>
       </div>
     </div>
@@ -106,7 +106,7 @@ const TravelAgencies: React.FC = () => {
   return (
     <div className="animate-fade-in space-y-6 pb-10">
       <section className="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h1 className="font-brand-heading text-2xl text-slate-950">여행사 견적 비교</h1>
+        <h1 className="font-brand-heading text-2xl text-slate-950">몰디브 여행사 견적 비교</h1>
         <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
           {agencies.length}곳
         </span>
@@ -115,7 +115,7 @@ const TravelAgencies: React.FC = () => {
       <section className="border-b border-slate-200 pb-5">
         <div className="rounded-xl bg-[linear-gradient(135deg,#f8fafc,#ecfeff)] px-4 py-5 shadow-sm shadow-slate-900/5 ring-1 ring-teal-100 sm:px-6 sm:py-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="font-brand-heading text-lg text-slate-950 sm:text-xl">여행사 견적이 저렴한 이유</h2>
+            <h2 className="font-brand-heading text-lg text-slate-950 sm:text-xl">여행사 견적 경로가 다른 이유</h2>
             <div className="flex flex-wrap justify-end gap-2">
               <span className="rounded-full bg-teal-50 px-3 py-1.5 text-xs font-extrabold text-teal-800 ring-1 ring-teal-200">
                 같은 객실 · 같은 일정
@@ -131,17 +131,20 @@ const TravelAgencies: React.FC = () => {
               title="비교 기준 · 공식/OTA"
               steps={publicRoute}
               connectors={['공개 판매가', '일반 예약']}
-              price="$10,000"
+              price="기준 100"
             />
             <PriceRoute
               title="전문 여행사 경로"
               steps={agencyRoute}
               connectors={['사전 계약 물량', '도매 공급가', '맞춤 견적']}
-              price="$8,000"
-              saving="$2,000 낮음"
+              price="예시 80"
+              saving="예시 20% 절감"
               emphasized
             />
           </div>
+          <p className="mt-3 text-xs leading-5 text-slate-500">
+            금액 지수와 절감 폭은 유통 경로를 설명하기 위한 예시이며, 실제 견적은 일정·객실·식사·이동 조건에 따라 달라집니다.
+          </p>
         </div>
       </section>
 
@@ -153,12 +156,23 @@ const TravelAgencies: React.FC = () => {
           </span>
         </div>
 
+        <div aria-label="여행사 견적 요청 전 확인할 조건" className="flex flex-wrap gap-2">
+          {['여행 날짜·숙박일수', '객실 타입·식사 플랜', '이동편·세금 포함 여부', '취소·변경 조건'].map(item => (
+            <span
+              key={item}
+              className="rounded-full bg-white px-3 py-1.5 text-xs font-bold text-slate-600 ring-1 ring-slate-200"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {agencies.map(agency => (
             <article key={agency.name} className="flex min-h-[96px] flex-col rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5">
-            <h2 className="line-clamp-1 text-base font-bold text-slate-950" title={agency.name}>
+            <h3 className="line-clamp-1 text-base font-bold text-slate-950" title={agency.name}>
               {agency.name}
-            </h2>
+            </h3>
             <div className="mt-auto flex gap-2 pt-3">
               {agency.website ? (
                 <a

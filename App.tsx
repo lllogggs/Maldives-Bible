@@ -14,6 +14,15 @@ import { POPULARITY_RANKING } from './constants';
 import { TransportationType, type Resort, type Filters, type SortOption } from './types';
 import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
 import { shareOrCopy, type ShareResult } from './utils/share';
+import {
+  PATH_VIEW_MAP,
+  SEO_PAGES,
+  VIEW_PATH_MAP,
+  VIEW_SEO_PAGE_MAP,
+  type SeoPageDefinition,
+  type SeoPageKey,
+  type View,
+} from './seoPages';
 
 type ViteEnvShim = {
   DEV?: boolean;
@@ -22,8 +31,6 @@ type ViteEnvShim = {
   VITE_PREFERENCES_API_BASE_URL?: string;
   VITE_ENABLE_REMOTE_STATE_IN_DEV?: string;
 };
-
-type View = 'resorts' | 'tips' | 'agencies' | 'flights';
 
 type ResortReviewInsightsPayload = {
   items?: Array<{
@@ -127,6 +134,139 @@ const buildCompareHash = (resorts: Resort[]): string => {
 
 const CANONICAL_SITE_ORIGIN = 'https://www.maldivesbible.com';
 
+type PrimaryPath = keyof typeof PATH_VIEW_MAP;
+
+const isPrimaryPath = (pathname: string): pathname is PrimaryPath =>
+  Object.prototype.hasOwnProperty.call(PATH_VIEW_MAP, pathname);
+
+const getNormalizedPrimaryPath = (pathname: string): PrimaryPath | null => {
+  if (isPrimaryPath(pathname)) {
+    return pathname;
+  }
+
+  if (pathname === '/') {
+    return null;
+  }
+
+  const normalized = `${pathname.replace(/\/+$/, '')}/`;
+  return isPrimaryPath(normalized) ? normalized : null;
+};
+
+const getViewFromPath = (pathname: string): View | null => {
+  const normalizedPath = getNormalizedPrimaryPath(pathname);
+  return normalizedPath ? PATH_VIEW_MAP[normalizedPath] : null;
+};
+
+const getSeoPageKeyFromLocation = (): SeoPageKey | null => {
+  if (typeof window === 'undefined') {
+    return 'home';
+  }
+
+  // Resort detail URLs and hash comparisons keep their existing, dedicated head state.
+  if (
+    getResortPathSegment(window.location.pathname) ||
+    window.location.hash.startsWith('#/compare/') ||
+    parseResortIdFromHash(window.location.hash)
+  ) {
+    return null;
+  }
+
+  const pathView = getViewFromPath(window.location.pathname);
+  if (pathView) {
+    return VIEW_SEO_PAGE_MAP[pathView];
+  }
+
+  if (window.location.pathname === '/') {
+    const queryView = new URLSearchParams(window.location.search).get('view');
+    return isView(queryView) ? VIEW_SEO_PAGE_MAP[queryView] : 'home';
+  }
+
+  return null;
+};
+
+const getActiveNavigationPath = (): string => {
+  if (typeof window === 'undefined') {
+    return SEO_PAGES.home.path;
+  }
+
+  if (
+    getResortPathSegment(window.location.pathname) ||
+    window.location.hash.startsWith('#/compare/') ||
+    parseResortIdFromHash(window.location.hash)
+  ) {
+    return VIEW_PATH_MAP.resorts;
+  }
+
+  const normalizedPath = getNormalizedPrimaryPath(window.location.pathname);
+  if (normalizedPath) {
+    return normalizedPath;
+  }
+
+  if (window.location.pathname === '/') {
+    const queryView = new URLSearchParams(window.location.search).get('view');
+    return isView(queryView) ? VIEW_PATH_MAP[queryView] : SEO_PAGES.home.path;
+  }
+
+  return '';
+};
+
+const normalizePrimaryPathInBrowser = () => {
+  const normalizedPath = getNormalizedPrimaryPath(window.location.pathname);
+  if (!normalizedPath || normalizedPath === window.location.pathname) {
+    return;
+  }
+
+  window.history.replaceState(
+    window.history.state,
+    '',
+    `${normalizedPath}${window.location.search}${window.location.hash}`,
+  );
+};
+
+const setMetaContent = (attribute: 'name' | 'property', key: string, content: string) => {
+  let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute(attribute, key);
+    document.head.appendChild(element);
+  }
+  element.content = content;
+};
+
+const syncDocumentHead = (page: SeoPageDefinition) => {
+  const canonicalUrl = new URL(page.path, CANONICAL_SITE_ORIGIN).toString();
+  const imageUrl = new URL(page.image, CANONICAL_SITE_ORIGIN).toString();
+
+  document.title = page.title;
+  setMetaContent('name', 'description', page.description);
+
+  let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.appendChild(canonical);
+  }
+  canonical.href = canonicalUrl;
+
+  setMetaContent('property', 'og:type', 'website');
+  setMetaContent('property', 'og:site_name', '몰디브 바이블');
+  setMetaContent('property', 'og:locale', 'ko_KR');
+  setMetaContent('property', 'og:title', page.title);
+  setMetaContent('property', 'og:description', page.description);
+  setMetaContent('property', 'og:url', canonicalUrl);
+  setMetaContent('property', 'og:image', imageUrl);
+  setMetaContent('property', 'og:image:secure_url', imageUrl);
+  setMetaContent('property', 'og:image:type', 'image/jpeg');
+  setMetaContent('property', 'og:image:width', String(page.imageWidth));
+  setMetaContent('property', 'og:image:height', String(page.imageHeight));
+  setMetaContent('property', 'og:image:alt', page.imageAlt);
+  setMetaContent('name', 'twitter:card', 'summary_large_image');
+  setMetaContent('name', 'twitter:title', page.title);
+  setMetaContent('name', 'twitter:description', page.description);
+  setMetaContent('name', 'twitter:image', imageUrl);
+  setMetaContent('name', 'twitter:image:alt', page.imageAlt);
+};
+
 const resolveImageEditAvailability = (): boolean => {
   const env = ((import.meta as unknown as { env?: ViteEnvShim })?.env) ?? {};
   const isDevMode = env.DEV ?? env.MODE === 'development';
@@ -194,8 +334,17 @@ const getInitialView = (): View => {
     return 'tips';
   }
 
-  if (getResortPathSegment(window.location.pathname)) {
+  if (
+    getResortPathSegment(window.location.pathname) ||
+    window.location.hash.startsWith('#/compare/') ||
+    parseResortIdFromHash(window.location.hash)
+  ) {
     return 'resorts';
+  }
+
+  const pathView = getViewFromPath(window.location.pathname);
+  if (pathView) {
+    return pathView;
   }
 
   const queryView = new URLSearchParams(window.location.search).get('view');
@@ -590,6 +739,12 @@ const App: React.FC = () => {
   const [compareList, setCompareList] = useState<number[]>([]);
   const [isCompareViewVisible, setIsCompareViewVisible] = useState<boolean>(false);
   const [currentView, setCurrentView] = useState<View>(getInitialView);
+  const [activeSeoPageKey, setActiveSeoPageKey] = useState<SeoPageKey | null>(
+    getSeoPageKeyFromLocation,
+  );
+  const [activeNavigationPath, setActiveNavigationPath] = useState<string>(
+    getActiveNavigationPath,
+  );
   const [resortReloadKey, setResortReloadKey] = useState(0);
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const filterTriggerRef = useRef<HTMLButtonElement>(null);
@@ -608,6 +763,20 @@ const App: React.FC = () => {
   const [, setResortOverrides] = useState<Record<number, ResortOverride>>({});
   const [profileId, setProfileId] = useState<string | null>(null);
   const [profileToken, setProfileToken] = useState<string | null>(null);
+
+  const syncRoutePresentation = useCallback(() => {
+    normalizePrimaryPathInBrowser();
+    setActiveSeoPageKey(getSeoPageKeyFromLocation());
+    setActiveNavigationPath(getActiveNavigationPath());
+  }, []);
+
+  useEffect(() => {
+    if (!activeSeoPageKey) {
+      return;
+    }
+
+    syncDocumentHead(SEO_PAGES[activeSeoPageKey]);
+  }, [activeSeoPageKey]);
 
   const showToast = useCallback((message: string) => {
     toastIdRef.current += 1;
@@ -1133,6 +1302,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleHashChange = () => {
+      syncRoutePresentation();
       const hasCompareHash = window.location.hash.startsWith('#/compare/');
       const compareSlugs = parseCompareSlugsFromHash(window.location.hash);
 
@@ -1144,6 +1314,7 @@ const App: React.FC = () => {
           setCompareList([]);
           setIsCompareViewVisible(false);
           window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+          syncRoutePresentation();
           return;
         }
 
@@ -1167,6 +1338,7 @@ const App: React.FC = () => {
         } else {
           setIsCompareViewVisible(false);
           window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+          syncRoutePresentation();
         }
         return;
       }
@@ -1193,7 +1365,7 @@ const App: React.FC = () => {
       window.removeEventListener('hashchange', handleHashChange);
       window.removeEventListener('popstate', handleHashChange);
     };
-  }, [initialResorts]);
+  }, [initialResorts, syncRoutePresentation]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -1201,6 +1373,8 @@ const App: React.FC = () => {
     }
 
     const syncFromPath = () => {
+      syncRoutePresentation();
+
       if (window.location.hash.startsWith('#/compare/')) {
         setCurrentView('resorts');
         setSelectedResortId(null);
@@ -1211,11 +1385,17 @@ const App: React.FC = () => {
       const segment = getResortPathSegment(pathname);
       const slug = segment ? normalizeSlug(segment) : null;
       const hashResortId = parseResortIdFromHash(window.location.hash);
+      const pathView = getViewFromPath(pathname);
 
       if (initialResorts.length === 0) {
         if (hashResortId) {
           setCurrentView('resorts');
           setSelectedResortId(hashResortId);
+        } else if (pathView) {
+          setCurrentView(pathView);
+        } else if (!segment) {
+          const queryView = new URLSearchParams(window.location.search).get('view');
+          setCurrentView(isView(queryView) ? queryView : 'tips');
         }
         return;
       }
@@ -1266,6 +1446,11 @@ const App: React.FC = () => {
       }
 
       setSelectedResortId(null);
+      if (pathView) {
+        setCurrentView(pathView);
+        return;
+      }
+
       const queryView = new URLSearchParams(window.location.search).get('view');
       setCurrentView(isView(queryView) ? queryView : 'tips');
     };
@@ -1280,7 +1465,7 @@ const App: React.FC = () => {
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [initialResorts]);
+  }, [initialResorts, syncRoutePresentation]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -1293,7 +1478,8 @@ const App: React.FC = () => {
       previousSelectedResortIdRef.current = selectedResortId ?? null;
       if (currentSlug && wasSelected) {
         const queryString = window.location.search;
-        window.history.replaceState(null, '', `/${queryString}`);
+        window.history.replaceState(null, '', `${VIEW_PATH_MAP.resorts}${queryString}`);
+        syncRoutePresentation();
       }
       return;
     }
@@ -1318,7 +1504,7 @@ const App: React.FC = () => {
       window.history.replaceState(null, '', nextUrl);
     }
     previousSelectedResortIdRef.current = selectedResortId ?? null;
-  }, [initialResorts, selectedResortId]);
+  }, [initialResorts, selectedResortId, syncRoutePresentation]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -1368,8 +1554,11 @@ const App: React.FC = () => {
     }
 
     const view = params.get('view');
+    const pathView = getViewFromPath(window.location.pathname);
     if (getResortPathSegment(window.location.pathname)) {
       setCurrentView('resorts');
+    } else if (pathView) {
+      setCurrentView(pathView);
     } else if (isView(view)) {
       setCurrentView(view);
     }
@@ -1511,7 +1700,14 @@ const App: React.FC = () => {
     if (sortOption !== 'popularity') {
       params.set('sort', sortOption);
     }
-    if (currentView !== 'tips' && !getResortPathSegment(window.location.pathname)) {
+    const isPrimaryPage = Boolean(getNormalizedPrimaryPath(window.location.pathname));
+    const legacyView = new URLSearchParams(window.location.search).get('view');
+    const shouldKeepLegacyView = window.location.pathname === '/' && isView(legacyView);
+    if (
+      !isPrimaryPage &&
+      !getResortPathSegment(window.location.pathname) &&
+      (currentView !== 'tips' || shouldKeepLegacyView)
+    ) {
       params.set('view', currentView);
     }
     if (currentPage !== 1 && !getResortPathSegment(window.location.pathname)) {
@@ -1613,8 +1809,7 @@ const App: React.FC = () => {
       return;
     }
 
-    const url = new URL('/', CANONICAL_SITE_ORIGIN);
-    url.searchParams.set('view', 'resorts');
+    const url = new URL(VIEW_PATH_MAP.resorts, CANONICAL_SITE_ORIGIN);
     url.hash = compareHash.slice(1);
     void performShare(
       {
@@ -1676,12 +1871,13 @@ const App: React.FC = () => {
     setIsCompareViewVisible(false);
     setSelectedResortId(null);
     if (typeof window !== 'undefined') {
-      const params = new URLSearchParams();
-      if (view !== 'tips') {
-        params.set('view', view);
+      const destination = VIEW_PATH_MAP[view];
+      const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+      if (currentUrl !== destination) {
+        window.history.pushState(window.history.state, '', destination);
       }
-      const queryString = params.toString();
-      window.history.replaceState(null, '', `/${queryString ? `?${queryString}` : ''}`);
+      setActiveSeoPageKey(VIEW_SEO_PAGE_MAP[view]);
+      setActiveNavigationPath(destination);
     }
     setCurrentPage(1);
   };
@@ -1703,7 +1899,7 @@ const App: React.FC = () => {
 
   const handleGoBackToList = () => {
     const params = new URLSearchParams(window.location.search);
-    params.set('view', 'resorts');
+    params.delete('view');
     if (currentPage > 1) {
       params.set('page', String(currentPage));
     } else {
@@ -1712,7 +1908,13 @@ const App: React.FC = () => {
     const queryString = params.toString();
     setSelectedResortId(null);
     setCurrentView('resorts');
-    window.history.replaceState(null, '', `/${queryString ? `?${queryString}` : ''}`);
+    window.history.replaceState(
+      window.history.state,
+      '',
+      `${VIEW_PATH_MAP.resorts}${queryString ? `?${queryString}` : ''}`,
+    );
+    setActiveSeoPageKey('resortComparison');
+    setActiveNavigationPath(VIEW_PATH_MAP.resorts);
     window.location.hash = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -1741,6 +1943,8 @@ const App: React.FC = () => {
           '',
           `/resorts/${slug}/${detailQuery ? `?${detailQuery}` : ''}`
         );
+        setActiveSeoPageKey(null);
+        setActiveNavigationPath(VIEW_PATH_MAP.resorts);
       }
       window.location.hash = '';
       window.scrollTo(0, 0);
@@ -1765,6 +1969,7 @@ const App: React.FC = () => {
     setIsCompareViewVisible(false);
     if (window.location.hash.startsWith('#/compare/')) {
       window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+      syncRoutePresentation();
     }
   };
 
@@ -1780,6 +1985,8 @@ const App: React.FC = () => {
 
     setCurrentView('resorts');
     setIsCompareViewVisible(true);
+    setActiveSeoPageKey(null);
+    setActiveNavigationPath(VIEW_PATH_MAP.resorts);
     if (window.location.hash !== compareHash) {
       window.location.hash = compareHash.slice(1);
     }
@@ -1790,6 +1997,7 @@ const App: React.FC = () => {
     setIsCompareViewVisible(false);
     if (window.location.hash.startsWith('#/compare/')) {
       window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+      syncRoutePresentation();
     }
   };
 
@@ -1803,7 +2011,11 @@ const App: React.FC = () => {
     }
     setSelectedResortId(null);
     setCurrentPage(1);
-    window.history.replaceState(null, '', '/');
+    if (`${window.location.pathname}${window.location.search}${window.location.hash}` !== '/') {
+      window.history.pushState(window.history.state, '', '/');
+    }
+    setActiveSeoPageKey('home');
+    setActiveNavigationPath(SEO_PAGES.home.path);
     window.location.hash = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -1922,9 +2134,18 @@ const App: React.FC = () => {
         onLogoClick={handleLogoClick}
       />
       <main className="mx-auto max-w-[1440px] px-4 py-5 sm:px-6 lg:px-8">
-        <NavBar currentView={currentView} onViewChange={handleViewChange} />
+        <NavBar
+          currentPath={activeNavigationPath}
+          currentView={currentView}
+          onViewChange={handleViewChange}
+        />
 
-        {currentView === 'tips' && <ResortSelectionTips onShowResorts={handleShowResorts} />}
+        {currentView === 'tips' && (
+          <ResortSelectionTips
+            variant={activeSeoPageKey === 'home' ? 'home' : 'start'}
+            onShowResorts={handleShowResorts}
+          />
+        )}
 
         {currentView === 'agencies' && <TravelAgencies />}
 
@@ -1956,6 +2177,14 @@ const App: React.FC = () => {
               />
             ) : (
               <div className="space-y-4">
+                <header>
+                  <h1 className="font-brand-heading text-2xl text-slate-950">
+                    몰디브 리조트 비교
+                  </h1>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">
+                    171개 리조트를 예산, 이동수단, 객실 유형, 개인풀과 수중환경 기준으로 비교해 보세요.
+                  </p>
+                </header>
                 <div className="grid grid-cols-1 gap-3 border-b border-slate-200 pb-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6">
                   <div className="flex items-center justify-between gap-3 lg:hidden">
                     <button

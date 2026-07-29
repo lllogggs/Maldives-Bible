@@ -76,7 +76,17 @@ const SiteFooter: React.FC = () => (
       </div>
     </section>
 
-    <nav aria-label="사이트 정보" className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-slate-200 pt-5 text-xs font-bold">
+    <nav
+      aria-label="몰디브 바이블 주요 페이지"
+      className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-slate-200 pt-5 text-xs font-bold"
+    >
+      <a href="/start/" className="text-slate-700 hover:text-teal-900">시작하기</a>
+      <a href="/maldives-resort-comparison/" className="text-slate-700 hover:text-teal-900">몰디브 리조트 비교</a>
+      <a href="/quote-comparison/" className="text-slate-700 hover:text-teal-900">몰디브 여행사 견적 비교</a>
+      <a href="/flight-guide/" className="text-slate-700 hover:text-teal-900">몰디브 항공 가이드</a>
+    </nav>
+
+    <nav aria-label="사이트 정보" className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs font-bold">
       <a href="/maldives-resorts/" className="text-teal-700 hover:text-teal-900">전체 리조트 목록</a>
       <a href="/maldives-glossary/" className="text-teal-700 hover:text-teal-900">몰디브 용어집</a>
       <a href="/about/" className="text-teal-700 hover:text-teal-900">소개·편집 기준</a>

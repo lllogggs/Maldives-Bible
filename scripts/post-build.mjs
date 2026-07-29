@@ -19,8 +19,73 @@ const siteDates = {
   guidesPublished: '2026-07-09',
   comparisonPublished: '2026-07-12',
   glossaryPublished: '2026-07-27',
+  homeModified: '2026-07-29',
   modified: '2026-07-27',
 };
+const coreSeoPages = [
+  {
+    key: 'start',
+    slug: 'start',
+    path: '/start/',
+    navLabel: '시작하기',
+    title: '몰디브 여행 시작하기 | 처음 준비하는 순서',
+    description:
+      '몰디브 여행을 처음 준비하는 분을 위해 예산, 일정, 이동수단, 객실 타입, 식사 플랜과 스노클링 기준을 순서대로 정리했습니다.',
+    heading: '몰디브 여행 시작하기',
+    image: '/images/seo/maldives-resort-aerial.jpg',
+    imageAlt: '몰디브 여행 준비를 위한 리조트와 바다 전경',
+    imageWidth: 1200,
+    imageHeight: 630,
+    modifiedAt: '2026-07-29',
+  },
+  {
+    key: 'resortComparison',
+    slug: 'maldives-resort-comparison',
+    path: '/maldives-resort-comparison/',
+    navLabel: '리조트 비교',
+    title: '몰디브 리조트 비교 | 171개 리조트 한눈에 보기',
+    description:
+      '171개 몰디브 리조트를 예산, 말레 공항 이동수단, 객실 유형, 개인풀, 수중환경과 여행 취향 기준으로 비교해 보세요.',
+    heading: '몰디브 리조트 비교',
+    image: '/brand/resort-comparison-preview.jpg',
+    imageAlt: '171개 몰디브 리조트 비교 화면',
+    imageWidth: 1216,
+    imageHeight: 632,
+    modifiedAt: '2026-07-29',
+  },
+  {
+    key: 'quoteComparison',
+    slug: 'quote-comparison',
+    path: '/quote-comparison/',
+    navLabel: '견적 비교',
+    title: '몰디브 여행사 견적 비교 | 요청 전 확인할 기준',
+    description:
+      '몰디브 전문 여행사의 홈페이지와 상담 채널을 확인하고, 같은 일정·객실·식사 조건으로 견적을 비교하는 방법을 안내합니다.',
+    heading: '몰디브 여행사 견적 비교',
+    image: '/images/seo/maldives-resort-aerial.jpg',
+    imageAlt: '몰디브 여행 견적 비교 안내',
+    imageWidth: 1200,
+    imageHeight: 630,
+    modifiedAt: '2026-07-29',
+  },
+  {
+    key: 'flightGuide',
+    slug: 'flight-guide',
+    path: '/flight-guide/',
+    navLabel: '항공 가이드',
+    title: '몰디브 항공 일정 가이드 | 말레 도착·경유 비교',
+    description:
+      '인천에서 말레까지의 주요 경유 방식과 도착 시간, 수상비행기 운항 시간과 리조트 이동 가능 여부를 함께 확인하세요.',
+    heading: '몰디브 항공 일정 가이드',
+    image: '/images/seo/maldives-resort-aerial.jpg',
+    imageAlt: '몰디브 말레행 항공 일정 안내',
+    imageWidth: 1200,
+    imageHeight: 630,
+    modifiedAt: '2026-07-29',
+  },
+];
+const coreSeoSlugs = new Set(coreSeoPages.map((page) => page.slug));
+const primaryNavItems = coreSeoPages.map(({ path, navLabel }) => ({ path, label: navLabel }));
 const expectedResortCount = Number(process.env.EXPECTED_RESORT_COUNT ?? 171);
 if (!Number.isInteger(expectedResortCount) || expectedResortCount < 1) {
   throw new Error('EXPECTED_RESORT_COUNT는 1 이상의 정수여야 합니다.');
@@ -58,9 +123,12 @@ const buildMaldivesGlossaryContent = ({ maxWidth = '1120px' } = {}) => `
     </div>
   </section>`;
 
-const buildEditorialFooter = ({ maxWidth = '1120px' } = {}) => `
+const buildEditorialFooter = ({ maxWidth = '1120px', modifiedAt = siteDates.modified } = {}) => `
   <footer style="max-width:${maxWidth};margin:28px auto 0;border-top:1px solid #dbe7e4;padding:18px 0 8px;color:#64748b;font-size:12px;line-height:1.7;">
-    <p style="margin:0 0 8px;">몰디브 바이블 편집 · 최종 업데이트 2026.07.27</p>
+    <p style="margin:0 0 8px;">몰디브 바이블 편집 · 최종 업데이트 ${modifiedAt.replaceAll('-', '.')}</p>
+    <nav aria-label="몰디브 바이블 주요 서비스" style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:8px;">
+      ${primaryNavItems.map((item) => `<a href="${siteUrl}${item.path}" style="color:#0f766e;font-weight:800;text-decoration:none;">${item.label}</a>`).join('')}
+    </nav>
     <nav aria-label="사이트 정보" style="display:flex;flex-wrap:wrap;gap:8px 16px;">
       <a href="${toAbsoluteUrl('maldives-resorts')}" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 목록</a>
       <a href="${toAbsoluteUrl('maldives-glossary')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 용어집</a>
@@ -538,6 +606,7 @@ const buildWebPageNode = ({
   mainEntityId,
   breadcrumbId = `${url}#breadcrumb`,
   subjectOfId,
+  primaryImage,
 }) => ({
   '@type': type,
   '@id': `${url}#webpage`,
@@ -546,8 +615,17 @@ const buildWebPageNode = ({
   description,
   inLanguage: 'ko-KR',
   isPartOf: { '@id': websiteId },
+  about: { '@id': organizationId },
   publisher: { '@id': organizationId },
   breadcrumb: { '@id': breadcrumbId },
+  primaryImageOfPage: primaryImage
+    ? {
+        '@type': 'ImageObject',
+        url: primaryImage.url,
+        width: primaryImage.width,
+        height: primaryImage.height,
+      }
+    : undefined,
   datePublished: publishedAt,
   dateModified: modifiedAt,
   mainEntity: mainEntityId ? { '@id': mainEntityId } : undefined,
@@ -749,7 +827,7 @@ const buildResortPageContent = (resort) => {
         ${reviewSummaryContent}
         <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
         <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
-        <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
+        <a href="${siteUrl}/maldives-resort-comparison/" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
         ${buildMaldivesGlossaryContent({ maxWidth: '100%' })}
         ${buildEditorialFooter({ maxWidth: '100%' })}
       </article>
@@ -856,7 +934,7 @@ const buildNichePageContent = (page, resorts) => {
           <p class="seo-niche-footer-links" style="margin:24px 0 0;">
             <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
             <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
-            <a href="${siteUrl}/?view=resorts" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
+            <a href="${siteUrl}/maldives-resort-comparison/" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
           </p>
         </section>
         ${buildMaldivesGlossaryContent()}
@@ -924,8 +1002,8 @@ const buildComparisonLandingContent = (page, resorts) => {
     .filter(Boolean)
     .map((resort) => slugify(resort.name_en || resort.name));
   const showcaseCompareHref = showcaseSlugs.length === showcaseNames.length
-    ? `/?view=resorts#/compare/${showcaseSlugs.join(',')}`
-    : '/?view=resorts';
+    ? `/maldives-resort-comparison/#/compare/${showcaseSlugs.join(',')}`
+    : '/maldives-resort-comparison/';
   const itemListNode = {
     '@type': 'ItemList',
     '@id': `${url}#itemlist`,
@@ -1171,7 +1249,7 @@ const buildComparisonLandingContent = (page, resorts) => {
               <img class="comparison-landing__brand-mark" src="/android-chrome-192x192.png" alt="" width="48" height="48" />
               <span class="comparison-landing__brand-copy"><small>MALDIVES BIBLE</small><strong>몰디브 바이블</strong></span>
             </a>
-            <a class="comparison-landing__header-action" href="/?view=resorts" aria-label="리조트 목록 바로 보기">
+            <a class="comparison-landing__header-action" href="/maldives-resort-comparison/" aria-label="리조트 목록 바로 보기">
               <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg>
               <span class="comparison-landing__header-action-full">리조트 바로보기</span><span class="comparison-landing__header-action-short">리조트 보기</span>
             </a>
@@ -1185,7 +1263,7 @@ const buildComparisonLandingContent = (page, resorts) => {
               <h1 id="comparison-hero-title" class="comparison-landing__title"><span>${escapeHtml(currentYear)} 몰디브</span> <span>리조트 비교</span></h1>
               <p class="comparison-landing__lead">예산·이동·객실·수중환경을 한눈에 비교하세요. 내 조건을 먼저 고르면 맞는 리조트가 더 빨리 보입니다.</p>
               <div class="comparison-landing__hero-actions" role="group" aria-label="리조트 비교 시작">
-                <a class="comparison-landing__hero-primary" data-compare-cta="hero" href="/?view=resorts">내 조건으로 리조트 비교하기 <span aria-hidden="true" style="margin-left:8px;">→</span></a>
+                <a class="comparison-landing__hero-primary" data-compare-cta="hero" href="/maldives-resort-comparison/">내 조건으로 리조트 비교하기 <span aria-hidden="true" style="margin-left:8px;">→</span></a>
                 <a class="comparison-landing__hero-secondary" href="#comparison-preview">실제 비교 화면 보기</a>
               </div>
               <ul class="comparison-landing__trust" aria-label="비교 서비스 특징">
@@ -1221,7 +1299,7 @@ const buildComparisonLandingContent = (page, resorts) => {
                 <h2 id="comparison-table-title">대표 리조트 한눈에 비교</h2>
                 <p id="comparison-table-note" class="comparison-landing__section-intro">비교 기준별 대표 후보이며 순위나 실시간 예약가를 의미하지 않습니다.</p>
               </div>
-              <a class="comparison-landing__table-button" data-compare-cta="table" href="/?view=resorts">전체 ${resorts.length}개 리조트에서 찾기</a>
+              <a class="comparison-landing__table-button" data-compare-cta="table" href="/maldives-resort-comparison/">전체 ${resorts.length}개 리조트에서 찾기</a>
             </div>
             <p class="comparison-landing__table-swipe" aria-hidden="true">모바일에서는 리조트별 조건을 카드로 정리해 보여드려요</p>
             <div class="comparison-landing__table-wrap">
@@ -1269,7 +1347,7 @@ const buildComparisonLandingContent = (page, resorts) => {
           <section class="comparison-landing__final">
             <h2>이제 내 조건으로 직접 비교해 보세요</h2>
             <p>예산과 취향으로 후보를 고르고 최대 3개 리조트의 차이를 실제 비교 화면에서 확인할 수 있습니다.</p>
-            <a data-compare-cta="footer" href="/?view=resorts">내 조건으로 리조트 비교하기 →</a>
+            <a data-compare-cta="footer" href="/maldives-resort-comparison/">내 조건으로 리조트 비교하기 →</a>
           </section>
 
           ${buildMaldivesGlossaryContent({ maxWidth: '100%' })}
@@ -1291,17 +1369,16 @@ const buildComparisonLandingContent = (page, resorts) => {
   };
 };
 
-const buildStaticSiteHeader = () => `
+const buildStaticSiteHeader = (currentPath = '') => `
   <header class="seo-static__header">
     <div class="seo-static__header-inner">
       <a class="seo-static__brand" href="${siteUrl}/">
         <img src="${siteUrl}/android-chrome-192x192.png" width="42" height="42" alt="" />
         <span><small>MALDIVES BIBLE</small><strong>몰디브 바이블</strong></span>
       </a>
-      <nav aria-label="주요 메뉴">
-        <a href="${siteUrl}/?view=resorts">리조트</a>
-        <a href="${toAbsoluteUrl('maldives-resort-comparison')}">비교 가이드</a>
-        <a href="${toAbsoluteUrl('maldives-glossary')}">용어집</a>
+      <nav aria-label="몰디브 바이블 주요 메뉴">
+        ${primaryNavItems.map((item) => `
+          <a href="${siteUrl}${item.path}"${currentPath === item.path ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
       </nav>
     </div>
   </header>`;
@@ -1318,8 +1395,10 @@ const buildStandaloneStyles = () => `
     .seo-static__brand small,.seo-static__brand strong { display:block; }
     .seo-static__brand small { color:#0f766e;font-size:9px;font-weight:900;letter-spacing:.14em; }
     .seo-static__brand strong { margin-top:2px;font-size:16px;letter-spacing:-.02em; }
-    .seo-static__header nav { display:flex;gap:18px; }
-    .seo-static__header nav a { color:#475569;font-size:13px;font-weight:800;text-decoration:none; }
+    .seo-static__header nav { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px; }
+    .seo-static__header nav a { display:flex;min-height:44px;align-items:center;justify-content:center;border-bottom:2px solid transparent;padding:0 9px;color:#475569;font-size:13px;font-weight:800;text-align:center;text-decoration:none;white-space:nowrap; }
+    .seo-static__header nav a:hover { border-color:#cbd5e1;color:#0f172a; }
+    .seo-static__header nav a[aria-current="page"] { border-color:#0f766e;color:#0f172a; }
     .seo-static__content { width:min(1120px,calc(100% - 36px));margin:0 auto;padding:52px 0 36px; }
     .seo-static__eyebrow { margin:0 0 10px;color:#0f766e;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase; }
     .seo-static h1 { margin:0;color:#102a34;font-size:clamp(34px,5vw,54px);line-height:1.14;letter-spacing:-.045em;word-break:keep-all; }
@@ -1334,9 +1413,18 @@ const buildStandaloneStyles = () => `
     .seo-static__card strong { display:block;font-size:16px;line-height:1.45;word-break:keep-all; }
     .seo-static__card span { display:block;margin-top:6px;color:#64748b;font-size:13px;line-height:1.65; }
     .seo-static__note { border:1px solid #c6e7e0;border-radius:14px;background:#edfbf8;padding:18px;color:#335e5b;line-height:1.75; }
+    .seo-static__figure { margin:28px 0 0;overflow:hidden;border:1px solid #dbe7e4;border-radius:18px;background:#fff;box-shadow:0 16px 36px rgba(15,23,42,.08); }
+    .seo-static__figure img { display:block;width:100%;height:auto; }
+    .seo-static__figure figcaption { padding:10px 14px;color:#64748b;font-size:12px;line-height:1.6; }
+    .seo-static__checklist { margin:0;padding-left:20px;color:#475569;line-height:1.8; }
+    .seo-static__checklist li + li { margin-top:5px; }
+    .seo-static__agency-links { display:flex;flex-wrap:wrap;gap:8px;margin-top:12px; }
+    .seo-static__agency-links a { display:inline-flex;min-height:40px;align-items:center;border:1px solid #cbd5e1;border-radius:9px;padding:0 12px;color:#0f766e;font-size:12px;font-weight:800;text-decoration:none; }
     @media (max-width:760px) {
-      .seo-static__header-inner { min-height:64px; }
-      .seo-static__header nav a:not(:first-child) { display:none; }
+      .seo-static__header-inner { width:min(100% - 20px,1120px);min-height:64px;display:block;padding:10px 0 0; }
+      .seo-static__brand { width:max-content;margin:0 auto 7px; }
+      .seo-static__header nav { width:100%; }
+      .seo-static__header nav a { min-width:0;padding:0 2px;font-size:12px; }
       .seo-static__content { padding-top:34px; }
       .seo-static__lead { font-size:15px;line-height:1.72; }
       .seo-static__grid { grid-template-columns:minmax(0,1fr); }
@@ -1344,8 +1432,179 @@ const buildStandaloneStyles = () => `
     }
   </style>`;
 
+const travelAgencies = [
+  { name: '투어민', website: 'https://www.tourmin.co.kr', kakao: 'https://pf.kakao.com/_LxbYBM' },
+  { name: '푸른여행클럽', website: 'https://cafe.naver.com/honeymoonp', kakao: 'https://pf.kakao.com/_UZNxgd' },
+  { name: '리얼몰디브', website: 'https://realmaldives.co.kr', kakao: 'https://pf.kakao.com/_NcnxaG' },
+  { name: '트레비아', website: 'https://www.trevia.co.kr', kakao: 'https://pf.kakao.com/_xixjNQl' },
+  { name: '나래여행사', website: 'http://www.nadree.net/' },
+  { name: '하이몰디브', website: 'https://www.himaldives.co.kr/' },
+  { name: '여행산책', website: 'https://www.tourw.co.kr/' },
+  { name: '잇츠마이트래블', website: 'http://itsmytravel.co.kr/', kakao: 'https://pf.kakao.com/_qgDUxd' },
+  { name: '투어플래닛', website: 'http://www.tour-planet.co.kr/', kakao: 'https://pf.kakao.com/_LYSSl' },
+  { name: '허니문리조트', website: 'http://www.honeymoonresort.co.kr/', kakao: 'https://pf.kakao.com/_gkKlE' },
+  { name: '천생연분닷컴', website: 'https://www.1000syb.com/' },
+  { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao: 'https://pf.kakao.com/_Hxmxaxexj' },
+];
+
+const buildCoreFigure = (page) => {
+  const imageUrl = `${siteUrl}${page.image}`;
+  return `
+    <figure class="seo-static__figure">
+      <img src="${imageUrl}" width="${page.imageWidth}" height="${page.imageHeight}" alt="${escapeHtml(page.imageAlt)}" fetchpriority="high" />
+      <figcaption>${escapeHtml(page.imageAlt)}</figcaption>
+    </figure>`;
+};
+
+const buildStartContent = () => `
+  <section class="seo-static__section" aria-labelledby="start-order-title">
+    <h2 id="start-order-title">리조트 이름보다 먼저 정할 순서</h2>
+    <div class="seo-static__grid">
+      <article class="seo-static__card"><h3>1. 예산과 여행 일정</h3><span>항공권·리조트비·이동비를 합친 총예산을 잡고, 4박인지 5박인지를 먼저 정하세요. 말레 도착 시간은 첫날을 리조트에서 보낼 수 있는지를 좌우합니다.</span></article>
+      <article class="seo-static__card"><h3>2. 말레 공항 이후 이동</h3><span>보트는 비교적 유연하고, 수상비행기는 주간 운항 시간을, 국내선은 환승과 추가 이동을 확인해야 합니다. 짧은 일정일수록 이동시간을 중요하게 보세요.</span></article>
+      <article class="seo-static__card"><h3>3. 객실 타입</h3><span>비치빌라는 모래사장 접근이 편하고, 워터빌라는 바다 위에 머무는 경험이 특징입니다. 개인풀이 반드시 필요한지도 함께 정하세요.</span></article>
+    </div>
+  </section>
+  <section class="seo-static__section" aria-labelledby="start-meal-sea-title">
+    <h2 id="start-meal-sea-title">식사 플랜과 바다 취향 확인</h2>
+    <div class="seo-static__grid">
+      <article class="seo-static__card"><h3>식사 플랜</h3><span>조식, 하프보드, 풀보드, 올인클루시브의 포함 범위를 비교하세요. 음료와 일부 레스토랑이 제외되는지도 견적서에서 확인해야 합니다.</span></article>
+      <article class="seo-static__card"><h3>수중환경</h3><span>리조트 주변 산호초와 하우스리프 접근성은 스노클링 만족도와 연결됩니다. 장비 대여와 안전 구역도 함께 보세요.</span></article>
+      <article class="seo-static__card"><h3>라군</h3><span>넓고 맑은 라군은 수영과 풍경을 즐기기 좋지만 수중환경과는 다른 기준입니다. 사진 취향과 스노클링 취향을 나눠 판단하세요.</span></article>
+    </div>
+  </section>
+  <section class="seo-static__section seo-static__note" aria-labelledby="start-next-title">
+    <h2 id="start-next-title">기준이 잡혔다면 리조트를 비교하세요</h2>
+    <p>이동수단, 예산, 객실 타입을 필터에 적용하면 171개 후보를 빠르게 줄일 수 있습니다.</p>
+    <div class="seo-static__actions"><a class="seo-static__action" href="${siteUrl}/maldives-resort-comparison/">171개 몰디브 리조트 비교 시작</a></div>
+  </section>`;
+
+const buildResortComparisonContent = (resortCount) => `
+  <section class="seo-static__section" aria-labelledby="comparison-criteria-title">
+    <h2 id="comparison-criteria-title">${resortCount}개 리조트를 같은 기준으로 보는 방법</h2>
+    <p class="seo-static__lead">리조트를 하나씩 검색하기보다 예산과 이동수단을 먼저 고르고, 객실·개인풀·수중환경 조건을 추가하면 비교 범위가 명확해집니다.</p>
+    <div class="seo-static__grid" style="margin-top:18px;">
+      <article class="seo-static__card"><h3>예산과 이동비</h3><span>표시 가격은 예약 시점의 확정 요금이 아닌 비교용 지표나 예시일 수 있습니다. 실제 견적에서 숙박비와 2인 왕복 이동비를 함께 확인하세요.</span></article>
+      <article class="seo-static__card"><h3>이동수단과 이동시간</h3><span>보트, 수상비행기, 국내선은 비용뿐 아니라 첫날과 마지막 날의 실제 체류시간에도 영향을 줍니다.</span></article>
+      <article class="seo-static__card"><h3>객실 유형과 개인풀</h3><span>비치빌라와 워터빌라, 개인풀 유무를 나눠 보세요. 일정 중 객실을 바꾸는 스플릿 스테이도 비교 후보입니다.</span></article>
+      <article class="seo-static__card"><h3>수중환경과 라군</h3><span>스노클링을 중요하게 보면 하우스리프 접근성을, 수영과 풍경을 원하면 라군의 넓이와 수심을 따로 확인하세요.</span></article>
+      <article class="seo-static__card"><h3>여행 취향</h3><span>허니문, 가족여행, 다이빙, 다이닝 등 우선순위를 한두 가지로 정하면 유명도보다 나에게 맞는 후보를 찾기 쉽습니다.</span></article>
+      <article class="seo-static__card"><h3>비교 트레이</h3><span>필터로 후보를 줄인 다음 관심 리조트를 비교 트레이에 담아 이동·객실·바다 조건을 나란히 확인하세요.</span></article>
+    </div>
+  </section>
+  <section class="seo-static__section seo-static__note" aria-labelledby="comparison-start-title">
+    <h2 id="comparison-start-title">내 조건으로 필터를 적용하세요</h2>
+    <p>예산, 이동수단, 이동시간, 객실, 개인풀, 수중환경 기준으로 후보를 줄이고 상세 정보를 열어보세요.</p>
+    <div class="seo-static__actions"><a class="seo-static__action" href="${siteUrl}/maldives-resort-comparison/">리조트 필터와 비교 화면 열기</a></div>
+  </section>`;
+
+const buildQuoteComparisonContent = () => {
+  const agencyCards = travelAgencies.map((agency) => `
+    <article class="seo-static__card">
+      <h3>${escapeHtml(agency.name)}</h3>
+      <span>여행사의 공개 홈페이지${agency.kakao ? '와 카카오 상담 채널' : ''}을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="${agency.website}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(agency.name)} 홈페이지 새 창에서 열기">홈페이지</a>
+        ${agency.kakao ? `<a href="${agency.kakao}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(agency.name)} 카카오톡 채널 새 창에서 열기">카카오 채널</a>` : ''}
+      </div>
+    </article>`).join('');
+  return `
+    <section class="seo-static__section" aria-labelledby="quote-check-title">
+      <h2 id="quote-check-title">같은 일정과 조건으로 요청하세요</h2>
+      <p class="seo-static__lead">여행사별 금액을 비교하려면 여행 날짜, 리조트, 객실 타입, 식사 플랜, 이동수단, 인원을 같게 맞춰야 합니다. 포함·불포함 항목과 취소 조건도 함께 보세요.</p>
+      <div class="seo-static__grid" style="margin-top:18px;">
+        <article class="seo-static__card"><h3>요청 전 체크 1</h3><span>출발일과 숙박일수, 인원, 항공 일정을 통일하세요. 말레 1박이 필요하면 같은 조건으로 넣어야 합니다.</span></article>
+        <article class="seo-static__card"><h3>요청 전 체크 2</h3><span>비치빌라·워터빌라, 개인풀, 식사 플랜을 명확히 적고 스플릿 스테이 조합이면 각 박수를 나눠 적으세요.</span></article>
+        <article class="seo-static__card"><h3>요청 전 체크 3</h3><span>세금과 봉사료, 공항–리조트 왕복 이동비, 식사와 음료, 허니문 혜택, 예약금과 잔금 일정이 포함됐는지 확인하세요.</span></article>
+      </div>
+      <p class="seo-static__note" style="margin-top:18px;">화면의 금액은 비교 방법을 설명하기 위한 예시입니다. 이 페이지는 여행사별 가격을 자동으로 수집하거나 현재가를 조회하는 서비스가 아닙니다. 정확한 금액과 조건은 각 여행사에 문의해 확인하세요.</p>
+    </section>
+    <section class="seo-static__section" aria-labelledby="agency-list-title">
+      <h2 id="agency-list-title">등록된 몰디브 여행사 목록</h2>
+      <p>다음은 사이트에 등록된 12곳의 홈페이지와 상담 채널입니다. 두세 곳에 같은 요청서를 보낸 뒤 포함 조건을 나란히 확인하세요.</p>
+      <div class="seo-static__grid" style="margin-top:18px;">${agencyCards}</div>
+    </section>`;
+};
+
+const buildFlightGuideContent = () => `
+  <section class="seo-static__section" aria-labelledby="arrival-time-title">
+    <h2 id="arrival-time-title">핵심은 말레 도착 시간입니다</h2>
+    <div class="seo-static__grid">
+      <article class="seo-static__card"><h3>새벽 말레 도착</h3><span>당일 리조트 이동으로 체류시간을 늘리기 좋습니다. 보트 이동이나 수상비행기 첫 편 연결 가능 여부를 리조트에 확인하세요.</span></article>
+      <article class="seo-static__card"><h3>오후 말레 도착</h3><span>수상비행기는 일조 전까지 운항하므로 입국 소요시간과 마지막 연결편을 함께 보세요. 연결이 어렵다면 말레 1박을 고려합니다.</span></article>
+      <article class="seo-static__card"><h3>야간 말레 도착</h3><span>보트 야간 운항이 확인된 경우가 아니라면 말레나 훌루말레에서 1박 후 다음 날 오전 이동하는 일정이 안정적입니다.</span></article>
+    </div>
+  </section>
+  <section class="seo-static__section" aria-labelledby="route-guide-title">
+    <h2 id="route-guide-title">경유 방식과 귀국편 대기시간</h2>
+    <div class="seo-static__grid">
+      <article class="seo-static__card"><h3>싱가포르 경유</h3><span>스탑오버나 환승 동선을 중요하게 볼 때 검토할 수 있습니다. 환승 대기시간과 귀국편 출발 시간을 확인하세요.</span></article>
+      <article class="seo-static__card"><h3>중동 경유</h3><span>밤 출발 선택지나 좌석 컨디션을 중시할 때 비교합니다. 총 이동시간과 말레 도착이 새벽인지 야간인지를 함께 보세요.</span></article>
+      <article class="seo-static__card"><h3>동남아 경유</h3><span>환승 터미널, 수하물 연결, 지연 위험을 확인하세요. 귀국편 대기가 길다면 라운지나 공항 휴식 계획도 필요합니다.</span></article>
+    </div>
+    <p class="seo-static__note" style="margin-top:18px;">이 페이지는 항공 일정과 경유 방식을 계획하는 가이드입니다. 운임 조회나 자동 예약 기능은 제공하지 않으므로 실제 시간표와 연결 가능 여부는 항공사·리조트에 다시 확인하세요.</p>
+  </section>
+  <section class="seo-static__section seo-static__note" aria-labelledby="flight-next-title">
+    <h2 id="flight-next-title">항공 일정에 맞는 리조트 후보를 줄이세요</h2>
+    <p>말레 도착 시간에 맞는 이동수단을 고르고, 같은 일정·객실·식사 조건으로 견적을 확인하세요.</p>
+    <div class="seo-static__actions">
+      <a class="seo-static__action" href="${siteUrl}/maldives-resort-comparison/">항공 일정에 맞는 리조트 비교</a>
+      <a class="seo-static__action seo-static__action--secondary" href="${siteUrl}/quote-comparison/">동일 조건 견적 확인하기</a>
+    </div>
+  </section>`;
+
+const buildCoreSeoPage = (page, resorts) => {
+  const url = `${siteUrl}${page.path}`;
+  const contentByKey = {
+    start: buildStartContent,
+    resortComparison: () => buildResortComparisonContent(resorts.length),
+    quoteComparison: buildQuoteComparisonContent,
+    flightGuide: buildFlightGuideContent,
+  };
+  const introByKey = {
+    start:
+      '몰디브는 리조트 이름부터 찾기보다 예산, 일정, 이동수단, 객실 타입과 식사 플랜을 먼저 정하면 후보를 훨씬 빠르게 줄일 수 있습니다.',
+    resortComparison:
+      `${resorts.length}개 몰디브 리조트의 예산, 말레 공항 이후 이동, 객실, 개인풀, 수중환경을 같은 기준으로 보고 여행 취향에 맞는 후보를 줄여보세요.`,
+    quoteComparison:
+      '여행사마다 다른 조건으로 요청하면 금액만으로 비교하기 어렵습니다. 같은 일정·객실·식사·이동 조건을 정리한 뒤 여러 여행사의 포함 항목을 확인하세요.',
+    flightGuide:
+      '인천에서 말레로 가는 항공 일정은 경유지보다 말레 도착 시간과 리조트 연결 가능 여부를 함께 보는 것이 중요합니다.',
+  };
+  const imageUrl = `${siteUrl}${page.image}`;
+  return {
+    html: `
+      ${buildStandaloneStyles()}
+      <div class="seo-static">
+        ${buildStaticSiteHeader(page.path)}
+        <main class="seo-static__content">
+          <p class="seo-static__eyebrow">MALDIVES BIBLE GUIDE</p>
+          <h1>${escapeHtml(page.heading)}</h1>
+          <p class="seo-static__lead">${escapeHtml(introByKey[page.key])}</p>
+          ${buildCoreFigure(page)}
+          ${contentByKey[page.key]()}
+          ${buildEditorialFooter({ modifiedAt: page.modifiedAt })}
+        </main>
+      </div>`,
+    schemaNodes: [
+      buildWebPageNode({
+        url,
+        name: page.title,
+        description: page.description,
+        modifiedAt: page.modifiedAt,
+        primaryImage: {
+          url: imageUrl,
+          width: page.imageWidth,
+          height: page.imageHeight,
+        },
+      }),
+      buildBreadcrumbNode({ url, name: page.navLabel }),
+    ],
+  };
+};
+
 const buildHomeStaticFallback = () => {
-  const guideLinks = nichePages.map((page) => `
+  const guideLinks = nichePages.filter((page) => !coreSeoSlugs.has(page.slug)).map((page) => `
     <a class="seo-home-static__guide" href="${toAbsoluteUrl(page.slug)}">
       <strong>${escapeHtml(page.heading)}</strong>
       <span>${escapeHtml(page.description)}</span>
@@ -1369,12 +1628,16 @@ const buildHomeStaticFallback = () => {
         <section class="seo-home-static__hero">
           <div class="seo-home-static__hero-inner">
             <p class="seo-static__eyebrow" style="color:#b9fff1;">MALDIVES RESORT GUIDE</p>
-            <h1>몰디브 리조트 비교,<br />처음부터 쉽게</h1>
-            <p class="seo-static__lead">171개 몰디브 리조트의 예산·이동·객실·수중환경을 같은 기준으로 보고, 허니문과 가족여행에 맞는 후보를 빠르게 좁혀보세요.</p>
+            <h1>몰디브 여행, 기준부터 비교까지 한곳에서</h1>
+            <p class="seo-static__lead">171개 몰디브 리조트를 예산·이동·객실·수중환경 기준으로 비교하고, 처음 준비하는 방법부터 여행사 견적 확인과 항공 일정 가이드까지 한곳에서 확인하세요.</p>
             <div class="seo-static__actions">
-              <a class="seo-static__action" href="${siteUrl}/?view=resorts">리조트 목록 바로 보기 →</a>
-              <a class="seo-static__action seo-static__action--secondary" href="${toAbsoluteUrl('maldives-resort-comparison')}">비교 방법 먼저 보기</a>
+              <a class="seo-static__action" href="${siteUrl}/start/">몰디브 여행 시작하기</a>
+              <a class="seo-static__action seo-static__action--secondary" href="${toAbsoluteUrl('maldives-resort-comparison')}">몰디브 리조트 비교</a>
             </div>
+            <figure class="seo-static__figure">
+              <img src="${siteUrl}/og-image.jpg" width="1200" height="630" alt="몰디브 라군과 리조트 전경" fetchpriority="high" />
+              <figcaption>몰디브 섬과 워터빌라를 한눈에 볼 수 있는 리조트 전경</figcaption>
+            </figure>
           </div>
         </section>
         <div class="seo-static__content">
@@ -1382,9 +1645,10 @@ const buildHomeStaticFallback = () => {
             <p class="seo-static__eyebrow">START HERE</p>
             <h2 id="home-static-start" style="margin:0;font-size:26px;">처음이라면 이 순서로 보세요</h2>
             <div class="seo-static__grid" style="margin-top:16px;">
-              <a class="seo-static__card" href="${toAbsoluteUrl('maldives-honeymoon-first-time-guide')}"><strong>1. 선택 기준 익히기</strong><span>예산·일정·이동·객실 기준부터 정리해요.</span></a>
-              <a class="seo-static__card" href="${toAbsoluteUrl('maldives-resorts')}"><strong>2. 전체 리조트 살펴보기</strong><span>171개 리조트 상세 정보를 목록에서 확인해요.</span></a>
-              <a class="seo-static__card" href="${siteUrl}/?view=resorts"><strong>3. 내 조건으로 비교하기</strong><span>필터로 후보를 고르고 최대 3곳을 나란히 비교해요.</span></a>
+              <a class="seo-static__card" href="${siteUrl}/start/"><strong>1. 시작하기</strong><span>예산·일정·이동·객실과 식사 기준부터 정리해요.</span></a>
+              <a class="seo-static__card" href="${siteUrl}/maldives-resort-comparison/"><strong>2. 몰디브 리조트 비교</strong><span>171개 리조트의 이동, 객실, 수중환경 조건을 비교해요.</span></a>
+              <a class="seo-static__card" href="${siteUrl}/quote-comparison/"><strong>3. 몰디브 여행사 견적 비교</strong><span>같은 일정과 조건으로 요청하고 포함 항목을 확인해요.</span></a>
+              <a class="seo-static__card" href="${siteUrl}/flight-guide/"><strong>4. 몰디브 항공 가이드</strong><span>말레 도착 시간과 리조트 연결 가능 여부를 맞춰봐요.</span></a>
             </div>
           </section>
           <section class="seo-static__section" aria-labelledby="home-static-guides">
@@ -1510,7 +1774,7 @@ const buildResortDirectoryPage = (resorts) => {
           <h1>몰디브 리조트 ${sorted.length}곳</h1>
           <p class="seo-static__lead">이름으로 리조트를 찾아 상세 정보를 확인하거나, 필터 화면에서 예산과 취향에 맞는 후보를 골라보세요.</p>
           <div class="seo-static__actions">
-            <a class="seo-static__action" href="${siteUrl}/?view=resorts">조건으로 리조트 찾기 →</a>
+            <a class="seo-static__action" href="${siteUrl}/maldives-resort-comparison/">조건으로 리조트 찾기 →</a>
             <a class="seo-static__action seo-static__action--secondary" href="${toAbsoluteUrl('maldives-resort-comparison')}">비교 기준 먼저 보기</a>
           </div>
           <section class="seo-static__section" aria-labelledby="resort-directory-title">
@@ -1632,14 +1896,34 @@ const replaceMetaContent = (html, attribute, value, content) =>
     `<meta ${attribute}="${value}" content="${escapeHtml(content)}" />`
   );
 
-const injectMeta = ({ html, title, description, url, schemaNodes, ogImageAlt }) => {
+const injectMeta = ({
+  html,
+  title,
+  description,
+  url,
+  schemaNodes,
+  ogImageAlt,
+  imageUrl,
+  imageWidth,
+  imageHeight,
+}) => {
   let updated = html.replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`);
   updated = replaceMetaContent(updated, 'name', 'description', description);
+  updated = replaceMetaContent(updated, 'name', 'robots', 'index,follow,max-image-preview:large');
+  updated = replaceMetaContent(updated, 'name', 'googlebot', 'index,follow,max-image-preview:large');
   updated = replaceMetaContent(updated, 'property', 'og:title', title);
   updated = replaceMetaContent(updated, 'property', 'og:description', description);
   updated = replaceMetaContent(updated, 'property', 'og:url', url);
   updated = replaceMetaContent(updated, 'name', 'twitter:title', title);
   updated = replaceMetaContent(updated, 'name', 'twitter:description', description);
+  if (imageUrl) {
+    updated = replaceMetaContent(updated, 'property', 'og:image', imageUrl);
+    updated = replaceMetaContent(updated, 'property', 'og:image:secure_url', imageUrl);
+    updated = replaceMetaContent(updated, 'property', 'og:image:type', 'image/jpeg');
+    updated = replaceMetaContent(updated, 'property', 'og:image:width', String(imageWidth));
+    updated = replaceMetaContent(updated, 'property', 'og:image:height', String(imageHeight));
+    updated = replaceMetaContent(updated, 'name', 'twitter:image', imageUrl);
+  }
   if (ogImageAlt) {
     updated = replaceMetaContent(updated, 'property', 'og:image:alt', ogImageAlt);
     updated = replaceMetaContent(updated, 'name', 'twitter:image:alt', ogImageAlt);
@@ -1665,8 +1949,8 @@ const injectStaticRoot = (html, content, { preserveStaticContent = false } = {})
 };
 
 const updateSitemap = async (resortEntries, staticPageEntries) => {
-  const entries = [
-    { loc: `${siteUrl}/`, lastmod: siteDates.modified, priority: '1.0' },
+  const rawEntries = [
+    { loc: `${siteUrl}/`, lastmod: siteDates.homeModified, priority: '1.0' },
     ...staticPageEntries.map((entry) => ({
       loc: toAbsoluteUrl(entry.slug),
       lastmod: entry.lastmod,
@@ -1678,10 +1962,24 @@ const updateSitemap = async (resortEntries, staticPageEntries) => {
       priority: '0.6',
     })),
   ];
+  const entries = [...new Map(rawEntries.map((entry) => [entry.loc, entry])).values()];
+  const escapeXml = (value) => String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+
+  for (const entry of entries) {
+    const parsed = new URL(entry.loc);
+    if (parsed.origin !== siteUrl || parsed.search || parsed.hash) {
+      throw new Error(`sitemap에 clean canonical URL이 아닌 값이 있습니다: ${entry.loc}`);
+    }
+  }
 
   const urlEntries = entries.map((entry) => {
-    const lastmod = entry.lastmod ? `\n    <lastmod>${entry.lastmod}</lastmod>` : '';
-    return `  <url>\n    <loc>${entry.loc}</loc>${lastmod}\n    <changefreq>weekly</changefreq>\n    <priority>${entry.priority}</priority>\n  </url>`;
+    const lastmod = entry.lastmod ? `\n    <lastmod>${escapeXml(entry.lastmod)}</lastmod>` : '';
+    return `  <url>\n    <loc>${escapeXml(entry.loc)}</loc>${lastmod}\n    <changefreq>weekly</changefreq>\n    <priority>${escapeXml(entry.priority)}</priority>\n  </url>`;
   }).join('\n');
 
   const sitemap = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n${urlEntries}\n</urlset>`;
@@ -1814,7 +2112,30 @@ try {
   }
 
   const staticPageEntries = [];
-  for (const page of nichePages) {
+  for (const page of coreSeoPages) {
+    const url = `${siteUrl}${page.path}`;
+    const { html: content, schemaNodes } = buildCoreSeoPage(page, resorts);
+    const html = injectStaticRoot(
+      injectMeta({
+        html: template,
+        title: page.title,
+        description: page.description,
+        url,
+        schemaNodes,
+        ogImageAlt: page.imageAlt,
+        imageUrl: `${siteUrl}${page.image}`,
+        imageWidth: page.imageWidth,
+        imageHeight: page.imageHeight,
+      }),
+      content
+    );
+    const targetPath = resolve(distDir, page.slug, 'index.html');
+    await mkdir(dirname(targetPath), { recursive: true });
+    await writeFile(targetPath, html, 'utf-8');
+    staticPageEntries.push({ slug: page.slug, lastmod: page.modifiedAt, priority: '0.9' });
+  }
+
+  for (const page of nichePages.filter((entry) => !coreSeoSlugs.has(entry.slug))) {
     const url = toAbsoluteUrl(page.slug);
     const { html: content, schemaNodes } = page.comparisonLanding
       ? buildComparisonLandingContent(page, resorts)
