@@ -10,6 +10,19 @@ import {
 } from './lib.mjs';
 
 const UI_BASIS = 'naver-blog-search-snippets';
+const REVIEW_TOPIC_RULES = [
+  { label: '객실과 빌라', pattern: /객실|숙소|워터\s*빌라|비치\s*빌라|오션\s*빌라|풀\s*빌라|룸\b/i },
+  { label: '식사와 다이닝', pattern: /식사|조식|저녁|레스토랑|다이닝|음식|뷔페|올인\s*클루시브/i },
+  { label: '공항 이후 이동', pattern: /공항|경유|보트|수상\s*비행|국내선|이동|트랜스퍼/i },
+  { label: '스노클링과 수중환경', pattern: /스노클|하우스\s*리프|수중|라군|다이빙|바다/i },
+  { label: '서비스', pattern: /서비스|버틀러|직원|응대|체크인/i },
+  { label: '가족 여행 시설', pattern: /가족|아이|키즈|아동|패밀리/i },
+  { label: '수영장과 액티비티', pattern: /수영장|액티비티|투어|익스커션|스파/i },
+  { label: '허니문 분위기', pattern: /허니문|신혼|휴양|선셋|풍경|분위기/i },
+  { label: '여행 일정', pattern: /일정|\d+박|\d+일차/i },
+  { label: '가격대와 가치', pattern: /가성비|가격|비용/i },
+  { label: '전반적인 만족도', pattern: /만족|최악|아쉬|추천|총정리/i },
+];
 const options = parseArgs(process.argv.slice(2));
 if (options.help) {
   printHelp();
@@ -75,7 +88,6 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
     }
 
     const sources = Array.isArray(item.sources) ? item.sources : [];
-    if (sources.length > 10) errors.push(`${prefix}: sources는 최대 10개여야 합니다.`);
     if (evidenceStatus === 'sufficient' && sources.length < 2) {
       errors.push(`${prefix}: sufficient 요약은 sources가 2개 이상이어야 합니다.`);
     }
@@ -155,6 +167,9 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
     const reviewSummary = {
       pros,
       cons,
+      ...(evidenceStatus === 'insufficient' && sources.length > 0
+        ? { overview: buildReviewOverview(sources) }
+        : {}),
       sourceCount: sources.length,
       reviewedAt: item.reviewedAt,
       basis: UI_BASIS,
@@ -185,6 +200,28 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
     errors.push(`전체 리조트가 필요합니다. 누락 ${missing.length}개: ${missing.slice(0, 30).join(', ')}${missing.length > 30 ? ' ...' : ''}`);
   }
   return { errors, compiledItems, detailItems };
+}
+
+function buildReviewOverview(sources) {
+  const rankedTopics = REVIEW_TOPIC_RULES
+    .map((rule, index) => ({
+      ...rule,
+      index,
+      mentions: sources.reduce(
+        (count, source) => count + (rule.pattern.test(String(source?.title ?? '')) ? 1 : 0),
+        0,
+      ),
+    }))
+    .filter(({ mentions }) => mentions > 0)
+    .sort((a, b) => b.mentions - a.mentions || a.index - b.index)
+    .slice(0, 3)
+    .map(({ label }) => label);
+
+  if (rankedTopics.length === 0) {
+    return '실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있어요.';
+  }
+
+  return `실제 후기에서는 ${rankedTopics.join(', ')}에 관한 경험을 주로 확인할 수 있어요.`;
 }
 
 function validateClaims(value, field, prefix, sourceByUrl, errors, minimumSources) {

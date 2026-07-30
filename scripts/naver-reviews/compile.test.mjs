@@ -15,11 +15,12 @@ test('compiles compact summary and separate detail with independent-source menti
   const input = path.join(tempDir, 'curated.json');
   const output = path.join(tempDir, 'summary.json');
   const detailsDir = path.join(tempDir, 'details');
-  const sources = [
-    source('https://blog.naver.com/a/1', '블로그 A', 1),
-    source('https://blog.naver.com/b/2', '블로그 B', 2),
-    source('https://blog.naver.com/c/3', '블로그 C', 3),
-  ];
+  const sources = Array.from({ length: 12 }, (_, index) =>
+    source(
+      `https://blog.naver.com/reviewer-${index + 1}/${index + 1}`,
+      `블로그 ${index + 1}`,
+      index + 1,
+    ));
   const curated = {
     schemaVersion: 1,
     basis: 'naver-blog-search-snippets',
@@ -40,16 +41,16 @@ test('compiles compact summary and separate detail with independent-source menti
   const summary = JSON.parse(await fs.readFile(output, 'utf8'));
   const detail = JSON.parse(await fs.readFile(path.join(detailsDir, '1.json'), 'utf8'));
   assert.equal(summary.items[0].reviewSummary.pros[0].mentions, 2);
-  assert.equal(summary.items[0].reviewSummary.sourceCount, 3);
+  assert.equal(summary.items[0].reviewSummary.sourceCount, 12);
   assert.equal('searchedCount' in summary.items[0].reviewSummary, false);
   assert.equal(summary.items[0].reviewSummary.evidenceStatus, 'sufficient');
   assert.equal('sources' in summary.items[0].reviewSummary, false);
-  assert.equal(detail.reviewSummary.sources.length, 3);
-  assert.equal(detail.reviewSummary.sources[0].blogName, '블로그 A');
+  assert.equal(detail.reviewSummary.sources.length, 12);
+  assert.equal(detail.reviewSummary.sources[0].blogName, '블로그 1');
   assert.equal(detail.reviewSummary.sources[0].publishedAt, '2026-07-01');
 
-  curated.items[0].sources[1].url = 'https://blog.naver.com/a/2';
-  curated.items[0].pros[0].sourceUrls[1] = 'https://blog.naver.com/a/2';
+  curated.items[0].sources[1].url = 'https://blog.naver.com/reviewer-1/2';
+  curated.items[0].pros[0].sourceUrls[1] = 'https://blog.naver.com/reviewer-1/2';
   await fs.writeFile(input, JSON.stringify(curated), 'utf8');
   const failure = runCompile(input, output, detailsDir);
   assert.notEqual(failure.status, 0);
@@ -73,7 +74,7 @@ test('keeps the internal insufficient state while publishing only verified actua
       curatorNote: '서로 다른 후기에서 반복된 장단점을 확인하지 못했어요.',
       pros: [],
       cons: [],
-      sources: [source('https://blog.naver.com/a/1', '블로그 A', 1)],
+      sources: [source('https://blog.naver.com/a/1', '객실과 조식', 1)],
     }],
   };
   await fs.writeFile(input, JSON.stringify(curated), 'utf8');
@@ -85,6 +86,8 @@ test('keeps the internal insufficient state while publishing only verified actua
   assert.equal(summary.items[0].reviewSummary.evidenceStatus, 'insufficient');
   assert.equal('searchedCount' in summary.items[0].reviewSummary, false);
   assert.equal(summary.items[0].reviewSummary.sourceCount, 1);
+  assert.match(summary.items[0].reviewSummary.overview, /객실과 빌라/);
+  assert.match(summary.items[0].reviewSummary.overview, /식사와 다이닝/);
   assert.equal(detail.reviewSummary.sources.length, 1);
   assert.equal('evidenceNote' in summary.items[0].reviewSummary, false);
   assert.equal('evidenceNote' in detail.reviewSummary, false);

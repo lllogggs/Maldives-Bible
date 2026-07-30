@@ -92,9 +92,9 @@ const ReviewSources: React.FC<{ sources: ResortReviewSummaryData['sources'] }> =
   if (sources.length === 0) return null;
 
   return (
-    <details className="mt-3 border-t border-teal-100 pt-3">
+    <details open={sources.length >= 10} className="mt-3 border-t border-teal-100 pt-3">
       <summary className="min-h-11 cursor-pointer py-2 text-sm font-bold text-teal-800 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500">
-        실제 후기 원문 {sources.length}개 보기
+        실제 후기 원문 {sources.length}개
       </summary>
       <ul className="mt-2 grid gap-2 sm:grid-cols-2">
         {sources.map((source, index) => {
@@ -170,15 +170,32 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
   const cons = cleanPoints(activeSummary.cons);
   const evidenceStatus = activeSummary.evidenceStatus
     ?? (pros.length > 0 || cons.length > 0 ? 'sufficient' : 'insufficient');
+  const sourceCount = Math.max(0, Math.floor(activeSummary.sourceCount || 0));
+  const overview = activeSummary.overview?.trim()
+    || (sourceCount > 0 ? '실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있어요.' : '');
 
   if (pros.length === 0 && cons.length === 0 && evidenceStatus !== 'insufficient') return null;
 
   if (variant === 'compact') {
-    if (evidenceStatus === 'insufficient') return null;
+    if (evidenceStatus === 'insufficient') {
+      if (!overview || sourceCount === 0) return null;
+
+      return (
+        <section
+          className="mt-3 h-[7.75rem] overflow-hidden rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5"
+          aria-label={`${resortName} 실제 후기`}
+        >
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <h4 className="text-[11px] font-extrabold tracking-tight text-slate-800">후기에서 다룬 내용</h4>
+            <span className="shrink-0 text-[10px] font-semibold text-slate-500">실제 후기 {sourceCount}개</span>
+          </div>
+          <p className="line-clamp-2 text-xs leading-5 text-slate-700">{overview}</p>
+        </section>
+      );
+    }
 
     const compactPros = pros.slice(0, 2);
     const compactCons = cons.slice(0, 1);
-    const sourceCount = Math.max(0, Math.floor(activeSummary.sourceCount || 0));
 
     return (
       <section
@@ -208,28 +225,37 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
   const sources = (Array.isArray(activeSummary.sources) ? activeSummary.sources : []).filter(
     source => source && typeof source.title === 'string' && source.title.trim() && isSafeSourceUrl(source.url),
   );
+  const reviewedAt = formatDate(activeSummary.reviewedAt);
 
   if (evidenceStatus === 'insufficient') {
-    if (sources.length === 0) return null;
+    if (!overview || sourceCount === 0) return null;
 
     return (
       <section
         className="mb-8 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6"
         aria-labelledby={`review-summary-title-${resortId}`}
       >
-        <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Real reviews</p>
-        <h2 id={`review-summary-title-${resortId}`} className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl">
-          실제 후기 원문
-        </h2>
-        <p className="mt-3 text-sm leading-6 text-slate-600">
-          객실, 식사, 서비스와 수중환경을 직접 경험한 여행자 후기를 확인해 보세요.
-        </p>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Real reviews</p>
+            <h2 id={`review-summary-title-${resortId}`} className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl">
+              실제 후기 한눈에
+            </h2>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-5 text-slate-500">
+            <span className="font-semibold">실제 후기 {sourceCount}개</span>
+            {reviewedAt && <span>{reviewedAt} 후기 기준</span>}
+          </div>
+        </div>
+        <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4">
+          <h3 className="text-sm font-extrabold text-slate-800">후기에서 다룬 내용</h3>
+          <p className="mt-2 text-sm leading-6 text-slate-600">{overview}</p>
+        </div>
         <ReviewSources sources={sources} />
+        <p className="mt-4 text-xs leading-5 text-slate-500">투숙 시기와 객실 유형에 따라 경험은 달라질 수 있어요.</p>
       </section>
     );
   }
-
-  const reviewedAt = formatDate(activeSummary.reviewedAt);
 
   return (
     <section
@@ -246,7 +272,10 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
             실제 후기 한눈에
           </h2>
         </div>
-        {reviewedAt && <p className="text-xs leading-5 text-slate-500">{reviewedAt} 후기 기준</p>}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-5 text-slate-500">
+          {sourceCount > 0 && <span className="font-semibold">실제 후기 {sourceCount}개</span>}
+          {reviewedAt && <span>{reviewedAt} 후기 기준</span>}
+        </div>
       </div>
 
       <div className={`mt-4 grid gap-3 ${pros.length > 0 && cons.length > 0 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>

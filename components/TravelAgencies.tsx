@@ -95,7 +95,7 @@ const PriceRoute: React.FC<{
       </div>
 
       <div className={`rounded-lg px-4 py-3 text-center lg:min-w-[132px] ${emphasized ? 'bg-slate-950 text-white shadow-lg shadow-slate-900/15' : 'bg-slate-100 text-slate-500'}`}>
-        <span className="block text-[10px] font-extrabold uppercase tracking-[0.12em]">비교용 금액 지수</span>
+        <span className="block text-[10px] font-extrabold uppercase tracking-[0.12em]">고객 견적</span>
         <strong className={`mt-1 block font-brand-heading ${emphasized ? 'text-3xl' : 'text-xl'}`}>{price}</strong>
       </div>
     </div>
@@ -131,19 +131,19 @@ const TravelAgencies: React.FC = () => {
               title="비교 기준 · 공식/OTA"
               steps={publicRoute}
               connectors={['공개 판매가', '일반 예약']}
-              price="기준 100"
+              price="$10,000"
             />
             <PriceRoute
               title="전문 여행사 경로"
               steps={agencyRoute}
               connectors={['사전 계약 물량', '도매 공급가', '맞춤 견적']}
-              price="예시 80"
-              saving="예시 20% 절감"
+              price="$8,000"
+              saving="$2,000 낮음"
               emphasized
             />
           </div>
           <p className="mt-3 text-xs leading-5 text-slate-500">
-            금액 지수와 절감 폭은 유통 경로를 설명하기 위한 예시이며, 실제 견적은 일정·객실·식사·이동 조건에 따라 달라집니다.
+            아래 금액과 절감 폭은 유통 경로를 설명하기 위한 예시이며, 실제 견적은 일정·객실·식사·이동 조건에 따라 달라집니다.
           </p>
         </div>
       </section>
