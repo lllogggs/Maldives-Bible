@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 8,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 9,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -43,17 +43,17 @@
         "independenceUnknown": false
       },
       {
-        "title": "마디푸시 프라이빗 아일랜드 아쿠아 풀빌라 몰디브 리조트 ...",
-        "url": "https://blog.naver.com/yuki69/223643675564",
-        "blogName": "26분 전",
-        "publishedAt": "2024-11-02",
-        "independenceUnknown": false
-      },
-      {
         "title": "[ 몰디브 신혼여행] 마디푸시 프라이빗 아일랜드 - 아쿠아...",
         "url": "https://blog.naver.com/dazyemma/223638482739",
         "blogName": "Archive of lazy days",
         "publishedAt": "2024-10-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "마디푸시 프라이빗 아일랜드 아쿠아 풀빌라 몰디브 리조트 ...",
+        "url": "https://blog.naver.com/yuki69/223643675564",
+        "blogName": "26분 전",
+        "publishedAt": "2024-11-02",
         "independenceUnknown": false
       },
       {
@@ -68,6 +68,13 @@
         "url": "https://blog.naver.com/hyeeeeem_0107/224295593089",
         "blogName": "우당탕탕 춘식이네",
         "publishedAt": "2026-05-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 신혼여행 1일차_ 마디푸시 프라이빗 아일랜드 ...",
+        "url": "https://blog.naver.com/bom_2_blog/224346489422",
+        "blogName": "I ain't no candle in the wind",
+        "publishedAt": "2026-07-14",
         "independenceUnknown": false
       }
     ]

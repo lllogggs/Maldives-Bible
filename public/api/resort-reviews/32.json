@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 5,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
     "sources": [
@@ -47,6 +47,13 @@
         "url": "https://blog.naver.com/eksql1205/221404374352",
         "blogName": "흔적남기기",
         "publishedAt": "2018-11-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "추천 - 콘스탄스 무푸시 리조트 , Day 1 # 몰디브 여행...",
+        "url": "https://blog.naver.com/suriaan/150189833104",
+        "blogName": "Travel Specialist",
+        "publishedAt": "2014-05-02",
         "independenceUnknown": false
       }
     ]

@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 3,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 4,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
     "sources": [
@@ -28,6 +28,13 @@
         "url": "https://blog.naver.com/channy_archives/224055349710",
         "blogName": "For Love and Linen",
         "publishedAt": "2025-10-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[Maldives] 칸디마 몰디브 리조트 (Kandima Maldives) 후기",
+        "url": "https://blog.naver.com/lds1332/221382037552",
+        "blogName": "Bread Lee의 소중한 기억",
+        "publishedAt": "2018-10-21",
         "independenceUnknown": false
       }
     ]

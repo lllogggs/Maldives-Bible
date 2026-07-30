@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 4,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 5,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
     "sources": [
@@ -35,6 +35,13 @@
         "url": "https://blog.naver.com/blooming337/223642968002",
         "blogName": "내 마음은 콩밭에",
         "publishedAt": "2024-11-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] 월도프 아스토리아 몰디브 DAY3...",
+        "url": "https://blog.naver.com/daily_hyunny/223184449175",
+        "blogName": "혀니의 지구별여행",
+        "publishedAt": "2023-08-15",
         "independenceUnknown": false
       }
     ]

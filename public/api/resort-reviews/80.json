@@ -14,8 +14,8 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 9,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 10,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -80,6 +80,13 @@
         "url": "https://blog.naver.com/hy_zeen/223375206679",
         "blogName": "我心里只有你",
         "publishedAt": "2024-03-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 후기 ] 두바이& 몰디브 ... 몰디브 쿠다빌링길리 리조트 드디어...",
+        "url": "https://blog.naver.com/ddakx2/223280552274",
+        "blogName": "매일이 꼼지락",
+        "publishedAt": "2023-12-01",
         "independenceUnknown": false
       }
     ]

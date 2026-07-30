@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 3,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -33,6 +33,27 @@
         "url": "https://blog.naver.com/c5316/223711935694",
         "blogName": "GDP 블로그",
         "publishedAt": "2025-01-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 - 소네바푸시 (Soneva fushi) 리조트 1일차...",
+        "url": "https://blog.naver.com/nas_hop/223252427984",
+        "blogName": "포산의 일상♡",
+        "publishedAt": "2023-11-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] DAY1~2 소네바푸시 에서의 첫날",
+        "url": "https://blog.naver.com/tinkymom/221345579323",
+        "blogName": "어코맘의 타임캡슐",
+        "publishedAt": "2018-08-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 1일차, 소네바푸시 (Soneva Fushi...",
+        "url": "https://blog.naver.com/nagaa_y/221330581752",
+        "blogName": "NAA's PAPER",
+        "publishedAt": "2018-08-01",
         "independenceUnknown": false
       }
     ]

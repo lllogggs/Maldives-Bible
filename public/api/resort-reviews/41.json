@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 7,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
     "sources": [
@@ -61,6 +61,13 @@
         "url": "https://blog.naver.com/kkomoroo/224017624788",
         "blogName": "머루모리꼬모",
         "publishedAt": "2025-09-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 다이아몬드 아투루가 2일차",
+        "url": "https://blog.naver.com/oransia/221713685176",
+        "blogName": "룰루팡! 룰루피! 룰루~얍!",
+        "publishedAt": "2019-11-20",
         "independenceUnknown": false
       }
     ]

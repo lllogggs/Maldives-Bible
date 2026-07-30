@@ -13,8 +13,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 4,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -44,6 +44,20 @@
         "url": "https://blog.naver.com/blingyum/223513610713",
         "blogName": "여기는 윰로그",
         "publishedAt": "2024-07-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] Day 1 : 반도스 리조트 후반바, 몰디브 썬셋",
+        "url": "https://blog.naver.com/jiyun4747/221428781477",
+        "blogName": "지윤헤헤 Blog since 2006",
+        "publishedAt": "2018-12-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "반도스 몰디브 ⑥ :: 2일차, 낮잠은 필수! 풀바 이용하기",
+        "url": "https://blog.naver.com/zzoxzzi/221434267528",
+        "blogName": "SLOW360 느리게보기",
+        "publishedAt": "2019-01-04",
         "independenceUnknown": false
       }
     ]

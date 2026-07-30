@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 4,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 5,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -40,6 +40,13 @@
         "url": "https://blog.naver.com/666meme/223913036529",
         "blogName": "Eternal summer",
         "publishedAt": "2025-06-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Day 7-② : Maldives( 몰디브 : 콘래드 랑갈리 아일랜드 )",
+        "url": "https://blog.naver.com/78cupid/220229342503",
+        "blogName": "Travel by Wani (T.B.W)",
+        "publishedAt": "2015-01-04",
         "independenceUnknown": false
       }
     ]

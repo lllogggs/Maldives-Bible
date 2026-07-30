@@ -112,21 +112,18 @@ const buildScores = async () => {
   });
 
   const minRawScore = Math.min(...scored.map(item => item.rawScore));
-  const maxReviewedRawScore = Math.max(
-    ...scored.filter(item => item.hasReviewBonus).map(item => item.rawScore)
-  );
+  const maxRawScore = Math.max(...scored.map(item => item.rawScore));
 
-  if (!Number.isFinite(maxReviewedRawScore) || maxReviewedRawScore <= minRawScore) {
-    throw new Error('Unable to establish the reviewed-resort score ceiling.');
+  if (!Number.isFinite(maxRawScore) || maxRawScore <= minRawScore) {
+    throw new Error('Unable to establish the interest-score range.');
   }
 
-  const reviewedBaseCeiling = MAX_SCORE / REVIEW_MULTIPLIER;
   const results = scored.map(item => {
     const baseScore = Math.max(
       0,
       Math.round(
-        ((item.rawScore - minRawScore) / (maxReviewedRawScore - minRawScore))
-          * reviewedBaseCeiling
+        ((item.rawScore - minRawScore) / (maxRawScore - minRawScore))
+          * MAX_SCORE
       )
     );
     const multiplier = item.hasReviewBonus ? REVIEW_MULTIPLIER : 1;

@@ -4,23 +4,23 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 9,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 10,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
     "sources": [
-      {
-        "title": "[신혼여행_8] Day 3 SO/Maldives 리조트 워터빌라 후기 ｜최신...",
-        "url": "https://blog.naver.com/aeonian_hx/224247833199",
-        "blogName": "☺️",
-        "publishedAt": "2026-04-10",
-        "independenceUnknown": false
-      },
       {
         "title": "말레공항 도착 쏘 몰디브 SO/ Maldives 리조트 체크인 후기",
         "url": "https://blog.naver.com/ufkr1050/223840090841",
         "blogName": "맛과 멋을 찾는 쿤쿤",
         "publishedAt": "2025-04-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행_8] Day 3 SO/Maldives 리조트 워터빌라 후기 ｜최신...",
+        "url": "https://blog.naver.com/aeonian_hx/224247833199",
+        "blogName": "☺️",
+        "publishedAt": "2026-04-10",
         "independenceUnknown": false
       },
       {
@@ -70,6 +70,13 @@
         "url": "https://blog.naver.com/kim92yh/224010357112",
         "blogName": "기록하면 뭐든 된다!",
         "publishedAt": "2025-09-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "여행] 몰디브 신상 리조트 ' SO/ maldives ' 룸투어, 풀보드 후기 (2)",
+        "url": "https://blog.naver.com/moon__brand/223352821023",
+        "blogName": "MoonBrand",
+        "publishedAt": "2024-02-14",
         "independenceUnknown": false
       }
     ]

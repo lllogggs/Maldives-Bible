@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 9,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 10,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -75,6 +75,13 @@
         "url": "https://blog.naver.com/inu_1ove_v/222992319342",
         "blogName": "돼지봉의 폭풍우",
         "publishedAt": "2023-01-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2. 풀만 몰디브 마무타 리조트 오션 풀 빌라 후기",
+        "url": "https://blog.naver.com/v992800/222777761226",
+        "blogName": "메이의 세계여행",
+        "publishedAt": "2022-06-17",
         "independenceUnknown": false
       }
     ]

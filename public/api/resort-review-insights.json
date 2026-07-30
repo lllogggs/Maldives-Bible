@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-14T15:50:32.132Z",
+  "generatedAt": "2026-07-30T01:19:12.324Z",
   "items": [
     {
       "resortId": 1,
@@ -163,8 +163,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 9,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 10,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -210,8 +210,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 4,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 6,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -403,8 +403,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 7,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 9,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
       }
@@ -477,8 +477,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 5,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 6,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
       }
@@ -530,8 +530,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 8,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 10,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -546,8 +546,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 4,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 5,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -605,8 +605,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 8,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 9,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -621,8 +621,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 7,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 8,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
       }
@@ -889,8 +889,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 8,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 10,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
       }
@@ -986,8 +986,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 7,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 8,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -1007,8 +1007,8 @@
             "mentions": 1
           }
         ],
-        "sourceCount": 5,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 6,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -1061,8 +1061,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 4,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 5,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
       }
@@ -1105,8 +1105,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "sourceCount": 3,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 4,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
       }
@@ -1153,8 +1153,8 @@
             "mentions": 1
           }
         ],
-        "sourceCount": 9,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 10,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -1289,8 +1289,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 9,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 10,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -1446,8 +1446,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 9,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 10,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -1538,8 +1538,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 7,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 8,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -1565,8 +1565,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 7,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 8,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
       }
@@ -1652,8 +1652,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "sourceCount": 5,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 6,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
       }
@@ -1663,8 +1663,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "sourceCount": 9,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 10,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
       }
@@ -1695,8 +1695,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 3,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 6,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -1711,8 +1711,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 6,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 9,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }
@@ -1774,8 +1774,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "sourceCount": 7,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 8,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
       }
@@ -1893,8 +1893,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "sourceCount": 4,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 5,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
       }
@@ -2067,8 +2067,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 8,
-        "reviewedAt": "2026-07-14",
+        "sourceCount": 9,
+        "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
       }

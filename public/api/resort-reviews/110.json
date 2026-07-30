@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 7,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -61,6 +61,13 @@
         "url": "https://blog.naver.com/derm_bo/223833107099",
         "blogName": "Derm_bo",
         "publishedAt": "2025-04-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "호텔 투숙기 - 리츠 칼튼 몰디브 , 파리 아일랜드 (4)...",
+        "url": "https://blog.naver.com/illumino/222865914771",
+        "blogName": "오늘의 호텔 리뷰",
+        "publishedAt": "2022-09-03",
         "independenceUnknown": false
       }
     ]

@@ -9,23 +9,23 @@
       }
     ],
     "cons": [],
-    "sourceCount": 4,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 5,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
     "sources": [
-      {
-        "title": "몰디브 조이 아일랜드 올인클루시브 밀플랜 후기 ｜더마켓 뷔페...",
-        "url": "https://blog.naver.com/deunzzangu/224323596860",
-        "blogName": "든짱구와 함께라면 뭐든지 할 수 있어!",
-        "publishedAt": "2026-06-22",
-        "independenceUnknown": false
-      },
       {
         "title": "251120 신혼여행 몰디브 4일차 - 조이 아일랜드 리조트",
         "url": "https://blog.naver.com/subinii1/224099843312",
         "blogName": "오슈님의 블로그",
         "publishedAt": "2025-12-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 조이 아일랜드 올인클루시브 밀플랜 후기 ｜더마켓 뷔페...",
+        "url": "https://blog.naver.com/deunzzangu/224323596860",
+        "blogName": "든짱구와 함께라면 뭐든지 할 수 있어!",
+        "publishedAt": "2026-06-22",
         "independenceUnknown": false
       },
       {
@@ -40,6 +40,13 @@
         "url": "https://blog.naver.com/bin4438/223619994649",
         "blogName": "지구 모험 일기",
         "publishedAt": "2024-10-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 조이 아일랜드 (Joy Island) 한국인 첫 번째...",
+        "url": "https://blog.naver.com/o_smiile_o/223268267253",
+        "blogName": "츄츄엄마의 육아 & 여행 이야기",
+        "publishedAt": "2023-11-18",
         "independenceUnknown": false
       }
     ]

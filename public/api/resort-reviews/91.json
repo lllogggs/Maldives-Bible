@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 9,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 10,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -75,6 +75,13 @@
         "url": "https://blog.naver.com/kook_smile/224058729483",
         "blogName": "쿡스마일의 맛집, 여행기록",
         "publishedAt": "2025-10-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "'21 몰디브 / day5 밀라이두 아일랜드 몰디브 워터빌라",
+        "url": "https://blog.naver.com/flipped22/222575885165",
+        "blogName": "데일리 부부 트래블러✈️",
+        "publishedAt": "2021-11-22",
         "independenceUnknown": false
       }
     ]

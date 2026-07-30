@@ -14,8 +14,8 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 5,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -52,6 +52,13 @@
         "url": "https://blog.naver.com/mi1891/223599760139",
         "blogName": "류쁨의 소소한 이야기",
         "publishedAt": "2024-09-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 - 몰디브 ( 인터컨티넨탈 ) 1일차",
+        "url": "https://blog.naver.com/nyang_couple/223740387273",
+        "blogName": "고양이집사 부부의 일상",
+        "publishedAt": "2025-01-27",
         "independenceUnknown": false
       }
     ]

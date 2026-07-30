@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 7,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -29,17 +29,17 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 여행 | 후바펜푸시 ... 두 번째 파라다이스 솔직 후기",
-        "url": "https://blog.naver.com/bomcheron/224261306377",
-        "blogName": "BOMCHERON",
-        "publishedAt": "2026-04-22",
-        "independenceUnknown": false
-      },
-      {
         "title": "몰디브 여행기 - 후바펜푸시 1일차(1-1)",
         "url": "https://blog.naver.com/steperdw/224091828090",
         "blogName": "아무 리뷰 대잔치",
         "publishedAt": "2025-11-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 | 후바펜푸시 ... 두 번째 파라다이스 솔직 후기",
+        "url": "https://blog.naver.com/bomcheron/224261306377",
+        "blogName": "BOMCHERON",
+        "publishedAt": "2026-04-22",
         "independenceUnknown": false
       },
       {
@@ -61,6 +61,13 @@
         "url": "https://blog.naver.com/eprenlgirl1234/224270529676",
         "blogName": "명블리의 인생사",
         "publishedAt": "2026-04-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "후바펜푸시 몰디브 리조트 ... 풀보드 (FB) 식사 대만족 후기",
+        "url": "https://blog.naver.com/lizzies_note/223434317886",
+        "blogName": "Lizzie’s Note | 리지의노트",
+        "publishedAt": "2024-05-02",
         "independenceUnknown": false
       }
     ]

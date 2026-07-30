@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 8,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 10,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -68,6 +68,20 @@
         "url": "https://blog.naver.com/hyetony/223009652650",
         "blogName": "토다코 세가족★",
         "publishedAt": "2023-02-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 Day4.... 카약 어드벤쳐 후기 | 카약타고 수영하고",
+        "url": "https://blog.naver.com/zu_log/222844637226",
+        "blogName": "zulog",
+        "publishedAt": "2022-08-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 몰디브 말리푸시 추천 장점 단점 후기 feat.영상편집",
+        "url": "https://blog.naver.com/jihye8927/221878477774",
+        "blogName": "똥글이의 소소한 이야기",
+        "publishedAt": "2020-03-28",
         "independenceUnknown": false
       }
     ]

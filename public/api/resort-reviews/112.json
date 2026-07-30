@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 7,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
     "sources": [
@@ -61,6 +61,13 @@
         "url": "https://blog.naver.com/352kjh/223715187893",
         "blogName": "둔둔",
         "publishedAt": "2025-01-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 >> 로빈슨클럽누누 리조트 후기 - 메인풀",
+        "url": "https://blog.naver.com/ys_7370/221388107362",
+        "blogName": "Hi! sseul",
+        "publishedAt": "2018-10-30",
         "independenceUnknown": false
       }
     ]

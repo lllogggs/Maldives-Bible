@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 9,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 10,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
     "sources": [
@@ -64,7 +64,7 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 리조트 /아바니플러스/ avani+fares maldives /신혼여행",
+        "title": "아바니+파레스몰디브 > 몰디브 리조트 / 아바니 플러스...",
         "url": "https://blog.naver.com/kde0305/223486765585",
         "blogName": "지극히 개인적인",
         "publishedAt": "2024-06-21",
@@ -75,6 +75,13 @@
         "url": "https://blog.naver.com/line_cow/224301985116",
         "blogName": "line_cow",
         "publishedAt": "2026-05-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 아바니+ 파레스 몰디브 리조트 마사지, 스노쿨링 후기",
+        "url": "https://blog.naver.com/wkwmd81/223152428302",
+        "blogName": "해외여행 고고씽",
+        "publishedAt": "2023-07-11",
         "independenceUnknown": false
       }
     ]

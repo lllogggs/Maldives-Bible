@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "sourceCount": 5,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
     "sources": [
@@ -31,6 +31,13 @@
         "independenceUnknown": false
       },
       {
+        "title": "식스센스 라무 | 내돈내산 라군 워터 빌라 신혼여행 후기 (오션...",
+        "url": "https://blog.naver.com/8pm_suppertime/224220063615",
+        "blogName": "기억력 유지 프로젝트",
+        "publishedAt": "2026-03-17",
+        "independenceUnknown": false
+      },
+      {
         "title": "[ 몰디브 여행] 신혼여행 in 식스센스 라무 리조트 (SIX...",
         "url": "https://blog.naver.com/lucete7601/220514651706",
         "blogName": "오늘의 초대권",
@@ -38,10 +45,10 @@
         "independenceUnknown": false
       },
       {
-        "title": "식스센스 라무 | 내돈내산 라군 워터 빌라 신혼여행 후기 (오션...",
-        "url": "https://blog.naver.com/8pm_suppertime/224220063615",
-        "blogName": "기억력 유지 프로젝트",
-        "publishedAt": "2026-03-17",
+        "title": "몰디브 신혼여행 : 식스센스 라무 six senses laamu DAY1",
+        "url": "https://blog.naver.com/flaringo/222995555156",
+        "blogName": "the sound of body and mind",
+        "publishedAt": "2023-01-26",
         "independenceUnknown": false
       }
     ]

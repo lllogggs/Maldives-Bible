@@ -9,8 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 8,
-    "reviewedAt": "2026-07-14",
+    "sourceCount": 10,
+    "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
     "sources": [
@@ -43,17 +43,17 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 가성비 리조트 추천 그랜드파크 코디파루",
-        "url": "https://blog.naver.com/queen77577/223901583323",
-        "blogName": "마녀씨의 힐링 스토리",
-        "publishedAt": "2025-06-17",
-        "independenceUnknown": false
-      },
-      {
         "title": "몰디브 여행 그랜드 파크 코디파루 리조트 , 널스 샤크 스노클링...",
         "url": "https://blog.naver.com/shootar/223910313097",
         "blogName": "홍차왕자의 비밀지도",
         "publishedAt": "2025-06-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가성비 리조트 추천 그랜드파크 코디파루",
+        "url": "https://blog.naver.com/queen77577/223901583323",
+        "blogName": "마녀씨의 힐링 스토리",
+        "publishedAt": "2025-06-17",
         "independenceUnknown": false
       },
       {
@@ -68,6 +68,20 @@
         "url": "https://blog.naver.com/alsxmzltm/223788100533",
         "blogName": "워니는 못말려",
         "publishedAt": "2025-03-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 그랜드 파크 코디파루 몰디브",
+        "url": "https://blog.naver.com/eatntrip_shadya/223842354867",
+        "blogName": "eatntrip_shadya님의 블로그",
+        "publishedAt": "2025-04-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼 여행] 그랜드파크코디파루 Day1 수중환경...",
+        "url": "https://blog.naver.com/dionoff/224271705289",
+        "blogName": "맛집/여행/웨딩/뷰티",
+        "publishedAt": "2026-05-01",
         "independenceUnknown": false
       }
     ]
