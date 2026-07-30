@@ -51,6 +51,8 @@ export const DEMO_ANALYTICS_DATA: AnalyticsDashboardData = {
     sessions: 58 + ((index * 17) % 48) + (index > 20 ? 18 : 0),
     activeUsers: 43 + ((index * 13) % 35),
     pageViews: 144 + ((index * 29) % 120),
+    quoteViews: 8 + ((index * 5) % 16),
+    quoteSessions: 6 + ((index * 4) % 12),
     agencyClicks: 1 + ((index * 3) % 7),
     agencyImpressions: 18 + ((index * 7) % 23),
   })),
@@ -67,6 +69,9 @@ export const DEMO_ANALYTICS_DATA: AnalyticsDashboardData = {
     activeUsers: Math.round(Number(sessions) * 0.82),
     engagementRate: Number(engagementRate),
     averageSessionDuration: Number(averageSessionDuration),
+    quoteSessions: Math.round(Number(sessions) * 0.21),
+    quoteUsers: Math.round(Number(sessions) * 0.17),
+    quoteReachRate: 0.21,
     agencyClicks: Number(agencyClicks),
     agencyClickSessions: Math.round(Number(agencyClicks) * 0.78),
     agencyClickRate: Number(agencyClickRate),
@@ -91,6 +96,32 @@ export const DEMO_ANALYTICS_DATA: AnalyticsDashboardData = {
     path: String(path), title: String(title), views: Number(views), users: Number(users),
     engagementSeconds: Number(users) * Number(average), averageEngagementSeconds: Number(average),
   })),
+  quoteComparison: {
+    summary: {
+      views: 684,
+      sessions: 528,
+      users: 412,
+      reachRate: 528 / 2376,
+      landingSessions: 198,
+      landingShare: 198 / 528,
+      averageSecondsToReach: 84,
+      agencyClicks: 101,
+      agencyClickSessions: 76,
+      agencyClickUsers: 68,
+      agencyClickRate: 76 / 528,
+      trackingMode: 'precise',
+    },
+    entrySources: [
+      { sourceId: 'primary_nav', label: '상단 견적 비교 탭', fromPath: '/maldives-resort-comparison/', kind: 'internal', entries: 142, sessions: 136, users: 118, share: 136 / 528 },
+      { sourceId: 'home_service_card', label: '홈 서비스 카드', fromPath: '/', kind: 'internal', entries: 96, sessions: 91, users: 82, share: 91 / 528 },
+      { sourceId: 'flight_guide_cta', label: '항공 가이드 안내 버튼', fromPath: '/flight-guide/', kind: 'internal', entries: 54, sessions: 51, users: 46, share: 51 / 528 },
+      { sourceId: 'direct_or_external', label: '직접 또는 외부 진입', fromPath: '', kind: 'direct', entries: 198, sessions: 198, users: 166, share: 198 / 528 },
+    ],
+    hourly: Array.from({ length: 24 }, (_, hour) => {
+      const entries = hour >= 19 && hour <= 23 ? 34 + ((hour * 7) % 18) : 8 + ((hour * 5) % 19);
+      return { hour, label: `${String(hour).padStart(2, '0')}–${String((hour + 1) % 24).padStart(2, '0')}시`, entries, share: entries / 684 };
+    }),
+  },
   agencies: {
     clicks: 101,
     clickUsers: 76,

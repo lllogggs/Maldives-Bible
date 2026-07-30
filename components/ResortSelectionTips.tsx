@@ -118,6 +118,7 @@ const ResortSelectionTips: React.FC<ResortSelectionTipsProps> = ({
               <a
                 key={href}
                 href={href}
+                data-quote-entry={href === '/quote-comparison/' ? 'home_service_card' : undefined}
                 className="group rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5 transition hover:-translate-y-0.5 hover:border-teal-200 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
               >
                 <strong className="block text-sm font-extrabold text-slate-950 group-hover:text-teal-800">

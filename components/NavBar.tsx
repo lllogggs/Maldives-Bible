@@ -67,6 +67,7 @@ const NavBar: React.FC<NavBarProps> = ({ currentPath, currentView, onViewChange 
             <a
               key={item.view}
               href={item.href}
+              data-quote-entry={item.view === 'agencies' ? 'primary_nav' : undefined}
               aria-current={isActive ? 'page' : undefined}
               onClick={(event) => handleNavigation(event, item.view)}
               className={`flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-sm border-b-2 px-0.5 text-center text-[13px] font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f8f7] sm:w-auto sm:shrink-0 sm:px-1 sm:text-base ${

@@ -129,7 +129,7 @@ const buildEditorialFooter = ({ maxWidth = '1120px', modifiedAt = siteDates.modi
   <footer style="max-width:${maxWidth};margin:28px auto 0;border-top:1px solid #dbe7e4;padding:18px 0 8px;color:#64748b;font-size:12px;line-height:1.7;">
     <p style="margin:0 0 8px;">몰디브 바이블 편집 · 최종 업데이트 ${modifiedAt.replaceAll('-', '.')}</p>
     <nav aria-label="몰디브 바이블 주요 서비스" style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:8px;">
-      ${primaryNavItems.map((item) => `<a href="${siteUrl}${item.path}" style="color:#0f766e;font-weight:800;text-decoration:none;">${item.label}</a>`).join('')}
+      ${primaryNavItems.map((item) => `<a href="${siteUrl}${item.path}"${item.path === '/quote-comparison/' ? ' data-quote-entry="static_footer"' : ''} style="color:#0f766e;font-weight:800;text-decoration:none;">${item.label}</a>`).join('')}
     </nav>
     <nav aria-label="사이트 정보" style="display:flex;flex-wrap:wrap;gap:8px 16px;">
       <a href="${toAbsoluteUrl('maldives-resorts')}" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 목록</a>
@@ -1441,7 +1441,7 @@ const buildStaticSiteHeader = (currentPath = '') => `
       </a>
       <nav aria-label="몰디브 바이블 주요 메뉴">
         ${primaryNavItems.map((item) => `
-          <a href="${siteUrl}${item.path}"${currentPath === item.path ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
+          <a href="${siteUrl}${item.path}"${item.path === '/quote-comparison/' ? ' data-quote-entry="static_header"' : ''}${currentPath === item.path ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
       </nav>
     </div>
   </header>`;
@@ -1612,7 +1612,7 @@ const buildFlightGuideContent = () => `
     <p>말레 도착 시간에 맞는 이동수단을 고르고, 같은 일정·객실·식사 조건으로 견적을 확인하세요.</p>
     <div class="seo-static__actions">
       <a class="seo-static__action" href="${siteUrl}/maldives-resort-comparison/">항공 일정에 맞는 리조트 비교</a>
-      <a class="seo-static__action seo-static__action--secondary" href="${siteUrl}/quote-comparison/">동일 조건 견적 확인하기</a>
+      <a class="seo-static__action seo-static__action--secondary" data-quote-entry="flight_static_cta" href="${siteUrl}/quote-comparison/">동일 조건 견적 확인하기</a>
     </div>
   </section>`;
 
@@ -1710,7 +1710,7 @@ const buildHomeStaticFallback = () => {
             <div class="seo-static__grid" style="margin-top:16px;">
               <a class="seo-static__card" href="${siteUrl}/start/"><strong>1. 시작하기</strong><span>예산·일정·이동·객실과 식사 기준부터 정리해요.</span></a>
               <a class="seo-static__card" href="${siteUrl}/maldives-resort-comparison/"><strong>2. 몰디브 리조트 비교</strong><span>171개 리조트의 이동, 객실, 수중환경 조건을 비교해요.</span></a>
-              <a class="seo-static__card" href="${siteUrl}/quote-comparison/"><strong>3. 몰디브 여행사 견적 비교</strong><span>같은 일정과 조건으로 요청하고 포함 항목을 확인해요.</span></a>
+              <a class="seo-static__card" data-quote-entry="home_static_sequence_card" href="${siteUrl}/quote-comparison/"><strong>3. 몰디브 여행사 견적 비교</strong><span>같은 일정과 조건으로 요청하고 포함 항목을 확인해요.</span></a>
               <a class="seo-static__card" href="${siteUrl}/flight-guide/"><strong>4. 몰디브 항공 가이드</strong><span>말레 도착 시간과 리조트 연결 가능 여부를 맞춰봐요.</span></a>
             </div>
           </section>

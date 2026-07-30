@@ -22,6 +22,8 @@ export interface AnalyticsTrendPoint {
   sessions: number;
   activeUsers: number;
   pageViews: number;
+  quoteViews: number;
+  quoteSessions: number;
   agencyClicks: number;
   agencyImpressions: number;
 }
@@ -33,6 +35,9 @@ export interface AnalyticsAcquisitionRow {
   activeUsers: number;
   engagementRate: number;
   averageSessionDuration: number;
+  quoteSessions: number;
+  quoteUsers: number;
+  quoteReachRate: number | null;
   agencyClicks: number;
   agencyClickSessions: number;
   agencyClickRate: number | null;
@@ -82,6 +87,45 @@ export interface AnalyticsAgencySummary {
   rows: AnalyticsAgencyRow[];
 }
 
+export interface AnalyticsQuoteEntryRow {
+  sourceId: string;
+  label: string;
+  fromPath: string;
+  kind: 'internal' | 'external' | 'direct';
+  entries: number;
+  sessions: number;
+  users: number;
+  share: number | null;
+}
+
+export interface AnalyticsQuoteHourRow {
+  hour: number;
+  label: string;
+  entries: number;
+  share: number | null;
+}
+
+export interface AnalyticsQuoteSummary {
+  views: number;
+  sessions: number;
+  users: number;
+  reachRate: number | null;
+  landingSessions: number;
+  landingShare: number | null;
+  averageSecondsToReach: number | null;
+  agencyClicks: number;
+  agencyClickSessions: number;
+  agencyClickUsers: number;
+  agencyClickRate: number | null;
+  trackingMode: 'precise' | 'basic' | 'legacy' | 'waiting';
+}
+
+export interface AnalyticsQuoteComparison {
+  summary: AnalyticsQuoteSummary;
+  entrySources: AnalyticsQuoteEntryRow[];
+  hourly: AnalyticsQuoteHourRow[];
+}
+
 export interface AnalyticsTransitionRow {
   fromPath: string;
   toPath: string;
@@ -118,6 +162,7 @@ export interface AnalyticsDashboardData {
   acquisition: AnalyticsAcquisitionRow[];
   landingPages: AnalyticsLandingPageRow[];
   pages: AnalyticsPageRow[];
+  quoteComparison: AnalyticsQuoteComparison;
   agencies: AnalyticsAgencySummary;
   journeys: {
     transitions: AnalyticsTransitionRow[];

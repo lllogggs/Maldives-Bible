@@ -7,6 +7,8 @@ import type {
   AnalyticsExitRow,
   AnalyticsLandingPageRow,
   AnalyticsPageRow,
+  AnalyticsQuoteEntryRow,
+  AnalyticsQuoteHourRow,
   AnalyticsRangeDays,
   AnalyticsSummaryMetrics,
   AnalyticsTransitionRow,
@@ -24,6 +26,10 @@ type ServiceAccountCredentials = {
 
 const VALID_RANGES: readonly AnalyticsRangeDays[] = [7, 28, 90];
 const DEFAULT_CACHE_TTL_SECONDS = 300;
+const QUOTE_PATH_PATTERN = '^/quote-comparison/?$';
+const QUOTE_VIEW_EVENTS = ['site_content_view', 'page_view'];
+const QUOTE_REACHED_EVENT = 'quote_comparison_reached';
+const QUOTE_TIMING_EVENT = 'quote_reach_timing';
 const cache = new Map<string, { expiresAt: number; data: AnalyticsDashboardData }>();
 const pending = new Map<string, Promise<AnalyticsDashboardData>>();
 
@@ -40,6 +46,22 @@ const eventFilter = (values: string[]) => ({
     inListFilter: { values, caseSensitive: true },
   },
 });
+
+const exactPathFilter = (fieldName: string, pattern: string) => ({
+  filter: {
+    fieldName,
+    stringFilter: { matchType: 'FULL_REGEXP', value: pattern, caseSensitive: true },
+  },
+});
+
+const inListFilter = (fieldName: string, values: string[]) => ({
+  filter: {
+    fieldName,
+    inListFilter: { values, caseSensitive: true },
+  },
+});
+
+const andFilter = (...expressions: any[]) => ({ andGroup: { expressions } });
 
 const dateRangeFor = (days: AnalyticsRangeDays, previous = false) => {
   if (previous) {
@@ -215,6 +237,35 @@ TRAVEL_AGENCIES.forEach(agency => {
   }
 });
 
+const agencyLinkUrls = [...new Set(
+  TRAVEL_AGENCIES.flatMap(agency => [agency.website, agency.kakao_channel])
+    .filter((value): value is string => Boolean(value))
+    .flatMap(value => {
+      try {
+        const normalized = new URL(value).href;
+        return [value, normalized, normalized.replace(/\/$/, '')];
+      } catch {
+        return [value];
+      }
+    })
+    .filter(Boolean),
+)];
+
+const quoteEntryLabels: Record<string, string> = {
+  primary_nav: '상단 견적 비교 탭',
+  home_service_card: '홈 서비스 카드',
+  flight_guide_cta: '항공 가이드 안내 버튼',
+  site_footer: '공통 푸터',
+  static_header: '정적 페이지 상단 메뉴',
+  static_footer: '정적 페이지 푸터',
+  home_static_sequence_card: '홈 여행 준비 순서',
+  flight_static_cta: '항공 가이드 정적 안내',
+  internal_navigation: '내부 화면 이동',
+  direct_or_external: '직접 또는 외부 진입',
+  legacy_internal: '기존 내부 이동 추정',
+  legacy_landing: '견적비교에서 방문 시작',
+};
+
 const findAgencyDestination = (linkUrl: string) => destinationIndex.get(normalizeDestination(linkUrl));
 
 const pathFromUrl = (rawUrl: string) => {
@@ -222,6 +273,28 @@ const pathFromUrl = (rawUrl: string) => {
     return new URL(rawUrl).pathname || '/';
   } catch {
     return rawUrl || '/';
+  }
+};
+
+const isQuotePath = (path: string) => /^\/quote-comparison\/?$/.test(path || '');
+
+const classifyQuoteReferrer = (rawUrl: string) => {
+  if (!rawUrl) {
+    return { kind: 'direct' as const, fromPath: '', label: '직접 또는 외부 진입' };
+  }
+
+  try {
+    const url = new URL(rawUrl);
+    const hostname = url.hostname.toLowerCase();
+    if (hostname === 'maldivesbible.com' || hostname === 'www.maldivesbible.com') {
+      return { kind: 'internal' as const, fromPath: url.pathname || '/', label: url.pathname || '/' };
+    }
+    return { kind: 'external' as const, fromPath: hostname, label: `외부 유입 · ${hostname}` };
+  } catch {
+    if (rawUrl.startsWith('/')) {
+      return { kind: 'internal' as const, fromPath: rawUrl, label: rawUrl };
+    }
+    return { kind: 'direct' as const, fromPath: '', label: '직접 또는 외부 진입' };
   }
 };
 
@@ -318,8 +391,13 @@ const groupPages = (viewRows: ParsedRow[], engagementRows: ParsedRow[]): Analyti
 const parseOverview = (rows: ParsedRow[], eventName: string) => {
   const row = rows.find(item => item.eventName === eventName);
   return row
-    ? { count: numberValue(row.eventCount), users: numberValue(row.totalUsers) }
-    : { count: 0, users: 0 };
+    ? {
+        count: numberValue(row.eventCount),
+        users: numberValue(row.totalUsers),
+        sessions: numberValue(row.sessions),
+        value: numberValue(row.eventValue),
+      }
+    : { count: 0, users: 0, sessions: 0, value: 0 };
 };
 
 const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashboardData> => {
@@ -338,7 +416,7 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
     'screenPageViewsPerSession',
   ].map(metric);
 
-  const [basicResult, behaviorResult, journeyResult] = await Promise.all([
+  const [basicResult, behaviorResult, journeyResult, quoteResult] = await Promise.all([
     client.batchRunReports({
       property,
       requests: [
@@ -441,7 +519,7 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
         {
           dateRanges: [currentRange],
           dimensions: [dimension('eventName')],
-          metrics: [metric('eventCount'), metric('totalUsers')],
+          metrics: [metric('eventCount'), metric('totalUsers'), metric('sessions')],
           dimensionFilter: eventFilter(['agency_cta_click', 'agency_cta_impression']),
           limit: 5,
         },
@@ -455,11 +533,70 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
         },
       ],
     }),
+    client.batchRunReports({
+      property,
+      requests: [
+        {
+          dateRanges: [currentRange],
+          dimensions: [dimension('eventName')],
+          metrics: [metric('eventCount'), metric('sessions'), metric('totalUsers'), metric('eventValue')],
+          dimensionFilter: andFilter(
+            eventFilter([...QUOTE_VIEW_EVENTS, QUOTE_REACHED_EVENT, QUOTE_TIMING_EVENT]),
+            exactPathFilter('pagePath', QUOTE_PATH_PATTERN),
+          ),
+          limit: 10,
+        },
+        {
+          dateRanges: [currentRange],
+          dimensions: [dimension('date'), dimension('hour'), dimension('eventName')],
+          metrics: [metric('eventCount'), metric('sessions'), metric('totalUsers'), metric('eventValue')],
+          dimensionFilter: andFilter(
+            eventFilter([...QUOTE_VIEW_EVENTS, QUOTE_REACHED_EVENT, QUOTE_TIMING_EVENT]),
+            exactPathFilter('pagePath', QUOTE_PATH_PATTERN),
+          ),
+          orderBys: [dimensionOrder('date'), dimensionOrder('hour')],
+          limit: 10000,
+        },
+        {
+          dateRanges: [currentRange],
+          dimensions: [dimension('eventName'), dimension('pageReferrer'), dimension('linkId'), dimension('linkText')],
+          metrics: [metric('eventCount'), metric('sessions'), metric('totalUsers')],
+          dimensionFilter: andFilter(
+            eventFilter([QUOTE_REACHED_EVENT]),
+            exactPathFilter('pagePath', QUOTE_PATH_PATTERN),
+          ),
+          orderBys: [metricOrder('sessions')],
+          limit: 100,
+        },
+        {
+          dateRanges: [currentRange],
+          dimensions: [dimension('sessionPrimaryChannelGroup'), dimension('sessionSourceMedium'), dimension('eventName')],
+          metrics: [metric('sessions'), metric('totalUsers'), metric('eventCount')],
+          dimensionFilter: andFilter(
+            eventFilter(QUOTE_VIEW_EVENTS),
+            exactPathFilter('pagePath', QUOTE_PATH_PATTERN),
+          ),
+          orderBys: [metricOrder('sessions')],
+          limit: 100,
+        },
+        {
+          dateRanges: [currentRange],
+          dimensions: [dimension('eventName')],
+          metrics: [metric('eventCount'), metric('sessions'), metric('totalUsers')],
+          dimensionFilter: andFilter(
+            eventFilter(['agency_cta_click', 'click']),
+            inListFilter('linkUrl', agencyLinkUrls),
+          ),
+          limit: 5,
+        },
+      ],
+    }),
   ]);
 
   const basicReports = basicResult[0].reports ?? [];
   const behaviorReports = behaviorResult[0].reports ?? [];
   const journeyReports = journeyResult[0].reports ?? [];
+  const quoteReports = quoteResult[0].reports ?? [];
   const current = parseSummary(basicReports[0]);
   const previous = parseSummary(basicReports[1]);
   const summaryKeys = Object.keys(current) as Array<keyof AnalyticsSummaryMetrics>;
@@ -487,6 +624,83 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
     : selectedClickRows.reduce((sum, row) => sum + numberValue(row.eventCount), 0);
   const impressionCount = impressionOverview.count || impressionRows.reduce((sum, row) => sum + numberValue(row.eventCount), 0);
 
+  const quoteOverviewRows = parseRows(quoteReports[0]);
+  const hasSemanticQuoteViews = quoteOverviewRows.some(
+    row => row.eventName === 'site_content_view' && numberValue(row.eventCount) > 0,
+  );
+  const hasLegacyQuoteViews = quoteOverviewRows.some(
+    row => row.eventName === 'page_view' && numberValue(row.eventCount) > 0,
+  );
+  const quoteViewEvent = hasSemanticQuoteViews
+    ? 'site_content_view'
+    : hasLegacyQuoteViews
+      ? 'page_view'
+      : '';
+  const quoteViewOverview = quoteViewEvent
+    ? parseOverview(quoteOverviewRows, quoteViewEvent)
+    : parseOverview([], '');
+  const quoteReachedOverview = parseOverview(quoteOverviewRows, QUOTE_REACHED_EVENT);
+  const quoteTimingOverview = parseOverview(quoteOverviewRows, QUOTE_TIMING_EVENT);
+  const quoteTrackingMode = quoteReachedOverview.count > 0 && quoteTimingOverview.count > 0
+    ? 'precise'
+    : hasSemanticQuoteViews
+      ? 'basic'
+      : hasLegacyQuoteViews
+        ? 'legacy'
+        : 'waiting';
+
+  const quoteClickRows = parseRows(quoteReports[4]);
+  const quoteHasCustomClicks = quoteClickRows.some(
+    row => row.eventName === 'agency_cta_click' && numberValue(row.eventCount) > 0,
+  );
+  const quoteClickEvent = quoteViewEvent === 'site_content_view'
+    ? 'agency_cta_click'
+    : quoteViewEvent === 'page_view'
+      ? 'click'
+      : quoteHasCustomClicks
+        ? 'agency_cta_click'
+        : 'click';
+  const quoteClickOverview = parseOverview(
+    quoteClickRows,
+    quoteClickEvent,
+  );
+
+  const quoteTimeRows = parseRows(quoteReports[1]).filter(row => row.eventName === quoteViewEvent);
+  const quoteByDate = new Map<string, { views: number; sessions: number }>();
+  const quoteByHour = new Map<number, number>();
+  quoteTimeRows.forEach(row => {
+    const date = formatGaDate(row.date);
+    const daily = quoteByDate.get(date) ?? { views: 0, sessions: 0 };
+    daily.views += numberValue(row.eventCount);
+    daily.sessions += numberValue(row.sessions);
+    quoteByDate.set(date, daily);
+
+    const hour = Number(row.hour);
+    if (Number.isInteger(hour) && hour >= 0 && hour <= 23) {
+      quoteByHour.set(hour, (quoteByHour.get(hour) ?? 0) + numberValue(row.eventCount));
+    }
+  });
+
+  const quoteHourly: AnalyticsQuoteHourRow[] = Array.from({ length: 24 }, (_, hour) => {
+    const entries = quoteByHour.get(hour) ?? 0;
+    return {
+      hour,
+      label: `${String(hour).padStart(2, '0')}–${String((hour + 1) % 24).padStart(2, '0')}시`,
+      entries,
+      share: ratio(entries, quoteViewOverview.count),
+    };
+  });
+
+  const quoteAcquisitionRows = parseRows(quoteReports[3]).filter(row => row.eventName === quoteViewEvent);
+  const quoteByAcquisition = new Map<string, { sessions: number; users: number }>();
+  quoteAcquisitionRows.forEach(row => {
+    const key = `${row.sessionPrimaryChannelGroup}\u0000${row.sessionSourceMedium}`;
+    const existing = quoteByAcquisition.get(key) ?? { sessions: 0, users: 0 };
+    existing.sessions += numberValue(row.sessions);
+    existing.users += numberValue(row.totalUsers);
+    quoteByAcquisition.set(key, existing);
+  });
+
   const dailyAgencyRows = parseRows(journeyReports[4]);
   const dailyCustomClicksExist = dailyAgencyRows.some(
     row => row.eventName === 'agency_cta_click' && findAgencyDestination(row.linkUrl) && numberValue(row.eventCount) > 0,
@@ -512,6 +726,8 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
       sessions: numberValue(row.sessions),
       activeUsers: numberValue(row.activeUsers),
       pageViews: numberValue(row.screenPageViews),
+      quoteViews: quoteByDate.get(date)?.views ?? 0,
+      quoteSessions: quoteByDate.get(date)?.sessions ?? 0,
       agencyClicks: agency.clicks,
       agencyImpressions: agency.impressions,
     };
@@ -531,6 +747,9 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
 
   const acquisition: AnalyticsAcquisitionRow[] = parseRows(basicReports[3]).map(row => {
     const click = clicksBySource.get(row.sessionSourceMedium) ?? { clicks: 0, sessions: 0 };
+    const quote = quoteByAcquisition.get(
+      `${row.sessionPrimaryChannelGroup}\u0000${row.sessionSourceMedium}`,
+    ) ?? { sessions: 0, users: 0 };
     const sessions = numberValue(row.sessions);
     return {
       channel: row.sessionPrimaryChannelGroup || '기타',
@@ -539,6 +758,9 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
       activeUsers: numberValue(row.activeUsers),
       engagementRate: numberValue(row.engagementRate),
       averageSessionDuration: numberValue(row.averageSessionDuration),
+      quoteSessions: quote.sessions,
+      quoteUsers: quote.users,
+      quoteReachRate: ratio(quote.sessions, sessions),
       agencyClicks: click.clicks,
       agencyClickSessions: click.sessions,
       agencyClickRate: ratio(click.sessions, sessions),
@@ -575,6 +797,90 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
     engagementRate: numberValue(row.engagementRate),
   }));
 
+  const quoteLandingSessions = landingPages
+    .filter(row => isQuotePath(row.path))
+    .reduce((sum, row) => sum + row.sessions, 0);
+  const preciseQuoteEntries = parseRows(quoteReports[2]).filter(
+    row => row.eventName === QUOTE_REACHED_EVENT && numberValue(row.eventCount) > 0,
+  );
+  const quoteEntryMap = new Map<string, AnalyticsQuoteEntryRow>();
+
+  preciseQuoteEntries.forEach(row => {
+    const classification = classifyQuoteReferrer(row.pageReferrer);
+    const trackedLinkId = row.linkId && row.linkId !== '(not set)' ? row.linkId : '';
+    const trackedLinkText = row.linkText && row.linkText !== '(not set)' ? row.linkText : '';
+    const sourceId = trackedLinkId || (classification.kind === 'internal' ? 'internal_navigation' : 'direct_or_external');
+    const key = `${sourceId}\u0000${classification.fromPath}`;
+    const existing = quoteEntryMap.get(key) ?? {
+      sourceId,
+      label: quoteEntryLabels[sourceId] || trackedLinkText || classification.label,
+      fromPath: classification.fromPath,
+      kind: classification.kind,
+      entries: 0,
+      sessions: 0,
+      users: 0,
+      share: null,
+    };
+    existing.entries += numberValue(row.eventCount);
+    existing.sessions += numberValue(row.sessions);
+    existing.users += numberValue(row.totalUsers);
+    quoteEntryMap.set(key, existing);
+  });
+
+  if (quoteEntryMap.size === 0) {
+    transitions
+      .filter(row => isQuotePath(row.toPath) && !isQuotePath(row.fromPath))
+      .forEach(row => {
+        const key = `legacy_internal\u0000${row.fromPath}`;
+        const existing = quoteEntryMap.get(key) ?? {
+          sourceId: 'legacy_internal',
+          label: quoteEntryLabels.legacy_internal,
+          fromPath: row.fromPath,
+          kind: 'internal' as const,
+          entries: 0,
+          sessions: 0,
+          users: 0,
+          share: null,
+        };
+        existing.entries += row.count;
+        existing.sessions += row.count;
+        existing.users += row.users;
+        quoteEntryMap.set(key, existing);
+      });
+
+    if (quoteLandingSessions > 0) {
+      quoteEntryMap.set('legacy_landing\u0000', {
+        sourceId: 'legacy_landing',
+        label: quoteEntryLabels.legacy_landing,
+        fromPath: '',
+        kind: 'direct',
+        entries: quoteLandingSessions,
+        sessions: quoteLandingSessions,
+        users: landingPages
+          .filter(row => isQuotePath(row.path))
+          .reduce((sum, row) => sum + row.activeUsers, 0),
+        share: null,
+      });
+    }
+  }
+
+  const quoteEntrySources = [...quoteEntryMap.values()]
+    .map(row => ({ ...row, share: ratio(row.sessions, quoteViewOverview.sessions) }))
+    .sort((left, right) => right.sessions - left.sessions || right.entries - left.entries)
+    .slice(0, 12);
+
+  const averageSecondsToReach = quoteTimingOverview.count > 0
+    ? quoteTimingOverview.value / quoteTimingOverview.count
+    : null;
+  const quoteAgencyClicks = quoteViewEvent === 'site_content_view'
+    ? quoteClickOverview.count
+    : (quoteClickOverview.count || clickCount);
+  const quoteAgencyClickSessions = quoteClickOverview.sessions;
+  const quoteAgencyClickUsers = quoteClickOverview.users;
+  const quoteFunnelComparable = quoteTrackingMode !== 'legacy'
+    && quoteTrackingMode !== 'waiting'
+    && quoteAgencyClickSessions <= quoteViewOverview.sessions;
+
   const pageViewRows = parseRows(behaviorReports[0]);
   const warnings = ['오늘 데이터는 GA4 처리 상황에 따라 이후 소폭 조정될 수 있습니다.'];
   if (trackingMode === 'legacy') {
@@ -588,6 +894,12 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
   if (exits.length === 0) {
     warnings.push('이탈 감지 데이터는 이번 배포 이후부터 쌓입니다.');
   }
+  if (quoteTrackingMode !== 'precise') {
+    warnings.push('견적비교 최초 도달시간과 정확한 진입 위치는 이번 배포 이후부터 쌓입니다.');
+  }
+  if (!quoteFunnelComparable && quoteAgencyClickSessions > 0) {
+    warnings.push('기존 견적 조회와 외부 클릭의 수집 기준이 달라 견적→여행사 연결률은 새 추적 데이터가 쌓일 때까지 표시하지 않습니다.');
+  }
 
   return {
     ok: true,
@@ -599,9 +911,29 @@ const buildDashboard = async (days: AnalyticsRangeDays): Promise<AnalyticsDashbo
     acquisition,
     landingPages,
     pages: groupPages(pageViewRows, parseRows(behaviorReports[1])),
+    quoteComparison: {
+      summary: {
+        views: quoteViewOverview.count,
+        sessions: quoteViewOverview.sessions,
+        users: quoteViewOverview.users,
+        reachRate: ratio(quoteViewOverview.sessions, current.sessions),
+        landingSessions: quoteLandingSessions,
+        landingShare: ratio(quoteLandingSessions, quoteViewOverview.sessions),
+        averageSecondsToReach,
+        agencyClicks: quoteAgencyClicks,
+        agencyClickSessions: quoteAgencyClickSessions,
+        agencyClickUsers: quoteAgencyClickUsers,
+        agencyClickRate: quoteFunnelComparable
+          ? ratio(quoteAgencyClickSessions, quoteViewOverview.sessions)
+          : null,
+        trackingMode: quoteTrackingMode,
+      },
+      entrySources: quoteEntrySources,
+      hourly: quoteHourly,
+    },
     agencies: {
       clicks: clickCount,
-      clickUsers: hasCustomClicks ? clickOverview.users : null,
+      clickUsers: hasCustomClicks ? clickOverview.users : (quoteAgencyClickUsers || null),
       impressions: impressionCount,
       impressionUsers: impressionOverview.count > 0 ? impressionOverview.users : null,
       clickRate: ratio(clickCount, impressionCount),
