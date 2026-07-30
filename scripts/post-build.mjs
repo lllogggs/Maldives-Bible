@@ -1496,18 +1496,18 @@ const buildStandaloneStyles = () => `
   </style>`;
 
 const travelAgencies = [
-  { name: '투어민', website: 'https://www.tourmin.co.kr', kakao: 'https://pf.kakao.com/_LxbYBM' },
-  { name: '푸른여행클럽', website: 'https://cafe.naver.com/honeymoonp', kakao: 'https://pf.kakao.com/_UZNxgd' },
-  { name: '리얼몰디브', website: 'https://realmaldives.co.kr', kakao: 'https://pf.kakao.com/_NcnxaG' },
-  { name: '트레비아', website: 'https://www.trevia.co.kr', kakao: 'https://pf.kakao.com/_xixjNQl' },
-  { name: '나래여행사', website: 'http://www.nadree.net/' },
-  { name: '하이몰디브', website: 'https://www.himaldives.co.kr/' },
-  { name: '여행산책', website: 'https://www.tourw.co.kr/' },
-  { name: '잇츠마이트래블', website: 'http://itsmytravel.co.kr/', kakao: 'https://pf.kakao.com/_qgDUxd' },
-  { name: '투어플래닛', website: 'http://www.tour-planet.co.kr/', kakao: 'https://pf.kakao.com/_LYSSl' },
-  { name: '허니문리조트', website: 'http://www.honeymoonresort.co.kr/', kakao: 'https://pf.kakao.com/_gkKlE' },
-  { name: '천생연분닷컴', website: 'https://www.1000syb.com/' },
-  { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao: 'https://pf.kakao.com/_Hxmxaxexj' },
+  { id: 'tourmin', name: '투어민', website: 'https://www.tourmin.co.kr', kakao: 'https://pf.kakao.com/_LxbYBM' },
+  { id: 'pureun-travel-club', name: '푸른여행클럽', website: 'https://cafe.naver.com/honeymoonp', kakao: 'https://pf.kakao.com/_UZNxgd' },
+  { id: 'real-maldives', name: '리얼몰디브', website: 'https://realmaldives.co.kr', kakao: 'https://pf.kakao.com/_NcnxaG' },
+  { id: 'trevia', name: '트레비아', website: 'https://www.trevia.co.kr', kakao: 'https://pf.kakao.com/_xixjNQl' },
+  { id: 'nadree', name: '나래여행사', website: 'http://www.nadree.net/' },
+  { id: 'hi-maldives', name: '하이몰디브', website: 'https://www.himaldives.co.kr/' },
+  { id: 'travel-walk', name: '여행산책', website: 'https://www.tourw.co.kr/' },
+  { id: 'its-my-travel', name: '잇츠마이트래블', website: 'http://itsmytravel.co.kr/', kakao: 'https://pf.kakao.com/_qgDUxd' },
+  { id: 'tour-planet', name: '투어플래닛', website: 'http://www.tour-planet.co.kr/', kakao: 'https://pf.kakao.com/_LYSSl' },
+  { id: 'honeymoon-resort', name: '허니문리조트', website: 'http://www.honeymoonresort.co.kr/', kakao: 'https://pf.kakao.com/_gkKlE' },
+  { id: '1000syb', name: '천생연분닷컴', website: 'https://www.1000syb.com/' },
+  { id: 'palm-tour', name: '팜투어', website: 'https://www.palmtour.co.kr', kakao: 'https://pf.kakao.com/_Hxmxaxexj' },
 ];
 
 const buildCoreFigure = (page) => {
@@ -1567,8 +1567,8 @@ const buildQuoteComparisonContent = () => {
       <h3>${escapeHtml(agency.name)}</h3>
       <span>여행사의 공개 홈페이지${agency.kakao ? '와 카카오 상담 채널' : ''}을 확인할 수 있습니다.</span>
       <div class="seo-static__agency-links">
-        <a href="${agency.website}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(agency.name)} 홈페이지 새 창에서 열기">홈페이지</a>
-        ${agency.kakao ? `<a href="${agency.kakao}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(agency.name)} 카카오톡 채널 새 창에서 열기">카카오 채널</a>` : ''}
+        <a href="${agency.website}" target="_blank" rel="noopener noreferrer" data-agency-id="${agency.id}" data-agency-name="${escapeHtml(agency.name)}" data-agency-channel="website" aria-label="${escapeHtml(agency.name)} 홈페이지 새 창에서 열기">홈페이지</a>
+        ${agency.kakao ? `<a href="${agency.kakao}" target="_blank" rel="noopener noreferrer" data-agency-id="${agency.id}" data-agency-name="${escapeHtml(agency.name)}" data-agency-channel="kakao" aria-label="${escapeHtml(agency.name)} 카카오톡 채널 새 창에서 열기">카카오 채널</a>` : ''}
       </div>
     </article>`).join('');
   return `
@@ -2025,6 +2025,19 @@ const injectMeta = ({
   );
 };
 
+const buildAnalyticsAdminShell = (html) => {
+  let updated = html.replace(/<title>.*?<\/title>/, '<title>관리자 분석실 | 몰디브 바이블</title>');
+  updated = replaceMetaContent(updated, 'name', 'description', '몰디브 바이블 운영자 전용 행동분석 대시보드');
+  updated = replaceMetaContent(updated, 'name', 'robots', 'noindex,nofollow,noarchive');
+  updated = replaceMetaContent(updated, 'name', 'googlebot', 'noindex,nofollow,noarchive');
+  updated = updated
+    .replace(/<link rel="canonical" href=".*?"\s*\/>/, `<link rel="canonical" href="${siteUrl}/admin/analytics/" />`)
+    .replace(/\s*<link rel="alternate"[^>]*>/g, '')
+    .replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '')
+    .replace(/\s*<!-- Google Tag Manager \(noscript\) -->[\s\S]*?<!-- End Google Tag Manager \(noscript\) -->/i, '');
+  return updated;
+};
+
 const injectStaticRoot = (html, content, { preserveStaticContent = false } = {}) => {
   const updated = html.replace(
     /<div id="root">[\s\S]*?<\/div>\s*<\/body>/,
@@ -2305,9 +2318,13 @@ try {
     staticPageEntries.push({ slug: page.slug, lastmod: page.modifiedAt, priority: '0.8' });
   }
 
+  const analyticsAdminPath = resolve(distDir, 'admin', 'analytics', 'index.html');
+  await mkdir(dirname(analyticsAdminPath), { recursive: true });
+  await writeFile(analyticsAdminPath, buildAnalyticsAdminShell(template), 'utf-8');
+
   await writeFile(source, injectStaticRoot(template, buildHomeStaticFallback()), 'utf-8');
   await updateSitemap(resortEntries, staticPageEntries);
-  console.log(`Generated ${resortEntries.length} resort pages, ${staticPageEntries.length} static pages, a crawlable home fallback, and updated sitemap.`);
+  console.log(`Generated ${resortEntries.length} resort pages, ${staticPageEntries.length} static pages, a private analytics shell, a crawlable home fallback, and updated sitemap.`);
 } catch (error) {
   console.error('Post-build step failed', error);
   process.exitCode = 1;
