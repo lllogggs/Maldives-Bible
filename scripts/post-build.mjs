@@ -780,17 +780,26 @@ const buildEditorReviewContent = (editorReview) => {
   if (!review) return '';
 
   return `
-    <article class="seo-editor-review" aria-labelledby="seo-editor-review-title" style="margin:24px 0 26px;overflow:hidden;border:1px solid #dbe7e4;border-radius:16px;background:#fff;box-shadow:0 12px 30px rgba(15,23,42,.06);">
-      <header style="padding:28px;background:linear-gradient(135deg,#020617 0%,#0f172a 55%,#134e4a 100%);color:#fff;">
-        <p style="margin:0;color:#99f6e4;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;">MALDIVES BIBLE EDITOR REVIEW</p>
-        <h2 id="seo-editor-review-title" style="margin:10px 0 0;color:#fff;font-size:28px;line-height:1.28;letter-spacing:-.025em;">${escapeHtml(review.title)}</h2>
-        <p style="margin:14px 0 0;max-width:760px;color:#dbeafe;font-size:16px;font-weight:600;line-height:1.75;">${escapeHtml(review.dek)}</p>
+    <article class="seo-editor-review" aria-labelledby="seo-editor-review-title" style="margin:24px 0 26px;overflow:hidden;border:1px solid #dbe4e1;border-radius:18px;background:#fffdfa;box-shadow:0 16px 40px rgba(15,23,42,.06);">
+      <div aria-hidden="true" style="height:4px;background:linear-gradient(90deg,#0f766e 0%,#2dd4bf 58%,#fcd34d 100%);"></div>
+      <header style="padding:28px;background:radial-gradient(circle at top right,rgba(13,148,136,.08),transparent 42%);border-bottom:1px solid rgba(226,232,240,.9);">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span aria-hidden="true" style="display:block;width:32px;height:1px;flex:none;background:#0f766e;"></span>
+          <p style="margin:0;color:#115e59;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;">MALDIVES BIBLE · EDITOR REVIEW</p>
+        </div>
+        <h2 id="seo-editor-review-title" style="margin:14px 0 0;max-width:820px;color:#0f172a;font-size:28px;line-height:1.3;letter-spacing:-.03em;">${escapeHtml(review.title)}</h2>
+        <p style="margin:14px 0 0;max-width:68ch;color:#475569;font-size:16px;font-weight:600;line-height:1.75;">${escapeHtml(review.dek)}</p>
       </header>
-      <div style="padding:28px;">
-        ${review.paragraphs.map((paragraph) => `<p style="margin:0 0 18px;max-width:760px;color:#334155;font-size:16px;line-height:1.9;">${escapeHtml(paragraph)}</p>`).join('')}
-        <aside style="margin-top:22px;border:1px solid #ccfbf1;border-radius:12px;background:#f0fdfa;padding:16px 18px;">
-          <p style="margin:0;color:#0f766e;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;">EDITOR'S PICK</p>
-          <p style="margin:8px 0 0;color:#0f172a;font-size:15px;font-weight:700;line-height:1.7;">${escapeHtml(review.verdict)}</p>
+      <div class="seo-editor-review-body" style="display:grid;grid-template-columns:minmax(0,1fr) 240px;align-items:start;gap:32px;padding:28px;">
+        <div class="seo-editor-review-copy" style="max-width:68ch;">
+          ${review.paragraphs.map((paragraph, index) => `<p style="margin:${index === 0 ? '0' : '18px'} 0 0;color:#334155;font-size:16px;line-height:1.75;">${escapeHtml(paragraph)}</p>`).join('')}
+        </div>
+        <aside class="seo-editor-review-note" style="border:1px solid rgba(253,230,138,.8);border-radius:12px;background:#fbf7ee;padding:18px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span aria-hidden="true" style="display:block;width:6px;height:6px;border-radius:50%;background:#0f766e;"></span>
+            <h3 style="margin:0;color:#115e59;font-size:12px;font-weight:800;letter-spacing:-.01em;">에디터의 결론</h3>
+          </div>
+          <p style="margin:10px 0 0;color:#0f172a;font-size:15px;font-weight:700;line-height:1.7;">${escapeHtml(review.verdict)}</p>
         </aside>
       </div>
     </article>`;
@@ -850,16 +859,20 @@ const buildResortPageContent = (resort) => {
 
   return `
     <style>
+      @media (max-width:760px) {
+        .seo-editor-review-body { grid-template-columns:minmax(0,1fr) !important; }
+        .seo-editor-review-note { grid-row:1; }
+      }
       @media (max-width:480px) {
         .seo-resort-page { padding:22px 12px !important; }
         .seo-resort-card { padding:18px !important; }
         .seo-resort-card h1 { font-size:clamp(28px,9vw,34px) !important;line-height:1.22 !important;letter-spacing:-.035em;overflow-wrap:anywhere; }
         .seo-resort-review-grid { grid-template-columns:minmax(0,1fr) !important; }
-        .seo-editor-review header, .seo-editor-review > div { padding:20px !important; }
+        .seo-editor-review header, .seo-editor-review-body { padding:16px !important; }
         .seo-editor-review h2 { font-size:24px !important; }
       }
     </style>
-    <main class="seo-resort-page" style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
+    <main class="seo-resort-page" style="font-family:'NanumSquareNeo','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
       <article class="seo-resort-card" style="max-width:920px;margin:0 auto;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:26px;">
         <p style="margin:0 0 8px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">몰디브 리조트 상세</p>
         <h1 style="margin:0;font-size:38px;line-height:1.18;">${escapeHtml(name)}</h1>

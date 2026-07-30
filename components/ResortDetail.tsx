@@ -316,6 +316,24 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
   };
 
   const gridImages = displayedImages.slice(1, 5);
+  const desktopGalleryGridClass = displayedImages.length === 1
+    ? 'md:grid-cols-1 md:grid-rows-1'
+    : displayedImages.length === 2
+      ? 'md:grid-cols-2 md:grid-rows-1'
+      : displayedImages.length === 3
+        ? 'md:grid-cols-3 md:grid-rows-2'
+        : 'md:grid-cols-4 md:grid-rows-2';
+  const desktopMainImageClass = displayedImages.length <= 2
+    ? 'col-span-1 row-span-1'
+    : 'col-span-2 row-span-2';
+
+  const getDesktopThumbnailClass = (index: number) => {
+    if (displayedImages.length === 4 && index === 2) {
+      return 'col-span-2 row-span-1';
+    }
+
+    return 'col-span-1 row-span-1';
+  };
 
   return (
     <div className="animate-fade-in">
@@ -354,8 +372,8 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
             {hasDisplayImages ? (
             <>
             {/* Desktop Grid */}
-            <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 md:gap-2 md:h-[450px]">
-                <div className="col-span-2 row-span-2 group relative overflow-hidden">
+            <div className={`hidden md:grid md:h-[450px] md:gap-2 ${desktopGalleryGridClass}`}>
+                <div className={`${desktopMainImageClass} group relative overflow-hidden`}>
                     <button
                       type="button"
                       className="h-full w-full cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-teal-400"
@@ -388,7 +406,7 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
                   return (
                     <div
                       key={`${image.originalIndex}-${image.url}`}
-                      className="col-span-1 row-span-1 group relative overflow-hidden"
+                      className={`${getDesktopThumbnailClass(index)} group relative overflow-hidden`}
                     >
                       <button
                         type="button"
