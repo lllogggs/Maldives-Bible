@@ -38,21 +38,30 @@
     />
     <meta name="twitter:image" content="https://www.maldivesbible.com/og-image.jpg" />
     <meta name="twitter:image:alt" content="몰디브 라군과 리조트 전경" />
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6227921544579562"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y00T1V6W91"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+      if (!window.location.pathname.startsWith("/admin/analytics")) {
+        const adsScript = document.createElement("script");
+        adsScript.async = true;
+        adsScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6227921544579562";
+        adsScript.crossOrigin = "anonymous";
+        document.head.appendChild(adsScript);
       }
-      gtag("js", new Date());
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script>
+      if (!window.location.pathname.startsWith("/admin/analytics")) {
+        const googleTag = document.createElement("script");
+        googleTag.async = true;
+        googleTag.src = "https://www.googletagmanager.com/gtag/js?id=G-Y00T1V6W91";
+        document.head.appendChild(googleTag);
 
-      gtag("config", "G-Y00T1V6W91");
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag("js", new Date());
+        window.gtag("config", "G-Y00T1V6W91");
+      }
     </script>
     <meta name="application-name" content="몰디브 바이블" />
     <meta name="apple-mobile-web-app-title" content="몰디브 바이블" />
@@ -123,30 +132,34 @@
     <!-- Tailwind styles are bundled via Vite build -->
     <!-- Google Tag Manager -->
     <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        const f = d.getElementsByTagName(s)[0];
-        const j = d.createElement(s);
-        const dl = l !== "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WCJSNM2Q");
+      if (!window.location.pathname.startsWith("/admin/analytics")) {
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          const f = d.getElementsByTagName(s)[0];
+          const j = d.createElement(s);
+          const dl = l !== "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-WCJSNM2Q");
+      }
     </script>
     <!-- End Google Tag Manager -->
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
-      (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () {
-          (c[a].q = c[a].q || []).push(arguments);
-        };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "u13oj1cs74");
+      if (!window.location.pathname.startsWith("/admin/analytics")) {
+        (function (c, l, a, r, i, t, y) {
+          c[a] = c[a] || function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+          t = l.createElement(r);
+          t.async = 1;
+          t.src = "https://www.clarity.ms/tag/" + i;
+          y = l.getElementsByTagName(r)[0];
+          y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "u13oj1cs74");
+      }
     </script>
     <!-- End Microsoft Clarity -->
 <!-- Styles injected by Vite -->

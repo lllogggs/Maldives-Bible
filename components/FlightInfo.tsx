@@ -149,6 +149,7 @@ const FlightInfo: React.FC<FlightInfoProps> = ({ onShowResorts, onShowQuote }) =
             <button
               type="button"
               onClick={onShowQuote}
+              data-quote-entry="flight_guide_cta"
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm transition hover:border-teal-200 hover:bg-teal-50"
             >
               견적 문의 보기

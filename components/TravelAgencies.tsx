@@ -1,26 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { TRAVEL_AGENCIES } from '../data/travel-agencies';
+import { trackAgencyImpression } from '../utils/analytics';
 import { BuildingIcon, DollarIcon, LinkIcon, KakaoIcon, UserIcon } from './icons/Icons';
-
-interface Agency {
-  name: string;
-  website: string | null;
-  kakao_channel: string | null;
-}
-
-const agencies: Agency[] = [
-  { name: '투어민', website: 'https://www.tourmin.co.kr', kakao_channel: 'https://pf.kakao.com/_LxbYBM' },
-  { name: '푸른여행클럽', website: 'https://cafe.naver.com/honeymoonp', kakao_channel: 'https://pf.kakao.com/_UZNxgd' },
-  { name: '리얼몰디브', website: 'https://realmaldives.co.kr', kakao_channel: 'https://pf.kakao.com/_NcnxaG' },
-  { name: '트레비아', website: 'https://www.trevia.co.kr', kakao_channel: 'https://pf.kakao.com/_xixjNQl' },
-  { name: '나래여행사', website: 'http://www.nadree.net/', kakao_channel: null },
-  { name: '하이몰디브', website: 'https://www.himaldives.co.kr/', kakao_channel: null },
-  { name: '여행산책', website: 'https://www.tourw.co.kr/', kakao_channel: null },
-  { name: '잇츠마이트래블', website: 'http://itsmytravel.co.kr/', kakao_channel: 'https://pf.kakao.com/_qgDUxd' },
-  { name: '투어플래닛', website: 'http://www.tour-planet.co.kr/', kakao_channel: 'https://pf.kakao.com/_LYSSl' },
-  { name: '허니문리조트', website: 'http://www.honeymoonresort.co.kr/', kakao_channel: 'https://pf.kakao.com/_gkKlE' },
-  { name: '천생연분닷컴', website: 'https://www.1000syb.com/', kakao_channel: null },
-  { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao_channel: 'https://pf.kakao.com/_Hxmxaxexj' },
-];
 
 interface RouteStep {
   actor: string;
@@ -103,12 +84,56 @@ const PriceRoute: React.FC<{
 );
 
 const TravelAgencies: React.FC = () => {
+  const agencyGridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = agencyGridRef.current;
+    if (!grid || typeof IntersectionObserver === 'undefined') return;
+
+    const timers = new Map<HTMLAnchorElement, number>();
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const anchor = entry.target as HTMLAnchorElement;
+          const existingTimer = timers.get(anchor);
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            if (existingTimer !== undefined) return;
+            const timer = window.setTimeout(() => {
+              timers.delete(anchor);
+              trackAgencyImpression(anchor);
+              observer.unobserve(anchor);
+            }, 500);
+            timers.set(anchor, timer);
+            return;
+          }
+
+          if (existingTimer !== undefined) {
+            window.clearTimeout(existingTimer);
+            timers.delete(anchor);
+          }
+        });
+      },
+      { threshold: [0.5] },
+    );
+
+    grid
+      .querySelectorAll<HTMLAnchorElement>('a[data-agency-id][data-agency-channel]')
+      .forEach(anchor => observer.observe(anchor));
+
+    return () => {
+      timers.forEach(timer => window.clearTimeout(timer));
+      timers.clear();
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="animate-fade-in space-y-6 pb-10">
       <section className="flex items-center justify-between border-b border-slate-200 pb-4">
         <h1 className="font-brand-heading text-2xl text-slate-950">몰디브 여행사 견적 비교</h1>
         <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
-          {agencies.length}곳
+          {TRAVEL_AGENCIES.length}곳
         </span>
       </section>
 
@@ -167,8 +192,8 @@ const TravelAgencies: React.FC = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {agencies.map(agency => (
+        <div ref={agencyGridRef} className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {TRAVEL_AGENCIES.map(agency => (
             <article key={agency.name} className="flex min-h-[96px] flex-col rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5">
             <h3 className="line-clamp-1 text-base font-bold text-slate-950" title={agency.name}>
               {agency.name}
@@ -179,6 +204,9 @@ const TravelAgencies: React.FC = () => {
                   href={agency.website}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-agency-id={agency.id}
+                  data-agency-name={agency.name}
+                  data-agency-channel="website"
                   aria-label={`${agency.name} 홈페이지 새 창에서 열기`}
                   className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-50"
                 >
@@ -192,6 +220,9 @@ const TravelAgencies: React.FC = () => {
                   href={agency.kakao_channel}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-agency-id={agency.id}
+                  data-agency-name={agency.name}
+                  data-agency-channel="kakao"
                   aria-label={`${agency.name} 카카오톡 채널 새 창에서 열기`}
                   className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#FAE100] px-3 text-xs font-bold text-[#371D1E] transition-colors hover:bg-[#f5dc00]"
                 >

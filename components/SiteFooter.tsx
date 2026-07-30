@@ -82,7 +82,7 @@ const SiteFooter: React.FC = () => (
     >
       <a href="/start/" className="text-slate-700 hover:text-teal-900">시작하기</a>
       <a href="/maldives-resort-comparison/" className="text-slate-700 hover:text-teal-900">몰디브 리조트 비교</a>
-      <a href="/quote-comparison/" className="text-slate-700 hover:text-teal-900">몰디브 여행사 견적 비교</a>
+      <a href="/quote-comparison/" data-quote-entry="site_footer" className="text-slate-700 hover:text-teal-900">몰디브 여행사 견적 비교</a>
       <a href="/flight-guide/" className="text-slate-700 hover:text-teal-900">몰디브 항공 가이드</a>
     </nav>
 

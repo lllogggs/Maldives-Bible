@@ -133,7 +133,7 @@ const buildEditorialFooter = ({ maxWidth = '1120px', modifiedAt = siteDates.modi
   <footer style="max-width:${maxWidth};margin:28px auto 0;border-top:1px solid #dbe7e4;padding:18px 0 8px;color:#64748b;font-size:12px;line-height:1.7;">
     <p style="margin:0 0 8px;">몰디브 바이블 편집 · 최종 업데이트 ${modifiedAt.replaceAll('-', '.')}</p>
     <nav aria-label="몰디브 바이블 주요 서비스" style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:8px;">
-      ${primaryNavItems.map((item) => `<a href="${siteUrl}${item.path}" style="color:#0f766e;font-weight:800;text-decoration:none;">${item.label}</a>`).join('')}
+      ${primaryNavItems.map((item) => `<a href="${siteUrl}${item.path}"${item.path === '/quote-comparison/' ? ' data-quote-entry="static_footer"' : ''} style="color:#0f766e;font-weight:800;text-decoration:none;">${item.label}</a>`).join('')}
     </nav>
     <nav aria-label="사이트 정보" style="display:flex;flex-wrap:wrap;gap:8px 16px;">
       <a href="${toAbsoluteUrl('maldives-resorts')}" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 목록</a>
@@ -1479,7 +1479,7 @@ const buildStaticSiteHeader = (currentPath = '') => `
       </a>
       <nav aria-label="몰디브 바이블 주요 메뉴">
         ${primaryNavItems.map((item) => `
-          <a href="${siteUrl}${item.path}"${currentPath === item.path ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
+          <a href="${siteUrl}${item.path}"${item.path === '/quote-comparison/' ? ' data-quote-entry="static_header"' : ''}${currentPath === item.path ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
       </nav>
     </div>
   </header>`;
@@ -1534,18 +1534,18 @@ const buildStandaloneStyles = () => `
   </style>`;
 
 const travelAgencies = [
-  { name: '투어민', website: 'https://www.tourmin.co.kr', kakao: 'https://pf.kakao.com/_LxbYBM' },
-  { name: '푸른여행클럽', website: 'https://cafe.naver.com/honeymoonp', kakao: 'https://pf.kakao.com/_UZNxgd' },
-  { name: '리얼몰디브', website: 'https://realmaldives.co.kr', kakao: 'https://pf.kakao.com/_NcnxaG' },
-  { name: '트레비아', website: 'https://www.trevia.co.kr', kakao: 'https://pf.kakao.com/_xixjNQl' },
-  { name: '나래여행사', website: 'http://www.nadree.net/' },
-  { name: '하이몰디브', website: 'https://www.himaldives.co.kr/' },
-  { name: '여행산책', website: 'https://www.tourw.co.kr/' },
-  { name: '잇츠마이트래블', website: 'http://itsmytravel.co.kr/', kakao: 'https://pf.kakao.com/_qgDUxd' },
-  { name: '투어플래닛', website: 'http://www.tour-planet.co.kr/', kakao: 'https://pf.kakao.com/_LYSSl' },
-  { name: '허니문리조트', website: 'http://www.honeymoonresort.co.kr/', kakao: 'https://pf.kakao.com/_gkKlE' },
-  { name: '천생연분닷컴', website: 'https://www.1000syb.com/' },
-  { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao: 'https://pf.kakao.com/_Hxmxaxexj' },
+  { id: 'tourmin', name: '투어민', website: 'https://www.tourmin.co.kr', kakao: 'https://pf.kakao.com/_LxbYBM' },
+  { id: 'pureun-travel-club', name: '푸른여행클럽', website: 'https://cafe.naver.com/honeymoonp', kakao: 'https://pf.kakao.com/_UZNxgd' },
+  { id: 'real-maldives', name: '리얼몰디브', website: 'https://realmaldives.co.kr', kakao: 'https://pf.kakao.com/_NcnxaG' },
+  { id: 'trevia', name: '트레비아', website: 'https://www.trevia.co.kr', kakao: 'https://pf.kakao.com/_xixjNQl' },
+  { id: 'nadree', name: '나래여행사', website: 'http://www.nadree.net/' },
+  { id: 'hi-maldives', name: '하이몰디브', website: 'https://www.himaldives.co.kr/' },
+  { id: 'travel-walk', name: '여행산책', website: 'https://www.tourw.co.kr/' },
+  { id: 'its-my-travel', name: '잇츠마이트래블', website: 'http://itsmytravel.co.kr/', kakao: 'https://pf.kakao.com/_qgDUxd' },
+  { id: 'tour-planet', name: '투어플래닛', website: 'http://www.tour-planet.co.kr/', kakao: 'https://pf.kakao.com/_LYSSl' },
+  { id: 'honeymoon-resort', name: '허니문리조트', website: 'http://www.honeymoonresort.co.kr/', kakao: 'https://pf.kakao.com/_gkKlE' },
+  { id: '1000syb', name: '천생연분닷컴', website: 'https://www.1000syb.com/' },
+  { id: 'palm-tour', name: '팜투어', website: 'https://www.palmtour.co.kr', kakao: 'https://pf.kakao.com/_Hxmxaxexj' },
 ];
 
 const buildCoreFigure = (page) => {
@@ -1605,8 +1605,8 @@ const buildQuoteComparisonContent = () => {
       <h3>${escapeHtml(agency.name)}</h3>
       <span>여행사의 공개 홈페이지${agency.kakao ? '와 카카오 상담 채널' : ''}을 확인할 수 있습니다.</span>
       <div class="seo-static__agency-links">
-        <a href="${agency.website}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(agency.name)} 홈페이지 새 창에서 열기">홈페이지</a>
-        ${agency.kakao ? `<a href="${agency.kakao}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(agency.name)} 카카오톡 채널 새 창에서 열기">카카오 채널</a>` : ''}
+        <a href="${agency.website}" target="_blank" rel="noopener noreferrer" data-agency-id="${agency.id}" data-agency-name="${escapeHtml(agency.name)}" data-agency-channel="website" aria-label="${escapeHtml(agency.name)} 홈페이지 새 창에서 열기">홈페이지</a>
+        ${agency.kakao ? `<a href="${agency.kakao}" target="_blank" rel="noopener noreferrer" data-agency-id="${agency.id}" data-agency-name="${escapeHtml(agency.name)}" data-agency-channel="kakao" aria-label="${escapeHtml(agency.name)} 카카오톡 채널 새 창에서 열기">카카오 채널</a>` : ''}
       </div>
     </article>`).join('');
   return `
@@ -1650,7 +1650,7 @@ const buildFlightGuideContent = () => `
     <p>말레 도착 시간에 맞는 이동수단을 고르고, 같은 일정·객실·식사 조건으로 견적을 확인하세요.</p>
     <div class="seo-static__actions">
       <a class="seo-static__action" href="${siteUrl}/maldives-resort-comparison/">항공 일정에 맞는 리조트 비교</a>
-      <a class="seo-static__action seo-static__action--secondary" href="${siteUrl}/quote-comparison/">동일 조건 견적 확인하기</a>
+      <a class="seo-static__action seo-static__action--secondary" data-quote-entry="flight_static_cta" href="${siteUrl}/quote-comparison/">동일 조건 견적 확인하기</a>
     </div>
   </section>`;
 
@@ -1748,7 +1748,7 @@ const buildHomeStaticFallback = () => {
             <div class="seo-static__grid" style="margin-top:16px;">
               <a class="seo-static__card" href="${siteUrl}/start/"><strong>1. 시작하기</strong><span>예산·일정·이동·객실과 식사 기준부터 정리해요.</span></a>
               <a class="seo-static__card" href="${siteUrl}/maldives-resort-comparison/"><strong>2. 몰디브 리조트 비교</strong><span>171개 리조트의 이동, 객실, 수중환경 조건을 비교해요.</span></a>
-              <a class="seo-static__card" href="${siteUrl}/quote-comparison/"><strong>3. 몰디브 여행사 견적 비교</strong><span>같은 일정과 조건으로 요청하고 포함 항목을 확인해요.</span></a>
+              <a class="seo-static__card" data-quote-entry="home_static_sequence_card" href="${siteUrl}/quote-comparison/"><strong>3. 몰디브 여행사 견적 비교</strong><span>같은 일정과 조건으로 요청하고 포함 항목을 확인해요.</span></a>
               <a class="seo-static__card" href="${siteUrl}/flight-guide/"><strong>4. 몰디브 항공 가이드</strong><span>말레 도착 시간과 리조트 연결 가능 여부를 맞춰봐요.</span></a>
             </div>
           </section>
@@ -2063,6 +2063,19 @@ const injectMeta = ({
   );
 };
 
+const buildAnalyticsAdminShell = (html) => {
+  let updated = html.replace(/<title>.*?<\/title>/, '<title>관리자 분석실 | 몰디브 바이블</title>');
+  updated = replaceMetaContent(updated, 'name', 'description', '몰디브 바이블 운영자 전용 행동분석 대시보드');
+  updated = replaceMetaContent(updated, 'name', 'robots', 'noindex,nofollow,noarchive');
+  updated = replaceMetaContent(updated, 'name', 'googlebot', 'noindex,nofollow,noarchive');
+  updated = updated
+    .replace(/<link rel="canonical" href=".*?"\s*\/>/, `<link rel="canonical" href="${siteUrl}/admin/analytics/" />`)
+    .replace(/\s*<link rel="alternate"[^>]*>/g, '')
+    .replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '')
+    .replace(/\s*<!-- Google Tag Manager \(noscript\) -->[\s\S]*?<!-- End Google Tag Manager \(noscript\) -->/i, '');
+  return updated;
+};
+
 const injectStaticRoot = (html, content, { preserveStaticContent = false } = {}) => {
   const updated = html.replace(
     /<div id="root">[\s\S]*?<\/div>\s*<\/body>/,
@@ -2351,9 +2364,13 @@ try {
     staticPageEntries.push({ slug: page.slug, lastmod: page.modifiedAt, priority: '0.8' });
   }
 
+  const analyticsAdminPath = resolve(distDir, 'admin', 'analytics', 'index.html');
+  await mkdir(dirname(analyticsAdminPath), { recursive: true });
+  await writeFile(analyticsAdminPath, buildAnalyticsAdminShell(template), 'utf-8');
+
   await writeFile(source, injectStaticRoot(template, buildHomeStaticFallback()), 'utf-8');
   await updateSitemap(resortEntries, staticPageEntries);
-  console.log(`Generated ${resortEntries.length} resort pages, ${staticPageEntries.length} static pages, a crawlable home fallback, and updated sitemap.`);
+  console.log(`Generated ${resortEntries.length} resort pages, ${staticPageEntries.length} static pages, a private analytics shell, a crawlable home fallback, and updated sitemap.`);
 } catch (error) {
   console.error('Post-build step failed', error);
   process.exitCode = 1;

@@ -14,6 +14,7 @@ import { POPULARITY_RANKING } from './constants';
 import { TransportationType, type Resort, type Filters, type ResortEditorReview, type SortOption } from './types';
 import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
 import { shareOrCopy, type ShareResult } from './utils/share';
+import { trackAnalyticsPage, type AnalyticsPageType } from './utils/analytics';
 import { RESORT_INTEREST_BASELINE } from './data/resort-interest-scores';
 import {
   PATH_VIEW_MAP,
@@ -1880,6 +1881,57 @@ const App: React.FC = () => {
       imageHeight: 630,
     });
   }, [activeSeoPageKey, selectedResort]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || loading) return;
+
+    const hasDetailPath = Boolean(getResortPathSegment(window.location.pathname));
+    const hasComparePath = window.location.hash.startsWith('#/compare/');
+    if ((hasDetailPath && !selectedResort) || (hasComparePath && !isCompareViewVisible)) {
+      return;
+    }
+
+    let path = window.location.pathname;
+    let title = document.title;
+    let type: AnalyticsPageType;
+
+    if (isCompareViewVisible) {
+      path = '/maldives-resort-comparison/compare/';
+      title = '몰디브 리조트 비교 결과 | 몰디브 바이블';
+      type = 'resort_compare';
+    } else if (selectedResort) {
+      const slug = getResortSlug(selectedResort);
+      path = slug ? `/resorts/${slug}/` : window.location.pathname;
+      title = `${selectedResort.name} 리조트 정보 | 몰디브 바이블`;
+      type = 'resort_detail';
+    } else if (currentView === 'resorts') {
+      path = VIEW_PATH_MAP.resorts;
+      title = SEO_PAGES.resortComparison.title;
+      type = 'resort_list';
+    } else if (currentView === 'agencies') {
+      path = VIEW_PATH_MAP.agencies;
+      title = SEO_PAGES.quoteComparison.title;
+      type = 'agency_quotes';
+    } else if (currentView === 'flights') {
+      path = VIEW_PATH_MAP.flights;
+      title = SEO_PAGES.flightGuide.title;
+      type = 'flight_guide';
+    } else if (window.location.pathname === '/') {
+      path = '/';
+      title = SEO_PAGES.home.title;
+      type = 'home';
+    } else {
+      path = VIEW_PATH_MAP.tips;
+      title = SEO_PAGES.start.title;
+      type = 'start';
+    }
+
+    trackAnalyticsPage({
+      location: new URL(path, window.location.origin).toString(),
+      title,
+      type,
+    });
+  }, [currentView, isCompareViewVisible, loading, selectedResort]);
 
   const calculatedTotalPages = displayedResorts.length === 0
     ? 0

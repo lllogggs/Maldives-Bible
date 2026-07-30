@@ -58,6 +58,42 @@ VITE_PREFERENCES_API_BASE_URL="https://www.maldivesbible.com"
 VITE_GOOGLE_SITE_VERIFICATION=""
 ```
 
+## 운영자 행동분석 대시보드
+
+배포 후 `https://www.maldivesbible.com/admin/analytics/`에서 다음 지표를 한 화면으로 확인할 수 있습니다.
+
+- 유입경로와 최초 진입 페이지
+- 세션과 활성 사용자, 평균 참여시간
+- 의미 있는 화면 이동과 이탈 감지 페이지
+- 여행사별 홈페이지·카카오 버튼 노출, 클릭, 클릭률
+- 접속 기기와 페이지별 관심도
+
+대시보드는 서버에서 비밀번호를 검증하고 `HttpOnly` 세션 쿠키를 발급합니다. 비밀번호와 Google 서비스 계정 키에는 `VITE_` 접두사를 붙이지 마세요.
+
+필요한 Vercel 환경변수:
+
+```env
+ANALYTICS_ADMIN_PASSWORD="<12자 이상의 전용 비밀번호>"
+GA4_PROPERTY_ID="<숫자형 GA4 속성 ID>"
+GA4_SERVICE_ACCOUNT_JSON_BASE64="<서비스 계정 JSON의 base64 값>"
+ANALYTICS_CACHE_TTL_SECONDS="300"
+```
+
+연결 순서:
+
+1. Google Cloud에서 Google Analytics Data API를 활성화하고 서비스 계정을 만듭니다.
+2. GA4 `관리 → 속성 액세스 관리`에서 서비스 계정 이메일을 `뷰어`로 추가합니다.
+3. GA4 화면의 숫자형 `속성 ID`를 `GA4_PROPERTY_ID`에 넣습니다. 측정 ID `G-Y00T1V6W91`과는 다른 값입니다.
+4. 서비스 계정 JSON 파일을 base64로 변환해 `GA4_SERVICE_ACCOUNT_JSON_BASE64`에 넣고 다시 배포합니다.
+
+PowerShell 변환 예시:
+
+```powershell
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("service-account.json"))
+```
+
+base64 대신 `GA4_CLIENT_EMAIL`과 `GA4_PRIVATE_KEY`를 각각 설정하는 방식도 지원합니다. 여행사 클릭·노출·화면 이동·이탈 감지 이벤트는 기능 배포 이후부터 쌓이며 과거 데이터로 소급 생성되지 않습니다.
+
 ## SEO
 
 사이트는 넓은 키워드인 `몰디브 여행`보다 아래처럼 준비 초기 단계의 롱테일 검색어를 겨냥합니다.

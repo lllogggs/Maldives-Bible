@@ -1,0 +1,12 @@
+.codex-remote-attachments/
+.agents/
+.codex*/
+.research/
+.tmp/
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+dist-ssr/
+*.local
