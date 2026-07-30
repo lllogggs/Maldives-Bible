@@ -254,7 +254,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
             type="button"
             onClick={(e) => { e.stopPropagation(); onToggleCompare(resort.id); }}
             disabled={!canSelectForCompare}
-            className={`inline-flex h-11 items-center gap-1.5 whitespace-nowrap rounded-full px-3 text-xs font-bold shadow-sm backdrop-blur transition-colors disabled:cursor-not-allowed disabled:bg-slate-200/90 disabled:text-slate-500 ${
+            className={`inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-xs font-bold shadow-sm backdrop-blur transition-colors disabled:cursor-not-allowed disabled:bg-slate-200/80 ${
               isSelectedForCompare
                 ? 'bg-teal-700 text-white hover:bg-teal-800'
                 : 'bg-white/90 text-slate-800 hover:bg-white'
@@ -263,7 +263,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
             title={compareButtonTitle}
           >
             {isSelectedForCompare && <CheckCircleIcon className="h-4 w-4" />}
-            {!canSelectForCompare ? '3개 선택됨' : '비교'}
+            비교
           </button>
         </div>
       </div>

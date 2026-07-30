@@ -92,6 +92,10 @@ const expectedResortCount = Number(process.env.EXPECTED_RESORT_COUNT ?? 171);
 if (!Number.isInteger(expectedResortCount) || expectedResortCount < 1) {
   throw new Error('EXPECTED_RESORT_COUNT는 1 이상의 정수여야 합니다.');
 }
+const expectedEditorReviewCount = Number(process.env.EXPECTED_EDITOR_REVIEW_COUNT ?? 35);
+if (!Number.isInteger(expectedEditorReviewCount) || expectedEditorReviewCount < 0) {
+  throw new Error('EXPECTED_EDITOR_REVIEW_COUNT는 0 이상의 정수여야 합니다.');
+}
 const currentYear = new Intl.DateTimeFormat('en-US', {
   timeZone: 'Asia/Seoul',
   year: 'numeric',
@@ -671,6 +675,7 @@ const normalizeReviewSummary = (reviewSummary) => {
     Array.isArray(points) ? points.map(toReviewPointText).filter(Boolean) : [];
   const pros = normalizePoints(reviewSummary.pros);
   const cons = normalizePoints(reviewSummary.cons);
+  const overview = String(reviewSummary.overview ?? '').replace(/\s+/g, ' ').trim().slice(0, 220);
   const evidenceStatus = reviewSummary.evidenceStatus === 'insufficient'
     ? 'insufficient'
     : reviewSummary.evidenceStatus === 'limited'
@@ -683,9 +688,9 @@ const normalizeReviewSummary = (reviewSummary) => {
   }
 
   const numericSourceCount = Number(reviewSummary.sourceCount ?? reviewSummary.sampleSize);
-  const sourceCount = Number.isInteger(numericSourceCount) && numericSourceCount > 0
+  const sourceCount = Number.isInteger(numericSourceCount) && numericSourceCount >= 0
     ? Math.min(numericSourceCount, 9999)
-    : null;
+    : 0;
   const reviewDateValue = reviewSummary.reviewedAt ?? reviewSummary.searchedAt;
   const reviewedAt = typeof reviewDateValue === 'string'
     ? reviewDateValue.match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? null
@@ -706,27 +711,37 @@ const normalizeReviewSummary = (reviewSummary) => {
         blogName: String(source?.blogName ?? '').replace(/\s+/g, ' ').trim().slice(0, 80),
         publishedAt: String(source?.publishedAt ?? '').match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? '',
       }];
-    })
-    .slice(0, 10);
+    });
 
-  return { pros, cons, sourceCount, reviewedAt, basis, evidenceStatus, sources };
+  return { pros, cons, overview, sourceCount, reviewedAt, basis, evidenceStatus, sources };
 };
 
 const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
   const summary = normalizeReviewSummary(reviewSummary);
-  if (!summary || summary.evidenceStatus === 'insufficient') {
-    return '';
-  }
+  if (!summary) return '';
 
   const limit = compact ? 1 : 2;
   const pros = summary.pros.slice(0, limit);
   const cons = summary.cons.slice(0, limit);
+  const reviewCount = summary.sourceCount;
   const reviewDateLabel = summary.reviewedAt ? `${summary.reviewedAt} 후기 기준` : null;
+  const overview = summary.overview
+    || (reviewCount > 0 ? '실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있습니다.' : '');
+
+  if (summary.evidenceStatus === 'insufficient' && reviewCount === 0) return '';
 
   if (compact) {
+    if (summary.evidenceStatus === 'insufficient') {
+      return `
+        <div style="margin:0 0 14px;border-top:1px solid #e2e8f0;padding-top:12px;">
+          <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;">실제 후기 ${reviewCount}개</p>
+          <p style="margin:0;color:#334155;font-size:14px;line-height:1.55;">${escapeHtml(overview)}</p>
+        </div>`;
+    }
+
     return `
       <div style="margin:0 0 14px;border-top:1px solid #e2e8f0;padding-top:12px;">
-        <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;">실제 후기 요약</p>
+        <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;">실제 후기 ${reviewCount}개</p>
         ${pros.length > 0 ? `<p style="margin:0 0 5px;color:#334155;font-size:14px;line-height:1.55;"><strong style="color:#0f766e;">좋았다는 점</strong> ${escapeHtml(pros[0])}</p>` : ''}
         ${cons.length > 0 ? `<p style="margin:0;color:#334155;font-size:14px;line-height:1.55;"><strong style="color:#9a5b31;">알아둘 점</strong> ${escapeHtml(cons[0])}</p>` : ''}
       </div>`;
@@ -738,16 +753,39 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
   const sourceLinks = summary.sources
     .map((source) => `<li style="margin-top:7px;"><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">${escapeHtml(source.title)}</a>${source.blogName || source.publishedAt ? `<span style="color:#64748b;"> · ${escapeHtml([source.blogName, source.publishedAt].filter(Boolean).join(' · '))}</span>` : ''}</li>`)
     .join('');
+  const sourceDetails = sourceLinks
+    ? `<details${summary.sources.length >= 10 ? ' open' : ''} style="margin-top:12px;border-top:1px solid #dbe7e4;padding-top:10px;"><summary style="cursor:pointer;color:#0f766e;font-size:13px;font-weight:700;">실제 후기 원문 ${summary.sources.length}개</summary><ul style="margin:5px 0 0;padding-left:19px;color:#334155;font-size:12px;line-height:1.6;">${sourceLinks}</ul></details>`
+    : '';
+
+  if (summary.evidenceStatus === 'insufficient') {
+    return `
+      <section class="seo-resort-reviews" aria-labelledby="seo-resort-reviews-title" style="margin:24px 0 22px;border-top:1px solid #dbe7e4;padding-top:22px;">
+        <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;letter-spacing:.1em;">REAL REVIEWS</p>
+        <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;">
+          <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">실제 후기 한눈에</h2>
+          <span style="color:#64748b;font-size:12px;font-weight:700;">실제 후기 ${reviewCount}개</span>
+        </div>
+        <section style="margin-top:14px;border-radius:12px;background:#f8fafc;padding:15px 16px;">
+          <h3 style="margin:0;color:#334155;font-size:15px;">후기에서 다룬 내용</h3>
+          <p style="margin:7px 0 0;color:#475569;font-size:14px;line-height:1.7;">${escapeHtml(overview)}</p>
+        </section>
+        ${sourceDetails}
+        <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${reviewDateLabel ? `${escapeHtml(reviewDateLabel)}. ` : ''}투숙 시기와 객실 유형에 따라 경험은 달라질 수 있습니다.</p>
+      </section>`;
+  }
 
   return `
     <section class="seo-resort-reviews" aria-labelledby="seo-resort-reviews-title" style="margin:24px 0 22px;border-top:1px solid #dbe7e4;padding-top:22px;">
       <p style="margin:0 0 7px;color:#0f766e;font-size:12px;font-weight:800;letter-spacing:.1em;">REAL REVIEWS</p>
-      <h2 id="seo-resort-reviews-title" style="margin:0 0 14px;font-size:23px;color:#0f172a;">실제 후기 한눈에</h2>
+      <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px;">
+        <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">실제 후기 한눈에</h2>
+        <span style="color:#64748b;font-size:12px;font-weight:700;">실제 후기 ${reviewCount}개</span>
+      </div>
       <div class="seo-resort-review-grid" style="display:grid;grid-template-columns:${pros.length > 0 && cons.length > 0 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'};gap:12px;">
         ${pros.length > 0 ? `<section style="border-radius:12px;background:#effaf7;padding:15px 16px;"><h3 style="margin:0;color:#0f766e;font-size:16px;">좋았다는 점</h3><ul style="margin:5px 0 0;padding-left:19px;color:#334155;">${pointList(pros)}</ul></section>` : ''}
         ${cons.length > 0 ? `<section style="border-radius:12px;background:#fff8f0;padding:15px 16px;"><h3 style="margin:0;color:#9a5b31;font-size:16px;">알아둘 점</h3><ul style="margin:5px 0 0;padding-left:19px;color:#334155;">${pointList(cons)}</ul></section>` : ''}
       </div>
-      ${sourceLinks ? `<details style="margin-top:12px;border-top:1px solid #dbe7e4;padding-top:10px;"><summary style="cursor:pointer;color:#0f766e;font-size:13px;font-weight:700;">실제 후기 원문 ${summary.sources.length}개 보기</summary><ul style="margin:5px 0 0;padding-left:19px;color:#334155;font-size:12px;line-height:1.6;">${sourceLinks}</ul></details>` : ''}
+      ${sourceDetails}
       <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${reviewDateLabel ? `${escapeHtml(reviewDateLabel)}. ` : ''}투숙 시기와 객실 유형에 따라 경험은 달라질 수 있습니다.</p>
     </section>`;
 };
@@ -2157,7 +2195,15 @@ const readAllResorts = async () => {
         if (detail?.resortId !== item.resortId || !detail?.reviewSummary) {
           throw new Error(`리조트 ${item.resortId}의 후기 상세 파일 형식이 올바르지 않습니다.`);
         }
-        return [item.resortId, { ...item.reviewSummary, ...detail.reviewSummary }];
+        const mergedSummary = { ...item.reviewSummary, ...detail.reviewSummary };
+        const sources = Array.isArray(mergedSummary.sources) ? mergedSummary.sources : [];
+        if (!Number.isInteger(mergedSummary.sourceCount) || mergedSummary.sourceCount !== sources.length) {
+          throw new Error(
+            `리조트 ${item.resortId}의 실제 후기 개수와 출처 배열 길이가 다릅니다: `
+            + `sourceCount=${mergedSummary.sourceCount ?? 'unknown'}, sources=${sources.length}`
+          );
+        }
+        return [item.resortId, mergedSummary];
       })
   );
   const reviewSummaryByResortId = new Map(reviewSummaryEntries);
@@ -2168,8 +2214,8 @@ const readAllResorts = async () => {
   if (editorReviews?.schemaVersion !== 1 || !Array.isArray(editorReviews?.items)) {
     throw new Error('resort-editor-reviews.json 형식이 올바르지 않습니다.');
   }
-  if (editorReviews.items.length < 35) {
-    throw new Error(`에디터 리뷰가 35개보다 적습니다: ${editorReviews.items.length}`);
+  if (editorReviews.items.length < expectedEditorReviewCount) {
+    throw new Error(`에디터 리뷰가 ${expectedEditorReviewCount}개보다 적습니다: ${editorReviews.items.length}`);
   }
   const editorReviewByResortId = new Map();
   for (const item of editorReviews.items) {

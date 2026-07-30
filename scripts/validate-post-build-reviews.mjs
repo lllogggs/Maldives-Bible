@@ -46,7 +46,7 @@ const template = `<!doctype html>
 const reviewSummary = {
   basis: 'naver-blog-search-snippets',
   reviewedAt: '2026-07-13T03:00:00.000Z',
-  sourceCount: 10,
+  sourceCount: 12,
   evidenceStatus: 'sufficient',
   pros: [
     '라군과 객실 전망이 좋다는 언급이 많음 <script>alert("x")</script>',
@@ -66,7 +66,7 @@ const reviewSource = {
   publishedAt: '2026-07-01',
 };
 
-const reviewSources = Array.from({ length: 10 }, (_, index) => ({
+const reviewSources = Array.from({ length: 12 }, (_, index) => ({
   ...reviewSource,
   title: `직접 확인한 후기 출처 ${index + 1}`,
   url: `https://blog.naver.com/example/${index + 1}`,
@@ -104,13 +104,19 @@ const insufficientReviewResort = {
   name_en: 'Insufficient Review Resort',
 };
 
-const insufficientReviewSummary = {
+const noReviewSummary = {
   basis: 'naver-blog-search-snippets',
   reviewedAt: '2026-07-13',
   sourceCount: 0,
   evidenceStatus: 'insufficient',
   pros: [],
   cons: [],
+};
+
+const insufficientReviewSummary = {
+  ...noReviewSummary,
+  sourceCount: 4,
+  overview: '실제 후기에서는 객실과 빌라, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.',
 };
 
 try {
@@ -120,6 +126,7 @@ try {
   const templateTarget = join(sandbox, 'dist', 'index.html');
   const dataTarget = join(sandbox, 'dist', 'api', 'resorts.json');
   const reviewInsightsTarget = join(sandbox, 'dist', 'api', 'resort-review-insights.json');
+  const editorReviewsTarget = join(sandbox, 'public', 'api', 'resort-editor-reviews.json');
   const reviewDetailTarget = join(sandbox, 'dist', 'api', 'resort-reviews', '1.json');
   const noReviewDetailTarget = join(sandbox, 'dist', 'api', 'resort-reviews', '2.json');
   const insufficientReviewDetailTarget = join(sandbox, 'dist', 'api', 'resort-reviews', '3.json');
@@ -129,6 +136,7 @@ try {
     mkdir(dirname(editorialPolicyTarget), { recursive: true }),
     mkdir(dirname(dataTarget), { recursive: true }),
     mkdir(dirname(reviewDetailTarget), { recursive: true }),
+    mkdir(dirname(editorReviewsTarget), { recursive: true }),
   ]);
   await Promise.all([
     copyFile(join(projectRoot, 'scripts', 'post-build.mjs'), postBuildTarget),
@@ -136,12 +144,13 @@ try {
     copyFile(join(projectRoot, 'data', 'editorial-policy.mjs'), editorialPolicyTarget),
     writeFile(templateTarget, template, 'utf8'),
     writeFile(dataTarget, JSON.stringify([baseResort, noReviewResort, insufficientReviewResort]), 'utf8'),
+    writeFile(editorReviewsTarget, JSON.stringify({ schemaVersion: 1, items: [] }), 'utf8'),
     writeFile(
       reviewInsightsTarget,
       JSON.stringify({
         items: [
           { resortId: baseResort.id, reviewSummary },
-          { resortId: noReviewResort.id, reviewSummary: insufficientReviewSummary },
+          { resortId: noReviewResort.id, reviewSummary: noReviewSummary },
           { resortId: insufficientReviewResort.id, reviewSummary: insufficientReviewSummary },
         ],
       }),
@@ -154,19 +163,19 @@ try {
     ),
     writeFile(
       noReviewDetailTarget,
-      JSON.stringify({ resortId: 2, reviewSummary: { ...insufficientReviewSummary, sources: [] } }),
+      JSON.stringify({ resortId: 2, reviewSummary: { ...noReviewSummary, sources: [] } }),
       'utf8'
     ),
     writeFile(
       insufficientReviewDetailTarget,
-      JSON.stringify({ resortId: 3, reviewSummary: { ...insufficientReviewSummary, sources: [] } }),
+      JSON.stringify({ resortId: 3, reviewSummary: { ...insufficientReviewSummary, sources: reviewSources.slice(0, 4) } }),
       'utf8'
     ),
   ]);
 
   await run(process.execPath, [postBuildTarget], {
     cwd: sandbox,
-    env: { ...process.env, EXPECTED_RESORT_COUNT: '3' },
+    env: { ...process.env, EXPECTED_RESORT_COUNT: '3', EXPECTED_EDITOR_REVIEW_COUNT: '0' },
   });
 
   const reviewHtml = await readFile(
@@ -188,11 +197,11 @@ try {
   const sitemap = await readFile(join(sandbox, 'dist', 'sitemap.xml'), 'utf8');
 
   assert.match(reviewHtml, /실제 후기 한눈에/);
-  assert.match(reviewHtml, /실제 후기 10개 참고 · 2026-07-13 업데이트/);
-  assert.match(reviewHtml, /참고한 실제 후기 10개/);
+  assert.match(reviewHtml, /실제 후기 12개/);
   assert.doesNotMatch(reviewHtml, /10건 검토|4건 근거|근거:/);
   assert.match(reviewHtml, /https:\/\/blog\.naver\.com\/example\/1/);
-  assert.match(reviewHtml, /https:\/\/blog\.naver\.com\/example\/10/);
+  assert.match(reviewHtml, /https:\/\/blog\.naver\.com\/example\/12/);
+  assert.match(reviewHtml, /<details open/);
   assert.match(reviewHtml, /직원 응대가 친절하다는 후기가 반복됨/);
   assert.match(reviewHtml, /공항 이동 비용이 부담스럽다는 언급이 있음/);
   assert.match(reviewHtml, /&lt;script&gt;alert\(&quot;x&quot;\)&lt;\/script&gt;/);
@@ -202,8 +211,12 @@ try {
   assert.doesNotMatch(reviewHtml, /<\/script><script>alert\(1\)<\/script>/);
   assert.match(reviewHtml, /\\u003c\/script>\\u003cscript>alert\(1\)\\u003c\/script>/);
   assert.doesNotMatch(noReviewHtml, /seo-resort-reviews|후기 요약/);
-  assert.doesNotMatch(insufficientReviewHtml, /seo-resort-reviews|반복해서 확인된 후기 근거가 부족해요/);
-  assert.match(homeHtml, /<h1>몰디브 리조트 비교/);
+  assert.match(insufficientReviewHtml, /seo-resort-reviews/);
+  assert.match(insufficientReviewHtml, /후기에서 다룬 내용/);
+  assert.match(insufficientReviewHtml, /객실과 빌라, 식사와 다이닝/);
+  assert.match(insufficientReviewHtml, /실제 후기 4개/);
+  assert.match(insufficientReviewHtml, /https:\/\/blog\.naver\.com\/example\/4/);
+  assert.match(homeHtml, /<h1>몰디브 여행, 기준부터 비교까지 한곳에서<\/h1>/);
   assert.match(homeHtml, /href="https:\/\/www\.maldivesbible\.com\/maldives-resorts\/"/);
   assert.match(glossaryHtml, /"@type":"DefinedTermSet"/);
   assert.equal((glossaryHtml.match(/"@type":"DefinedTerm"/g) || []).length, 43);

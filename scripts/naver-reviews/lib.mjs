@@ -266,7 +266,7 @@ function occurrenceKey(item) {
   return `fallback:${normalizeText(item.titleText)}|${normalizeText(item.bloggerName)}|${item.postDate}`;
 }
 
-export function buildCandidatePool(queryRuns, resort, targetCount = 10) {
+export function buildCandidatePool(queryRuns, resort, targetCount = 30) {
   const deduped = new Map();
 
   for (const run of queryRuns) {

@@ -302,7 +302,7 @@ function parseArgs(args) {
   const parsed = {
     cacheDir: DEFAULT_CACHE_DIR,
     display: 30,
-    target: 10,
+    target: 30,
     delayMs: 250,
     timeoutMs: 15_000,
     retries: 4,
@@ -324,7 +324,7 @@ function parseArgs(args) {
     };
     if (argument === '--cache-dir') parsed.cacheDir = path.resolve(next());
     else if (argument === '--display') parsed.display = integerOption(argument, next(), 10, 100);
-    else if (argument === '--target') parsed.target = integerOption(argument, next(), 1, 10);
+    else if (argument === '--target') parsed.target = integerOption(argument, next(), 1, 100);
     else if (argument === '--delay-ms') parsed.delayMs = integerOption(argument, next(), 0, 60_000);
     else if (argument === '--timeout-ms') parsed.timeoutMs = integerOption(argument, next(), 1_000, 120_000);
     else if (argument === '--retries') parsed.retries = integerOption(argument, next(), 0, 10);
@@ -403,7 +403,7 @@ Options:
   --ids 1,2,10-15      일부 리조트만 선택
   --limit N             선택 목록 앞에서 N개만 수집
   --display N           검색당 원시 결과 수 (10~100, 기본 30)
-  --target N            리조트별 최종 후보 수 (1~10, 기본 10)
+  --target N            리조트별 최종 후보 수 (1~100, 기본 30)
   --delay-ms N          API 호출 사이 대기 (기본 250)
   --timeout-ms N        요청 제한 시간 (기본 15000)
   --retries N           재시도 횟수 (기본 4)

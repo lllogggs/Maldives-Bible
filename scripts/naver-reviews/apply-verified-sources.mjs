@@ -132,11 +132,11 @@ for (const item of curated.items) {
   }
 
   verifiedSources.sort((a, b) => a.priority - b.priority || a.order - b.order || a.source.url.localeCompare(b.source.url));
-  const sources = verifiedSources.slice(0, 10).map(({ source }) => source);
+  const sources = verifiedSources.map(({ source }) => source);
   newlyVerifiedSources += sources.filter((source) => !previouslyVerifiedUrls.has(source.url)).length;
   for (const claimUrl of claimUrls) {
     if (!sources.some((source) => source.url === claimUrl)) {
-      errors.push(`resortId=${item.resortId}: 장단점에 사용한 실제 후기가 상위 10개 목록에서 누락됐습니다: ${claimUrl}`);
+      errors.push(`resortId=${item.resortId}: 장단점에 사용한 실제 후기가 검증된 후기 목록에서 누락됐습니다: ${claimUrl}`);
     }
   }
 
