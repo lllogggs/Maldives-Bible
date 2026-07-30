@@ -18,7 +18,7 @@ interface ResortCardProps {
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
   isImageEditMode?: boolean;
-  likesCount: number;
+  interestCount: number;
   isLiked: boolean;
   onToggleLike: (resortId: number) => void;
   isLikePending: boolean;
@@ -52,7 +52,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
   compareList,
   onToggleCompare,
   isImageEditMode = false,
-  likesCount,
+  interestCount,
   isLiked,
   onToggleLike,
   isLikePending,
@@ -154,8 +154,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
     setTouchEnd(0);
   };
 
-  const formattedLikesCount = Math.max(0, likesCount ?? 0).toLocaleString();
-  const shouldShowLikesCount = isLiked || likesCount > 0;
+  const formattedInterestCount = Math.max(0, interestCount ?? 0).toLocaleString();
   const nightlyPrice = Math.round(resort.price / 4);
   const coupleTransferCost = Math.max(0, resort.travelCost * 2);
   const likeButtonTitle = isLiked ? '좋아요 취소' : '좋아요 추가';
@@ -327,8 +326,8 @@ const ResortCard: React.FC<ResortCardProps> = ({
               onClick={handleLikeClick}
               disabled={isLikePending}
               aria-pressed={isLiked}
-              aria-label={`${likeButtonTitle} (현재 ${formattedLikesCount}명)`}
-              title={likeButtonTitle}
+              aria-label={`${likeButtonTitle}. 현재 관심도 ${formattedInterestCount}`}
+              title={`${likeButtonTitle} · 가격대, 실제 후기 자료와 사용자 저장을 반영한 관심도`}
               className={`relative z-20 flex h-11 min-w-11 items-center gap-2 rounded-full border px-3 text-sm font-semibold transition-colors ${
                 isLiked
                   ? 'border-rose-300 bg-rose-100 text-rose-600 hover:bg-rose-200'
@@ -340,7 +339,7 @@ const ResortCard: React.FC<ResortCardProps> = ({
               ) : (
                 <HeartIcon className="h-5 w-5 text-rose-500" />
               )}
-              {shouldShowLikesCount && <span>{formattedLikesCount}</span>}
+              <span><span className="sr-only">관심도 </span>{formattedInterestCount}</span>
             </button>
             <div className="min-w-0 flex-1 text-right">
               <p className="text-xs text-slate-500">4박 2인 · 올인클루시브</p>

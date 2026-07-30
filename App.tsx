@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import Header from './components/Header';
 import FilterSidebar from './components/FilterSidebar';
 import ResortGrid from './components/ResortGrid';
@@ -14,6 +14,7 @@ import { POPULARITY_RANKING } from './constants';
 import { TransportationType, type Resort, type Filters, type SortOption } from './types';
 import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
 import { shareOrCopy, type ShareResult } from './utils/share';
+import { RESORT_INTEREST_BASELINE } from './data/resort-interest-scores';
 import {
   PATH_VIEW_MAP,
   SEO_PAGES,
@@ -900,6 +901,16 @@ const App: React.FC = () => {
     saveLikedResorts: saveLikedResortsToLocal,
   });
 
+  const interestCountMap = useMemo<Record<number, number>>(() => {
+    const next: Record<number, number> = {};
+    initialResorts.forEach(resort => {
+      const baseline = RESORT_INTEREST_BASELINE[resort.id] ?? 0;
+      const liveLikes = likesCountMap[resort.id] ?? 0;
+      next[resort.id] = Math.max(0, baseline + liveLikes);
+    });
+    return next;
+  }, [initialResorts, likesCountMap]);
+
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
@@ -1703,8 +1714,8 @@ const App: React.FC = () => {
       case 'travelTime-asc': processedResorts.sort((a, b) => a.travelTime - b.travelTime); break;
       case 'likes-desc':
         processedResorts.sort((a, b) => {
-          const likesA = likesCountMap[a.id] ?? 0;
-          const likesB = likesCountMap[b.id] ?? 0;
+          const likesA = interestCountMap[a.id] ?? 0;
+          const likesB = interestCountMap[b.id] ?? 0;
           if (likesA === likesB) {
             return a.id - b.id;
           }
@@ -1714,7 +1725,7 @@ const App: React.FC = () => {
     }
 
     setDisplayedResorts(processedResorts);
-  }, [customOrder, filters, hiddenResortIds, initialResorts, likedResortIds, likesCountMap, sortOption]);
+  }, [customOrder, filters, hiddenResortIds, initialResorts, interestCountMap, likedResortIds, sortOption]);
 
   useEffect(() => {
     applyFiltersAndSort();
@@ -2289,7 +2300,7 @@ const App: React.FC = () => {
                           <option value="rating-desc">평점 높은 순</option>
                           <option value="snorkeling-desc">수중환경순</option>
                           <option value="travelTime-asc">이동시간 짧은 순</option>
-                          <option value="likes-desc">좋아요순</option>
+                          <option value="likes-desc">관심도순</option>
                         </select>
                         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-600">
                           <ChevronDownIcon />
@@ -2350,7 +2361,7 @@ const App: React.FC = () => {
                         compareList={compareList}
                         onToggleCompare={handleToggleCompare}
                         isImageEditMode={isImageEditMode}
-                        likesCountMap={likesCountMap}
+                        interestCountMap={interestCountMap}
                         likedResortIds={likedResortIds}
                         onToggleLike={toggleLike}
                         pendingLikeResortIds={pendingLikeResortIds}

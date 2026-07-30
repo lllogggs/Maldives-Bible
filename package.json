@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc --noEmit",
-    "build": "vite build && node ./scripts/post-build.mjs",
+    "build": "node ./scripts/generate-resort-interest.mjs --check && vite build && node ./scripts/post-build.mjs",
     "vercel-build": "npm install --include=dev && npm run build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
@@ -19,6 +19,8 @@
     "reviews:validate": "node ./scripts/naver-reviews/compile.mjs --check",
     "reviews:compile": "node ./scripts/naver-reviews/compile.mjs",
     "reviews:test": "node --test ./scripts/naver-reviews/*.test.mjs",
+    "interest:generate": "node ./scripts/generate-resort-interest.mjs",
+    "interest:validate": "node ./scripts/generate-resort-interest.mjs --check",
     "seo:validate": "node ./scripts/validate-seo-build.mjs",
     "supabase:projects": "supabase projects list",
     "supabase:link": "supabase link",

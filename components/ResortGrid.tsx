@@ -10,7 +10,7 @@ interface ResortGridProps {
   compareList: number[];
   onToggleCompare: (resortId: number) => void;
   isImageEditMode: boolean;
-  likesCountMap: Record<number, number>;
+  interestCountMap: Record<number, number>;
   likedResortIds: number[];
   onToggleLike: (resortId: number) => void;
   pendingLikeResortIds: Set<number>;
@@ -25,7 +25,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   compareList,
   onToggleCompare,
   isImageEditMode,
-  likesCountMap,
+  interestCountMap,
   likedResortIds,
   onToggleLike,
   pendingLikeResortIds,
@@ -46,7 +46,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               compareList={compareList}
               onToggleCompare={onToggleCompare}
               isImageEditMode={isImageEditMode}
-              likesCount={likesCountMap[resort.id] ?? 0}
+              interestCount={interestCountMap[resort.id] ?? 0}
               isLiked={likedResortIds.includes(resort.id)}
               onToggleLike={onToggleLike}
               isLikePending={pendingLikeResortIds.has(resort.id)}
