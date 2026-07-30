@@ -11,7 +11,7 @@ import TravelAgencies from './components/TravelAgencies';
 import FlightInfo from './components/FlightInfo';
 import SiteFooter from './components/SiteFooter';
 import { POPULARITY_RANKING } from './constants';
-import { TransportationType, type Resort, type Filters, type SortOption } from './types';
+import { TransportationType, type Resort, type Filters, type ResortEditorReview, type SortOption } from './types';
 import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
 import { shareOrCopy, type ShareResult } from './utils/share';
 import { RESORT_INTEREST_BASELINE } from './data/resort-interest-scores';
@@ -37,6 +37,13 @@ type ResortReviewInsightsPayload = {
   items?: Array<{
     resortId: number;
     reviewSummary: NonNullable<Resort['reviewSummary']>;
+  }>;
+};
+
+type ResortEditorReviewsPayload = {
+  items?: Array<{
+    resortId: number;
+    editorReview: ResortEditorReview;
   }>;
 };
 
@@ -772,14 +779,6 @@ const App: React.FC = () => {
     setActiveNavigationPath(getActiveNavigationPath());
   }, []);
 
-  useEffect(() => {
-    if (!activeSeoPageKey) {
-      return;
-    }
-
-    syncDocumentHead(SEO_PAGES[activeSeoPageKey]);
-  }, [activeSeoPageKey]);
-
   const showToast = useCallback((message: string) => {
     toastIdRef.current += 1;
     setToastMessage({ id: toastIdRef.current, message });
@@ -1200,6 +1199,10 @@ const App: React.FC = () => {
         const reviewInsightsUrl = reviewInsightsPath.startsWith('/')
           ? reviewInsightsPath
           : `/${reviewInsightsPath}`;
+        const editorReviewsPath = `${basePath}/api/resort-editor-reviews.json`;
+        const editorReviewsUrl = editorReviewsPath.startsWith('/')
+          ? editorReviewsPath
+          : `/${editorReviewsPath}`;
 
         const reviewInsightsPromise = fetch(reviewInsightsUrl)
           .then(async response => {
@@ -1211,6 +1214,18 @@ const App: React.FC = () => {
           })
           .catch(err => {
             console.warn('Failed to fetch optional resort review insights', err);
+            return null;
+          });
+        const editorReviewsPromise = fetch(editorReviewsUrl)
+          .then(async response => {
+            if (response.status === 404) return null;
+            if (!response.ok) {
+              throw new Error(`${response.status} ${response.statusText}`.trim());
+            }
+            return (await response.json()) as ResortEditorReviewsPayload;
+          })
+          .catch(err => {
+            console.warn('Failed to fetch optional resort editor reviews', err);
             return null;
           });
         const resortResults = await Promise.allSettled(
@@ -1329,18 +1344,26 @@ const App: React.FC = () => {
         setCustomOrder(finalOrder);
         setInitialResorts(mergedData);
 
-        void reviewInsightsPromise.then(reviewInsights => {
+        void Promise.all([reviewInsightsPromise, editorReviewsPromise]).then(([reviewInsights, editorReviews]) => {
           const reviewSummaryByResortId = new Map(
             (Array.isArray(reviewInsights?.items) ? reviewInsights.items : [])
               .filter(item => Number.isInteger(item?.resortId) && item?.reviewSummary)
               .map(item => [item.resortId, item.reviewSummary] as const)
           );
-          if (reviewSummaryByResortId.size === 0) return;
+          const editorReviewByResortId = new Map(
+            (Array.isArray(editorReviews?.items) ? editorReviews.items : [])
+              .filter(item => Number.isInteger(item?.resortId) && item?.editorReview)
+              .map(item => [item.resortId, item.editorReview] as const)
+          );
+          if (reviewSummaryByResortId.size === 0 && editorReviewByResortId.size === 0) return;
 
           setInitialResorts(currentResorts => currentResorts.map(resort => ({
             ...resort,
             ...(reviewSummaryByResortId.has(resort.id)
               ? { reviewSummary: reviewSummaryByResortId.get(resort.id) }
+              : {}),
+            ...(editorReviewByResortId.has(resort.id)
+              ? { editorReview: editorReviewByResortId.get(resort.id) }
               : {}),
           })));
         });
@@ -1824,6 +1847,40 @@ const App: React.FC = () => {
   }, [compareList, initialResorts, isCompareViewVisible]);
 
   const selectedResort = initialResorts.find(r => r.id === selectedResortId);
+
+  useEffect(() => {
+    if (!selectedResort) {
+      // Keep the server-rendered resort metadata intact while its client data is loading.
+      // Once the resort resolves, this same effect synchronizes the interactive detail view.
+      if (typeof window !== 'undefined' && getResortPathSegment(window.location.pathname)) {
+        return;
+      }
+      if (activeSeoPageKey) {
+        syncDocumentHead(SEO_PAGES[activeSeoPageKey]);
+      }
+      return;
+    }
+
+    const slug = getResortSlug(selectedResort);
+    if (!slug) return;
+
+    const hasEditorReview = Boolean(selectedResort.editorReview);
+    syncDocumentHead({
+      path: `/resorts/${slug}/`,
+      title: hasEditorReview
+        ? `${selectedResort.name} 에디터 리뷰 | 몰디브 바이블`
+        : `${selectedResort.name} 리조트 정보 | 몰디브 바이블`,
+      description: selectedResort.editorReview
+        ? `${selectedResort.name} 에디터 리뷰. ${selectedResort.editorReview.dek}`
+        : `${selectedResort.name}의 이동수단, 객실 유형, 수중환경과 실제 여행자 후기를 한곳에서 확인하세요.`,
+      heading: selectedResort.name,
+      image: '/og-image.jpg',
+      imageAlt: `${selectedResort.name} 몰디브 리조트 정보`,
+      imageWidth: 1200,
+      imageHeight: 630,
+    });
+  }, [activeSeoPageKey, selectedResort]);
+
   const calculatedTotalPages = displayedResorts.length === 0
     ? 0
     : Math.ceil(displayedResorts.length / RESORTS_PER_PAGE);

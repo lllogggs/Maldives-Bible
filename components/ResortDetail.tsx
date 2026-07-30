@@ -7,6 +7,7 @@ import {
 import { TransportationType } from '../types';
 import { getTransportationLabel } from './transportationLabels';
 import ResortReviewSummary from './ResortReviewSummary';
+import ResortEditorReview from './ResortEditorReview';
 
 interface ResortDetailProps {
   resort: Resort;
@@ -561,6 +562,8 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
           <p className="-mt-2 mb-8 rounded-lg border border-teal-100 bg-teal-50 px-4 py-3 text-xs leading-5 text-teal-900">
             비교용 참고가입니다. 항공권과 리조트 이동비는 별도이며 시즌·세금·환율에 따라 실제 견적이 달라질 수 있습니다.
           </p>
+
+          <ResortEditorReview resortId={resort.id} review={resort.editorReview} />
 
           <ResortReviewSummary resortId={resort.id} resortName={resort.name} summary={resort.reviewSummary} variant="detail" />
 

@@ -106,6 +106,7 @@ const requiredFiles = [
   'dist/android-chrome-512x512.png',
   'dist/apple-touch-icon.png',
   'dist/site.webmanifest',
+  'dist/api/resort-editor-reviews.json',
 ];
 
 const failures = [];
@@ -141,6 +142,16 @@ const textContent = (html = '') => decodeHtml(html
   .replace(/<[^>]+>/g, ' '))
   .replace(/\s+/g, ' ')
   .trim();
+const jsonLdNodes = (html = '') => [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]
+  .filter((match) => attribute(`<script ${match[1]}>`, 'type')?.toLowerCase() === 'application/ld+json')
+  .flatMap((match) => {
+    try {
+      const value = JSON.parse(match[2]);
+      return Array.isArray(value?.['@graph']) ? value['@graph'] : [value];
+    } catch {
+      return [];
+    }
+  });
 const first = (values) => values[0];
 const absolute = (value, base = `${siteOrigin}/`) => {
   try {
@@ -460,6 +471,64 @@ if (!directory) report(sitemapFile, '전체 리조트 목록 URL이 sitemap에 �
 else {
   const directoryLinks = tags(directory, 'a').filter((tag) => /^https:\/\/www\.maldivesbible\.com\/resorts\//.test(attribute(tag, 'href') ?? '')).length;
   if (directoryLinks !== 171) report('dist/maldives-resorts/index.html', `리조트 상세 링크는 171개여야 합니다: ${directoryLinks}`);
+}
+
+const editorReviewFile = 'dist/api/resort-editor-reviews.json';
+const editorReviewText = await readText(editorReviewFile);
+if (editorReviewText) {
+  try {
+    const editorReviews = JSON.parse(editorReviewText);
+    if (!Array.isArray(editorReviews.items) || editorReviews.items.length < 35) {
+      report(editorReviewFile, `에디터 리뷰는 최소 35개여야 합니다: ${editorReviews.items?.length ?? 0}`);
+    } else {
+      const resortPages = [...sitemapPageEntries.entries()]
+        .filter(([url]) => new URL(url).pathname.startsWith('/resorts/'));
+      for (const item of editorReviews.items) {
+        const review = item?.editorReview;
+        if (!review?.title || !review?.dek || !Array.isArray(review?.paragraphs) || !review?.verdict) {
+          report(editorReviewFile, `에디터 리뷰 필드가 비었습니다: resortId=${item?.resortId ?? 'unknown'}`);
+          continue;
+        }
+        const matches = resortPages.filter(([, html]) => textContent(html).includes(review.title));
+        if (matches.length !== 1) {
+          report(editorReviewFile, `에디터 리뷰가 정확히 한 개의 정적 리조트 페이지에 있어야 합니다: resortId=${item.resortId}`, [`matches: ${matches.length}`]);
+          continue;
+        }
+        const [url, html] = matches[0];
+        const file = shownPath(htmlPathForUrl(url));
+        const schemaNodes = jsonLdNodes(html);
+        const hotelNode = schemaNodes.find((node) => node?.['@type'] === 'Hotel');
+        const articleNode = schemaNodes.find((node) => node?.['@type'] === 'Article');
+        const resortName = String(hotelNode?.name ?? '').trim();
+        if (!resortName) {
+          report(file, 'Hotel 구조화 데이터의 정확한 리조트명이 없습니다.');
+          continue;
+        }
+        const expectedTitle = `${resortName} 에디터 리뷰 | 몰디브 바이블`;
+        const actualTitle = textContent(first(elementContents(html, 'title')) ?? '');
+        if (actualTitle !== expectedTitle) {
+          report(file, '에디터 리뷰 페이지 title 형식이 올바르지 않습니다.', [actualTitle, expectedTitle]);
+        }
+        const metaDescription = first(metaValues(html, 'name', 'description')) ?? '';
+        const expectedDescription = `${resortName} 에디터 리뷰. ${review.dek}`;
+        if (metaDescription !== expectedDescription) {
+          report(file, '정확한 리조트명과 dek가 meta description에 일치하지 않습니다.', [metaDescription, expectedDescription]);
+        }
+        const h1 = textContent(first(elementContents(html, 'h1')) ?? '');
+        if (h1 !== resortName) report(file, 'H1과 Hotel 구조화 데이터의 리조트명이 일치하지 않습니다.', [h1, resortName]);
+        if (!review.title.includes(resortName)) report(file, '에디터 리뷰 제목에 정확한 리조트명이 없습니다.', [review.title, resortName]);
+        if (!html.includes('class="seo-editor-review"')) report(file, '사용자에게 보이는 에디터 리뷰 article이 없습니다.');
+        for (const paragraph of review.paragraphs) {
+          if (!textContent(html).includes(paragraph)) report(file, '에디터 리뷰 본문 문단이 정적 HTML에서 누락됐습니다.', [paragraph]);
+        }
+        if (!textContent(html).includes(review.verdict)) report(file, '에디터 결론이 정적 HTML에서 누락됐습니다.');
+        if (!articleNode || articleNode.headline !== review.title) report(file, '에디터 리뷰 Article headline이 사용자 화면과 일치하지 않습니다.');
+        if (articleNode?.about?.['@id'] !== hotelNode?.['@id']) report(file, 'Article과 Hotel 구조화 데이터가 같은 리조트를 가리키지 않습니다.');
+      }
+    }
+  } catch (error) {
+    report(editorReviewFile, '에디터 리뷰 JSON을 파싱할 수 없습니다.', [error.message]);
+  }
 }
 
 const robotsFile = 'dist/robots.txt';

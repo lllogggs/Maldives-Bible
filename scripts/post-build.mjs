@@ -8,6 +8,8 @@ const source = resolve(distDir, 'index.html');
 const target = resolve(distDir, '404.html');
 const reviewInsightsDataPath = resolve(distDir, 'api', 'resort-review-insights.json');
 const sourceReviewInsightsPath = resolve(process.cwd(), 'public', 'api', 'resort-review-insights.json');
+const editorReviewsDataPath = resolve(distDir, 'api', 'resort-editor-reviews.json');
+const sourceEditorReviewsPath = resolve(process.cwd(), 'public', 'api', 'resort-editor-reviews.json');
 const reviewDetailsDir = resolve(distDir, 'api', 'resort-reviews');
 const sourceReviewDetailsDir = resolve(process.cwd(), 'public', 'api', 'resort-reviews');
 const sitemapPath = resolve(distDir, 'sitemap.xml');
@@ -750,7 +752,54 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
     </section>`;
 };
 
+const normalizeEditorReview = (editorReview) => {
+  if (!editorReview || typeof editorReview !== 'object' || Array.isArray(editorReview)) {
+    return null;
+  }
+
+  const clean = (value, maxLength) => String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, maxLength);
+  const title = clean(editorReview.title, 100);
+  const dek = clean(editorReview.dek, 240);
+  const paragraphs = Array.isArray(editorReview.paragraphs)
+    ? editorReview.paragraphs.map((paragraph) => clean(paragraph, 600)).filter(Boolean)
+    : [];
+  const verdict = clean(editorReview.verdict, 240);
+  const publishedAt = /^\d{4}-\d{2}-\d{2}$/.test(editorReview.publishedAt ?? '')
+    ? editorReview.publishedAt
+    : null;
+
+  if (!title || !dek || paragraphs.length !== 3 || !verdict || !publishedAt) {
+    return null;
+  }
+
+  return { title, dek, paragraphs, verdict, publishedAt };
+};
+
+const buildEditorReviewContent = (editorReview) => {
+  const review = normalizeEditorReview(editorReview);
+  if (!review) return '';
+
+  return `
+    <article class="seo-editor-review" aria-labelledby="seo-editor-review-title" style="margin:24px 0 26px;overflow:hidden;border:1px solid #dbe7e4;border-radius:16px;background:#fff;box-shadow:0 12px 30px rgba(15,23,42,.06);">
+      <header style="padding:28px;background:linear-gradient(135deg,#020617 0%,#0f172a 55%,#134e4a 100%);color:#fff;">
+        <p style="margin:0;color:#99f6e4;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;">MALDIVES BIBLE EDITOR REVIEW</p>
+        <h2 id="seo-editor-review-title" style="margin:10px 0 0;color:#fff;font-size:28px;line-height:1.28;letter-spacing:-.025em;">${escapeHtml(review.title)}</h2>
+        <p style="margin:14px 0 0;max-width:760px;color:#dbeafe;font-size:16px;font-weight:600;line-height:1.75;">${escapeHtml(review.dek)}</p>
+      </header>
+      <div style="padding:28px;">
+        ${review.paragraphs.map((paragraph) => `<p style="margin:0 0 18px;max-width:760px;color:#334155;font-size:16px;line-height:1.9;">${escapeHtml(paragraph)}</p>`).join('')}
+        <aside style="margin-top:22px;border:1px solid #ccfbf1;border-radius:12px;background:#f0fdfa;padding:16px 18px;">
+          <p style="margin:0;color:#0f766e;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;">EDITOR'S PICK</p>
+          <p style="margin:8px 0 0;color:#0f172a;font-size:15px;font-weight:700;line-height:1.7;">${escapeHtml(review.verdict)}</p>
+        </aside>
+      </div>
+    </article>`;
+};
+
 const buildResortDescription = (resort) => {
+  const editorReview = normalizeEditorReview(resort.editorReview);
+  if (editorReview) return `${resort.name || resort.name_en} 에디터 리뷰. ${editorReview.dek}`;
+
   const displayName = resort.name || resort.name_en;
   const englishName = resort.name_en && resort.name_en !== displayName ? `(${resort.name_en})` : null;
   const parts = [
@@ -796,6 +845,7 @@ const buildResortPageContent = (resort) => {
     resort.hasPrivatePool ? '개인풀 보유' : null,
     resort.honeymoonPerks ? '허니문 혜택' : null,
   ].filter(Boolean);
+  const editorReviewContent = buildEditorReviewContent(resort.editorReview);
   const reviewSummaryContent = buildReviewSummaryContent(resort.reviewSummary);
 
   return `
@@ -805,6 +855,8 @@ const buildResortPageContent = (resort) => {
         .seo-resort-card { padding:18px !important; }
         .seo-resort-card h1 { font-size:clamp(28px,9vw,34px) !important;line-height:1.22 !important;letter-spacing:-.035em;overflow-wrap:anywhere; }
         .seo-resort-review-grid { grid-template-columns:minmax(0,1fr) !important; }
+        .seo-editor-review header, .seo-editor-review > div { padding:20px !important; }
+        .seo-editor-review h2 { font-size:24px !important; }
       }
     </style>
     <main class="seo-resort-page" style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
@@ -821,6 +873,7 @@ const buildResortPageContent = (resort) => {
         <p style="margin:0 0 20px;">${badges
           .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
           .join('')}</p>
+        ${editorReviewContent}
         ${reviewSummaryContent}
         <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
         <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
@@ -1854,6 +1907,8 @@ const buildEditorialPolicyPage = () => {
 const buildResortSchemaNodes = (resort, canonicalUrl, description) => {
   const name = resort.name || resort.name_en;
   const hotelId = `${canonicalUrl}#hotel`;
+  const editorReview = normalizeEditorReview(resort.editorReview);
+  const editorReviewId = editorReview ? `${canonicalUrl}#editor-review` : null;
   const hotelNode = {
     '@type': 'Hotel',
     '@id': hotelId,
@@ -1864,14 +1919,15 @@ const buildResortSchemaNodes = (resort, canonicalUrl, description) => {
     address: resort.location ? { '@type': 'PostalAddress', addressLocality: resort.location } : undefined,
   };
 
-  return [
+  const nodes = [
     buildWebPageNode({
       url: canonicalUrl,
-      name: `${name} 리조트 정보`,
+      name: editorReview ? editorReview.title : `${name} 리조트 정보`,
       description,
       publishedAt: siteDates.resortPagesPublished,
-      modifiedAt: siteDates.modified,
+      modifiedAt: editorReview?.publishedAt ?? siteDates.modified,
       mainEntityId: hotelId,
+      subjectOfId: editorReviewId,
     }),
     buildBreadcrumbNode({
       url: canonicalUrl,
@@ -1885,6 +1941,27 @@ const buildResortSchemaNodes = (resort, canonicalUrl, description) => {
     }),
     hotelNode,
   ];
+
+  if (editorReview && editorReviewId) {
+    nodes.push({
+      '@type': 'Article',
+      '@id': editorReviewId,
+      headline: editorReview.title,
+      description: editorReview.dek,
+      articleBody: [editorReview.dek, ...editorReview.paragraphs, editorReview.verdict].join('\n\n'),
+      articleSection: '몰디브 리조트 에디터 리뷰',
+      inLanguage: 'ko-KR',
+      url: canonicalUrl,
+      mainEntityOfPage: { '@id': `${canonicalUrl}#webpage` },
+      about: { '@id': hotelId },
+      author: { '@id': organizationId },
+      publisher: { '@id': organizationId },
+      datePublished: editorReview.publishedAt,
+      dateModified: editorReview.publishedAt,
+    });
+  }
+
+  return nodes;
 };
 
 const replaceMetaContent = (html, attribute, value, content) =>
@@ -2059,10 +2136,40 @@ const readAllResorts = async () => {
   );
   const reviewSummaryByResortId = new Map(reviewSummaryEntries);
 
+  const editorReviews = JSON.parse(
+    await readBuiltOrSourceFile(editorReviewsDataPath, sourceEditorReviewsPath)
+  );
+  if (editorReviews?.schemaVersion !== 1 || !Array.isArray(editorReviews?.items)) {
+    throw new Error('resort-editor-reviews.json 형식이 올바르지 않습니다.');
+  }
+  if (editorReviews.items.length < 35) {
+    throw new Error(`에디터 리뷰가 35개보다 적습니다: ${editorReviews.items.length}`);
+  }
+  const editorReviewByResortId = new Map();
+  for (const item of editorReviews.items) {
+    if (!Number.isInteger(item?.resortId) || !seen.has(item.resortId)) {
+      throw new Error(`에디터 리뷰에 잘못된 리조트 id가 있습니다: ${item?.resortId ?? 'unknown'}`);
+    }
+    if (editorReviewByResortId.has(item.resortId)) {
+      throw new Error(`중복 에디터 리뷰 id: ${item.resortId}`);
+    }
+    if ((reviewSummaryByResortId.get(item.resortId)?.sourceCount ?? 0) < 10) {
+      throw new Error(`에디터 리뷰는 실제 후기 10개 이상인 리조트부터 발행합니다: ${item.resortId}`);
+    }
+    const editorReview = normalizeEditorReview(item.editorReview);
+    if (!editorReview) {
+      throw new Error(`리조트 ${item.resortId}의 에디터 리뷰 형식이 올바르지 않습니다.`);
+    }
+    editorReviewByResortId.set(item.resortId, editorReview);
+  }
+
   return resorts.map((resort) => ({
     ...resort,
     ...(reviewSummaryByResortId.has(resort.id)
       ? { reviewSummary: reviewSummaryByResortId.get(resort.id) }
+      : {}),
+    ...(editorReviewByResortId.has(resort.id)
+      ? { editorReview: editorReviewByResortId.get(resort.id) }
       : {}),
   }));
 };
@@ -2092,9 +2199,11 @@ try {
       continue;
     }
     usedSlugs.add(slug);
-    resortEntries.push({ slug, lastmod: siteDates.modified });
+    resortEntries.push({ slug, lastmod: resort.editorReview?.publishedAt ?? siteDates.modified });
 
-    const title = `${resort.name || name} 리조트 정보 | 몰디브 바이블`;
+    const title = resort.editorReview
+      ? `${resort.name || name} 에디터 리뷰 | 몰디브 바이블`
+      : `${resort.name || name} 리조트 정보 | 몰디브 바이블`;
     const description = buildResortDescription(resort);
     const url = `${siteUrl}/resorts/${slug}/`;
     const schemaNodes = buildResortSchemaNodes(resort, url, description);

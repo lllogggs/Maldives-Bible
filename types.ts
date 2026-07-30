@@ -36,6 +36,15 @@ export interface Resort {
   roomTypes: string[];
   homepageUrl: string;
   reviewSummary?: ResortReviewSummary;
+  editorReview?: ResortEditorReview;
+}
+
+export interface ResortEditorReview {
+  title: string;
+  dek: string;
+  paragraphs: string[];
+  verdict: string;
+  publishedAt: string;
 }
 
 export interface ResortReviewPoint {
