@@ -92,4 +92,5 @@ export type SortOption =
   | 'rating-desc'
   | 'snorkeling-desc'
   | 'travelTime-asc'
+  | 'reviews-desc'
   | 'likes-desc';

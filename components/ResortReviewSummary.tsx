@@ -94,7 +94,7 @@ const ReviewSources: React.FC<{ sources: ResortReviewSummaryData['sources'] }> =
   return (
     <details className="mt-3 border-t border-teal-100 pt-3">
       <summary className="min-h-11 cursor-pointer py-2 text-sm font-bold text-teal-800 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500">
-        참고한 실제 후기 {sources.length}개 보기
+        실제 후기 원문 {sources.length}개 보기
       </summary>
       <ul className="mt-2 grid gap-2 sm:grid-cols-2">
         {sources.map((source, index) => {
@@ -230,9 +230,6 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
   }
 
   const reviewedAt = formatDate(activeSummary.reviewedAt);
-  const basisLabel = evidenceStatus === 'limited'
-    ? '한 여행자의 실제 경험을 바탕으로 정리한 내용입니다.'
-    : '여러 여행자의 실제 후기에서 공통으로 언급된 내용입니다.';
 
   return (
     <section
@@ -249,7 +246,7 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
             실제 후기 한눈에
           </h2>
         </div>
-        {reviewedAt && <p className="text-xs leading-5 text-slate-500">{reviewedAt} 업데이트</p>}
+        {reviewedAt && <p className="text-xs leading-5 text-slate-500">{reviewedAt} 후기 기준</p>}
       </div>
 
       <div className={`mt-4 grid gap-3 ${pros.length > 0 && cons.length > 0 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
@@ -275,7 +272,7 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
         )}
       </div>
 
-      <p className="mt-4 text-xs leading-5 text-slate-500">{basisLabel} 여행 시기와 객실 유형에 따라 경험은 달라질 수 있어요.</p>
+      <p className="mt-4 text-xs leading-5 text-slate-500">투숙 시기와 객실 유형에 따라 경험은 달라질 수 있어요.</p>
 
       <ReviewSources sources={sources} />
     </section>

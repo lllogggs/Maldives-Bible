@@ -49,6 +49,7 @@ const VALID_SORT_OPTIONS: readonly SortOption[] = [
   'rating-desc',
   'snorkeling-desc',
   'travelTime-asc',
+  'reviews-desc',
   'likes-desc',
 ];
 const VALID_ROOM_TYPES: readonly Filters['roomTypes'][number][] = ['beach', 'water'];
@@ -1712,6 +1713,23 @@ const App: React.FC = () => {
       case 'rating-desc': processedResorts.sort((a, b) => b.rating - a.rating); break;
       case 'snorkeling-desc': processedResorts.sort((a, b) => b.snorkelingQuality - a.snorkelingQuality); break;
       case 'travelTime-asc': processedResorts.sort((a, b) => a.travelTime - b.travelTime); break;
+      case 'reviews-desc':
+        processedResorts.sort((a, b) => {
+          const reviewsA = a.reviewSummary?.sourceCount ?? 0;
+          const reviewsB = b.reviewSummary?.sourceCount ?? 0;
+          if (reviewsA !== reviewsB) {
+            return reviewsB - reviewsA;
+          }
+
+          const interestA = interestCountMap[a.id] ?? 0;
+          const interestB = interestCountMap[b.id] ?? 0;
+          if (interestA !== interestB) {
+            return interestB - interestA;
+          }
+
+          return a.name.localeCompare(b.name, 'ko');
+        });
+        break;
       case 'likes-desc':
         processedResorts.sort((a, b) => {
           const likesA = interestCountMap[a.id] ?? 0;
@@ -2282,7 +2300,7 @@ const App: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-2 sm:justify-end">
                       <SortIcon className="h-5 w-5 text-slate-500" />
-                      <div className="relative min-w-[154px] flex-1 sm:flex-none">
+                      <div className="relative min-w-[154px] flex-1 sm:min-w-[200px] sm:flex-none">
                         <select
                           id="sort-options"
                           aria-label="리조트 정렬 기준"
@@ -2300,6 +2318,7 @@ const App: React.FC = () => {
                           <option value="rating-desc">평점 높은 순</option>
                           <option value="snorkeling-desc">수중환경순</option>
                           <option value="travelTime-asc">이동시간 짧은 순</option>
+                          <option value="reviews-desc">블로그 후기 많은 순</option>
                           <option value="likes-desc">관심도순</option>
                         </select>
                         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-600">
