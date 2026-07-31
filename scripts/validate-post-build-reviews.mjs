@@ -196,7 +196,7 @@ try {
   const directoryHtml = await readFile(join(sandbox, 'dist', 'maldives-resorts', 'index.html'), 'utf8');
   const sitemap = await readFile(join(sandbox, 'dist', 'sitemap.xml'), 'utf8');
 
-  assert.match(reviewHtml, /실제 후기 한눈에/);
+  assert.match(reviewHtml, /실제 후기 요약/);
   assert.match(reviewHtml, /실제 후기 12개/);
   assert.doesNotMatch(reviewHtml, /10건 검토|4건 근거|근거:/);
   assert.match(reviewHtml, /https:\/\/blog\.naver\.com\/example\/1/);
@@ -212,7 +212,8 @@ try {
   assert.match(reviewHtml, /\\u003c\/script>\\u003cscript>alert\(1\)\\u003c\/script>/);
   assert.doesNotMatch(noReviewHtml, /seo-resort-reviews|후기 요약/);
   assert.match(insufficientReviewHtml, /seo-resort-reviews/);
-  assert.match(insufficientReviewHtml, /후기에서 다룬 내용/);
+  assert.match(insufficientReviewHtml, /실제 후기 요약/);
+  assert.doesNotMatch(insufficientReviewHtml, /후기에서 다룬 내용/);
   assert.match(insufficientReviewHtml, /객실과 빌라, 식사와 다이닝/);
   assert.match(insufficientReviewHtml, /실제 후기 4개/);
   assert.match(insufficientReviewHtml, /https:\/\/blog\.naver\.com\/example\/4/);

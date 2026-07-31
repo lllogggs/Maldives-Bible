@@ -31,3 +31,6 @@ dist-ssr
 
 # NAVER blog-search research cache and local review-audit artifacts
 .research/
+
+# Codex session attachments are local-only and must never be deployed.
+.codex-remote-attachments/

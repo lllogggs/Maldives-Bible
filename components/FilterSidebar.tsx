@@ -6,6 +6,7 @@ import { getTransportationLabel } from './transportationLabels';
 
 interface FilterSidebarProps {
   filters: Filters;
+  isSortModified: boolean;
   onFilterChange: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
   onReset: () => void;
   onClose?: () => void;
@@ -54,7 +55,7 @@ const CheckboxRow: React.FC<{
   </label>
 );
 
-const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, onReset, onClose }) => {
+const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, isSortModified, onFilterChange, onReset, onClose }) => {
   const budgetRangeRef = React.useRef<HTMLDivElement>(null);
   const diningRangeRef = React.useRef<HTMLDivElement>(null);
   const minimumRestaurantsId = React.useId();
@@ -249,19 +250,51 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onFilterChange, 
     left: '0%',
     right: `${100 - diningPercent}%`,
   };
+  const activeFilterCount = [
+    filters.searchTerm.trim().length > 0,
+    filters.transportation.length > 0,
+    filters.minPrice !== MIN_BUDGET || filters.maxPrice !== MAX_BUDGET,
+    filters.hasPrivatePool,
+    filters.roomTypes.length > 0,
+    filters.onlyLiked,
+    filters.minRestaurants !== MIN_DINING,
+  ].filter(Boolean).length;
+  const hasActiveFilters = activeFilterCount > 0;
+  const canResetAll = hasActiveFilters || isSortModified;
+  const activeStateText = hasActiveFilters && isSortModified
+    ? `${activeFilterCount}개 조건 · 정렬 변경`
+    : hasActiveFilters
+      ? `${activeFilterCount}개 조건 적용 중`
+      : isSortModified
+        ? '정렬 변경됨'
+        : '기본 조건·정렬';
+  const resetAriaLabel = hasActiveFilters && isSortModified
+    ? `적용된 ${activeFilterCount}개 조건과 변경된 정렬 전체 초기화`
+    : hasActiveFilters
+      ? `적용된 ${activeFilterCount}개 조건 전체 초기화`
+      : isSortModified
+        ? '변경된 정렬 전체 초기화'
+        : '초기화할 조건이나 정렬 없음';
 
   return (
     <aside className="h-full rounded-lg border border-slate-200 bg-white/95 p-4 shadow-sm shadow-slate-900/5 lg:sticky lg:top-28">
       <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-        <h2 className="font-brand-heading flex items-center gap-2 text-base text-slate-950">
-          <FilterIcon className="h-5 w-5 text-teal-700" />
-          필터
-        </h2>
+        <div>
+          <h2 className="font-brand-heading flex items-center gap-2 text-base text-slate-950">
+            <FilterIcon className="h-5 w-5 text-teal-700" />
+            필터
+          </h2>
+          <p className="mt-1 text-xs font-semibold text-slate-500" aria-live="polite">
+            {activeStateText}
+          </p>
+        </div>
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={onReset}
-            className="rounded-md px-2 py-1 text-xs font-semibold text-teal-700 hover:bg-teal-50"
+            disabled={!canResetAll}
+            aria-label={resetAriaLabel}
+            className="inline-flex min-h-11 items-center rounded-md px-2.5 text-xs font-semibold text-teal-700 transition-colors hover:bg-teal-50 disabled:cursor-not-allowed disabled:text-slate-400 disabled:hover:bg-transparent"
           >
             전체 초기화
           </button>

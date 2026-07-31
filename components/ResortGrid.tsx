@@ -39,7 +39,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
     <div>
       {resorts.length > 0 ? (
         <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {resorts.map((resort) => (
+          {resorts.map((resort, index) => (
             <ResortCard
               key={resort.id}
               resort={resort}
@@ -51,6 +51,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
               onToggleLike={onToggleLike}
               isLikePending={pendingLikeResortIds.has(resort.id)}
               onViewDetails={onViewDetails}
+              imagePriority={index < 3}
             />
           ))}
         </div>

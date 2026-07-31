@@ -3,6 +3,7 @@ import type { Resort } from '../types';
 import { TransportationType } from '../types';
 import { ArrowLeftIcon, StarIcon, CheckCircleIcon, XCircleIcon, SeaplaneIcon, BoatIcon, DomesticFlightIcon, XIcon, ShareIcon } from './icons/Icons';
 import { getTransportationLabel } from './transportationLabels';
+import { trackEvent } from '../utils/analytics';
 
 interface CompareViewProps {
   resorts: Resort[];
@@ -163,6 +164,9 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
 
   const prices = resorts.map(r => r.price);
   const bestPrice = numResorts > 1 ? Math.min(...prices) : null;
+  const quoteHref = `/quote-comparison/?resorts=${encodeURIComponent(
+    resorts.map(resort => resort.name).join(', ')
+  )}`;
 
   return (
     <div className="animate-fade-in">
@@ -193,6 +197,25 @@ const CompareView: React.FC<CompareViewProps> = ({ resorts, onBack, onRemove, on
         <p className="mt-3 rounded-lg bg-teal-50 px-3 py-2 text-center text-xs font-bold text-teal-800 lg:hidden">
           {numResorts > 2 ? '한 화면에 2곳씩 · 옆으로 밀면 3번째' : '두 리조트의 차이를 한 화면에서 확인하세요'}
         </p>
+        <section className="mt-4 rounded-xl border border-teal-200 bg-gradient-to-br from-teal-50 to-white p-4 sm:flex sm:items-center sm:justify-between sm:gap-5">
+          <div className="min-w-0">
+            <h2 className="font-brand-heading text-base font-bold text-slate-950">후보를 골랐다면 실제 견적도 비교하세요</h2>
+            <p className="mt-1 text-sm leading-6 text-slate-600">
+              같은 일정·객실·식사 조건으로 2~3곳에 문의하면 총액과 포함 혜택을 정확히 비교할 수 있습니다.
+            </p>
+          </div>
+          <a
+            href={quoteHref}
+            onClick={() => trackEvent('quote_cta_click', {
+              cta_placement: 'compare_view',
+              selected_count: numResorts,
+              resort_ids: resorts.map(resort => resort.id).join(','),
+            })}
+            className="mt-3 inline-flex min-h-12 w-full shrink-0 touch-manipulation items-center justify-center rounded-lg bg-teal-700 px-5 py-3 text-sm font-extrabold text-white shadow-sm transition-colors hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-500/30 sm:mt-0 sm:w-auto"
+          >
+            여행사 견적 비교하기
+          </a>
+        </section>
         <div className="compare-results-scroll relative mt-4 overflow-x-auto sm:mt-6">
             <div
               role="table"

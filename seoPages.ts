@@ -43,9 +43,9 @@ export const SEO_PAGES: Record<SeoPageKey, SeoPageDefinition> = {
   },
   resortComparison: {
     path: '/maldives-resort-comparison/',
-    title: '몰디브 리조트 비교 | 171개 리조트 한눈에 보기',
+    title: '2026 몰디브 리조트 비교 | 171개 가격·이동·후기',
     description:
-      '171개 몰디브 리조트를 예산, 말레 공항 이동수단, 객실 유형, 개인풀, 수중환경과 여행 취향 기준으로 비교해 보세요.',
+      '171개 몰디브 리조트의 4박 2인 참고가, 공항 이동시간·이동비, 객실, 개인풀, 수중환경과 실제 후기를 한눈에 비교해 보세요.',
     heading: '몰디브 리조트 비교',
     image: '/brand/resort-comparison-preview.jpg',
     imageAlt: '171개 몰디브 리조트 비교 화면',
@@ -54,9 +54,9 @@ export const SEO_PAGES: Record<SeoPageKey, SeoPageDefinition> = {
   },
   quoteComparison: {
     path: '/quote-comparison/',
-    title: '몰디브 여행사 견적 비교 | 요청 전 확인할 기준',
+    title: '몰디브 여행사 견적 비교 | 같은 조건 요청문 만들기',
     description:
-      '몰디브 전문 여행사의 홈페이지와 상담 채널을 확인하고, 같은 일정·객실·식사 조건으로 견적을 비교하는 방법을 안내합니다.',
+      '같은 일정·객실·식사 조건의 견적 요청문을 만들고, 몰디브 전문 여행사 홈페이지와 카카오 상담 채널에서 총액과 포함 조건을 비교하세요.',
     heading: '몰디브 여행사 견적 비교',
     image: '/images/seo/maldives-resort-aerial.jpg',
     imageAlt: '몰디브 여행 견적 비교 안내',

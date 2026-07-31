@@ -10,6 +10,10 @@ const today = new Intl.DateTimeFormat('en-CA', {
   month: '2-digit',
   day: '2-digit',
 }).format(new Date());
+const currentYear = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Asia/Seoul',
+  year: 'numeric',
+}).format(new Date());
 
 const corePages = [
   {
@@ -41,9 +45,9 @@ const corePages = [
   {
     path: '/maldives-resort-comparison/',
     file: 'dist/maldives-resort-comparison/index.html',
-    title: '몰디브 리조트 비교 | 171개 리조트 한눈에 보기',
+    title: `${currentYear} 몰디브 리조트 비교 | 171개 가격·이동·후기`,
     description:
-      '171개 몰디브 리조트를 예산, 말레 공항 이동수단, 객실 유형, 개인풀, 수중환경과 여행 취향 기준으로 비교해 보세요.',
+      '171개 몰디브 리조트의 4박 2인 참고가, 공항 이동시간·이동비, 객실, 개인풀, 수중환경과 실제 후기를 한눈에 비교해 보세요.',
     heading: '몰디브 리조트 비교',
     image: '/brand/resort-comparison-preview.jpg',
     imageAlt: '171개 몰디브 리조트 비교 화면',
@@ -54,9 +58,9 @@ const corePages = [
   {
     path: '/quote-comparison/',
     file: 'dist/quote-comparison/index.html',
-    title: '몰디브 여행사 견적 비교 | 요청 전 확인할 기준',
+    title: '몰디브 여행사 견적 비교 | 같은 조건 요청문 만들기',
     description:
-      '몰디브 전문 여행사의 홈페이지와 상담 채널을 확인하고, 같은 일정·객실·식사 조건으로 견적을 비교하는 방법을 안내합니다.',
+      '같은 일정·객실·식사 조건의 견적 요청문을 만들고, 몰디브 전문 여행사 홈페이지와 카카오 상담 채널에서 총액과 포함 조건을 비교하세요.',
     heading: '몰디브 여행사 견적 비교',
     image: '/images/seo/maldives-resort-aerial.jpg',
     imageAlt: '몰디브 여행 견적 비교 안내',
@@ -79,6 +83,14 @@ const corePages = [
   },
 ];
 
+const notFoundPage = {
+  file: 'dist/404.html',
+  title: '페이지를 찾을 수 없습니다 | 몰디브 바이블',
+  description:
+    '요청하신 페이지를 찾을 수 없습니다. 몰디브 바이블 홈이나 리조트 비교 페이지에서 필요한 정보를 찾아보세요.',
+  heading: '페이지를 찾을 수 없습니다',
+};
+
 const primaryLinks = [
   { path: '/start/', label: '시작하기' },
   { path: '/maldives-resort-comparison/', label: '리조트 비교' },
@@ -97,6 +109,7 @@ const forbiddenPhrases = [
 ];
 const requiredFiles = [
   ...corePages.map((page) => page.file),
+  notFoundPage.file,
   'dist/sitemap.xml',
   'dist/robots.txt',
   'dist/favicon.ico',
@@ -353,6 +366,86 @@ for (const field of ['title', 'description', 'canonical', 'h1']) {
   }
 }
 
+const notFoundHtml = await readText(notFoundPage.file);
+if (notFoundHtml) {
+  const title = textContent(first(elementContents(notFoundHtml, 'title')));
+  const descriptions = metaValues(notFoundHtml, 'name', 'description');
+  const h1Values = elementContents(notFoundHtml, 'h1').map(textContent);
+  const robots = metaValues(notFoundHtml, 'name', 'robots');
+  const googlebot = metaValues(notFoundHtml, 'name', 'googlebot');
+  const canonicals = linkValues(notFoundHtml, 'canonical');
+  const alternates = linkValues(notFoundHtml, 'alternate');
+  const ogUrls = metaValues(notFoundHtml, 'property', 'og:url');
+  const scriptTags = tags(notFoundHtml, 'script');
+  const moduleScripts = scriptTags.filter(
+    (tag) => attribute(tag, 'type')?.toLowerCase() === 'module',
+  );
+  const jsonLdScripts = scriptTags.filter(
+    (tag) => attribute(tag, 'type')?.toLowerCase() === 'application/ld+json',
+  );
+  const directiveTokens = (value = '') => new Set(
+    value.toLowerCase().split(/[\s,]+/).filter(Boolean),
+  );
+  const hasNoindexFollow = (values) => {
+    if (values.length !== 1) return false;
+    const tokens = directiveTokens(values[0]);
+    return tokens.has('noindex') && tokens.has('follow') && !tokens.has('index');
+  };
+
+  if (title !== notFoundPage.title) {
+    report(notFoundPage.file, '404 페이지 title이 고유한 오류 제목과 일치하지 않습니다.', [
+      `예상: ${notFoundPage.title}`,
+      `실제: ${title || '(없음)'}`,
+    ]);
+  }
+  if (descriptions.length !== 1 || descriptions[0] !== notFoundPage.description) {
+    report(notFoundPage.file, '404 페이지에 고유한 meta description이 필요합니다.', [
+      `예상: ${notFoundPage.description}`,
+      `실제: ${descriptions.join(' | ') || '(없음)'}`,
+    ]);
+  }
+  if (h1Values.length !== 1 || h1Values[0] !== notFoundPage.heading) {
+    report(notFoundPage.file, '404 페이지에 정확히 하나의 고유한 H1이 필요합니다.', [
+      `예상: ${notFoundPage.heading}`,
+      `실제: ${h1Values.join(' | ') || '(없음)'}`,
+    ]);
+  }
+  if (!hasNoindexFollow(robots)) {
+    report(notFoundPage.file, '404 페이지 robots meta는 noindex,follow여야 합니다.', [
+      `실제: ${robots.join(' | ') || '(없음)'}`,
+    ]);
+  }
+  if (!hasNoindexFollow(googlebot)) {
+    report(notFoundPage.file, '404 페이지 googlebot meta는 noindex,follow여야 합니다.', [
+      `실제: ${googlebot.join(' | ') || '(없음)'}`,
+    ]);
+  }
+  if (canonicals.length > 0) {
+    report(notFoundPage.file, '404 페이지에는 홈 또는 다른 URL의 canonical이 없어야 합니다.', canonicals);
+  }
+  if (alternates.length > 0) {
+    report(notFoundPage.file, '404 페이지에는 alternate 링크가 없어야 합니다.', alternates);
+  }
+  if (ogUrls.length > 0) {
+    report(notFoundPage.file, '404 페이지에는 og:url이 없어야 합니다.', ogUrls);
+  }
+  if (jsonLdScripts.length > 0) {
+    report(notFoundPage.file, '404 페이지에는 JSON-LD 구조화 데이터가 없어야 합니다.');
+  }
+  if (moduleScripts.length > 0) {
+    report(notFoundPage.file, '404 페이지는 SPA module을 로드하지 않아야 합니다.', [
+      `module script 개수: ${moduleScripts.length}`,
+    ]);
+  }
+
+  const anchors = tags(notFoundHtml, 'a');
+  for (const expectedUrl of [`${siteOrigin}/`, `${siteOrigin}/maldives-resort-comparison/`]) {
+    if (!anchors.some((tag) => absolute(attribute(tag, 'href')) === expectedUrl)) {
+      report(notFoundPage.file, '404 페이지에 필수 복구 링크가 없습니다.', [expectedUrl]);
+    }
+  }
+}
+
 const clientSeoSource = await readText('seoPages.ts');
 if (!clientSeoSource) {
   report('seoPages.ts', '클라이언트 SEO 정의 파일을 읽을 수 없습니다.');
@@ -396,6 +489,7 @@ if (sitemap) {
   if (sitemapUrls.length < 188) report(sitemapFile, `sitemap URL이 기존 검증 기준보다 적습니다: ${sitemapUrls.length}`);
   if (sitemap.includes('?view=')) report(sitemapFile, 'sitemap에 ?view= query URL이 있습니다.');
   if (sitemapUrls.some((url) => url.includes('#'))) report(sitemapFile, 'sitemap <loc>에 hash URL이 있습니다.');
+  if (sitemapUrls.some((url) => new URL(url).pathname === '/404.html')) report(sitemapFile, 'sitemap에 404 오류 문서가 포함되면 안 됩니다.');
   for (const page of corePages) {
     const expected = `${siteOrigin}${page.path}`;
     if (!sitemapUrls.includes(expected)) report(sitemapFile, `핵심 clean URL이 sitemap에 없습니다.`, [expected]);
@@ -557,5 +651,5 @@ if (failures.length > 0) {
   console.error(`[SEO validation failed]\n${failures.join('\n\n')}`);
   process.exitCode = 1;
 } else {
-  console.log(`Validated ${sitemapUrls.length} crawlable URLs, five unique core pages, metadata, representative images, schema graphs, sitemap, robots, and internal links.`);
+  console.log(`Validated ${sitemapUrls.length} crawlable URLs, five unique core pages, a static noindex 404 page, metadata, representative images, schema graphs, sitemap, robots, and internal links.`);
 }

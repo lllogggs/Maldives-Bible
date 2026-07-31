@@ -57,18 +57,14 @@ const MentionCount: React.FC<{ mentions?: number }> = ({ mentions }) => {
   );
 };
 
-const CompactPoint: React.FC<{ point: ResortReviewPoint; tone: 'pro' | 'con' }> = ({ point, tone }) => (
-  <li className="flex min-w-0 items-center gap-2 text-xs leading-5 text-slate-700">
+const CompactPoint: React.FC<{ point: ResortReviewPoint; tone: 'pro' | 'con'; label: string }> = ({ point, tone, label }) => (
+  <li className="flex min-w-0 items-start gap-2 text-sm leading-5 text-slate-700">
     <span
-      aria-hidden="true"
-      className={`inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[11px] font-black ${
-        tone === 'pro' ? 'bg-teal-100 text-teal-700' : 'bg-amber-100 text-amber-800'
-      }`}
+      className={`shrink-0 pt-px text-xs font-extrabold ${tone === 'pro' ? 'text-teal-800' : 'text-amber-800'}`}
     >
-      {tone === 'pro' ? '+' : '–'}
+      {label}
     </span>
-    <span className="sr-only">{tone === 'pro' ? '장점: ' : '아쉬운 점: '}</span>
-    <span className="line-clamp-1 min-w-0">{point.text}</span>
+    <span className="line-clamp-2 min-w-0 flex-1">{point.text}</span>
   </li>
 );
 
@@ -170,8 +166,9 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
   const cons = cleanPoints(activeSummary.cons);
   const evidenceStatus = activeSummary.evidenceStatus
     ?? (pros.length > 0 || cons.length > 0 ? 'sufficient' : 'insufficient');
-  const sourceCount = Math.max(0, Math.floor(activeSummary.sourceCount || 0));
-  const overview = activeSummary.overview?.trim()
+  const rawSourceCount = Number(activeSummary.sourceCount);
+  const sourceCount = Number.isFinite(rawSourceCount) ? Math.max(0, Math.floor(rawSourceCount)) : 0;
+  const overview = (typeof activeSummary.overview === 'string' ? activeSummary.overview.trim() : '')
     || (sourceCount > 0 ? '실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있어요.' : '');
 
   if (pros.length === 0 && cons.length === 0 && evidenceStatus !== 'insufficient') return null;
@@ -182,40 +179,39 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
 
       return (
         <section
-          className="mt-3 h-[7.75rem] overflow-hidden rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5"
+          className="mt-3 min-h-[7.75rem] rounded-xl border border-slate-200 bg-slate-50 px-3 py-3"
           aria-label={`${resortName} 실제 후기`}
         >
           <div className="mb-2 flex items-center justify-between gap-2">
-            <h4 className="text-[11px] font-extrabold tracking-tight text-slate-800">후기에서 다룬 내용</h4>
-            <span className="shrink-0 text-[10px] font-semibold text-slate-500">실제 후기 {sourceCount}개</span>
+            <h4 className="text-sm font-extrabold tracking-tight text-slate-800">실제 후기</h4>
+            <span className="shrink-0 text-xs font-semibold text-slate-500">{sourceCount}개</span>
           </div>
-          <p className="line-clamp-2 text-xs leading-5 text-slate-700">{overview}</p>
+          <p className="line-clamp-3 text-sm leading-6 text-slate-700">{overview}</p>
         </section>
       );
     }
 
-    const compactPros = pros.slice(0, 2);
-    const compactCons = cons.slice(0, 1);
+    const compactPros = pros.slice(0, cons.length > 0 ? 1 : 2);
+    const compactCons = cons.slice(0, Math.max(0, 2 - compactPros.length));
+    const positiveLabel = evidenceStatus === 'limited' || sourceCount < 2 ? '언급된 점' : '좋았다는 점';
 
     return (
       <section
-        className="mt-3 h-[7.75rem] overflow-hidden rounded-xl border border-teal-100 bg-gradient-to-br from-teal-50/90 to-sky-50/60 px-3 py-2.5"
+        className="mt-3 min-h-[7.75rem] rounded-xl border border-teal-100 bg-gradient-to-br from-teal-50/90 to-sky-50/60 px-3 py-3"
         aria-label={`${resortName} 실제 후기`}
       >
-        <div className="mb-1.5 flex items-center justify-between gap-2">
-          <h4 className="text-[11px] font-extrabold tracking-tight text-teal-900">
-            실제 후기 한눈에
-          </h4>
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <h4 className="text-sm font-extrabold tracking-tight text-teal-950">실제 후기</h4>
           {sourceCount > 0 && (
-            <span className="shrink-0 text-[10px] font-semibold text-slate-500">실제 후기 {sourceCount}개</span>
+            <span className="shrink-0 text-xs font-semibold text-slate-500">{sourceCount}개</span>
           )}
         </div>
-        <ul className="space-y-1">
+        <ul className="space-y-2">
           {compactPros.map((point, index) => (
-            <CompactPoint key={`pro-${index}-${point.text}`} point={point} tone="pro" />
+            <CompactPoint key={`pro-${index}-${point.text}`} point={point} tone="pro" label={positiveLabel} />
           ))}
           {compactCons.map((point, index) => (
-            <CompactPoint key={`con-${index}-${point.text}`} point={point} tone="con" />
+            <CompactPoint key={`con-${index}-${point.text}`} point={point} tone="con" label="알아둘 점" />
           ))}
         </ul>
       </section>
@@ -237,9 +233,9 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
       >
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Real reviews</p>
+            <p className="text-xs font-extrabold tracking-[0.08em] text-slate-500">여행자 후기</p>
             <h2 id={`review-summary-title-${resortId}`} className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl">
-              실제 후기 한눈에
+              실제 후기 요약
             </h2>
           </div>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-5 text-slate-500">
@@ -248,8 +244,7 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
           </div>
         </div>
         <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4">
-          <h3 className="text-sm font-extrabold text-slate-800">후기에서 다룬 내용</h3>
-          <p className="mt-2 text-sm leading-6 text-slate-600">{overview}</p>
+          <p className="text-base leading-7 text-slate-700">{overview}</p>
         </div>
         <ReviewSources sources={sources} />
         <p className="mt-4 text-xs leading-5 text-slate-500">투숙 시기와 객실 유형에 따라 경험은 달라질 수 있어요.</p>
@@ -264,12 +259,12 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-teal-700">Real reviews</p>
+          <p className="text-xs font-extrabold tracking-[0.08em] text-teal-700">여행자 후기</p>
           <h2
             id={`review-summary-title-${resortId}`}
             className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl"
           >
-            실제 후기 한눈에
+            실제 후기 요약
           </h2>
         </div>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-5 text-slate-500">

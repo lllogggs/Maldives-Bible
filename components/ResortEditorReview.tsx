@@ -24,8 +24,8 @@ const ResortEditorReview: React.FC<ResortEditorReviewProps> = ({ resortId, revie
       <header className="border-b border-slate-200/80 bg-[radial-gradient(circle_at_top_right,rgba(13,148,136,0.08),transparent_42%)] px-4 py-5 sm:px-8 sm:py-8">
         <div className="flex items-center gap-3">
           <span aria-hidden="true" className="h-px w-8 shrink-0 bg-teal-700" />
-          <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-teal-800 sm:text-[11px]">
-            Maldives Bible · Editor Review
+          <p className="text-xs font-extrabold tracking-[0.08em] text-teal-800">
+            몰디브 바이블 에디터 리뷰
           </p>
         </div>
         <h2
@@ -39,24 +39,12 @@ const ResortEditorReview: React.FC<ResortEditorReviewProps> = ({ resortId, revie
         </p>
       </header>
 
-      <div className="grid gap-6 px-4 py-5 sm:gap-7 sm:px-8 sm:py-8 lg:grid-cols-[minmax(0,1fr)_15rem] lg:items-start lg:gap-8">
-        <div className="max-w-[68ch] space-y-4 text-[15px] leading-[1.75] text-slate-700 sm:space-y-5 sm:text-[17px] sm:leading-[1.8]">
+      <div className="px-4 py-5 sm:px-8 sm:py-8">
+        <div className="max-w-[58ch] space-y-4 text-base leading-7 text-slate-700 sm:space-y-5 sm:text-[17px] sm:leading-[1.8]">
           {review.paragraphs.map((paragraph, index) => (
             <p key={`${resortId}-editor-paragraph-${index}`}>{paragraph}</p>
           ))}
         </div>
-
-        <aside className="order-first rounded-xl border border-amber-200/70 bg-[#fbf7ee] px-4 py-5 sm:px-5 lg:order-none lg:mt-0.5">
-          <div className="flex items-center gap-2">
-            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-teal-700" />
-            <h3 className="text-[11px] font-extrabold tracking-[-0.01em] text-teal-800 sm:text-xs">
-              에디터의 결론
-            </h3>
-          </div>
-          <p className="mt-3 text-sm font-semibold leading-6 text-slate-900 sm:text-[15px]">
-            {review.verdict}
-          </p>
-        </aside>
       </div>
     </article>
   );

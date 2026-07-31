@@ -43,16 +43,96 @@
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6227921544579562"
       crossorigin="anonymous"
     ></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y00T1V6W91"></script>
+    <!-- Production analytics: direct GA4 + Microsoft Clarity -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+      (() => {
+        const productionHostnames = new Set([
+          "maldivesbible.com",
+          "www.maldivesbible.com",
+        ]);
 
-      gtag("config", "G-Y00T1V6W91");
+        const campaignParams = new URLSearchParams(window.location.search);
+        const cleanCampaignValue = (value) => {
+          const normalized = value?.trim().toLowerCase().slice(0, 100);
+          return normalized && /^[a-z0-9]+(?:_[a-z0-9]+)*$/.test(normalized)
+            ? normalized
+            : null;
+        };
+        const campaignAttribution = {
+          utm_source: cleanCampaignValue(campaignParams.get("utm_source")),
+          utm_medium: cleanCampaignValue(campaignParams.get("utm_medium")),
+          utm_campaign: cleanCampaignValue(campaignParams.get("utm_campaign")),
+        };
+        if (
+          campaignAttribution.utm_source &&
+          campaignAttribution.utm_medium &&
+          campaignAttribution.utm_campaign
+        ) {
+          const content = cleanCampaignValue(campaignParams.get("utm_content"));
+          const term = cleanCampaignValue(campaignParams.get("utm_term"));
+          const attribution = {
+            ...campaignAttribution,
+            captured_at: new Date().toISOString(),
+            landing_page: `${window.location.pathname}${window.location.search}${window.location.hash}`.slice(0, 500),
+            ...(content ? { utm_content: content } : {}),
+            ...(term ? { utm_term: term } : {}),
+          };
+          try {
+            window.sessionStorage.setItem("mb_campaign_attribution_v1", JSON.stringify(attribution));
+          } catch {
+            // Session storage may be unavailable in privacy-restricted contexts.
+          }
+        }
+
+        if (!productionHostnames.has(window.location.hostname.toLowerCase())) {
+          return;
+        }
+
+        const measurementId = "G-Y00T1V6W91";
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag("js", new Date());
+        window.gtag("config", measurementId, { send_page_view: false });
+
+        const sendStaticPageView = () => {
+          const root = document.getElementById("root");
+          if (root?.dataset.staticPage !== "true") {
+            return;
+          }
+
+          const initialParams = new URLSearchParams(window.location.search);
+          const legacyView = initialParams.get("view");
+          const viewSuffix = legacyView ? `?view=${encodeURIComponent(legacyView)}` : "";
+          window.__MB_LAST_PAGE_VIEW__ = `${window.location.pathname}${viewSuffix}${window.location.hash}`;
+          window.gtag("event", "page_view", {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+          });
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", sendStaticPageView, { once: true });
+        } else {
+          sendStaticPageView();
+        }
+
+        const googleTag = document.createElement("script");
+        googleTag.async = true;
+        googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+        document.head.appendChild(googleTag);
+
+        const clarityProjectId = "u13oj1cs74";
+        window.clarity = window.clarity || function () {
+          (window.clarity.q = window.clarity.q || []).push(arguments);
+        };
+        const clarityTag = document.createElement("script");
+        clarityTag.async = true;
+        clarityTag.src = `https://www.clarity.ms/tag/${clarityProjectId}`;
+        document.head.appendChild(clarityTag);
+      })();
     </script>
     <meta name="application-name" content="몰디브 바이블" />
     <meta name="apple-mobile-web-app-title" content="몰디브 바이블" />
@@ -121,47 +201,9 @@
       }
     </script>
     <!-- Tailwind styles are bundled via Vite build -->
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        const f = d.getElementsByTagName(s)[0];
-        const j = d.createElement(s);
-        const dl = l !== "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WCJSNM2Q");
-    </script>
-    <!-- End Google Tag Manager -->
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-      (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () {
-          (c[a].q = c[a].q || []).push(arguments);
-        };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "u13oj1cs74");
-    </script>
-    <!-- End Microsoft Clarity -->
 <!-- Styles injected by Vite -->
 </head>
   <body class="bg-gray-50">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WCJSNM2Q"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

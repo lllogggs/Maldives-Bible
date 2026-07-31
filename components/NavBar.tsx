@@ -62,18 +62,26 @@ const NavBar: React.FC<NavBarProps> = ({ currentPath, currentView, onViewChange 
         {NAV_ITEMS.map((item) => {
           const isActive = currentPath === item.href ||
             (currentPath.length === 0 && currentView === item.view);
+          const itemClassName = `flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-sm border-b-2 px-0.5 text-center text-[13px] font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f8f7] sm:w-auto sm:shrink-0 sm:px-1 sm:text-base ${
+            isActive
+              ? 'cursor-default border-teal-600 text-slate-950'
+              : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
+          }`;
+
+          if (isActive) {
+            return (
+              <span key={item.view} aria-current="page" className={itemClassName}>
+                {item.label}
+              </span>
+            );
+          }
 
           return (
             <a
               key={item.view}
               href={item.href}
-              aria-current={isActive ? 'page' : undefined}
               onClick={(event) => handleNavigation(event, item.view)}
-              className={`flex min-h-11 w-full items-center justify-center whitespace-nowrap rounded-sm border-b-2 px-0.5 text-center text-[13px] font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#f6f8f7] sm:w-auto sm:shrink-0 sm:px-1 sm:text-base ${
-                isActive
-                  ? 'border-teal-600 text-slate-950'
-                  : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
-              }`}
+              className={itemClassName}
             >
               {item.label}
             </a>

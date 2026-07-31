@@ -8,6 +8,7 @@ import { TransportationType } from '../types';
 import { getTransportationLabel } from './transportationLabels';
 import ResortReviewSummary from './ResortReviewSummary';
 import ResortEditorReview from './ResortEditorReview';
+import { trackEvent } from '../utils/analytics';
 
 interface ResortDetailProps {
   resort: Resort;
@@ -95,6 +96,19 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
   const selectedImageCredit = selectedImage
     ? imageCredits[selectedImage.originalIndex] ?? primaryImageCredit
     : undefined;
+  const fallbackRecommendationPoints = [
+    resort.hasPrivatePool ? '개인풀' : null,
+    resort.hasWaterVilla ? '워터빌라' : resort.hasBeachVilla ? '비치빌라' : null,
+    resort.snorkelingQuality >= 4.5 ? '스노클링' : null,
+    resort.restaurants >= 5 ? '다양한 식사' : null,
+  ].filter((point): point is string => Boolean(point));
+  const recommendationText = resort.editorReview?.verdict
+    ?? (fallbackRecommendationPoints.length > 0
+      ? `${fallbackRecommendationPoints.slice(0, 3).join(', ')}를 중요하게 보는 여행자에게 잘 맞습니다.`
+      : '객실, 이동과 수중환경을 함께 비교해 선택하려는 여행자에게 잘 맞습니다.');
+  const travelCheckText = `${getTransportationLabel(resort.transportation)}로 약 ${resort.travelTime}분 이동합니다.${
+    resort.travelCost > 0 ? ` 왕복 이동비는 1인 $${resort.travelCost.toLocaleString()}입니다.` : ''
+  }`;
 
   const canDeleteImages = Boolean(isImageEditMode && onDeleteImage && actualImages.length > 0);
 
@@ -549,41 +563,100 @@ const ResortDetail: React.FC<ResortDetailProps> = ({ resort, onBack, onShare, is
             </div>
           </div>
 
-          {/* Key Info Grid */}
-          <div className="mb-6 grid grid-cols-2 gap-2 sm:gap-4 md:mb-8 md:grid-cols-4">
-            <InfoCard icon={<StarIcon />} title="평점">
-                {resort.rating.toFixed(1)} / 5.0
-            </InfoCard>
-            <InfoCard icon={<StarIcon />} title="수중환경">
-                {resort.snorkelingQuality} / 5
-            </InfoCard>
-             <InfoCard icon={<DollarIcon />} title="4박 2인 참고가">
-                ${resort.price.toLocaleString()}
-            </InfoCard>
-            <InfoCard icon={<TransportationIcon type={resort.transportation} />} title="이동수단">
-                {getTransportationLabel(resort.transportation)}
-            </InfoCard>
-            <InfoCard icon={<ClockIcon />} title="이동시간">
-                {resort.travelTime}분
-            </InfoCard>
-            <InfoCard icon={<DollarIcon />} title="이동비 1인">
-                ${resort.travelCost.toLocaleString()}
-            </InfoCard>
-            <InfoCard icon={<LocationPinIcon />} title="위치">
-                {resort.location}
-            </InfoCard>
-             <InfoCard icon={<CalendarIcon />} title="오픈/리뉴얼">
-                {resort.openYear}{resort.renovationYear && ` / ${resort.renovationYear}`}
-            </InfoCard>
-          </div>
+          <section
+            className="mb-6 overflow-hidden rounded-2xl border border-teal-100 bg-gradient-to-br from-teal-50/80 via-white to-sky-50/60"
+            aria-labelledby={`resort-overview-title-${resort.id}`}
+          >
+            <div className="border-b border-teal-100 px-4 py-4 sm:px-6">
+              <h2 id={`resort-overview-title-${resort.id}`} className="font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl">
+                {resort.name} 한눈에 보기
+              </h2>
+            </div>
+            <div className="grid gap-4 px-4 py-5 sm:px-6 md:grid-cols-2">
+              <div>
+                <h3 className="text-sm font-extrabold text-teal-800">추천</h3>
+                <p className="mt-2 text-base leading-7 text-slate-700">{recommendationText}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-extrabold text-amber-800">예약 전 확인</h3>
+                <p className="mt-2 text-base leading-7 text-slate-700">{travelCheckText}</p>
+              </div>
+            </div>
+            <dl className="grid grid-cols-3 border-t border-teal-100 bg-white/70 text-center">
+              <div className="min-w-0 px-2 py-3 sm:px-4">
+                <dt className="text-xs font-semibold text-slate-500">4박 2인 참고가</dt>
+                <dd className="mt-1 truncate text-base font-extrabold text-teal-700 sm:text-lg">${resort.price.toLocaleString()}</dd>
+              </div>
+              <div className="min-w-0 border-x border-teal-100 px-2 py-3 sm:px-4">
+                <dt className="text-xs font-semibold text-slate-500">평점</dt>
+                <dd className="mt-1 text-base font-extrabold text-slate-900 sm:text-lg">{resort.rating.toFixed(1)} / 5</dd>
+              </div>
+              <div className="min-w-0 px-2 py-3 sm:px-4">
+                <dt className="text-xs font-semibold text-slate-500">수중환경</dt>
+                <dd className="mt-1 text-base font-extrabold text-slate-900 sm:text-lg">{resort.snorkelingQuality} / 5</dd>
+              </div>
+            </dl>
+          </section>
 
-          <p className="-mt-2 mb-8 rounded-lg border border-teal-100 bg-teal-50 px-4 py-3 text-xs leading-5 text-teal-900">
+          <p className="mb-8 rounded-lg border border-teal-100 bg-teal-50 px-4 py-3 text-sm leading-6 text-teal-900">
             비교용 참고가입니다. 항공권과 리조트 이동비는 별도이며 시즌·세금·환율에 따라 실제 견적이 달라질 수 있습니다.
           </p>
 
+          <ResortReviewSummary resortId={resort.id} resortName={resort.name} summary={resort.reviewSummary} variant="detail" />
+
           <ResortEditorReview resortId={resort.id} review={resort.editorReview} />
 
-          <ResortReviewSummary resortId={resort.id} resortName={resort.name} summary={resort.reviewSummary} variant="detail" />
+          <section className="mb-8 rounded-xl border border-teal-200 bg-gradient-to-br from-teal-50 to-white p-4 shadow-sm shadow-slate-900/5 sm:flex sm:items-center sm:justify-between sm:gap-5 sm:p-5">
+            <div>
+              <h2 className="font-brand-heading text-lg text-slate-950">이 리조트로 실제 견적 확인하기</h2>
+              <p className="mt-1 text-sm leading-6 text-slate-600">
+                같은 일정·객실·식사 조건의 요청문을 만든 뒤 2~3곳의 총액을 비교해 보세요.
+              </p>
+            </div>
+            <a
+              href={`/quote-comparison/?resorts=${encodeURIComponent(resort.name)}`}
+              onClick={() => trackEvent('quote_cta_click', {
+                cta_placement: 'resort_detail_after_review',
+                resort_id: resort.id,
+                resort_name: resort.name,
+              })}
+              className="mt-3 inline-flex min-h-12 w-full shrink-0 touch-manipulation items-center justify-center rounded-lg bg-teal-700 px-5 py-3 text-sm font-extrabold text-white transition hover:bg-teal-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-500/30 sm:mt-0 sm:w-auto"
+            >
+              동일 조건 견적 받기
+            </a>
+          </section>
+
+          <section className="mb-8" aria-labelledby={`resort-facts-title-${resort.id}`}>
+            <h2 id={`resort-facts-title-${resort.id}`} className="mb-4 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl">
+              기본 정보
+            </h2>
+            <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4">
+              <InfoCard icon={<StarIcon />} title="평점">
+                  {resort.rating.toFixed(1)} / 5.0
+              </InfoCard>
+              <InfoCard icon={<StarIcon />} title="수중환경">
+                  {resort.snorkelingQuality} / 5
+              </InfoCard>
+              <InfoCard icon={<DollarIcon />} title="4박 2인 참고가">
+                  ${resort.price.toLocaleString()}
+              </InfoCard>
+              <InfoCard icon={<TransportationIcon type={resort.transportation} />} title="이동수단">
+                  {getTransportationLabel(resort.transportation)}
+              </InfoCard>
+              <InfoCard icon={<ClockIcon />} title="이동시간">
+                  {resort.travelTime}분
+              </InfoCard>
+              <InfoCard icon={<DollarIcon />} title="이동비 1인">
+                  ${resort.travelCost.toLocaleString()}
+              </InfoCard>
+              <InfoCard icon={<LocationPinIcon />} title="위치">
+                  {resort.location}
+              </InfoCard>
+              <InfoCard icon={<CalendarIcon />} title="오픈/리뉴얼">
+                  {resort.openYear}{resort.renovationYear && ` / ${resort.renovationYear}`}
+              </InfoCard>
+            </div>
+          </section>
 
           {/* Details & Amenities */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

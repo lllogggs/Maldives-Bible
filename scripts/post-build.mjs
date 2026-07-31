@@ -1,11 +1,11 @@
-import { copyFile, mkdir, readFile, readdir, writeFile } from 'fs/promises';
+import { mkdir, readFile, readdir, writeFile } from 'fs/promises';
 import { resolve, dirname } from 'path';
 import { editorialPolicyPage } from '../data/editorial-policy.mjs';
 import { maldivesGlossaryCategories } from '../data/maldives-glossary.mjs';
 
 const distDir = resolve(process.cwd(), 'dist');
 const source = resolve(distDir, 'index.html');
-const target = resolve(distDir, '404.html');
+const notFoundTarget = resolve(distDir, '404.html');
 const reviewInsightsDataPath = resolve(distDir, 'api', 'resort-review-insights.json');
 const sourceReviewInsightsPath = resolve(process.cwd(), 'public', 'api', 'resort-review-insights.json');
 const editorReviewsDataPath = resolve(distDir, 'api', 'resort-editor-reviews.json');
@@ -21,9 +21,13 @@ const siteDates = {
   guidesPublished: '2026-07-09',
   comparisonPublished: '2026-07-12',
   glossaryPublished: '2026-07-27',
-  homeModified: '2026-07-29',
+  homeModified: '2026-07-31',
   modified: '2026-07-27',
 };
+const currentYear = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Asia/Seoul',
+  year: 'numeric',
+}).format(new Date());
 const coreSeoPages = [
   {
     key: 'start',
@@ -38,37 +42,37 @@ const coreSeoPages = [
     imageAlt: '몰디브 여행 준비를 위한 리조트와 바다 전경',
     imageWidth: 1200,
     imageHeight: 630,
-    modifiedAt: '2026-07-29',
+    modifiedAt: '2026-07-31',
   },
   {
     key: 'resortComparison',
     slug: 'maldives-resort-comparison',
     path: '/maldives-resort-comparison/',
     navLabel: '리조트 비교',
-    title: '몰디브 리조트 비교 | 171개 리조트 한눈에 보기',
+    title: `${currentYear} 몰디브 리조트 비교 | 171개 가격·이동·후기`,
     description:
-      '171개 몰디브 리조트를 예산, 말레 공항 이동수단, 객실 유형, 개인풀, 수중환경과 여행 취향 기준으로 비교해 보세요.',
+      '171개 몰디브 리조트의 4박 2인 참고가, 공항 이동시간·이동비, 객실, 개인풀, 수중환경과 실제 후기를 한눈에 비교해 보세요.',
     heading: '몰디브 리조트 비교',
     image: '/brand/resort-comparison-preview.jpg',
     imageAlt: '171개 몰디브 리조트 비교 화면',
     imageWidth: 1216,
     imageHeight: 632,
-    modifiedAt: '2026-07-29',
+    modifiedAt: '2026-07-31',
   },
   {
     key: 'quoteComparison',
     slug: 'quote-comparison',
     path: '/quote-comparison/',
     navLabel: '견적 비교',
-    title: '몰디브 여행사 견적 비교 | 요청 전 확인할 기준',
+    title: '몰디브 여행사 견적 비교 | 같은 조건 요청문 만들기',
     description:
-      '몰디브 전문 여행사의 홈페이지와 상담 채널을 확인하고, 같은 일정·객실·식사 조건으로 견적을 비교하는 방법을 안내합니다.',
+      '같은 일정·객실·식사 조건의 견적 요청문을 만들고, 몰디브 전문 여행사 홈페이지와 카카오 상담 채널에서 총액과 포함 조건을 비교하세요.',
     heading: '몰디브 여행사 견적 비교',
     image: '/images/seo/maldives-resort-aerial.jpg',
     imageAlt: '몰디브 여행 견적 비교 안내',
     imageWidth: 1200,
     imageHeight: 630,
-    modifiedAt: '2026-07-29',
+    modifiedAt: '2026-07-31',
   },
   {
     key: 'flightGuide',
@@ -96,13 +100,50 @@ const expectedEditorReviewCount = Number(process.env.EXPECTED_EDITOR_REVIEW_COUN
 if (!Number.isInteger(expectedEditorReviewCount) || expectedEditorReviewCount < 0) {
   throw new Error('EXPECTED_EDITOR_REVIEW_COUNT는 0 이상의 정수여야 합니다.');
 }
-const currentYear = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'Asia/Seoul',
-  year: 'numeric',
-}).format(new Date());
-
 const toUrlPath = (slug) => `/${encodeURI(slug)}/`;
 const toAbsoluteUrl = (slug) => `${siteUrl}${toUrlPath(slug)}`;
+
+const buildNotFoundPage = () => `<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="googlebot" content="noindex,follow" />
+    <title>페이지를 찾을 수 없습니다 | 몰디브 바이블</title>
+    <meta
+      name="description"
+      content="요청하신 페이지를 찾을 수 없습니다. 몰디브 바이블 홈이나 리조트 비교 페이지에서 필요한 정보를 찾아보세요."
+    />
+    <meta name="theme-color" content="#0e7490" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <style>
+      :root { color-scheme:light; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+      * { box-sizing:border-box; }
+      body { margin:0; min-height:100vh; background:linear-gradient(145deg,#f0fdfa,#f8fafc 48%,#ecfeff); color:#0f172a; }
+      main { width:min(100% - 32px,680px); margin:0 auto; padding:clamp(72px,14vh,144px) 0 56px; text-align:center; }
+      .status { margin:0; color:#0f766e; font-size:13px; font-weight:900; letter-spacing:.22em; }
+      h1 { margin:12px 0 0; font-size:clamp(30px,8vw,48px); line-height:1.18; letter-spacing:-.04em; }
+      .description { max-width:520px; margin:18px auto 0; color:#475569; font-size:16px; line-height:1.75; }
+      nav { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:30px; }
+      a { display:inline-flex; min-height:48px; align-items:center; justify-content:center; border:1px solid #0f766e; border-radius:10px; padding:0 18px; color:#0f766e; font-size:14px; font-weight:800; text-decoration:none; }
+      a:first-child { background:#0f766e; color:#fff; }
+      a:focus-visible { outline:3px solid #5eead4; outline-offset:3px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="status">404 ERROR</p>
+      <h1>페이지를 찾을 수 없습니다</h1>
+      <p class="description">주소가 잘못 입력되었거나 페이지가 이동되었을 수 있습니다. 홈으로 돌아가거나 171개 몰디브 리조트를 다시 비교해 보세요.</p>
+      <nav aria-label="오류 페이지 이동">
+        <a href="${siteUrl}/">홈으로 돌아가기</a>
+        <a href="${siteUrl}/maldives-resort-comparison/">몰디브 리조트 비교하기</a>
+      </nav>
+    </main>
+  </body>
+</html>
+`;
 
 const buildMaldivesGlossaryContent = ({ maxWidth = '1120px' } = {}) => `
   <style>
@@ -720,9 +761,8 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
   const summary = normalizeReviewSummary(reviewSummary);
   if (!summary) return '';
 
-  const limit = compact ? 1 : 2;
-  const pros = summary.pros.slice(0, limit);
-  const cons = summary.cons.slice(0, limit);
+  const pros = summary.pros.slice(0, compact && summary.cons.length > 0 ? 1 : 2);
+  const cons = summary.cons.slice(0, compact ? Math.max(0, 2 - pros.length) : 2);
   const reviewCount = summary.sourceCount;
   const reviewDateLabel = summary.reviewedAt ? `${summary.reviewedAt} 후기 기준` : null;
   const overview = summary.overview
@@ -739,10 +779,14 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
         </div>`;
     }
 
+    const positiveLabel = summary.evidenceStatus === 'limited' || reviewCount < 2
+      ? '언급된 점'
+      : '좋았다는 점';
+
     return `
       <div style="margin:0 0 14px;border-top:1px solid #e2e8f0;padding-top:12px;">
         <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;">실제 후기 ${reviewCount}개</p>
-        ${pros.length > 0 ? `<p style="margin:0 0 5px;color:#334155;font-size:14px;line-height:1.55;"><strong style="color:#0f766e;">좋았다는 점</strong> ${escapeHtml(pros[0])}</p>` : ''}
+        ${pros.length > 0 ? `<p style="margin:0 0 5px;color:#334155;font-size:14px;line-height:1.55;"><strong style="color:#0f766e;">${positiveLabel}</strong> ${escapeHtml(pros[0])}</p>` : ''}
         ${cons.length > 0 ? `<p style="margin:0;color:#334155;font-size:14px;line-height:1.55;"><strong style="color:#9a5b31;">알아둘 점</strong> ${escapeHtml(cons[0])}</p>` : ''}
       </div>`;
   }
@@ -760,14 +804,13 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
   if (summary.evidenceStatus === 'insufficient') {
     return `
       <section class="seo-resort-reviews" aria-labelledby="seo-resort-reviews-title" style="margin:24px 0 22px;border-top:1px solid #dbe7e4;padding-top:22px;">
-        <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;letter-spacing:.1em;">REAL REVIEWS</p>
+        <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;letter-spacing:.08em;">여행자 후기</p>
         <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;">
-          <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">실제 후기 한눈에</h2>
+          <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">실제 후기 요약</h2>
           <span style="color:#64748b;font-size:12px;font-weight:700;">실제 후기 ${reviewCount}개</span>
         </div>
         <section style="margin-top:14px;border-radius:12px;background:#f8fafc;padding:15px 16px;">
-          <h3 style="margin:0;color:#334155;font-size:15px;">후기에서 다룬 내용</h3>
-          <p style="margin:7px 0 0;color:#475569;font-size:14px;line-height:1.7;">${escapeHtml(overview)}</p>
+          <p style="margin:0;color:#475569;font-size:16px;line-height:1.7;">${escapeHtml(overview)}</p>
         </section>
         ${sourceDetails}
         <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${reviewDateLabel ? `${escapeHtml(reviewDateLabel)}. ` : ''}투숙 시기와 객실 유형에 따라 경험은 달라질 수 있습니다.</p>
@@ -776,9 +819,9 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
 
   return `
     <section class="seo-resort-reviews" aria-labelledby="seo-resort-reviews-title" style="margin:24px 0 22px;border-top:1px solid #dbe7e4;padding-top:22px;">
-      <p style="margin:0 0 7px;color:#0f766e;font-size:12px;font-weight:800;letter-spacing:.1em;">REAL REVIEWS</p>
+      <p style="margin:0 0 7px;color:#0f766e;font-size:12px;font-weight:800;letter-spacing:.08em;">여행자 후기</p>
       <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px;">
-        <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">실제 후기 한눈에</h2>
+        <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">실제 후기 요약</h2>
         <span style="color:#64748b;font-size:12px;font-weight:700;">실제 후기 ${reviewCount}개</span>
       </div>
       <div class="seo-resort-review-grid" style="display:grid;grid-template-columns:${pros.length > 0 && cons.length > 0 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'};gap:12px;">
@@ -823,22 +866,15 @@ const buildEditorReviewContent = (editorReview) => {
       <header style="padding:28px;background:radial-gradient(circle at top right,rgba(13,148,136,.08),transparent 42%);border-bottom:1px solid rgba(226,232,240,.9);">
         <div style="display:flex;align-items:center;gap:12px;">
           <span aria-hidden="true" style="display:block;width:32px;height:1px;flex:none;background:#0f766e;"></span>
-          <p style="margin:0;color:#115e59;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;">MALDIVES BIBLE · EDITOR REVIEW</p>
+          <p style="margin:0;color:#115e59;font-size:12px;font-weight:800;letter-spacing:.08em;">몰디브 바이블 에디터 리뷰</p>
         </div>
         <h2 id="seo-editor-review-title" style="margin:14px 0 0;max-width:820px;color:#0f172a;font-size:28px;line-height:1.3;letter-spacing:-.03em;">${escapeHtml(review.title)}</h2>
         <p style="margin:14px 0 0;max-width:68ch;color:#475569;font-size:16px;font-weight:600;line-height:1.75;">${escapeHtml(review.dek)}</p>
       </header>
-      <div class="seo-editor-review-body" style="display:grid;grid-template-columns:minmax(0,1fr) 240px;align-items:start;gap:32px;padding:28px;">
-        <div class="seo-editor-review-copy" style="max-width:68ch;">
+      <div class="seo-editor-review-body" style="padding:28px;">
+        <div class="seo-editor-review-copy" style="max-width:58ch;">
           ${review.paragraphs.map((paragraph, index) => `<p style="margin:${index === 0 ? '0' : '18px'} 0 0;color:#334155;font-size:16px;line-height:1.75;">${escapeHtml(paragraph)}</p>`).join('')}
         </div>
-        <aside class="seo-editor-review-note" style="border:1px solid rgba(253,230,138,.8);border-radius:12px;background:#fbf7ee;padding:18px;">
-          <div style="display:flex;align-items:center;gap:8px;">
-            <span aria-hidden="true" style="display:block;width:6px;height:6px;border-radius:50%;background:#0f766e;"></span>
-            <h3 style="margin:0;color:#115e59;font-size:12px;font-weight:800;letter-spacing:-.01em;">에디터의 결론</h3>
-          </div>
-          <p style="margin:10px 0 0;color:#0f172a;font-size:15px;font-weight:700;line-height:1.7;">${escapeHtml(review.verdict)}</p>
-        </aside>
       </div>
     </article>`;
 };
@@ -863,29 +899,30 @@ const formatUsd = (value) => `$${Number(value || 0).toLocaleString('en-US')}`;
 const resortCard = (resort) => {
   const slug = slugify(resort.name_en || resort.name);
   const badges = [
-    resort.transportation,
-    resort.hasWaterVilla ? '워터빌라' : null,
+    resort.hasWaterVilla ? '워터빌라' : resort.hasBeachVilla ? '비치빌라' : null,
     resort.hasPrivatePool ? '개인풀' : null,
-    resort.honeymoonPerks ? '허니문 혜택' : null,
+    `수중환경 ${resort.snorkelingQuality || '-'} / 5`,
   ].filter(Boolean);
   const reviewSummaryContent = buildReviewSummaryContent(resort.reviewSummary, { compact: true });
 
   return `
     <article style="border:1px solid #dbe7e4;border-radius:12px;padding:18px;background:#fff;">
       <h2 style="margin:0 0 6px;font-size:20px;color:#0f172a;">${escapeHtml(resort.name)}</h2>
-      <p style="margin:0 0 12px;color:#64748b;">${escapeHtml(resort.name_en || '')}</p>
-      <p style="margin:0 0 10px;color:#334155;">${escapeHtml(resort.location || '')} · ${escapeHtml(resort.transportation || '')} ${resort.travelTime || 0}분 · 4박 2인 ${formatUsd(resort.price)}</p>
-      <p style="margin:0 0 14px;color:#334155;">수중환경 ${resort.snorkelingQuality || '-'} / 5 · 다이닝 ${resort.restaurants || 0}곳 · 이동비 2인 왕복 ${formatUsd((resort.travelCost || 0) * 2)}</p>
+      <p style="margin:0 0 12px;color:#475569;">${escapeHtml(resort.location || '')} · ${escapeHtml(resort.transportation || '')} ${resort.travelTime || 0}분</p>
       <p style="margin:0 0 14px;">${badges
-        .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
+        .slice(0, 3)
+        .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#f8fafc;color:#334155;padding:4px 9px;font-size:13px;font-weight:700;border:1px solid #e2e8f0;">${escapeHtml(badge)}</span>`)
         .join('')}</p>
       ${reviewSummaryContent}
+      <p style="margin:0 0 12px;color:#0f766e;font-size:18px;font-weight:800;">4박 2인 참고가 ${formatUsd(resort.price)}</p>
+      <p style="margin:0 0 14px;color:#64748b;font-size:12px;">올인클루시브 기준 · 이동비 2인 ${formatUsd((resort.travelCost || 0) * 2)} 별도</p>
       <a href="${siteUrl}/resorts/${slug}/" style="color:#0f766e;font-weight:700;text-decoration:none;">${escapeHtml(resort.name)} 상세 보기</a>
     </article>`;
 };
 
 const buildResortPageContent = (resort) => {
   const name = resort.name || resort.name_en;
+  const editorReview = normalizeEditorReview(resort.editorReview);
   const badges = [
     resort.transportation ? `${resort.transportation} 이동` : null,
     resort.hasWaterVilla ? '워터빌라 보유' : null,
@@ -894,12 +931,24 @@ const buildResortPageContent = (resort) => {
   ].filter(Boolean);
   const editorReviewContent = buildEditorReviewContent(resort.editorReview);
   const reviewSummaryContent = buildReviewSummaryContent(resort.reviewSummary);
+  const fallbackRecommendationPoints = [
+    resort.hasPrivatePool ? '개인풀' : null,
+    resort.hasWaterVilla ? '워터빌라' : resort.hasBeachVilla ? '비치빌라' : null,
+    Number(resort.snorkelingQuality) >= 4.5 ? '스노클링' : null,
+    Number(resort.restaurants) >= 5 ? '다양한 식사' : null,
+  ].filter(Boolean);
+  const recommendation = editorReview?.verdict
+    || (fallbackRecommendationPoints.length > 0
+      ? `${fallbackRecommendationPoints.slice(0, 3).join(', ')}를 중요하게 보는 여행자에게 잘 맞습니다.`
+      : '객실, 이동과 수중환경을 함께 비교해 선택하려는 여행자에게 잘 맞습니다.');
+  const travelCheck = `${resort.transportation || '리조트 이동편'}으로 약 ${resort.travelTime || 0}분 이동합니다.${
+    Number(resort.travelCost) > 0 ? ` 왕복 이동비는 1인 ${formatUsd(resort.travelCost)}입니다.` : ''
+  }`;
 
   return `
     <style>
       @media (max-width:760px) {
-        .seo-editor-review-body { grid-template-columns:minmax(0,1fr) !important; }
-        .seo-editor-review-note { grid-row:1; }
+        .seo-resort-overview-grid { grid-template-columns:minmax(0,1fr) !important; }
       }
       @media (max-width:480px) {
         .seo-resort-page { padding:22px 12px !important; }
@@ -915,17 +964,27 @@ const buildResortPageContent = (resort) => {
         <p style="margin:0 0 8px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">몰디브 리조트 상세</p>
         <h1 style="margin:0;font-size:38px;line-height:1.18;">${escapeHtml(name)}</h1>
         <p style="margin:8px 0 18px;color:#64748b;font-size:17px;">${escapeHtml(resort.name_en || '')}</p>
-        <p style="margin:0 0 12px;color:#334155;line-height:1.7;">
-          ${escapeHtml(resort.location || '')} · ${escapeHtml(resort.transportation || '')} ${resort.travelTime || 0}분 · 4박 2인 ${formatUsd(resort.price)}
-        </p>
-        <p style="margin:0 0 18px;color:#334155;line-height:1.7;">
-          수중환경 ${resort.snorkelingQuality || '-'} / 5 · 레스토랑 ${resort.restaurants || 0}곳 · 바 ${resort.bars || 0}곳 · 이동비 2인 왕복 ${formatUsd((resort.travelCost || 0) * 2)}
-        </p>
-        <p style="margin:0 0 20px;">${badges
-          .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
-          .join('')}</p>
-        ${editorReviewContent}
+        <section style="margin:0 0 18px;overflow:hidden;border:1px solid #ccfbf1;border-radius:16px;background:linear-gradient(135deg,#f0fdfa,#fff,#f0f9ff);" aria-labelledby="seo-resort-overview-title">
+          <h2 id="seo-resort-overview-title" style="margin:0;padding:16px 18px;border-bottom:1px solid #ccfbf1;font-size:23px;color:#0f172a;">${escapeHtml(name)} 한눈에 보기</h2>
+          <div class="seo-resort-overview-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:18px;">
+            <section><h3 style="margin:0;color:#0f766e;font-size:15px;">추천</h3><p style="margin:7px 0 0;color:#334155;font-size:16px;line-height:1.7;">${escapeHtml(recommendation)}</p></section>
+            <section><h3 style="margin:0;color:#9a5b31;font-size:15px;">예약 전 확인</h3><p style="margin:7px 0 0;color:#334155;font-size:16px;line-height:1.7;">${escapeHtml(travelCheck)}</p></section>
+          </div>
+          <p style="margin:0;padding:14px 18px;border-top:1px solid #ccfbf1;background:rgba(255,255,255,.72);color:#334155;font-size:14px;line-height:1.7;">
+            <strong style="color:#0f766e;">4박 2인 참고가 ${formatUsd(resort.price)}</strong> · 평점 ${Number(resort.rating || 0).toFixed(1)} / 5 · 수중환경 ${resort.snorkelingQuality || '-'} / 5
+          </p>
+        </section>
+        <p style="margin:0 0 22px;border:1px solid #ccfbf1;border-radius:10px;background:#f0fdfa;padding:12px 14px;color:#134e4a;font-size:14px;line-height:1.7;">비교용 참고가입니다. 항공권과 리조트 이동비는 별도이며 시즌·세금·환율에 따라 실제 견적이 달라질 수 있습니다.</p>
         ${reviewSummaryContent}
+        ${editorReviewContent}
+        <section style="margin:24px 0;" aria-labelledby="seo-resort-facts-title">
+          <h2 id="seo-resort-facts-title" style="margin:0 0 12px;font-size:23px;color:#0f172a;">기본 정보</h2>
+          <p style="margin:0 0 10px;color:#334155;line-height:1.7;">${escapeHtml(resort.location || '')} · ${escapeHtml(resort.transportation || '')} ${resort.travelTime || 0}분 · 이동비 1인 왕복 ${formatUsd(resort.travelCost)}</p>
+          <p style="margin:0 0 14px;color:#334155;line-height:1.7;">레스토랑 ${resort.restaurants || 0}곳 · 바 ${resort.bars || 0}곳 · 오픈 ${resort.openYear || '-'}${resort.renovationYear ? ` · 리뉴얼 ${resort.renovationYear}` : ''}</p>
+          <p style="margin:0;">${badges
+            .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
+            .join('')}</p>
+        </section>
         <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
         <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
         <a href="${siteUrl}/maldives-resort-comparison/" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
@@ -1459,10 +1518,13 @@ const buildComparisonLandingContent = (page, resorts) => {
       <script>
         document.querySelectorAll('[data-compare-cta]').forEach(function (link) {
           link.addEventListener('click', function () {
-            if (typeof window.gtag !== 'function') return;
-            window.gtag('event', 'resort_compare_start', {
-              cta_placement: link.getAttribute('data-compare-cta') || 'unknown'
-            });
+            var placement = link.getAttribute('data-compare-cta') || 'unknown';
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'resort_compare_start', { cta_placement: placement });
+            }
+            if (typeof window.clarity === 'function') {
+              window.clarity('event', 'resort_compare_start');
+            }
           });
         });
       </script>`,
@@ -1610,15 +1672,27 @@ const buildQuoteComparisonContent = () => {
       </div>
     </article>`).join('');
   return `
+    <section class="seo-static__section" aria-labelledby="quote-reason-title">
+      <h2 id="quote-reason-title">여행사 견적이 더 낮을 수 있는 이유</h2>
+      <p class="seo-static__lead">리조트는 객실을 안정적으로 판매하기 위해 일부 객실을 여행사나 현지 파트너에게 별도 계약가로 제공합니다. 여행사는 이 객실에 식사, 공항 이동, 허니문 특전을 묶어 견적을 만들기 때문에 같은 일정과 객실이라도 개별 예약보다 총액이 낮을 수 있습니다.</p>
+      <p class="seo-static__note" style="margin-top:18px;"><strong>설명용 예시: 공개 판매가 $10,000 → 여행사 견적 $8,000</strong><br />여행사가 항상 더 저렴한 것은 아닙니다. 일정·객실·식사·이동·세금과 취소 조건을 같게 맞춰 비교하세요.</p>
+    </section>
+    <section class="seo-static__section" aria-labelledby="quote-template-title">
+      <h2 id="quote-template-title">같은 조건의 견적 요청문 만들기</h2>
+      <p class="seo-static__lead">출발 예정일, 숙박일수, 인원, 객실 유형, 식사 플랜과 후보 리조트를 입력해 같은 요청문을 2~3곳에 보낼 수 있습니다.</p>
+      <p class="seo-static__note" style="margin-top:18px;white-space:pre-line;">안녕하세요. 아래 조건으로 몰디브 견적을 부탁드립니다.
+출발일 · 숙박일수 · 인원 · 객실 · 식사 · 후보 리조트
+세금, 공항 이동비, 포함 특전과 취소 조건까지 포함한 총액으로 안내 부탁드립니다.</p>
+    </section>
     <section class="seo-static__section" aria-labelledby="quote-check-title">
-      <h2 id="quote-check-title">같은 일정과 조건으로 요청하세요</h2>
-      <p class="seo-static__lead">여행사별 금액을 비교하려면 여행 날짜, 리조트, 객실 타입, 식사 플랜, 이동수단, 인원을 같게 맞춰야 합니다. 포함·불포함 항목과 취소 조건도 함께 보세요.</p>
+      <h2 id="quote-check-title">같은 조건으로 2~3곳에 요청하세요</h2>
+      <p class="seo-static__lead">여행 날짜 · 숙박일수 · 객실 타입 · 식사 플랜 · 이동편 · 세금 · 취소 조건</p>
       <div class="seo-static__grid" style="margin-top:18px;">
         <article class="seo-static__card"><h3>요청 전 체크 1</h3><span>출발일과 숙박일수, 인원, 항공 일정을 통일하세요. 말레 1박이 필요하면 같은 조건으로 넣어야 합니다.</span></article>
         <article class="seo-static__card"><h3>요청 전 체크 2</h3><span>비치빌라·워터빌라, 개인풀, 식사 플랜을 명확히 적고 스플릿 스테이 조합이면 각 박수를 나눠 적으세요.</span></article>
         <article class="seo-static__card"><h3>요청 전 체크 3</h3><span>세금과 봉사료, 공항–리조트 왕복 이동비, 식사와 음료, 허니문 혜택, 예약금과 잔금 일정이 포함됐는지 확인하세요.</span></article>
       </div>
-      <p class="seo-static__note" style="margin-top:18px;">화면의 금액은 비교 방법을 설명하기 위한 예시입니다. 이 페이지는 여행사별 가격을 자동으로 수집하거나 현재가를 조회하는 서비스가 아닙니다. 정확한 금액과 조건은 각 여행사에 문의해 확인하세요.</p>
+      <p class="seo-static__note" style="margin-top:18px;">화면의 금액은 비교 방법을 설명하기 위한 예시입니다. 정확한 금액과 포함 조건은 각 여행사에 문의해 확인하세요.</p>
     </section>
     <section class="seo-static__section" aria-labelledby="agency-list-title">
       <h2 id="agency-list-title">등록된 몰디브 여행사 목록</h2>
@@ -2234,8 +2308,8 @@ const readAllResorts = async () => {
 };
 
 try {
-  await copyFile(source, target);
-  console.log('Copied dist/index.html to dist/404.html for SPA fallback.');
+  await writeFile(notFoundTarget, buildNotFoundPage(), 'utf-8');
+  console.log('Generated a static noindex dist/404.html page.');
 
   const [template, resorts] = await Promise.all([
     readFile(source, 'utf-8'),

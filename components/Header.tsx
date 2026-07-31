@@ -6,6 +6,7 @@ interface HeaderProps {
   onToggleImageEditMode: () => void;
   isImageEditFeatureAvailable: boolean;
   onLogoClick: () => void;
+  isHome: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -13,6 +14,7 @@ const Header: React.FC<HeaderProps> = ({
   onToggleImageEditMode,
   isImageEditFeatureAvailable,
   onLogoClick,
+  isHome,
 }) => {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/85 text-slate-950 shadow-sm shadow-slate-900/5 backdrop-blur-xl transition-all duration-300">
@@ -23,8 +25,10 @@ const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={onLogoClick}
-            aria-label="홈으로 이동"
-            className="group flex min-w-0 items-center gap-3 justify-self-start text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+            disabled={isHome}
+            aria-label={isHome ? '현재 홈' : '홈으로 이동'}
+            aria-current={isHome ? 'page' : undefined}
+            className="group flex min-w-0 items-center gap-3 justify-self-start text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:cursor-default"
           >
             <span className="block h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-900/10 transition-all duration-300 sm:h-12 sm:w-12">
               <img

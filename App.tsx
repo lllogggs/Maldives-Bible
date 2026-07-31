@@ -14,6 +14,12 @@ import { POPULARITY_RANKING } from './constants';
 import { TransportationType, type Resort, type Filters, type ResortEditorReview, type SortOption } from './types';
 import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
 import { shareOrCopy, type ShareResult } from './utils/share';
+import {
+  buildUtmUrl,
+  captureCampaignAttribution,
+  trackEvent,
+  trackPageView,
+} from './utils/analytics';
 import { RESORT_INTEREST_BASELINE } from './data/resort-interest-scores';
 import {
   PATH_VIEW_MAP,
@@ -317,6 +323,16 @@ const areFiltersEqual = (left: Filters, right: Filters) =>
   left.hasPrivatePool === right.hasPrivatePool &&
   left.onlyLiked === right.onlyLiked;
 
+const getActiveFilterCount = (filters: Filters) => [
+  filters.searchTerm.trim().length > 0,
+  filters.transportation.length > 0,
+  filters.minPrice !== DEFAULT_FILTERS.minPrice || filters.maxPrice !== DEFAULT_FILTERS.maxPrice,
+  filters.roomTypes.length > 0,
+  filters.minRestaurants !== DEFAULT_FILTERS.minRestaurants,
+  filters.hasPrivatePool,
+  filters.onlyLiked,
+].filter(Boolean).length;
+
 const parseNumberParam = (value: string | null, fallback: number) => {
   if (!value) {
     return fallback;
@@ -540,6 +556,7 @@ type UseResortLikesResult = {
   likesCountMap: Record<number, number>;
   likedResortIds: number[];
   pendingLikeResortIds: Set<number>;
+  getLikeMutationVersion: () => number;
   setInitialLikedResorts: (ids: number[]) => void;
   hydrateLikesState: (resorts: Resort[], summary: ResortLikesSummary | null) => void;
   toggleLike: (resortId: number) => Promise<void>;
@@ -554,6 +571,9 @@ const useResortLikes = ({
   const [likesCountMap, setLikesCountMap] = useState<Record<number, number>>({});
   const [likedResortIds, setLikedResortIds] = useState<number[]>([]);
   const [pendingLikeResortIds, setPendingLikeResortIds] = useState<Set<number>>(new Set());
+  const likeMutationVersionRef = useRef(0);
+
+  const getLikeMutationVersion = useCallback(() => likeMutationVersionRef.current, []);
 
   const setInitialLikedResorts = useCallback(
     (ids: number[]) => {
@@ -611,6 +631,7 @@ const useResortLikes = ({
         return;
       }
 
+      likeMutationVersionRef.current += 1;
       const previousLikedIds = ensureNumberArray(likedResortIds);
       const wasLiked = previousLikedIds.includes(resortId);
       const previousCount = likesCountMap[resortId] ?? 0;
@@ -727,6 +748,7 @@ const useResortLikes = ({
     likesCountMap,
     likedResortIds,
     pendingLikeResortIds,
+    getLikeMutationVersion,
     setInitialLikedResorts,
     hydrateLikesState,
     toggleLike,
@@ -772,6 +794,13 @@ const App: React.FC = () => {
   const [, setResortOverrides] = useState<Record<number, ResortOverride>>({});
   const [profileId, setProfileId] = useState<string | null>(null);
   const [profileToken, setProfileToken] = useState<string | null>(null);
+  const filterTrackingReadyRef = useRef(false);
+  const remoteHydrationKeyRef = useRef('');
+  const lastTrackedContentRouteRef = useRef('');
+
+  useEffect(() => {
+    captureCampaignAttribution();
+  }, []);
 
   const syncRoutePresentation = useCallback(() => {
     normalizePrimaryPathInBrowser();
@@ -891,6 +920,7 @@ const App: React.FC = () => {
     likesCountMap,
     likedResortIds,
     pendingLikeResortIds,
+    getLikeMutationVersion,
     setInitialLikedResorts,
     hydrateLikesState,
     toggleLike,
@@ -1180,11 +1210,8 @@ const App: React.FC = () => {
 
 
   useEffect(() => {
-    if (!profileId) {
-      return;
-    }
-
     const fetchResorts = async () => {
+      const loadStartedAt = typeof performance !== 'undefined' ? performance.now() : 0;
       try {
         setLoading(true);
         setError(null);
@@ -1295,54 +1322,29 @@ const App: React.FC = () => {
         const resortIdSet = new Set(resortIds);
         const validLocalLikedIds = parseNumberArray(localStorage.getItem('likedResorts'))
           .filter(id => resortIdSet.has(id));
-        const [remotePreferences, fetchedRemoteLikes] = await Promise.all([
-          fetchRemotePreferences(profileId),
-          fetchRemoteLikes(profileId),
-        ]);
-        let remoteLikes = fetchedRemoteLikes;
-
-        if (remoteLikes && validLocalLikedIds.length > 0) {
-          const remoteLikedIdSet = new Set(remoteLikes.likedIds);
-          const missingLocalLikedIds = validLocalLikedIds.filter(id => !remoteLikedIdSet.has(id));
-          if (missingLocalLikedIds.length > 0) {
-            const syncedLikes = await syncRemoteLikedResorts(profileId, validLocalLikedIds);
-            remoteLikes = syncedLikes ?? {
-              counts: remoteLikes.counts,
-              likedIds: Array.from(new Set([...remoteLikes.likedIds, ...validLocalLikedIds])),
-            };
-          }
-        }
-
-        if (remotePreferences) {
-          setDeletedImageUrls(remotePreferences.deleted_image_urls);
-        }
-
-        const mergedHiddenIds = Array.from(
-          new Set([
-            ...(remotePreferences?.hidden_ids ?? []),
-            ...localPreferences.hidden_ids,
-          ])
-        );
-
-        const validHiddenIds = mergedHiddenIds.filter(id => resortIdSet.has(id));
+        const validHiddenIds = localPreferences.hidden_ids.filter(id => resortIdSet.has(id));
         const hiddenSet = new Set(validHiddenIds);
-
-        const baseOrder = remotePreferences && remotePreferences.custom_order.length > 0
-          ? remotePreferences.custom_order
-          : localPreferences.custom_order;
-
-        const sanitizedOrder = baseOrder.filter(id => resortIdSet.has(id) && !hiddenSet.has(id));
+        const sanitizedOrder = localPreferences.custom_order.filter(
+          id => resortIdSet.has(id) && !hiddenSet.has(id)
+        );
         const orderSet = new Set(sanitizedOrder);
         const missingIds = resortIds.filter(id => !orderSet.has(id) && !hiddenSet.has(id));
         const finalOrder = [...sanitizedOrder, ...missingIds];
 
         savePreferencesToLocal(validHiddenIds, finalOrder);
-
-        hydrateLikesState(mergedData, remoteLikes);
+        setInitialLikedResorts(validLocalLikedIds);
+        hydrateLikesState(mergedData, null);
 
         setHiddenResortIds(validHiddenIds);
         setCustomOrder(finalOrder);
         setInitialResorts(mergedData);
+        trackEvent('resort_data_loaded', {
+          resort_count: mergedData.length,
+          loaded_chunk_count: resortsDataArrays.length,
+          load_duration_ms: loadStartedAt > 0
+            ? Math.round(performance.now() - loadStartedAt)
+            : 0,
+        });
 
         void Promise.all([reviewInsightsPromise, editorReviewsPromise]).then(([reviewInsights, editorReviews]) => {
           const reviewSummaryByResortId = new Map(
@@ -1377,14 +1379,100 @@ const App: React.FC = () => {
 
     fetchResorts();
   }, [
-    fetchRemoteLikes,
-    fetchRemotePreferences,
     getLocalPreferences,
     hydrateLikesState,
-    profileId,
     resortReloadKey,
     savePreferencesToLocal,
+    setInitialLikedResorts,
     showToast,
+  ]);
+
+  useEffect(() => {
+    if (!profileId || !profileToken || initialResorts.length === 0) {
+      return;
+    }
+
+    const hydrationKey = `${profileId}:${profileToken}:${resortReloadKey}`;
+    if (remoteHydrationKeyRef.current === hydrationKey) {
+      return;
+    }
+    remoteHydrationKeyRef.current = hydrationKey;
+    const likeMutationVersionAtStart = getLikeMutationVersion();
+    const likesChangedDuringHydration = () =>
+      getLikeMutationVersion() !== likeMutationVersionAtStart;
+    let cancelled = false;
+
+    const hydrateRemoteState = async () => {
+      const resortIds = initialResorts.map(resort => resort.id);
+      const resortIdSet = new Set(resortIds);
+      const localPreferences = getLocalPreferences();
+      const validLocalLikedIds = parseNumberArray(localStorage.getItem('likedResorts'))
+        .filter(id => resortIdSet.has(id));
+      const [remotePreferences, fetchedRemoteLikes] = await Promise.all([
+        fetchRemotePreferences(profileId),
+        fetchRemoteLikes(profileId),
+      ]);
+      if (cancelled) return;
+
+      let remoteLikes = fetchedRemoteLikes;
+      if (!likesChangedDuringHydration() && remoteLikes && validLocalLikedIds.length > 0) {
+        const mergedLikedIds = Array.from(
+          new Set([...remoteLikes.likedIds, ...validLocalLikedIds])
+        );
+        if (mergedLikedIds.length !== remoteLikes.likedIds.length) {
+          const syncedLikes = await syncRemoteLikedResorts(profileId, mergedLikedIds);
+          if (cancelled) return;
+          if (!likesChangedDuringHydration()) {
+            remoteLikes = syncedLikes ?? {
+              counts: remoteLikes.counts,
+              likedIds: mergedLikedIds,
+            };
+          }
+        }
+      }
+
+      if (remotePreferences) {
+        setDeletedImageUrls(remotePreferences.deleted_image_urls);
+      }
+
+      const mergedHiddenIds = Array.from(new Set([
+        ...(remotePreferences?.hidden_ids ?? []),
+        ...localPreferences.hidden_ids,
+      ])).filter(id => resortIdSet.has(id));
+      const hiddenSet = new Set(mergedHiddenIds);
+      const baseOrder = remotePreferences?.custom_order.length
+        ? remotePreferences.custom_order
+        : localPreferences.custom_order;
+      const sanitizedOrder = baseOrder.filter(
+        id => resortIdSet.has(id) && !hiddenSet.has(id)
+      );
+      const orderSet = new Set(sanitizedOrder);
+      const missingIds = resortIds.filter(id => !orderSet.has(id) && !hiddenSet.has(id));
+      const finalOrder = [...sanitizedOrder, ...missingIds];
+
+      savePreferencesToLocal(mergedHiddenIds, finalOrder);
+      setHiddenResortIds(mergedHiddenIds);
+      setCustomOrder(finalOrder);
+      if (!likesChangedDuringHydration()) {
+        hydrateLikesState(initialResorts, remoteLikes);
+      }
+    };
+
+    void hydrateRemoteState();
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    fetchRemoteLikes,
+    fetchRemotePreferences,
+    getLikeMutationVersion,
+    getLocalPreferences,
+    hydrateLikesState,
+    initialResorts.length,
+    profileId,
+    profileToken,
+    resortReloadKey,
+    savePreferencesToLocal,
     syncRemoteLikedResorts,
   ]);
 
@@ -1772,6 +1860,56 @@ const App: React.FC = () => {
     applyFiltersAndSort();
   }, [applyFiltersAndSort]);
 
+  const filterTrackingSignature = useMemo(() => JSON.stringify({
+    search: filters.searchTerm.trim().toLowerCase(),
+    transportation: filters.transportation,
+    minPrice: filters.minPrice,
+    maxPrice: filters.maxPrice,
+    roomTypes: filters.roomTypes,
+    minRestaurants: filters.minRestaurants,
+    hasPrivatePool: filters.hasPrivatePool,
+    onlyLiked: filters.onlyLiked,
+    sortOption,
+  }), [filters, sortOption]);
+
+  useEffect(() => {
+    if (!isQueryHydrated) return;
+    if (!filterTrackingReadyRef.current) {
+      filterTrackingReadyRef.current = true;
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      const activeFilterCount = getActiveFilterCount(filters);
+      const normalizedSearch = filters.searchTerm.trim();
+
+      if (normalizedSearch) {
+        trackEvent('view_search_results', {
+          query_length: Array.from(normalizedSearch).length,
+          has_results: displayedResorts.length > 0,
+          result_count: displayedResorts.length,
+        });
+      }
+
+      if (activeFilterCount > 0 || sortOption !== 'popularity') {
+        trackEvent('resort_filter_apply', {
+          active_filter_count: activeFilterCount,
+          result_count: displayedResorts.length,
+          transportation: filters.transportation.join(','),
+          room_types: filters.roomTypes.join(','),
+          min_price: filters.minPrice,
+          max_price: filters.maxPrice,
+          minimum_restaurants: filters.minRestaurants,
+          private_pool_only: filters.hasPrivatePool,
+          liked_only: filters.onlyLiked,
+          sort_option: sortOption,
+        });
+      }
+    }, 700);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [displayedResorts.length, filterTrackingSignature, filters, isQueryHydrated, sortOption]);
+
   useEffect(() => {
     if (!isQueryHydrated || typeof window === 'undefined') {
       return;
@@ -1881,6 +2019,46 @@ const App: React.FC = () => {
     });
   }, [activeSeoPageKey, selectedResort]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const frameId = window.requestAnimationFrame(() => {
+      trackPageView();
+      const contentRoute = `${window.location.pathname}${window.location.hash}`;
+      if (lastTrackedContentRouteRef.current === contentRoute) return;
+      lastTrackedContentRouteRef.current = contentRoute;
+
+      if (selectedResort) {
+        trackEvent('resort_detail_view', {
+          resort_id: selectedResort.id,
+          resort_name: selectedResort.name,
+          resort_slug: getResortSlug(selectedResort),
+        });
+        return;
+      }
+
+      if (isCompareViewVisible && compareList.length >= 2) {
+        trackEvent('resort_compare_view', {
+          selected_count: compareList.length,
+          resort_ids: compareList.join(','),
+        });
+        return;
+      }
+
+      if (currentView === 'agencies') {
+        trackEvent('quote_comparison_reached', { page_path: window.location.pathname });
+      }
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [
+    activeSeoPageKey,
+    compareList,
+    currentView,
+    isCompareViewVisible,
+    selectedResort,
+  ]);
+
   const calculatedTotalPages = displayedResorts.length === 0
     ? 0
     : Math.ceil(displayedResorts.length / RESORTS_PER_PAGE);
@@ -1898,7 +2076,11 @@ const App: React.FC = () => {
     ? (displayedResorts.length > 0 ? 1 : 0)
     : calculatedTotalPages;
 
-  const performShare = async (payload: ShareData, label: string) => {
+  const performShare = async (
+    payload: ShareData,
+    label: string,
+    analyticsParams: Record<string, string | number | boolean>,
+  ) => {
     if (sharePendingRef.current) {
       return;
     }
@@ -1911,8 +2093,17 @@ const App: React.FC = () => {
         showToast(`${label} 공유를 완료했습니다.`);
       } else if (result.status === 'copied') {
         showToast(`${label} 링크를 복사했습니다.`);
+      } else if (result.status === 'manual') {
+        showToast(`${label} 링크를 직접 복사해 주세요.`);
       } else if (result.status === 'failed') {
         showToast('공유 링크를 만들지 못했습니다. 다시 시도해 주세요.');
+      }
+
+      if (['shared', 'copied', 'manual'].includes(result.status)) {
+        trackEvent('share', {
+          method: result.method ?? result.status,
+          ...analyticsParams,
+        });
       }
     } finally {
       sharePendingRef.current = false;
@@ -1927,7 +2118,15 @@ const App: React.FC = () => {
       return;
     }
 
-    const url = new URL(`/resorts/${slug}/`, CANONICAL_SITE_ORIGIN).toString();
+    const url = buildUtmUrl(
+      new URL(`/resorts/${slug}/`, CANONICAL_SITE_ORIGIN),
+      {
+        source: 'site_share',
+        medium: 'referral',
+        campaign: 'user_share',
+        content: `resort_detail_${resort.id}`,
+      },
+    );
     void performShare(
       {
         title: `몰디브 바이블 | ${resort.name}`,
@@ -1935,6 +2134,11 @@ const App: React.FC = () => {
         url,
       },
       resort.name,
+      {
+        content_type: 'resort',
+        item_id: resort.id,
+        item_name: resort.name,
+      },
     );
   };
 
@@ -1950,13 +2154,24 @@ const App: React.FC = () => {
 
     const url = new URL(VIEW_PATH_MAP.resorts, CANONICAL_SITE_ORIGIN);
     url.hash = compareHash.slice(1);
+    const trackedUrl = buildUtmUrl(url, {
+      source: 'site_share',
+      medium: 'referral',
+      campaign: 'user_share',
+      content: `comparison_${selectedResorts.length}_resorts`,
+    });
     void performShare(
       {
         title: '몰디브 바이블 | 리조트 비교',
         text: `${selectedResorts.map(resort => resort.name).join(', ')} 비교 결과를 확인해 보세요.`,
-        url: url.toString(),
+        url: trackedUrl,
       },
       '비교 결과',
+      {
+        content_type: 'resort_comparison',
+        item_id: selectedResorts.map(resort => resort.id).join(','),
+        selected_count: selectedResorts.length,
+      },
     );
   };
 
@@ -1992,6 +2207,10 @@ const App: React.FC = () => {
     if (areFiltersEqual(filters, DEFAULT_FILTERS) && sortOption === 'popularity') {
       return;
     }
+    trackEvent('resort_filter_reset', {
+      active_filter_count: getActiveFilterCount(filters),
+      previous_sort_option: sortOption,
+    });
     setFilters({ ...DEFAULT_FILTERS });
     setSortOption('popularity');
     setCurrentPage(1);
@@ -2013,6 +2232,10 @@ const App: React.FC = () => {
       const destination = VIEW_PATH_MAP[view];
       const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
       if (currentUrl !== destination) {
+        trackEvent('internal_navigation', {
+          destination_path: destination,
+          destination_view: view,
+        });
         window.history.pushState(window.history.state, '', destination);
       }
       setActiveSeoPageKey(VIEW_SEO_PAGE_MAP[view]);
@@ -2022,16 +2245,21 @@ const App: React.FC = () => {
   };
 
   const handleShowResorts = () => {
+    trackEvent('resort_compare_cta_click', {
+      cta_placement: activeSeoPageKey === 'home' ? 'home_hero' : 'start_guide',
+    });
     handleViewChange('resorts');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleShowQuoteFromFlights = () => {
+    trackEvent('quote_cta_click', { cta_placement: 'flight_guide' });
     handleViewChange('agencies');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handlePageChange = (page: number) => {
+    trackEvent('resort_results_page_change', { page_number: page });
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -2059,6 +2287,7 @@ const App: React.FC = () => {
   };
 
   const handleOpenFilter = () => {
+    trackEvent('resort_filter_open', { device_layout: 'mobile' });
     filterPreviousFocusRef.current = document.activeElement instanceof HTMLElement
       ? document.activeElement
       : filterTriggerRef.current;
@@ -2073,6 +2302,12 @@ const App: React.FC = () => {
       const resort = initialResorts.find(item => item.id === resortId);
       const slug = resort ? getResortSlug(resort) : null;
       if (slug) {
+        trackEvent('resort_detail_open', {
+          resort_id: resortId,
+          resort_name: resort?.name,
+          resort_slug: slug,
+          result_position: displayedResorts.findIndex(item => item.id === resortId) + 1,
+        });
         const detailParams = new URLSearchParams(window.location.search);
         detailParams.delete('view');
         detailParams.delete('page');
@@ -2093,9 +2328,17 @@ const App: React.FC = () => {
   const handleToggleCompare = (resortId: number) => {
     setCompareList(prev => {
       if (prev.includes(resortId)) {
+        trackEvent('resort_compare_item_remove', {
+          resort_id: resortId,
+          selected_count: Math.max(0, prev.length - 1),
+        });
         return prev.filter(id => id !== resortId);
       }
       if (prev.length < 3) {
+        trackEvent('resort_compare_item_add', {
+          resort_id: resortId,
+          selected_count: prev.length + 1,
+        });
         return [...prev, resortId];
       }
       alert('최대 3개의 리조트만 비교할 수 있습니다.');
@@ -2104,6 +2347,7 @@ const App: React.FC = () => {
   };
 
   const handleClearCompare = () => {
+    trackEvent('resort_compare_clear', { selected_count: compareList.length });
     setCompareList([]);
     setIsCompareViewVisible(false);
     if (window.location.hash.startsWith('#/compare/')) {
@@ -2121,6 +2365,13 @@ const App: React.FC = () => {
       showToast('비교할 리조트를 2개 이상 선택해 주세요.');
       return;
     }
+
+    trackEvent('resort_compare_start', {
+      selected_count: selectedResorts.length,
+      resort_ids: selectedResorts.map(resort => resort.id).join(','),
+      resort_slugs: selectedResorts.map(getResortSlug).join(','),
+      cta_placement: 'compare_tray',
+    });
 
     setCurrentView('resorts');
     setIsCompareViewVisible(true);
@@ -2141,6 +2392,11 @@ const App: React.FC = () => {
   };
 
   const handleLogoClick = () => {
+    trackEvent('internal_navigation', {
+      destination_path: '/',
+      destination_view: 'home',
+      navigation_element: 'logo',
+    });
     setCurrentView('tips');
     setIsCompareViewVisible(false);
     setIsFilterOpen(false);
@@ -2271,6 +2527,7 @@ const App: React.FC = () => {
         onToggleImageEditMode={handleToggleImageEditMode}
         isImageEditFeatureAvailable={canUseImageEditMode}
         onLogoClick={handleLogoClick}
+        isHome={currentView === 'tips' && activeSeoPageKey === 'home'}
       />
       <main className="mx-auto max-w-[1440px] px-4 py-5 sm:px-6 lg:px-8">
         <NavBar
@@ -2399,6 +2656,7 @@ const App: React.FC = () => {
                   <div className="hidden lg:block">
                     <FilterSidebar
                       filters={filters}
+                      isSortModified={sortOption !== 'popularity'}
                       onFilterChange={handleFilterChange}
                       onReset={handleResetFilters}
                     />
@@ -2470,6 +2728,7 @@ const App: React.FC = () => {
             <div className="h-full overflow-y-auto">
               <FilterSidebar 
                 filters={filters} 
+                isSortModified={sortOption !== 'popularity'}
                 onFilterChange={handleFilterChange} 
                 onReset={handleResetFilters}
                 onClose={() => setIsFilterOpen(false)}
