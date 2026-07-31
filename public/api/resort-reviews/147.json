@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "아침 식사 구성이 알차다는 후기가 있어요.",
+        "text": "아침 식사 구성이 알차요.",
         "mentions": 1
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 7,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",

@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "아이와 함께하는 가족여행에 잘 맞는다는 후기가 여러 건 있어요.",
+        "text": "아이와 함께하는 가족여행에 잘 맞아요.",
         "mentions": 2
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/dongho326/221252712792",
         "blogName": "FengLiSu's",
         "publishedAt": "2018-04-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아난타라 디구 에서의 하루 (&제트스키)+ 굴리푸쉬...",
+        "url": "https://blog.naver.com/ysjyshhs/223903981214",
+        "blogName": "지 금 이 순 간",
+        "publishedAt": "2025-06-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가족여행 리조트 아난타라 디구 왜 좋냐구요?",
+        "url": "https://blog.naver.com/dsk03064/223801134694",
+        "blogName": "솔직한 원블리의 식기장",
+        "publishedAt": "2025-03-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 가족 여행 #2] 조식 석식 뷔페, 아난타라 디구 리조트 ...",
+        "url": "https://blog.naver.com/dongjass/224047601406",
+        "blogName": "미쓰에버",
+        "publishedAt": "2025-10-20",
         "independenceUnknown": false
       }
     ]

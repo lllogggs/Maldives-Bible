@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
@@ -78,6 +78,27 @@
         "url": "https://blog.naver.com/akeoqhd/223160676782",
         "blogName": "수익형 부동산 알아보기",
         "publishedAt": "2023-07-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 모벤픽 쿠레디바루 리조트 5days 후기 -ep3",
+        "url": "https://blog.naver.com/hae_in0128/223489722011",
+        "blogName": "Forever Young",
+        "publishedAt": "2024-06-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "( 모벤픽 몰디브 , 몰디브 모벤픽 , 몰디브 리조트 , 쿠레디바루 ...",
+        "url": "https://blog.naver.com/deartojin1/223936012532",
+        "blogName": "-",
+        "publishedAt": "2025-07-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 로 떠나기(말레이시아 항공, 모벤픽 쿠레디바루 )",
+        "url": "https://blog.naver.com/juliayoo_/223953511719",
+        "blogName": "줄리아의 하루",
+        "publishedAt": "2025-07-31",
         "independenceUnknown": false
       }
     ]

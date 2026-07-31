@@ -1,17 +1,18 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-30T07:27:30.584Z",
+  "generatedAt": "2026-07-31T02:48:14.146Z",
   "items": [
     {
       "resortId": 1,
       "reviewSummary": {
         "pros": [
           {
-            "text": "데이트립 만족도가 높고 다시 추천할 만하다는 후기가 있어요.",
+            "text": "데이트립 만족도가 높고 다시 찾고 싶을 만큼 좋아요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -29,11 +30,12 @@
         ],
         "cons": [
           {
-            "text": "배정된 객실에서 공사장이 보여 전망이 아쉬웠다는 후기가 있어요.",
+            "text": "배정된 객실에서 공사장이 보여 전망이 아쉬워요.",
             "mentions": 1
           }
         ],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -44,11 +46,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "막바지 예약으로 이용했을 때 가격 대비 만족도가 좋았다는 후기가 있어요.",
+            "text": "막바지 예약에도 가격 대비 만족도가 좋아요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -60,6 +63,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -71,12 +75,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "기대보다 음식이 맛있고 만족스러웠다는 후기가 있어요.",
+            "text": "음식이 기대보다 맛있고 만족스러워요.",
             "mentions": 1
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -87,6 +92,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -103,6 +109,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -114,7 +121,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 전반적인 만족도, 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -126,6 +133,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -137,6 +145,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -148,7 +157,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 여행 일정, 전반적인 만족도에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -165,7 +174,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -176,12 +186,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "음식이 깔끔하고 맛있다는 후기가 여러 건 있어요.",
+            "text": "음식이 깔끔하고 전반적으로 맛있어요.",
             "mentions": 2
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -192,6 +203,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -212,6 +224,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -228,6 +241,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 7,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -244,6 +258,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -255,11 +270,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "바다와 하늘 풍경이 특별하게 느껴졌다는 후기가 있어요.",
+            "text": "바다와 하늘 풍경이 특별하고 인상적이에요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -271,12 +287,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "숙박 만족도가 높고 다시 방문하고 싶다는 후기가 여러 건 있어요.",
+            "text": "숙박 만족도가 높아 다시 방문하고 싶어요.",
             "mentions": 2
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -287,11 +304,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "가격 대비 만족도가 높다는 후기가 있어요.",
+            "text": "가격 대비 만족도가 높아요.",
             "mentions": 2
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -303,7 +321,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -315,7 +333,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -327,16 +345,17 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "후기 작성 당시 1박 100만 원 이하로 이용해 가격 대비 만족도가 높았어요.",
+            "text": "이용 시점에는 1박 100만 원 이하로 가격 대비 만족도가 높았어요.",
             "mentions": 1
           }
         ],
         "cons": [
           {
-            "text": "올인클루시브 식음료는 기대에 못 미쳤다는 후기가 있어요.",
+            "text": "올인클루시브 식음료는 기대에 못 미쳐요.",
             "mentions": 1
           }
         ],
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -348,7 +367,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -360,11 +379,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "도착할 때 직원들이 친절하게 맞아줘 첫인상이 좋았다는 후기가 있어요.",
+            "text": "도착할 때 직원들이 친절하게 맞아줘 첫인상이 좋아요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -376,11 +396,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "허니문 휴양지로 만족도가 높다는 후기가 여러 건 있어요.",
+            "text": "허니문 휴양지로 만족도가 높아요.",
             "mentions": 2
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 7,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -392,7 +413,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 식사와 다이닝, 가족 여행 시설, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 7,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -404,11 +425,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "워터빌라 분위기가 로맨틱하고 만족스럽다는 후기가 있어요.",
+            "text": "워터빌라 분위기가 로맨틱하고 만족스러워요.",
             "mentions": 2
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -421,10 +443,11 @@
         "pros": [],
         "cons": [
           {
-            "text": "신혼여행 객실의 침대 장식이 소박해 아쉬웠다는 후기가 있어요.",
+            "text": "신혼여행 객실의 침대 장식이 소박해 아쉬워요.",
             "mentions": 1
           }
         ],
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -446,6 +469,7 @@
             "mentions": 1
           }
         ],
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -463,10 +487,11 @@
         ],
         "cons": [
           {
-            "text": "주류 가격이 높아 부담스럽다는 후기가 있어요.",
+            "text": "주류 가격이 높아 부담스러워요.",
             "mentions": 1
           }
         ],
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -478,11 +503,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "리조트와 주변 풍경이 아름답다는 후기가 여러 건 있어요.",
+            "text": "리조트와 주변 풍경이 전반적으로 아름다워요.",
             "mentions": 2
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -494,7 +520,7 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "리조트 음식이 전반적으로 맛있다는 후기가 있어요.",
+            "text": "리조트 음식이 전반적으로 맛있어요.",
             "mentions": 1
           }
         ],
@@ -504,7 +530,8 @@
             "mentions": 1
           }
         ],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 12,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -520,6 +547,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -531,12 +559,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "하우스리프에서 거북이를 두 번 봤다는 후기가 있어요.",
+            "text": "하우스리프에서 거북이를 두 번 목격했어요.",
             "mentions": 1
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -547,11 +576,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "공항 마중부터 라운지 안내까지 세심하게 챙겨준다는 후기가 있어요.",
+            "text": "공항 마중부터 라운지 안내까지 세심하게 챙겨줘요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -563,11 +593,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "가격대를 고려하면 가성비가 좋다는 후기가 있어요.",
+            "text": "가격대를 고려하면 가성비가 좋아요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -579,11 +610,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "하우스리프에서 니모를 보기 좋다는 후기가 여러 건 있어요.",
+            "text": "하우스리프에서 니모를 보기 좋아요.",
             "mentions": 2
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 7,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -595,7 +627,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 스노클링과 수중환경, 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -612,6 +644,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -623,11 +656,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "가격 경쟁력이 좋다는 후기가 여러 건 있어요.",
+            "text": "가격 경쟁력이 좋아요.",
             "mentions": 2
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -648,6 +682,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -660,10 +695,11 @@
         "pros": [],
         "cons": [
           {
-            "text": "섬 안의 호수는 기대만큼 특별하지 않았다는 후기가 있어요.",
+            "text": "섬 안의 호수는 기대만큼 특별하지 않아요.",
             "mentions": 1
           }
         ],
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -675,7 +711,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 가격대와 가치에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -692,7 +728,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -703,7 +740,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -715,11 +752,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "바다 상태와 수중환경이 좋다는 후기가 여러 건 있어요.",
+            "text": "바다 상태와 수중환경이 전반적으로 좋아요.",
             "mentions": 2
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -731,7 +769,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 여행 일정, 수영장과 액티비티에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -743,7 +781,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 수영장과 액티비티, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -755,7 +793,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 공항 이후 이동, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -776,6 +814,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -787,6 +826,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -803,6 +843,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -814,6 +855,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -825,7 +867,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 공항 이후 이동, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -837,7 +879,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 가족 여행 시설, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -849,7 +891,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -861,7 +903,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 전반적인 만족도, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -873,7 +915,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 스노클링과 수중환경, 전반적인 만족도에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -885,11 +927,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "라군빌라에서 밤하늘을 바라보는 시간이 특히 행복했다는 후기가 있어요.",
+            "text": "라군빌라에서 바라보는 밤하늘이 특히 아름다워요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -901,12 +944,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "비슷한 등급의 리조트보다 가격 부담이 낮다는 후기가 여러 건 있어요.",
+            "text": "비슷한 등급의 리조트보다 가격 부담이 낮아요.",
             "mentions": 2
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -917,7 +961,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 식사와 다이닝, 허니문 분위기, 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -929,7 +973,7 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "선셋 비치 풀빌라에 전반적으로 만족했다는 후기가 있어요.",
+            "text": "선셋 비치 풀빌라의 전반적인 만족도가 높아요.",
             "mentions": 1
           }
         ],
@@ -939,7 +983,8 @@
             "mentions": 1
           }
         ],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -955,7 +1000,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -966,7 +1012,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 가족 여행 시설, 허니문 분위기, 서비스에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 7,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -978,6 +1024,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -989,7 +1036,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1001,11 +1048,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "워터빌라가 매우 아름답다는 후기가 있어요.",
+            "text": "워터빌라가 매우 아름다워요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1017,7 +1065,7 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "비용이 높아도 후회 없을 만큼 만족했다는 후기가 있어요.",
+            "text": "비용이 높아도 후회 없을 만큼 만족스러워요.",
             "mentions": 1
           }
         ],
@@ -1027,6 +1075,7 @@
             "mentions": 1
           }
         ],
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1043,7 +1092,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -1054,6 +1104,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1065,7 +1116,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1077,11 +1128,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "올인클루시브 식사가 만족스럽다는 후기가 여러 건 있어요.",
+            "text": "올인클루시브 식사가 전반적으로 만족스러워요.",
             "mentions": 2
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1093,7 +1145,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1105,7 +1157,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 가족 여행 시설, 수영장과 액티비티, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1117,7 +1169,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 스노클링과 수중환경, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1129,7 +1181,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 가족 여행 시설, 가격대와 가치에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1142,10 +1194,11 @@
         "pros": [],
         "cons": [
           {
-            "text": "리조트 내 스쿠버다이빙 비용이 높다는 후기가 있어요.",
+            "text": "리조트 내 스쿠버다이빙 비용이 높아요.",
             "mentions": 1
           }
         ],
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1157,7 +1210,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 가족 여행 시설에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1175,11 +1228,12 @@
         ],
         "cons": [
           {
-            "text": "플로팅 조식은 예상보다 음식 구성이 적다는 후기가 있어요.",
+            "text": "플로팅 조식은 예상보다 음식 구성이 적어요.",
             "mentions": 1
           }
         ],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -1190,7 +1244,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1202,7 +1256,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 전반적인 만족도에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1214,7 +1268,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 여행 일정, 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 7,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1226,8 +1280,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
@@ -1238,7 +1292,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1250,7 +1304,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 공항 이후 이동, 가족 여행 시설, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1262,12 +1316,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "신혼여행 숙소로 만족도가 높다는 후기가 여러 건 있어요.",
+            "text": "신혼여행 숙소로 만족도가 높아요.",
             "mentions": 2
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -1278,8 +1333,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 식사와 다이닝, 공항 이후 이동에 관한 경험을 주로 확인할 수 있어요.",
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 12,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
@@ -1295,7 +1350,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -1306,6 +1362,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1322,7 +1379,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -1333,7 +1391,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1345,6 +1403,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1356,12 +1415,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "객실과 시설을 고려하면 가격 대비 만족도가 높다는 후기가 여러 건 있어요.",
+            "text": "객실과 시설을 고려하면 가격 대비 만족도가 높아요.",
             "mentions": 2
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -1372,8 +1432,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 전반적인 만족도에 관한 경험을 주로 확인할 수 있어요.",
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
@@ -1389,6 +1449,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1405,7 +1466,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -1416,7 +1478,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1429,10 +1491,11 @@
         "pros": [],
         "cons": [
           {
-            "text": "여러 이동수단을 거쳐야 해 이동이 길고 피로하다는 후기가 있어요.",
+            "text": "여러 이동수단을 거쳐야 해 이동이 길고 피로해요.",
             "mentions": 2
           }
         ],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1444,6 +1507,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1455,7 +1519,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 허니문 분위기, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1467,7 +1531,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 수영장과 액티비티, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1484,7 +1548,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -1495,7 +1560,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 전반적인 만족도, 객실과 빌라, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1512,6 +1577,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 7,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1523,6 +1589,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1534,7 +1601,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 가격대와 가치, 전반적인 만족도에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1544,14 +1611,15 @@
     {
       "resortId": 108,
       "reviewSummary": {
-        "pros": [
+        "pros": [],
+        "cons": [],
+        "neutral": [
           {
-            "text": "예약형 레스토랑을 포함해 식당 선택지가 다양해요.",
+            "text": "예약형 레스토랑을 포함해 여러 식당을 운영해요.",
             "mentions": 2
           }
         ],
-        "cons": [],
-        "sourceCount": 10,
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -1562,7 +1630,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 허니문 분위기, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1579,6 +1647,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1590,7 +1659,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 식사와 다이닝, 허니문 분위기, 전반적인 만족도에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1602,11 +1671,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "스노클링과 수중환경에 만족했다는 후기가 여러 건 있어요.",
+            "text": "스노클링과 수중환경의 만족도가 높아요.",
             "mentions": 2
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1618,6 +1688,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1629,7 +1700,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 식사와 다이닝, 공항 이후 이동에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1646,7 +1717,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -1657,11 +1729,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "수중환경이 훌륭하다는 후기가 있어요.",
+            "text": "수중환경이 훌륭해요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1673,8 +1746,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 수영장과 액티비티, 식사와 다이닝, 가족 여행 시설에 관한 경험을 주로 확인할 수 있어요.",
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
@@ -1685,7 +1758,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 스노클링과 수중환경에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1697,7 +1770,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 스노클링과 수중환경에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1709,8 +1782,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 수영장과 액티비티에 관한 경험을 주로 확인할 수 있어요.",
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
@@ -1721,11 +1794,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "선셋 크루즈와 고래상어 투어 등 익스커션이 다양해 일정이 지루하지 않았다는 후기가 있어요.",
+            "text": "선셋 크루즈와 고래상어 투어 등 익스커션이 다양해 일정이 지루하지 않아요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1737,11 +1811,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "수중환경이 좋다는 후기가 있어요.",
+            "text": "수중환경이 좋아요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1758,6 +1833,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1774,6 +1850,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 7,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1789,11 +1866,12 @@
             "mentions": 1
           },
           {
-            "text": "음식 대부분이 맛있다는 후기가 있어요.",
+            "text": "음식 대부분이 맛있어요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1810,7 +1888,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -1821,7 +1900,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1833,7 +1912,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1850,6 +1929,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1862,10 +1942,11 @@
         "pros": [],
         "cons": [
           {
-            "text": "스피드보트 이동 시 멀미 대비가 필요하다는 후기가 있어요.",
+            "text": "스피드보트 이동은 멀미 대비가 필요해요.",
             "mentions": 1
           }
         ],
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1877,8 +1958,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 여행 일정, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
@@ -1889,7 +1970,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 여행 일정, 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 8,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1906,6 +1987,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1917,12 +1999,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "4박 5일 신혼여행의 비용 대비 만족도가 높았다는 직접 결제 후기가 있어요.",
+            "text": "4박 5일 신혼여행 기준으로 비용 대비 만족도가 높아요.",
             "mentions": 1
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -1933,7 +2016,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 허니문 분위기, 전반적인 만족도에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1945,7 +2028,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 가족 여행 시설, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -1957,8 +2040,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 공항 이후 이동, 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
@@ -1974,7 +2057,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -1985,7 +2069,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 스노클링과 수중환경에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -1997,7 +2081,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 공항 이후 이동, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2009,12 +2093,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "다른 세상에 온 듯한 풍경이 사진으로 다시 봐도 아름답다는 후기가 있어요.",
+            "text": "다른 세상에 온 듯한 풍경이 사진으로 다시 봐도 아름다워요.",
             "mentions": 1
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 11,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -2025,7 +2110,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2037,8 +2122,8 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 여행 일정, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "insufficient"
@@ -2049,7 +2134,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2061,7 +2146,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 전반적인 만족도, 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2073,7 +2158,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 여행 일정, 전반적인 만족도에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2085,11 +2170,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "아침 식사 구성이 알차다는 후기가 있어요.",
+            "text": "아침 식사 구성이 알차요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 7,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2101,7 +2187,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 여행 일정, 서비스에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 6,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2113,6 +2199,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2124,11 +2211,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "객실에 처음 들어섰을 때의 인상이 매우 강렬했다는 후기가 있어요.",
+            "text": "객실에 처음 들어섰을 때의 인상이 매우 강렬해요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-30",
         "basis": "naver-blog-search-snippets",
@@ -2140,6 +2228,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2151,6 +2240,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2162,7 +2252,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 수영장과 액티비티, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2179,6 +2269,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 2,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2190,6 +2281,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2201,6 +2293,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2217,6 +2310,7 @@
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2228,7 +2322,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 서비스, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2240,11 +2334,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "기대 이상으로 만족스러운 신혼여행이었다는 후기가 있어요.",
+            "text": "기대 이상으로 만족스러운 신혼여행이에요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2256,12 +2351,13 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "아이와 함께하는 가족여행에 잘 맞는다는 후기가 여러 건 있어요.",
+            "text": "아이와 함께하는 가족여행에 잘 맞아요.",
             "mentions": 2
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "sufficient"
@@ -2272,7 +2368,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라, 수영장과 액티비티, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 3,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2284,7 +2380,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 4,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2296,11 +2392,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "자쿠지 비치빌라의 가격 대비 만족도가 높다는 후기가 있어요.",
+            "text": "자쿠지 비치빌라의 가격 대비 만족도가 높아요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2317,7 +2414,8 @@
           }
         ],
         "cons": [],
-        "sourceCount": 10,
+        "neutral": [],
+        "sourceCount": 13,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
         "evidenceStatus": "limited"
@@ -2328,7 +2426,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 5,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2340,6 +2438,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2351,6 +2450,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2362,11 +2462,12 @@
       "reviewSummary": {
         "pros": [
           {
-            "text": "일주일 동안 기대했던 하늘과 바다, 분위기를 모두 즐겼다는 후기가 있어요.",
+            "text": "일주일 동안 기대했던 하늘과 바다, 분위기를 모두 즐길 수 있어요.",
             "mentions": 1
           }
         ],
         "cons": [],
+        "neutral": [],
         "sourceCount": 9,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2378,7 +2479,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 공항 이후 이동에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2390,6 +2491,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
+        "neutral": [],
         "sourceCount": 0,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",
@@ -2401,7 +2503,7 @@
       "reviewSummary": {
         "pros": [],
         "cons": [],
-        "overview": "실제 후기에서는 수영장과 액티비티에 관한 경험을 주로 확인할 수 있어요.",
+        "neutral": [],
         "sourceCount": 1,
         "reviewedAt": "2026-07-14",
         "basis": "naver-blog-search-snippets",

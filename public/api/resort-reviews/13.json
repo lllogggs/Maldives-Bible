@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "음식이 깔끔하고 맛있다는 후기가 여러 건 있어요.",
+        "text": "음식이 깔끔하고 전반적으로 맛있어요.",
         "mentions": 2
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/kong_e20/224215478222",
         "blogName": "kong_e2님의 블로그",
         "publishedAt": "2026-03-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 아야다 리조트 선셋오션 스위트 5박8일 후기",
+        "url": "https://blog.naver.com/yuzlove03/224234826282",
+        "blogName": "Yuzu Daily˚ෆ*₊",
+        "publishedAt": "2026-03-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 말레공항에서 아야다 리조트 무니마라운지...",
+        "url": "https://blog.naver.com/thdus_0/223886394664",
+        "blogName": "MY BOX",
+        "publishedAt": "2025-06-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 아야다 리조트 인빌라다이닝",
+        "url": "https://blog.naver.com/xox_dorothy/223504658878",
+        "blogName": "Studio Mignon",
+        "publishedAt": "2024-07-07",
         "independenceUnknown": false
       }
     ]

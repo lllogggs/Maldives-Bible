@@ -4,24 +4,24 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 가족 여행 시설, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 8,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
     "sources": [
       {
-        "title": "① - 1박 600만원 몰디브 포시즌스 리조트 란다 기라바루",
-        "url": "https://blog.naver.com/hapbb_/223931421471",
-        "blogName": "Privé Moment",
-        "publishedAt": "2025-07-12",
-        "independenceUnknown": false
-      },
-      {
         "title": "네버엔딩 포 시즌스 몰디브 앳 란다 기라바루 리조트 도착기",
         "url": "https://blog.naver.com/noveltyfunsy/223761307113",
         "blogName": "Novelty funsy",
         "publishedAt": "2025-02-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "① - 1박 600만원 몰디브 포시즌스 리조트 란다 기라바루",
+        "url": "https://blog.naver.com/hapbb_/223931421471",
+        "blogName": "Privé Moment",
+        "publishedAt": "2025-07-12",
         "independenceUnknown": false
       },
       {

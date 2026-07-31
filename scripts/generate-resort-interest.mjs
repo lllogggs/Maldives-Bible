@@ -107,7 +107,7 @@ const buildScores = async () => {
       resort,
       priceRankSignal,
       rawScore,
-      hasReviewBonus: reviewSourceCountById.get(resort.id) === REVIEW_SOURCE_THRESHOLD,
+      hasReviewBonus: (reviewSourceCountById.get(resort.id) ?? 0) >= REVIEW_SOURCE_THRESHOLD,
     };
   });
 

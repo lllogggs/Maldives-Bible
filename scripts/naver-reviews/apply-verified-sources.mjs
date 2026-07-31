@@ -19,7 +19,7 @@ if (!curated || !Array.isArray(curated.items)) {
 }
 
 const resorts = await loadResorts();
-const resortById = new Map(resorts.map((resort) => [resort.id, resort]));
+const resortById = new Map(resorts.map(resort => [resort.id, resort]));
 const verifiedByResort = new Map();
 
 for (const filename of options.verifiedFiles) {
@@ -79,26 +79,24 @@ for (const item of curated.items) {
 
   const existingByUrl = new Map(
     (Array.isArray(item.sources) ? item.sources : [])
-      .map((source) => [canonicalizeBlogUrl(source?.url), source])
-      .filter(([url]) => Boolean(url)),
+      .map(source => [canonicalizeBlogUrl(source?.url), source])
+      .filter(([url]) => Boolean(url))
   );
   const claimUrls = new Set(
-    [...(Array.isArray(item.pros) ? item.pros : []), ...(Array.isArray(item.cons) ? item.cons : [])]
-      .flatMap((claim) => Array.isArray(claim?.sourceUrls) ? claim.sourceUrls : [])
+    [
+      ...(Array.isArray(item.pros) ? item.pros : []),
+      ...(Array.isArray(item.cons) ? item.cons : []),
+      ...(Array.isArray(item.neutral) ? item.neutral : []),
+    ]
+      .flatMap(claim => (Array.isArray(claim?.sourceUrls) ? claim.sourceUrls : []))
       .map(canonicalizeBlogUrl)
-      .filter(Boolean),
+      .filter(Boolean)
   );
   const previouslyVerifiedUrls = new Set(
-    [...existingByUrl.entries()]
-      .filter(([, source]) => source?.sourceKind === 'firsthand-personal')
-      .map(([url]) => url),
+    [...existingByUrl.entries()].filter(([, source]) => source?.sourceKind === 'firsthand-personal').map(([url]) => url)
   );
   const newlyReviewedUrls = verifiedByResort.get(item.resortId) ?? new Set();
-  const requestedUrls = new Set([
-    ...claimUrls,
-    ...previouslyVerifiedUrls,
-    ...newlyReviewedUrls,
-  ]);
+  const requestedUrls = new Set([...claimUrls, ...previouslyVerifiedUrls, ...newlyReviewedUrls]);
 
   const verifiedSources = [];
   for (const url of requestedUrls) {
@@ -110,11 +108,13 @@ for (const item of curated.items) {
     }
 
     const manuallyVerified = previouslyVerifiedUrls.has(url) || newlyReviewedUrls.has(url);
-    const source = rawItem ? sourceFromRaw(rawItem, resort, manuallyVerified) : {
-      ...existing,
-      url,
-      sourceKind: 'firsthand-personal',
-    };
+    const source = rawItem
+      ? sourceFromRaw(rawItem, resort, manuallyVerified)
+      : {
+          ...existing,
+          url,
+          sourceKind: 'firsthand-personal',
+        };
     if (source.selection !== 'relevant') {
       errors.push(`resortId=${item.resortId}: 다른 리조트 가능성이 있는 글은 공개할 수 없습니다: ${url}`);
       continue;
@@ -127,16 +127,20 @@ for (const item of curated.items) {
     verifiedSources.push({
       source,
       priority: claimUrls.has(url) ? 0 : previouslyVerifiedUrls.has(url) ? 1 : 2,
-      order: (Number(rawItem?.queryIndex ?? 99) * 1000) + Number(rawItem?.rawRank ?? existing?.rawRank ?? 999),
+      order: Number(rawItem?.queryIndex ?? 99) * 1000 + Number(rawItem?.rawRank ?? existing?.rawRank ?? 999),
     });
   }
 
-  verifiedSources.sort((a, b) => a.priority - b.priority || a.order - b.order || a.source.url.localeCompare(b.source.url));
+  verifiedSources.sort(
+    (a, b) => a.priority - b.priority || a.order - b.order || a.source.url.localeCompare(b.source.url)
+  );
   const sources = verifiedSources.map(({ source }) => source);
-  newlyVerifiedSources += sources.filter((source) => !previouslyVerifiedUrls.has(source.url)).length;
+  newlyVerifiedSources += sources.filter(source => !previouslyVerifiedUrls.has(source.url)).length;
   for (const claimUrl of claimUrls) {
-    if (!sources.some((source) => source.url === claimUrl)) {
-      errors.push(`resortId=${item.resortId}: 장단점에 사용한 실제 후기가 검증된 후기 목록에서 누락됐습니다: ${claimUrl}`);
+    if (!sources.some(source => source.url === claimUrl)) {
+      errors.push(
+        `resortId=${item.resortId}: 요약 문장에 사용한 실제 후기가 검증된 후기 목록에서 누락됐습니다: ${claimUrl}`
+      );
     }
   }
 
@@ -162,8 +166,12 @@ console.log(`리조트별 출처 수: ${JSON.stringify(distribution)}`);
 
 function sourceFromRaw(item, resort, manuallyVerified = false) {
   const url = canonicalizeBlogUrl(item.canonicalUrl ?? item.raw?.link);
-  const title = String(item.titleText ?? item.title ?? '').replace(/\s+/g, ' ').trim();
-  const bloggerName = String(item.bloggerName ?? item.raw?.bloggerName ?? '').replace(/\s+/g, ' ').trim();
+  const title = String(item.titleText ?? item.title ?? '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const bloggerName = String(item.bloggerName ?? item.raw?.bloggerName ?? '')
+    .replace(/\s+/g, ' ')
+    .trim();
   const relevance = relevanceFor(item, resort);
   const flags = disclosureFlags(item);
   return {
@@ -199,7 +207,10 @@ function parseArgs(args) {
     };
     if (argument === '--curated') parsed.curated = path.resolve(next());
     else if (argument === '--raw-dir') parsed.rawDir = path.resolve(next());
-    else if (argument === '--verified') parsed.verifiedFiles = next().split(',').map((value) => path.resolve(value.trim()));
+    else if (argument === '--verified')
+      parsed.verifiedFiles = next()
+        .split(',')
+        .map(value => path.resolve(value.trim()));
     else throw new Error(`알 수 없는 옵션: ${argument}`);
   }
   return parsed;

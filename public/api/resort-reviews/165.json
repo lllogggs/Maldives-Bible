@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 5,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
@@ -25,13 +25,6 @@
         "independenceUnknown": false
       },
       {
-        "title": "신혼여행 몰디브 노쿠 리조트 1일차 : 워터풀빌라 후기",
-        "url": "https://blog.naver.com/tablestorystudio/221806736624",
-        "blogName": "일상을 회복하는 식탁",
-        "publishedAt": "2020-02-13",
-        "independenceUnknown": false
-      },
-      {
         "title": "몰디브 신혼여행 가성비 좋은 노쿠 리조트 후기 ! (1)",
         "url": "https://blog.naver.com/0101523/223380726586",
         "blogName": "추또리그램",
@@ -39,7 +32,14 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 신혼여행 노쿠 리조트 ( noku maldives ) 타리레스토랑...",
+        "title": "신혼여행 몰디브 노쿠 리조트 1일차 : 워터풀빌라 후기",
+        "url": "https://blog.naver.com/tablestorystudio/221806736624",
+        "blogName": "일상을 회복하는 식탁",
+        "publishedAt": "2020-02-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 노쿠 리조트 (noku maldives) 타리레스토랑...",
         "url": "https://blog.naver.com/happy_memories_/223024477591",
         "blogName": "탐나는 행복기록",
         "publishedAt": "2023-02-22",

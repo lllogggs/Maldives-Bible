@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "공항 마중부터 라운지 안내까지 세심하게 챙겨준다는 후기가 있어요.",
+        "text": "공항 마중부터 라운지 안내까지 세심하게 챙겨줘요.",
         "mentions": 1
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 5,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",

@@ -9,7 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/tndusdl2948/223792389768",
         "blogName": "수연, 수블리의 여행",
         "publishedAt": "2025-03-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 추천, 선시암 올후벨리 에서 즐긴 럭셔리 리조트",
+        "url": "https://blog.naver.com/00sweetlove/224164245256",
+        "blogName": "모든 날이 여행",
+        "publishedAt": "2026-01-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가족여행 선시암 올후벨리 리조트 레스토랑 총정리",
+        "url": "https://blog.naver.com/sanaella/224116621349",
+        "blogName": "사나의 여행",
+        "publishedAt": "2025-12-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가성비 리조트 선시암 올후벨리 로맨스 식당 허니문...",
+        "url": "https://blog.naver.com/enffl_love/224181018983",
+        "blogName": "베레는여행중✈️",
+        "publishedAt": "2026-02-12",
         "independenceUnknown": false
       }
     ]

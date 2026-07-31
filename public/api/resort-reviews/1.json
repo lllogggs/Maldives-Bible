@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "데이트립 만족도가 높고 다시 추천할 만하다는 후기가 있어요.",
+        "text": "데이트립 만족도가 높고 다시 찾고 싶을 만큼 좋아요.",
         "mentions": 1
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",

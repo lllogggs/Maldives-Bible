@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "바다와 하늘 풍경이 특별하게 느껴졌다는 후기가 있어요.",
+        "text": "바다와 하늘 풍경이 특별하고 인상적이에요.",
         "mentions": 1
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",

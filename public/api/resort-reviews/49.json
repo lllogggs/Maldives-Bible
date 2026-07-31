@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 수영장과 액티비티, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 8,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
@@ -39,17 +39,17 @@
         "independenceUnknown": false
       },
       {
-        "title": "에메랄드 파스멘두( Emerald Maldives Resort & Spa ) 후기",
-        "url": "https://blog.naver.com/jyhan123/223597428720",
-        "blogName": "띵가딩가띵",
-        "publishedAt": "2024-09-26",
-        "independenceUnknown": false
-      },
-      {
         "title": "몰디브 올인클루시브 리조트 로 에메랄드 또 간 이유 & 말레공항...",
         "url": "https://blog.naver.com/bles1/223137721325",
         "blogName": "Hey, Travel",
         "publishedAt": "2023-06-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "에메랄드 파스멘두( Emerald Maldives Resort & Spa ) 후기",
+        "url": "https://blog.naver.com/jyhan123/223597428720",
+        "blogName": "띵가딩가띵",
+        "publishedAt": "2024-09-26",
         "independenceUnknown": false
       },
       {

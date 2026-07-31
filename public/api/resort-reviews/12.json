@@ -9,7 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -64,6 +65,13 @@
         "independenceUnknown": false
       },
       {
+        "title": "몰디브 여행 아바니+ 파레스 몰디브 리조트 마사지, 스노쿨링 후기",
+        "url": "https://blog.naver.com/wkwmd81/223152428302",
+        "blogName": "해외여행 고고씽",
+        "publishedAt": "2023-07-11",
+        "independenceUnknown": false
+      },
+      {
         "title": "아바니+파레스몰디브 > 몰디브 리조트 / 아바니 플러스...",
         "url": "https://blog.naver.com/kde0305/223486765585",
         "blogName": "지극히 개인적인",
@@ -78,10 +86,24 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 여행 아바니+ 파레스 몰디브 리조트 마사지, 스노쿨링 후기",
-        "url": "https://blog.naver.com/wkwmd81/223152428302",
-        "blogName": "해외여행 고고씽",
-        "publishedAt": "2023-07-11",
+        "title": "몰디브 신혼여행 리조트 아바니 플러스 파레스 비치 풀빌라",
+        "url": "https://blog.naver.com/tokyo_flim/224221178356",
+        "blogName": "일본사는 사케짱✨",
+        "publishedAt": "2026-03-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "W13. 몰디브 아바니 플러스 파레스 신혼여행 솔직 후기",
+        "url": "https://blog.naver.com/yyyuza/224258966662",
+        "blogName": "유자와 나의 하루",
+        "publishedAt": "2026-04-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "럭셔리 리조트 내돈내산 - 아바니 플러스 파레스 1탄 (가는법...",
+        "url": "https://blog.naver.com/much-love-/224249782409",
+        "blogName": "이게 다애요",
+        "publishedAt": "2026-04-12",
         "independenceUnknown": false
       }
     ]

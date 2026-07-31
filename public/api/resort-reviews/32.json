@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "리조트와 주변 풍경이 아름답다는 후기가 여러 건 있어요.",
+        "text": "리조트와 주변 풍경이 전반적으로 아름다워요.",
         "mentions": 2
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 6,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",

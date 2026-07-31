@@ -9,7 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/ssiaun2830/224162824215",
         "blogName": "윤홍의 술기로운 신혼생활",
         "publishedAt": "2026-01-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 몰디브 3일차 / 오블루 익스피리언스 아일라푸시 ...",
+        "url": "https://blog.naver.com/rtt2323/223765726868",
+        "blogName": "콩세의 마음",
+        "publishedAt": "2025-02-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] #3 가성비 리조트 로 추천하는 오블루 아일라푸시 ...",
+        "url": "https://blog.naver.com/seoyoon_99/222926445770",
+        "blogName": "우당탕탕~",
+        "publishedAt": "2022-11-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 오블루 익스피리언스 아일라푸시 에서 본 것",
+        "url": "https://blog.naver.com/juya60/223330607940",
+        "blogName": "주야의 주된관심사",
+        "publishedAt": "2024-01-22",
         "independenceUnknown": false
       }
     ]

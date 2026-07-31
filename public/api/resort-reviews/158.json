@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 객실과 빌라, 서비스, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
@@ -18,17 +18,17 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 자와카라 최저가 내돈내산 후기 : 몰디브 7월 우기 날씨...",
-        "url": "https://blog.naver.com/whyso0502/224161813051",
-        "blogName": "Live the life you love",
-        "publishedAt": "2026-01-27",
-        "independenceUnknown": false
-      },
-      {
         "title": "몰디브 자와카라 리조트 워터풀빌라 및 시설 정리, 허니문 특전",
         "url": "https://blog.naver.com/77susu0_0/224139347996",
         "blogName": "근꽁의 일상",
         "publishedAt": "2026-01-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자와카라 최저가 내돈내산 후기 : 몰디브 7월 우기 날씨...",
+        "url": "https://blog.naver.com/whyso0502/224161813051",
+        "blogName": "Live the life you love",
+        "publishedAt": "2026-01-27",
         "independenceUnknown": false
       },
       {

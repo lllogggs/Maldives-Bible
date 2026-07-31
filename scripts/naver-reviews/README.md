@@ -8,9 +8,11 @@
 - 원시 후보는 `.research/naver-blog-reviews/raw/`에 저장되며 Git에 포함되지 않는다.
 - 서로 다른 블로거 2명 이상에게 반복된 장단점은 `sufficient`, 개인의 실제 투숙·방문 경험 한 곳에서만 명확한 내용은 `limited`로 구분한다. 같은 블로거의 여러 글은 1개로 센다.
 - `mentions`는 큐레이터가 적는 값이 아니라 연결된 독립 출처 수로 계산한다. 작성자 식별이 없는 후보는 `independenceUnknown: true`로 명시된다.
-- 장점과 단점은 각각 0~3개를 허용한다. 반복 근거는 `sufficient`, 명확한 단일 개인 후기는 `limited`, 근거가 없으면 장단점을 비우고 `insufficient`로 기록한다.
+- 긍정·부정·중립 정보는 각각 0~3개를 허용한다. 반복 근거는 `sufficient`, 명확한 단일 개인 후기는 `limited`, 근거가 없으면 문장을 비우고 `insufficient`로 기록한다.
 - 광고 가능성, 검색어 불일치, 중복 출처는 최종 문구 작성 전에 사람이 확인한다.
 - 검색 후보 수와 실제 후기 수를 구분한다. 공개 `sources`에는 직접 방문·투숙이 확인된 개인 후기를 모두 넣고 실제 개수를 표시한다.
+- 검수 후보 목록은 목표 개수로 자르지 않는다. `target`은 두 번째 검색어 실행 여부만 결정하며, 이미 받은 고유 후보는 모두 검수 대상으로 보존한다.
+- 요약문은 `후기가 있어요`, `언급됩니다`, `내용이 있습니다`, `확인할 수 있어요` 같은 제3자식 표현 없이 내용을 직접 쓴다.
 
 ## 실행
 
@@ -42,11 +44,11 @@ npm run reviews:init -- --allow-partial
 npm run reviews:compile -- --allow-partial
 ```
 
-큐레이션의 각 `pros`/`cons` 항목 형식은 다음과 같다.
+큐레이션의 각 `pros`/`cons`/`neutral` 항목 형식은 다음과 같다.
 
 ```json
 {
-  "text": "두 곳 이상에서 반복 확인한 내용을 짧게 재서술",
+  "text": "레스토랑은 여섯 곳이에요.",
   "sourceUrls": [
     "https://blog.naver.com/example/1",
     "https://blog.naver.com/example/2"
@@ -62,6 +64,7 @@ npm run reviews:compile -- --allow-partial
   "reviewSummary": {
     "pros": [{ "text": "...", "mentions": 2 }],
     "cons": [{ "text": "...", "mentions": 2 }],
+    "neutral": [{ "text": "...", "mentions": 2 }],
     "sourceCount": 4,
     "reviewedAt": "2026-07-13",
     "basis": "naver-blog-search-snippets",

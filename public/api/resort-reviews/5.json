@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "기대보다 음식이 맛있고 만족스러웠다는 후기가 있어요.",
+        "text": "음식이 기대보다 맛있고 만족스러워요.",
         "mentions": 1
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/aprilmoon0512/224292935222",
         "blogName": "향이의 재테크 일기",
         "publishedAt": "2026-05-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 호텔& 리조트 추천... 알릴라 코타이파루 비치...",
+        "url": "https://blog.naver.com/seysen5662/224147753941",
+        "blogName": "후룰랠루 Seysen의 맛집탐방❤️",
+        "publishedAt": "2026-01-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 알릴라코타이파루 음식점 후기 (조식,우마미...",
+        "url": "https://blog.naver.com/vitaming_j/223782135271",
+        "blogName": "제이 건강 다이어리 : 식단·운동·리뷰 일상",
+        "publishedAt": "2025-03-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "3월 - 알릴라 코타이파루 몰디브 (Alila Kothaifaru...",
+        "url": "https://blog.naver.com/malibuchica/223821039992",
+        "blogName": "일기장",
+        "publishedAt": "2025-04-03",
         "independenceUnknown": false
       }
     ]

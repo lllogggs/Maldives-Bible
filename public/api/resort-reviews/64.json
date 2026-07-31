@@ -9,7 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/nellee83/224076098706",
         "blogName": "하늘높이",
         "publishedAt": "2025-11-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 [힐튼... 수상보트 & 오버워터풀빌라 숙박 후기",
+        "url": "https://blog.naver.com/ssookchapssal/223650950773",
+        "blogName": "맛잘알씨와 먹방여행",
+        "publishedAt": "2024-11-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "힐튼 몰디브 아밍기리 리조트 3일차(1): 스노클링 트립, 무료...",
+        "url": "https://blog.naver.com/uwphoto_lim/222855463907",
+        "blogName": "불로구(不老區) by UWphoto",
+        "publishedAt": "2022-08-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자유여행 힐튼... 풀빌라 신상 리조트 투숙 후기 (룸타입)",
+        "url": "https://blog.naver.com/smallpsalm/223324704247",
+        "blogName": "노루마리 현실여행",
+        "publishedAt": "2024-01-17",
         "independenceUnknown": false
       }
     ]

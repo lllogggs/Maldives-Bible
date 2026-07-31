@@ -9,30 +9,40 @@ import { fileURLToPath } from 'node:url';
 const rootDir = fileURLToPath(new URL('../..', import.meta.url));
 const compileScript = path.join(rootDir, 'scripts', 'naver-reviews', 'compile.mjs');
 
-test('compiles compact summary and separate detail with independent-source mentions', async (context) => {
+test('compiles compact summary and separate detail with independent-source mentions', async context => {
   const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'maldives-reviews-'));
   context.after(() => fs.rm(tempDir, { recursive: true, force: true }));
   const input = path.join(tempDir, 'curated.json');
   const output = path.join(tempDir, 'summary.json');
   const detailsDir = path.join(tempDir, 'details');
   const sources = Array.from({ length: 12 }, (_, index) =>
-    source(
-      `https://blog.naver.com/reviewer-${index + 1}/${index + 1}`,
-      `블로그 ${index + 1}`,
-      index + 1,
-    ));
+    source(`https://blog.naver.com/reviewer-${index + 1}/${index + 1}`, `블로그 ${index + 1}`, index + 1)
+  );
   const curated = {
     schemaVersion: 1,
     basis: 'naver-blog-search-snippets',
-    items: [{
-      resortId: 1,
-      basis: 'naver-blog-search-snippets',
-      evidenceStatus: 'sufficient',
-      reviewedAt: '2026-07-13',
-      pros: [{ text: '라군이 잔잔해 물놀이하기 편하다는 의견이 반복됩니다.', sourceUrls: sources.slice(0, 2).map(({ url }) => url) }],
-      cons: [],
-      sources,
-    }],
+    items: [
+      {
+        resortId: 1,
+        basis: 'naver-blog-search-snippets',
+        evidenceStatus: 'sufficient',
+        reviewedAt: '2026-07-13',
+        pros: [
+          {
+            text: '라군이 잔잔해 물놀이하기 편해요.',
+            sourceUrls: sources.slice(0, 2).map(({ url }) => url),
+          },
+        ],
+        cons: [],
+        neutral: [
+          {
+            text: '레스토랑은 여섯 곳이에요.',
+            sourceUrls: sources.slice(2, 4).map(({ url }) => url),
+          },
+        ],
+        sources,
+      },
+    ],
   };
   await fs.writeFile(input, JSON.stringify(curated), 'utf8');
 
@@ -41,6 +51,7 @@ test('compiles compact summary and separate detail with independent-source menti
   const summary = JSON.parse(await fs.readFile(output, 'utf8'));
   const detail = JSON.parse(await fs.readFile(path.join(detailsDir, '1.json'), 'utf8'));
   assert.equal(summary.items[0].reviewSummary.pros[0].mentions, 2);
+  assert.equal(summary.items[0].reviewSummary.neutral[0].mentions, 2);
   assert.equal(summary.items[0].reviewSummary.sourceCount, 12);
   assert.equal('searchedCount' in summary.items[0].reviewSummary, false);
   assert.equal(summary.items[0].reviewSummary.evidenceStatus, 'sufficient');
@@ -57,7 +68,7 @@ test('compiles compact summary and separate detail with independent-source menti
   assert.match(`${failure.stdout}\n${failure.stderr}`, /독립 출처가 2개 이상/);
 });
 
-test('keeps the internal insufficient state while publishing only verified actual-review links', async (context) => {
+test('keeps the internal insufficient state without inventing a neutral overview', async context => {
   const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'maldives-reviews-insufficient-'));
   context.after(() => fs.rm(tempDir, { recursive: true, force: true }));
   const input = path.join(tempDir, 'curated.json');
@@ -66,16 +77,18 @@ test('keeps the internal insufficient state while publishing only verified actua
   const curated = {
     schemaVersion: 1,
     basis: 'naver-blog-search-snippets',
-    items: [{
-      resortId: 1,
-      basis: 'naver-blog-search-snippets',
-      evidenceStatus: 'insufficient',
-      reviewedAt: '2026-07-14',
-      curatorNote: '서로 다른 후기에서 반복된 장단점을 확인하지 못했어요.',
-      pros: [],
-      cons: [],
-      sources: [source('https://blog.naver.com/a/1', '객실과 조식', 1)],
-    }],
+    items: [
+      {
+        resortId: 1,
+        basis: 'naver-blog-search-snippets',
+        evidenceStatus: 'insufficient',
+        reviewedAt: '2026-07-14',
+        curatorNote: '서로 다른 후기에서 반복된 장단점을 확인하지 못했어요.',
+        pros: [],
+        cons: [],
+        sources: [source('https://blog.naver.com/a/1', '객실과 조식', 1)],
+      },
+    ],
   };
   await fs.writeFile(input, JSON.stringify(curated), 'utf8');
 
@@ -86,14 +99,14 @@ test('keeps the internal insufficient state while publishing only verified actua
   assert.equal(summary.items[0].reviewSummary.evidenceStatus, 'insufficient');
   assert.equal('searchedCount' in summary.items[0].reviewSummary, false);
   assert.equal(summary.items[0].reviewSummary.sourceCount, 1);
-  assert.match(summary.items[0].reviewSummary.overview, /객실과 빌라/);
-  assert.match(summary.items[0].reviewSummary.overview, /식사와 다이닝/);
+  assert.equal('overview' in summary.items[0].reviewSummary, false);
+  assert.deepEqual(summary.items[0].reviewSummary.neutral, []);
   assert.equal(detail.reviewSummary.sources.length, 1);
   assert.equal('evidenceNote' in summary.items[0].reviewSummary, false);
   assert.equal('evidenceNote' in detail.reviewSummary, false);
 });
 
-test('labels one clear firsthand source as limited evidence', async (context) => {
+test('labels one clear firsthand source as limited evidence', async context => {
   const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'maldives-reviews-limited-'));
   context.after(() => fs.rm(tempDir, { recursive: true, force: true }));
   const input = path.join(tempDir, 'curated.json');
@@ -103,17 +116,19 @@ test('labels one clear firsthand source as limited evidence', async (context) =>
   const curated = {
     schemaVersion: 1,
     basis: 'naver-blog-search-snippets',
-    items: [{
-      resortId: 1,
-      basis: 'naver-blog-search-snippets',
-      evidenceStatus: 'limited',
-      limitedEvidenceType: 'firsthand-personal',
-      firsthandSourceUrls: [onlySource.url],
-      reviewedAt: '2026-07-14',
-      pros: [{ text: '직접 투숙 후기에서 직원 응대가 친절했다고 평가함', sourceUrls: [onlySource.url] }],
-      cons: [],
-      sources: [onlySource],
-    }],
+    items: [
+      {
+        resortId: 1,
+        basis: 'naver-blog-search-snippets',
+        evidenceStatus: 'limited',
+        limitedEvidenceType: 'firsthand-personal',
+        firsthandSourceUrls: [onlySource.url],
+        reviewedAt: '2026-07-14',
+        pros: [{ text: '직원 응대가 친절해요.', sourceUrls: [onlySource.url] }],
+        cons: [],
+        sources: [onlySource],
+      },
+    ],
   };
   await fs.writeFile(input, JSON.stringify(curated), 'utf8');
 
@@ -125,6 +140,21 @@ test('labels one clear firsthand source as limited evidence', async (context) =>
   assert.equal(summary.items[0].reviewSummary.pros[0].mentions, 1);
   assert.equal(summary.items[0].reviewSummary.sourceCount, 1);
   assert.equal(detail.reviewSummary.sources.length, 1);
+
+  for (const indirectText of [
+    '직원 응대가 친절하다는 후기가 있어요.',
+    '레스토랑이 많다고 해요.',
+    '레스토랑이 많다는 평이에요.',
+    '레스토랑이 많은 편이라고 합니다.',
+  ]) {
+    curated.items[0].pros[0].text = indirectText;
+    await fs.writeFile(input, JSON.stringify(curated), 'utf8');
+    const indirectVoiceFailure = runCompile(input, output, detailsDir);
+    assert.notEqual(indirectVoiceFailure.status, 0);
+    assert.match(`${indirectVoiceFailure.stdout}\n${indirectVoiceFailure.stderr}`, /제3자식 표현/);
+  }
+
+  curated.items[0].pros[0].text = '직원 응대가 친절해요.';
 
   delete curated.items[0].sources[0].sourceKind;
   await fs.writeFile(input, JSON.stringify(curated), 'utf8');
@@ -149,14 +179,12 @@ function source(url, bloggerName, rawRank) {
 }
 
 function runCompile(input, output, detailsDir) {
-  return spawnSync(process.execPath, [
-    compileScript,
-    '--input', input,
-    '--output', output,
-    '--details-dir', detailsDir,
-    '--allow-partial',
-  ], {
-    cwd: rootDir,
-    encoding: 'utf8',
-  });
+  return spawnSync(
+    process.execPath,
+    [compileScript, '--input', input, '--output', output, '--details-dir', detailsDir, '--allow-partial'],
+    {
+      cwd: rootDir,
+      encoding: 'utf8',
+    }
+  );
 }

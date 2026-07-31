@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 객실과 빌라, 허니문 분위기, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 8,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
@@ -15,6 +15,13 @@
         "url": "https://blog.naver.com/daily_merry/223804082353",
         "blogName": "메리썸 로그북",
         "publishedAt": "2025-03-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "6박 7일, 1일차 파크하얏트 하다하 비치빌라 후기",
+        "url": "https://blog.naver.com/anna122412/224317016792",
+        "blogName": "혀나쓰 블로그",
+        "publishedAt": "2026-06-16",
         "independenceUnknown": false
       },
       {
@@ -39,13 +46,6 @@
         "independenceUnknown": false
       },
       {
-        "title": "하얏트 몰디브 하다하 후기 ｜Park Hyatt Maldives 리조트 ...",
-        "url": "https://blog.naver.com/trip_withme/223922475217",
-        "blogName": "캘리포니아 여행꿀팁, 50개국 여행기, 하얏트 리뷰",
-        "publishedAt": "2025-07-18",
-        "independenceUnknown": false
-      },
-      {
         "title": "파크하얏트 몰디브 하다하 1(객실, 예약하는 방법)",
         "url": "https://blog.naver.com/hyunsukizz/224000070629",
         "blogName": "주린이에서 증권사 헤비트레이더로",
@@ -53,17 +53,17 @@
         "independenceUnknown": false
       },
       {
-        "title": "신혼여행 6박 7일, 1일차 파크하얏트 하다하 비치빌라 후기",
-        "url": "https://blog.naver.com/anna122412/224317016792",
-        "blogName": "혀나쓰 블로그",
-        "publishedAt": "2026-06-16",
-        "independenceUnknown": false
-      },
-      {
         "title": "신혼여행 추천 파크 하얏트 몰디브 하다 레스토랑 완벽 정리",
         "url": "https://blog.naver.com/iheeya/224300498122",
         "blogName": "Hello 초희~♪",
         "publishedAt": "2026-05-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "하얏트 몰디브 하다하 후기 ｜Park Hyatt Maldives 리조트 ...",
+        "url": "https://blog.naver.com/trip_withme/223922475217",
+        "blogName": "캘리포니아 여행꿀팁, 50개국 여행기, 하얏트 리뷰",
+        "publishedAt": "2025-07-18",
         "independenceUnknown": false
       }
     ]

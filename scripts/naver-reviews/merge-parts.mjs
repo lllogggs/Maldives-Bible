@@ -11,9 +11,7 @@ if (!curated || !Array.isArray(curated.items)) {
   throw new Error(`기본 큐레이션 파일을 찾지 못했습니다: ${options.input}`);
 }
 
-const partNames = (await fs.readdir(options.partsDir))
-  .filter((name) => name.toLowerCase().endsWith('.json'))
-  .sort();
+const partNames = (await fs.readdir(options.partsDir)).filter(name => name.toLowerCase().endsWith('.json')).sort();
 if (partNames.length === 0) throw new Error(`병합할 JSON 파일이 없습니다: ${options.partsDir}`);
 
 const parts = [];
@@ -21,10 +19,10 @@ for (const name of partNames) {
   const payload = JSON.parse(await fs.readFile(path.join(options.partsDir, name), 'utf8'));
   const items = Array.isArray(payload) ? payload : payload?.items;
   if (!Array.isArray(items)) throw new Error(`${name}: 최상위 값은 배열 또는 { items: [] }여야 합니다.`);
-  parts.push(...items.map((item) => ({ ...item, __part: name })));
+  parts.push(...items.map(item => ({ ...item, __part: name })));
 }
 
-const baseById = new Map(curated.items.map((item) => [item.resortId, item]));
+const baseById = new Map(curated.items.map(item => [item.resortId, item]));
 const partById = new Map();
 const errors = [];
 
@@ -55,30 +53,31 @@ for (const base of curated.items) {
     errors.push(`${prefix}: reviewedAt은 YYYY-MM-DD여야 합니다.`);
   }
 
-  const sourceUrls = new Set((base.sources ?? []).map((source) => source.url));
+  const sourceUrls = new Set((base.sources ?? []).map(source => source.url));
   const minimumSources = item.evidenceStatus === 'sufficient' ? 2 : 1;
   const pros = validateClaims(item.pros, 'pros', prefix, sourceUrls, errors, minimumSources);
   const cons = validateClaims(item.cons, 'cons', prefix, sourceUrls, errors, minimumSources);
-  if (item.evidenceStatus === 'sufficient' && pros.length + cons.length === 0) {
+  const neutral = validateClaims(item.neutral ?? [], 'neutral', prefix, sourceUrls, errors, minimumSources);
+  if (item.evidenceStatus === 'sufficient' && pros.length + cons.length + neutral.length === 0) {
     errors.push(`${prefix}: sufficient에는 근거 문장이 하나 이상 필요합니다.`);
   }
-  if (item.evidenceStatus === 'limited' && pros.length + cons.length === 0) {
+  if (item.evidenceStatus === 'limited' && pros.length + cons.length + neutral.length === 0) {
     errors.push(`${prefix}: limited에는 근거 문장이 하나 이상 필요합니다.`);
   }
   if (item.evidenceStatus === 'limited' && item.limitedEvidenceType !== 'firsthand-personal') {
     errors.push(`${prefix}: limited에는 limitedEvidenceType=firsthand-personal 확인이 필요합니다.`);
   }
-  const citedUrls = new Set([...pros, ...cons].flatMap((claim) => claim.sourceUrls ?? []));
+  const citedUrls = new Set([...pros, ...cons, ...neutral].flatMap(claim => claim.sourceUrls ?? []));
   const firsthandSourceUrls = new Set(Array.isArray(item.firsthandSourceUrls) ? item.firsthandSourceUrls : []);
   if (item.evidenceStatus === 'limited') {
-    if (citedUrls.size !== firsthandSourceUrls.size || [...citedUrls].some((url) => !firsthandSourceUrls.has(url))) {
+    if (citedUrls.size !== firsthandSourceUrls.size || [...citedUrls].some(url => !firsthandSourceUrls.has(url))) {
       errors.push(`${prefix}: firsthandSourceUrls는 limited claim의 모든 인용 URL과 정확히 일치해야 합니다.`);
     }
   } else if (firsthandSourceUrls.size > 0) {
     errors.push(`${prefix}: limited가 아닌 항목에는 firsthandSourceUrls를 둘 수 없습니다.`);
   }
-  if (item.evidenceStatus === 'insufficient' && pros.length + cons.length > 0) {
-    errors.push(`${prefix}: insufficient에는 장단점 문장을 둘 수 없습니다.`);
+  if (item.evidenceStatus === 'insufficient' && pros.length + cons.length + neutral.length > 0) {
+    errors.push(`${prefix}: insufficient에는 검증 문장을 둘 수 없습니다.`);
   }
 }
 
@@ -88,14 +87,16 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-const mergedItems = curated.items.map((base) => {
+const mergedItems = curated.items.map(base => {
   const part = partById.get(base.resortId);
   const { __part, resortId, resortName, ...review } = part;
   const firsthandSourceUrls = new Set(review.evidenceStatus === 'limited' ? review.firsthandSourceUrls : []);
   const verifiedEvidenceUrls = new Set(
     review.evidenceStatus === 'insufficient'
       ? []
-      : [...(review.pros ?? []), ...(review.cons ?? [])].flatMap((claim) => claim.sourceUrls ?? [])
+      : [...(review.pros ?? []), ...(review.cons ?? []), ...(review.neutral ?? [])].flatMap(
+          claim => claim.sourceUrls ?? []
+        )
   );
   return {
     ...base,
@@ -105,8 +106,11 @@ const mergedItems = curated.items.map((base) => {
     reviewedAt: review.reviewedAt,
     pros: review.pros,
     cons: review.cons,
-    curatorNote: String(review.curatorNote ?? '').replace(/\s+/g, ' ').trim(),
-    sources: (base.sources ?? []).map((source) => ({
+    neutral: review.neutral ?? [],
+    curatorNote: String(review.curatorNote ?? '')
+      .replace(/\s+/g, ' ')
+      .trim(),
+    sources: (base.sources ?? []).map(source => ({
       ...source,
       ...(verifiedEvidenceUrls.has(source.url) ? { sourceKind: 'firsthand-personal' } : {}),
     })),
@@ -128,7 +132,9 @@ function validateClaims(value, field, prefix, sourceUrls, errors, minimumSources
   }
   for (const [index, claim] of value.entries()) {
     const claimPrefix = `${prefix} ${field}[${index}]`;
-    const text = String(claim?.text ?? '').replace(/\s+/g, ' ').trim();
+    const text = String(claim?.text ?? '')
+      .replace(/\s+/g, ' ')
+      .trim();
     if (text.length < 8 || text.length > 80) errors.push(`${claimPrefix}: text는 8~80자여야 합니다.`);
     const refs = [...new Set(Array.isArray(claim?.sourceUrls) ? claim.sourceUrls : [])];
     if (refs.length < minimumSources) errors.push(`${claimPrefix}: sourceUrls가 ${minimumSources}개 이상 필요합니다.`);

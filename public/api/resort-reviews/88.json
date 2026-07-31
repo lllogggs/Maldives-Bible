@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 식사와 다이닝, 공항 이후 이동에 관한 경험을 주로 확인할 수 있어요.",
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 12,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
@@ -78,6 +78,20 @@
         "url": "https://blog.naver.com/yasihendu/220211403279",
         "blogName": "달콤쌉싸름",
         "publishedAt": "2014-12-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[허니문- 몰디브 5박7일] 릴리비치리조트 에서의 첫째날",
+        "url": "https://blog.naver.com/1010h1016/60205025949",
+        "blogName": "달콤상콤 미또니☆ 냠냠부릉보글꼼지락",
+        "publishedAt": "2013-12-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행(Maldives) :: 릴리비치 리조트 앤 스파 (3)...",
+        "url": "https://blog.naver.com/klettr173/221560085672",
+        "blogName": "가장 따뜻한 색, 쥴리!",
+        "publishedAt": "2019-06-12",
         "independenceUnknown": false
       }
     ]

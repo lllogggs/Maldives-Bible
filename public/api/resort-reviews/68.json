@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "워터빌라가 매우 아름답다는 후기가 있어요.",
+        "text": "워터빌라가 매우 아름다워요.",
         "mentions": 1
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 8,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",

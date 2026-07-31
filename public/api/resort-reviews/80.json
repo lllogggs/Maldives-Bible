@@ -10,11 +10,12 @@
     ],
     "cons": [
       {
-        "text": "플로팅 조식은 예상보다 음식 구성이 적다는 후기가 있어요.",
+        "text": "플로팅 조식은 예상보다 음식 구성이 적어요.",
         "mentions": 1
       }
     ],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -69,6 +70,13 @@
         "independenceUnknown": false
       },
       {
+        "title": "[ 후기 ] 두바이& 몰디브 ... 몰디브 쿠다빌링길리 리조트 드디어...",
+        "url": "https://blog.naver.com/ddakx2/223280552274",
+        "blogName": "매일이 꼼지락",
+        "publishedAt": "2023-12-01",
+        "independenceUnknown": false
+      },
+      {
         "title": "[여행/ 몰디브 ] 신혼여행... Kuda Villingili Resort Maldives )",
         "url": "https://blog.naver.com/kk___2/223829612155",
         "blogName": "오늘도 깎꿍",
@@ -83,10 +91,24 @@
         "independenceUnknown": false
       },
       {
-        "title": "[ 후기 ] 두바이& 몰디브 ... 몰디브 쿠다빌링길리 리조트 드디어...",
-        "url": "https://blog.naver.com/ddakx2/223280552274",
-        "blogName": "매일이 꼼지락",
-        "publishedAt": "2023-12-01",
+        "title": "[ 몰디브 가족여행/25년10월]... 쿠다빌링길리 리조트 후기",
+        "url": "https://blog.naver.com/rldus9559/224069478003",
+        "blogName": "새댁 끼위의 블로그",
+        "publishedAt": "2025-11-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "허니문 리조트 | 몰디브 쿠다빌링길리 후기",
+        "url": "https://blog.naver.com/ellie_0121/223620102648",
+        "blogName": "Heybbo",
+        "publishedAt": "2024-10-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "쿠다 빌링길리 북말레아톨... 스파 리얼 몰디브 예약 솔직 후기 !",
+        "url": "https://blog.naver.com/hellogome/224357855747",
+        "blogName": "welcome to dalgomi' world!",
+        "publishedAt": "2026-07-26",
         "independenceUnknown": false
       }
     ]

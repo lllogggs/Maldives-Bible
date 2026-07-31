@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "숙박 만족도가 높고 다시 방문하고 싶다는 후기가 여러 건 있어요.",
+        "text": "숙박 만족도가 높아 다시 방문하고 싶어요.",
         "mentions": 2
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/ujhong001/224070900670",
         "blogName": "늘 헝그리한 홍구리",
         "publishedAt": "2025-11-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 day2_ 오젠리저브볼리푸시 오션풀스위트302호 체크인...",
+        "url": "https://blog.naver.com/emghee/223534966213",
+        "blogName": "232님의블로그",
+        "publishedAt": "2024-08-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "WD.#16 - 몰디브 허니문 DAY 1 오젠 리저브 볼리푸시 체크인",
+        "url": "https://blog.naver.com/dajeonge_log/223724867068",
+        "blogName": "daj._log",
+        "publishedAt": "2025-01-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신행 두바이- 몰디브 | 몰디브리조트 추천, 오젠리저브볼리푸시 ...",
+        "url": "https://blog.naver.com/lilly_park_/223864667122",
+        "blogName": "깅’s 블로그",
+        "publishedAt": "2025-05-13",
         "independenceUnknown": false
       }
     ]

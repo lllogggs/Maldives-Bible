@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "하우스리프에서 거북이를 두 번 봤다는 후기가 있어요.",
+        "text": "하우스리프에서 거북이를 두 번 목격했어요.",
         "mentions": 1
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/jihye8927/221878477774",
         "blogName": "똥글이의 소소한 이야기",
         "publishedAt": "2020-03-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행 몰디브 ] 코모 말리푸시 COMO Maalifushi ...",
+        "url": "https://blog.naver.com/oloveoluck/223378741318",
+        "blogName": "fortunate",
+        "publishedAt": "2024-03-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 코모 말리푸시 리조트 (1월 16일~17일)...",
+        "url": "https://blog.naver.com/1225ina/223013454112",
+        "blogName": "꾸링의 일상",
+        "publishedAt": "2023-02-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 코모말리푸시 1일차",
+        "url": "https://blog.naver.com/kozi88/223298893501",
+        "blogName": "Bon voyage",
+        "publishedAt": "2023-12-21",
         "independenceUnknown": false
       }
     ]

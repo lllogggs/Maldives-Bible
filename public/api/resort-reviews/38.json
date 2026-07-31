@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "하우스리프에서 니모를 보기 좋다는 후기가 여러 건 있어요.",
+        "text": "하우스리프에서 니모를 보기 좋아요.",
         "mentions": 2
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 7,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",

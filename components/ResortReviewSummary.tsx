@@ -14,8 +14,8 @@ type ResortReviewDetailPayload = {
 };
 
 const cleanPoints = (points: ResortReviewPoint[] | undefined) =>
-  (Array.isArray(points) ? points : []).filter(
-    (point): point is ResortReviewPoint => Boolean(point && typeof point.text === 'string' && point.text.trim()),
+  (Array.isArray(points) ? points : []).filter((point): point is ResortReviewPoint =>
+    Boolean(point && typeof point.text === 'string' && point.text.trim())
   );
 
 const formatDate = (value?: string) => {
@@ -47,48 +47,41 @@ const isSafeSourceUrl = (value: string) => {
   }
 };
 
-const MentionCount: React.FC<{ mentions?: number }> = ({ mentions }) => {
-  if (!mentions || mentions < 2) return null;
+type ReviewTone = 'positive' | 'negative' | 'neutral';
 
-  return (
-    <span className="ml-2 shrink-0 rounded-full bg-white/80 px-2 py-0.5 text-[10px] font-bold text-slate-500">
-      {mentions}건 언급
+const SentimentEmoji: React.FC<{ tone: Exclude<ReviewTone, 'neutral'> }> = ({ tone }) => (
+  <>
+    <span aria-hidden="true" className="shrink-0 pt-px text-base leading-none">
+      {tone === 'positive' ? '😊' : '😢'}
     </span>
-  );
-};
+    <span className="sr-only">{tone === 'positive' ? '긍정 의견: ' : '부정 의견: '}</span>
+  </>
+);
 
-const CompactPoint: React.FC<{ point: ResortReviewPoint; tone: 'pro' | 'con'; label: string }> = ({ point, tone, label }) => (
+const CompactPoint: React.FC<{
+  point: ResortReviewPoint;
+  tone: ReviewTone;
+}> = ({ point, tone }) => (
   <li className="flex min-w-0 items-start gap-2 text-sm leading-5 text-slate-700">
-    <span
-      className={`shrink-0 pt-px text-xs font-extrabold ${tone === 'pro' ? 'text-teal-800' : 'text-amber-800'}`}
-    >
-      {label}
-    </span>
+    {tone !== 'neutral' && <SentimentEmoji tone={tone} />}
     <span className="line-clamp-2 min-w-0 flex-1">{point.text}</span>
   </li>
 );
 
-const DetailPoint: React.FC<{ point: ResortReviewPoint; tone: 'pro' | 'con' }> = ({ point, tone }) => (
+const DetailPoint: React.FC<{ point: ResortReviewPoint; tone: ReviewTone }> = ({ point, tone }) => (
   <li className="flex items-start gap-2.5 text-sm leading-6 text-slate-700">
-    <span
-      aria-hidden="true"
-      className={`mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-black ${
-        tone === 'pro' ? 'bg-teal-100 text-teal-700' : 'bg-amber-100 text-amber-800'
-      }`}
-    >
-      {tone === 'pro' ? '+' : '–'}
-    </span>
-    <span className="sr-only">{tone === 'pro' ? '장점: ' : '아쉬운 점: '}</span>
+    {tone !== 'neutral' && <SentimentEmoji tone={tone} />}
     <span className="min-w-0 flex-1">{point.text}</span>
-    <MentionCount mentions={point.mentions} />
   </li>
 );
 
-const ReviewSources: React.FC<{ sources: ResortReviewSummaryData['sources'] }> = ({ sources = [] }) => {
+const ReviewSources: React.FC<{
+  sources: ResortReviewSummaryData['sources'];
+}> = ({ sources = [] }) => {
   if (sources.length === 0) return null;
 
   return (
-    <details open={sources.length >= 10} className="mt-3 border-t border-teal-100 pt-3">
+    <details className="mt-3 border-t border-teal-100 pt-3">
       <summary className="min-h-11 cursor-pointer py-2 text-sm font-bold text-teal-800 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500">
         실제 후기 원문 {sources.length}개
       </summary>
@@ -97,7 +90,10 @@ const ReviewSources: React.FC<{ sources: ResortReviewSummaryData['sources'] }> =
           const publishedAt = formatDate(source.publishedAt);
 
           return (
-            <li key={`${source.url}-${index}`} className="min-w-0 rounded-lg border border-slate-200 bg-white px-3 py-2.5">
+            <li
+              key={`${source.url}-${index}`}
+              className="min-w-0 rounded-lg border border-slate-200 bg-white px-3 py-2.5"
+            >
               <a
                 href={source.url}
                 target="_blank"
@@ -126,12 +122,7 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
 
   useEffect(() => {
     setDetailState({ resortId, summary });
-    if (
-      variant !== 'detail'
-      || !summary
-      || summary.sources?.length
-      || !summary.sourceCount
-    ) return;
+    if (variant !== 'detail' || !summary || summary.sources?.length || !summary.sourceCount) return;
 
     const controller = new AbortController();
     const basePath = (import.meta.env.BASE_URL ?? '/').replace(/\/+$/, '');
@@ -145,9 +136,9 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
       })
       .then(payload => {
         if (!payload?.reviewSummary || payload.resortId !== resortId) return;
-        setDetailState(current => current.resortId === resortId
-          ? { resortId, summary: { ...summary, ...payload.reviewSummary } }
-          : current);
+        setDetailState(current =>
+          current.resortId === resortId ? { resortId, summary: { ...summary, ...payload.reviewSummary } } : current
+        );
       })
       .catch(error => {
         if (error instanceof DOMException && error.name === 'AbortError') return;
@@ -157,100 +148,58 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
     return () => controller.abort();
   }, [resortId, summary, variant]);
 
-  const activeSummary = variant === 'detail'
-    ? detailState.resortId === resortId ? detailState.summary : summary
-    : summary;
+  const activeSummary =
+    variant === 'detail' ? (detailState.resortId === resortId ? detailState.summary : summary) : summary;
   if (!activeSummary) return null;
 
   const pros = cleanPoints(activeSummary.pros);
   const cons = cleanPoints(activeSummary.cons);
-  const evidenceStatus = activeSummary.evidenceStatus
-    ?? (pros.length > 0 || cons.length > 0 ? 'sufficient' : 'insufficient');
+  const neutral = cleanPoints(activeSummary.neutral);
   const rawSourceCount = Number(activeSummary.sourceCount);
   const sourceCount = Number.isFinite(rawSourceCount) ? Math.max(0, Math.floor(rawSourceCount)) : 0;
-  const overview = (typeof activeSummary.overview === 'string' ? activeSummary.overview.trim() : '')
-    || (sourceCount > 0 ? '실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있어요.' : '');
-
-  if (pros.length === 0 && cons.length === 0 && evidenceStatus !== 'insufficient') return null;
+  const hasReviewPoints = pros.length > 0 || cons.length > 0 || neutral.length > 0;
+  if (!hasReviewPoints && sourceCount === 0) return null;
 
   if (variant === 'compact') {
-    if (evidenceStatus === 'insufficient') {
-      if (!overview || sourceCount === 0) return null;
-
-      return (
-        <section
-          className="mt-3 min-h-[7.75rem] rounded-xl border border-slate-200 bg-slate-50 px-3 py-3"
-          aria-label={`${resortName} 실제 후기`}
-        >
-          <div className="mb-2 flex items-center justify-between gap-2">
-            <h4 className="text-sm font-extrabold tracking-tight text-slate-800">실제 후기</h4>
-            <span className="shrink-0 text-xs font-semibold text-slate-500">{sourceCount}개</span>
-          </div>
-          <p className="line-clamp-3 text-sm leading-6 text-slate-700">{overview}</p>
-        </section>
-      );
+    const compactPoints: Array<{ point: ResortReviewPoint; tone: ReviewTone }> = [];
+    if (pros[0]) compactPoints.push({ point: pros[0], tone: 'positive' });
+    if (cons[0]) compactPoints.push({ point: cons[0], tone: 'negative' });
+    if (neutral[0] && compactPoints.length < 2) compactPoints.push({ point: neutral[0], tone: 'neutral' });
+    for (const point of [...pros.slice(1), ...cons.slice(1), ...neutral.slice(1)]) {
+      if (compactPoints.length >= 2) break;
+      compactPoints.push({
+        point,
+        tone: pros.includes(point) ? 'positive' : cons.includes(point) ? 'negative' : 'neutral',
+      });
     }
-
-    const compactPros = pros.slice(0, cons.length > 0 ? 1 : 2);
-    const compactCons = cons.slice(0, Math.max(0, 2 - compactPros.length));
-    const positiveLabel = evidenceStatus === 'limited' || sourceCount < 2 ? '언급된 점' : '좋았다는 점';
 
     return (
       <section
-        className="mt-3 min-h-[7.75rem] rounded-xl border border-teal-100 bg-gradient-to-br from-teal-50/90 to-sky-50/60 px-3 py-3"
+        className={`mt-3 rounded-xl border border-teal-100 bg-gradient-to-br from-teal-50/90 to-sky-50/60 px-3 py-3 ${hasReviewPoints ? 'min-h-[7.75rem]' : ''}`}
         aria-label={`${resortName} 실제 후기`}
       >
         <div className="mb-2 flex items-center justify-between gap-2">
           <h4 className="text-sm font-extrabold tracking-tight text-teal-950">실제 후기</h4>
           {sourceCount > 0 && (
-            <span className="shrink-0 text-xs font-semibold text-slate-500">{sourceCount}개</span>
+            <span className="shrink-0 text-xs font-semibold text-slate-500">검증 후기 {sourceCount}개</span>
           )}
         </div>
-        <ul className="space-y-2">
-          {compactPros.map((point, index) => (
-            <CompactPoint key={`pro-${index}-${point.text}`} point={point} tone="pro" label={positiveLabel} />
-          ))}
-          {compactCons.map((point, index) => (
-            <CompactPoint key={`con-${index}-${point.text}`} point={point} tone="con" label="알아둘 점" />
-          ))}
-        </ul>
+        {compactPoints.length > 0 && (
+          <ul className="space-y-2">
+            {compactPoints.map(({ point, tone }, index) => (
+              <CompactPoint key={`${tone}-${index}-${point.text}`} point={point} tone={tone} />
+            ))}
+          </ul>
+        )}
       </section>
     );
   }
 
   const sources = (Array.isArray(activeSummary.sources) ? activeSummary.sources : []).filter(
-    source => source && typeof source.title === 'string' && source.title.trim() && isSafeSourceUrl(source.url),
+    source => source && typeof source.title === 'string' && source.title.trim() && isSafeSourceUrl(source.url)
   );
   const reviewedAt = formatDate(activeSummary.reviewedAt);
-
-  if (evidenceStatus === 'insufficient') {
-    if (!overview || sourceCount === 0) return null;
-
-    return (
-      <section
-        className="mb-8 rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6"
-        aria-labelledby={`review-summary-title-${resortId}`}
-      >
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-extrabold tracking-[0.08em] text-slate-500">여행자 후기</p>
-            <h2 id={`review-summary-title-${resortId}`} className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl">
-              실제 후기 요약
-            </h2>
-          </div>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-5 text-slate-500">
-            <span className="font-semibold">실제 후기 {sourceCount}개</span>
-            {reviewedAt && <span>{reviewedAt} 후기 기준</span>}
-          </div>
-        </div>
-        <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4">
-          <p className="text-base leading-7 text-slate-700">{overview}</p>
-        </div>
-        <ReviewSources sources={sources} />
-        <p className="mt-4 text-xs leading-5 text-slate-500">투숙 시기와 객실 유형에 따라 경험은 달라질 수 있어요.</p>
-      </section>
-    );
-  }
+  const detailSectionCount = [pros, cons, neutral].filter(points => points.length > 0).length;
 
   return (
     <section
@@ -264,39 +213,55 @@ const ResortReviewSummary: React.FC<ResortReviewSummaryProps> = ({ resortId, res
             id={`review-summary-title-${resortId}`}
             className="mt-1 font-brand-heading text-xl font-bold text-slate-950 sm:text-2xl"
           >
-            실제 후기 요약
+            {hasReviewPoints ? '실제 후기 요약' : '실제 후기'}
           </h2>
         </div>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-5 text-slate-500">
-          {sourceCount > 0 && <span className="font-semibold">실제 후기 {sourceCount}개</span>}
+          {sourceCount > 0 && <span className="font-semibold">검증 후기 {sourceCount}개</span>}
           {reviewedAt && <span>{reviewedAt} 후기 기준</span>}
         </div>
       </div>
 
-      <div className={`mt-4 grid gap-3 ${pros.length > 0 && cons.length > 0 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
+      {hasReviewPoints && (
+        <div className={`mt-4 grid gap-3 ${detailSectionCount > 1 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
         {pros.length > 0 && (
           <div className="rounded-xl border border-teal-100 bg-white/85 p-4">
-            <h3 className="text-sm font-extrabold text-teal-900">좋았다는 점</h3>
+            <h3 className="text-sm font-extrabold text-teal-900">😊 긍정 의견</h3>
             <ul className="mt-3 space-y-2.5">
               {pros.map((point, index) => (
-                <DetailPoint key={`pro-${index}-${point.text}`} point={point} tone="pro" />
+                <DetailPoint key={`pro-${index}-${point.text}`} point={point} tone="positive" />
               ))}
             </ul>
           </div>
         )}
         {cons.length > 0 && (
           <div className="rounded-xl border border-amber-100 bg-white/85 p-4">
-            <h3 className="text-sm font-extrabold text-amber-900">알아둘 점</h3>
+            <h3 className="text-sm font-extrabold text-amber-900">😢 부정 의견</h3>
             <ul className="mt-3 space-y-2.5">
               {cons.map((point, index) => (
-                <DetailPoint key={`con-${index}-${point.text}`} point={point} tone="con" />
+                <DetailPoint key={`con-${index}-${point.text}`} point={point} tone="negative" />
               ))}
             </ul>
           </div>
         )}
-      </div>
+        {neutral.length > 0 && (
+          <div className="rounded-xl border border-slate-200 bg-white/85 p-4">
+            <h3 className="text-sm font-extrabold text-slate-800">정보</h3>
+            <ul className="mt-3 space-y-2.5">
+              {neutral.map((point, index) => (
+                <DetailPoint key={`neutral-${index}-${point.text}`} point={point} tone="neutral" />
+              ))}
+            </ul>
+          </div>
+        )}
+        </div>
+      )}
 
-      <p className="mt-4 text-xs leading-5 text-slate-500">투숙 시기와 객실 유형에 따라 경험은 달라질 수 있어요.</p>
+      {hasReviewPoints && (
+        <p className="mt-4 text-xs leading-5 text-slate-500">
+          투숙 시기·객실 유형에 따라 체감은 달라질 수 있어요.
+        </p>
+      )}
 
       <ReviewSources sources={sources} />
     </section>

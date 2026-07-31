@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 전반적인 만족도, 객실과 빌라, 허니문 분위기에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 9,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
@@ -60,16 +60,16 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 태교여행 추천: 래디슨 블루 리조트 남아리 아톨에서...",
-        "url": "https://blog.naver.com/happysoonchool/224236850767",
-        "blogName": "오래오래 건강하고 행복하게",
+        "title": "몰디브 힐링여행의 정석: 래디슨 블루 리조트 에서 보낸 5박 6일",
+        "url": "https://blog.naver.com/kimha0311/224236916448",
+        "blogName": "도나의 하루",
         "publishedAt": "2026-04-01",
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 힐링여행의 정석: 래디슨 블루 리조트 에서 보낸 5박 6일",
-        "url": "https://blog.naver.com/kimha0311/224236916448",
-        "blogName": "도나의 하루",
+        "title": "몰디브 태교여행 추천: 래디슨 블루 리조트 남아리 아톨에서...",
+        "url": "https://blog.naver.com/happysoonchool/224236850767",
+        "blogName": "오래오래 건강하고 행복하게",
         "publishedAt": "2026-04-01",
         "independenceUnknown": false
       }

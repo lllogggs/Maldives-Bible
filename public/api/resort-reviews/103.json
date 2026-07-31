@@ -9,7 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -71,6 +72,13 @@
         "independenceUnknown": false
       },
       {
+        "title": "2. 풀만 몰디브 마무타 리조트 오션 풀 빌라 후기",
+        "url": "https://blog.naver.com/v992800/222777761226",
+        "blogName": "메이의 세계여행",
+        "publishedAt": "2022-06-17",
+        "independenceUnknown": false
+      },
+      {
         "title": "[신혼여행] - 몰디브 풀만 마무타( pullman maamutaa ) 리조트 ...",
         "url": "https://blog.naver.com/inu_1ove_v/222992319342",
         "blogName": "돼지봉의 폭풍우",
@@ -78,10 +86,24 @@
         "independenceUnknown": false
       },
       {
-        "title": "2. 풀만 몰디브 마무타 리조트 오션 풀 빌라 후기",
-        "url": "https://blog.naver.com/v992800/222777761226",
-        "blogName": "메이의 세계여행",
-        "publishedAt": "2022-06-17",
+        "title": "[ 몰디브 신혼여행] 풀만 마무타 리조트 - 식당 후기",
+        "url": "https://blog.naver.com/leebomi9303/223516794003",
+        "blogName": "좋아하는 것들",
+        "publishedAt": "2024-07-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행 EP3] 몰디브 풀만 마무타 올인클루시브 리조트 ...",
+        "url": "https://blog.naver.com/donggeulbbu-/224171830397",
+        "blogName": "동글쀼의 블로그",
+        "publishedAt": "2026-02-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[W 몰디브 ] 풀만 몰디브 마무타 리조트 숙박 후기 _Four...",
+        "url": "https://blog.naver.com/mindibibi/223516099936",
+        "blogName": "S",
+        "publishedAt": "2024-07-17",
         "independenceUnknown": false
       }
     ]

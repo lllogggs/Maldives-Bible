@@ -34,33 +34,41 @@ const selectedResorts = selectResorts(allResorts, options);
 if (selectedResorts.length === 0) throw new Error('수집 대상 리조트가 없습니다. --ids/--limit 값을 확인하세요.');
 
 if (options.dryRun) {
-  console.log(JSON.stringify({
-    mode: 'dry-run',
-    totalResorts: allResorts.length,
-    selectedResorts: selectedResorts.length,
-    endpoint: API_ENDPOINT,
-    sort: 'sim',
-    display: options.display,
-    targetCandidates: options.target,
-    cacheDir: options.cacheDir,
-    examples: selectedResorts.slice(0, 5).map((resort) => ({
-      id: resort.id,
-      name: resort.name,
-      queries: buildSearchQueries(resort),
-    })),
-  }, null, 2));
+  console.log(
+    JSON.stringify(
+      {
+        mode: 'dry-run',
+        totalResorts: allResorts.length,
+        selectedResorts: selectedResorts.length,
+        endpoint: API_ENDPOINT,
+        sort: 'sim',
+        display: options.display,
+        minimumRelevantCandidates: options.target,
+        cacheDir: options.cacheDir,
+        examples: selectedResorts.slice(0, 5).map(resort => ({
+          id: resort.id,
+          name: resort.name,
+          queries: buildSearchQueries(resort),
+        })),
+      },
+      null,
+      2
+    )
+  );
   process.exit(0);
 }
 
 const clientId = process.env.NAVER_API_HUB_CLIENT_ID?.trim();
 const clientSecret = process.env.NAVER_API_HUB_CLIENT_SECRET?.trim();
 if (!clientId || !clientSecret) {
-  console.error([
-    'NAVER API HUB 인증 정보가 없습니다.',
-    '.env.local에 NAVER_API_HUB_CLIENT_ID와 NAVER_API_HUB_CLIENT_SECRET을 설정하세요.',
-    '비밀키는 VITE_ 접두사를 붙이거나 클라이언트 코드에 넣으면 안 됩니다.',
-    '설정 전에는 `npm run reviews:collect -- --dry-run`으로 대상과 쿼리를 점검할 수 있습니다.',
-  ].join('\n'));
+  console.error(
+    [
+      'NAVER API HUB 인증 정보가 없습니다.',
+      '.env.local에 NAVER_API_HUB_CLIENT_ID와 NAVER_API_HUB_CLIENT_SECRET을 설정하세요.',
+      '비밀키는 VITE_ 접두사를 붙이거나 클라이언트 코드에 넣으면 안 됩니다.',
+      '설정 전에는 `npm run reviews:collect -- --dry-run`으로 대상과 쿼리를 점검할 수 있습니다.',
+    ].join('\n')
+  );
   process.exit(2);
 }
 
@@ -107,10 +115,17 @@ for (let index = 0; index < selectedResorts.length; index += 1) {
       clientSecret,
       options,
     });
-    manifest.completed.push({ resortId: resort.id, candidates: result.candidatePool.shortlist.length });
+    manifest.completed.push({
+      resortId: resort.id,
+      candidates: result.candidatePool.shortlist.length,
+    });
     console.log(`  완료: 검색 ${result.queryRuns.length}회, 후보 ${result.candidatePool.shortlist.length}개`);
   } catch (error) {
-    const failure = { resortId: resort.id, name: resort.name, message: error.message };
+    const failure = {
+      resortId: resort.id,
+      name: resort.name,
+      message: error.message,
+    };
     manifest.failed.push(failure);
     console.error(`  실패: ${error.message}`);
     if (options.failFast) {
@@ -123,22 +138,25 @@ for (let index = 0; index < selectedResorts.length; index += 1) {
 
 manifest.finishedAt = new Date().toISOString();
 await updateManifest(manifestPath, manifest);
-console.log(`수집 종료: 완료 ${manifest.completed.length}, 최신 캐시 ${manifest.skippedFresh.length}, 실패 ${manifest.failed.length}`);
+console.log(
+  `수집 종료: 완료 ${manifest.completed.length}, 최신 캐시 ${manifest.skippedFresh.length}, 실패 ${manifest.failed.length}`
+);
 if (manifest.failed.length > 0) process.exitCode = 1;
 
 async function collectResort({ resort, cached, cachePath, clientId, clientSecret, options }) {
   const queries = buildSearchQueries(resort);
-  const reusableRuns = cached?.status === 'partial'
-    && cached?.schemaVersion === RAW_SCHEMA_VERSION
-    && cached?.resort?.id === resort.id
-    && cached?.collection?.configKey === configKey(options)
-    ? cached.queryRuns ?? []
-    : [];
-  const queryRuns = [...reusableRuns].filter((run) => queries.includes(run.query));
+  const reusableRuns =
+    cached?.status === 'partial' &&
+    cached?.schemaVersion === RAW_SCHEMA_VERSION &&
+    cached?.resort?.id === resort.id &&
+    cached?.collection?.configKey === configKey(options)
+      ? (cached.queryRuns ?? [])
+      : [];
+  const queryRuns = [...reusableRuns].filter(run => queries.includes(run.query));
 
   for (let queryIndex = 0; queryIndex < queries.length; queryIndex += 1) {
     const query = queries[queryIndex];
-    if (!queryRuns.some((run) => run.query === query)) {
+    if (!queryRuns.some(run => run.query === query)) {
       const response = await requestBlogSearch(query, clientId, clientSecret, options);
       const fetchedAt = new Date().toISOString();
       queryRuns.push({
@@ -149,34 +167,39 @@ async function collectResort({ resort, cached, cachePath, clientId, clientSecret
         total: Number(response.total ?? 0),
         start: Number(response.start ?? 1),
         display: Number(response.display ?? response.items?.length ?? 0),
-        items: (response.items ?? []).map((item, itemIndex) => normalizeApiItem(
-          normalizeResponseKeys(item),
-          Number(response.start ?? 1) + itemIndex,
-          query,
-          queryIndex,
-          fetchedAt,
-        )),
+        items: (response.items ?? []).map((item, itemIndex) =>
+          normalizeApiItem(
+            normalizeResponseKeys(item),
+            Number(response.start ?? 1) + itemIndex,
+            query,
+            queryIndex,
+            fetchedAt
+          )
+        ),
       });
       queryRuns.sort((a, b) => a.queryIndex - b.queryIndex);
 
-      const partialPool = buildCandidatePool(queryRuns, resort, options.target);
-      await writeJsonAtomic(cachePath, buildCacheRecord({
-        status: 'partial',
-        resort,
-        queryRuns,
-        candidatePool: partialPool,
-        options,
-      }));
+      const partialPool = buildCandidatePool(queryRuns, resort);
+      await writeJsonAtomic(
+        cachePath,
+        buildCacheRecord({
+          status: 'partial',
+          resort,
+          queryRuns,
+          candidatePool: partialPool,
+          options,
+        })
+      );
       if (options.delayMs > 0) await sleep(options.delayMs);
     }
 
-    const pool = buildCandidatePool(queryRuns, resort, options.target);
+    const pool = buildCandidatePool(queryRuns, resort);
     // Do not let unrelated fallback rows suppress the English-name fallback query.
     // Fallbacks stay available for manual review, but only relevant rows satisfy the target.
     if (pool.relevantCount >= options.target) break;
   }
 
-  const candidatePool = buildCandidatePool(queryRuns, resort, options.target);
+  const candidatePool = buildCandidatePool(queryRuns, resort);
   const record = buildCacheRecord({
     status: 'complete',
     resort,
@@ -199,7 +222,7 @@ function buildCacheRecord({ status, resort, queryRuns, candidatePool, options })
       endpoint: API_ENDPOINT,
       sort: 'sim',
       display: options.display,
-      targetCandidates: options.target,
+      minimumRelevantCandidates: options.target,
       configKey: configKey(options),
       fullTextFetched: false,
       note: 'NAVER API HUB 검색 응답의 제목·요약문·출처 메타데이터만 저장합니다. 블로그 원문은 수집하지 않습니다.',
@@ -246,17 +269,16 @@ async function requestBlogSearch(query, clientId, clientSecret, options) {
       const message = errorMessage(response.status, data, body);
       if (!isRetryableStatus(response.status) || attempt === options.retries) throw new Error(message);
       const retryAfter = parseRetryAfter(response.headers.get('retry-after'));
-      const backoff = retryAfter ?? Math.min(30_000, 750 * (2 ** attempt) + Math.floor(Math.random() * 250));
+      const backoff = retryAfter ?? Math.min(30_000, 750 * 2 ** attempt + Math.floor(Math.random() * 250));
       console.warn(`  API ${response.status}; ${backoff}ms 후 재시도 (${attempt + 1}/${options.retries})`);
       await sleep(backoff);
       lastError = new Error(message);
     } catch (error) {
       if (error.message?.startsWith('NAVER API HUB 오류')) throw error;
-      lastError = error.name === 'AbortError'
-        ? new Error(`API 요청 시간 초과(${options.timeoutMs}ms): ${query}`)
-        : error;
+      lastError =
+        error.name === 'AbortError' ? new Error(`API 요청 시간 초과(${options.timeoutMs}ms): ${query}`) : error;
       if (attempt === options.retries) throw lastError;
-      const backoff = Math.min(30_000, 750 * (2 ** attempt) + Math.floor(Math.random() * 250));
+      const backoff = Math.min(30_000, 750 * 2 ** attempt + Math.floor(Math.random() * 250));
       console.warn(`  네트워크 오류; ${backoff}ms 후 재시도 (${attempt + 1}/${options.retries}): ${lastError.message}`);
       await sleep(backoff);
     } finally {
@@ -279,11 +301,12 @@ function normalizeResponseKeys(item) {
 
 function errorMessage(status, data, body) {
   const detail = data?.error?.message ?? data?.errorMessage ?? data?.message ?? body.slice(0, 300) ?? '응답 본문 없음';
-  const hint = status === 401 || status === 403
-    ? ' API 키와 NAVER API HUB 블로그 검색 권한을 확인하세요.'
-    : status === 429
-      ? ' 호출 한도 또는 애플리케이션의 블로그 검색 API 선택 여부를 확인하세요.'
-      : '';
+  const hint =
+    status === 401 || status === 403
+      ? ' API 키와 NAVER API HUB 블로그 검색 권한을 확인하세요.'
+      : status === 429
+        ? ' 호출 한도 또는 애플리케이션의 블로그 검색 API 선택 여부를 확인하세요.'
+        : '';
   return `NAVER API HUB 오류 ${status}: ${detail}${hint}`;
 }
 
@@ -341,7 +364,7 @@ function parseArgs(args) {
 }
 
 function parseIds(value) {
-  const ids = value.split(',').flatMap((part) => {
+  const ids = value.split(',').flatMap(part => {
     const range = part.trim().match(/^(\d+)-(\d+)$/);
     if (!range) return [Number(part.trim())];
     const from = Number(range[1]);
@@ -349,7 +372,7 @@ function parseIds(value) {
     if (from > to) throw new Error(`잘못된 id 범위: ${part}`);
     return Array.from({ length: to - from + 1 }, (_, index) => from + index);
   });
-  if (ids.some((id) => !Number.isInteger(id) || id < 1)) throw new Error(`잘못된 --ids 값: ${value}`);
+  if (ids.some(id => !Number.isInteger(id) || id < 1)) throw new Error(`잘못된 --ids 값: ${value}`);
   return new Set(ids);
 }
 
@@ -365,7 +388,7 @@ function selectResorts(resorts, options) {
   let selected = options.ids ? resorts.filter(({ id }) => options.ids.has(id)) : resorts;
   if (options.ids) {
     const found = new Set(selected.map(({ id }) => id));
-    const missing = [...options.ids].filter((id) => !found.has(id));
+    const missing = [...options.ids].filter(id => !found.has(id));
     if (missing.length) throw new Error(`존재하지 않는 리조트 id: ${missing.join(', ')}`);
   }
   if (options.limit) selected = selected.slice(0, options.limit);
@@ -373,7 +396,7 @@ function selectResorts(resorts, options) {
 }
 
 function configKey(options) {
-  return `v2|sort=sim|display=${options.display}|target=${options.target}|queries=ko-then-en|require-maldives-context`;
+  return `v3|sort=sim|display=${options.display}|minimum-relevant=${options.target}|uncapped-shortlist|queries=ko-then-en|require-maldives-context`;
 }
 
 function publicConfig(options) {
@@ -381,7 +404,7 @@ function publicConfig(options) {
     endpoint: API_ENDPOINT,
     sort: 'sim',
     display: options.display,
-    target: options.target,
+    minimumRelevantCandidates: options.target,
     maxAgeDays: options.maxAgeDays,
     configKey: configKey(options),
   };
@@ -403,7 +426,7 @@ Options:
   --ids 1,2,10-15      일부 리조트만 선택
   --limit N             선택 목록 앞에서 N개만 수집
   --display N           검색당 원시 결과 수 (10~100, 기본 30)
-  --target N            리조트별 최종 후보 수 (1~100, 기본 30)
+  --target N            두 번째 검색어 실행 전 필요한 최소 관련 후보 수 (1~100, 기본 30)
   --delay-ms N          API 호출 사이 대기 (기본 250)
   --timeout-ms N        요청 제한 시간 (기본 15000)
   --retries N           재시도 횟수 (기본 4)

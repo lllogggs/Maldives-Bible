@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "가격대를 고려하면 가성비가 좋다는 후기가 있어요.",
+        "text": "가격대를 고려하면 가성비가 좋아요.",
         "mentions": 1
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 6,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",

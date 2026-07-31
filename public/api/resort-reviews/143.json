@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 여행 일정, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
@@ -78,6 +78,27 @@
         "url": "https://blog.naver.com/joyday87/223981770913",
         "blogName": "먹고 놀고 행복하기!",
         "publishedAt": "2025-08-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 유앤미 바이 코쿤 리조트 식당(1) The Sands 솔직리뷰...",
+        "url": "https://blog.naver.com/jmw090/223758970446",
+        "blogName": "ㄱㅅㅃ",
+        "publishedAt": "2025-02-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 유앤미바이코쿤 신혼여행 5-6일차 :: 샌즈조식, 인디안...",
+        "url": "https://blog.naver.com/ybstyle89/223596842880",
+        "blogName": "행복한 엣티제-로그",
+        "publishedAt": "2024-09-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "언더워터레스토랑이 있는 몰디브 리조트 유앤미바이코쿤",
+        "url": "https://blog.naver.com/naaye0n/223900816874",
+        "blogName": "알밤이네",
+        "publishedAt": "2025-06-16",
         "independenceUnknown": false
       }
     ]

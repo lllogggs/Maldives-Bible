@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "수중환경이 좋다는 후기가 있어요.",
+        "text": "수중환경이 좋아요.",
         "mentions": 1
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 6,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",

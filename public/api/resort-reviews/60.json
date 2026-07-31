@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "라군빌라에서 밤하늘을 바라보는 시간이 특히 행복했다는 후기가 있어요.",
+        "text": "라군빌라에서 바라보는 밤하늘이 특히 아름다워요.",
         "mentions": 1
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 3,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",

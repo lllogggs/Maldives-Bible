@@ -9,6 +9,7 @@
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 9,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
@@ -50,13 +51,6 @@
         "independenceUnknown": false
       },
       {
-        "title": "리조트 Anantara Kihavah Maldives Villas (룸 후기 ...",
-        "url": "https://blog.naver.com/yoni-91/222924468271",
-        "blogName": "여니 라이프 ॰ ｡ཻ˚♡",
-        "publishedAt": "2022-11-09",
-        "independenceUnknown": false
-      },
-      {
         "title": "몰디브 아난타라 키하바 후기 Anantara Kihavah (feat....",
         "url": "https://blog.naver.com/ohbammbi/222398041746",
         "blogName": "\"밤비의 월드투어\"세계여행 블로그Bambi's World Tour",
@@ -64,10 +58,17 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 리조트 / 아난타라 키하바( Anantara Kihavah ) 후기 ...",
+        "title": "몰디브 리조트 / 아난타라 키하바 (Anantara Kihavah) 후기 ...",
         "url": "https://blog.naver.com/cek6060/221286411753",
         "blogName": "초코알의 Charming Life♡",
         "publishedAt": "2018-05-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "리조트 Anantara Kihavah Maldives Villas (룸 후기 ...",
+        "url": "https://blog.naver.com/yoni-91/222924468271",
+        "blogName": "여니 라이프 ॰ ｡ཻ˚♡",
+        "publishedAt": "2022-11-09",
         "independenceUnknown": false
       },
       {

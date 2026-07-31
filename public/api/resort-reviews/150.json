@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "객실에 처음 들어섰을 때의 인상이 매우 강렬했다는 후기가 있어요.",
+        "text": "객실에 처음 들어섰을 때의 인상이 매우 강렬해요.",
         "mentions": 1
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 9,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
@@ -33,6 +34,13 @@
         "url": "https://blog.naver.com/kim_jibang13/223675124952",
         "blogName": "김지방 이야기",
         "publishedAt": "2024-11-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 신혼여행 1일차_ 마디푸시 프라이빗 아일랜드 ...",
+        "url": "https://blog.naver.com/bom_2_blog/224346489422",
+        "blogName": "I ain't no candle in the wind",
+        "publishedAt": "2026-07-14",
         "independenceUnknown": false
       },
       {
@@ -68,13 +76,6 @@
         "url": "https://blog.naver.com/hyeeeeem_0107/224295593089",
         "blogName": "우당탕탕 춘식이네",
         "publishedAt": "2026-05-25",
-        "independenceUnknown": false
-      },
-      {
-        "title": "[ 몰디브 ] 신혼여행 1일차_ 마디푸시 프라이빗 아일랜드 ...",
-        "url": "https://blog.naver.com/bom_2_blog/224346489422",
-        "blogName": "I ain't no candle in the wind",
-        "publishedAt": "2026-07-14",
         "independenceUnknown": false
       }
     ]

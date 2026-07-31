@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "리조트 음식이 전반적으로 맛있다는 후기가 있어요.",
+        "text": "리조트 음식이 전반적으로 맛있어요.",
         "mentions": 1
       }
     ],
@@ -14,7 +14,8 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 12,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -87,6 +88,20 @@
         "url": "https://blog.naver.com/jyj1471/224253499588",
         "blogName": "션이 생각╰(*´▽｀*)╯",
         "publishedAt": "2026-04-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 코라 코라 리조트 후기",
+        "url": "https://blog.naver.com/rlaguswl44007/223679153005",
+        "blogName": "DajoA's 즐거운 일상",
+        "publishedAt": "2024-12-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 ] 몰디브 코라코라 리조트 라군풀빌라 허니문 후기 _객실...",
+        "url": "https://blog.naver.com/freenewbride/224324757569",
+        "blogName": "신혼쀼의 인생개척기",
+        "publishedAt": "2026-06-23",
         "independenceUnknown": false
       }
     ]

@@ -9,6 +9,7 @@
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 7,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
@@ -29,17 +30,17 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 리조트 세인트레지스 몰디브 보 물리 리조트 오션...",
-        "url": "https://blog.naver.com/hn8806/224343976976",
-        "blogName": "이안블로그",
-        "publishedAt": "2026-07-12",
-        "independenceUnknown": false
-      },
-      {
         "title": "가족여행에 딱 맞는 '더 세인트레지스 몰디브 보뮬리 리조트 ' 후기",
         "url": "https://blog.naver.com/ekdms0518/224086130711",
         "blogName": "단여와! 세계&국내 여행 이야기",
         "publishedAt": "2025-11-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 세인트레지스 몰디브 보 물리 리조트 오션...",
+        "url": "https://blog.naver.com/hn8806/224343976976",
+        "blogName": "이안블로그",
+        "publishedAt": "2026-07-12",
         "independenceUnknown": false
       },
       {

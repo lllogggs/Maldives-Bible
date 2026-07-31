@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "4박 5일 신혼여행의 비용 대비 만족도가 높았다는 직접 결제 후기가 있어요.",
+        "text": "4박 5일 신혼여행 기준으로 비용 대비 만족도가 높아요.",
         "mentions": 1
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/im_suniya/223759826740",
         "blogName": "수니바라기",
         "publishedAt": "2025-02-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 바루 바이 앳모 스피어 리조트 워터빌라 후기 신혼여행...",
+        "url": "https://blog.naver.com/hyunhik/224231249293",
+        "blogName": "일상 메모장",
+        "publishedAt": "2026-03-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "a7m3로 담은 VARU by Atmosphere / 23년 7월 우기 몰디브 날씨",
+        "url": "https://blog.naver.com/jihyenny/223256387852",
+        "blogName": "졔니의 둥근 일상 ☻",
+        "publishedAt": "2023-11-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 후기 - varu by atmosphere",
+        "url": "https://blog.naver.com/jsy9122/222999763942",
+        "blogName": "♡",
+        "publishedAt": "2023-01-30",
         "independenceUnknown": false
       }
     ]

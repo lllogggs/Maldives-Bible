@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 객실과 빌라에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 4,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
@@ -15,6 +15,13 @@
         "url": "https://blog.naver.com/seoridama411/224093340163",
         "blogName": "서리담아의 인도이야기",
         "publishedAt": "2025-11-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 2편. 몰디브 에서의 첫날",
+        "url": "https://blog.naver.com/onyuhi/221191005286",
+        "blogName": "온유히샘의 마음을 그리는 교실",
+        "publishedAt": "2018-01-22",
         "independenceUnknown": false
       },
       {
@@ -29,13 +36,6 @@
         "url": "https://blog.naver.com/lovegono/130085645189",
         "blogName": "양띠모모 - 뷰티 패션 influencer Lovely Story~♡",
         "publishedAt": "2010-05-07",
-        "independenceUnknown": false
-      },
-      {
-        "title": "몰디브 여행 2편. 몰디브 에서의 첫날",
-        "url": "https://blog.naver.com/onyuhi/221191005286",
-        "blogName": "온유히샘의 마음을 그리는 교실",
-        "publishedAt": "2018-01-22",
         "independenceUnknown": false
       }
     ]

@@ -10,11 +10,12 @@
     ],
     "cons": [
       {
-        "text": "배정된 객실에서 공사장이 보여 전망이 아쉬웠다는 후기가 있어요.",
+        "text": "배정된 객실에서 공사장이 보여 전망이 아쉬워요.",
         "mentions": 1
       }
     ],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -87,6 +88,27 @@
         "url": "https://blog.naver.com/se960227/223015023699",
         "blogName": "기록의 다채로움",
         "publishedAt": "2023-02-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "투어 후기 : 몰디브 리조트 아다 아란 프레스티지 바두 후기",
+        "url": "https://blog.naver.com/wannabe_lisa/223211599387",
+        "blogName": "야망주부 리사수",
+        "publishedAt": "2023-09-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아다 아란 프레스티지 바두 신혼여행 후기 (식사, 바다...",
+        "url": "https://blog.naver.com/saladin324/223654829996",
+        "blogName": "It's Travel Time, 여행에 빠지다.",
+        "publishedAt": "2024-11-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행기/ 아다 아란 프레스티지 바두 리조트 ...",
+        "url": "https://blog.naver.com/riinaa/221986265589",
+        "blogName": "또미의 사는 이야기",
+        "publishedAt": "2020-06-01",
         "independenceUnknown": false
       }
     ]

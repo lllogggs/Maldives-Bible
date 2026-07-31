@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 여행 일정, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
@@ -78,6 +78,27 @@
         "url": "https://blog.naver.com/jyc_isabella/223621476860",
         "blogName": "기록의 연습",
         "publishedAt": "2024-10-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 리조트 바카루 스노클링, 수중환경",
+        "url": "https://blog.naver.com/guswl9783/223548029492",
+        "blogName": "꼰로그",
+        "publishedAt": "2024-08-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 바카루 리조트 코코넛클럽 코코넛페인팅과...",
+        "url": "https://blog.naver.com/ehfehf22_/224197358102",
+        "blogName": "minie의 리뷰로그",
+        "publishedAt": "2026-02-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 바카루 리조트 ... 6곳 리뷰 디너파티 플로팅조식 후기",
+        "url": "https://blog.naver.com/gomsun-mingsun/223662043104",
+        "blogName": "하루의 윤슬",
+        "publishedAt": "2024-11-15",
         "independenceUnknown": false
       }
     ]

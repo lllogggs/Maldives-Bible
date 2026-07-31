@@ -63,8 +63,8 @@ export interface ResortReviewSource {
 export interface ResortReviewSummary {
   pros: ResortReviewPoint[];
   cons: ResortReviewPoint[];
-  /** Neutral topic summary used when firsthand sources exist but no repeated pros/cons can be claimed. */
-  overview?: string;
+  /** Factual, sentiment-free points backed by the same firsthand source rules. */
+  neutral?: ResortReviewPoint[];
   /** Number of verified firsthand review links available to the user. */
   sourceCount: number;
   /** ISO date for the latest review/curation pass. */

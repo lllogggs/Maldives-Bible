@@ -2,27 +2,11 @@
 
 import path from 'node:path';
 import process from 'node:process';
-import {
-  CURATED_SCHEMA_VERSION,
-  loadResorts,
-  readJsonIfExists,
-  writeJsonAtomic,
-} from './lib.mjs';
+import { CURATED_SCHEMA_VERSION, loadResorts, readJsonIfExists, writeJsonAtomic } from './lib.mjs';
 
 const UI_BASIS = 'naver-blog-search-snippets';
-const REVIEW_TOPIC_RULES = [
-  { label: '객실과 빌라', pattern: /객실|숙소|워터\s*빌라|비치\s*빌라|오션\s*빌라|풀\s*빌라|룸\b/i },
-  { label: '식사와 다이닝', pattern: /식사|조식|저녁|레스토랑|다이닝|음식|뷔페|올인\s*클루시브/i },
-  { label: '공항 이후 이동', pattern: /공항|경유|보트|수상\s*비행|국내선|이동|트랜스퍼/i },
-  { label: '스노클링과 수중환경', pattern: /스노클|하우스\s*리프|수중|라군|다이빙|바다/i },
-  { label: '서비스', pattern: /서비스|버틀러|직원|응대|체크인/i },
-  { label: '가족 여행 시설', pattern: /가족|아이|키즈|아동|패밀리/i },
-  { label: '수영장과 액티비티', pattern: /수영장|액티비티|투어|익스커션|스파/i },
-  { label: '허니문 분위기', pattern: /허니문|신혼|휴양|선셋|풍경|분위기/i },
-  { label: '여행 일정', pattern: /일정|\d+박|\d+일차/i },
-  { label: '가격대와 가치', pattern: /가성비|가격|비용/i },
-  { label: '전반적인 만족도', pattern: /만족|최악|아쉬|추천|총정리/i },
-];
+const INDIRECT_REVIEW_VOICE =
+  /후기|의견|언급|내용이\s*(?:있|담)|확인할\s*수|보여요|보입니다|평가(?:가|를|는)?|(?:다고|라고)\s*(?:해요|합니다|했어요|했습니다)|(?:다는|라는)\s*평(?:이에요|입니다|이\s*있)|(?:편|수준)이라고\s*(?:해요|합니다)/;
 const options = parseArgs(process.argv.slice(2));
 if (options.help) {
   printHelp();
@@ -62,9 +46,15 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
   const errors = [];
   const compiledItems = [];
   const detailItems = [];
-  if (curated.schemaVersion !== CURATED_SCHEMA_VERSION) errors.push(`schemaVersion은 ${CURATED_SCHEMA_VERSION}이어야 합니다.`);
+  if (curated.schemaVersion !== CURATED_SCHEMA_VERSION)
+    errors.push(`schemaVersion은 ${CURATED_SCHEMA_VERSION}이어야 합니다.`);
   if (curated.basis !== UI_BASIS) errors.push(`최상위 basis는 ${UI_BASIS}이어야 합니다.`);
-  if (!Array.isArray(curated.items)) return { errors: [...errors, 'items가 배열이 아닙니다.'], compiledItems, detailItems };
+  if (!Array.isArray(curated.items))
+    return {
+      errors: [...errors, 'items가 배열이 아닙니다.'],
+      compiledItems,
+      detailItems,
+    };
 
   const seenIds = new Set();
   for (const item of curated.items) {
@@ -111,8 +101,10 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
       if (!String(source?.bloggerName ?? '').trim() && source?.independenceUnknown !== true) {
         errors.push(`${sourcePrefix}: bloggerName이 없으면 independenceUnknown=true로 명시해야 합니다.`);
       }
-      if (!/^\d{8}$/.test(String(source?.postDate ?? ''))) errors.push(`${sourcePrefix}: postDate는 YYYYMMDD 형식이어야 합니다.`);
-      if (!Number.isInteger(source?.rawRank) || source.rawRank < 1) errors.push(`${sourcePrefix}: rawRank가 올바르지 않습니다.`);
+      if (!/^\d{8}$/.test(String(source?.postDate ?? '')))
+        errors.push(`${sourcePrefix}: postDate는 YYYYMMDD 형식이어야 합니다.`);
+      if (!Number.isInteger(source?.rawRank) || source.rawRank < 1)
+        errors.push(`${sourcePrefix}: rawRank가 올바르지 않습니다.`);
       if (!String(source?.query ?? '').trim()) errors.push(`${sourcePrefix}: query가 비었습니다.`);
       if (!['relevant', 'fallback-needs-manual-review'].includes(source?.selection)) {
         errors.push(`${sourcePrefix}: selection 값이 필요합니다.`);
@@ -137,22 +129,28 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
     const minimumSources = evidenceStatus === 'sufficient' ? 2 : 1;
     const pros = validateClaims(item.pros, 'pros', prefix, sourceByUrl, errors, minimumSources);
     const cons = validateClaims(item.cons, 'cons', prefix, sourceByUrl, errors, minimumSources);
-    if (evidenceStatus === 'sufficient' && pros.length + cons.length === 0) {
-      errors.push(`${prefix}: sufficient 요약은 pros와 cons를 합쳐 근거가 있는 문장이 1개 이상 필요합니다.`);
+    const neutral = validateClaims(item.neutral, 'neutral', prefix, sourceByUrl, errors, minimumSources);
+    const claimCount = pros.length + cons.length + neutral.length;
+    if (evidenceStatus === 'sufficient' && claimCount === 0) {
+      errors.push(`${prefix}: sufficient 요약은 pros, cons, neutral을 합쳐 근거가 있는 문장이 1개 이상 필요합니다.`);
     }
-    if (evidenceStatus === 'limited' && pros.length + cons.length === 0) {
-      errors.push(`${prefix}: limited 요약은 pros와 cons를 합쳐 근거가 있는 문장이 1개 이상 필요합니다.`);
+    if (evidenceStatus === 'limited' && claimCount === 0) {
+      errors.push(`${prefix}: limited 요약은 pros, cons, neutral을 합쳐 근거가 있는 문장이 1개 이상 필요합니다.`);
     }
-    if (evidenceStatus === 'insufficient' && pros.length + cons.length > 0) {
-      errors.push(`${prefix}: insufficient 요약에는 장단점 문장을 넣을 수 없습니다.`);
+    if (evidenceStatus === 'insufficient' && claimCount > 0) {
+      errors.push(`${prefix}: insufficient 요약에는 검증된 문장을 넣을 수 없습니다.`);
     }
 
     const referencedSourceUrls = new Set(
-      [...(Array.isArray(item.pros) ? item.pros : []), ...(Array.isArray(item.cons) ? item.cons : [])]
-        .flatMap((claim) => Array.isArray(claim?.sourceUrls) ? claim.sourceUrls : [])
-        .filter((url) => sourceByUrl.has(url))
+      [
+        ...(Array.isArray(item.pros) ? item.pros : []),
+        ...(Array.isArray(item.cons) ? item.cons : []),
+        ...(Array.isArray(item.neutral) ? item.neutral : []),
+      ]
+        .flatMap(claim => (Array.isArray(claim?.sourceUrls) ? claim.sourceUrls : []))
+        .filter(url => sourceByUrl.has(url))
     );
-    const evidenceSources = sources.filter((source) => referencedSourceUrls.has(source.url));
+    const evidenceSources = sources.filter(source => referencedSourceUrls.has(source.url));
     for (const source of evidenceSources) {
       if (source.selection !== 'relevant') {
         errors.push(`${prefix}: 장단점 근거는 관련 후보(selection=relevant)여야 합니다: ${source.url}`);
@@ -161,15 +159,15 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
         errors.push(`${prefix}: 광고·판매 가능성이 표시된 후보는 장단점 근거로 발행할 수 없습니다: ${source.url}`);
       }
       if (source.sourceKind !== 'firsthand-personal') {
-        errors.push(`${prefix}: 공개 장단점의 모든 인용 출처에는 sourceKind=firsthand-personal 확인이 필요합니다: ${source.url}`);
+        errors.push(
+          `${prefix}: 공개 장단점의 모든 인용 출처에는 sourceKind=firsthand-personal 확인이 필요합니다: ${source.url}`
+        );
       }
     }
     const reviewSummary = {
       pros,
       cons,
-      ...(evidenceStatus === 'insufficient' && sources.length > 0
-        ? { overview: buildReviewOverview(sources) }
-        : {}),
+      neutral,
       sourceCount: sources.length,
       reviewedAt: item.reviewedAt,
       basis: UI_BASIS,
@@ -184,7 +182,7 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
       resortId: item.resortId,
       reviewSummary: {
         ...reviewSummary,
-        sources: sources.map((source) => ({
+        sources: sources.map(source => ({
           title: String(source.title).trim(),
           url: source.url,
           blogName: String(source.bloggerName ?? '').trim(),
@@ -196,35 +194,16 @@ export function validateAndCompile(curated, resortIds, allowPartial = false) {
   }
 
   if (!allowPartial && seenIds.size !== resortIds.size) {
-    const missing = [...resortIds].filter((id) => !seenIds.has(id));
-    errors.push(`전체 리조트가 필요합니다. 누락 ${missing.length}개: ${missing.slice(0, 30).join(', ')}${missing.length > 30 ? ' ...' : ''}`);
+    const missing = [...resortIds].filter(id => !seenIds.has(id));
+    errors.push(
+      `전체 리조트가 필요합니다. 누락 ${missing.length}개: ${missing.slice(0, 30).join(', ')}${missing.length > 30 ? ' ...' : ''}`
+    );
   }
   return { errors, compiledItems, detailItems };
 }
 
-function buildReviewOverview(sources) {
-  const rankedTopics = REVIEW_TOPIC_RULES
-    .map((rule, index) => ({
-      ...rule,
-      index,
-      mentions: sources.reduce(
-        (count, source) => count + (rule.pattern.test(String(source?.title ?? '')) ? 1 : 0),
-        0,
-      ),
-    }))
-    .filter(({ mentions }) => mentions > 0)
-    .sort((a, b) => b.mentions - a.mentions || a.index - b.index)
-    .slice(0, 3)
-    .map(({ label }) => label);
-
-  if (rankedTopics.length === 0) {
-    return '실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있어요.';
-  }
-
-  return `실제 후기에서는 ${rankedTopics.join(', ')}에 관한 경험을 주로 확인할 수 있어요.`;
-}
-
 function validateClaims(value, field, prefix, sourceByUrl, errors, minimumSources) {
+  if (value == null) return [];
   if (!Array.isArray(value) || value.length > 3) {
     errors.push(`${prefix}: ${field}는 0~3개여야 합니다.`);
     return [];
@@ -233,15 +212,22 @@ function validateClaims(value, field, prefix, sourceByUrl, errors, minimumSource
   const seenTexts = new Set();
   return value.map((claim, index) => {
     const claimPrefix = `${prefix} ${field}[${index}]`;
-    const text = String(claim?.text ?? '').replace(/\s+/g, ' ').trim();
+    const text = String(claim?.text ?? '')
+      .replace(/\s+/g, ' ')
+      .trim();
     if (text.length < 8 || text.length > 80) errors.push(`${claimPrefix}: text는 8~80자여야 합니다.`);
-    if (/todo|tbd|placeholder|작성\s*(필요|예정)|예시\s*(문구|텍스트)/i.test(text)) errors.push(`${claimPrefix}: 임시 문구를 사용할 수 없습니다.`);
+    if (/todo|tbd|placeholder|작성\s*(필요|예정)|예시\s*(문구|텍스트)/i.test(text))
+      errors.push(`${claimPrefix}: 임시 문구를 사용할 수 없습니다.`);
+    if (INDIRECT_REVIEW_VOICE.test(text)) {
+      errors.push(`${claimPrefix}: 후기·의견을 전달하는 제3자식 표현 대신 내용을 직접 서술해야 합니다.`);
+    }
     const normalized = text.toLocaleLowerCase('ko-KR');
     if (seenTexts.has(normalized)) errors.push(`${claimPrefix}: 같은 문장이 중복됐습니다.`);
     seenTexts.add(normalized);
 
     const refs = [...new Set(Array.isArray(claim?.sourceUrls) ? claim.sourceUrls : [])];
-    if (refs.length < minimumSources) errors.push(`${claimPrefix}: 서로 다른 sourceUrls가 ${minimumSources}개 이상 필요합니다.`);
+    if (refs.length < minimumSources)
+      errors.push(`${claimPrefix}: 서로 다른 sourceUrls가 ${minimumSources}개 이상 필요합니다.`);
     const independentSources = new Set();
     for (const url of refs) {
       const source = sourceByUrl.get(url);
@@ -256,7 +242,8 @@ function validateClaims(value, field, prefix, sourceByUrl, errors, minimumSource
       }
       independentSources.add(`blogger:${bloggerId}`);
     }
-    if (independentSources.size < minimumSources) errors.push(`${claimPrefix}: 독립 출처가 ${minimumSources}개 이상 필요합니다.`);
+    if (independentSources.size < minimumSources)
+      errors.push(`${claimPrefix}: 독립 출처가 ${minimumSources}개 이상 필요합니다.`);
     return { text, mentions: independentSources.size };
   });
 }
@@ -266,7 +253,9 @@ function naverBlogId(value) {
     const url = new URL(value);
     if (!['blog.naver.com', 'm.blog.naver.com'].includes(url.hostname.toLowerCase())) return '';
     const [blogId] = url.pathname.split('/').filter(Boolean);
-    return decodeURIComponent(blogId ?? '').trim().toLocaleLowerCase('ko-KR');
+    return decodeURIComponent(blogId ?? '')
+      .trim()
+      .toLocaleLowerCase('ko-KR');
   } catch {
     return '';
   }
@@ -283,9 +272,7 @@ function validHttpUrl(value) {
 
 function formatPublishedAt(value) {
   const text = String(value ?? '');
-  return /^\d{8}$/.test(text)
-    ? `${text.slice(0, 4)}-${text.slice(4, 6)}-${text.slice(6, 8)}`
-    : text;
+  return /^\d{8}$/.test(text) ? `${text.slice(0, 4)}-${text.slice(4, 6)}-${text.slice(6, 8)}` : text;
 }
 
 function parseArgs(args) {

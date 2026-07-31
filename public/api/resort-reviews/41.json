@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "가격 경쟁력이 좋다는 후기가 여러 건 있어요.",
+        "text": "가격 경쟁력이 좋아요.",
         "mentions": 2
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 8,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",

@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 전반적인 만족도, 여행 일정에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 9,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
@@ -25,13 +25,6 @@
         "independenceUnknown": false
       },
       {
-        "title": "몰디브 신혼여행 경비 푸시파루 허니문 추천 숙소 후기",
-        "url": "https://blog.naver.com/tdayflower/224322813101",
-        "blogName": "신부야-허니문준비가 어렵니?",
-        "publishedAt": "2026-06-21",
-        "independenceUnknown": false
-      },
-      {
         "title": "몰디브 여행 신혼여행 숙소 럭셔리 리조트 추천 푸시파루 후기",
         "url": "https://blog.naver.com/sanaella/224024234574",
         "blogName": "사나의 여행",
@@ -39,17 +32,17 @@
         "independenceUnknown": false
       },
       {
-        "title": "[ 몰디브 신혼여행] 푸시파루 리조트",
-        "url": "https://blog.naver.com/tvnee0525/224330799326",
-        "blogName": "오늘도 우당탕탕",
-        "publishedAt": "2026-06-29",
-        "independenceUnknown": false
-      },
-      {
         "title": "몰디브 신혼여행 : 푸시파루 리조트 5박 6일, 지상...",
         "url": "https://blog.naver.com/hyebbang-/224239753745",
         "blogName": "hyebbang-님의 블로그",
         "publishedAt": "2026-04-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 푸시파루 리조트",
+        "url": "https://blog.naver.com/tvnee0525/224330799326",
+        "blogName": "오늘도 우당탕탕",
+        "publishedAt": "2026-06-29",
         "independenceUnknown": false
       },
       {
@@ -71,6 +64,13 @@
         "url": "https://blog.naver.com/deun0/224159394464",
         "blogName": "백지부부의 신혼 일기 ෆ",
         "publishedAt": "2026-01-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 경비 푸시파루 허니문 추천 숙소 후기",
+        "url": "https://blog.naver.com/tdayflower/224322813101",
+        "blogName": "신부야-허니문준비가 어렵니?",
+        "publishedAt": "2026-06-21",
         "independenceUnknown": false
       }
     ]

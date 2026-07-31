@@ -5,10 +5,11 @@
     "pros": [],
     "cons": [
       {
-        "text": "스피드보트 이동 시 멀미 대비가 필요하다는 후기가 있어요.",
+        "text": "스피드보트 이동은 멀미 대비가 필요해요.",
         "mentions": 1
       }
     ],
+    "neutral": [],
     "sourceCount": 8,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",

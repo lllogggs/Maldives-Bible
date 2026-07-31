@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "다른 세상에 온 듯한 풍경이 사진으로 다시 봐도 아름답다는 후기가 있어요.",
+        "text": "다른 세상에 온 듯한 풍경이 사진으로 다시 봐도 아름다워요.",
         "mentions": 1
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 11,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -82,6 +83,13 @@
         "url": "https://blog.naver.com/bibi_log/223686680204",
         "blogName": "비비로그",
         "publishedAt": "2024-12-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 / 신혼여행 ] 몰디브 오젠 라이프 마두 리조트 후기 ...",
+        "url": "https://blog.naver.com/jtt8972/223702400175",
+        "blogName": "미래의 나를 위한 기록",
+        "publishedAt": "2024-12-22",
         "independenceUnknown": false
       }
     ]

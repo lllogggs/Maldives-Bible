@@ -4,11 +4,12 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "스노클링과 수중환경에 만족했다는 후기가 여러 건 있어요.",
+        "text": "스노클링과 수중환경의 만족도가 높아요.",
         "mentions": 2
       }
     ],
     "cons": [],
+    "neutral": [],
     "sourceCount": 8,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",

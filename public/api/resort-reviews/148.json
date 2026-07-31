@@ -4,19 +4,12 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 객실과 빌라, 여행 일정, 서비스에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 6,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
     "sources": [
-      {
-        "title": "몰디브 머큐어 쿠두 리조트 체크인하다!! 비치 풀빌라 1일차...",
-        "url": "https://blog.naver.com/alakokoko/223502344482",
-        "blogName": "흑구의 우당탕탕 일상생활:)",
-        "publishedAt": "2024-07-05",
-        "independenceUnknown": false
-      },
       {
         "title": "[ 몰디브 ]️ 쿠두 머큐어 리조트 5박 후기 ! (feat.갓성비...",
         "url": "https://blog.naver.com/ysg412/224062298409",
@@ -43,6 +36,13 @@
         "url": "https://blog.naver.com/eldrkeldem1/223061074857",
         "blogName": "행복한 댕댕이 김르네와 김르네 엄빠의 일상 블로그",
         "publishedAt": "2023-03-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 머큐어 쿠두 리조트 체크인하다!! 비치 풀빌라 1일차...",
+        "url": "https://blog.naver.com/alakokoko/223502344482",
+        "blogName": "흑구의 우당탕탕 일상생활:)",
+        "publishedAt": "2024-07-05",
         "independenceUnknown": false
       },
       {

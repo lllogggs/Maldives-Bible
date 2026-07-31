@@ -27,7 +27,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "데이트립 만족도가 높고 다시 추천할 만하다는 후기가 있어요.",
+          "text": "데이트립 만족도가 높고 다시 찾고 싶을 만큼 좋아요.",
           "sourceUrls": [
             "https://blog.naver.com/eternalkkanbu/223792384324"
           ]
@@ -111,7 +111,7 @@
       ],
       "cons": [
         {
-          "text": "배정된 객실에서 공사장이 보여 전망이 아쉬웠다는 후기가 있어요.",
+          "text": "배정된 객실에서 공사장이 보여 전망이 아쉬워요.",
           "sourceUrls": [
             "https://blog.naver.com/aquarius37k/221431869190"
           ]
@@ -247,6 +247,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/wannabe_lisa/223211599387",
+          "title": "투어 후기 : 몰디브 리조트 아다 아란 프레스티지 바두 후기",
+          "bloggerName": "야망주부 리사수",
+          "independenceUnknown": false,
+          "postDate": "20230914",
+          "rawRank": 17,
+          "query": "아다란 프레스티지 바두 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/saladin324/223654829996",
+          "title": "아다 아란 프레스티지 바두 신혼여행 후기 (식사, 바다...",
+          "bloggerName": "It's Travel Time, 여행에 빠지다.",
+          "independenceUnknown": false,
+          "postDate": "20241110",
+          "rawRank": 25,
+          "query": "아다란 프레스티지 바두 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/riinaa/221986265589",
+          "title": "몰디브 신혼여행기/ 아다 아란 프레스티지 바두 리조트 ...",
+          "bloggerName": "또미의 사는 이야기",
+          "independenceUnknown": false,
+          "postDate": "20200601",
+          "rawRank": 30,
+          "query": "아다란 프레스티지 바두 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "서로 다른 개인 투숙 후기에서 전망 장점과 공사장 뷰 단점이 각각 직접 드러남."
@@ -263,7 +302,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "막바지 예약으로 이용했을 때 가격 대비 만족도가 좋았다는 후기가 있어요.",
+          "text": "막바지 예약에도 가격 대비 만족도가 좋아요.",
           "sourceUrls": [
             "https://blog.naver.com/gusdk021/223072766058"
           ]
@@ -338,7 +377,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "기대보다 음식이 맛있고 만족스러웠다는 후기가 있어요.",
+          "text": "음식이 기대보다 맛있고 만족스러워요.",
           "sourceUrls": [
             "https://blog.naver.com/atom_mooo/223939694298"
           ]
@@ -475,6 +514,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/seysen5662/224147753941",
+          "title": "몰디브 호텔& 리조트 추천... 알릴라 코타이파루 비치...",
+          "bloggerName": "후룰랠루 Seysen의 맛집탐방❤️",
+          "independenceUnknown": false,
+          "postDate": "20260115",
+          "rawRank": 11,
+          "query": "알릴라 코타이파루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/vitaming_j/223782135271",
+          "title": "몰디브 신혼여행 알릴라코타이파루 음식점 후기 (조식,우마미...",
+          "bloggerName": "제이 건강 다이어리 : 식단·운동·리뷰 일상",
+          "independenceUnknown": false,
+          "postDate": "20250303",
+          "rawRank": 19,
+          "query": "알릴라 코타이파루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/malibuchica/223821039992",
+          "title": "3월 - 알릴라 코타이파루 몰디브 (Alila Kothaifaru...",
+          "bloggerName": "일기장",
+          "independenceUnknown": false,
+          "postDate": "20250403",
+          "rawRank": 29,
+          "query": "알릴라 코타이파루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "실제 신혼여행 후기 1건에서 음식 만족 평가가 직접 확인됨."
@@ -580,26 +658,13 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/yoni-91/222924468271",
-          "title": "리조트 Anantara Kihavah Maldives Villas (룸 후기 ...",
-          "bloggerName": "여니 라이프 ॰ ｡ཻ˚♡",
-          "independenceUnknown": false,
-          "postDate": "20221109",
-          "rawRank": 8,
-          "query": "Anantara Kihavah Villas 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
-        {
           "url": "https://blog.naver.com/ohbammbi/222398041746",
           "title": "몰디브 아난타라 키하바 후기 Anantara Kihavah (feat....",
           "bloggerName": "\"밤비의 월드투어\"세계여행 블로그Bambi's World Tour",
           "independenceUnknown": false,
           "postDate": "20210614",
-          "rawRank": 16,
-          "query": "Anantara Kihavah Villas 몰디브 리조트 후기",
+          "rawRank": 54,
+          "query": "아난타라 키하바 빌라 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -607,11 +672,24 @@
         },
         {
           "url": "https://blog.naver.com/cek6060/221286411753",
-          "title": "몰디브 리조트 / 아난타라 키하바( Anantara Kihavah ) 후기 ...",
+          "title": "몰디브 리조트 / 아난타라 키하바 (Anantara Kihavah) 후기 ...",
           "bloggerName": "초코알의 Charming Life♡",
           "independenceUnknown": false,
           "postDate": "20180529",
-          "rawRank": 17,
+          "rawRank": 69,
+          "query": "아난타라 키하바 빌라 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/yoni-91/222924468271",
+          "title": "리조트 Anantara Kihavah Maldives Villas (룸 후기 ...",
+          "bloggerName": "여니 라이프 ॰ ｡ཻ˚♡",
+          "independenceUnknown": false,
+          "postDate": "20221109",
+          "rawRank": 8,
           "query": "Anantara Kihavah Villas 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -651,7 +729,7 @@
           "bloggerName": "솔직한 원블리의 식기장",
           "independenceUnknown": false,
           "postDate": "20241117",
-          "rawRank": 4,
+          "rawRank": 3,
           "query": "아난타라 벨리 앤 날라두 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -677,7 +755,7 @@
           "bloggerName": "뚜뚜의 뚜루뚜뚜",
           "independenceUnknown": false,
           "postDate": "20250913",
-          "rawRank": 21,
+          "rawRank": 23,
           "query": "아난타라 벨리 앤 날라두 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -690,7 +768,7 @@
           "bloggerName": ".",
           "independenceUnknown": false,
           "postDate": "20241226",
-          "rawRank": 24,
+          "rawRank": 26,
           "query": "아난타라 벨리 앤 날라두 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -891,6 +969,19 @@
           "sourceKind": "firsthand-personal"
         },
         {
+          "url": "https://blog.naver.com/wkwmd81/223152428302",
+          "title": "몰디브 여행 아바니+ 파레스 몰디브 리조트 마사지, 스노쿨링 후기",
+          "bloggerName": "해외여행 고고씽",
+          "independenceUnknown": false,
+          "postDate": "20230711",
+          "rawRank": 51,
+          "query": "아바니+ 파레스 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
           "url": "https://blog.naver.com/kde0305/223486765585",
           "title": "아바니+파레스몰디브 > 몰디브 리조트 / 아바니 플러스...",
           "bloggerName": "지극히 개인적인",
@@ -917,12 +1008,38 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/wkwmd81/223152428302",
-          "title": "몰디브 여행 아바니+ 파레스 몰디브 리조트 마사지, 스노쿨링 후기",
-          "bloggerName": "해외여행 고고씽",
+          "url": "https://blog.naver.com/tokyo_flim/224221178356",
+          "title": "몰디브 신혼여행 리조트 아바니 플러스 파레스 비치 풀빌라",
+          "bloggerName": "일본사는 사케짱✨",
           "independenceUnknown": false,
-          "postDate": "20230711",
-          "rawRank": 51,
+          "postDate": "20260319",
+          "rawRank": 17,
+          "query": "아바니+ 파레스 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/yyyuza/224258966662",
+          "title": "W13. 몰디브 아바니 플러스 파레스 신혼여행 솔직 후기",
+          "bloggerName": "유자와 나의 하루",
+          "independenceUnknown": false,
+          "postDate": "20260420",
+          "rawRank": 44,
+          "query": "아바니+ 파레스 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/much-love-/224249782409",
+          "title": "럭셔리 리조트 내돈내산 - 아바니 플러스 파레스 1탄 (가는법...",
+          "bloggerName": "이게 다애요",
+          "independenceUnknown": false,
+          "postDate": "20260412",
+          "rawRank": 75,
           "query": "아바니+ 파레스 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -945,7 +1062,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "음식이 깔끔하고 맛있다는 후기가 여러 건 있어요.",
+          "text": "음식이 깔끔하고 전반적으로 맛있어요.",
           "sourceUrls": [
             "https://blog.naver.com/hinglog91/223674468783",
             "https://blog.naver.com/dpwls00710/224090019780"
@@ -1078,6 +1195,45 @@
           "independenceUnknown": false,
           "postDate": "20260313",
           "rawRank": 25,
+          "query": "아야다 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/yuzlove03/224234826282",
+          "title": "몰디브 신혼여행 아야다 리조트 선셋오션 스위트 5박8일 후기",
+          "bloggerName": "Yuzu Daily˚ෆ*₊",
+          "independenceUnknown": false,
+          "postDate": "20260330",
+          "rawRank": 13,
+          "query": "아야다 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/thdus_0/223886394664",
+          "title": "몰디브 신혼여행 말레공항에서 아야다 리조트 무니마라운지...",
+          "bloggerName": "MY BOX",
+          "independenceUnknown": false,
+          "postDate": "20250602",
+          "rawRank": 14,
+          "query": "아야다 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/xox_dorothy/223504658878",
+          "title": "몰디브 신혼여행 아야다 리조트 인빌라다이닝",
+          "bloggerName": "Studio Mignon",
+          "independenceUnknown": false,
+          "postDate": "20240707",
+          "rawRank": 30,
           "query": "아야다 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -1344,7 +1500,7 @@
       "sources": [
         {
           "url": "https://blog.naver.com/hoons-01/224343525782",
-          "title": "몰디브 멜리아 웨일라군 후기 , 신혼여행 리조트 로 선택한 이유...",
+          "title": "몰디브 리조트 추천 멜리아 웨일라군 후기 와 선택한 이유(구...",
           "bloggerName": "훈네집 리빙로그",
           "independenceUnknown": false,
           "postDate": "20260711",
@@ -1439,7 +1595,7 @@
           "bloggerName": "우리의 순간들",
           "independenceUnknown": false,
           "postDate": "20250406",
-          "rawRank": 15,
+          "rawRank": 11,
           "query": "멜리아 웨일 라군 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -1452,7 +1608,7 @@
           "bloggerName": "세계여행이 꿈임미다",
           "independenceUnknown": false,
           "postDate": "20250106",
-          "rawRank": 20,
+          "rawRank": 18,
           "query": "멜리아 웨일 라군 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -1474,7 +1630,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "바다와 하늘 풍경이 특별하게 느껴졌다는 후기가 있어요.",
+          "text": "바다와 하늘 풍경이 특별하고 인상적이에요.",
           "sourceUrls": [
             "https://blog.naver.com/sagereal/220459156635"
           ]
@@ -1537,7 +1693,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "숙박 만족도가 높고 다시 방문하고 싶다는 후기가 여러 건 있어요.",
+          "text": "숙박 만족도가 높아 다시 방문하고 싶어요.",
           "sourceUrls": [
             "https://blog.naver.com/iriwana/224048409246",
             "https://blog.naver.com/sooneunclinic/223793369692"
@@ -1675,6 +1831,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/emghee/223534966213",
+          "title": "몰디브 day2_ 오젠리저브볼리푸시 오션풀스위트302호 체크인...",
+          "bloggerName": "232님의블로그",
+          "independenceUnknown": false,
+          "postDate": "20240803",
+          "rawRank": 18,
+          "query": "오젠 리저브 볼리푸시 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/dajeonge_log/223724867068",
+          "title": "WD.#16 - 몰디브 허니문 DAY 1 오젠 리저브 볼리푸시 체크인",
+          "bloggerName": "daj._log",
+          "independenceUnknown": false,
+          "postDate": "20250113",
+          "rawRank": 19,
+          "query": "오젠 리저브 볼리푸시 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/lilly_park_/223864667122",
+          "title": "신행 두바이- 몰디브 | 몰디브리조트 추천, 오젠리저브볼리푸시 ...",
+          "bloggerName": "깅’s 블로그",
+          "independenceUnknown": false,
+          "postDate": "20250513",
+          "rawRank": 22,
+          "query": "오젠 리저브 볼리푸시 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "서로 다른 실제 방문 후기에서 추천과 재방문 의향이 확인됨."
@@ -1692,7 +1887,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "가격 대비 만족도가 높다는 후기가 있어요.",
+          "text": "가격 대비 만족도가 높아요.",
           "sourceUrls": [
             "https://blog.naver.com/dasul9442/224116674267",
             "https://blog.naver.com/gksthf9431/223367863744"
@@ -1786,7 +1981,7 @@
           "bloggerName": "이연님의 지식 기록서",
           "independenceUnknown": false,
           "postDate": "20250415",
-          "rawRank": 4,
+          "rawRank": 3,
           "query": "센타라 라스 푸시 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -1888,7 +2083,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "후기 작성 당시 1박 100만 원 이하로 이용해 가격 대비 만족도가 높았어요.",
+          "text": "이용 시점에는 1박 100만 원 이하로 가격 대비 만족도가 높았어요.",
           "sourceUrls": [
             "https://blog.naver.com/hoji0602/224075097492"
           ]
@@ -1896,7 +2091,7 @@
       ],
       "cons": [
         {
-          "text": "올인클루시브 식음료는 기대에 못 미쳤다는 후기가 있어요.",
+          "text": "올인클루시브 식음료는 기대에 못 미쳐요.",
           "sourceUrls": [
             "https://blog.naver.com/hoji0602/224109697270"
           ]
@@ -1975,7 +2170,7 @@
           "bloggerName": "MYK 추억여행",
           "independenceUnknown": false,
           "postDate": "20171010",
-          "rawRank": 7,
+          "rawRank": 6,
           "query": "시나몬 하쿠라 후라 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -1988,7 +2183,7 @@
           "bloggerName": "HAPPY♡",
           "independenceUnknown": false,
           "postDate": "20220907",
-          "rawRank": 10,
+          "rawRank": 9,
           "query": "시나몬 하쿠라 후라 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2010,7 +2205,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "도착할 때 직원들이 친절하게 맞아줘 첫인상이 좋았다는 후기가 있어요.",
+          "text": "도착할 때 직원들이 친절하게 맞아줘 첫인상이 좋아요.",
           "sourceUrls": [
             "https://blog.naver.com/darenian87/223579718009"
           ]
@@ -2102,7 +2297,7 @@
           "bloggerName": "Yunmetoo.Heo's Blog",
           "independenceUnknown": false,
           "postDate": "20250614",
-          "rawRank": 20,
+          "rawRank": 21,
           "query": "시나몬 벨리푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2115,7 +2310,7 @@
           "bloggerName": "평범한 인간의 알쓸먹잡️",
           "independenceUnknown": false,
           "postDate": "20250803",
-          "rawRank": 26,
+          "rawRank": 28,
           "query": "시나몬 벨리푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2138,7 +2333,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "허니문 휴양지로 만족도가 높다는 후기가 여러 건 있어요.",
+          "text": "허니문 휴양지로 만족도가 높아요.",
           "sourceUrls": [
             "https://blog.naver.com/beandoll2/222962149156",
             "https://blog.naver.com/h0h0gangdi/221057855115"
@@ -2166,7 +2361,7 @@
           "bloggerName": "강디네이야기",
           "independenceUnknown": false,
           "postDate": "20170723",
-          "rawRank": 24,
+          "rawRank": 23,
           "query": "클럽메드 피놀루 빌라 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2179,7 +2374,7 @@
           "bloggerName": "Amare Se - 마르의 블로그✿",
           "independenceUnknown": false,
           "postDate": "20161117",
-          "rawRank": 8,
+          "rawRank": 7,
           "query": "클럽메드 피놀루 빌라 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2192,7 +2387,7 @@
           "bloggerName": "Where is mine?",
           "independenceUnknown": false,
           "postDate": "20190210",
-          "rawRank": 10,
+          "rawRank": 9,
           "query": "클럽메드 피놀루 빌라 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2205,7 +2400,7 @@
           "bloggerName": "강디네이야기",
           "independenceUnknown": false,
           "postDate": "20170719",
-          "rawRank": 11,
+          "rawRank": 10,
           "query": "클럽메드 피놀루 빌라 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2218,7 +2413,7 @@
           "bloggerName": "lina1919님의 블로그",
           "independenceUnknown": false,
           "postDate": "20191224",
-          "rawRank": 16,
+          "rawRank": 13,
           "query": "클럽메드 피놀루 빌라 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2319,12 +2514,12 @@
         },
         {
           "url": "https://blog.naver.com/snoop0912/222797596284",
-          "title": "[ 몰디브 해외여행] 몰디브리조트 '클럽메드카니'에서의 허니문...",
+          "title": "[ 몰디브 해외여행] 몰디브리조트 ' 클럽메드카니 '에서의 허니문...",
           "bloggerName": "하루일기 걷고맛보고즐기고",
           "independenceUnknown": false,
           "postDate": "20220702",
-          "rawRank": 23,
-          "query": "Club Med Kanifinolhu 몰디브 리조트 후기",
+          "rawRank": 37,
+          "query": "클럽메드 카니피놀루 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -2332,12 +2527,12 @@
         },
         {
           "url": "https://blog.naver.com/florina_4ever/221675915184",
-          "title": "몰디브 ] 클럽메드 카니... 오버워터 스위트 3인 가족 이용 후기",
+          "title": "몰디브 ] 클럽메드 카니 ... 오버워터 스위트 3인 가족 이용 후기",
           "bloggerName": "풍요로운 나날들",
           "independenceUnknown": false,
           "postDate": "20191012",
-          "rawRank": 30,
-          "query": "Club Med Kanifinolhu 몰디브 리조트 후기",
+          "rawRank": 87,
+          "query": "클럽메드 카니피놀루 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -2359,7 +2554,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "워터빌라 분위기가 로맨틱하고 만족스럽다는 후기가 있어요.",
+          "text": "워터빌라 분위기가 로맨틱하고 만족스러워요.",
           "sourceUrls": [
             "https://blog.naver.com/nijj_ez/224279048741",
             "https://blog.naver.com/hee321kr/224342944885"
@@ -2501,7 +2696,7 @@
       "pros": [],
       "cons": [
         {
-          "text": "신혼여행 객실의 침대 장식이 소박해 아쉬웠다는 후기가 있어요.",
+          "text": "신혼여행 객실의 침대 장식이 소박해 아쉬워요.",
           "sourceUrls": [
             "https://blog.naver.com/be_chacha/130091137982"
           ]
@@ -2527,7 +2722,7 @@
           "bloggerName": "플라이앤플레이 - 파비똥꼬",
           "independenceUnknown": false,
           "postDate": "20130903",
-          "rawRank": 25,
+          "rawRank": 24,
           "query": "코코 팜 두니 콜루 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2639,7 +2834,7 @@
       ],
       "cons": [
         {
-          "text": "주류 가격이 높아 부담스럽다는 후기가 있어요.",
+          "text": "주류 가격이 높아 부담스러워요.",
           "sourceUrls": [
             "https://blog.naver.com/gloriousld/220536197561"
           ]
@@ -2652,7 +2847,7 @@
           "bloggerName": "이니그마의 사람을 만나는 여행, 마음을 담는 사진",
           "independenceUnknown": false,
           "postDate": "20151111",
-          "rawRank": 13,
+          "rawRank": 15,
           "query": "콘스탄스 할라벨리 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2665,7 +2860,7 @@
           "bloggerName": "플라이앤플레이 - 파비똥꼬",
           "independenceUnknown": false,
           "postDate": "20130801",
-          "rawRank": 16,
+          "rawRank": 17,
           "query": "콘스탄스 할라벨리 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -2688,7 +2883,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "리조트와 주변 풍경이 아름답다는 후기가 여러 건 있어요.",
+          "text": "리조트와 주변 풍경이 전반적으로 아름다워요.",
           "sourceUrls": [
             "https://blog.naver.com/eksql1205/221450769723",
             "https://blog.naver.com/gloriousld/220528637168"
@@ -2790,7 +2985,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "리조트 음식이 전반적으로 맛있다는 후기가 있어요.",
+          "text": "리조트 음식이 전반적으로 맛있어요.",
           "sourceUrls": [
             "https://blog.naver.com/gkgk319/224218992752"
           ]
@@ -2934,6 +3129,32 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/rlaguswl44007/223679153005",
+          "title": "[신혼여행] 몰디브 코라 코라 리조트 후기",
+          "bloggerName": "DajoA's 즐거운 일상",
+          "independenceUnknown": false,
+          "postDate": "20241201",
+          "rawRank": 13,
+          "query": "코라 코라 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/freenewbride/224324757569",
+          "title": "몰디브 ] 몰디브 코라코라 리조트 라군풀빌라 허니문 후기 _객실...",
+          "bloggerName": "신혼쀼의 인생개척기",
+          "independenceUnknown": false,
+          "postDate": "20260623",
+          "rawRank": 25,
+          "query": "코라 코라 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "개인 방문 후기 1건에서 음식 맛과 식당 수에 대한 평가가 직접 드러남."
@@ -3027,7 +3248,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "하우스리프에서 거북이를 두 번 봤다는 후기가 있어요.",
+          "text": "하우스리프에서 거북이를 두 번 목격했어요.",
           "sourceUrls": [
             "https://blog.naver.com/mini9618/223277272036"
           ]
@@ -3164,6 +3385,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/oloveoluck/223378741318",
+          "title": "[신혼여행 몰디브 ] 코모 말리푸시 COMO Maalifushi ...",
+          "bloggerName": "fortunate",
+          "independenceUnknown": false,
+          "postDate": "20240310",
+          "rawRank": 15,
+          "query": "Como Maalifushi 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/1225ina/223013454112",
+          "title": "[ 몰디브 신혼여행] 코모 말리푸시 리조트 (1월 16일~17일)...",
+          "bloggerName": "꾸링의 일상",
+          "independenceUnknown": false,
+          "postDate": "20230212",
+          "rawRank": 36,
+          "query": "Como Maalifushi 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/kozi88/223298893501",
+          "title": "[ 몰디브 신혼여행] 코모말리푸시 1일차",
+          "bloggerName": "Bon voyage",
+          "independenceUnknown": false,
+          "postDate": "20231221",
+          "rawRank": 45,
+          "query": "Como Maalifushi 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "개인 스노클링 후기 1건에서 하우스리프 거북이 관찰 경험이 명확히 확인됨."
@@ -3180,7 +3440,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "공항 마중부터 라운지 안내까지 세심하게 챙겨준다는 후기가 있어요.",
+          "text": "공항 마중부터 라운지 안내까지 세심하게 챙겨줘요.",
           "sourceUrls": [
             "https://blog.naver.com/basis1111023/224211711859"
           ]
@@ -3268,7 +3528,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "가격대를 고려하면 가성비가 좋다는 후기가 있어요.",
+          "text": "가격대를 고려하면 가성비가 좋아요.",
           "sourceUrls": [
             "https://blog.naver.com/ilovetour520/223984015579"
           ]
@@ -3282,7 +3542,7 @@
           "bloggerName": "wishtravely",
           "independenceUnknown": false,
           "postDate": "20250826",
-          "rawRank": 1,
+          "rawRank": 2,
           "query": "코코기리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3295,7 +3555,7 @@
           "bloggerName": "HaHaHoHo ~ 복치의 여행기록 : )",
           "independenceUnknown": false,
           "postDate": "20251208",
-          "rawRank": 2,
+          "rawRank": 4,
           "query": "코코기리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3308,7 +3568,7 @@
           "bloggerName": "봄테마이(봄TMI)",
           "independenceUnknown": false,
           "postDate": "20250619",
-          "rawRank": 7,
+          "rawRank": 9,
           "query": "코코기리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3321,7 +3581,7 @@
           "bloggerName": "푸푸패밀리",
           "independenceUnknown": false,
           "postDate": "20241013",
-          "rawRank": 13,
+          "rawRank": 15,
           "query": "코코기리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3334,7 +3594,7 @@
           "bloggerName": "잰잰's 냥냥한 하루",
           "independenceUnknown": false,
           "postDate": "20260709",
-          "rawRank": 30,
+          "rawRank": 34,
           "query": "코코기리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3370,7 +3630,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "하우스리프에서 니모를 보기 좋다는 후기가 여러 건 있어요.",
+          "text": "하우스리프에서 니모를 보기 좋아요.",
           "sourceUrls": [
             "https://blog.naver.com/baechunsik/223547393482",
             "https://blog.naver.com/kimbit-/223313490916"
@@ -3503,7 +3763,7 @@
           "bloggerName": "배고픈 하모의 성장기",
           "independenceUnknown": false,
           "postDate": "20241227",
-          "rawRank": 4,
+          "rawRank": 5,
           "query": "디갈리 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3513,7 +3773,7 @@
         {
           "url": "https://blog.naver.com/letsgo_runa/224147031593",
           "title": "몰디브 신혼여행 수상비행기 타고 디갈리 리조트 체크인까지",
-          "bloggerName": "루나의 블로그",
+          "bloggerName": "집순이도 여행은 좋아해",
           "independenceUnknown": false,
           "postDate": "20260115",
           "rawRank": 6,
@@ -3529,7 +3789,7 @@
           "bloggerName": "한깡쀼의 일상로그",
           "independenceUnknown": false,
           "postDate": "20260131",
-          "rawRank": 9,
+          "rawRank": 7,
           "query": "디갈리 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3542,7 +3802,7 @@
           "bloggerName": "로리의 지구여행",
           "independenceUnknown": false,
           "postDate": "20250328",
-          "rawRank": 16,
+          "rawRank": 19,
           "query": "디갈리 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3555,7 +3815,7 @@
           "bloggerName": "승희마셍의 잘 먹고 잘 사는 이야기",
           "independenceUnknown": false,
           "postDate": "20251007",
-          "rawRank": 20,
+          "rawRank": 22,
           "query": "디갈리 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3568,7 +3828,7 @@
           "bloggerName": "바게뜨빵네 읽고, 쓰고, 투자하는 이야기",
           "independenceUnknown": false,
           "postDate": "20251113",
-          "rawRank": 24,
+          "rawRank": 28,
           "query": "디갈리 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3581,7 +3841,7 @@
           "bloggerName": "오억이와 나붕이의 일상",
           "independenceUnknown": false,
           "postDate": "20251029",
-          "rawRank": 27,
+          "rawRank": 30,
           "query": "디갈리 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3744,7 +4004,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "가격 경쟁력이 좋다는 후기가 여러 건 있어요.",
+          "text": "가격 경쟁력이 좋아요.",
           "sourceUrls": [
             "https://blog.naver.com/jangyah/224070139124",
             "https://blog.naver.com/lazyblueday/223639672226"
@@ -3893,7 +4153,7 @@
           "bloggerName": "Kidafamily",
           "independenceUnknown": false,
           "postDate": "20191020",
-          "rawRank": 7,
+          "rawRank": 5,
           "query": "다이아몬드 투두푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3906,7 +4166,7 @@
           "bloggerName": "The Bluebeige Day",
           "independenceUnknown": false,
           "postDate": "20150813",
-          "rawRank": 8,
+          "rawRank": 6,
           "query": "다이아몬드 투두푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3932,7 +4192,7 @@
           "bloggerName": "테일러조",
           "independenceUnknown": false,
           "postDate": "20250917",
-          "rawRank": 12,
+          "rawRank": 10,
           "query": "다이아몬드 투두푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -3955,7 +4215,7 @@
       "pros": [],
       "cons": [
         {
-          "text": "섬 안의 호수는 기대만큼 특별하지 않았다는 후기가 있어요.",
+          "text": "섬 안의 호수는 기대만큼 특별하지 않아요.",
           "sourceUrls": [
             "https://blog.naver.com/ongsky/221688301435"
           ]
@@ -4193,6 +4453,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/ming2log/224139770616",
+          "title": "몰디브 허니문 두짓타니 리조트 라운지 후기 ｜수상비행기...",
+          "bloggerName": "ming2log님의 블로그",
+          "independenceUnknown": false,
+          "postDate": "20260108",
+          "rawRank": 17,
+          "query": "두짓타니 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/henie__/223882285836",
+          "title": "몰디브 두짓타니 리조트 벤자롱 런치 후기 와 왕추천 칵테일",
+          "bloggerName": "헤니네 생활기록",
+          "independenceUnknown": false,
+          "postDate": "20250529",
+          "rawRank": 20,
+          "query": "두짓타니 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/beaberslodge/223868062454",
+          "title": "두짓타니 몰디브 리조트 후기 - 룸타입 편",
+          "bloggerName": "인생 1회차",
+          "independenceUnknown": false,
+          "postDate": "20250516",
+          "rawRank": 30,
+          "query": "두짓타니 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "실제 신혼여행 후기에서 워터프론트 풀빌라 객실 만족이 직접 드러남."
@@ -4237,7 +4536,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "바다 상태와 수중환경이 좋다는 후기가 여러 건 있어요.",
+          "text": "바다 상태와 수중환경이 전반적으로 좋아요.",
           "sourceUrls": [
             "https://blog.naver.com/behash/120201987617",
             "https://blog.naver.com/blossomflower/222431580601"
@@ -4379,12 +4678,12 @@
         },
         {
           "url": "https://blog.naver.com/0216hye/223461683254",
-          "title": "파루푸시( Emerald Faarufushi Resort & Spa ) 리조트 5박7일...",
+          "title": "몰디브 (1) 에메랄드 파루푸시 (Emerald Faarufushi Resort...",
           "bloggerName": "dora dora",
           "independenceUnknown": false,
           "postDate": "20240528",
-          "rawRank": 2,
-          "query": "Emerald Faarufushi Resort & Spa 몰디브 리조트 후기",
+          "rawRank": 29,
+          "query": "에메랄드 파루푸시 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -4483,25 +4782,25 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/jyhan123/223597428720",
-          "title": "에메랄드 파스멘두( Emerald Maldives Resort & Spa ) 후기",
-          "bloggerName": "띵가딩가띵",
+          "url": "https://blog.naver.com/bles1/223137721325",
+          "title": "몰디브 올인클루시브 리조트 로 에메랄드 또 간 이유 & 말레공항...",
+          "bloggerName": "Hey, Travel",
           "independenceUnknown": false,
-          "postDate": "20240926",
-          "rawRank": 1,
-          "query": "Emerald Maldives Resort & Spa 몰디브 리조트 후기",
+          "postDate": "20230624",
+          "rawRank": 90,
+          "query": "에메랄드 몰디브 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/bles1/223137721325",
-          "title": "몰디브 올인클루시브 리조트 로 에메랄드 또 간 이유 & 말레공항...",
-          "bloggerName": "Hey, Travel",
+          "url": "https://blog.naver.com/jyhan123/223597428720",
+          "title": "에메랄드 파스멘두( Emerald Maldives Resort & Spa ) 후기",
+          "bloggerName": "띵가딩가띵",
           "independenceUnknown": false,
-          "postDate": "20230624",
-          "rawRank": 9,
+          "postDate": "20240926",
+          "rawRank": 1,
           "query": "Emerald Maldives Resort & Spa 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -4623,7 +4922,7 @@
           "bloggerName": "인생은 아름다워~",
           "independenceUnknown": false,
           "postDate": "20250705",
-          "rawRank": 22,
+          "rawRank": 23,
           "query": "Fihalhohi Island Resort 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -4649,7 +4948,7 @@
           "bloggerName": "영글영글 즐거운 세계여행-*",
           "independenceUnknown": false,
           "postDate": "20160308",
-          "rawRank": 10,
+          "rawRank": 5,
           "query": "피할로히 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -4750,7 +5049,7 @@
           "bloggerName": "남편이랑나랑별이랑",
           "independenceUnknown": false,
           "postDate": "20260305",
-          "rawRank": 11,
+          "rawRank": 10,
           "query": "피놀루 바 아톨 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -4763,7 +5062,7 @@
           "bloggerName": "프리미엄 개인·단체 맞춤형 여행, 가인투어",
           "independenceUnknown": false,
           "postDate": "20250212",
-          "rawRank": 15,
+          "rawRank": 13,
           "query": "피놀루 바 아톨 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -4851,11 +5150,11 @@
       "cons": [],
       "sources": [
         {
-          "url": "https://blog.naver.com/hapbb_/223931421471",
-          "title": "① - 1박 600만원 몰디브 포시즌스 리조트 란다 기라바루",
-          "bloggerName": "Privé Moment",
+          "url": "https://blog.naver.com/noveltyfunsy/223761307113",
+          "title": "네버엔딩 포 시즌스 몰디브 앳 란다 기라바루 리조트 도착기",
+          "bloggerName": "Novelty funsy",
           "independenceUnknown": false,
-          "postDate": "20250712",
+          "postDate": "20250215",
           "rawRank": 8,
           "query": "포시즌스 리조트 란다 기라바루 몰디브 리조트 후기",
           "selection": "relevant",
@@ -4864,11 +5163,11 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/noveltyfunsy/223761307113",
-          "title": "네버엔딩 포 시즌스 몰디브 앳 란다 기라바루 리조트 도착기",
-          "bloggerName": "Novelty funsy",
+          "url": "https://blog.naver.com/hapbb_/223931421471",
+          "title": "① - 1박 600만원 몰디브 포시즌스 리조트 란다 기라바루",
+          "bloggerName": "Privé Moment",
           "independenceUnknown": false,
-          "postDate": "20250215",
+          "postDate": "20250712",
           "rawRank": 9,
           "query": "포시즌스 리조트 란다 기라바루 몰디브 리조트 후기",
           "selection": "relevant",
@@ -5035,12 +5334,12 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/tdayflower/224322813101",
-          "title": "몰디브 신혼여행 경비 푸시파루 허니문 추천 숙소 후기",
-          "bloggerName": "신부야-허니문준비가 어렵니?",
+          "url": "https://blog.naver.com/sanaella/224024234574",
+          "title": "몰디브 여행 신혼여행 숙소 럭셔리 리조트 추천 푸시파루 후기",
+          "bloggerName": "사나의 여행",
           "independenceUnknown": false,
-          "postDate": "20260621",
-          "rawRank": 7,
+          "postDate": "20250928",
+          "rawRank": 6,
           "query": "푸시파루 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5048,12 +5347,12 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/sanaella/224024234574",
-          "title": "몰디브 여행 신혼여행 숙소 럭셔리 리조트 추천 푸시파루 후기",
-          "bloggerName": "사나의 여행",
+          "url": "https://blog.naver.com/hyebbang-/224239753745",
+          "title": "몰디브 신혼여행 : 푸시파루 리조트 5박 6일, 지상...",
+          "bloggerName": "hyebbang-님의 블로그",
           "independenceUnknown": false,
-          "postDate": "20250928",
-          "rawRank": 8,
+          "postDate": "20260403",
+          "rawRank": 9,
           "query": "푸시파루 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5074,25 +5373,12 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/hyebbang-/224239753745",
-          "title": "몰디브 신혼여행 : 푸시파루 리조트 5박 6일, 지상...",
-          "bloggerName": "hyebbang-님의 블로그",
-          "independenceUnknown": false,
-          "postDate": "20260403",
-          "rawRank": 11,
-          "query": "푸시파루 몰디브 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
-        {
           "url": "https://blog.naver.com/everclearsky/224070452380",
           "title": "몰디브 신혼여행 일정 코스 럭셔리 몰디브 리조트 푸시파루",
           "bloggerName": "순간의 기록 ⓒ은슈",
           "independenceUnknown": false,
           "postDate": "20251110",
-          "rawRank": 14,
+          "rawRank": 11,
           "query": "푸시파루 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5105,7 +5391,7 @@
           "bloggerName": "티뎀의 이것저것",
           "independenceUnknown": false,
           "postDate": "20250824",
-          "rawRank": 22,
+          "rawRank": 21,
           "query": "푸시파루 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5118,7 +5404,20 @@
           "bloggerName": "백지부부의 신혼 일기 ෆ",
           "independenceUnknown": false,
           "postDate": "20260125",
-          "rawRank": 27,
+          "rawRank": 24,
+          "query": "푸시파루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/tdayflower/224322813101",
+          "title": "몰디브 신혼여행 경비 푸시파루 허니문 추천 숙소 후기",
+          "bloggerName": "신부야-허니문준비가 어렵니?",
+          "independenceUnknown": false,
+          "postDate": "20260621",
+          "rawRank": 7,
           "query": "푸시파루 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5167,7 +5466,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "라군빌라에서 밤하늘을 바라보는 시간이 특히 행복했다는 후기가 있어요.",
+          "text": "라군빌라에서 바라보는 밤하늘이 특히 아름다워요.",
           "sourceUrls": [
             "https://blog.naver.com/zn_woo/223596854024"
           ]
@@ -5207,7 +5506,7 @@
           "bloggerName": "고래힘줄",
           "independenceUnknown": false,
           "postDate": "20160517",
-          "rawRank": 23,
+          "rawRank": 22,
           "query": "길리 란칸푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5230,7 +5529,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "비슷한 등급의 리조트보다 가격 부담이 낮다는 후기가 여러 건 있어요.",
+          "text": "비슷한 등급의 리조트보다 가격 부담이 낮아요.",
           "sourceUrls": [
             "https://blog.naver.com/suzie38317/223916478019",
             "https://blog.naver.com/2yummy2/224187838440"
@@ -5368,6 +5667,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/green_010/224184480802",
+          "title": "몰디브 그랜드파크코디파루 ... 2일차 후기 (브리즈바 메뉴추천)",
+          "bloggerName": "챱챱",
+          "independenceUnknown": false,
+          "postDate": "20260215",
+          "rawRank": 58,
+          "query": "그랜드 파크 코디파루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/nerollia/221358365721",
+          "title": "몰디브 신혼여행기 #5. 그랜드파크 코디파루 3일차...",
+          "bloggerName": "네롤리의 LIFE LAB",
+          "independenceUnknown": false,
+          "postDate": "20180914",
+          "rawRank": 89,
+          "query": "그랜드 파크 코디파루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/tls5676/223116238143",
+          "title": "몰디브 신혼여행 6( 그랜드파크코디파루 _풀워터빌라_5일차...",
+          "bloggerName": "자두의 다이어리",
+          "independenceUnknown": false,
+          "postDate": "20230531",
+          "rawRank": 97,
+          "query": "그랜드 파크 코디파루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "두 실제 투숙 후기에서 가격 대비 만족과 비교적 낮은 가격을 공통 언급함."
@@ -5464,7 +5802,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "선셋 비치 풀빌라에 전반적으로 만족했다는 후기가 있어요.",
+          "text": "선셋 비치 풀빌라의 전반적인 만족도가 높아요.",
           "sourceUrls": [
             "https://blog.naver.com/yi__jj/224098243837"
           ]
@@ -5603,6 +5941,45 @@
           "independenceUnknown": false,
           "postDate": "20250616",
           "rawRank": 18,
+          "query": "헤리턴스 아라 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/kimsang1102/224260447998",
+          "title": "몰디브 신혼여행 3일차｜ 헤리턴스아라 아침 요가, 마사지...",
+          "bloggerName": "Hyeony",
+          "independenceUnknown": false,
+          "postDate": "20260425",
+          "rawRank": 19,
+          "query": "헤리턴스 아라 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/chestnut312/224342517634",
+          "title": "신혼여행 4일차 / 몰디브 헤리턴스아라 리조트 올 인클루시브...",
+          "bloggerName": "알밤이의 데굴데굴 일상 여행",
+          "independenceUnknown": false,
+          "postDate": "20260710",
+          "rawRank": 22,
+          "query": "헤리턴스 아라 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/by1uv/223615319447",
+          "title": "허니문 리조트 몰디브 도착 / 헤리턴스 아라 체크인 / 레스토랑...",
+          "bloggerName": "_ordinary day",
+          "independenceUnknown": false,
+          "postDate": "20241014",
+          "rawRank": 25,
           "query": "헤리턴스 아라 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5763,6 +6140,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/ssookchapssal/223650950773",
+          "title": "몰디브 신혼여행 [힐튼... 수상보트 & 오버워터풀빌라 숙박 후기",
+          "bloggerName": "맛잘알씨와 먹방여행",
+          "independenceUnknown": false,
+          "postDate": "20241107",
+          "rawRank": 14,
+          "query": "Hilton Maldives Amingiri Resort & Spa 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/uwphoto_lim/222855463907",
+          "title": "힐튼 몰디브 아밍기리 리조트 3일차(1): 스노클링 트립, 무료...",
+          "bloggerName": "불로구(不老區) by UWphoto",
+          "independenceUnknown": false,
+          "postDate": "20220823",
+          "rawRank": 25,
+          "query": "Hilton Maldives Amingiri Resort & Spa 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/smallpsalm/223324704247",
+          "title": "몰디브 자유여행 힐튼... 풀빌라 신상 리조트 투숙 후기 (룸타입)",
+          "bloggerName": "노루마리 현실여행",
+          "independenceUnknown": false,
+          "postDate": "20240117",
+          "rawRank": 26,
+          "query": "Hilton Maldives Amingiri Resort & Spa 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "서로 다른 예약 후기에서 힐튼 포인트 숙박 사례가 반복 확인됨."
@@ -5810,7 +6226,7 @@
           "bloggerName": "프리나 여행가자✈️",
           "independenceUnknown": false,
           "postDate": "20230529",
-          "rawRank": 15,
+          "rawRank": 18,
           "query": "홀리데이 인 리조트 칸두마 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5823,7 +6239,7 @@
           "bloggerName": "Bum's mom... ♥",
           "independenceUnknown": false,
           "postDate": "20190429",
-          "rawRank": 18,
+          "rawRank": 20,
           "query": "홀리데이 인 리조트 칸두마 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5836,7 +6252,7 @@
           "bloggerName": "R A N I D A I L Y",
           "independenceUnknown": false,
           "postDate": "20190108",
-          "rawRank": 20,
+          "rawRank": 22,
           "query": "홀리데이 인 리조트 칸두마 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5849,7 +6265,7 @@
           "bloggerName": "부부와 아이 이야기.",
           "independenceUnknown": false,
           "postDate": "20141103",
-          "rawRank": 21,
+          "rawRank": 24,
           "query": "홀리데이 인 리조트 칸두마 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5902,7 +6318,7 @@
           "bloggerName": "Nana, Hello Travler",
           "independenceUnknown": false,
           "postDate": "20170518",
-          "rawRank": 9,
+          "rawRank": 10,
           "query": "후라왈리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5915,7 +6331,7 @@
           "bloggerName": "@yulmu",
           "independenceUnknown": false,
           "postDate": "20240418",
-          "rawRank": 14,
+          "rawRank": 15,
           "query": "후라왈리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5928,7 +6344,7 @@
           "bloggerName": "써내의공간",
           "independenceUnknown": false,
           "postDate": "20190923",
-          "rawRank": 22,
+          "rawRank": 23,
           "query": "후라왈리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -5950,7 +6366,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "워터빌라가 매우 아름답다는 후기가 있어요.",
+          "text": "워터빌라가 매우 아름다워요.",
           "sourceUrls": [
             "https://blog.naver.com/dornrqnfry/223775507021"
           ]
@@ -6077,7 +6493,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "비용이 높아도 후회 없을 만큼 만족했다는 후기가 있어요.",
+          "text": "비용이 높아도 후회 없을 만큼 만족스러워요.",
           "sourceUrls": [
             "https://blog.naver.com/junior8956/223566075014"
           ]
@@ -6324,6 +6740,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/myofic/223799473984",
+          "title": "몰디브 자마나파루 후기 (3)-스노쿨링 투어, 선셋 돌고래 투어...",
+          "bloggerName": "MW슐랭",
+          "independenceUnknown": false,
+          "postDate": "20250317",
+          "rawRank": 14,
+          "query": "자 마나파루 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/tewwa/224230365362",
+          "title": "출발 몰디브 도착 (ft. 자마나파루 리조트 , 카쿠니...",
+          "bloggerName": "Bibidi Babidi Bloom♬",
+          "independenceUnknown": false,
+          "postDate": "20260326",
+          "rawRank": 26,
+          "query": "자 마나파루 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/biniroad/223507542210",
+          "title": "몰디브 신혼여행 6탄 ( 자마나파루 리조트 수중환경...",
+          "bloggerName": "⭐️ 빈이로드 맛집 탐방 ✿",
+          "independenceUnknown": false,
+          "postDate": "20240710",
+          "rawRank": 30,
+          "query": "자 마나파루 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "두 실제 투숙자가 완전한 휴식과 조용한 부부 여행에 적합하다고 평가함."
@@ -6381,7 +6836,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "올인클루시브 식사가 만족스럽다는 후기가 여러 건 있어요.",
+          "text": "올인클루시브 식사가 전반적으로 만족스러워요.",
           "sourceUrls": [
             "https://blog.naver.com/deunzzangu/224323596860",
             "https://blog.naver.com/subinii1/224099843312"
@@ -6542,7 +6997,7 @@
           "bloggerName": "윤꾸’s 여행꾸러미",
           "independenceUnknown": false,
           "postDate": "20260706",
-          "rawRank": 11,
+          "rawRank": 12,
           "query": "카기 몰디브 리조트 앤 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -6551,11 +7006,11 @@
         },
         {
           "url": "https://blog.naver.com/ssuining_bubu/224345389012",
-          "title": "[ 몰디브 신혼여행 1일차] ' 카기 리조트 ' 인생 바다를 느끼며...",
+          "title": "말레국제공항에서 스피드보트 타고 ' 카기 몰디브 리조트 '로 출발",
           "bloggerName": "유어오아시스",
           "independenceUnknown": false,
           "postDate": "20260713",
-          "rawRank": 29,
+          "rawRank": 62,
           "query": "카기 몰디브 리조트 앤 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -6644,7 +7099,7 @@
       "pros": [],
       "cons": [
         {
-          "text": "리조트 내 스쿠버다이빙 비용이 높다는 후기가 있어요.",
+          "text": "리조트 내 스쿠버다이빙 비용이 높아요.",
           "sourceUrls": [
             "https://blog.naver.com/tpsprkftm/220359412882"
           ]
@@ -6657,7 +7112,7 @@
           "bloggerName": "슈르까's aqua trip",
           "independenceUnknown": false,
           "postDate": "20150514",
-          "rawRank": 20,
+          "rawRank": 16,
           "query": "칸돌루 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -6728,7 +7183,7 @@
       ],
       "cons": [
         {
-          "text": "플로팅 조식은 예상보다 음식 구성이 적다는 후기가 있어요.",
+          "text": "플로팅 조식은 예상보다 음식 구성이 적어요.",
           "sourceUrls": [
             "https://blog.naver.com/gaengni_/224159182636"
           ]
@@ -6827,6 +7282,19 @@
           "sourceKind": "firsthand-personal"
         },
         {
+          "url": "https://blog.naver.com/ddakx2/223280552274",
+          "title": "[ 후기 ] 두바이& 몰디브 ... 몰디브 쿠다빌링길리 리조트 드디어...",
+          "bloggerName": "매일이 꼼지락",
+          "independenceUnknown": false,
+          "postDate": "20231201",
+          "rawRank": 96,
+          "query": "쿠다 빌링길리 리조트 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
           "url": "https://blog.naver.com/kk___2/223829612155",
           "title": "[여행/ 몰디브 ] 신혼여행... Kuda Villingili Resort Maldives )",
           "bloggerName": "오늘도 깎꿍",
@@ -6853,12 +7321,38 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/ddakx2/223280552274",
-          "title": "[ 후기 ] 두바이& 몰디브 ... 몰디브 쿠다빌링길리 리조트 드디어...",
-          "bloggerName": "매일이 꼼지락",
+          "url": "https://blog.naver.com/rldus9559/224069478003",
+          "title": "[ 몰디브 가족여행/25년10월]... 쿠다빌링길리 리조트 후기",
+          "bloggerName": "새댁 끼위의 블로그",
           "independenceUnknown": false,
-          "postDate": "20231201",
-          "rawRank": 96,
+          "postDate": "20251109",
+          "rawRank": 20,
+          "query": "쿠다 빌링길리 리조트 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/ellie_0121/223620102648",
+          "title": "허니문 리조트 | 몰디브 쿠다빌링길리 후기",
+          "bloggerName": "Heybbo",
+          "independenceUnknown": false,
+          "postDate": "20241015",
+          "rawRank": 36,
+          "query": "쿠다 빌링길리 리조트 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/hellogome/224357855747",
+          "title": "쿠다 빌링길리 북말레아톨... 스파 리얼 몰디브 예약 솔직 후기 !",
+          "bloggerName": "welcome to dalgomi' world!",
+          "independenceUnknown": false,
+          "postDate": "20260726",
+          "rawRank": 57,
           "query": "쿠다 빌링길리 리조트 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -6965,7 +7459,7 @@
           "bloggerName": ",쉼표하나",
           "independenceUnknown": false,
           "postDate": "20240930",
-          "rawRank": 8,
+          "rawRank": 7,
           "query": "쿠라마티 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -6978,7 +7472,7 @@
           "bloggerName": "리아님의 블로그",
           "independenceUnknown": false,
           "postDate": "20251118",
-          "rawRank": 11,
+          "rawRank": 14,
           "query": "쿠라마티 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -6991,7 +7485,7 @@
           "bloggerName": "이네's pick",
           "independenceUnknown": false,
           "postDate": "20260427",
-          "rawRank": 12,
+          "rawRank": 16,
           "query": "쿠라마티 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -7004,7 +7498,7 @@
           "bloggerName": "리뷰하는 토실맘",
           "independenceUnknown": false,
           "postDate": "20240715",
-          "rawRank": 15,
+          "rawRank": 17,
           "query": "쿠라마티 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -7167,6 +7661,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/hae_in0128/223489722011",
+          "title": "몰디브 모벤픽 쿠레디바루 리조트 5days 후기 -ep3",
+          "bloggerName": "Forever Young",
+          "independenceUnknown": false,
+          "postDate": "20240624",
+          "rawRank": 13,
+          "query": "모벤픽 리조트 쿠레디바루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/deartojin1/223936012532",
+          "title": "( 모벤픽 몰디브 , 몰디브 모벤픽 , 몰디브 리조트 , 쿠레디바루 ...",
+          "bloggerName": "-",
+          "independenceUnknown": false,
+          "postDate": "20250716",
+          "rawRank": 18,
+          "query": "모벤픽 리조트 쿠레디바루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/juliayoo_/223953511719",
+          "title": "몰디브 로 떠나기(말레이시아 항공, 모벤픽 쿠레디바루 )",
+          "bloggerName": "줄리아의 하루",
+          "independenceUnknown": false,
+          "postDate": "20250731",
+          "rawRank": 21,
+          "query": "모벤픽 리조트 쿠레디바루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "여행사·일반 소개와 생성형 문체 문서가 많아 독립 후기 근거가 부족함."
@@ -7303,7 +7836,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "신혼여행 숙소로 만족도가 높다는 후기가 여러 건 있어요.",
+          "text": "신혼여행 숙소로 만족도가 높아요.",
           "sourceUrls": [
             "https://blog.naver.com/sweet-salty/224039748843",
             "https://blog.naver.com/blurmd/223471500648"
@@ -7436,6 +7969,45 @@
           "independenceUnknown": false,
           "postDate": "20231225",
           "rawRank": 21,
+          "query": "르 메르디앙 몰디브 리조트 & 스파 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/superj4ez/223970684200",
+          "title": "몰디브 르메르디앙 셋째 날 오전 (아침 운동, 방 이동, 스파 )",
+          "bloggerName": "잡동사니 이야기 창고",
+          "independenceUnknown": false,
+          "postDate": "20250814",
+          "rawRank": 12,
+          "query": "르 메르디앙 몰디브 리조트 & 스파 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/suavizante/223698146134",
+          "title": "몰디브 르메르디앙 선셋 돌핀 크루즈 완전 추천하는 이유",
+          "bloggerName": "은은하게 반짝이는 하루",
+          "independenceUnknown": false,
+          "postDate": "20250203",
+          "rawRank": 18,
+          "query": "르 메르디앙 몰디브 리조트 & 스파 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/playwithmia/222883155682",
+          "title": "[W.허니문_10] 르메르디앙 몰디브 식당 - Turquiose",
+          "bloggerName": "윰로그",
+          "independenceUnknown": false,
+          "postDate": "20220924",
+          "rawRank": 28,
           "query": "르 메르디앙 몰디브 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -7580,6 +8152,32 @@
           "independenceUnknown": false,
           "postDate": "20141216",
           "rawRank": 16,
+          "query": "릴리 비치 리조트 & 스파 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/1010h1016/60205025949",
+          "title": "[허니문- 몰디브 5박7일] 릴리비치리조트 에서의 첫째날",
+          "bloggerName": "달콤상콤 미또니☆ 냠냠부릉보글꼼지락",
+          "independenceUnknown": false,
+          "postDate": "20131208",
+          "rawRank": 17,
+          "query": "릴리 비치 리조트 & 스파 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/klettr173/221560085672",
+          "title": "몰디브 신혼여행(Maldives) :: 릴리비치 리조트 앤 스파 (3)...",
+          "bloggerName": "가장 따뜻한 색, 쥴리!",
+          "independenceUnknown": false,
+          "postDate": "20190612",
+          "rawRank": 30,
           "query": "릴리 비치 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -7733,6 +8331,45 @@
           "independenceUnknown": false,
           "postDate": "20250314",
           "rawRank": 24,
+          "query": "럭스 사우스 아리 아톨 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/seguitestess/223599518181",
+          "title": "신혼여행 경비> 완벽 정리(5박 6일) 럭스 사우스 아리아톨 리조트",
+          "bloggerName": "하고재비의 여행, 리빙 블로그",
+          "independenceUnknown": false,
+          "postDate": "20240928",
+          "rawRank": 15,
+          "query": "럭스 사우스 아리 아톨 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/minilog3030/224152183274",
+          "title": "몰디브 럭스 사우스 아리아톨 리조트 단점 (LUX* south ari...",
+          "bloggerName": "✈️ 람비의 Travelog",
+          "independenceUnknown": false,
+          "postDate": "20260120",
+          "rawRank": 16,
+          "query": "럭스 사우스 아리 아톨 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/2hani95/224115192034",
+          "title": "나의 몰디브 이야기 1탄 ( 럭스사우스 아리아톨 , with 여행산책)",
+          "bloggerName": "하니와 함께하는 임상일상",
+          "independenceUnknown": false,
+          "postDate": "20251219",
+          "rawRank": 22,
           "query": "럭스 사우스 아리 아톨 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -7904,6 +8541,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/saemi0413/224092129165",
+          "title": "몰디브 밀라이두 리조트 6일차 체크아웃 후기 :) 싱가포르...",
+          "bloggerName": "쌤캉스",
+          "independenceUnknown": false,
+          "postDate": "20251129",
+          "rawRank": 15,
+          "query": "밀라이두 아일랜드 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/alswl8242/223765757301",
+          "title": "[ 몰디브 신혼여행 3탄] 밀라이두 리조트 후기 (1)_출발부터...",
+          "bloggerName": "강자매 블로그",
+          "independenceUnknown": false,
+          "postDate": "20250219",
+          "rawRank": 17,
+          "query": "밀라이두 아일랜드 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/hinicetomeetu_/223936231612",
+          "title": "몰디브 밀라이두 리조트 자랑 후기 - 마사지 편",
+          "bloggerName": "체코홍합의 장바구니",
+          "independenceUnknown": false,
+          "postDate": "20250716",
+          "rawRank": 20,
+          "query": "밀라이두 아일랜드 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "개인 실제 투숙 후기 한 건에서 비치 풀빌라 경험을 직접 긍정 평가함."
@@ -7961,7 +8637,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "객실과 시설을 고려하면 가격 대비 만족도가 높다는 후기가 여러 건 있어요.",
+          "text": "객실과 시설을 고려하면 가격 대비 만족도가 높아요.",
           "sourceUrls": [
             "https://blog.naver.com/shootar/223915840363",
             "https://blog.naver.com/suzie38317/223920714580"
@@ -8094,6 +8770,45 @@
           "independenceUnknown": false,
           "postDate": "20241101",
           "rawRank": 24,
+          "query": "오블루 네이처 헬렝겔리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/suzie38317/223909134713",
+          "title": "몰디브 럭셔리 리조트 오블루 헬렝겔리 비치빌라 + 워터빌라 후기",
+          "bloggerName": "Mrs.Moon House",
+          "independenceUnknown": false,
+          "postDate": "20250623",
+          "rawRank": 15,
+          "query": "오블루 네이처 헬렝겔리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/sovelymang/224224093243",
+          "title": "설연휴 몰디브 여행 / 오블루 네이처 헬렝겔리 리조트 ...",
+          "bloggerName": "보통의 날들,",
+          "independenceUnknown": false,
+          "postDate": "20260321",
+          "rawRank": 17,
+          "query": "오블루 네이처 헬렝겔리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/writingj/224040419459",
+          "title": "10월의 몰디브 | 3. 오블루 네이처 헬렝겔리 디럭스비치빌라...",
+          "bloggerName": "써니의 공책",
+          "independenceUnknown": false,
+          "postDate": "20251014",
+          "rawRank": 21,
           "query": "오블루 네이처 헬렝겔리 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8243,6 +8958,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/under_thesea1225/223811646906",
+          "title": "몰디브 오블루 셀렉트 로비길리 기념품샵 비치빌라 체크아웃 후...",
+          "bloggerName": "뽀짝뽀짝로그",
+          "independenceUnknown": false,
+          "postDate": "20250327",
+          "rawRank": 20,
+          "query": "오블루 셀렉트 로비길리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/naemonamoo-/224106641256",
+          "title": "우기 몰디브 오블루 셀렉트 로비길리 숙소 예약 꿀팁 밀 플랜...",
+          "bloggerName": "날아라 네모나무",
+          "independenceUnknown": false,
+          "postDate": "20251212",
+          "rawRank": 23,
+          "query": "오블루 셀렉트 로비길리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/jooqwety/223817303315",
+          "title": "#신혼여행 몰디브 1일차 오블루 로비길리 일랑일랑 레스토랑 첫...",
+          "bloggerName": "구레뜨의 일상 기록:)",
+          "independenceUnknown": false,
+          "postDate": "20250401",
+          "rawRank": 29,
+          "query": "오블루 셀렉트 로비길리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "아일라푸시 이용은 확인되지만 두 글이 사전 선택 기록이라 체험 장점으로는 미채택."
@@ -8273,7 +9027,7 @@
           "bloggerName": "영이어게인",
           "independenceUnknown": false,
           "postDate": "20260203",
-          "rawRank": 8,
+          "rawRank": 9,
           "query": "오블루 셀렉트 상겔리 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8299,7 +9053,7 @@
           "bloggerName": "ARYANLOG",
           "independenceUnknown": false,
           "postDate": "20250306",
-          "rawRank": 7,
+          "rawRank": 8,
           "query": "오블루 셀렉트 상겔리 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8312,7 +9066,7 @@
           "bloggerName": "ggflove77님의블로그",
           "independenceUnknown": false,
           "postDate": "20260527",
-          "rawRank": 9,
+          "rawRank": 10,
           "query": "오블루 셀렉트 상겔리 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8325,7 +9079,7 @@
           "bloggerName": "여행, 서하네",
           "independenceUnknown": false,
           "postDate": "20260501",
-          "rawRank": 11,
+          "rawRank": 13,
           "query": "오블루 셀렉트 상겔리 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8338,7 +9092,7 @@
           "bloggerName": "벤자민 여행 일기",
           "independenceUnknown": false,
           "postDate": "20250620",
-          "rawRank": 14,
+          "rawRank": 17,
           "query": "오블루 셀렉트 상겔리 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8351,7 +9105,7 @@
           "bloggerName": "파워J 제집사로그",
           "independenceUnknown": false,
           "postDate": "20240802",
-          "rawRank": 19,
+          "rawRank": 21,
           "query": "오블루 셀렉트 상겔리 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8364,7 +9118,7 @@
           "bloggerName": "Simon Says :",
           "independenceUnknown": false,
           "postDate": "20240825",
-          "rawRank": 26,
+          "rawRank": 29,
           "query": "오블루 셀렉트 상겔리 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8525,6 +9279,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/rtt2323/223765726868",
+          "title": "신혼여행 몰디브 3일차 / 오블루 익스피리언스 아일라푸시 ...",
+          "bloggerName": "콩세의 마음",
+          "independenceUnknown": false,
+          "postDate": "20250219",
+          "rawRank": 15,
+          "query": "오블루 익스피리언스 아일라푸시 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/seoyoon_99/222926445770",
+          "title": "[ 몰디브 여행] #3 가성비 리조트 로 추천하는 오블루 아일라푸시 ...",
+          "bloggerName": "우당탕탕~",
+          "independenceUnknown": false,
+          "postDate": "20221112",
+          "rawRank": 28,
+          "query": "오블루 익스피리언스 아일라푸시 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/juya60/223330607940",
+          "title": "몰디브 오블루 익스피리언스 아일라푸시 에서 본 것",
+          "bloggerName": "주야의 주된관심사",
+          "independenceUnknown": false,
+          "postDate": "20240122",
+          "rawRank": 30,
+          "query": "오블루 익스피리언스 아일라푸시 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "서로 다른 실제 이용자 2명이 가격 대비 만족도를 공통으로 언급함. 가족 적합성은 반복 근거가 약해 제외."
@@ -8674,7 +9467,7 @@
       "pros": [],
       "cons": [
         {
-          "text": "여러 이동수단을 거쳐야 해 이동이 길고 피로하다는 후기가 있어요.",
+          "text": "여러 이동수단을 거쳐야 해 이동이 길고 피로해요.",
           "sourceUrls": [
             "https://blog.naver.com/mmalbum/223549808564",
             "https://blog.naver.com/rapperkjm/223562163733"
@@ -8688,7 +9481,7 @@
           "bloggerName": "댕로그",
           "independenceUnknown": false,
           "postDate": "20240816",
-          "rawRank": 21,
+          "rawRank": 24,
           "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8697,12 +9490,12 @@
         },
         {
           "url": "https://blog.naver.com/rapperkjm/223562163733",
-          "title": "리조트 ” ( Outrigger Maldives Maafushivaru Resort )",
+          "title": "하나인 “ 아웃리거 몰디브 마푸시바루 리조트 ”...",
           "bloggerName": "한껏 게을러터진 냥이 집사의 일기장",
           "independenceUnknown": false,
           "postDate": "20240827",
-          "rawRank": 2,
-          "query": "Outrigger Maldives Maafushivaru Resort 몰디브 리조트 후기",
+          "rawRank": 47,
+          "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -8714,7 +9507,7 @@
           "bloggerName": "꼬마장군 블로그",
           "independenceUnknown": false,
           "postDate": "20250106",
-          "rawRank": 3,
+          "rawRank": 4,
           "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8727,7 +9520,7 @@
           "bloggerName": "나의 작은 세계",
           "independenceUnknown": false,
           "postDate": "20251212",
-          "rawRank": 5,
+          "rawRank": 7,
           "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8740,20 +9533,7 @@
           "bloggerName": "준우네 육아일기 :)⑅",
           "independenceUnknown": false,
           "postDate": "20250128",
-          "rawRank": 7,
-          "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
-        {
-          "url": "https://blog.naver.com/csa218/224052757749",
-          "title": "몰디브 아웃리거 마푸시바루 신혼여행 리조트 상어투어 후기",
-          "bloggerName": "미니트 블로그",
-          "independenceUnknown": false,
-          "postDate": "20251024",
-          "rawRank": 13,
+          "rawRank": 10,
           "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8766,7 +9546,20 @@
           "bloggerName": "찌든 직장인 햅찌의 방방곡곡",
           "independenceUnknown": false,
           "postDate": "20251002",
-          "rawRank": 15,
+          "rawRank": 16,
+          "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/csa218/224052757749",
+          "title": "몰디브 아웃리거 마푸시바루 신혼여행 리조트 상어투어 후기",
+          "bloggerName": "미니트 블로그",
+          "independenceUnknown": false,
+          "postDate": "20251024",
+          "rawRank": 18,
           "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8779,7 +9572,7 @@
           "bloggerName": "키미의 이곳저곳 탐방일기",
           "independenceUnknown": false,
           "postDate": "20260623",
-          "rawRank": 19,
+          "rawRank": 21,
           "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8792,7 +9585,7 @@
           "bloggerName": "항스 초이스",
           "independenceUnknown": false,
           "postDate": "20260623",
-          "rawRank": 22,
+          "rawRank": 33,
           "query": "아웃리거 몰디브 마푸시바루 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8832,7 +9625,20 @@
           "bloggerName": "메리썸 로그북",
           "independenceUnknown": false,
           "postDate": "20250320",
-          "rawRank": 2,
+          "rawRank": 1,
+          "query": "파크 하얏트 몰디브 하다하 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/anna122412/224317016792",
+          "title": "6박 7일, 1일차 파크하얏트 하다하 비치빌라 후기",
+          "bloggerName": "혀나쓰 블로그",
+          "independenceUnknown": false,
+          "postDate": "20260616",
+          "rawRank": 5,
           "query": "파크 하얏트 몰디브 하다하 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8845,7 +9651,7 @@
           "bloggerName": "Nareum",
           "independenceUnknown": false,
           "postDate": "20250602",
-          "rawRank": 5,
+          "rawRank": 6,
           "query": "파크 하얏트 몰디브 하다하 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8858,7 +9664,7 @@
           "bloggerName": "몽실누나의 뇸뇸일기",
           "independenceUnknown": false,
           "postDate": "20250928",
-          "rawRank": 6,
+          "rawRank": 7,
           "query": "파크 하얏트 몰디브 하다하 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8871,20 +9677,7 @@
           "bloggerName": "신혼여행 Honeymoon’s",
           "independenceUnknown": false,
           "postDate": "20250915",
-          "rawRank": 8,
-          "query": "파크 하얏트 몰디브 하다하 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
-        {
-          "url": "https://blog.naver.com/trip_withme/223922475217",
-          "title": "하얏트 몰디브 하다하 후기 ｜Park Hyatt Maldives 리조트 ...",
-          "bloggerName": "캘리포니아 여행꿀팁, 50개국 여행기, 하얏트 리뷰",
-          "independenceUnknown": false,
-          "postDate": "20250718",
-          "rawRank": 10,
+          "rawRank": 9,
           "query": "파크 하얏트 몰디브 하다하 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8905,12 +9698,12 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/anna122412/224317016792",
-          "title": "신혼여행 6박 7일, 1일차 파크하얏트 하다하 비치빌라 후기",
-          "bloggerName": "혀나쓰 블로그",
+          "url": "https://blog.naver.com/iheeya/224300498122",
+          "title": "신혼여행 추천 파크 하얏트 몰디브 하다 레스토랑 완벽 정리",
+          "bloggerName": "Hello 초희~♪",
           "independenceUnknown": false,
-          "postDate": "20260616",
-          "rawRank": 12,
+          "postDate": "20260529",
+          "rawRank": 21,
           "query": "파크 하얏트 몰디브 하다하 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -8918,12 +9711,12 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/iheeya/224300498122",
-          "title": "신혼여행 추천 파크 하얏트 몰디브 하다 레스토랑 완벽 정리",
-          "bloggerName": "Hello 초희~♪",
+          "url": "https://blog.naver.com/trip_withme/223922475217",
+          "title": "하얏트 몰디브 하다하 후기 ｜Park Hyatt Maldives 리조트 ...",
+          "bloggerName": "캘리포니아 여행꿀팁, 50개국 여행기, 하얏트 리뷰",
           "independenceUnknown": false,
-          "postDate": "20260529",
-          "rawRank": 21,
+          "postDate": "20250718",
+          "rawRank": 10,
           "query": "파크 하얏트 몰디브 하다하 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9124,6 +9917,19 @@
           "sourceKind": "firsthand-personal"
         },
         {
+          "url": "https://blog.naver.com/v992800/222777761226",
+          "title": "2. 풀만 몰디브 마무타 리조트 오션 풀 빌라 후기",
+          "bloggerName": "메이의 세계여행",
+          "independenceUnknown": false,
+          "postDate": "20220617",
+          "rawRank": 55,
+          "query": "풀만 몰디브 마무타 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
           "url": "https://blog.naver.com/inu_1ove_v/222992319342",
           "title": "[신혼여행] - 몰디브 풀만 마무타( pullman maamutaa ) 리조트 ...",
           "bloggerName": "돼지봉의 폭풍우",
@@ -9137,12 +9943,38 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/v992800/222777761226",
-          "title": "2. 풀만 몰디브 마무타 리조트 오션 풀 빌라 후기",
-          "bloggerName": "메이의 세계여행",
+          "url": "https://blog.naver.com/leebomi9303/223516794003",
+          "title": "[ 몰디브 신혼여행] 풀만 마무타 리조트 - 식당 후기",
+          "bloggerName": "좋아하는 것들",
           "independenceUnknown": false,
-          "postDate": "20220617",
-          "rawRank": 55,
+          "postDate": "20240718",
+          "rawRank": 13,
+          "query": "풀만 몰디브 마무타 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/donggeulbbu-/224171830397",
+          "title": "[신혼여행 EP3] 몰디브 풀만 마무타 올인클루시브 리조트 ...",
+          "bloggerName": "동글쀼의 블로그",
+          "independenceUnknown": false,
+          "postDate": "20260204",
+          "rawRank": 14,
+          "query": "풀만 몰디브 마무타 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/mindibibi/223516099936",
+          "title": "[W 몰디브 ] 풀만 몰디브 마무타 리조트 숙박 후기 _Four...",
+          "bloggerName": "S",
+          "independenceUnknown": false,
+          "postDate": "20240717",
+          "rawRank": 20,
           "query": "풀만 몰디브 마무타 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9255,12 +10087,12 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/happysoonchool/224236850767",
-          "title": "몰디브 태교여행 추천: 래디슨 블루 리조트 남아리 아톨에서...",
-          "bloggerName": "오래오래 건강하고 행복하게",
+          "url": "https://blog.naver.com/kimha0311/224236916448",
+          "title": "몰디브 힐링여행의 정석: 래디슨 블루 리조트 에서 보낸 5박 6일",
+          "bloggerName": "도나의 하루",
           "independenceUnknown": false,
           "postDate": "20260401",
-          "rawRank": 21,
+          "rawRank": 26,
           "query": "래디슨 블루 리조트 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9268,12 +10100,12 @@
           "sourceKind": "firsthand-personal"
         },
         {
-          "url": "https://blog.naver.com/kimha0311/224236916448",
-          "title": "몰디브 힐링여행의 정석: 래디슨 블루 리조트 에서 보낸 5박 6일",
-          "bloggerName": "도나의 하루",
+          "url": "https://blog.naver.com/happysoonchool/224236850767",
+          "title": "몰디브 태교여행 추천: 래디슨 블루 리조트 남아리 아톨에서...",
+          "bloggerName": "오래오래 건강하고 행복하게",
           "independenceUnknown": false,
           "postDate": "20260401",
-          "rawRank": 24,
+          "rawRank": 21,
           "query": "래디슨 블루 리조트 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9335,7 +10167,7 @@
           "bloggerName": "갓황의 인생학개론",
           "independenceUnknown": false,
           "postDate": "20230223",
-          "rawRank": 11,
+          "rawRank": 10,
           "query": "래플스 몰디브 메라두 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9348,7 +10180,7 @@
           "bloggerName": "물버미의 행복 일상(ง •̀ω•́)ง✧",
           "independenceUnknown": false,
           "postDate": "20250702",
-          "rawRank": 13,
+          "rawRank": 12,
           "query": "래플스 몰디브 메라두 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9361,7 +10193,7 @@
           "bloggerName": "와즈불(wisebull)의 비즈니스",
           "independenceUnknown": false,
           "postDate": "20211211",
-          "rawRank": 23,
+          "rawRank": 22,
           "query": "래플스 몰디브 메라두 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9374,7 +10206,7 @@
           "bloggerName": "Passionfruit",
           "independenceUnknown": false,
           "postDate": "20240222",
-          "rawRank": 26,
+          "rawRank": 28,
           "query": "래플스 몰디브 메라두 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9474,16 +10306,17 @@
         "https://blog.naver.com/oct31_/224191696518"
       ],
       "reviewedAt": "2026-07-14",
-      "pros": [
+      "pros": [],
+      "cons": [],
+      "neutral": [
         {
-          "text": "예약형 레스토랑을 포함해 식당 선택지가 다양해요.",
+          "text": "예약형 레스토랑을 포함해 여러 식당을 운영해요.",
           "sourceUrls": [
             "https://blog.naver.com/o8180505/224128282973",
             "https://blog.naver.com/oct31_/224191696518"
           ]
         }
       ],
-      "cons": [],
       "sources": [
         {
           "url": "https://blog.naver.com/o8180505/224128282973",
@@ -9614,6 +10447,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/hallosophie_/224303884078",
+          "title": "[신혼여행] 몰디브 허니문 더 레지던스 리조트 디구라 선셋 비치...",
+          "bloggerName": "헤이소피의 야외웨딩준비",
+          "independenceUnknown": false,
+          "postDate": "20260602",
+          "rawRank": 13,
+          "query": "더 레지던스 몰디브 앳 디구라 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/dyonggurami/223795254399",
+          "title": "일상 [ 더레지던스 몰디브 앳 디구라 ] 후기 , 식당...",
+          "bloggerName": "둉글한 인생살이",
+          "independenceUnknown": false,
+          "postDate": "20250314",
+          "rawRank": 20,
+          "query": "더 레지던스 몰디브 앳 디구라 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/frohedami/224295468022",
+          "title": "[신혼여행 4일차] 몰디브 로 이동 더 레지던스 몰디브 앳 디구라 ...",
+          "bloggerName": "frohedami님의 블로그",
+          "independenceUnknown": false,
+          "postDate": "20260525",
+          "rawRank": 30,
+          "query": "더 레지던스 몰디브 앳 디구라 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "두 독립 투숙 후기가 식당 선택 폭과 여러 예약형 레스토랑을 공통 언급함."
@@ -9635,7 +10507,7 @@
           "bloggerName": "우리집 막내딸 공식 블로그",
           "independenceUnknown": false,
           "postDate": "20250618",
-          "rawRank": 3,
+          "rawRank": 4,
           "query": "더 레지던스 몰디브 앳 팔루마푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9648,7 +10520,7 @@
           "bloggerName": "맹사원의 이것 저것",
           "independenceUnknown": false,
           "postDate": "20251124",
-          "rawRank": 5,
+          "rawRank": 6,
           "query": "더 레지던스 몰디브 앳 팔루마푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9661,7 +10533,7 @@
           "bloggerName": "꾸슬의 여행",
           "independenceUnknown": false,
           "postDate": "20241118",
-          "rawRank": 6,
+          "rawRank": 7,
           "query": "더 레지던스 몰디브 앳 팔루마푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9674,7 +10546,7 @@
           "bloggerName": "쉬어 가는 곳",
           "independenceUnknown": false,
           "postDate": "20250526",
-          "rawRank": 7,
+          "rawRank": 8,
           "query": "더 레지던스 몰디브 앳 팔루마푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9687,7 +10559,7 @@
           "bloggerName": "지자롱의 방구석ღ",
           "independenceUnknown": false,
           "postDate": "20250325",
-          "rawRank": 9,
+          "rawRank": 10,
           "query": "더 레지던스 몰디브 앳 팔루마푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9700,7 +10572,7 @@
           "bloggerName": "오늘은 뭐하지?",
           "independenceUnknown": false,
           "postDate": "20241206",
-          "rawRank": 10,
+          "rawRank": 11,
           "query": "더 레지던스 몰디브 앳 팔루마푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9713,7 +10585,7 @@
           "bloggerName": "애기씨 추천모음",
           "independenceUnknown": false,
           "postDate": "20260307",
-          "rawRank": 11,
+          "rawRank": 14,
           "query": "더 레지던스 몰디브 앳 팔루마푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9726,7 +10598,7 @@
           "bloggerName": "맛집/뷰티/여행 정보 공유ෆ",
           "independenceUnknown": false,
           "postDate": "20260525",
-          "rawRank": 17,
+          "rawRank": 18,
           "query": "더 레지던스 몰디브 앳 팔루마푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9739,7 +10611,7 @@
           "bloggerName": "record the day",
           "independenceUnknown": false,
           "postDate": "20250520",
-          "rawRank": 20,
+          "rawRank": 22,
           "query": "더 레지던스 몰디브 앳 팔루마푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -9968,7 +10840,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "스노클링과 수중환경에 만족했다는 후기가 여러 건 있어요.",
+          "text": "스노클링과 수중환경의 만족도가 높아요.",
           "sourceUrls": [
             "https://blog.naver.com/hhee_e_blog/224117705794",
             "https://blog.naver.com/eunjina27/223816672892"
@@ -10166,7 +11038,7 @@
           "bloggerName": "고구마요네즈네",
           "independenceUnknown": false,
           "postDate": "20231123",
-          "rawRank": 20,
+          "rawRank": 23,
           "query": "사파리 아일랜드 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -10179,7 +11051,7 @@
           "bloggerName": "행복은 지금 여기에",
           "independenceUnknown": false,
           "postDate": "20220527",
-          "rawRank": 21,
+          "rawRank": 28,
           "query": "사파리 아일랜드 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -10192,7 +11064,7 @@
           "bloggerName": "SSONG_BLOG",
           "independenceUnknown": false,
           "postDate": "20160118",
-          "rawRank": 22,
+          "rawRank": 29,
           "query": "사파리 아일랜드 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -10205,7 +11077,7 @@
           "bloggerName": "살며, 사랑하며.",
           "independenceUnknown": false,
           "postDate": "20190721",
-          "rawRank": 27,
+          "rawRank": 32,
           "query": "사파리 아일랜드 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -10364,6 +11236,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/tobiolet/224254722779",
+          "title": "[ 몰디브 ] 하드락 리조트 , 사이라군 리조트 디너 추천...",
+          "bloggerName": "tobiolet 일상 기록",
+          "independenceUnknown": false,
+          "postDate": "20260416",
+          "rawRank": 18,
+          "query": "사이 라군 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/shee__kim/224300628812",
+          "title": "몰디브 하드락 사이라군 리조트 세션스 디너 재패니즈 나이트...",
+          "bloggerName": "새로 뜬 맛 탐색러의 여정",
+          "independenceUnknown": false,
+          "postDate": "20260530",
+          "rawRank": 21,
+          "query": "사이 라군 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/doksoori01/224114134057",
+          "title": "251129~1204 몰디브 힐튼 사이라군 SAii Lagoon 리조트 에...",
+          "bloggerName": "doksoori01님의 블로그",
+          "independenceUnknown": false,
+          "postDate": "20251218",
+          "rawRank": 26,
+          "query": "사이 라군 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "개인 실제 투숙 후기 한 건에서 비치 객실의 바다 접근성을 직접 장점으로 평가함."
@@ -10380,7 +11291,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "수중환경이 훌륭하다는 후기가 있어요.",
+          "text": "수중환경이 훌륭해요.",
           "sourceUrls": [
             "https://blog.naver.com/ugi0489/223600712773"
           ]
@@ -10570,6 +11481,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/eunmiring/224001293943",
+          "title": "숙박 ' 쉐라톤 몰디브 풀문 리조트 & 스파 - 워터방갈로 수상객실...",
+          "bloggerName": "앎으로 삶에 덤비지 않도록",
+          "independenceUnknown": false,
+          "postDate": "20250910",
+          "rawRank": 18,
+          "query": "쉐라톤 몰디브 풀문 리조트 & 스파 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/stiearth/223947598405",
+          "title": "몰디브 쉐라톤 풀문 , 오버워터방갈로...",
+          "bloggerName": "❤️Bling_bli❤️gourmet traveler",
+          "independenceUnknown": false,
+          "postDate": "20250726",
+          "rawRank": 23,
+          "query": "쉐라톤 몰디브 풀문 리조트 & 스파 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/nana7654/223024637261",
+          "title": "쉐라톤몰디브풀문리조트 스파 Feast(피스트)조식 후기",
+          "bloggerName": "Alice in Wonderland :)",
+          "independenceUnknown": false,
+          "postDate": "20230223",
+          "rawRank": 28,
+          "query": "쉐라톤 몰디브 풀문 리조트 & 스파 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "후기형 결과는 있으나 같은 장단점이 두 독립 블로거에서 반복되지 않음."
@@ -10591,7 +11541,7 @@
           "bloggerName": "프로 세계여행러 떠네르",
           "independenceUnknown": false,
           "postDate": "20260619",
-          "rawRank": 22,
+          "rawRank": 21,
           "query": "시얌 월드 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -10846,6 +11796,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/ufkr1050/223840773958",
+          "title": "리조트 쏘 몰디브 SO/ Maldives 오션 워터빌라 후기",
+          "bloggerName": "맛과 멋을 찾는 쿤쿤",
+          "independenceUnknown": false,
+          "postDate": "20250424",
+          "rawRank": 12,
+          "query": "SO/ Maldives 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/ogaoinfo/224245199266",
+          "title": "몰디브 신혼여행 추천 so 몰디브 ( SO Maldives ) 리조트 ...",
+          "bloggerName": "오늘부터",
+          "independenceUnknown": false,
+          "postDate": "20260408",
+          "rawRank": 19,
+          "query": "SO/ Maldives 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/tndusdl2948/223353897504",
+          "title": "몰디브 신상 리조트 오션빌라 So maldives 해외 휴양지 숙소",
+          "bloggerName": "수연, 수블리의 여행",
+          "independenceUnknown": false,
+          "postDate": "20240215",
+          "rawRank": 37,
+          "query": "SO/ Maldives 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "상위 결과 대부분이 다른 리조트 후기라 유효한 독립 출처가 두 개 미만임."
@@ -10862,7 +11851,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "선셋 크루즈와 고래상어 투어 등 익스커션이 다양해 일정이 지루하지 않았다는 후기가 있어요.",
+          "text": "선셋 크루즈와 고래상어 투어 등 익스커션이 다양해 일정이 지루하지 않아요.",
           "sourceUrls": [
             "https://blog.naver.com/bgekim/220880511910"
           ]
@@ -10989,7 +11978,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "수중환경이 좋다는 후기가 있어요.",
+          "text": "수중환경이 좋아요.",
           "sourceUrls": [
             "https://blog.naver.com/jeeeee_o/223971488174"
           ]
@@ -11244,7 +12233,7 @@
           "bloggerName": "메리쫑쫑",
           "independenceUnknown": false,
           "postDate": "20251119",
-          "rawRank": 23,
+          "rawRank": 24,
           "query": "세인트 레지스 몰디브 봄물리 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11257,20 +12246,7 @@
           "bloggerName": "# 민순이 스타일 #",
           "independenceUnknown": false,
           "postDate": "20241006",
-          "rawRank": 8,
-          "query": "세인트 레지스 몰디브 봄물리 리조트 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
-        {
-          "url": "https://blog.naver.com/hn8806/224343976976",
-          "title": "몰디브 리조트 세인트레지스 몰디브 보 물리 리조트 오션...",
-          "bloggerName": "이안블로그",
-          "independenceUnknown": false,
-          "postDate": "20260712",
-          "rawRank": 11,
+          "rawRank": 9,
           "query": "세인트 레지스 몰디브 봄물리 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11291,12 +12267,25 @@
           "sourceKind": "firsthand-personal"
         },
         {
+          "url": "https://blog.naver.com/hn8806/224343976976",
+          "title": "몰디브 리조트 세인트레지스 몰디브 보 물리 리조트 오션...",
+          "bloggerName": "이안블로그",
+          "independenceUnknown": false,
+          "postDate": "20260712",
+          "rawRank": 16,
+          "query": "세인트 레지스 몰디브 봄물리 리조트 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
           "url": "https://blog.naver.com/sydream25/223934674034",
           "title": "[신혼여행][ 몰디브 ] 신혼여행 숙소 ' 세인트레지스 리조트 ' 후기 ...",
           "bloggerName": "Sally's daily",
           "independenceUnknown": false,
           "postDate": "20250715",
-          "rawRank": 17,
+          "rawRank": 18,
           "query": "세인트 레지스 몰디브 봄물리 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11309,7 +12298,7 @@
           "bloggerName": "깨알같은 리뷰모음",
           "independenceUnknown": false,
           "postDate": "20250530",
-          "rawRank": 22,
+          "rawRank": 23,
           "query": "세인트 레지스 몰디브 봄물리 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11322,7 +12311,7 @@
           "bloggerName": "해롱롱",
           "independenceUnknown": false,
           "postDate": "20200110",
-          "rawRank": 28,
+          "rawRank": 26,
           "query": "세인트 레지스 몰디브 봄물리 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11350,7 +12339,7 @@
           ]
         },
         {
-          "text": "음식 대부분이 맛있다는 후기가 있어요.",
+          "text": "음식 대부분이 맛있어요.",
           "sourceUrls": [
             "https://blog.naver.com/jjaa87/223133344436"
           ]
@@ -11364,7 +12353,7 @@
           "bloggerName": "콩이언니",
           "independenceUnknown": false,
           "postDate": "20230619",
-          "rawRank": 14,
+          "rawRank": 10,
           "query": "선 시암 이루 푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11390,7 +12379,7 @@
           "bloggerName": "호두랑 사는 집",
           "independenceUnknown": false,
           "postDate": "20240815",
-          "rawRank": 5,
+          "rawRank": 4,
           "query": "선 시암 이루 푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11403,7 +12392,7 @@
           "bloggerName": "시인의 정원",
           "independenceUnknown": false,
           "postDate": "20161017",
-          "rawRank": 15,
+          "rawRank": 11,
           "query": "선 시암 이루 푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11416,7 +12405,7 @@
           "bloggerName": "Hello 초희~♪",
           "independenceUnknown": false,
           "postDate": "20191011",
-          "rawRank": 16,
+          "rawRank": 14,
           "query": "선 시암 이루 푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11429,7 +12418,7 @@
           "bloggerName": "서소남매네:)",
           "independenceUnknown": false,
           "postDate": "20230724",
-          "rawRank": 17,
+          "rawRank": 16,
           "query": "선 시암 이루 푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11442,7 +12431,7 @@
           "bloggerName": "From. 지구토끼",
           "independenceUnknown": false,
           "postDate": "20191112",
-          "rawRank": 23,
+          "rawRank": 22,
           "query": "선 시암 이루 푸시 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -11629,6 +12618,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/00sweetlove/224164245256",
+          "title": "몰디브 신혼여행 추천, 선시암 올후벨리 에서 즐긴 럭셔리 리조트",
+          "bloggerName": "모든 날이 여행",
+          "independenceUnknown": false,
+          "postDate": "20260129",
+          "rawRank": 13,
+          "query": "선 시암 올후벨리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/sanaella/224116621349",
+          "title": "몰디브 가족여행 선시암 올후벨리 리조트 레스토랑 총정리",
+          "bloggerName": "사나의 여행",
+          "independenceUnknown": false,
+          "postDate": "20251220",
+          "rawRank": 15,
+          "query": "선 시암 올후벨리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/enffl_love/224181018983",
+          "title": "몰디브 가성비 리조트 선시암 올후벨리 로맨스 식당 허니문...",
+          "bloggerName": "베레는여행중✈️",
+          "independenceUnknown": false,
+          "postDate": "20260212",
+          "rawRank": 27,
+          "query": "선 시암 올후벨리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "대규모 시설 주장은 단순 구조 설명이 섞여 제거했고 가족 객실 조건은 두 투숙 후기에서 반복됨."
@@ -11697,6 +12725,19 @@
           "sourceKind": "firsthand-personal"
         },
         {
+          "url": "https://blog.naver.com/eun_tanggu/224106142056",
+          "title": "몰디브 신혼여행️ 존맛탱 선시암이루벨리 그루퍼그릴 점심 후기",
+          "bloggerName": "Whatever 은탱구 want to do",
+          "independenceUnknown": false,
+          "postDate": "20251217",
+          "rawRank": 59,
+          "query": "선 시암 이루 벨리 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
           "url": "https://blog.naver.com/dailysoo-/223695291874",
           "title": "신혼여행: 선시암 이루벨리( Sun Siyam Iru Veli ) 리조트 후기 ♥",
           "bloggerName": "DAILY SOO",
@@ -11730,19 +12771,6 @@
           "postDate": "20220714",
           "rawRank": 30,
           "query": "Sun Siyam Iru Veli 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
-        {
-          "url": "https://blog.naver.com/eun_tanggu/224106142056",
-          "title": "몰디브 신혼여행️ 존맛탱 선시암이루벨리 그루퍼그릴 점심 후기",
-          "bloggerName": "Whatever 은탱구 want to do",
-          "independenceUnknown": false,
-          "postDate": "20251217",
-          "rawRank": 59,
-          "query": "선 시암 이루 벨리 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -11931,7 +12959,7 @@
       "pros": [],
       "cons": [
         {
-          "text": "스피드보트 이동 시 멀미 대비가 필요하다는 후기가 있어요.",
+          "text": "스피드보트 이동은 멀미 대비가 필요해요.",
           "sourceUrls": [
             "https://blog.naver.com/hye6372_/223591187656"
           ]
@@ -12009,7 +13037,7 @@
           "bloggerName": "단 한 번뿐인 내 인생",
           "independenceUnknown": false,
           "postDate": "20160720",
-          "rawRank": 20,
+          "rawRank": 21,
           "query": "툴하기리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -12022,7 +13050,7 @@
           "bloggerName": "알로록달로록, 빛나는 모든날들",
           "independenceUnknown": false,
           "postDate": "20180105",
-          "rawRank": 24,
+          "rawRank": 25,
           "query": "툴하기리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -12035,7 +13063,7 @@
           "bloggerName": "채원가족이야기",
           "independenceUnknown": false,
           "postDate": "20221004",
-          "rawRank": 28,
+          "rawRank": 27,
           "query": "툴하기리 아일랜드 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -12185,6 +13213,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/guswl9783/223548029492",
+          "title": "몰디브 신혼여행 리조트 바카루 스노클링, 수중환경",
+          "bloggerName": "꼰로그",
+          "independenceUnknown": false,
+          "postDate": "20240814",
+          "rawRank": 16,
+          "query": "바카루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/ehfehf22_/224197358102",
+          "title": "몰디브 신혼여행 바카루 리조트 코코넛클럽 코코넛페인팅과...",
+          "bloggerName": "minie의 리뷰로그",
+          "independenceUnknown": false,
+          "postDate": "20260227",
+          "rawRank": 20,
+          "query": "바카루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/gomsun-mingsun/223662043104",
+          "title": "몰디브 바카루 리조트 ... 6곳 리뷰 디너파티 플로팅조식 후기",
+          "bloggerName": "하루의 윤슬",
+          "independenceUnknown": false,
+          "postDate": "20241115",
+          "rawRank": 23,
+          "query": "바카루 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "라군과 수중환경 평가는 한 개인 후기에서만 확인돼 독립 반복 기준에 못 미침."
@@ -12284,7 +13351,7 @@
           "bloggerName": "야무진 쀼의 맛집여행",
           "independenceUnknown": false,
           "postDate": "20250109",
-          "rawRank": 11,
+          "rawRank": 12,
           "query": "벨라사루 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -12297,7 +13364,7 @@
           "bloggerName": "도원쀼 오늘은 어디가?",
           "independenceUnknown": false,
           "postDate": "20240811",
-          "rawRank": 18,
+          "rawRank": 20,
           "query": "벨라사루 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -12359,7 +13426,7 @@
           "bloggerName": "말랑쫄깃한 블로그",
           "independenceUnknown": false,
           "postDate": "20181225",
-          "rawRank": 12,
+          "rawRank": 11,
           "query": "벨리간두 아일랜드 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -12407,7 +13474,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "4박 5일 신혼여행의 비용 대비 만족도가 높았다는 직접 결제 후기가 있어요.",
+          "text": "4박 5일 신혼여행 기준으로 비용 대비 만족도가 높아요.",
           "sourceUrls": [
             "https://blog.naver.com/lifestyle731/224265315335"
           ]
@@ -12544,6 +13611,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/hyunhik/224231249293",
+          "title": "몰디브 바루 바이 앳모 스피어 리조트 워터빌라 후기 신혼여행...",
+          "bloggerName": "일상 메모장",
+          "independenceUnknown": false,
+          "postDate": "20260327",
+          "rawRank": 25,
+          "query": "바루 바이 애트모스피어 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/jihyenny/223256387852",
+          "title": "a7m3로 담은 VARU by Atmosphere / 23년 7월 우기 몰디브 날씨",
+          "bloggerName": "졔니의 둥근 일상 ☻",
+          "independenceUnknown": false,
+          "postDate": "20231105",
+          "rawRank": 12,
+          "query": "VARU by Atmosphere 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/jsy9122/222999763942",
+          "title": "몰디브 리조트 후기 - varu by atmosphere",
+          "bloggerName": "♡",
+          "independenceUnknown": false,
+          "postDate": "20230130",
+          "rawRank": 14,
+          "query": "VARU by Atmosphere 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "개인 실제 투숙 후기 한 건에서 4박 5일 여행의 가성비를 직접 높게 평가함."
@@ -12604,7 +13710,7 @@
           "bloggerName": "단여와! 세계&국내 여행 이야기",
           "independenceUnknown": false,
           "postDate": "20251120",
-          "rawRank": 27,
+          "rawRank": 28,
           "query": "W 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -12833,6 +13939,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/sfly81/223785071871",
+          "title": "몰디브 리조트 추천 더 웨스틴 미리안두 음식에 진심인 리조트",
+          "bloggerName": "바쁜아이타이완다이어리",
+          "independenceUnknown": false,
+          "postDate": "20250305",
+          "rawRank": 14,
+          "query": "웨스틴 몰디브 미리안두 리조트 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/park___yang/223591339457",
+          "title": "[ 몰디브 신혼여행] 웨스틴 미리안두 리조트 까지! - 인천공항...",
+          "bloggerName": "그해답 (그냥 해도 돼, 답을 몰라도 괜찮아)",
+          "independenceUnknown": false,
+          "postDate": "20240922",
+          "rawRank": 21,
+          "query": "웨스틴 몰디브 미리안두 리조트 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/pomi54/223787510702",
+          "title": "더 웨스틴 몰디브 미리안두 체크아웃, 비용 결산",
+          "bloggerName": "포미의 블로그",
+          "independenceUnknown": false,
+          "postDate": "20250307",
+          "rawRank": 27,
+          "query": "웨스틴 몰디브 미리안두 리조트 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "두 글은 추가 이동 단계만 설명했으며 접근이 불편하다는 동일 평가는 명시하지 않음."
@@ -12988,6 +14133,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/vkak1024/223611649054",
+          "title": "라야 바이 앳모스피어 먹을거리 ( 아마리 라야 몰디브 였던 것..)",
+          "bloggerName": "이그그",
+          "independenceUnknown": false,
+          "postDate": "20241008",
+          "rawRank": 28,
+          "query": "아마리 라야 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/yhl2923/223268591726",
+          "title": "Amari Raaya Maldives 리조트 이동] 몰디브 리조트 후기 / 구....",
+          "bloggerName": "부산양양이의 소확행 ♪",
+          "independenceUnknown": false,
+          "postDate": "20231119",
+          "rawRank": 7,
+          "query": "Amari Raaya Maldives 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/keem_page/223392304344",
+          "title": "몰디브 신혼여행 | Amari Raaya Maldives 아마리 라야 (현 라야...",
+          "bloggerName": "나의 이야기",
+          "independenceUnknown": false,
+          "postDate": "20240322",
+          "rawRank": 13,
+          "query": "Amari Raaya Maldives 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "신규 개장은 한 글에서 단순 사실이라 제거했고 다양한 프로그램은 두 실제 방문 기록에서 반복됨."
@@ -13009,7 +14193,7 @@
           "bloggerName": "신뚱이야기",
           "independenceUnknown": false,
           "postDate": "20180113",
-          "rawRank": 15,
+          "rawRank": 16,
           "query": "아밀라 몰디브 리조트 앤 레지던스 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13022,7 +14206,7 @@
           "bloggerName": "초코빠나 해피 블로그",
           "independenceUnknown": false,
           "postDate": "20220824",
-          "rawRank": 16,
+          "rawRank": 20,
           "query": "아밀라 몰디브 리조트 앤 레지던스 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13084,7 +14268,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "다른 세상에 온 듯한 풍경이 사진으로 다시 봐도 아름답다는 후기가 있어요.",
+          "text": "다른 세상에 온 듯한 풍경이 사진으로 다시 봐도 아름다워요.",
           "sourceUrls": [
             "https://blog.naver.com/jtt8972/223701331945"
           ]
@@ -13216,6 +14400,19 @@
           "independenceUnknown": false,
           "postDate": "20241208",
           "rawRank": 21,
+          "query": "오젠 라이프 마두 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/jtt8972/223702400175",
+          "title": "[ 몰디브 / 신혼여행 ] 몰디브 오젠 라이프 마두 리조트 후기 ...",
+          "bloggerName": "미래의 나를 위한 기록",
+          "independenceUnknown": false,
+          "postDate": "20241222",
+          "rawRank": 20,
           "query": "오젠 라이프 마두 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13392,6 +14589,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/jmw090/223758970446",
+          "title": "몰디브 유앤미 바이 코쿤 리조트 식당(1) The Sands 솔직리뷰...",
+          "bloggerName": "ㄱㅅㅃ",
+          "independenceUnknown": false,
+          "postDate": "20250213",
+          "rawRank": 15,
+          "query": "유앤미 바이 코쿤 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/ybstyle89/223596842880",
+          "title": "몰디브 유앤미바이코쿤 신혼여행 5-6일차 :: 샌즈조식, 인디안...",
+          "bloggerName": "행복한 엣티제-로그",
+          "independenceUnknown": false,
+          "postDate": "20240926",
+          "rawRank": 16,
+          "query": "유앤미 바이 코쿤 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/naaye0n/223900816874",
+          "title": "언더워터레스토랑이 있는 몰디브 리조트 유앤미바이코쿤",
+          "bloggerName": "알밤이네",
+          "independenceUnknown": false,
+          "postDate": "20250616",
+          "rawRank": 30,
+          "query": "유앤미 바이 코쿤 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "성인 전용과 수중 레스토랑 언급은 있으나 비판매성 독립 후기에서 반복되지 않음."
@@ -13493,7 +14729,7 @@
           "bloggerName": "소소한 대학생 여행/일상 기록",
           "independenceUnknown": false,
           "postDate": "20260402",
-          "rawRank": 2,
+          "rawRank": 1,
           "query": "더 노틸러스 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13515,7 +14751,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "아침 식사 구성이 알차다는 후기가 있어요.",
+          "text": "아침 식사 구성이 알차요.",
           "sourceUrls": [
             "https://blog.naver.com/john_travel/223569235202"
           ]
@@ -13555,7 +14791,7 @@
           "bloggerName": "사소하지만 괜찮은 순간들",
           "independenceUnknown": false,
           "postDate": "20180211",
-          "rawRank": 9,
+          "rawRank": 8,
           "query": "말라히니 쿠다 반도스 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13568,7 +14804,7 @@
           "bloggerName": "saartheater님의블로그",
           "independenceUnknown": false,
           "postDate": "20240224",
-          "rawRank": 13,
+          "rawRank": 12,
           "query": "말라히니 쿠다 반도스 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13581,7 +14817,7 @@
           "bloggerName": "치토월드",
           "independenceUnknown": false,
           "postDate": "20230902",
-          "rawRank": 22,
+          "rawRank": 21,
           "query": "말라히니 쿠다 반도스 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13594,7 +14830,7 @@
           "bloggerName": "엔티 라이프 ✨",
           "independenceUnknown": false,
           "postDate": "20191119",
-          "rawRank": 23,
+          "rawRank": 22,
           "query": "말라히니 쿠다 반도스 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13607,7 +14843,7 @@
           "bloggerName": "희구리 세상",
           "independenceUnknown": false,
           "postDate": "20181105",
-          "rawRank": 25,
+          "rawRank": 24,
           "query": "말라히니 쿠다 반도스 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13628,19 +14864,6 @@
       "pros": [],
       "cons": [],
       "sources": [
-        {
-          "url": "https://blog.naver.com/alakokoko/223502344482",
-          "title": "몰디브 머큐어 쿠두 리조트 체크인하다!! 비치 풀빌라 1일차...",
-          "bloggerName": "흑구의 우당탕탕 일상생활:)",
-          "independenceUnknown": false,
-          "postDate": "20240705",
-          "rawRank": 1,
-          "query": "머큐어 몰디브 쿠두 리조트 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
         {
           "url": "https://blog.naver.com/ysg412/224062298409",
           "title": "[ 몰디브 ]️ 쿠두 머큐어 리조트 5박 후기 ! (feat.갓성비...",
@@ -13673,7 +14896,7 @@
           "bloggerName": "땡칠한 아시아 탐험",
           "independenceUnknown": false,
           "postDate": "20220414",
-          "rawRank": 23,
+          "rawRank": 21,
           "query": "머큐어 몰디브 쿠두 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13686,7 +14909,20 @@
           "bloggerName": "행복한 댕댕이 김르네와 김르네 엄빠의 일상 블로그",
           "independenceUnknown": false,
           "postDate": "20230331",
-          "rawRank": 24,
+          "rawRank": 22,
+          "query": "머큐어 몰디브 쿠두 리조트 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/alakokoko/223502344482",
+          "title": "몰디브 머큐어 쿠두 리조트 체크인하다!! 비치 풀빌라 1일차...",
+          "bloggerName": "흑구의 우당탕탕 일상생활:)",
+          "independenceUnknown": false,
+          "postDate": "20240705",
+          "rawRank": 25,
           "query": "머큐어 몰디브 쿠두 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13699,7 +14935,7 @@
           "bloggerName": "여행이 필요한 시간",
           "independenceUnknown": false,
           "postDate": "20230804",
-          "rawRank": 28,
+          "rawRank": 29,
           "query": "머큐어 몰디브 쿠두 리조트 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13734,7 +14970,7 @@
       "reviewedAt": "2026-07-30",
       "pros": [
         {
-          "text": "객실에 처음 들어섰을 때의 인상이 매우 강렬했다는 후기가 있어요.",
+          "text": "객실에 처음 들어섰을 때의 인상이 매우 강렬해요.",
           "sourceUrls": [
             "https://blog.naver.com/malangdog01/224232844734"
           ]
@@ -13775,6 +15011,19 @@
           "independenceUnknown": false,
           "postDate": "20241127",
           "rawRank": 8,
+          "query": "마디푸시 프라이빗 아일랜드 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/bom_2_blog/224346489422",
+          "title": "[ 몰디브 ] 신혼여행 1일차_ 마디푸시 프라이빗 아일랜드 ...",
+          "bloggerName": "I ain't no candle in the wind",
+          "independenceUnknown": false,
+          "postDate": "20260714",
+          "rawRank": 9,
           "query": "마디푸시 프라이빗 아일랜드 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13840,19 +15089,6 @@
           "independenceUnknown": false,
           "postDate": "20260525",
           "rawRank": 31,
-          "query": "마디푸시 프라이빗 아일랜드 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
-        {
-          "url": "https://blog.naver.com/bom_2_blog/224346489422",
-          "title": "[ 몰디브 ] 신혼여행 1일차_ 마디푸시 프라이빗 아일랜드 ...",
-          "bloggerName": "I ain't no candle in the wind",
-          "independenceUnknown": false,
-          "postDate": "20260714",
-          "rawRank": 9,
           "query": "마디푸시 프라이빗 아일랜드 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -13928,7 +15164,7 @@
         {
           "url": "https://blog.naver.com/min-bly/223824964157",
           "title": "신혼여행 몰디브 하이드어웨이 비치 리조트 이용 후기 1일차...",
-          "bloggerName": "민블리 이야기",
+          "bloggerName": "민블리 부부 이야기",
           "independenceUnknown": false,
           "postDate": "20250407",
           "rawRank": 9,
@@ -14081,7 +15317,7 @@
           "bloggerName": "HYELOG",
           "independenceUnknown": false,
           "postDate": "20251126",
-          "rawRank": 1,
+          "rawRank": 2,
           "query": "노바 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14094,7 +15330,7 @@
           "bloggerName": "뺍쭈 블로그",
           "independenceUnknown": false,
           "postDate": "20260224",
-          "rawRank": 2,
+          "rawRank": 3,
           "query": "노바 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14107,7 +15343,7 @@
           "bloggerName": "웃고 넘어갑시다 옹씨",
           "independenceUnknown": false,
           "postDate": "20260710",
-          "rawRank": 3,
+          "rawRank": 4,
           "query": "노바 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14120,7 +15356,7 @@
           "bloggerName": "갱이's 방탈출 이야기",
           "independenceUnknown": false,
           "postDate": "20260304",
-          "rawRank": 6,
+          "rawRank": 7,
           "query": "노바 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14133,7 +15369,7 @@
           "bloggerName": "우당탕탕 신나고 재미난 인생",
           "independenceUnknown": false,
           "postDate": "20251102",
-          "rawRank": 7,
+          "rawRank": 8,
           "query": "노바 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14146,8 +15382,8 @@
           "bloggerName": "게부, 게으르고 부지런한",
           "independenceUnknown": false,
           "postDate": "20221108",
-          "rawRank": 12,
-          "query": "Nova Maldives 몰디브 리조트 후기",
+          "rawRank": 90,
+          "query": "노바 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -14199,20 +15435,7 @@
           "bloggerName": "그냥, 파이퍼",
           "independenceUnknown": false,
           "postDate": "20260320",
-          "rawRank": 2,
-          "query": "자와카라 아일랜드 몰디브 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
-        {
-          "url": "https://blog.naver.com/whyso0502/224161813051",
-          "title": "몰디브 자와카라 최저가 내돈내산 후기 : 몰디브 7월 우기 날씨...",
-          "bloggerName": "Live the life you love",
-          "independenceUnknown": false,
-          "postDate": "20260127",
-          "rawRank": 23,
+          "rawRank": 3,
           "query": "자와카라 아일랜드 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14226,6 +15449,19 @@
           "independenceUnknown": false,
           "postDate": "20260112",
           "rawRank": 24,
+          "query": "자와카라 아일랜드 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/whyso0502/224161813051",
+          "title": "몰디브 자와카라 최저가 내돈내산 후기 : 몰디브 7월 우기 날씨...",
+          "bloggerName": "Live the life you love",
+          "independenceUnknown": false,
+          "postDate": "20260127",
+          "rawRank": 25,
           "query": "자와카라 아일랜드 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14260,7 +15496,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "기대 이상으로 만족스러운 신혼여행이었다는 후기가 있어요.",
+          "text": "기대 이상으로 만족스러운 신혼여행이에요.",
           "sourceUrls": [
             "https://blog.naver.com/kyladiary/224197614903"
           ]
@@ -14378,8 +15614,8 @@
           "bloggerName": "NICK's Blog since 2002",
           "independenceUnknown": false,
           "postDate": "20131107",
-          "rawRank": 6,
-          "query": "Centara Grand Island Resort & Spa Maldives 몰디브 리조트 후기",
+          "rawRank": 55,
+          "query": "센타라 그랜드 아일랜드 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -14401,7 +15637,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "아이와 함께하는 가족여행에 잘 맞는다는 후기가 여러 건 있어요.",
+          "text": "아이와 함께하는 가족여행에 잘 맞아요.",
           "sourceUrls": [
             "https://blog.naver.com/yun12kaa/224134114197",
             "https://blog.naver.com/rpm_7800/224168641179"
@@ -14539,6 +15775,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/ysjyshhs/223903981214",
+          "title": "몰디브 아난타라 디구 에서의 하루 (&제트스키)+ 굴리푸쉬...",
+          "bloggerName": "지 금 이 순 간",
+          "independenceUnknown": false,
+          "postDate": "20250618",
+          "rawRank": 12,
+          "query": "아난타라 디구 몰디브 리조트 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/dsk03064/223801134694",
+          "title": "몰디브 가족여행 리조트 아난타라 디구 왜 좋냐구요?",
+          "bloggerName": "솔직한 원블리의 식기장",
+          "independenceUnknown": false,
+          "postDate": "20250318",
+          "rawRank": 16,
+          "query": "아난타라 디구 몰디브 리조트 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/dongjass/224047601406",
+          "title": "[ 몰디브 가족 여행 #2] 조식 석식 뷔페, 아난타라 디구 리조트 ...",
+          "bloggerName": "미쓰에버",
+          "independenceUnknown": false,
+          "postDate": "20251020",
+          "rawRank": 17,
+          "query": "아난타라 디구 몰디브 리조트 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "가족 적합성은 두 독립 방문 후기에서 확인됐으며 가격은 정보형 글이라 제외함."
@@ -14560,7 +15835,7 @@
           "bloggerName": "안녕, 세계여행",
           "independenceUnknown": false,
           "postDate": "20240608",
-          "rawRank": 22,
+          "rawRank": 18,
           "query": "선 아일랜드 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14573,8 +15848,8 @@
           "bloggerName": "싼타킴의 힐링 여행백서",
           "independenceUnknown": false,
           "postDate": "20230111",
-          "rawRank": 1,
-          "query": "Sun Island Resort & Spa 몰디브 리조트 후기",
+          "rawRank": 51,
+          "query": "선 아일랜드 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -14621,6 +15896,19 @@
           "sourceKind": "firsthand-personal"
         },
         {
+          "url": "https://blog.naver.com/onyuhi/221191005286",
+          "title": "몰디브 여행 2편. 몰디브 에서의 첫날",
+          "bloggerName": "온유히샘의 마음을 그리는 교실",
+          "independenceUnknown": false,
+          "postDate": "20180122",
+          "rawRank": 50,
+          "query": "파라다이스 아일랜드 리조트 & 스파 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
           "url": "https://blog.naver.com/dmswlm5/223934940373",
           "title": "아일랜드 리조트 / Villa Nautica Paradise Island Resort ...",
           "bloggerName": "REVIEW / 한의학 BLOG",
@@ -14645,19 +15933,6 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
-        },
-        {
-          "url": "https://blog.naver.com/onyuhi/221191005286",
-          "title": "몰디브 여행 2편. 몰디브 에서의 첫날",
-          "bloggerName": "온유히샘의 마음을 그리는 교실",
-          "independenceUnknown": false,
-          "postDate": "20180122",
-          "rawRank": 10,
-          "query": "Paradise Island Resort & Spa 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "상위 두 글의 후기 문구가 사실상 동일해 독립 출처로 보기 어렵고 추가 반복 근거가 없음."
@@ -14674,7 +15949,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "자쿠지 비치빌라의 가격 대비 만족도가 높다는 후기가 있어요.",
+          "text": "자쿠지 비치빌라의 가격 대비 만족도가 높아요.",
           "sourceUrls": [
             "https://blog.naver.com/jimicoya/221611295396"
           ]
@@ -14701,7 +15976,7 @@
           "bloggerName": "띄엄띄엄 보는 나의 조각조각",
           "independenceUnknown": false,
           "postDate": "20180904",
-          "rawRank": 6,
+          "rawRank": 5,
           "query": "미루 아일랜드 리조트 & 스파 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14899,6 +16174,45 @@
           "commercialDisclosure": false,
           "possibleSalesContent": false,
           "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/jitean1013/223582827923",
+          "title": "마사지, 남편 생일 기념 이벤트 후기 (구 아마리하보다 리조트 )",
+          "bloggerName": "재이의 일상❤",
+          "independenceUnknown": false,
+          "postDate": "20240924",
+          "rawRank": 14,
+          "query": "아마리 하보다 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/cdezl/221023276833",
+          "title": "[ 몰디브 여행] 아마리 하보다 리조트 부대시설 후기",
+          "bloggerName": "공대생 부부의 육아일기",
+          "independenceUnknown": false,
+          "postDate": "20170607",
+          "rawRank": 22,
+          "query": "아마리 하보다 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/jellybboyaa/223332388411",
+          "title": "몰디브 신혼여행 아마리하보다 7박 후기 3탄( 리조트 도착...",
+          "bloggerName": "Right. Now, I remember it",
+          "independenceUnknown": false,
+          "postDate": "20240124",
+          "rawRank": 27,
+          "query": "아마리 하보다 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
         }
       ],
       "curatorNote": "개인 실제 투숙 후기 한 건에서 바다를 바라보는 조식 풍경을 직접 높게 평가함."
@@ -14933,20 +16247,7 @@
           "bloggerName": "찌니꾸 블로그",
           "independenceUnknown": false,
           "postDate": "20240907",
-          "rawRank": 4,
-          "query": "노쿠 몰디브 몰디브 리조트 후기",
-          "selection": "relevant",
-          "commercialDisclosure": false,
-          "possibleSalesContent": false,
-          "sourceKind": "firsthand-personal"
-        },
-        {
-          "url": "https://blog.naver.com/tablestorystudio/221806736624",
-          "title": "신혼여행 몰디브 노쿠 리조트 1일차 : 워터풀빌라 후기",
-          "bloggerName": "일상을 회복하는 식탁",
-          "independenceUnknown": false,
-          "postDate": "20200213",
-          "rawRank": 21,
+          "rawRank": 3,
           "query": "노쿠 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14959,7 +16260,20 @@
           "bloggerName": "추또리그램",
           "independenceUnknown": false,
           "postDate": "20240312",
-          "rawRank": 22,
+          "rawRank": 19,
+          "query": "노쿠 몰디브 몰디브 리조트 후기",
+          "selection": "relevant",
+          "commercialDisclosure": false,
+          "possibleSalesContent": false,
+          "sourceKind": "firsthand-personal"
+        },
+        {
+          "url": "https://blog.naver.com/tablestorystudio/221806736624",
+          "title": "신혼여행 몰디브 노쿠 리조트 1일차 : 워터풀빌라 후기",
+          "bloggerName": "일상을 회복하는 식탁",
+          "independenceUnknown": false,
+          "postDate": "20200213",
+          "rawRank": 24,
           "query": "노쿠 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -14968,12 +16282,12 @@
         },
         {
           "url": "https://blog.naver.com/happy_memories_/223024477591",
-          "title": "몰디브 신혼여행 노쿠 리조트 ( noku maldives ) 타리레스토랑...",
+          "title": "몰디브 신혼여행 노쿠 리조트 (noku maldives) 타리레스토랑...",
           "bloggerName": "탐나는 행복기록",
           "independenceUnknown": false,
           "postDate": "20230222",
-          "rawRank": 8,
-          "query": "Noku Maldives 몰디브 리조트 후기",
+          "rawRank": 52,
+          "query": "노쿠 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
           "possibleSalesContent": false,
@@ -15020,7 +16334,7 @@
       "reviewedAt": "2026-07-14",
       "pros": [
         {
-          "text": "일주일 동안 기대했던 하늘과 바다, 분위기를 모두 즐겼다는 후기가 있어요.",
+          "text": "일주일 동안 기대했던 하늘과 바다, 분위기를 모두 즐길 수 있어요.",
           "sourceUrls": [
             "https://blog.naver.com/baepauline/223950333946"
           ]
@@ -15034,7 +16348,7 @@
           "bloggerName": "On Green",
           "independenceUnknown": false,
           "postDate": "20250728",
-          "rawRank": 14,
+          "rawRank": 17,
           "query": "파루푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -15047,7 +16361,7 @@
           "bloggerName": "밍기적 밍기적",
           "independenceUnknown": false,
           "postDate": "20250615",
-          "rawRank": 2,
+          "rawRank": 3,
           "query": "파루푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -15060,7 +16374,7 @@
           "bloggerName": "luv_u",
           "independenceUnknown": false,
           "postDate": "20260515",
-          "rawRank": 4,
+          "rawRank": 5,
           "query": "파루푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -15073,7 +16387,7 @@
           "bloggerName": "쏘짱먹짱놀짱",
           "independenceUnknown": false,
           "postDate": "20250503",
-          "rawRank": 5,
+          "rawRank": 7,
           "query": "파루푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -15086,7 +16400,7 @@
           "bloggerName": "꿀꽈배기 하우스",
           "independenceUnknown": false,
           "postDate": "20260103",
-          "rawRank": 10,
+          "rawRank": 11,
           "query": "파루푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -15099,7 +16413,7 @@
           "bloggerName": "얄짤없는 라이제리뷰",
           "independenceUnknown": false,
           "postDate": "20250907",
-          "rawRank": 11,
+          "rawRank": 12,
           "query": "파루푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -15112,7 +16426,7 @@
           "bloggerName": "Skylog",
           "independenceUnknown": false,
           "postDate": "20260321",
-          "rawRank": 12,
+          "rawRank": 15,
           "query": "파루푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -15125,7 +16439,7 @@
           "bloggerName": "다헤의 먹고 놀고 즐기는 일상",
           "independenceUnknown": false,
           "postDate": "20240806",
-          "rawRank": 16,
+          "rawRank": 18,
           "query": "파루푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,
@@ -15138,7 +16452,7 @@
           "bloggerName": "푸딩맘의 소소하개",
           "independenceUnknown": false,
           "postDate": "20240930",
-          "rawRank": 29,
+          "rawRank": 33,
           "query": "파루푸시 몰디브 몰디브 리조트 후기",
           "selection": "relevant",
           "commercialDisclosure": false,

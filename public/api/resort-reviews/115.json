@@ -9,7 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/iheeya/223680475312",
         "blogName": "Hello 초희~♪",
         "publishedAt": "2024-12-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 하드락 리조트 , 사이라군 리조트 디너 추천...",
+        "url": "https://blog.naver.com/tobiolet/224254722779",
+        "blogName": "tobiolet 일상 기록",
+        "publishedAt": "2026-04-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 하드락 사이라군 리조트 세션스 디너 재패니즈 나이트...",
+        "url": "https://blog.naver.com/shee__kim/224300628812",
+        "blogName": "새로 뜬 맛 탐색러의 여정",
+        "publishedAt": "2026-05-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "251129~1204 몰디브 힐튼 사이라군 SAii Lagoon 리조트 에...",
+        "url": "https://blog.naver.com/doksoori01/224114134057",
+        "blogName": "doksoori01님의 블로그",
+        "publishedAt": "2025-12-18",
         "independenceUnknown": false
       }
     ]

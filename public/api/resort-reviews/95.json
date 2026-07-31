@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 전반적인 만족도에 관한 경험을 주로 확인할 수 있어요.",
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
@@ -78,6 +78,27 @@
         "url": "https://blog.naver.com/ttentez/224220190723",
         "blogName": "Whenever, Wherever",
         "publishedAt": "2026-03-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 오블루 셀렉트 로비길리 기념품샵 비치빌라 체크아웃 후...",
+        "url": "https://blog.naver.com/under_thesea1225/223811646906",
+        "blogName": "뽀짝뽀짝로그",
+        "publishedAt": "2025-03-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "우기 몰디브 오블루 셀렉트 로비길리 숙소 예약 꿀팁 밀 플랜...",
+        "url": "https://blog.naver.com/naemonamoo-/224106641256",
+        "blogName": "날아라 네모나무",
+        "publishedAt": "2025-12-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "#신혼여행 몰디브 1일차 오블루 로비길리 일랑일랑 레스토랑 첫...",
+        "url": "https://blog.naver.com/jooqwety/223817303315",
+        "blogName": "구레뜨의 일상 기록:)",
+        "publishedAt": "2025-04-01",
         "independenceUnknown": false
       }
     ]

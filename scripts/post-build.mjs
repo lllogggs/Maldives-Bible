@@ -90,8 +90,11 @@ const coreSeoPages = [
     modifiedAt: '2026-07-29',
   },
 ];
-const coreSeoSlugs = new Set(coreSeoPages.map((page) => page.slug));
-const primaryNavItems = coreSeoPages.map(({ path, navLabel }) => ({ path, label: navLabel }));
+const coreSeoSlugs = new Set(coreSeoPages.map(page => page.slug));
+const primaryNavItems = coreSeoPages.map(({ path, navLabel }) => ({
+  path,
+  label: navLabel,
+}));
 const expectedResortCount = Number(process.env.EXPECTED_RESORT_COUNT ?? 171);
 if (!Number.isInteger(expectedResortCount) || expectedResortCount < 1) {
   throw new Error('EXPECTED_RESORT_COUNT는 1 이상의 정수여야 합니다.');
@@ -100,8 +103,8 @@ const expectedEditorReviewCount = Number(process.env.EXPECTED_EDITOR_REVIEW_COUN
 if (!Number.isInteger(expectedEditorReviewCount) || expectedEditorReviewCount < 0) {
   throw new Error('EXPECTED_EDITOR_REVIEW_COUNT는 0 이상의 정수여야 합니다.');
 }
-const toUrlPath = (slug) => `/${encodeURI(slug)}/`;
-const toAbsoluteUrl = (slug) => `${siteUrl}${toUrlPath(slug)}`;
+const toUrlPath = slug => `/${encodeURI(slug)}/`;
+const toAbsoluteUrl = slug => `${siteUrl}${toUrlPath(slug)}`;
 
 const buildNotFoundPage = () => `<!doctype html>
 <html lang="ko">
@@ -162,11 +165,15 @@ const buildMaldivesGlossaryContent = ({ maxWidth = '1120px' } = {}) => `
       <a href="${toAbsoluteUrl('maldives-glossary')}" style="color:#0f766e;font-size:13px;font-weight:800;text-underline-offset:3px;">43개 용어 한 번에 보기 →</a>
     </div>
     <div class="maldives-glossary__links" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:14px;">
-      ${maldivesGlossaryCategories.map(category => `
+      ${maldivesGlossaryCategories
+        .map(
+          category => `
         <a href="${toAbsoluteUrl('maldives-glossary')}#${category.id}" style="display:block;border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;color:#0f172a;text-decoration:none;">
           <strong style="font-size:13px;">${category.title}</strong>
           <span style="display:block;margin-top:4px;color:#64748b;font-size:11px;line-height:1.5;">${category.preview}</span>
-        </a>`).join('')}
+        </a>`
+        )
+        .join('')}
     </div>
   </section>`;
 
@@ -174,7 +181,7 @@ const buildEditorialFooter = ({ maxWidth = '1120px', modifiedAt = siteDates.modi
   <footer style="max-width:${maxWidth};margin:28px auto 0;border-top:1px solid #dbe7e4;padding:18px 0 8px;color:#64748b;font-size:12px;line-height:1.7;">
     <p style="margin:0 0 8px;">몰디브 바이블 편집 · 최종 업데이트 ${modifiedAt.replaceAll('-', '.')}</p>
     <nav aria-label="몰디브 바이블 주요 서비스" style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:8px;">
-      ${primaryNavItems.map((item) => `<a href="${siteUrl}${item.path}" style="color:#0f766e;font-weight:800;text-decoration:none;">${item.label}</a>`).join('')}
+      ${primaryNavItems.map(item => `<a href="${siteUrl}${item.path}" style="color:#0f766e;font-weight:800;text-decoration:none;">${item.label}</a>`).join('')}
     </nav>
     <nav aria-label="사이트 정보" style="display:flex;flex-wrap:wrap;gap:8px 16px;">
       <a href="${toAbsoluteUrl('maldives-resorts')}" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 목록</a>
@@ -222,9 +229,8 @@ const nichePages = [
       '몰디브 신혼여행에서 워터빌라와 개인풀을 함께 보는 커플을 위해 예산, 이동시간, 수중환경 기준으로 후보 리조트를 비교합니다.',
     eyebrow: '워터빌라 개인풀',
     heading: '몰디브 신혼여행 워터빌라 개인풀 후보',
-    intro:
-      '사진 감성, 프라이버시, 객실 만족도를 우선하는 커플은 워터빌라와 개인풀 여부를 먼저 확인하는 편이 빠릅니다.',
-    filter: (resort) => resort.honeymoonPerks && resort.hasWaterVilla && resort.hasPrivatePool,
+    intro: '사진 감성, 프라이버시, 객실 만족도를 우선하는 커플은 워터빌라와 개인풀 여부를 먼저 확인하는 편이 빠릅니다.',
+    filter: resort => resort.honeymoonPerks && resort.hasWaterVilla && resort.hasPrivatePool,
     sort: (a, b) => b.rating - a.rating || a.price - b.price,
     keywords: ['몰디브 신혼여행 워터빌라', '몰디브 개인풀 리조트', '몰디브 허니문 리조트 비교'],
     faq: [
@@ -249,19 +255,17 @@ const nichePages = [
     heading: '몰디브 신혼여행 처음 준비하는 커플을 위한 기준',
     intro:
       '몰디브는 리조트 수가 많아 처음에는 이름보다 기준을 먼저 잡는 편이 좋습니다. 예산, 일정, 이동수단, 객실타입만 정해도 후보가 크게 줄어듭니다.',
-    filter: (resort) => resort.honeymoonPerks,
+    filter: resort => resort.honeymoonPerks,
     sort: (a, b) => a.price - b.price || a.travelTime - b.travelTime,
     keywords: ['몰디브 신혼여행 처음 준비', '몰디브 신혼여행 리조트 고르기', '몰디브 리조트 선택 기준'],
     sections: [
       {
         title: '처음에는 리조트명보다 기준부터 정하세요',
-        body:
-          '처음 검색할 때는 유명 리조트 이름을 외우기보다 예산, 4박인지 5박인지, 보트 이동이 편한지, 워터빌라가 꼭 필요한지부터 정하는 편이 빠릅니다.',
+        body: '처음 검색할 때는 유명 리조트 이름을 외우기보다 예산, 4박인지 5박인지, 보트 이동이 편한지, 워터빌라가 꼭 필요한지부터 정하는 편이 빠릅니다.',
       },
       {
         title: '초기 탐색에서 먼저 볼 항목',
-        body:
-          '4박 2인 예산, 말레공항 이후 이동수단, 워터빌라와 비치빌라 차이, 식사플랜 포함 범위, 스노클링 취향을 먼저 확인하면 상담이나 견적 비교가 쉬워집니다.',
+        body: '4박 2인 예산, 말레공항 이후 이동수단, 워터빌라와 비치빌라 차이, 식사플랜 포함 범위, 스노클링 취향을 먼저 확인하면 상담이나 견적 비교가 쉬워집니다.',
       },
     ],
     faq: [
@@ -286,19 +290,17 @@ const nichePages = [
     heading: '몰디브 리조트 선택 기준 먼저 잡기',
     intro:
       '몰디브 리조트는 좋아 보이는 곳이 많아 기준 없이 보면 더 헷갈립니다. 예산, 이동, 객실, 바다 취향을 나눠서 보면 선택이 쉬워집니다.',
-    filter: (resort) => resort.honeymoonPerks,
+    filter: resort => resort.honeymoonPerks,
     sort: (a, b) => b.rating - a.rating || a.price - b.price,
     keywords: ['몰디브 리조트 선택 기준', '몰디브 리조트 고르는 법', '몰디브 신혼여행 리조트 기준'],
     sections: [
       {
         title: '예산과 이동수단이 먼저입니다',
-        body:
-          '리조트 등급보다 먼저 총예산과 이동 피로도를 봐야 합니다. 보트, 수상비행기, 국내선 이동에 따라 첫날 컨디션과 이동비가 달라집니다.',
+        body: '리조트 등급보다 먼저 총예산과 이동 피로도를 봐야 합니다. 보트, 수상비행기, 국내선 이동에 따라 첫날 컨디션과 이동비가 달라집니다.',
       },
       {
         title: '라군과 수중환경은 다른 기준입니다',
-        body:
-          '사진처럼 밝은 라군이 예쁜 리조트와 스노클링이 좋은 리조트는 다를 수 있습니다. 물놀이를 중요하게 보면 수중환경 점수를 따로 봐야 합니다.',
+        body: '사진처럼 밝은 라군이 예쁜 리조트와 스노클링이 좋은 리조트는 다를 수 있습니다. 물놀이를 중요하게 보면 수중환경 점수를 따로 봐야 합니다.',
       },
     ],
     faq: [
@@ -323,19 +325,17 @@ const nichePages = [
     heading: '몰디브 신혼여행 비용, 처음에는 이렇게 나눠보세요',
     intro:
       '몰디브 예산은 숙박비만 보면 부족합니다. 항공권, 말레공항 이후 이동비, 식사플랜, 객실타입을 나눠야 실제 총액에 가까워집니다.',
-    filter: (resort) => resort.honeymoonPerks,
+    filter: resort => resort.honeymoonPerks,
     sort: (a, b) => a.price - b.price || a.travelTime - b.travelTime,
     keywords: ['몰디브 신혼여행 비용', '몰디브 신혼여행 예산', '몰디브 리조트 4박 비용'],
     sections: [
       {
         title: '숙박비와 이동비를 분리해서 보세요',
-        body:
-          '리조트 가격이 비슷해 보여도 보트, 수상비행기, 국내선 이동비가 다르면 총액이 달라집니다. 4박 2인 숙박비와 2인 왕복 이동비를 함께 봐야 합니다.',
+        body: '리조트 가격이 비슷해 보여도 보트, 수상비행기, 국내선 이동비가 다르면 총액이 달라집니다. 4박 2인 숙박비와 2인 왕복 이동비를 함께 봐야 합니다.',
       },
       {
         title: '객실타입과 식사플랜이 예산을 바꿉니다',
-        body:
-          '워터빌라, 개인풀, 올인클루시브 여부는 만족도와 예산을 동시에 바꿉니다. 처음에는 1박 환산가로 비교하면 후보를 줄이기 쉽습니다.',
+        body: '워터빌라, 개인풀, 올인클루시브 여부는 만족도와 예산을 동시에 바꿉니다. 처음에는 1박 환산가로 비교하면 후보를 줄이기 쉽습니다.',
       },
     ],
     faq: [
@@ -360,19 +360,17 @@ const nichePages = [
     heading: '몰디브 신혼여행 4박 6일과 5박 7일 차이',
     intro:
       '몰디브는 비행과 리조트 이동 시간이 있어 일정이 짧을수록 이동 피로도가 중요해집니다. 처음에는 숙박일수와 도착 시간을 함께 봐야 합니다.',
-    filter: (resort) => resort.honeymoonPerks && resort.travelTime <= 60,
+    filter: resort => resort.honeymoonPerks && resort.travelTime <= 60,
     sort: (a, b) => a.travelTime - b.travelTime || a.price - b.price,
     keywords: ['몰디브 신혼여행 4박 6일', '몰디브 신혼여행 5박 7일', '몰디브 신혼여행 일정'],
     sections: [
       {
         title: '4박이면 이동 피로도가 더 중요합니다',
-        body:
-          '숙박일수가 짧으면 리조트까지 걸리는 시간이 체감 만족도에 더 크게 작용합니다. 말레공항에서 가까운 보트 이동 후보를 먼저 보는 것도 방법입니다.',
+        body: '숙박일수가 짧으면 리조트까지 걸리는 시간이 체감 만족도에 더 크게 작용합니다. 말레공항에서 가까운 보트 이동 후보를 먼저 보는 것도 방법입니다.',
       },
       {
         title: '5박이면 객실 조합을 고민할 수 있습니다',
-        body:
-          '5박 이상이면 비치빌라와 워터빌라를 나눠 묵는 조합도 고민할 수 있습니다. 예산과 사진 로망을 함께 맞추기 좋습니다.',
+        body: '5박 이상이면 비치빌라와 워터빌라를 나눠 묵는 조합도 고민할 수 있습니다. 예산과 사진 로망을 함께 맞추기 좋습니다.',
       },
     ],
     faq: [
@@ -397,19 +395,17 @@ const nichePages = [
     heading: '몰디브 리조트 이동수단 차이 알아보기',
     intro:
       '몰디브는 공항에 도착한 뒤 리조트까지 다시 이동해야 합니다. 보트, 수상비행기, 국내선은 비용과 피로도, 첫날 일정에 영향을 줍니다.',
-    filter: (resort) => resort.honeymoonPerks,
+    filter: resort => resort.honeymoonPerks,
     sort: (a, b) => a.travelTime - b.travelTime || a.price - b.price,
     keywords: ['몰디브 리조트 이동수단', '몰디브 보트 수상비행기 국내선 차이', '몰디브 말레공항 리조트 이동'],
     sections: [
       {
         title: '보트 이동은 첫날 피로가 적은 편입니다',
-        body:
-          '말레공항 근처 리조트는 보트로 이동하는 경우가 많아 짧은 일정이나 밤도착 일정에서 후보가 되기 쉽습니다.',
+        body: '말레공항 근처 리조트는 보트로 이동하는 경우가 많아 짧은 일정이나 밤도착 일정에서 후보가 되기 쉽습니다.',
       },
       {
         title: '수상비행기와 국내선은 풍경과 거리의 선택입니다',
-        body:
-          '수상비행기는 몰디브다운 풍경을 기대할 수 있지만 운항 시간과 대기 시간이 변수입니다. 국내선 이동 리조트는 더 먼 아톨 후보를 볼 때 등장합니다.',
+        body: '수상비행기는 몰디브다운 풍경을 기대할 수 있지만 운항 시간과 대기 시간이 변수입니다. 국내선 이동 리조트는 더 먼 아톨 후보를 볼 때 등장합니다.',
       },
     ],
     faq: [
@@ -434,19 +430,17 @@ const nichePages = [
     heading: '몰디브 워터빌라와 비치빌라 차이',
     intro:
       '처음 몰디브를 알아볼 때 가장 많이 헷갈리는 것이 워터빌라와 비치빌라입니다. 둘은 사진 감성, 동선, 예산, 물놀이 방식이 다릅니다.',
-    filter: (resort) => resort.honeymoonPerks && (resort.hasWaterVilla || resort.hasPrivatePool),
+    filter: resort => resort.honeymoonPerks && (resort.hasWaterVilla || resort.hasPrivatePool),
     sort: (a, b) => b.rating - a.rating || a.price - b.price,
     keywords: ['몰디브 워터빌라 비치빌라 차이', '몰디브 신혼여행 객실 선택', '몰디브 워터빌라 꼭 가야하나'],
     sections: [
       {
         title: '워터빌라는 로망과 사진 감성이 강합니다',
-        body:
-          '바다 위 객실이라는 상징성이 커서 신혼여행 사진과 특별한 경험을 중요하게 보면 매력적입니다. 대신 예산이 올라가는 경우가 많습니다.',
+        body: '바다 위 객실이라는 상징성이 커서 신혼여행 사진과 특별한 경험을 중요하게 보면 매력적입니다. 대신 예산이 올라가는 경우가 많습니다.',
       },
       {
         title: '비치빌라는 동선과 안정감이 좋습니다',
-        body:
-          '해변과 정원 접근이 편하고 생활 동선이 자연스러운 편입니다. 예산을 조절하면서 리조트 등급을 높이고 싶을 때 후보가 될 수 있습니다.',
+        body: '해변과 정원 접근이 편하고 생활 동선이 자연스러운 편입니다. 예산을 조절하면서 리조트 등급을 높이고 싶을 때 후보가 될 수 있습니다.',
       },
     ],
     faq: [
@@ -457,8 +451,7 @@ const nichePages = [
       },
       {
         question: '워터빌라와 비치빌라를 섞어서 묵어도 되나요?',
-        answer:
-          '가능합니다. 5박 이상 일정에서는 비치빌라와 워터빌라를 조합해 예산과 경험을 맞추는 커플도 많습니다.',
+        answer: '가능합니다. 5박 이상 일정에서는 비치빌라와 워터빌라를 조합해 예산과 경험을 맞추는 커플도 많습니다.',
       },
     ],
   },
@@ -471,19 +464,17 @@ const nichePages = [
     heading: '몰디브 식사플랜 차이 먼저 이해하기',
     intro:
       '몰디브는 리조트 안에서 식사를 해결하는 시간이 많아 식사플랜이 예산과 만족도에 영향을 줍니다. 포함 범위는 리조트마다 다를 수 있습니다.',
-    filter: (resort) => resort.honeymoonPerks && resort.restaurants >= 3,
+    filter: resort => resort.honeymoonPerks && resort.restaurants >= 3,
     sort: (a, b) => b.restaurants - a.restaurants || a.price - b.price,
     keywords: ['몰디브 하프보드 풀보드 올인클루시브 차이', '몰디브 식사플랜', '몰디브 올인클루시브 뜻'],
     sections: [
       {
         title: '하프보드와 풀보드는 식사 횟수 중심입니다',
-        body:
-          '하프보드는 보통 조식과 석식, 풀보드는 조식과 중식과 석식처럼 이해하면 됩니다. 다만 음료 포함 여부는 반드시 확인해야 합니다.',
+        body: '하프보드는 보통 조식과 석식, 풀보드는 조식과 중식과 석식처럼 이해하면 됩니다. 다만 음료 포함 여부는 반드시 확인해야 합니다.',
       },
       {
         title: '올인클루시브는 포함 범위 확인이 핵심입니다',
-        body:
-          '올인클루시브라도 주류, 미니바, 특정 레스토랑, 액티비티 포함 여부가 리조트마다 다를 수 있습니다. 이름보다 포함 조건을 확인해야 합니다.',
+        body: '올인클루시브라도 주류, 미니바, 특정 레스토랑, 액티비티 포함 여부가 리조트마다 다를 수 있습니다. 이름보다 포함 조건을 확인해야 합니다.',
       },
     ],
     faq: [
@@ -508,7 +499,7 @@ const nichePages = [
     heading: '몰디브 보트 이동 리조트 후보',
     intro:
       '신혼여행 첫날 컨디션이 걱정된다면 보트 이동 리조트부터 보는 것이 현실적입니다. 이동시간과 이동비, 허니문 혜택을 함께 봅니다.',
-    filter: (resort) => resort.transportation === '보트' && resort.honeymoonPerks,
+    filter: resort => resort.transportation === '보트' && resort.honeymoonPerks,
     sort: (a, b) => a.travelTime - b.travelTime || a.price - b.price,
     keywords: ['몰디브 보트 이동 리조트', '몰디브 스피드보트 리조트', '몰디브 신혼여행 이동수단'],
     faq: [
@@ -533,7 +524,7 @@ const nichePages = [
     heading: '몰디브 수상비행기 리조트 비교',
     intro:
       '수상비행기 이동은 몰디브다운 풍경을 기대하는 커플에게 매력적입니다. 대신 운항 시간과 대기 피로를 감안해 후보를 비교해야 합니다.',
-    filter: (resort) => resort.transportation === '수상비행기' && resort.honeymoonPerks,
+    filter: resort => resort.transportation === '수상비행기' && resort.honeymoonPerks,
     sort: (a, b) => b.snorkelingQuality - a.snorkelingQuality || a.travelTime - b.travelTime,
     keywords: ['몰디브 수상비행기 리조트', '몰디브 라군 리조트', '몰디브 수중환경 좋은 리조트'],
     faq: [
@@ -556,9 +547,8 @@ const nichePages = [
       '몰디브에서 스노클링과 하우스리프를 중요하게 보는 커플을 위해 수중환경 점수, 이동수단, 예산 기준으로 리조트를 비교합니다.',
     eyebrow: '스노클링 좋은 리조트',
     heading: '몰디브 스노클링 좋은 리조트 후보',
-    intro:
-      '라군 색감보다 물속 경험이 중요한 커플이라면 수중환경 점수와 이동수단을 먼저 보는 편이 좋습니다.',
-    filter: (resort) => resort.snorkelingQuality >= 4.7 && resort.honeymoonPerks,
+    intro: '라군 색감보다 물속 경험이 중요한 커플이라면 수중환경 점수와 이동수단을 먼저 보는 편이 좋습니다.',
+    filter: resort => resort.snorkelingQuality >= 4.7 && resort.honeymoonPerks,
     sort: (a, b) => b.snorkelingQuality - a.snorkelingQuality || b.rating - a.rating,
     keywords: ['몰디브 스노클링 리조트', '몰디브 하우스리프 리조트', '몰디브 수중환경 리조트'],
     faq: [
@@ -569,8 +559,7 @@ const nichePages = [
       },
       {
         question: '허니문에서도 스노클링 기준이 중요한가요?',
-        answer:
-          '물놀이 시간이 길거나 액티비티를 중요하게 보는 커플이라면 객실 감성만큼 중요한 기준입니다.',
+        answer: '물놀이 시간이 길거나 액티비티를 중요하게 보는 커플이라면 객실 감성만큼 중요한 기준입니다.',
       },
     ],
   },
@@ -581,9 +570,8 @@ const nichePages = [
       '몰디브 신혼여행 예산을 잡기 쉽게 4박 2인 기준 가격, 레스토랑 수, 허니문 혜택을 중심으로 올인클루시브 후보를 비교합니다.',
     eyebrow: '올인클루시브 신혼여행',
     heading: '몰디브 올인클루시브 신혼여행 후보',
-    intro:
-      '견적이 불안한 커플은 숙박 총액만 보지 말고 1박 환산가, 다이닝 선택지, 이동비를 함께 비교해야 합니다.',
-    filter: (resort) => resort.honeymoonPerks && resort.restaurants >= 4,
+    intro: '견적이 불안한 커플은 숙박 총액만 보지 말고 1박 환산가, 다이닝 선택지, 이동비를 함께 비교해야 합니다.',
+    filter: resort => resort.honeymoonPerks && resort.restaurants >= 4,
     sort: (a, b) => a.price - b.price || b.restaurants - a.restaurants,
     keywords: ['몰디브 올인클루시브 신혼여행', '몰디브 허니문 예산', '몰디브 리조트 4박 가격'],
     faq: [
@@ -594,14 +582,13 @@ const nichePages = [
       },
       {
         question: '올인클루시브 리조트는 가격만 보면 되나요?',
-        answer:
-          '가격 외에도 레스토랑 수, 바 수, 이동비, 허니문 혜택, 객실 타입을 같이 봐야 실제 만족도가 올라갑니다.',
+        answer: '가격 외에도 레스토랑 수, 바 수, 이동비, 허니문 혜택, 객실 타입을 같이 봐야 실제 만족도가 올라갑니다.',
       },
     ],
   },
 ];
 
-const slugify = (value) =>
+const slugify = value =>
   value
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -616,18 +603,24 @@ const escapeHtml = (value = '') =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
-const serializeJsonLd = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
+const serializeJsonLd = value => JSON.stringify(value).replace(/</g, '\\u003c');
 
-const buildSchemaGraph = (nodes) => serializeJsonLd({
-  '@context': 'https://schema.org',
-  '@graph': nodes.filter(Boolean),
-});
+const buildSchemaGraph = nodes =>
+  serializeJsonLd({
+    '@context': 'https://schema.org',
+    '@graph': nodes.filter(Boolean),
+  });
 
 const buildBreadcrumbNode = ({ url, name, parents = [] }) => ({
   '@type': 'BreadcrumbList',
   '@id': `${url}#breadcrumb`,
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: '몰디브 바이블', item: `${siteUrl}/` },
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: '몰디브 바이블',
+      item: `${siteUrl}/`,
+    },
     ...parents.map((parent, index) => ({
       '@type': 'ListItem',
       position: index + 2,
@@ -682,14 +675,14 @@ const buildWebPageNode = ({
 const buildFaqNode = (url, items) => ({
   '@type': 'FAQPage',
   '@id': `${url}#faq`,
-  mainEntity: items.map((item) => ({
+  mainEntity: items.map(item => ({
     '@type': 'Question',
     name: item.question,
     acceptedAnswer: { '@type': 'Answer', text: item.answer },
   })),
 });
 
-const safeHttpUrl = (value) => {
+const safeHttpUrl = value => {
   try {
     const url = new URL(value);
     return url.protocol === 'http:' || url.protocol === 'https:' ? url.toString() : null;
@@ -698,8 +691,8 @@ const safeHttpUrl = (value) => {
   }
 };
 
-const toReviewPointText = (point) => {
-  const value = typeof point === 'string' ? point : point?.text ?? point?.label ?? '';
+const toReviewPointText = point => {
+  const value = typeof point === 'string' ? point : (point?.text ?? point?.label ?? '');
   const normalized = String(value).replace(/\s+/g, ' ').trim();
   if (!normalized) {
     return null;
@@ -707,54 +700,69 @@ const toReviewPointText = (point) => {
   return normalized.length > 140 ? `${normalized.slice(0, 139).trimEnd()}…` : normalized;
 };
 
-const normalizeReviewSummary = (reviewSummary) => {
+const normalizeReviewSummary = reviewSummary => {
   if (!reviewSummary || typeof reviewSummary !== 'object' || Array.isArray(reviewSummary)) {
     return null;
   }
 
-  const normalizePoints = (points) =>
-    Array.isArray(points) ? points.map(toReviewPointText).filter(Boolean) : [];
+  const normalizePoints = points => (Array.isArray(points) ? points.map(toReviewPointText).filter(Boolean) : []);
   const pros = normalizePoints(reviewSummary.pros);
   const cons = normalizePoints(reviewSummary.cons);
-  const overview = String(reviewSummary.overview ?? '').replace(/\s+/g, ' ').trim().slice(0, 220);
-  const evidenceStatus = reviewSummary.evidenceStatus === 'insufficient'
-    ? 'insufficient'
-    : reviewSummary.evidenceStatus === 'limited'
-      ? 'limited'
-    : reviewSummary.evidenceStatus === 'sufficient' || pros.length > 0 || cons.length > 0
-      ? 'sufficient'
-      : null;
-  if (!evidenceStatus || (evidenceStatus !== 'insufficient' && pros.length === 0 && cons.length === 0)) {
+  const neutral = normalizePoints(reviewSummary.neutral);
+  const numericSourceCount = Number(reviewSummary.sourceCount ?? reviewSummary.sampleSize);
+  const sourceCount =
+    Number.isInteger(numericSourceCount) && numericSourceCount >= 0 ? Math.min(numericSourceCount, 9999) : 0;
+  const evidenceStatus =
+    reviewSummary.evidenceStatus === 'insufficient'
+      ? 'insufficient'
+      : reviewSummary.evidenceStatus === 'limited'
+        ? 'limited'
+        : reviewSummary.evidenceStatus === 'sufficient' || pros.length > 0 || cons.length > 0 || neutral.length > 0
+          ? 'sufficient'
+          : sourceCount > 0
+            ? 'insufficient'
+            : null;
+  if (!evidenceStatus || (pros.length + cons.length + neutral.length === 0 && sourceCount === 0)) {
     return null;
   }
-
-  const numericSourceCount = Number(reviewSummary.sourceCount ?? reviewSummary.sampleSize);
-  const sourceCount = Number.isInteger(numericSourceCount) && numericSourceCount >= 0
-    ? Math.min(numericSourceCount, 9999)
-    : 0;
   const reviewDateValue = reviewSummary.reviewedAt ?? reviewSummary.searchedAt;
-  const reviewedAt = typeof reviewDateValue === 'string'
-    ? reviewDateValue.match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? null
-    : null;
-  const basis = typeof reviewSummary.basis === 'string'
-    ? reviewSummary.basis.trim().slice(0, 80)
-    : /naver|네이버/i.test(reviewSummary.source || '')
-      ? 'naver-blog-search-snippets'
-    : '';
-  const sources = (Array.isArray(reviewSummary.sources) ? reviewSummary.sources : [])
-    .flatMap((source) => {
-      const url = safeHttpUrl(source?.url);
-      const title = String(source?.title ?? '').replace(/\s+/g, ' ').trim();
-      if (!url || !title) return [];
-      return [{
+  const reviewedAt =
+    typeof reviewDateValue === 'string' ? (reviewDateValue.match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? null) : null;
+  const basis =
+    typeof reviewSummary.basis === 'string'
+      ? reviewSummary.basis.trim().slice(0, 80)
+      : /naver|네이버/i.test(reviewSummary.source || '')
+        ? 'naver-blog-search-snippets'
+        : '';
+  const sources = (Array.isArray(reviewSummary.sources) ? reviewSummary.sources : []).flatMap(source => {
+    const url = safeHttpUrl(source?.url);
+    const title = String(source?.title ?? '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (!url || !title) return [];
+    return [
+      {
         url,
         title: title.slice(0, 180),
-        blogName: String(source?.blogName ?? '').replace(/\s+/g, ' ').trim().slice(0, 80),
+        blogName: String(source?.blogName ?? '')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .slice(0, 80),
         publishedAt: String(source?.publishedAt ?? '').match(/^\d{4}-\d{2}-\d{2}/)?.[0] ?? '',
-      }];
-    });
+      },
+    ];
+  });
 
-  return { pros, cons, overview, sourceCount, reviewedAt, basis, evidenceStatus, sources };
+  return {
+    pros,
+    cons,
+    neutral,
+    sourceCount,
+    reviewedAt,
+    basis,
+    evidenceStatus,
+    sources,
+  };
 };
 
 const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
@@ -763,91 +771,99 @@ const buildReviewSummaryContent = (reviewSummary, { compact = false } = {}) => {
 
   const pros = summary.pros.slice(0, compact && summary.cons.length > 0 ? 1 : 2);
   const cons = summary.cons.slice(0, compact ? Math.max(0, 2 - pros.length) : 2);
+  const neutral = summary.neutral.slice(0, compact ? 2 : 3);
   const reviewCount = summary.sourceCount;
   const reviewDateLabel = summary.reviewedAt ? `${summary.reviewedAt} 후기 기준` : null;
-  const overview = summary.overview
-    || (reviewCount > 0 ? '실제 후기에서 리조트의 전반적인 투숙 경험을 확인할 수 있습니다.' : '');
-
-  if (summary.evidenceStatus === 'insufficient' && reviewCount === 0) return '';
 
   if (compact) {
-    if (summary.evidenceStatus === 'insufficient') {
-      return `
-        <div style="margin:0 0 14px;border-top:1px solid #e2e8f0;padding-top:12px;">
-          <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;">실제 후기 ${reviewCount}개</p>
-          <p style="margin:0;color:#334155;font-size:14px;line-height:1.55;">${escapeHtml(overview)}</p>
-        </div>`;
+    const compactPoints = [];
+    if (pros[0]) compactPoints.push({ text: pros[0], tone: 'positive' });
+    if (cons[0]) compactPoints.push({ text: cons[0], tone: 'negative' });
+    if (neutral[0] && compactPoints.length < 2) compactPoints.push({ text: neutral[0], tone: 'neutral' });
+    for (const point of [...pros.slice(1), ...cons.slice(1), ...neutral.slice(1)]) {
+      if (compactPoints.length >= 2) break;
+      compactPoints.push({
+        text: point,
+        tone: pros.includes(point) ? 'positive' : cons.includes(point) ? 'negative' : 'neutral',
+      });
     }
-
-    const positiveLabel = summary.evidenceStatus === 'limited' || reviewCount < 2
-      ? '언급된 점'
-      : '좋았다는 점';
+    const compactRows = compactPoints
+      .map(({ text, tone }) => {
+        const emoji = tone === 'positive' ? '😊' : tone === 'negative' ? '😢' : '';
+        const srLabel = tone === 'positive' ? '긍정 의견: ' : tone === 'negative' ? '부정 의견: ' : '';
+        return `<p style="display:flex;gap:7px;margin:0 0 5px;color:#334155;font-size:14px;line-height:1.55;">${emoji ? `<span aria-hidden="true">${emoji}</span><span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">${srLabel}</span>` : ''}<span>${escapeHtml(text)}</span></p>`;
+      })
+      .join('');
 
     return `
       <div style="margin:0 0 14px;border-top:1px solid #e2e8f0;padding-top:12px;">
-        <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;">실제 후기 ${reviewCount}개</p>
-        ${pros.length > 0 ? `<p style="margin:0 0 5px;color:#334155;font-size:14px;line-height:1.55;"><strong style="color:#0f766e;">${positiveLabel}</strong> ${escapeHtml(pros[0])}</p>` : ''}
-        ${cons.length > 0 ? `<p style="margin:0;color:#334155;font-size:14px;line-height:1.55;"><strong style="color:#9a5b31;">알아둘 점</strong> ${escapeHtml(cons[0])}</p>` : ''}
+        <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;">검증 후기 ${reviewCount}개</p>
+        ${compactRows}
       </div>`;
   }
 
-  const pointList = (points) => points
-    .map((point) => `<li style="margin-top:7px;line-height:1.65;">${escapeHtml(point)}</li>`)
-    .join('');
+  const pointList = (points, tone) =>
+    points
+      .map(
+        point =>
+          `<li style="display:flex;gap:8px;margin-top:7px;line-height:1.65;">${tone === 'neutral' ? '' : `<span aria-hidden="true">${tone === 'positive' ? '😊' : '😢'}</span>`}<span>${escapeHtml(point)}</span></li>`
+      )
+      .join('');
   const sourceLinks = summary.sources
-    .map((source) => `<li style="margin-top:7px;"><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">${escapeHtml(source.title)}</a>${source.blogName || source.publishedAt ? `<span style="color:#64748b;"> · ${escapeHtml([source.blogName, source.publishedAt].filter(Boolean).join(' · '))}</span>` : ''}</li>`)
+    .map(
+      source =>
+        `<li style="margin-top:7px;"><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">${escapeHtml(source.title)}</a>${source.blogName || source.publishedAt ? `<span style="color:#64748b;"> · ${escapeHtml([source.blogName, source.publishedAt].filter(Boolean).join(' · '))}</span>` : ''}</li>`
+    )
     .join('');
   const sourceDetails = sourceLinks
-    ? `<details${summary.sources.length >= 10 ? ' open' : ''} style="margin-top:12px;border-top:1px solid #dbe7e4;padding-top:10px;"><summary style="cursor:pointer;color:#0f766e;font-size:13px;font-weight:700;">실제 후기 원문 ${summary.sources.length}개</summary><ul style="margin:5px 0 0;padding-left:19px;color:#334155;font-size:12px;line-height:1.6;">${sourceLinks}</ul></details>`
+    ? `<details style="margin-top:12px;border-top:1px solid #dbe7e4;padding-top:10px;"><summary style="cursor:pointer;color:#0f766e;font-size:13px;font-weight:700;">실제 후기 원문 ${summary.sources.length}개</summary><ul style="margin:5px 0 0;padding-left:19px;color:#334155;font-size:12px;line-height:1.6;">${sourceLinks}</ul></details>`
     : '';
 
-  if (summary.evidenceStatus === 'insufficient') {
-    return `
-      <section class="seo-resort-reviews" aria-labelledby="seo-resort-reviews-title" style="margin:24px 0 22px;border-top:1px solid #dbe7e4;padding-top:22px;">
-        <p style="margin:0 0 7px;color:#64748b;font-size:12px;font-weight:800;letter-spacing:.08em;">여행자 후기</p>
-        <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;">
-          <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">실제 후기 요약</h2>
-          <span style="color:#64748b;font-size:12px;font-weight:700;">실제 후기 ${reviewCount}개</span>
-        </div>
-        <section style="margin-top:14px;border-radius:12px;background:#f8fafc;padding:15px 16px;">
-          <p style="margin:0;color:#475569;font-size:16px;line-height:1.7;">${escapeHtml(overview)}</p>
-        </section>
-        ${sourceDetails}
-        <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${reviewDateLabel ? `${escapeHtml(reviewDateLabel)}. ` : ''}투숙 시기와 객실 유형에 따라 경험은 달라질 수 있습니다.</p>
-      </section>`;
-  }
+  const sectionCount = [pros, cons, neutral].filter(points => points.length > 0).length;
+  const reviewTitle = sectionCount > 0 ? '실제 후기 요약' : '실제 후기';
+  const reviewGrid =
+    sectionCount > 0
+      ? `<div class="seo-resort-review-grid" style="display:grid;grid-template-columns:${sectionCount > 1 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'};gap:12px;">
+        ${pros.length > 0 ? `<section style="border-radius:12px;background:#effaf7;padding:15px 16px;"><h3 style="margin:0;color:#0f766e;font-size:16px;">😊 긍정 의견</h3><ul style="margin:5px 0 0;padding:0;list-style:none;color:#334155;">${pointList(pros, 'positive')}</ul></section>` : ''}
+        ${cons.length > 0 ? `<section style="border-radius:12px;background:#fff8f0;padding:15px 16px;"><h3 style="margin:0;color:#9a5b31;font-size:16px;">😢 부정 의견</h3><ul style="margin:5px 0 0;padding:0;list-style:none;color:#334155;">${pointList(cons, 'negative')}</ul></section>` : ''}
+        ${neutral.length > 0 ? `<section style="border-radius:12px;background:#f8fafc;padding:15px 16px;"><h3 style="margin:0;color:#334155;font-size:16px;">정보</h3><ul style="margin:5px 0 0;padding:0;list-style:none;color:#334155;">${pointList(neutral, 'neutral')}</ul></section>` : ''}
+      </div>`
+      : '';
+  const reviewFooter =
+    sectionCount > 0
+      ? `<p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${reviewDateLabel ? `${escapeHtml(reviewDateLabel)}. ` : ''}투숙 시기·객실 유형에 따라 체감은 달라질 수 있습니다.</p>`
+      : '';
 
   return `
     <section class="seo-resort-reviews" aria-labelledby="seo-resort-reviews-title" style="margin:24px 0 22px;border-top:1px solid #dbe7e4;padding-top:22px;">
       <p style="margin:0 0 7px;color:#0f766e;font-size:12px;font-weight:800;letter-spacing:.08em;">여행자 후기</p>
       <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px;">
-        <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">실제 후기 요약</h2>
-        <span style="color:#64748b;font-size:12px;font-weight:700;">실제 후기 ${reviewCount}개</span>
+        <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">${reviewTitle}</h2>
+        <span style="color:#64748b;font-size:12px;font-weight:700;">검증 후기 ${reviewCount}개</span>
       </div>
-      <div class="seo-resort-review-grid" style="display:grid;grid-template-columns:${pros.length > 0 && cons.length > 0 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'};gap:12px;">
-        ${pros.length > 0 ? `<section style="border-radius:12px;background:#effaf7;padding:15px 16px;"><h3 style="margin:0;color:#0f766e;font-size:16px;">좋았다는 점</h3><ul style="margin:5px 0 0;padding-left:19px;color:#334155;">${pointList(pros)}</ul></section>` : ''}
-        ${cons.length > 0 ? `<section style="border-radius:12px;background:#fff8f0;padding:15px 16px;"><h3 style="margin:0;color:#9a5b31;font-size:16px;">알아둘 점</h3><ul style="margin:5px 0 0;padding-left:19px;color:#334155;">${pointList(cons)}</ul></section>` : ''}
-      </div>
+      ${reviewGrid}
       ${sourceDetails}
-      <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">${reviewDateLabel ? `${escapeHtml(reviewDateLabel)}. ` : ''}투숙 시기와 객실 유형에 따라 경험은 달라질 수 있습니다.</p>
+      ${reviewFooter}
     </section>`;
 };
 
-const normalizeEditorReview = (editorReview) => {
+const normalizeEditorReview = editorReview => {
   if (!editorReview || typeof editorReview !== 'object' || Array.isArray(editorReview)) {
     return null;
   }
 
-  const clean = (value, maxLength) => String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, maxLength);
+  const clean = (value, maxLength) =>
+    String(value ?? '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, maxLength);
   const title = clean(editorReview.title, 100);
   const dek = clean(editorReview.dek, 240);
   const paragraphs = Array.isArray(editorReview.paragraphs)
-    ? editorReview.paragraphs.map((paragraph) => clean(paragraph, 600)).filter(Boolean)
+    ? editorReview.paragraphs.map(paragraph => clean(paragraph, 600)).filter(Boolean)
     : [];
   const verdict = clean(editorReview.verdict, 240);
-  const publishedAt = /^\d{4}-\d{2}-\d{2}$/.test(editorReview.publishedAt ?? '')
-    ? editorReview.publishedAt
-    : null;
+  const publishedAt = /^\d{4}-\d{2}-\d{2}$/.test(editorReview.publishedAt ?? '') ? editorReview.publishedAt : null;
 
   if (!title || !dek || paragraphs.length !== 3 || !verdict || !publishedAt) {
     return null;
@@ -856,7 +872,7 @@ const normalizeEditorReview = (editorReview) => {
   return { title, dek, paragraphs, verdict, publishedAt };
 };
 
-const buildEditorReviewContent = (editorReview) => {
+const buildEditorReviewContent = editorReview => {
   const review = normalizeEditorReview(editorReview);
   if (!review) return '';
 
@@ -879,7 +895,7 @@ const buildEditorReviewContent = (editorReview) => {
     </article>`;
 };
 
-const buildResortDescription = (resort) => {
+const buildResortDescription = resort => {
   const editorReview = normalizeEditorReview(resort.editorReview);
   if (editorReview) return `${resort.name || resort.name_en} 에디터 리뷰. ${editorReview.dek}`;
 
@@ -894,16 +910,18 @@ const buildResortDescription = (resort) => {
   return `${parts.join(' · ')} 리조트 정보를 한국어로 확인하세요.`;
 };
 
-const formatUsd = (value) => `$${Number(value || 0).toLocaleString('en-US')}`;
+const formatUsd = value => `$${Number(value || 0).toLocaleString('en-US')}`;
 
-const resortCard = (resort) => {
+const resortCard = resort => {
   const slug = slugify(resort.name_en || resort.name);
   const badges = [
     resort.hasWaterVilla ? '워터빌라' : resort.hasBeachVilla ? '비치빌라' : null,
     resort.hasPrivatePool ? '개인풀' : null,
     `수중환경 ${resort.snorkelingQuality || '-'} / 5`,
   ].filter(Boolean);
-  const reviewSummaryContent = buildReviewSummaryContent(resort.reviewSummary, { compact: true });
+  const reviewSummaryContent = buildReviewSummaryContent(resort.reviewSummary, {
+    compact: true,
+  });
 
   return `
     <article style="border:1px solid #dbe7e4;border-radius:12px;padding:18px;background:#fff;">
@@ -911,7 +929,10 @@ const resortCard = (resort) => {
       <p style="margin:0 0 12px;color:#475569;">${escapeHtml(resort.location || '')} · ${escapeHtml(resort.transportation || '')} ${resort.travelTime || 0}분</p>
       <p style="margin:0 0 14px;">${badges
         .slice(0, 3)
-        .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#f8fafc;color:#334155;padding:4px 9px;font-size:13px;font-weight:700;border:1px solid #e2e8f0;">${escapeHtml(badge)}</span>`)
+        .map(
+          badge =>
+            `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#f8fafc;color:#334155;padding:4px 9px;font-size:13px;font-weight:700;border:1px solid #e2e8f0;">${escapeHtml(badge)}</span>`
+        )
         .join('')}</p>
       ${reviewSummaryContent}
       <p style="margin:0 0 12px;color:#0f766e;font-size:18px;font-weight:800;">4박 2인 참고가 ${formatUsd(resort.price)}</p>
@@ -920,7 +941,7 @@ const resortCard = (resort) => {
     </article>`;
 };
 
-const buildResortPageContent = (resort) => {
+const buildResortPageContent = resort => {
   const name = resort.name || resort.name_en;
   const editorReview = normalizeEditorReview(resort.editorReview);
   const badges = [
@@ -937,8 +958,9 @@ const buildResortPageContent = (resort) => {
     Number(resort.snorkelingQuality) >= 4.5 ? '스노클링' : null,
     Number(resort.restaurants) >= 5 ? '다양한 식사' : null,
   ].filter(Boolean);
-  const recommendation = editorReview?.verdict
-    || (fallbackRecommendationPoints.length > 0
+  const recommendation =
+    editorReview?.verdict ||
+    (fallbackRecommendationPoints.length > 0
       ? `${fallbackRecommendationPoints.slice(0, 3).join(', ')}를 중요하게 보는 여행자에게 잘 맞습니다.`
       : '객실, 이동과 수중환경을 함께 비교해 선택하려는 여행자에게 잘 맞습니다.');
   const travelCheck = `${resort.transportation || '리조트 이동편'}으로 약 ${resort.travelTime || 0}분 이동합니다.${
@@ -982,7 +1004,10 @@ const buildResortPageContent = (resort) => {
           <p style="margin:0 0 10px;color:#334155;line-height:1.7;">${escapeHtml(resort.location || '')} · ${escapeHtml(resort.transportation || '')} ${resort.travelTime || 0}분 · 이동비 1인 왕복 ${formatUsd(resort.travelCost)}</p>
           <p style="margin:0 0 14px;color:#334155;line-height:1.7;">레스토랑 ${resort.restaurants || 0}곳 · 바 ${resort.bars || 0}곳 · 오픈 ${resort.openYear || '-'}${resort.renovationYear ? ` · 리뉴얼 ${resort.renovationYear}` : ''}</p>
           <p style="margin:0;">${badges
-            .map((badge) => `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`)
+            .map(
+              badge =>
+                `<span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">${escapeHtml(badge)}</span>`
+            )
             .join('')}</p>
         </section>
         <a href="${toAbsoluteUrl('maldives-resort-comparison')}" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
@@ -999,13 +1024,12 @@ const buildNichePageContent = (page, resorts) => {
   const isGuide = Array.isArray(page.sections) && page.sections.length > 0;
   const selected = resorts.filter(page.filter).sort(page.sort).slice(0, 12);
   const sections = Array.isArray(page.sections) ? page.sections : [];
-  const listItems = selected
-    .map((resort, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: resort.name,
-      url: `${siteUrl}/resorts/${slugify(resort.name_en || resort.name)}/`,
-    }));
+  const listItems = selected.map((resort, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: resort.name,
+    url: `${siteUrl}/resorts/${slugify(resort.name_en || resort.name)}/`,
+  }));
   const itemListNode = {
     '@type': 'ItemList',
     '@id': `${url}#itemlist`,
@@ -1064,11 +1088,12 @@ const buildNichePageContent = (page, resorts) => {
           <h1 style="margin:0;font-size:38px;line-height:1.18;">${escapeHtml(page.heading)}</h1>
           <p style="max-width:760px;margin:14px 0 0;color:#475569;font-size:17px;line-height:1.8;">${escapeHtml(page.intro)}</p>
         </section>
-        ${sections.length > 0
-          ? `<section class="seo-niche-sections" style="max-width:1120px;margin:0 auto 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+        ${
+          sections.length > 0
+            ? `<section class="seo-niche-sections" style="max-width:1120px;margin:0 auto 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
               ${sections
                 .map(
-                  (section) => `
+                  section => `
                     <article class="seo-niche-card" style="border:1px solid #dbe7e4;border-radius:12px;background:#fff;padding:18px;">
                       <h2 style="margin:0 0 8px;font-size:20px;color:#0f172a;">${escapeHtml(section.title)}</h2>
                       <p style="margin:0;color:#475569;line-height:1.7;">${escapeHtml(section.body)}</p>
@@ -1076,7 +1101,8 @@ const buildNichePageContent = (page, resorts) => {
                 )
                 .join('\n')}
             </section>`
-          : ''}
+            : ''
+        }
         <section class="seo-niche-grid" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
           ${selected.map(resortCard).join('\n')}
         </section>
@@ -1084,7 +1110,7 @@ const buildNichePageContent = (page, resorts) => {
           <h2 style="font-size:24px;margin:0 0 12px;">자주 묻는 질문</h2>
           ${page.faq
             .map(
-              (item) => `
+              item => `
                 <article style="margin:0 0 14px;">
                   <h3 style="margin:0 0 6px;font-size:18px;">${escapeHtml(item.question)}</h3>
                   <p style="margin:0;color:#475569;line-height:1.7;">${escapeHtml(item.answer)}</p>
@@ -1106,15 +1132,14 @@ const buildNichePageContent = (page, resorts) => {
 
 const buildComparisonLandingContent = (page, resorts) => {
   const url = toAbsoluteUrl(page.slug);
-  const resortUrl = (resort) => `${siteUrl}/resorts/${slugify(resort.name_en || resort.name)}/`;
-  const validPrice = (resort) => Number.isFinite(resort.price) && resort.price > 0;
-  const validTravelTime = (resort) => Number.isFinite(resort.travelTime) && resort.travelTime > 0;
+  const resortUrl = resort => `${siteUrl}/resorts/${slugify(resort.name_en || resort.name)}/`;
+  const validPrice = resort => Number.isFinite(resort.price) && resort.price > 0;
+  const validTravelTime = resort => Number.isFinite(resort.travelTime) && resort.travelTime > 0;
 
   const criteria = [
     {
       title: '1. 숙박비와 이동비',
-      body:
-        '숙박비가 비슷해도 보트, 수상비행기, 국내선 비용에 따라 총액이 달라집니다. 먼저 4박 2인 비교용 가격과 2인 왕복 이동비를 함께 확인하세요.',
+      body: '숙박비가 비슷해도 보트, 수상비행기, 국내선 비용에 따라 총액이 달라집니다. 먼저 4박 2인 비교용 가격과 2인 왕복 이동비를 함께 확인하세요.',
       resorts: [...resorts]
         .filter(validPrice)
         .sort((a, b) => a.price - b.price || a.travelCost - b.travelCost)
@@ -1122,8 +1147,7 @@ const buildComparisonLandingContent = (page, resorts) => {
     },
     {
       title: '2. 이동수단과 시간',
-      body:
-        '짧은 일정이라면 공항 도착 후 이동시간이 만족도에 크게 영향을 줍니다. 보트, 수상비행기, 국내선의 특징과 예상 소요시간을 같이 비교하세요.',
+      body: '짧은 일정이라면 공항 도착 후 이동시간이 만족도에 크게 영향을 줍니다. 보트, 수상비행기, 국내선의 특징과 예상 소요시간을 같이 비교하세요.',
       resorts: [...resorts]
         .filter(validTravelTime)
         .sort((a, b) => a.travelTime - b.travelTime || a.price - b.price)
@@ -1131,39 +1155,34 @@ const buildComparisonLandingContent = (page, resorts) => {
     },
     {
       title: '3. 객실과 개인풀',
-      body:
-        '워터빌라, 비치빌라, 개인풀은 여행 경험과 예산을 바꾸는 핵심 조건입니다. 꼭 필요한 객실 조건을 먼저 선택하면 비교할 후보가 빠르게 줄어듭니다.',
+      body: '워터빌라, 비치빌라, 개인풀은 여행 경험과 예산을 바꾸는 핵심 조건입니다. 꼭 필요한 객실 조건을 먼저 선택하면 비교할 후보가 빠르게 줄어듭니다.',
       resorts: [...resorts]
-        .filter((resort) => resort.hasWaterVilla && resort.hasPrivatePool)
+        .filter(resort => resort.hasWaterVilla && resort.hasPrivatePool)
         .sort((a, b) => b.rating - a.rating || a.price - b.price)
         .slice(0, 3),
     },
     {
       title: '4. 수중환경과 다이닝',
-      body:
-        '스노클링을 중요하게 보면 수중환경 점수를, 식사 선택을 중요하게 보면 레스토랑 수를 확인하세요. 사진 한 장보다 실제 활동 취향에 맞춰 보는 편이 정확합니다.',
+      body: '스노클링을 중요하게 보면 수중환경 점수를, 식사 선택을 중요하게 보면 레스토랑 수를 확인하세요. 사진 한 장보다 실제 활동 취향에 맞춰 보는 편이 정확합니다.',
       resorts: [...resorts]
-        .filter((resort) => Number.isFinite(resort.snorkelingQuality))
+        .filter(resort => Number.isFinite(resort.snorkelingQuality))
         .sort((a, b) => b.snorkelingQuality - a.snorkelingQuality || b.restaurants - a.restaurants)
         .slice(0, 3),
     },
   ];
 
   const representativeResorts = Array.from(
-    new Map(criteria.flatMap((criterion) => criterion.resorts).map((resort) => [resort.id, resort])).values()
+    new Map(criteria.flatMap(criterion => criterion.resorts).map(resort => [resort.id, resort])).values()
   );
-  const showcaseNames = [
-    'Soneva Jani',
-    'Cheval Blanc Randheli',
-    'Waldorf Astoria Maldives Ithaafushi',
-  ];
+  const showcaseNames = ['Soneva Jani', 'Cheval Blanc Randheli', 'Waldorf Astoria Maldives Ithaafushi'];
   const showcaseSlugs = showcaseNames
-    .map((name) => resorts.find((resort) => resort.name_en === name))
+    .map(name => resorts.find(resort => resort.name_en === name))
     .filter(Boolean)
-    .map((resort) => slugify(resort.name_en || resort.name));
-  const showcaseCompareHref = showcaseSlugs.length === showcaseNames.length
-    ? `/maldives-resort-comparison/#/compare/${showcaseSlugs.join(',')}`
-    : '/maldives-resort-comparison/';
+    .map(resort => slugify(resort.name_en || resort.name));
+  const showcaseCompareHref =
+    showcaseSlugs.length === showcaseNames.length
+      ? `/maldives-resort-comparison/#/compare/${showcaseSlugs.join(',')}`
+      : '/maldives-resort-comparison/';
   const itemListNode = {
     '@type': 'ItemList',
     '@id': `${url}#itemlist`,
@@ -1201,7 +1220,7 @@ const buildComparisonLandingContent = (page, resorts) => {
           <p>${escapeHtml(criterion.body)}</p>
           <p class="comparison-landing__criterion-examples">
             조건에 맞는 대표 후보: ${criterion.resorts
-              .map((resort) => `<a href="${resortUrl(resort)}">${escapeHtml(resort.name)}</a>`)
+              .map(resort => `<a href="${resortUrl(resort)}">${escapeHtml(resort.name)}</a>`)
               .join(' · ')}
           </p>
         </article>`
@@ -1209,7 +1228,7 @@ const buildComparisonLandingContent = (page, resorts) => {
     .join('\n');
 
   const comparisonRows = representativeResorts
-    .map((resort) => {
+    .map(resort => {
       const roomFeatures = [
         resort.hasWaterVilla ? '워터빌라' : null,
         resort.hasBeachVilla ? '비치빌라' : null,
@@ -1495,7 +1514,7 @@ const buildComparisonLandingContent = (page, resorts) => {
             <div class="comparison-landing__section-head"><div><p class="comparison-landing__section-kicker">QUICK ANSWERS</p><h2 id="comparison-faq-title">자주 묻는 질문</h2></div></div>
             <div class="comparison-landing__faq-list">${page.faq
               .map(
-                (item) => `
+                item => `
                   <details>
                     <summary>${escapeHtml(item.question)}</summary>
                     <p>${escapeHtml(item.answer)}</p>
@@ -1540,8 +1559,12 @@ const buildStaticSiteHeader = (currentPath = '') => `
         <span><small>MALDIVES BIBLE</small><strong>몰디브 바이블</strong></span>
       </a>
       <nav aria-label="몰디브 바이블 주요 메뉴">
-        ${primaryNavItems.map((item) => `
-          <a href="${siteUrl}${item.path}"${currentPath === item.path ? ' aria-current="page"' : ''}>${item.label}</a>`).join('')}
+        ${primaryNavItems
+          .map(
+            item => `
+          <a href="${siteUrl}${item.path}"${currentPath === item.path ? ' aria-current="page"' : ''}>${item.label}</a>`
+          )
+          .join('')}
       </nav>
     </div>
   </header>`;
@@ -1596,21 +1619,53 @@ const buildStandaloneStyles = () => `
   </style>`;
 
 const travelAgencies = [
-  { name: '투어민', website: 'https://www.tourmin.co.kr', kakao: 'https://pf.kakao.com/_LxbYBM' },
-  { name: '푸른여행클럽', website: 'https://cafe.naver.com/honeymoonp', kakao: 'https://pf.kakao.com/_UZNxgd' },
-  { name: '리얼몰디브', website: 'https://realmaldives.co.kr', kakao: 'https://pf.kakao.com/_NcnxaG' },
-  { name: '트레비아', website: 'https://www.trevia.co.kr', kakao: 'https://pf.kakao.com/_xixjNQl' },
+  {
+    name: '투어민',
+    website: 'https://www.tourmin.co.kr',
+    kakao: 'https://pf.kakao.com/_LxbYBM',
+  },
+  {
+    name: '푸른여행클럽',
+    website: 'https://cafe.naver.com/honeymoonp',
+    kakao: 'https://pf.kakao.com/_UZNxgd',
+  },
+  {
+    name: '리얼몰디브',
+    website: 'https://realmaldives.co.kr',
+    kakao: 'https://pf.kakao.com/_NcnxaG',
+  },
+  {
+    name: '트레비아',
+    website: 'https://www.trevia.co.kr',
+    kakao: 'https://pf.kakao.com/_xixjNQl',
+  },
   { name: '나래여행사', website: 'http://www.nadree.net/' },
   { name: '하이몰디브', website: 'https://www.himaldives.co.kr/' },
   { name: '여행산책', website: 'https://www.tourw.co.kr/' },
-  { name: '잇츠마이트래블', website: 'http://itsmytravel.co.kr/', kakao: 'https://pf.kakao.com/_qgDUxd' },
-  { name: '투어플래닛', website: 'http://www.tour-planet.co.kr/', kakao: 'https://pf.kakao.com/_LYSSl' },
-  { name: '허니문리조트', website: 'http://www.honeymoonresort.co.kr/', kakao: 'https://pf.kakao.com/_gkKlE' },
+  {
+    name: '잇츠마이트래블',
+    website: 'http://itsmytravel.co.kr/',
+    kakao: 'https://pf.kakao.com/_qgDUxd',
+  },
+  {
+    name: '투어플래닛',
+    website: 'http://www.tour-planet.co.kr/',
+    kakao: 'https://pf.kakao.com/_LYSSl',
+  },
+  {
+    name: '허니문리조트',
+    website: 'http://www.honeymoonresort.co.kr/',
+    kakao: 'https://pf.kakao.com/_gkKlE',
+  },
   { name: '천생연분닷컴', website: 'https://www.1000syb.com/' },
-  { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao: 'https://pf.kakao.com/_Hxmxaxexj' },
+  {
+    name: '팜투어',
+    website: 'https://www.palmtour.co.kr',
+    kakao: 'https://pf.kakao.com/_Hxmxaxexj',
+  },
 ];
 
-const buildCoreFigure = (page) => {
+const buildCoreFigure = page => {
   const imageUrl = `${siteUrl}${page.image}`;
   return `
     <figure class="seo-static__figure">
@@ -1642,7 +1697,7 @@ const buildStartContent = () => `
     <div class="seo-static__actions"><a class="seo-static__action" href="${siteUrl}/maldives-resort-comparison/">171개 몰디브 리조트 비교 시작</a></div>
   </section>`;
 
-const buildResortComparisonContent = (resortCount) => `
+const buildResortComparisonContent = resortCount => `
   <section class="seo-static__section" aria-labelledby="comparison-criteria-title">
     <h2 id="comparison-criteria-title">${resortCount}개 리조트를 같은 기준으로 보는 방법</h2>
     <p class="seo-static__lead">리조트를 하나씩 검색하기보다 예산과 이동수단을 먼저 고르고, 객실·개인풀·수중환경 조건을 추가하면 비교 범위가 명확해집니다.</p>
@@ -1662,7 +1717,9 @@ const buildResortComparisonContent = (resortCount) => `
   </section>`;
 
 const buildQuoteComparisonContent = () => {
-  const agencyCards = travelAgencies.map((agency) => `
+  const agencyCards = travelAgencies
+    .map(
+      agency => `
     <article class="seo-static__card">
       <h3>${escapeHtml(agency.name)}</h3>
       <span>여행사의 공개 홈페이지${agency.kakao ? '와 카카오 상담 채널' : ''}을 확인할 수 있습니다.</span>
@@ -1670,7 +1727,9 @@ const buildQuoteComparisonContent = () => {
         <a href="${agency.website}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(agency.name)} 홈페이지 새 창에서 열기">홈페이지</a>
         ${agency.kakao ? `<a href="${agency.kakao}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(agency.name)} 카카오톡 채널 새 창에서 열기">카카오 채널</a>` : ''}
       </div>
-    </article>`).join('');
+    </article>`
+    )
+    .join('');
   return `
     <section class="seo-static__section" aria-labelledby="quote-reason-title">
       <h2 id="quote-reason-title">여행사 견적이 더 낮을 수 있는 이유</h2>
@@ -1739,8 +1798,7 @@ const buildCoreSeoPage = (page, resorts) => {
   const introByKey = {
     start:
       '몰디브는 리조트 이름부터 찾기보다 예산, 일정, 이동수단, 객실 타입과 식사 플랜을 먼저 정하면 후보를 훨씬 빠르게 줄일 수 있습니다.',
-    resortComparison:
-      `${resorts.length}개 몰디브 리조트의 예산, 말레 공항 이후 이동, 객실, 개인풀, 수중환경을 같은 기준으로 보고 여행 취향에 맞는 후보를 줄여보세요.`,
+    resortComparison: `${resorts.length}개 몰디브 리조트의 예산, 말레 공항 이후 이동, 객실, 개인풀, 수중환경을 같은 기준으로 보고 여행 취향에 맞는 후보를 줄여보세요.`,
     quoteComparison:
       '여행사마다 다른 조건으로 요청하면 금액만으로 비교하기 어렵습니다. 같은 일정·객실·식사·이동 조건을 정리한 뒤 여러 여행사의 포함 항목을 확인하세요.',
     flightGuide:
@@ -1779,11 +1837,16 @@ const buildCoreSeoPage = (page, resorts) => {
 };
 
 const buildHomeStaticFallback = () => {
-  const guideLinks = nichePages.filter((page) => !coreSeoSlugs.has(page.slug)).map((page) => `
+  const guideLinks = nichePages
+    .filter(page => !coreSeoSlugs.has(page.slug))
+    .map(
+      page => `
     <a class="seo-home-static__guide" href="${toAbsoluteUrl(page.slug)}">
       <strong>${escapeHtml(page.heading)}</strong>
       <span>${escapeHtml(page.description)}</span>
-    </a>`).join('');
+    </a>`
+    )
+    .join('');
 
   return `
     ${buildStandaloneStyles()}
@@ -1840,24 +1903,27 @@ const buildHomeStaticFallback = () => {
 const buildGlossaryPage = () => {
   const url = toAbsoluteUrl('maldives-glossary');
   const termNodes = [];
-  const categorySections = maldivesGlossaryCategories.map((category) => {
-    const terms = category.terms.map((term, index) => {
-      const termId = `term-${category.id}-${index + 1}`;
-      termNodes.push({
-        '@type': 'DefinedTerm',
-        '@id': `${url}#${termId}`,
-        name: term.name,
-        alternateName: term.english,
-        description: term.description,
-        inDefinedTermSet: { '@id': `${url}#termset` },
-      });
-      return `
+  const categorySections = maldivesGlossaryCategories
+    .map(category => {
+      const terms = category.terms
+        .map((term, index) => {
+          const termId = `term-${category.id}-${index + 1}`;
+          termNodes.push({
+            '@type': 'DefinedTerm',
+            '@id': `${url}#${termId}`,
+            name: term.name,
+            alternateName: term.english,
+            description: term.description,
+            inDefinedTermSet: { '@id': `${url}#termset` },
+          });
+          return `
         <div id="${termId}" style="padding:14px 0;border-bottom:1px solid #edf2f2;scroll-margin-top:20px;">
           <dt style="font-size:15px;color:#0f172a;"><strong style="margin-right:8px;color:#0f766e;">${escapeHtml(term.name)}</strong>${escapeHtml(term.english)}</dt>
           <dd style="margin:5px 0 0;color:#475569;font-size:13px;line-height:1.7;">${escapeHtml(term.description)}</dd>
         </div>`;
-    }).join('');
-    return `
+        })
+        .join('');
+      return `
       <section id="${category.id}" class="seo-static__card" style="scroll-margin-top:20px;padding:22px;">
         <p class="seo-static__eyebrow" style="margin-bottom:5px;">${category.terms.length} TERMS</p>
         <h2 style="margin:0;font-size:23px;">${escapeHtml(category.title)}</h2>
@@ -1865,20 +1931,23 @@ const buildGlossaryPage = () => {
         <dl style="margin:12px 0 0;">${terms}</dl>
         <a href="${siteUrl}${category.href}" style="display:inline-block;margin-top:14px;color:#0f766e;font-size:13px;font-weight:900;text-decoration:none;">${escapeHtml(category.linkLabel)} →</a>
       </section>`;
-  }).join('');
+    })
+    .join('');
   const termSetNode = {
     '@type': 'DefinedTermSet',
     '@id': `${url}#termset`,
     name: '몰디브 관련 용어 43개',
-    description: '몰디브 여행을 처음 알아볼 때 자주 만나는 지역, 이동, 객실, 바다, 식사와 비용 용어를 정리한 한국어 용어집입니다.',
+    description:
+      '몰디브 여행을 처음 알아볼 때 자주 만나는 지역, 이동, 객실, 바다, 식사와 비용 용어를 정리한 한국어 용어집입니다.',
     inLanguage: 'ko-KR',
     url,
-    hasDefinedTerm: termNodes.map((term) => ({ '@id': term['@id'] })),
+    hasDefinedTerm: termNodes.map(term => ({ '@id': term['@id'] })),
   };
   return {
     slug: 'maldives-glossary',
     title: '몰디브 관련 용어 43개 | 식사·이동·객실·비용 용어집',
-    description: 'HB, FB, AI, 하우스리프, 라군, 수상비행기, 그린택스 등 몰디브 여행을 처음 준비할 때 자주 만나는 43개 용어를 쉽게 설명합니다.',
+    description:
+      'HB, FB, AI, 하우스리프, 라군, 수상비행기, 그린택스 등 몰디브 여행을 처음 준비할 때 자주 만나는 43개 용어를 쉽게 설명합니다.',
     modifiedAt: siteDates.modified,
     html: `
       ${buildStandaloneStyles()}
@@ -1889,7 +1958,7 @@ const buildGlossaryPage = () => {
           <h1>몰디브 관련 용어 43개</h1>
           <p class="seo-static__lead">식사 플랜부터 리조트 이동, 객실과 바다, 세금·비용까지 처음 알아볼 때 막히기 쉬운 표현을 한곳에 모았어요.</p>
           <nav class="seo-static__actions" aria-label="용어 분야">
-            ${maldivesGlossaryCategories.map((category) => `<a class="seo-static__action seo-static__action--secondary" href="#${category.id}">${escapeHtml(category.title)}</a>`).join('')}
+            ${maldivesGlossaryCategories.map(category => `<a class="seo-static__action seo-static__action--secondary" href="#${category.id}">${escapeHtml(category.title)}</a>`).join('')}
           </nav>
           <div class="seo-static__grid seo-static__section">${categorySections}</div>
           ${buildEditorialFooter()}
@@ -1899,7 +1968,8 @@ const buildGlossaryPage = () => {
       buildWebPageNode({
         url,
         name: '몰디브 관련 용어 43개',
-        description: '몰디브 여행을 처음 알아볼 때 자주 만나는 지역, 이동, 객실, 바다, 식사와 비용 용어를 정리한 한국어 용어집입니다.',
+        description:
+          '몰디브 여행을 처음 알아볼 때 자주 만나는 지역, 이동, 객실, 바다, 식사와 비용 용어를 정리한 한국어 용어집입니다.',
         publishedAt: siteDates.glossaryPublished,
         modifiedAt: siteDates.modified,
         mainEntityId: `${url}#termset`,
@@ -1911,18 +1981,22 @@ const buildGlossaryPage = () => {
   };
 };
 
-const buildResortDirectoryPage = (resorts) => {
+const buildResortDirectoryPage = resorts => {
   const url = toAbsoluteUrl('maldives-resorts');
-  const sorted = [...resorts].sort((a, b) => String(a.name || a.name_en).localeCompare(String(b.name || b.name_en), 'ko'));
-  const links = sorted.map((resort) => {
-    const name = resort.name || resort.name_en;
-    const slug = slugify(resort.name_en || resort.name);
-    return `
+  const sorted = [...resorts].sort((a, b) =>
+    String(a.name || a.name_en).localeCompare(String(b.name || b.name_en), 'ko')
+  );
+  const links = sorted
+    .map(resort => {
+      const name = resort.name || resort.name_en;
+      const slug = slugify(resort.name_en || resort.name);
+      return `
       <a class="seo-static__card" href="${siteUrl}/resorts/${slug}/">
         <strong>${escapeHtml(name)}</strong>
         <span>${escapeHtml(resort.name_en && resort.name_en !== name ? resort.name_en : resort.location || '')}</span>
       </a>`;
-  }).join('');
+    })
+    .join('');
   const itemListNode = {
     '@type': 'ItemList',
     '@id': `${url}#itemlist`,
@@ -1978,17 +2052,21 @@ const buildResortDirectoryPage = (resorts) => {
 const buildEditorialPolicyPage = () => {
   const page = editorialPolicyPage;
   const url = `${siteUrl}${page.canonicalPath}`;
-  const comparisonCards = page.comparisonCriteria.items.map((item) => `
+  const comparisonCards = page.comparisonCriteria.items
+    .map(
+      item => `
     <article class="seo-static__card">
       <strong>${escapeHtml(item.title)}</strong>
       <span>${escapeHtml(item.summary)}</span>
-      <ul style="margin:10px 0 0;padding-left:18px;color:#475569;font-size:13px;line-height:1.7;">${item.details.map((detail) => `<li>${escapeHtml(detail)}</li>`).join('')}</ul>
-    </article>`).join('');
+      <ul style="margin:10px 0 0;padding-left:18px;color:#475569;font-size:13px;line-height:1.7;">${item.details.map(detail => `<li>${escapeHtml(detail)}</li>`).join('')}</ul>
+    </article>`
+    )
+    .join('');
   const policySection = (id, title, introduction, items) => `
     <section id="${id}" class="seo-static__section" aria-labelledby="${id}-title">
       <h2 id="${id}-title">${escapeHtml(title)}</h2>
       ${introduction ? `<p style="max-width:800px;margin:-4px 0 14px;color:#475569;line-height:1.75;">${escapeHtml(introduction)}</p>` : ''}
-      <div class="seo-static__note"><ul style="margin:0;padding-left:20px;">${items.map((item) => `<li style="margin:6px 0;">${escapeHtml(item)}</li>`).join('')}</ul></div>
+      <div class="seo-static__note"><ul style="margin:0;padding-left:20px;">${items.map(item => `<li style="margin:6px 0;">${escapeHtml(item)}</li>`).join('')}</ul></div>
     </section>`;
   return {
     slug: page.slug,
@@ -2095,17 +2173,7 @@ const replaceMetaContent = (html, attribute, value, content) =>
     `<meta ${attribute}="${value}" content="${escapeHtml(content)}" />`
   );
 
-const injectMeta = ({
-  html,
-  title,
-  description,
-  url,
-  schemaNodes,
-  ogImageAlt,
-  imageUrl,
-  imageWidth,
-  imageHeight,
-}) => {
+const injectMeta = ({ html, title, description, url, schemaNodes, ogImageAlt, imageUrl, imageWidth, imageHeight }) => {
   let updated = html.replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`);
   updated = replaceMetaContent(updated, 'name', 'description', description);
   updated = replaceMetaContent(updated, 'name', 'robots', 'index,follow,max-image-preview:large');
@@ -2129,7 +2197,10 @@ const injectMeta = ({
   }
   updated = updated
     .replace(/<link rel="canonical" href=".*?"\s*\/>/, `<link rel="canonical" href="${escapeHtml(url)}" />`)
-    .replace(/<link rel="alternate" href=".*?" hreflang="ko(?:-KR)?"\s*\/>/, `<link rel="alternate" href="${escapeHtml(url)}" hreflang="ko-KR" />`)
+    .replace(
+      /<link rel="alternate" href=".*?" hreflang="ko(?:-KR)?"\s*\/>/,
+      `<link rel="alternate" href="${escapeHtml(url)}" hreflang="ko-KR" />`
+    )
     .replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
   return updated.replace(
     /<\/head>/,
@@ -2150,24 +2221,25 @@ const injectStaticRoot = (html, content, { preserveStaticContent = false } = {})
 const updateSitemap = async (resortEntries, staticPageEntries) => {
   const rawEntries = [
     { loc: `${siteUrl}/`, lastmod: siteDates.homeModified, priority: '1.0' },
-    ...staticPageEntries.map((entry) => ({
+    ...staticPageEntries.map(entry => ({
       loc: toAbsoluteUrl(entry.slug),
       lastmod: entry.lastmod,
       priority: entry.priority ?? '0.8',
     })),
-    ...resortEntries.map((entry) => ({
+    ...resortEntries.map(entry => ({
       loc: `${siteUrl}/resorts/${entry.slug}/`,
       lastmod: entry.lastmod,
       priority: '0.6',
     })),
   ];
-  const entries = [...new Map(rawEntries.map((entry) => [entry.loc, entry])).values()];
-  const escapeXml = (value) => String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
+  const entries = [...new Map(rawEntries.map(entry => [entry.loc, entry])).values()];
+  const escapeXml = value =>
+    String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&apos;');
 
   for (const entry of entries) {
     const parsed = new URL(entry.loc);
@@ -2176,10 +2248,12 @@ const updateSitemap = async (resortEntries, staticPageEntries) => {
     }
   }
 
-  const urlEntries = entries.map((entry) => {
-    const lastmod = entry.lastmod ? `\n    <lastmod>${escapeXml(entry.lastmod)}</lastmod>` : '';
-    return `  <url>\n    <loc>${escapeXml(entry.loc)}</loc>${lastmod}\n    <changefreq>weekly</changefreq>\n    <priority>${escapeXml(entry.priority)}</priority>\n  </url>`;
-  }).join('\n');
+  const urlEntries = entries
+    .map(entry => {
+      const lastmod = entry.lastmod ? `\n    <lastmod>${escapeXml(entry.lastmod)}</lastmod>` : '';
+      return `  <url>\n    <loc>${escapeXml(entry.loc)}</loc>${lastmod}\n    <changefreq>weekly</changefreq>\n    <priority>${escapeXml(entry.priority)}</priority>\n  </url>`;
+    })
+    .join('\n');
 
   const sitemap = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n${urlEntries}\n</urlset>`;
   await writeFile(sitemapPath, sitemap, 'utf-8');
@@ -2198,9 +2272,9 @@ const getResortDataFiles = async () => {
   const apiDir = resolve(distDir, 'api');
   const names = await readdir(apiDir).catch(() => readdir(resolve(process.cwd(), 'public', 'api')));
   return names
-    .filter((name) => /^resorts(\d+)?\.json$/.test(name))
+    .filter(name => /^resorts(\d+)?\.json$/.test(name))
     .sort((a, b) => {
-      const getIndex = (name) => {
+      const getIndex = name => {
         const match = name.match(/^resorts(\d+)?\.json$/);
         return match?.[1] ? Number(match[1]) : 1;
       };
@@ -2213,11 +2287,9 @@ const readAllResorts = async () => {
   const apiDir = resolve(distDir, 'api');
   const sourceApiDir = resolve(process.cwd(), 'public', 'api');
   const chunks = await Promise.all(
-    files.map((file) =>
-      readBuiltOrSourceFile(resolve(apiDir, file), resolve(sourceApiDir, file))
-    )
+    files.map(file => readBuiltOrSourceFile(resolve(apiDir, file), resolve(sourceApiDir, file)))
   );
-  const resorts = chunks.flatMap((chunk) => JSON.parse(chunk));
+  const resorts = chunks.flatMap(chunk => JSON.parse(chunk));
   const seen = new Set();
   for (const resort of resorts) {
     if (!Number.isInteger(resort?.id) || !resort?.name || !resort?.name_en) {
@@ -2230,14 +2302,14 @@ const readAllResorts = async () => {
     throw new Error(`리조트 수가 예상과 다릅니다. expected=${expectedResortCount}, actual=${resorts.length}`);
   }
 
-  const reviewInsights = JSON.parse(
-    await readBuiltOrSourceFile(reviewInsightsDataPath, sourceReviewInsightsPath)
-  );
+  const reviewInsights = JSON.parse(await readBuiltOrSourceFile(reviewInsightsDataPath, sourceReviewInsightsPath));
   if (!Array.isArray(reviewInsights?.items)) {
     throw new Error('resort-review-insights.json의 items가 배열이 아닙니다.');
   }
   if (reviewInsights.items.length !== expectedResortCount) {
-    throw new Error(`후기 인덱스 수가 예상과 다릅니다. expected=${expectedResortCount}, actual=${reviewInsights.items.length}`);
+    throw new Error(
+      `후기 인덱스 수가 예상과 다릅니다. expected=${expectedResortCount}, actual=${reviewInsights.items.length}`
+    );
   }
   const reviewIds = new Set();
   for (const item of reviewInsights.items) {
@@ -2248,30 +2320,34 @@ const readAllResorts = async () => {
     reviewIds.add(item.resortId);
   }
   const reviewSummaryEntries = await Promise.all(
-    reviewInsights.items.map(async (item) => {
-        const detail = JSON.parse(await readBuiltOrSourceFile(
+    reviewInsights.items.map(async item => {
+      const detail = JSON.parse(
+        await readBuiltOrSourceFile(
           resolve(reviewDetailsDir, `${item.resortId}.json`),
           resolve(sourceReviewDetailsDir, `${item.resortId}.json`)
-        ));
-        if (detail?.resortId !== item.resortId || !detail?.reviewSummary) {
-          throw new Error(`리조트 ${item.resortId}의 후기 상세 파일 형식이 올바르지 않습니다.`);
-        }
-        const mergedSummary = { ...item.reviewSummary, ...detail.reviewSummary };
-        const sources = Array.isArray(mergedSummary.sources) ? mergedSummary.sources : [];
-        if (!Number.isInteger(mergedSummary.sourceCount) || mergedSummary.sourceCount !== sources.length) {
-          throw new Error(
-            `리조트 ${item.resortId}의 실제 후기 개수와 출처 배열 길이가 다릅니다: `
-            + `sourceCount=${mergedSummary.sourceCount ?? 'unknown'}, sources=${sources.length}`
-          );
-        }
-        return [item.resortId, mergedSummary];
-      })
+        )
+      );
+      if (detail?.resortId !== item.resortId || !detail?.reviewSummary) {
+        throw new Error(`리조트 ${item.resortId}의 후기 상세 파일 형식이 올바르지 않습니다.`);
+      }
+      const mergedSummary = { ...item.reviewSummary, ...detail.reviewSummary };
+      const sources = Array.isArray(mergedSummary.sources) ? mergedSummary.sources : [];
+      if (!Number.isInteger(mergedSummary.sourceCount) || mergedSummary.sourceCount !== sources.length) {
+        throw new Error(
+          `리조트 ${item.resortId}의 실제 후기 개수와 출처 배열 길이가 다릅니다: ` +
+            `sourceCount=${mergedSummary.sourceCount ?? 'unknown'}, sources=${sources.length}`
+        );
+      }
+      return [item.resortId, mergedSummary];
+    })
   );
   const reviewSummaryByResortId = new Map(reviewSummaryEntries);
+  const maxReviewSourceCount = Math.max(0, ...reviewSummaryEntries.map(([, summary]) => summary.sourceCount));
+  if (maxReviewSourceCount <= 10) {
+    throw new Error(`후기 출처가 10개로 제한된 상태입니다: max=${maxReviewSourceCount}`);
+  }
 
-  const editorReviews = JSON.parse(
-    await readBuiltOrSourceFile(editorReviewsDataPath, sourceEditorReviewsPath)
-  );
+  const editorReviews = JSON.parse(await readBuiltOrSourceFile(editorReviewsDataPath, sourceEditorReviewsPath));
   if (editorReviews?.schemaVersion !== 1 || !Array.isArray(editorReviews?.items)) {
     throw new Error('resort-editor-reviews.json 형식이 올바르지 않습니다.');
   }
@@ -2296,14 +2372,10 @@ const readAllResorts = async () => {
     editorReviewByResortId.set(item.resortId, editorReview);
   }
 
-  return resorts.map((resort) => ({
+  return resorts.map(resort => ({
     ...resort,
-    ...(reviewSummaryByResortId.has(resort.id)
-      ? { reviewSummary: reviewSummaryByResortId.get(resort.id) }
-      : {}),
-    ...(editorReviewByResortId.has(resort.id)
-      ? { editorReview: editorReviewByResortId.get(resort.id) }
-      : {}),
+    ...(reviewSummaryByResortId.has(resort.id) ? { reviewSummary: reviewSummaryByResortId.get(resort.id) } : {}),
+    ...(editorReviewByResortId.has(resort.id) ? { editorReview: editorReviewByResortId.get(resort.id) } : {}),
   }));
 };
 
@@ -2311,10 +2383,7 @@ try {
   await writeFile(notFoundTarget, buildNotFoundPage(), 'utf-8');
   console.log('Generated a static noindex dist/404.html page.');
 
-  const [template, resorts] = await Promise.all([
-    readFile(source, 'utf-8'),
-    readAllResorts(),
-  ]);
+  const [template, resorts] = await Promise.all([readFile(source, 'utf-8'), readAllResorts()]);
 
   const resortEntries = [];
   const usedSlugs = new Set();
@@ -2332,7 +2401,10 @@ try {
       continue;
     }
     usedSlugs.add(slug);
-    resortEntries.push({ slug, lastmod: resort.editorReview?.publishedAt ?? siteDates.modified });
+    resortEntries.push({
+      slug,
+      lastmod: resort.editorReview?.publishedAt ?? siteDates.modified,
+    });
 
     const title = resort.editorReview
       ? `${resort.name || name} 에디터 리뷰 | 몰디브 바이블`
@@ -2371,10 +2443,14 @@ try {
     const targetPath = resolve(distDir, page.slug, 'index.html');
     await mkdir(dirname(targetPath), { recursive: true });
     await writeFile(targetPath, html, 'utf-8');
-    staticPageEntries.push({ slug: page.slug, lastmod: page.modifiedAt, priority: '0.9' });
+    staticPageEntries.push({
+      slug: page.slug,
+      lastmod: page.modifiedAt,
+      priority: '0.9',
+    });
   }
 
-  for (const page of nichePages.filter((entry) => !coreSeoSlugs.has(entry.slug))) {
+  for (const page of nichePages.filter(entry => !coreSeoSlugs.has(entry.slug))) {
     const url = toAbsoluteUrl(page.slug);
     const { html: content, schemaNodes } = page.comparisonLanding
       ? buildComparisonLandingContent(page, resorts)
@@ -2401,11 +2477,7 @@ try {
     });
   }
 
-  const standalonePages = [
-    buildGlossaryPage(),
-    buildResortDirectoryPage(resorts),
-    buildEditorialPolicyPage(),
-  ];
+  const standalonePages = [buildGlossaryPage(), buildResortDirectoryPage(resorts), buildEditorialPolicyPage()];
   for (const page of standalonePages) {
     const url = toAbsoluteUrl(page.slug);
     const html = injectStaticRoot(
@@ -2422,12 +2494,18 @@ try {
     const targetPath = resolve(distDir, page.slug, 'index.html');
     await mkdir(dirname(targetPath), { recursive: true });
     await writeFile(targetPath, html, 'utf-8');
-    staticPageEntries.push({ slug: page.slug, lastmod: page.modifiedAt, priority: '0.8' });
+    staticPageEntries.push({
+      slug: page.slug,
+      lastmod: page.modifiedAt,
+      priority: '0.8',
+    });
   }
 
   await writeFile(source, injectStaticRoot(template, buildHomeStaticFallback()), 'utf-8');
   await updateSitemap(resortEntries, staticPageEntries);
-  console.log(`Generated ${resortEntries.length} resort pages, ${staticPageEntries.length} static pages, a crawlable home fallback, and updated sitemap.`);
+  console.log(
+    `Generated ${resortEntries.length} resort pages, ${staticPageEntries.length} static pages, a crawlable home fallback, and updated sitemap.`
+  );
 } catch (error) {
   console.error('Post-build step failed', error);
   process.exitCode = 1;

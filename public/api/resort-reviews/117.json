@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 수영장과 액티비티, 식사와 다이닝, 가족 여행 시설에 관한 경험을 주로 확인할 수 있어요.",
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
@@ -78,6 +78,27 @@
         "url": "https://blog.naver.com/marodaing/223690415090",
         "blogName": "마로 MARO",
         "publishedAt": "2024-12-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "숙박 ' 쉐라톤 몰디브 풀문 리조트 & 스파 - 워터방갈로 수상객실...",
+        "url": "https://blog.naver.com/eunmiring/224001293943",
+        "blogName": "앎으로 삶에 덤비지 않도록",
+        "publishedAt": "2025-09-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 쉐라톤 풀문 , 오버워터방갈로...",
+        "url": "https://blog.naver.com/stiearth/223947598405",
+        "blogName": "❤️Bling_bli❤️gourmet traveler",
+        "publishedAt": "2025-07-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "쉐라톤몰디브풀문리조트 스파 Feast(피스트)조식 후기",
+        "url": "https://blog.naver.com/nana7654/223024637261",
+        "blogName": "Alice in Wonderland :)",
+        "publishedAt": "2023-02-23",
         "independenceUnknown": false
       }
     ]

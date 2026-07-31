@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "선셋 비치 풀빌라에 전반적으로 만족했다는 후기가 있어요.",
+        "text": "선셋 비치 풀빌라의 전반적인 만족도가 높아요.",
         "mentions": 1
       }
     ],
@@ -14,7 +14,8 @@
         "mentions": 1
       }
     ],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -87,6 +88,27 @@
         "url": "https://blog.naver.com/eddie__lee/223901413781",
         "blogName": "에디B로그",
         "publishedAt": "2025-06-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 3일차｜ 헤리턴스아라 아침 요가, 마사지...",
+        "url": "https://blog.naver.com/kimsang1102/224260447998",
+        "blogName": "Hyeony",
+        "publishedAt": "2026-04-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 4일차 / 몰디브 헤리턴스아라 리조트 올 인클루시브...",
+        "url": "https://blog.naver.com/chestnut312/224342517634",
+        "blogName": "알밤이의 데굴데굴 일상 여행",
+        "publishedAt": "2026-07-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "허니문 리조트 몰디브 도착 / 헤리턴스 아라 체크인 / 레스토랑...",
+        "url": "https://blog.naver.com/by1uv/223615319447",
+        "blogName": "_ordinary day",
+        "publishedAt": "2024-10-14",
         "independenceUnknown": false
       }
     ]

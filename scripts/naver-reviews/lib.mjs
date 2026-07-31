@@ -89,11 +89,8 @@ export function isNaverBlogUrl(value = '') {
 }
 
 export function buildSearchQueries(resort) {
-  const queries = [
-    `${resort.name} 몰디브 리조트 후기`,
-    resort.name_en ? `${resort.name_en} 몰디브 리조트 후기` : '',
-  ];
-  return [...new Set(queries.map((query) => query.replace(/\s+/g, ' ').trim()).filter(Boolean))];
+  const queries = [`${resort.name} 몰디브 리조트 후기`, resort.name_en ? `${resort.name_en} 몰디브 리조트 후기` : ''];
+  return [...new Set(queries.map(query => query.replace(/\s+/g, ' ').trim()).filter(Boolean))];
 }
 
 function compact(value) {
@@ -101,18 +98,37 @@ function compact(value) {
 }
 
 export function relevanceFor(item, resort) {
-  const haystack = normalizeText(`${item.titleText ?? item.title ?? ''} ${item.descriptionText ?? item.description ?? ''}`);
+  const haystack = normalizeText(
+    `${item.titleText ?? item.title ?? ''} ${item.descriptionText ?? item.description ?? ''}`
+  );
   const compactHaystack = haystack.replace(/\s+/g, '');
   const koreanName = compact(resort.name);
-  const genericNameTokens = new Set(['몰디브', '리조트', '호텔', '아일랜드', '섬', '스파', '빌라', 'resort', 'hotel', 'island', 'spa', 'villa', 'maldives']);
+  const genericNameTokens = new Set([
+    '몰디브',
+    '리조트',
+    '호텔',
+    '아일랜드',
+    '섬',
+    '스파',
+    '빌라',
+    'resort',
+    'hotel',
+    'island',
+    'spa',
+    'villa',
+    'maldives',
+  ]);
   const koreanTokens = normalizeText(resort.name)
     .split(' ')
-    .filter((token) => token.length >= 2 && !genericNameTokens.has(token));
-  const koreanHits = koreanTokens.filter((token) => haystack.includes(token)).length;
+    .filter(token => token.length >= 2 && !genericNameTokens.has(token));
+  const koreanHits = koreanTokens.filter(token => haystack.includes(token)).length;
   const englishTokens = normalizeText(resort.name_en)
     .split(' ')
-    .filter((token) => token.length >= 3 && !['the', 'and', 'resort', 'maldives', 'hotel', 'island', 'spa', 'villa'].includes(token));
-  const englishHits = englishTokens.filter((token) => haystack.includes(token)).length;
+    .filter(
+      token =>
+        token.length >= 3 && !['the', 'and', 'resort', 'maldives', 'hotel', 'island', 'spa', 'villa'].includes(token)
+    );
+  const englishHits = englishTokens.filter(token => haystack.includes(token)).length;
   const hasKoreanName = koreanName.length >= 2 && compactHaystack.includes(koreanName);
   const hasEnoughKoreanTokens = koreanTokens.length > 0 && koreanHits >= Math.min(2, koreanTokens.length);
   const hasEnoughEnglishTokens = englishTokens.length > 0 && englishHits >= Math.min(2, englishTokens.length);
@@ -121,7 +137,8 @@ export function relevanceFor(item, resort) {
   const hasMaldivesContext = /몰디브|maldives/.test(haystack);
 
   return {
-    relevant: hasExactEnglishName || (hasMaldivesContext && (hasKoreanName || hasEnoughKoreanTokens || hasEnoughEnglishTokens)),
+    relevant:
+      hasExactEnglishName || (hasMaldivesContext && (hasKoreanName || hasEnoughKoreanTokens || hasEnoughEnglishTokens)),
     hasKoreanName,
     koreanTokenHits: koreanHits,
     koreanTokenCount: koreanTokens.length,
@@ -138,8 +155,10 @@ export function disclosureFlags(item) {
   return {
     commercialDisclosure: /협찬|광고|원고료|제품 제공|서비스 제공|소정의|파트너스|제휴/.test(text),
     possibleSalesContent:
-      /예약 문의|예약문의|견적 문의|견적문의|상담 문의|상담문의|예약 링크|예약링크|예약 바로가기/.test(text)
-      || /할인 코드|할인코드|쿠폰|특가|프로모션|공동 구매|공동구매|최저가|아고다|agoda|트립닷컴|trip com|부킹닷컴|booking com|익스피디아|expedia|호텔스닷컴|hotels com|여행사/.test(title),
+      /예약 문의|예약문의|견적 문의|견적문의|상담 문의|상담문의|예약 링크|예약링크|예약 바로가기/.test(text) ||
+      /할인 코드|할인코드|쿠폰|특가|프로모션|공동 구매|공동구매|최저가|아고다|agoda|트립닷컴|trip com|부킹닷컴|booking com|익스피디아|expedia|호텔스닷컴|hotels com|여행사/.test(
+        title
+      ),
   };
 }
 
@@ -182,15 +201,15 @@ export function classifyFirsthandVisitSnippet(item, resort) {
   const identityMatch = relevance.hasKoreanName || relevance.hasExactEnglishName;
   const recalculatedFlags = disclosureFlags({ titleText, descriptionText });
   const commercialOrSales = Boolean(
-    item?.commercialDisclosure
-      || item?.possibleSalesContent
-      || item?.flags?.commercialDisclosure
-      || item?.flags?.possibleSalesContent
-      || recalculatedFlags.commercialDisclosure
-      || recalculatedFlags.possibleSalesContent
-      || FIRSTHAND_SALES_TITLE_PATTERN.test(title)
-      || FIRSTHAND_SALES_DESCRIPTION_PATTERN.test(description)
-      || FIRSTHAND_PROFESSIONAL_BLOGGER_PATTERN.test(bloggerName)
+    item?.commercialDisclosure ||
+      item?.possibleSalesContent ||
+      item?.flags?.commercialDisclosure ||
+      item?.flags?.possibleSalesContent ||
+      recalculatedFlags.commercialDisclosure ||
+      recalculatedFlags.possibleSalesContent ||
+      FIRSTHAND_SALES_TITLE_PATTERN.test(title) ||
+      FIRSTHAND_SALES_DESCRIPTION_PATTERN.test(description) ||
+      FIRSTHAND_PROFESSIONAL_BLOGGER_PATTERN.test(bloggerName)
   );
   const planningOrComparison = FIRSTHAND_PLANNING_TITLE_PATTERN.test(title);
   const editorialIntroduction = FIRSTHAND_INTRO_TITLE_PATTERN.test(title);
@@ -203,21 +222,17 @@ export function classifyFirsthandVisitSnippet(item, resort) {
     experientialAssessment: FIRSTHAND_ASSESSMENT_PATTERN.test(combined),
   };
   const directExperience = Boolean(
-    (signals.explicitReviewTitle
-      && signals.visitAction
-      && (signals.personalVoice || signals.tripSequence || signals.experientialAssessment))
-    || (signals.strongReviewTitle && (
-      (signals.visitAction
-        && (signals.personalVoice || signals.tripSequence || signals.experientialAssessment))
-      || (signals.personalVoice && signals.tripSequence)
-      || (signals.tripSequence && signals.experientialAssessment)
-    ))
-    || (signals.personalVoice
-      && signals.visitAction
-      && (signals.tripSequence || signals.experientialAssessment))
+    (signals.explicitReviewTitle &&
+      signals.visitAction &&
+      (signals.personalVoice || signals.tripSequence || signals.experientialAssessment)) ||
+      (signals.strongReviewTitle &&
+        ((signals.visitAction && (signals.personalVoice || signals.tripSequence || signals.experientialAssessment)) ||
+          (signals.personalVoice && signals.tripSequence) ||
+          (signals.tripSequence && signals.experientialAssessment))) ||
+      (signals.personalVoice && signals.visitAction && (signals.tripSequence || signals.experientialAssessment))
   );
-  const introductionAllowed = !editorialIntroduction
-    || (signals.strongReviewTitle && signals.visitAction && signals.personalVoice);
+  const introductionAllowed =
+    !editorialIntroduction || (signals.strongReviewTitle && signals.visitAction && signals.personalVoice);
   const exclusionReasons = [];
   if (!identityMatch) exclusionReasons.push('resort-identity-mismatch');
   if (commercialOrSales) exclusionReasons.push('commercial-sales-or-republished');
@@ -266,7 +281,7 @@ function occurrenceKey(item) {
   return `fallback:${normalizeText(item.titleText)}|${normalizeText(item.bloggerName)}|${item.postDate}`;
 }
 
-export function buildCandidatePool(queryRuns, resort, targetCount = 30) {
+export function buildCandidatePool(queryRuns, resort) {
   const deduped = new Map();
 
   for (const run of queryRuns) {
@@ -306,9 +321,9 @@ export function buildCandidatePool(queryRuns, resort, targetCount = 30) {
     const bOccurrence = b.occurrences[0];
     return aOccurrence.queryIndex - bOccurrence.queryIndex || aOccurrence.rawRank - bOccurrence.rawRank;
   });
-  const relevant = ordered.filter((candidate) => candidate.relevance.relevant);
-  const fallback = ordered.filter((candidate) => !candidate.relevance.relevant);
-  const shortlist = [...relevant, ...fallback].slice(0, targetCount).map((candidate, index) => ({
+  const relevant = ordered.filter(candidate => candidate.relevance.relevant);
+  const fallback = ordered.filter(candidate => !candidate.relevance.relevant);
+  const shortlist = [...relevant, ...fallback].map((candidate, index) => ({
     candidateRank: index + 1,
     selection: candidate.relevance.relevant ? 'relevant' : 'fallback-needs-manual-review',
     ...candidate,
@@ -324,7 +339,7 @@ export function buildCandidatePool(queryRuns, resort, targetCount = 30) {
 export async function loadResorts({ rootDir = process.cwd(), expectedCount = EXPECTED_RESORT_COUNT } = {}) {
   const apiDir = path.join(rootDir, 'public', 'api');
   const filenames = (await fs.readdir(apiDir))
-    .filter((filename) => /^resorts\d*\.json$/.test(filename))
+    .filter(filename => /^resorts\d*\.json$/.test(filename))
     .sort((a, b) => resortFileIndex(a) - resortFileIndex(b));
   if (filenames.length === 0) throw new Error(`리조트 JSON 파일을 찾지 못했습니다: ${apiDir}`);
 
@@ -380,5 +395,5 @@ export function cacheIsFresh(cache, resort, maxAgeDays, configKey) {
 }
 
 export function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "비슷한 등급의 리조트보다 가격 부담이 낮다는 후기가 여러 건 있어요.",
+        "text": "비슷한 등급의 리조트보다 가격 부담이 낮아요.",
         "mentions": 2
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/dionoff/224271705289",
         "blogName": "맛집/여행/웨딩/뷰티",
         "publishedAt": "2026-05-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 그랜드파크코디파루 ... 2일차 후기 (브리즈바 메뉴추천)",
+        "url": "https://blog.naver.com/green_010/224184480802",
+        "blogName": "챱챱",
+        "publishedAt": "2026-02-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행기 #5. 그랜드파크 코디파루 3일차...",
+        "url": "https://blog.naver.com/nerollia/221358365721",
+        "blogName": "네롤리의 LIFE LAB",
+        "publishedAt": "2018-09-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 6( 그랜드파크코디파루 _풀워터빌라_5일차...",
+        "url": "https://blog.naver.com/tls5676/223116238143",
+        "blogName": "자두의 다이어리",
+        "publishedAt": "2023-05-31",
         "independenceUnknown": false
       }
     ]

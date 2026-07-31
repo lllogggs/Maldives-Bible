@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 식사와 다이닝에 관한 경험을 주로 확인할 수 있어요.",
+    "neutral": [],
     "sourceCount": 8,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
@@ -39,6 +39,13 @@
         "independenceUnknown": false
       },
       {
+        "title": "몰디브 신혼여행️ 존맛탱 선시암이루벨리 그루퍼그릴 점심 후기",
+        "url": "https://blog.naver.com/eun_tanggu/224106142056",
+        "blogName": "Whatever 은탱구 want to do",
+        "publishedAt": "2025-12-17",
+        "independenceUnknown": false
+      },
+      {
         "title": "신혼여행: 선시암 이루벨리( Sun Siyam Iru Veli ) 리조트 후기 ♥",
         "url": "https://blog.naver.com/dailysoo-/223695291874",
         "blogName": "DAILY SOO",
@@ -57,13 +64,6 @@
         "url": "https://blog.naver.com/shinhye654/222811834861",
         "blogName": "My home",
         "publishedAt": "2022-07-14",
-        "independenceUnknown": false
-      },
-      {
-        "title": "몰디브 신혼여행️ 존맛탱 선시암이루벨리 그루퍼그릴 점심 후기",
-        "url": "https://blog.naver.com/eun_tanggu/224106142056",
-        "blogName": "Whatever 은탱구 want to do",
-        "publishedAt": "2025-12-17",
         "independenceUnknown": false
       }
     ]

@@ -9,7 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/jitean1013/223583002297",
         "blogName": "재이의 일상❤",
         "publishedAt": "2024-10-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "마사지, 남편 생일 기념 이벤트 후기 (구 아마리하보다 리조트 )",
+        "url": "https://blog.naver.com/jitean1013/223582827923",
+        "blogName": "재이의 일상❤",
+        "publishedAt": "2024-09-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] 아마리 하보다 리조트 부대시설 후기",
+        "url": "https://blog.naver.com/cdezl/221023276833",
+        "blogName": "공대생 부부의 육아일기",
+        "publishedAt": "2017-06-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 아마리하보다 7박 후기 3탄( 리조트 도착...",
+        "url": "https://blog.naver.com/jellybboyaa/223332388411",
+        "blogName": "Right. Now, I remember it",
+        "publishedAt": "2024-01-24",
         "independenceUnknown": false
       }
     ]

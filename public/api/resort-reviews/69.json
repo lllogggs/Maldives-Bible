@@ -4,7 +4,7 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "비용이 높아도 후회 없을 만큼 만족했다는 후기가 있어요.",
+        "text": "비용이 높아도 후회 없을 만큼 만족스러워요.",
         "mentions": 1
       }
     ],
@@ -14,6 +14,7 @@
         "mentions": 1
       }
     ],
+    "neutral": [],
     "sourceCount": 6,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",

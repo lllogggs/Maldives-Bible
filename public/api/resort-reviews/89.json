@@ -9,7 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "limited",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/sunflower_4_u/223790880533",
         "blogName": "MAGIC IN THE STAGE",
         "publishedAt": "2025-03-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 경비> 완벽 정리(5박 6일) 럭스 사우스 아리아톨 리조트",
+        "url": "https://blog.naver.com/seguitestess/223599518181",
+        "blogName": "하고재비의 여행, 리빙 블로그",
+        "publishedAt": "2024-09-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 럭스 사우스 아리아톨 리조트 단점 (LUX* south ari...",
+        "url": "https://blog.naver.com/minilog3030/224152183274",
+        "blogName": "✈️ 람비의 Travelog",
+        "publishedAt": "2026-01-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "나의 몰디브 이야기 1탄 ( 럭스사우스 아리아톨 , with 여행산책)",
+        "url": "https://blog.naver.com/2hani95/224115192034",
+        "blogName": "하니와 함께하는 임상일상",
+        "publishedAt": "2025-12-19",
         "independenceUnknown": false
       }
     ]

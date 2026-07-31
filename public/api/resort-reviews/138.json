@@ -9,7 +9,8 @@
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/bbk_s2love/224172366829",
         "blogName": "우아한 타조의 하루",
         "publishedAt": "2026-02-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "라야 바이 앳모스피어 먹을거리 ( 아마리 라야 몰디브 였던 것..)",
+        "url": "https://blog.naver.com/vkak1024/223611649054",
+        "blogName": "이그그",
+        "publishedAt": "2024-10-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Amari Raaya Maldives 리조트 이동] 몰디브 리조트 후기 / 구....",
+        "url": "https://blog.naver.com/yhl2923/223268591726",
+        "blogName": "부산양양이의 소확행 ♪",
+        "publishedAt": "2023-11-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 | Amari Raaya Maldives 아마리 라야 (현 라야...",
+        "url": "https://blog.naver.com/keem_page/223392304344",
+        "blogName": "나의 이야기",
+        "publishedAt": "2024-03-22",
         "independenceUnknown": false
       }
     ]

@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "신혼여행 숙소로 만족도가 높다는 후기가 여러 건 있어요.",
+        "text": "신혼여행 숙소로 만족도가 높아요.",
         "mentions": 2
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/kwonso_y/223300408610",
         "blogName": "쇼니올리의 움직이는 일상",
         "publishedAt": "2023-12-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 르메르디앙 셋째 날 오전 (아침 운동, 방 이동, 스파 )",
+        "url": "https://blog.naver.com/superj4ez/223970684200",
+        "blogName": "잡동사니 이야기 창고",
+        "publishedAt": "2025-08-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 르메르디앙 선셋 돌핀 크루즈 완전 추천하는 이유",
+        "url": "https://blog.naver.com/suavizante/223698146134",
+        "blogName": "은은하게 반짝이는 하루",
+        "publishedAt": "2025-02-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[W.허니문_10] 르메르디앙 몰디브 식당 - Turquiose",
+        "url": "https://blog.naver.com/playwithmia/222883155682",
+        "blogName": "윰로그",
+        "publishedAt": "2022-09-24",
         "independenceUnknown": false
       }
     ]

@@ -4,12 +4,13 @@
   "reviewSummary": {
     "pros": [
       {
-        "text": "객실과 시설을 고려하면 가격 대비 만족도가 높다는 후기가 여러 건 있어요.",
+        "text": "객실과 시설을 고려하면 가격 대비 만족도가 높아요.",
         "mentions": 2
       }
     ],
     "cons": [],
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-14",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "sufficient",
@@ -82,6 +83,27 @@
         "url": "https://blog.naver.com/yellowcap31/223642932610",
         "blogName": "REMI _ LOVE's STORY",
         "publishedAt": "2024-11-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 럭셔리 리조트 오블루 헬렝겔리 비치빌라 + 워터빌라 후기",
+        "url": "https://blog.naver.com/suzie38317/223909134713",
+        "blogName": "Mrs.Moon House",
+        "publishedAt": "2025-06-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "설연휴 몰디브 여행 / 오블루 네이처 헬렝겔리 리조트 ...",
+        "url": "https://blog.naver.com/sovelymang/224224093243",
+        "blogName": "보통의 날들,",
+        "publishedAt": "2026-03-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "10월의 몰디브 | 3. 오블루 네이처 헬렝겔리 디럭스비치빌라...",
+        "url": "https://blog.naver.com/writingj/224040419459",
+        "blogName": "써니의 공책",
+        "publishedAt": "2025-10-14",
         "independenceUnknown": false
       }
     ]

@@ -4,8 +4,8 @@
   "reviewSummary": {
     "pros": [],
     "cons": [],
-    "overview": "실제 후기에서는 허니문 분위기, 객실과 빌라, 수영장과 액티비티에 관한 경험을 주로 확인할 수 있어요.",
-    "sourceCount": 10,
+    "neutral": [],
+    "sourceCount": 13,
     "reviewedAt": "2026-07-30",
     "basis": "naver-blog-search-snippets",
     "evidenceStatus": "insufficient",
@@ -78,6 +78,27 @@
         "url": "https://blog.naver.com/moon__brand/223352821023",
         "blogName": "MoonBrand",
         "publishedAt": "2024-02-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "리조트 쏘 몰디브 SO/ Maldives 오션 워터빌라 후기",
+        "url": "https://blog.naver.com/ufkr1050/223840773958",
+        "blogName": "맛과 멋을 찾는 쿤쿤",
+        "publishedAt": "2025-04-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 추천 so 몰디브 ( SO Maldives ) 리조트 ...",
+        "url": "https://blog.naver.com/ogaoinfo/224245199266",
+        "blogName": "오늘부터",
+        "publishedAt": "2026-04-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신상 리조트 오션빌라 So maldives 해외 휴양지 숙소",
+        "url": "https://blog.naver.com/tndusdl2948/223353897504",
+        "blogName": "수연, 수블리의 여행",
+        "publishedAt": "2024-02-15",
         "independenceUnknown": false
       }
     ]
