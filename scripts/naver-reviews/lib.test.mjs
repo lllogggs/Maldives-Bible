@@ -157,7 +157,7 @@ test('rejects sales, reposts, planning posts, professional inspections, and reso
       bloggerName: '허니문리조트 여행사',
     },
     {
-      resort: { name: '바다 몰디브', name_en: 'Baros Maldives' },
+      resort: { name: '바로스 몰디브', name_en: 'Baros Maldives' },
       title: '두짓타니 몰디브 럭셔리 리조트 올인클루시브 후기',
       description: '신혼여행으로 두짓타니에 다녀왔고 넓은 바다 풍경이 아름다웠어요.',
     },
