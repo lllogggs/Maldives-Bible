@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "resortId": 68,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "워터빌라가 매우 아름다워요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 최고급 리조트 후바펜푸시 > 스피드 보트부터...",
+        "url": "https://blog.naver.com/dornrqnfry/223775507021",
+        "blogName": "송소리 일상 '◡'✿",
+        "publishedAt": "2025-02-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 후바펜푸시 몰디브 ... 솔직 후기 (Feat....",
+        "url": "https://blog.naver.com/wearesns/224274182968",
+        "blogName": "여행하고 먹고 노는 S랑S",
+        "publishedAt": "2026-05-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행기 - 후바펜푸시 1일차(1-1)",
+        "url": "https://blog.naver.com/steperdw/224091828090",
+        "blogName": "아무 리뷰 대잔치",
+        "publishedAt": "2025-11-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 | 후바펜푸시 ... 두 번째 파라다이스 솔직 후기",
+        "url": "https://blog.naver.com/bomcheron/224261306377",
+        "blogName": "BOMCHERON",
+        "publishedAt": "2026-04-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 후바펜푸시 1탄] 후바펜푸시 몰디브 후기",
+        "url": "https://blog.naver.com/forraraland/224209125395",
+        "blogName": "RaRaLand",
+        "publishedAt": "2026-03-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 3곳 도장깨기-바카루& 후바펜푸시 편",
+        "url": "https://blog.naver.com/eun10277/224133006662",
+        "blogName": "그_냥 나의 하루",
+        "publishedAt": "2026-01-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "임신 9주) 아부다비& 몰디브 #4 - 후바펜푸시",
+        "url": "https://blog.naver.com/eprenlgirl1234/224270529676",
+        "blogName": "명블리의 인생사",
+        "publishedAt": "2026-04-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "후바펜푸시 몰디브 리조트 ... 풀보드 (FB) 식사 대만족 후기",
+        "url": "https://blog.naver.com/lizzies_note/223434317886",
+        "blogName": "Lizzie’s Note | 리지의노트",
+        "publishedAt": "2024-05-02",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

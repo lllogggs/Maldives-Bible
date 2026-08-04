@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>몰디브 여행사 견적 비교 | 같은 조건 요청문 만들기</title>
+    <meta name="description" content="같은 일정·객실·식사 조건의 견적 요청문을 만들고, 몰디브 전문 여행사 홈페이지와 카카오 상담 채널에서 총액과 포함 조건을 비교하세요." />
+    <meta
+      name="keywords"
+      content="몰디브 신혼여행 처음 준비, 몰디브 리조트 선택 기준, 몰디브 신혼여행 비용, 몰디브 신혼여행 일정, 몰디브 리조트 이동수단, 몰디브 워터빌라 비치빌라 차이, 몰디브 신혼여행 리조트 비교"
+    />
+    <meta name="author" content="몰디브 바이블" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="몰디브 여행사 견적 비교 | 같은 조건 요청문 만들기" />
+    <meta property="og:description" content="같은 일정·객실·식사 조건의 견적 요청문을 만들고, 몰디브 전문 여행사 홈페이지와 카카오 상담 채널에서 총액과 포함 조건을 비교하세요." />
+    <meta property="og:image" content="https://www.maldivesbible.com/images/seo/maldives-resort-aerial.jpg" />
+    <meta property="og:image:secure_url" content="https://www.maldivesbible.com/images/seo/maldives-resort-aerial.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="몰디브 여행 견적 비교 안내" />
+    <meta property="og:url" content="https://www.maldivesbible.com/quote-comparison/" />
+    <meta property="og:site_name" content="몰디브 바이블" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="몰디브 여행사 견적 비교 | 같은 조건 요청문 만들기" />
+    <meta name="twitter:description" content="같은 일정·객실·식사 조건의 견적 요청문을 만들고, 몰디브 전문 여행사 홈페이지와 카카오 상담 채널에서 총액과 포함 조건을 비교하세요." />
+    <meta name="twitter:image" content="https://www.maldivesbible.com/images/seo/maldives-resort-aerial.jpg" />
+    <meta name="twitter:image:alt" content="몰디브 여행 견적 비교 안내" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6227921544579562"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Production analytics: direct GA4 + Microsoft Clarity -->
+    <script>
+      (() => {
+        const productionHostnames = new Set([
+          "maldivesbible.com",
+          "www.maldivesbible.com",
+        ]);
+
+        const campaignParams = new URLSearchParams(window.location.search);
+        const cleanCampaignValue = (value) => {
+          const normalized = value?.trim().toLowerCase().slice(0, 100);
+          return normalized && /^[a-z0-9]+(?:_[a-z0-9]+)*$/.test(normalized)
+            ? normalized
+            : null;
+        };
+        const campaignAttribution = {
+          utm_source: cleanCampaignValue(campaignParams.get("utm_source")),
+          utm_medium: cleanCampaignValue(campaignParams.get("utm_medium")),
+          utm_campaign: cleanCampaignValue(campaignParams.get("utm_campaign")),
+        };
+        if (
+          campaignAttribution.utm_source &&
+          campaignAttribution.utm_medium &&
+          campaignAttribution.utm_campaign
+        ) {
+          const content = cleanCampaignValue(campaignParams.get("utm_content"));
+          const term = cleanCampaignValue(campaignParams.get("utm_term"));
+          const attribution = {
+            ...campaignAttribution,
+            captured_at: new Date().toISOString(),
+            landing_page: `${window.location.pathname}${window.location.search}${window.location.hash}`.slice(0, 500),
+            ...(content ? { utm_content: content } : {}),
+            ...(term ? { utm_term: term } : {}),
+          };
+          try {
+            window.sessionStorage.setItem("mb_campaign_attribution_v1", JSON.stringify(attribution));
+          } catch {
+            // Session storage may be unavailable in privacy-restricted contexts.
+          }
+        }
+
+        if (!productionHostnames.has(window.location.hostname.toLowerCase())) {
+          return;
+        }
+
+        const measurementId = "G-Y00T1V6W91";
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag("js", new Date());
+        window.gtag("config", measurementId, { send_page_view: false });
+
+        const sendStaticPageView = () => {
+          const root = document.getElementById("root");
+          if (root?.dataset.staticPage !== "true") {
+            return;
+          }
+
+          const initialParams = new URLSearchParams(window.location.search);
+          const legacyView = initialParams.get("view");
+          const viewSuffix = legacyView ? `?view=${encodeURIComponent(legacyView)}` : "";
+          window.__MB_LAST_PAGE_VIEW__ = `${window.location.pathname}${viewSuffix}${window.location.hash}`;
+          window.gtag("event", "page_view", {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+          });
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", sendStaticPageView, { once: true });
+        } else {
+          sendStaticPageView();
+        }
+
+        const googleTag = document.createElement("script");
+        googleTag.async = true;
+        googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+        document.head.appendChild(googleTag);
+
+        const clarityProjectId = "u13oj1cs74";
+        window.clarity = window.clarity || function () {
+          (window.clarity.q = window.clarity.q || []).push(arguments);
+        };
+        const clarityTag = document.createElement("script");
+        clarityTag.async = true;
+        clarityTag.src = `https://www.clarity.ms/tag/${clarityProjectId}`;
+        document.head.appendChild(clarityTag);
+      })();
+    </script>
+    <meta name="application-name" content="몰디브 바이블" />
+    <meta name="apple-mobile-web-app-title" content="몰디브 바이블" />
+    <meta name="theme-color" content="#0e7490" />
+    <link rel="canonical" href="https://www.maldivesbible.com/quote-comparison/" />
+    <link rel="alternate" href="https://www.maldivesbible.com/quote-comparison/" hreflang="ko-KR" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#0e7490" />
+    <!-- Tailwind styles are bundled via Vite build -->
+<!-- Styles injected by Vite -->
+  <script type="module" crossorigin src="/assets/index-C4VClWVL.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CARcWEbR.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.maldivesbible.com/quote-comparison/#webpage","url":"https://www.maldivesbible.com/quote-comparison/","name":"몰디브 여행사 견적 비교 | 같은 조건 요청문 만들기","description":"같은 일정·객실·식사 조건의 견적 요청문을 만들고, 몰디브 전문 여행사 홈페이지와 카카오 상담 채널에서 총액과 포함 조건을 비교하세요.","inLanguage":"ko-KR","isPartOf":{"@id":"https://www.maldivesbible.com/#website"},"about":{"@id":"https://www.maldivesbible.com/#organization"},"publisher":{"@id":"https://www.maldivesbible.com/#organization"},"breadcrumb":{"@id":"https://www.maldivesbible.com/quote-comparison/#breadcrumb"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://www.maldivesbible.com/images/seo/maldives-resort-aerial.jpg","width":1200,"height":630},"dateModified":"2026-07-31"},{"@type":"BreadcrumbList","@id":"https://www.maldivesbible.com/quote-comparison/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"몰디브 바이블","item":"https://www.maldivesbible.com/"},{"@type":"ListItem","position":2,"name":"견적 비교","item":"https://www.maldivesbible.com/quote-comparison/"}]}]}</script>
+</head>
+  <body class="bg-gray-50">
+    <div id="root">
+      
+  <style>
+    .seo-static { min-height:100vh;background:#f5f8f7;color:#0f172a;font-family:Inter,'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif; }
+    .seo-static * { box-sizing:border-box; }
+    .seo-static a:focus-visible { outline:3px solid #14b8a6;outline-offset:3px; }
+    .seo-static__header { border-bottom:1px solid #dbe7e4;background:rgba(255,255,255,.96); }
+    .seo-static__header-inner { width:min(1120px,calc(100% - 36px));min-height:72px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:22px; }
+    .seo-static__brand { display:flex;align-items:center;gap:10px;color:#0f172a;text-decoration:none; }
+    .seo-static__brand img { border-radius:12px;box-shadow:0 7px 18px rgba(15,118,110,.13); }
+    .seo-static__brand small,.seo-static__brand strong { display:block; }
+    .seo-static__brand small { color:#0f766e;font-size:9px;font-weight:900;letter-spacing:.14em; }
+    .seo-static__brand strong { margin-top:2px;font-size:16px;letter-spacing:-.02em; }
+    .seo-static__header nav { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px; }
+    .seo-static__header nav a { display:flex;min-height:44px;align-items:center;justify-content:center;border-bottom:2px solid transparent;padding:0 9px;color:#475569;font-size:13px;font-weight:800;text-align:center;text-decoration:none;white-space:nowrap; }
+    .seo-static__header nav a:hover { border-color:#cbd5e1;color:#0f172a; }
+    .seo-static__header nav a[aria-current="page"] { border-color:#0f766e;color:#0f172a; }
+    .seo-static__content { width:min(1120px,calc(100% - 36px));margin:0 auto;padding:52px 0 36px; }
+    .seo-static__eyebrow { margin:0 0 10px;color:#0f766e;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase; }
+    .seo-static h1 { margin:0;color:#102a34;font-size:clamp(34px,5vw,54px);line-height:1.14;letter-spacing:-.045em;word-break:keep-all; }
+    .seo-static__lead { max-width:760px;margin:18px 0 0;color:#475569;font-size:17px;line-height:1.8;word-break:keep-all; }
+    .seo-static__actions { display:flex;flex-wrap:wrap;gap:10px;margin-top:26px; }
+    .seo-static__action { display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:999px;background:#0f766e;color:#fff;font-size:14px;font-weight:900;text-decoration:none;box-shadow:0 10px 24px rgba(15,118,110,.18); }
+    .seo-static__action--secondary { border:1px solid #b9d8d2;background:#fff;color:#0f766e;box-shadow:none; }
+    .seo-static__section { margin-top:42px; }
+    .seo-static__section h2 { margin:0 0 14px;font-size:25px;letter-spacing:-.03em; }
+    .seo-static__grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px; }
+    .seo-static__card { display:block;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:18px;color:#0f172a;text-decoration:none;box-shadow:0 8px 20px rgba(15,23,42,.035); }
+    .seo-static__card strong { display:block;font-size:16px;line-height:1.45;word-break:keep-all; }
+    .seo-static__card span { display:block;margin-top:6px;color:#64748b;font-size:13px;line-height:1.65; }
+    .seo-static__note { border:1px solid #c6e7e0;border-radius:14px;background:#edfbf8;padding:18px;color:#335e5b;line-height:1.75; }
+    .seo-static__figure { margin:28px 0 0;overflow:hidden;border:1px solid #dbe7e4;border-radius:18px;background:#fff;box-shadow:0 16px 36px rgba(15,23,42,.08); }
+    .seo-static__figure img { display:block;width:100%;height:auto; }
+    .seo-static__figure figcaption { padding:10px 14px;color:#64748b;font-size:12px;line-height:1.6; }
+    .seo-static__checklist { margin:0;padding-left:20px;color:#475569;line-height:1.8; }
+    .seo-static__checklist li + li { margin-top:5px; }
+    .seo-static__agency-links { display:flex;flex-wrap:wrap;gap:8px;margin-top:12px; }
+    .seo-static__agency-links a { display:inline-flex;min-height:40px;align-items:center;border:1px solid #cbd5e1;border-radius:9px;padding:0 12px;color:#0f766e;font-size:12px;font-weight:800;text-decoration:none; }
+    @media (max-width:760px) {
+      .seo-static__header-inner { width:min(100% - 20px,1120px);min-height:64px;display:block;padding:10px 0 0; }
+      .seo-static__brand { width:max-content;margin:0 auto 7px; }
+      .seo-static__header nav { width:100%; }
+      .seo-static__header nav a { min-width:0;padding:0 2px;font-size:12px; }
+      .seo-static__content { padding-top:34px; }
+      .seo-static__lead { font-size:15px;line-height:1.72; }
+      .seo-static__grid { grid-template-columns:minmax(0,1fr); }
+      .seo-static__action { width:100%; }
+    }
+  </style>
+      <div class="seo-static">
+        
+  <header class="seo-static__header">
+    <div class="seo-static__header-inner">
+      <a class="seo-static__brand" href="https://www.maldivesbible.com/">
+        <img src="https://www.maldivesbible.com/android-chrome-192x192.png" width="42" height="42" alt="" />
+        <span><small>MALDIVES BIBLE</small><strong>몰디브 바이블</strong></span>
+      </a>
+      <nav aria-label="몰디브 바이블 주요 메뉴">
+        
+          <a href="https://www.maldivesbible.com/start/">시작하기</a>
+          <a href="https://www.maldivesbible.com/maldives-resort-comparison/">리조트 비교</a>
+          <a href="https://www.maldivesbible.com/quote-comparison/" aria-current="page">견적 비교</a>
+          <a href="https://www.maldivesbible.com/flight-guide/">항공 가이드</a>
+      </nav>
+    </div>
+  </header>
+        <main class="seo-static__content">
+          <p class="seo-static__eyebrow">MALDIVES BIBLE GUIDE</p>
+          <h1>몰디브 여행사 견적 비교</h1>
+          <p class="seo-static__lead">여행사마다 다른 조건으로 요청하면 금액만으로 비교하기 어렵습니다. 같은 일정·객실·식사·이동 조건을 정리한 뒤 여러 여행사의 포함 항목을 확인하세요.</p>
+          
+    <figure class="seo-static__figure">
+      <img src="https://www.maldivesbible.com/images/seo/maldives-resort-aerial.jpg" width="1200" height="630" alt="몰디브 여행 견적 비교 안내" fetchpriority="high" />
+      <figcaption>몰디브 여행 견적 비교 안내</figcaption>
+    </figure>
+          
+    <section class="seo-static__section" aria-labelledby="quote-reason-title">
+      <h2 id="quote-reason-title">여행사 견적이 더 낮을 수 있는 이유</h2>
+      <p class="seo-static__lead">리조트는 객실을 안정적으로 판매하기 위해 일부 객실을 여행사나 현지 파트너에게 별도 계약가로 제공합니다. 여행사는 이 객실에 식사, 공항 이동, 허니문 특전을 묶어 견적을 만들기 때문에 같은 일정과 객실이라도 개별 예약보다 총액이 낮을 수 있습니다.</p>
+      <p class="seo-static__note" style="margin-top:18px;"><strong>설명용 예시: 공개 판매가 $10,000 → 여행사 견적 $8,000</strong><br />여행사가 항상 더 저렴한 것은 아닙니다. 일정·객실·식사·이동·세금과 취소 조건을 같게 맞춰 비교하세요.</p>
+    </section>
+    <section class="seo-static__section" aria-labelledby="quote-template-title">
+      <h2 id="quote-template-title">같은 조건의 견적 요청문 만들기</h2>
+      <p class="seo-static__lead">출발 예정일, 숙박일수, 인원, 객실 유형, 식사 플랜과 후보 리조트를 입력해 같은 요청문을 2~3곳에 보낼 수 있습니다.</p>
+      <p class="seo-static__note" style="margin-top:18px;white-space:pre-line;">안녕하세요. 아래 조건으로 몰디브 견적을 부탁드립니다.
+출발일 · 숙박일수 · 인원 · 객실 · 식사 · 후보 리조트
+세금, 공항 이동비, 포함 특전과 취소 조건까지 포함한 총액으로 안내 부탁드립니다.</p>
+    </section>
+    <section class="seo-static__section" aria-labelledby="quote-check-title">
+      <h2 id="quote-check-title">같은 조건으로 2~3곳에 요청하세요</h2>
+      <p class="seo-static__lead">여행 날짜 · 숙박일수 · 객실 타입 · 식사 플랜 · 이동편 · 세금 · 취소 조건</p>
+      <div class="seo-static__grid" style="margin-top:18px;">
+        <article class="seo-static__card"><h3>요청 전 체크 1</h3><span>출발일과 숙박일수, 인원, 항공 일정을 통일하세요. 말레 1박이 필요하면 같은 조건으로 넣어야 합니다.</span></article>
+        <article class="seo-static__card"><h3>요청 전 체크 2</h3><span>비치빌라·워터빌라, 개인풀, 식사 플랜을 명확히 적고 스플릿 스테이 조합이면 각 박수를 나눠 적으세요.</span></article>
+        <article class="seo-static__card"><h3>요청 전 체크 3</h3><span>세금과 봉사료, 공항–리조트 왕복 이동비, 식사와 음료, 허니문 혜택, 예약금과 잔금 일정이 포함됐는지 확인하세요.</span></article>
+      </div>
+      <p class="seo-static__note" style="margin-top:18px;">화면의 금액은 비교 방법을 설명하기 위한 예시입니다. 정확한 금액과 포함 조건은 각 여행사에 문의해 확인하세요.</p>
+    </section>
+    <section class="seo-static__section" aria-labelledby="agency-list-title">
+      <h2 id="agency-list-title">등록된 몰디브 여행사 목록</h2>
+      <p>다음은 사이트에 등록된 12곳의 홈페이지와 상담 채널입니다. 두세 곳에 같은 요청서를 보낸 뒤 포함 조건을 나란히 확인하세요.</p>
+      <div class="seo-static__grid" style="margin-top:18px;">
+    <article class="seo-static__card">
+      <h3>투어민</h3>
+      <span>여행사의 공개 홈페이지와 카카오 상담 채널을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="https://www.tourmin.co.kr" target="_blank" rel="noopener noreferrer" aria-label="투어민 홈페이지 새 창에서 열기">홈페이지</a>
+        <a href="https://pf.kakao.com/_LxbYBM" target="_blank" rel="noopener noreferrer" aria-label="투어민 카카오톡 채널 새 창에서 열기">카카오 채널</a>
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>푸른여행클럽</h3>
+      <span>여행사의 공개 홈페이지와 카카오 상담 채널을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="https://cafe.naver.com/honeymoonp" target="_blank" rel="noopener noreferrer" aria-label="푸른여행클럽 홈페이지 새 창에서 열기">홈페이지</a>
+        <a href="https://pf.kakao.com/_UZNxgd" target="_blank" rel="noopener noreferrer" aria-label="푸른여행클럽 카카오톡 채널 새 창에서 열기">카카오 채널</a>
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>리얼몰디브</h3>
+      <span>여행사의 공개 홈페이지와 카카오 상담 채널을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="https://realmaldives.co.kr" target="_blank" rel="noopener noreferrer" aria-label="리얼몰디브 홈페이지 새 창에서 열기">홈페이지</a>
+        <a href="https://pf.kakao.com/_NcnxaG" target="_blank" rel="noopener noreferrer" aria-label="리얼몰디브 카카오톡 채널 새 창에서 열기">카카오 채널</a>
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>트레비아</h3>
+      <span>여행사의 공개 홈페이지와 카카오 상담 채널을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="https://www.trevia.co.kr" target="_blank" rel="noopener noreferrer" aria-label="트레비아 홈페이지 새 창에서 열기">홈페이지</a>
+        <a href="https://pf.kakao.com/_xixjNQl" target="_blank" rel="noopener noreferrer" aria-label="트레비아 카카오톡 채널 새 창에서 열기">카카오 채널</a>
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>나래여행사</h3>
+      <span>여행사의 공개 홈페이지을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="http://www.nadree.net/" target="_blank" rel="noopener noreferrer" aria-label="나래여행사 홈페이지 새 창에서 열기">홈페이지</a>
+        
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>하이몰디브</h3>
+      <span>여행사의 공개 홈페이지을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="https://www.himaldives.co.kr/" target="_blank" rel="noopener noreferrer" aria-label="하이몰디브 홈페이지 새 창에서 열기">홈페이지</a>
+        
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>여행산책</h3>
+      <span>여행사의 공개 홈페이지을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="https://www.tourw.co.kr/" target="_blank" rel="noopener noreferrer" aria-label="여행산책 홈페이지 새 창에서 열기">홈페이지</a>
+        
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>잇츠마이트래블</h3>
+      <span>여행사의 공개 홈페이지와 카카오 상담 채널을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="http://itsmytravel.co.kr/" target="_blank" rel="noopener noreferrer" aria-label="잇츠마이트래블 홈페이지 새 창에서 열기">홈페이지</a>
+        <a href="https://pf.kakao.com/_qgDUxd" target="_blank" rel="noopener noreferrer" aria-label="잇츠마이트래블 카카오톡 채널 새 창에서 열기">카카오 채널</a>
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>투어플래닛</h3>
+      <span>여행사의 공개 홈페이지와 카카오 상담 채널을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="http://www.tour-planet.co.kr/" target="_blank" rel="noopener noreferrer" aria-label="투어플래닛 홈페이지 새 창에서 열기">홈페이지</a>
+        <a href="https://pf.kakao.com/_LYSSl" target="_blank" rel="noopener noreferrer" aria-label="투어플래닛 카카오톡 채널 새 창에서 열기">카카오 채널</a>
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>허니문리조트</h3>
+      <span>여행사의 공개 홈페이지와 카카오 상담 채널을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="http://www.honeymoonresort.co.kr/" target="_blank" rel="noopener noreferrer" aria-label="허니문리조트 홈페이지 새 창에서 열기">홈페이지</a>
+        <a href="https://pf.kakao.com/_gkKlE" target="_blank" rel="noopener noreferrer" aria-label="허니문리조트 카카오톡 채널 새 창에서 열기">카카오 채널</a>
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>천생연분닷컴</h3>
+      <span>여행사의 공개 홈페이지을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="https://www.1000syb.com/" target="_blank" rel="noopener noreferrer" aria-label="천생연분닷컴 홈페이지 새 창에서 열기">홈페이지</a>
+        
+      </div>
+    </article>
+    <article class="seo-static__card">
+      <h3>팜투어</h3>
+      <span>여행사의 공개 홈페이지와 카카오 상담 채널을 확인할 수 있습니다.</span>
+      <div class="seo-static__agency-links">
+        <a href="https://www.palmtour.co.kr" target="_blank" rel="noopener noreferrer" aria-label="팜투어 홈페이지 새 창에서 열기">홈페이지</a>
+        <a href="https://pf.kakao.com/_Hxmxaxexj" target="_blank" rel="noopener noreferrer" aria-label="팜투어 카카오톡 채널 새 창에서 열기">카카오 채널</a>
+      </div>
+    </article></div>
+    </section>
+          
+  <footer style="max-width:1120px;margin:28px auto 0;border-top:1px solid #dbe7e4;padding:18px 0 8px;color:#64748b;font-size:12px;line-height:1.7;">
+    <p style="margin:0 0 8px;">몰디브 바이블 편집 · 최종 업데이트 2026.07.31</p>
+    <nav aria-label="몰디브 바이블 주요 서비스" style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:8px;">
+      <a href="https://www.maldivesbible.com/start/" style="color:#0f766e;font-weight:800;text-decoration:none;">시작하기</a><a href="https://www.maldivesbible.com/maldives-resort-comparison/" style="color:#0f766e;font-weight:800;text-decoration:none;">리조트 비교</a><a href="https://www.maldivesbible.com/quote-comparison/" style="color:#0f766e;font-weight:800;text-decoration:none;">견적 비교</a><a href="https://www.maldivesbible.com/flight-guide/" style="color:#0f766e;font-weight:800;text-decoration:none;">항공 가이드</a>
+    </nav>
+    <nav aria-label="사이트 정보" style="display:flex;flex-wrap:wrap;gap:8px 16px;">
+      <a href="https://www.maldivesbible.com/maldives-resorts/" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 목록</a>
+      <a href="https://www.maldivesbible.com/maldives-glossary/" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 용어집</a>
+      <a href="https://www.maldivesbible.com/about/" style="color:#0f766e;font-weight:800;text-decoration:none;">소개·편집 기준</a>
+    </nav>
+  </footer>
+        </main>
+      </div></div>
+  </body>
+</html>

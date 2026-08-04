@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "resortId": 121,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "수중환경이 좋아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 소네바 자니• 소네바푸시 후기 -(3)",
+        "url": "https://blog.naver.com/jeeeee_o/223971488174",
+        "blogName": "멍때리다가 가끔 어딘가 다녀오는 집순이의 일상 기록",
+        "publishedAt": "2025-08-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[내인생에 몰디브 #2] 몰디브 소네바푸시 리조트",
+        "url": "https://blog.naver.com/arti76/223739025142",
+        "blogName": "느긋한사자,호랭 그리고 고양이들",
+        "publishedAt": "2025-01-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 소네바푸시 & 소네바 자니 후기 (1)",
+        "url": "https://blog.naver.com/c5316/223711935694",
+        "blogName": "GDP 블로그",
+        "publishedAt": "2025-01-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 - 소네바푸시 (Soneva fushi) 리조트 1일차...",
+        "url": "https://blog.naver.com/nas_hop/223252427984",
+        "blogName": "포산의 일상♡",
+        "publishedAt": "2023-11-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] DAY1~2 소네바푸시 에서의 첫날",
+        "url": "https://blog.naver.com/tinkymom/221345579323",
+        "blogName": "어코맘의 타임캡슐",
+        "publishedAt": "2018-08-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 1일차, 소네바푸시 (Soneva Fushi...",
+        "url": "https://blog.naver.com/nagaa_y/221330581752",
+        "blogName": "NAA's PAPER",
+        "publishedAt": "2018-08-01",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

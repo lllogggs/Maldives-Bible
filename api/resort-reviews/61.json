@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 61,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "비슷한 등급의 리조트보다 가격 부담이 낮아요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 가성비 리조트 (하지만 완벽) 그랜드파크 코디파루 ...",
+        "url": "https://blog.naver.com/suzie38317/223916478019",
+        "blogName": "Mrs.Moon House",
+        "publishedAt": "2025-06-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 그랜드파크 코디파루 워터빌라 후기",
+        "url": "https://blog.naver.com/2yummy2/224187838440",
+        "blogName": "여니로그 ꒰ღ˘‿˘ற꒱",
+        "publishedAt": "2026-02-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 그랜드파크 코디파루 ... 체크인&체크아웃, 리조트 생활...",
+        "url": "https://blog.naver.com/akxkxn2/224133955720",
+        "blogName": "서걱서걱의 하루 기록지",
+        "publishedAt": "2026-01-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 추천 그랜드 파크 코디파루 라군워터빌라...",
+        "url": "https://blog.naver.com/uiukkop/224209255458",
+        "blogName": "Moments with Chloe",
+        "publishedAt": "2026-03-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 그랜드 파크 코디파루 리조트 , 널스 샤크 스노클링...",
+        "url": "https://blog.naver.com/shootar/223910313097",
+        "blogName": "홍차왕자의 비밀지도",
+        "publishedAt": "2025-06-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가성비 리조트 추천 그랜드파크 코디파루",
+        "url": "https://blog.naver.com/queen77577/223901583323",
+        "blogName": "마녀씨의 힐링 스토리",
+        "publishedAt": "2025-06-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 25.04.30~05.12 11박13일/' 그랜드파크 코디파루 ' 리조트 ...",
+        "url": "https://blog.naver.com/heycg82/223959909850",
+        "blogName": "헤이's 일상이 여행!",
+        "publishedAt": "2025-08-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 5박 6일 :: 그랜드파크 코디파루 라군워터빌라 후기",
+        "url": "https://blog.naver.com/alsxmzltm/223788100533",
+        "blogName": "워니는 못말려",
+        "publishedAt": "2025-03-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 그랜드 파크 코디파루 몰디브",
+        "url": "https://blog.naver.com/eatntrip_shadya/223842354867",
+        "blogName": "eatntrip_shadya님의 블로그",
+        "publishedAt": "2025-04-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼 여행] 그랜드파크코디파루 Day1 수중환경...",
+        "url": "https://blog.naver.com/dionoff/224271705289",
+        "blogName": "맛집/여행/웨딩/뷰티",
+        "publishedAt": "2026-05-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 그랜드파크코디파루 ... 2일차 후기 (브리즈바 메뉴추천)",
+        "url": "https://blog.naver.com/green_010/224184480802",
+        "blogName": "챱챱",
+        "publishedAt": "2026-02-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행기 #5. 그랜드파크 코디파루 3일차...",
+        "url": "https://blog.naver.com/nerollia/221358365721",
+        "blogName": "네롤리의 LIFE LAB",
+        "publishedAt": "2018-09-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 6( 그랜드파크코디파루 _풀워터빌라_5일차...",
+        "url": "https://blog.naver.com/tls5676/223116238143",
+        "blogName": "자두의 다이어리",
+        "publishedAt": "2023-05-31",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

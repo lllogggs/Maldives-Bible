@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "resortId": 16,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "자연친화적인 분위기와 좋은 수중환경이 인상적이에요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 7,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 반얀트리 리조트 Banyan Tree Vabbinfaru - Free...",
+        "url": "https://blog.naver.com/kzzp2819/223145196247",
+        "blogName": "인생 2회차, 언제나 도전하는 중년",
+        "publishedAt": "2023-07-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행, 반얀트리 바빈파루 가성비 가족여행 리조트 ...",
+        "url": "https://blog.naver.com/baechunsik/223536793115",
+        "blogName": "오늘도 배고픈 춘식이",
+        "publishedAt": "2024-08-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 다와 이후루, 반얀트리 바빈파루 다녀와서 1",
+        "url": "https://blog.naver.com/blossomflower/223550235823",
+        "blogName": "꽃을 피우다, 피움",
+        "publishedAt": "2024-08-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "The Maldives 1 - 반얀트리 바빈파루 몰디브",
+        "url": "https://blog.naver.com/tlswlgprjt/221043648110",
+        "blogName": "딘디 패션 블로그",
+        "publishedAt": "2017-07-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 반얀트리 바빈파루 Banyan Tree Vabbinfaru Maldives ...",
+        "url": "https://blog.naver.com/sg90929/220676366041",
+        "blogName": "그남자 원동욱의 IT테크 에세이",
+        "publishedAt": "2016-04-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 호텔 후기 ] Maldives Banyan Tree Vabbinfaru _a...",
+        "url": "https://blog.naver.com/kskang2266/40155949349",
+        "blogName": "세상의 모든 호텔이야기!",
+        "publishedAt": "2012-04-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 _반얀트리의 추억( Banyan Tree Vabbinfaru Maldives )",
+        "url": "https://blog.naver.com/pj3376/220161826414",
+        "blogName": "마스터플랜",
+        "publishedAt": "2014-10-26",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "resortId": 144,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 1,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "2번째 몰디브 방문기 ( 호텔 : 리우아톨 ) 리우아톨 리조트 1일차...",
+        "url": "https://blog.naver.com/shdmfsh/223526631049",
+        "blogName": "으리으리 a",
+        "publishedAt": "2024-07-26",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

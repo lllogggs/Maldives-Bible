@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "resortId": 32,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트와 주변 풍경이 전반적으로 아름다워요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 여행 후기 ｜ 콘스탄스 무푸시 리조트 의 모든 것 #시설소개",
+        "url": "https://blog.naver.com/eksql1205/221450769723",
+        "blogName": "흔적남기기",
+        "publishedAt": "2019-01-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 콘스탄스 무푸시 리조트 의 시간들, 혼자 떠나는 몰디브 ...",
+        "url": "https://blog.naver.com/gloriousld/220528637168",
+        "blogName": "이니그마의 사람을 만나는 여행, 마음을 담는 사진",
+        "publishedAt": "2015-11-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행지로 굿 콘스탄스 무푸시 리조트 룸 후기",
+        "url": "https://blog.naver.com/pururune/221019309218",
+        "blogName": "다락방의 맛있는 여행",
+        "publishedAt": "2017-06-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "로맨틱 신혼여행을 위한 콘스탄스 무푸시 몰디브 리조트 둘러보기",
+        "url": "https://blog.naver.com/gikimi23/220524682961",
+        "blogName": "+지구별여행자+",
+        "publishedAt": "2015-10-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 콘스탄스 무푸시 ｜ 몰디브 올인클루시브 리조트 추천",
+        "url": "https://blog.naver.com/eksql1205/221404374352",
+        "blogName": "흔적남기기",
+        "publishedAt": "2018-11-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "추천 - 콘스탄스 무푸시 리조트 , Day 1 # 몰디브 여행...",
+        "url": "https://blog.naver.com/suriaan/150189833104",
+        "blogName": "Travel Specialist",
+        "publishedAt": "2014-05-02",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

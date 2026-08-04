@@ -177,7 +177,7 @@
       "더블 룸",
       "오버워터 스위트"
     ],
-    "homepageUrl": "https://www.riu.com/en/hotel/maldivas/dhaalu-atoll/hotel-riu-atoll/"
+    "homepageUrl": "https://www.riu.com/en/hotel/maldives/dhaalu-atoll/hotel-riu-atoll"
   },
   {
     "id": 145,
@@ -214,7 +214,7 @@
       "주니어 스위트",
       "오버워터 스위트 위드 프라이빗 풀"
     ],
-    "homepageUrl": "https://www.riu.com/en/hotel/maldivas/dhaalu-atoll/hotel-riu-palace-maldivas/"
+    "homepageUrl": "https://www.riu.com/en/hotel/maldives/dhaalu-atoll/hotel-riu-palace-maldivas"
   },
   {
     "id": 146,
@@ -272,14 +272,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.malahini.mv:9443/web/api/picture/196",
-      "https://www.malahini.mv:9443/web/api/picture/201",
-      "https://www.malahini.mv:9443/web/api/picture/204",
-      "https://www.malahini.mv:9443/web/api/picture/178",
-      "https://www.malahini.mv:9443/web/api/picture/62",
-      "https://www.malahini.mv:9443/web/api/picture/73"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "슈페리어 룸",
       "비치 빌라"
@@ -326,7 +319,7 @@
       "비치 빌라",
       "오버워터 빌라"
     ],
-    "homepageUrl": "https://www.mercuremaldiveskooddoo.com/"
+    "homepageUrl": "https://all.accor.com/hotel/9923/index.en.shtml"
   },
   {
     "id": 149,
@@ -419,7 +412,6 @@
       "https://notion.blupp.co/v1/asset/1a341194-ecca-80da-9c6e-d9bcbe0a03ec/1a341194-ecca-809b-b173-f082c40ee998/e86ea087-1c9e-4460-8b66-e1287aab9803/mpi_-_grand_madifushi_aqua_pool_villa__283_29.webp",
       "https://notion.blupp.co/v1/asset/1a341194-ecca-80da-9c6e-d9bcbe0a03ec/1a341194-ecca-809b-b173-f082c40ee998/aa9b910a-f53b-414d-a93a-b5e1b631fcd4/mpi_-_two-bedroom_serene_pool_villa__2810_29.webp",
       "https://notion.blupp.co/v1/asset/1a341194-ecca-80da-9c6e-d9bcbe0a03ec/1a341194-ecca-80d0-86ff-e5ffd6932925/4335431b-7cd0-420e-ad90-0c012a9353e8/mpi_-_mandara_spa__282_29.webp",
-      "https://www.madifushiprivateisland.com/images/xo-private-logo-white.png",
       "https://notion.blupp.co/v1/asset/1a341194-ecca-80da-9c6e-d9bcbe0a03ec/1a341194-ecca-809b-b173-f082c40ee998/2fa77414-fa63-4e30-a658-abc989dbe096/serene-pool-villa_1-1__281_29.jpg",
       "https://notion.blupp.co/v1/asset/1a341194-ecca-80da-9c6e-d9bcbe0a03ec/1a341194-ecca-80d0-86ff-e5ffd6932925/bcf24d2a-246f-4ebc-aed9-ca980f443a17/wellness-1.png",
       "https://notion.blupp.co/v1/asset/1a341194-ecca-80da-9c6e-d9bcbe0a03ec/1a341194-ecca-809b-b173-f082c40ee998/fe81f408-f5c5-4d22-9ee1-e80b232862c3/serene-pool-villa-highlight-1.jpg",
@@ -564,11 +556,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.hideawaybeachmaldives.com/wp-content/uploads/2024/05/1.Cover-9-scaled.jpg",
-      "https://www.hideawaybeachmaldives.com/wp-content/uploads/2024/05/2.Swimming-Pools.jpg",
-      "https://www.hideawaybeachmaldives.com/wp-content/uploads/2024/05/5.Accomodation.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "선셋 비치 빌라",
       "디럭스 워터 빌라 위드 풀"
@@ -577,26 +565,7 @@
     "imageSourceNote": "공식 이미지",
     "imageSourceProvider": "Hideaway Beach official site",
     "imageSourceUrl": "https://www.hideawaybeachmaldives.com/gallery/",
-    "imageCredits": [
-      {
-        "provider": "Hideaway Beach official site",
-        "sourceUrl": "https://www.hideawaybeachmaldives.com/gallery/",
-        "creator": "Hideaway Beach Resort & Spa",
-        "license": "공식 사이트 이미지"
-      },
-      {
-        "provider": "Hideaway Beach official site",
-        "sourceUrl": "https://www.hideawaybeachmaldives.com/gallery/",
-        "creator": "Hideaway Beach Resort & Spa",
-        "license": "공식 사이트 이미지"
-      },
-      {
-        "provider": "Hideaway Beach official site",
-        "sourceUrl": "https://www.hideawaybeachmaldives.com/gallery/",
-        "creator": "Hideaway Beach Resort & Spa",
-        "license": "공식 사이트 이미지"
-      }
-    ]
+    "imageCredits": []
   },
   {
     "id": 154,
@@ -623,16 +592,14 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
+      "https://www.summerislandmaldives.com/wp-content/uploads/2022/08/home-desktop-new-def-header.jpg?w=1920&h=950",
       "https://www.summerislandmaldives.com/wp-content/uploads/2021/03/interior-gallery-small-thumb7.jpg",
       "https://www.summerislandmaldives.com/wp-content/uploads/2021/03/interior-gallery-small-thumb14.jpg",
       "https://www.summerislandmaldives.com/wp-content/uploads/2021/03/interior-gallery-small-thumb9.jpg",
       "https://www.summerislandmaldives.com/wp-content/uploads/2021/03/interior-gallery-small-thumb12.jpg",
       "https://www.summerislandmaldives.com/wp-content/uploads/2021/03/interior-gallery-small-thumb8.jpg",
-      "https://www.summerislandmaldives.com/wp-content/uploads/2022/01/logo2-e1680777506688.png",
       "https://www.summerislandmaldives.com/wp-content/uploads/2021/03/interior-gallery-small-thumb10.jpg",
-      "https://www.summerislandmaldives.com/wp-content/uploads/2021/03/interior-gallery-small-thumb11.jpg",
-      "https://www.summerislandmaldives.com/wp-content/uploads/2022/08/home-desktop-new-def-header.jpg?w=1920&h=950",
-      "https://www.summerislandmaldives.com/wp-content/uploads/2022/01/logo.png"
+      "https://www.summerislandmaldives.com/wp-content/uploads/2021/03/interior-gallery-small-thumb11.jpg"
     ],
     "roomTypes": [
       "슈페리어 비스타",
@@ -697,11 +664,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://nalamaldives.com/wp-content/uploads/2025/11/Nala_Aerial_2_1600x900.jpg",
-      "https://nalamaldives.com/wp-content/uploads/2025/12/Nala_Water_villas_1600x900.jpg",
-      "https://nalamaldives.com/wp-content/uploads/2025/12/Nala_Romantic_beach_villa_front_view_1600x900.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "선라이즈 비치 방갈로",
       "선셋 비치 방갈로"
@@ -710,26 +673,7 @@
     "imageSourceNote": "공식 이미지",
     "imageSourceProvider": "Nala Maldives official site",
     "imageSourceUrl": "https://nalamaldives.com/",
-    "imageCredits": [
-      {
-        "provider": "Nala Maldives official site",
-        "sourceUrl": "https://nalamaldives.com/",
-        "creator": "Nala Maldives",
-        "license": "공식 사이트 이미지"
-      },
-      {
-        "provider": "Nala Maldives official site",
-        "sourceUrl": "https://nalamaldives.com/",
-        "creator": "Nala Maldives",
-        "license": "공식 사이트 이미지"
-      },
-      {
-        "provider": "Nala Maldives official site",
-        "sourceUrl": "https://nalamaldives.com/",
-        "creator": "Nala Maldives",
-        "license": "공식 사이트 이미지"
-      }
-    ]
+    "imageCredits": []
   },
   {
     "id": 157,
@@ -755,12 +699,10 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://enqafm7df2v.exactdn.com/wp-content/uploads/2023/01/HERO-Best-time-to-visit-Maldives-760x872.jpg?strip=all&lossy=1&ssl=1",
-      "https://enqafm7df2v.exactdn.com/wp-content/uploads/2023/01/HERO-Stunning-beaches-of-Maldives-760x872.png?strip=all&lossy=1&ssl=1",
-      "https://enqafm7df2v.exactdn.com/wp-content/uploads/2023/02/Feature-Culture-and-traditions-760x872.jpg?strip=all&lossy=1&ssl=1",
-      "https://enqafm7df2v.exactdn.com/wp-content/uploads/2023/03/2-1-760x800.jpg?strip=all&lossy=1&ssl=1",
-      "https://enqafm7df2v.exactdn.com/wp-content/uploads/2023/02/HERO-Scuba-Dive-with-Sharks-760x872.jpg?strip=all&lossy=1&ssl=1",
-      "https://s3.amazonaws.com/solvus-dev/files/asksuite-img/35daa226-1e2f-4899-a7d4-f7540c213af7.png"
+      "https://enqafm7df2v.exactdn.com/wp-content/uploads/2025/08/Nova-Maldives-Aerial-Feed-square.jpg?strip=all&resize=480%2C460",
+      "https://enqafm7df2v.exactdn.com/wp-content/uploads/2024/05/3.jpg",
+      "https://enqafm7df2v.exactdn.com/wp-content/uploads/2024/07/Untitled-design-2024-07-15T115631.310.jpg?strip=all&resize=480%2C460",
+      "https://enqafm7df2v.exactdn.com/wp-content/uploads/2022/05/all-inclusive-760x800.jpg?strip=all"
     ],
     "roomTypes": [
       "비치 빌라",
@@ -791,11 +733,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://jawakara.com/wp-content/uploads/2023/05/Jawakara_Maldives.jpg",
-      "https://jawakara.com/wp-content/uploads/2023/05/Jawakara-1.jpg",
-      "https://jawakara.com/wp-content/uploads/2022/07/DJI_0967.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 풀 빌라",
       "워터 풀 빌라"
@@ -804,26 +742,7 @@
     "imageSourceNote": "공식 이미지",
     "imageSourceProvider": "Jawakara official site",
     "imageSourceUrl": "https://jawakara.com/",
-    "imageCredits": [
-      {
-        "provider": "Jawakara official site",
-        "sourceUrl": "https://jawakara.com/",
-        "creator": "Jawakara Islands Maldives",
-        "license": "공식 사이트 이미지"
-      },
-      {
-        "provider": "Jawakara official site",
-        "sourceUrl": "https://jawakara.com/",
-        "creator": "Jawakara Islands Maldives",
-        "license": "공식 사이트 이미지"
-      },
-      {
-        "provider": "Jawakara official site",
-        "sourceUrl": "https://jawakara.com/",
-        "creator": "Jawakara Islands Maldives",
-        "license": "공식 사이트 이미지"
-      }
-    ]
+    "imageCredits": []
   },
   {
     "id": 159,

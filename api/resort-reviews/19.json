@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 19,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "숙박 만족도가 높아 다시 방문하고 싶어요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 리조트 오젠 리저브 볼리푸시 추천 및 예약 팁...",
+        "url": "https://blog.naver.com/iriwana/224048409246",
+        "blogName": "이리집사의 나들이",
+        "publishedAt": "2025-10-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 고급 리조트 추천, 오젠리저브볼리푸시 , 몰디브리조트 선...",
+        "url": "https://blog.naver.com/sooneunclinic/223793369692",
+        "blogName": "착한진료, 진심을 담은 시술을 하는 원장님개인블로그",
+        "publishedAt": "2025-03-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 - 오젠 리저브 볼리푸시 이용 후기 3편",
+        "url": "https://blog.naver.com/intrados/223810299615",
+        "blogName": "방랑집시-시간을 담는 그릇",
+        "publishedAt": "2025-03-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 | 오젠 리저브 볼리푸시 리조트 후기 (+체크인...",
+        "url": "https://blog.naver.com/home0117/223655593411",
+        "blogName": "현탄대로",
+        "publishedAt": "2024-11-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[Maldives] 몰디브 오젠 리저브 볼리푸시 올인클루시브...",
+        "url": "https://blog.naver.com/bbaembbaem_home/223803735817",
+        "blogName": "뺌뺌이네 집 ✎°₊·",
+        "publishedAt": "2025-03-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 오젠 리저브 볼리푸시 리조트 신혼여행 5박 6일 후기",
+        "url": "https://blog.naver.com/tjdal0926/223908709916",
+        "blogName": "미미의 일상",
+        "publishedAt": "2025-06-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 오젠 리저브 볼리푸시 Day 5 레이트 체크아웃...",
+        "url": "https://blog.naver.com/ddudduame/223868988908",
+        "blogName": "뚜상의 맛집리스트",
+        "publishedAt": "2025-05-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행으로 몰디브 ! 오젠 리저브 볼리푸시 리조트 다녀온 후기",
+        "url": "https://blog.naver.com/jieangood/223612472598",
+        "blogName": "화장품 만드는 황파람",
+        "publishedAt": "2024-10-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 | 오젠 리저브 볼리푸시 마지막날 레이트...",
+        "url": "https://blog.naver.com/baesy90/223534055485",
+        "blogName": "하루하루 일상의 기록",
+        "publishedAt": "2024-08-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "일기 몰디브 1일차] 오젠리저브 볼리푸시 워터빌라 후기 ...",
+        "url": "https://blog.naver.com/ujhong001/224070900670",
+        "blogName": "늘 헝그리한 홍구리",
+        "publishedAt": "2025-11-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 day2_ 오젠리저브볼리푸시 오션풀스위트302호 체크인...",
+        "url": "https://blog.naver.com/emghee/223534966213",
+        "blogName": "232님의블로그",
+        "publishedAt": "2024-08-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "WD.#16 - 몰디브 허니문 DAY 1 오젠 리저브 볼리푸시 체크인",
+        "url": "https://blog.naver.com/dajeonge_log/223724867068",
+        "blogName": "daj._log",
+        "publishedAt": "2025-01-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신행 두바이- 몰디브 | 몰디브리조트 추천, 오젠리저브볼리푸시 ...",
+        "url": "https://blog.naver.com/lilly_park_/223864667122",
+        "blogName": "깅’s 블로그",
+        "publishedAt": "2025-05-13",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

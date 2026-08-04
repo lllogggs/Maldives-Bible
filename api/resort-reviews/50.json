@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "resortId": 50,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 2,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "[ 에리야두 아일랜드 리조트 6박 8일] 4. 몰디브 말레 공항",
+        "url": "https://blog.naver.com/mayone33/220482244396",
+        "blogName": "Hasta la victoria siempre",
+        "publishedAt": "2015-09-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2016_01_ 몰디브 _스피드보트로 ' 에리야두 아일랜드 리조트 ...",
+        "url": "https://blog.naver.com/nexeu/220600840264",
+        "blogName": "홀로 여행 댕기기",
+        "publishedAt": "2016-01-18",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

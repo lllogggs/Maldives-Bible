@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "resortId": 43,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [
+      {
+        "text": "섬 안의 호수는 기대만큼 특별하지 않아요.",
+        "mentions": 1
+      }
+    ],
+    "neutral": [],
+    "sourceCount": 3,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 드림랜드 유니크 아일 랜드 커플 여행 후기",
+        "url": "https://blog.naver.com/ongsky/221688301435",
+        "blogName": "마늘님의 소소한 하루",
+        "publishedAt": "2019-10-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 _3. 드림랜드 유니크 리조트",
+        "url": "https://blog.naver.com/youen06/222828536034",
+        "blogName": "일상과 취향의 좋은 부분들",
+        "publishedAt": "2022-07-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 드림랜드 리조트",
+        "url": "https://blog.naver.com/hal79/221372210529",
+        "blogName": "인천럭키하우스 010-3447-4731",
+        "publishedAt": "2018-10-06",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

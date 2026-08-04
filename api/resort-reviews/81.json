@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "resortId": 81,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 1,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 3일차 쿠다두 프라이빗 아일랜드 ...",
+        "url": "https://blog.naver.com/yulmu_13/223423198149",
+        "blogName": "@yulmu",
+        "publishedAt": "2024-04-22",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

@@ -27,9 +27,7 @@
       "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/109/2025/07/09083555/diamonds-athuruga-21-600x600.jpg",
       "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/109/2025/07/07104803/Athuruga-Maldives-Juniour-Suite-Beach-Villa-2025-VKP003-600x600.jpg",
       "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/109/2025/07/07112038/Diamonds-Athurgua-Water-Villa-Water-Villa-Suite-025-1-600x600.jpg",
-      "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/109/2025/07/07111510/Diamonds-Athurgua-Water-Villa-Water-Villa-Suite-009-600x600.jpg",
       "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/109/2025/07/07111832/Diamonds-Athurgua-Water-Villa-Water-Villa-Suite-019-600x600.jpg",
-      "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/109/2025/07/07112311/Diamonds-Athurgua-Water-Villa-Water-Villa-Suite-033-600x600.jpg",
       "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/109/2025/07/07112016/Diamonds-Athurgua-Water-Villa-Water-Villa-Suite-024-1-600x600.jpg",
       "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/109/2025/07/07111413/Diamonds-Athurgua-Water-Villa-Water-Villa-Suite-006-1-600x600.jpg",
       "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/109/2025/07/07104724/Athuruga-Maldives-Juniour-Suite-Beach-Villa-2025-VKP001-600x600.jpg",
@@ -40,7 +38,7 @@
       "비치 방갈로",
       "워터 빌라"
     ],
-    "homepageUrl": "https://athuruga.diamondsresorts.com/"
+    "homepageUrl": "https://athurugabeach.diamondsresorts.com/eng"
   },
   {
     "id": 42,
@@ -162,7 +160,7 @@
       "비치 방갈로",
       "워터 빌라"
     ],
-    "homepageUrl": "https://thudufushi.diamondsresorts.com/"
+    "homepageUrl": "https://thudufushibeach.diamondsresorts.com/"
   },
   {
     "id": 43,
@@ -188,9 +186,7 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://dreamland.com.mv/wp-content/themes/dreamland/assets/img/gallery-small-2.jpg",
-      "https://dreamland.com.mv/wp-content/themes/dreamland/assets/img/gallery-small-1.jpg",
-      "https://dreamland.com.mv/wp-content/uploads/2018/09/01-Dreamland_Aerial.jpg"
+      "https://www.dreamland.com.mv/wp-content/uploads/2026/07/schauisnisland2021.jpg"
     ],
     "roomTypes": [
       "비치 방갈로",
@@ -224,7 +220,6 @@
     "imageUrls": [
       "https://images.squarespace-cdn.com/content/v1/66f1055df8df357db36353ea/1754916692154-HXACYDV49S4FJ9U8F2HE/image-asset.jpeg",
       "https://images.squarespace-cdn.com/content/v1/66f1055df8df357db36353ea/1754330570444-LFXKA21M3VPAMNJ1KVYQ/image-asset.jpeg",
-      "https://idhtwobqeshpdzbkgwoa.supabase.co/storage/v1/object/public/customers/drift-retreat-maldives/assets/driftProfile.jpg",
       "https://images.squarespace-cdn.com/content/v1/66f1055df8df357db36353ea/1753971805312-V8UINDSBG8L07HEO8NZQ/image-asset.jpeg"
     ],
     "roomTypes": [
@@ -328,11 +323,7 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://embuduvillage.imgix.net/2023/11/embudu-desk-mob-banner-5.jpg",
-      "https://embuduvillage.imgix.net/2021/03/embadu-all-gall-thumb-7.jpg",
-      "https://embuduvillage.imgix.net/2021/03/embadu-all-gall-thumb-11.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "슈페리어 룸",
       "워터 방갈로"
@@ -487,9 +478,7 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://fihalhohimaldives.imgix.net/2025/04/desktop-ham-menu-image.png"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "클래식 룸",
       "워터 빌라"
@@ -520,14 +509,13 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://filitheyoresort.com/wp-content/uploads/2019/03/inner-banner9.jpg",
-      "https://filitheyoresort.com/wp-content/uploads/2019/02/inner-banner.jpg"
+      "https://aaaresorts.com/wp-content/uploads/2026/03/Filitheyo-Island-Hoping.jpg"
     ],
     "roomTypes": [
       "슈페리어 빌라",
       "워터 빌라"
     ],
-    "homepageUrl": "https://www.filitheyoresort.com/"
+    "homepageUrl": "https://filitheyoislandresorts.com/"
   },
   {
     "id": 53,
@@ -611,10 +599,7 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.fourseasons.com/content/dam/fourseasons/images/web/VOV/VOV_031_1280x720.jpg",
-      "https://www.fourseasons.com/content/dam/fourseasons/images/web/VOV/VOV_032_1280x720.jpg",
-      "https://www.fourseasons.com/content/dam/fourseasons/images/web/VOV/VOV_034_1280x720.jpg",
-      "https://www.fourseasons.com/content/dam/fourseasons/images/web/VOV/VOV_035_1280x720.jpg"
+      "https://www.fourseasons.com/alt/img-opt/~75.430.175,5207-1088,8270-1433,3798-1911,1730/publish/content/dam/fourseasons/images/web/MPI/MPI_048_original.jpg"
     ],
     "roomTypes": [
       "쓰리베드룸 비치 빌라",

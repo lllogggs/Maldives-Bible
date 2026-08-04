@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "resortId": 162,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 4,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 내돈내산 숙소 후기 ③ 노티카 리조트 , 즐길 것들",
+        "url": "https://blog.naver.com/seoridama411/224093340163",
+        "blogName": "서리담아의 인도이야기",
+        "publishedAt": "2025-11-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 2편. 몰디브 에서의 첫날",
+        "url": "https://blog.naver.com/onyuhi/221191005286",
+        "blogName": "온유히샘의 마음을 그리는 교실",
+        "publishedAt": "2018-01-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아일랜드 리조트 / Villa Nautica Paradise Island Resort ...",
+        "url": "https://blog.naver.com/dmswlm5/223934940373",
+        "blogName": "REVIEW / 한의학 BLOG",
+        "publishedAt": "2025-07-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "지상낙원 몰디브 여행! 파라다이스 리조트 ( Paradise Island ...",
+        "url": "https://blog.naver.com/lovegono/130085645189",
+        "blogName": "양띠모모 - 뷰티 패션 influencer Lovely Story~♡",
+        "publishedAt": "2010-05-07",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

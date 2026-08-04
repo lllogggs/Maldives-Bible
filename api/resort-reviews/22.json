@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "resortId": 22,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 1,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 슈발블랑 란델리 워터빌라 1",
+        "url": "https://blog.naver.com/taenguri64/220792649632",
+        "blogName": "쭈르(taenguri64)님의 블로그",
+        "publishedAt": "2016-08-21",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

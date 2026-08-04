@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "resortId": 122,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "푸른 바다를 바라보며 즐기는 아침 식사 자리가 인상적이에요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 9,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "청량한 바다 보며 조식을 즐긴 소네바자니 몰디브 리조트",
+        "url": "https://blog.naver.com/coconutday/223631375545",
+        "blogName": "코코넛데이 Coconut Day",
+        "publishedAt": "2024-10-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 소네바자니 숙소 비치하이더웨이 _MDV1",
+        "url": "https://blog.naver.com/lachelkim/223699225609",
+        "blogName": "yubin log",
+        "publishedAt": "2024-12-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 소네바 푸시 & 소네바 자니 후기 (1)",
+        "url": "https://blog.naver.com/c5316/223711935694",
+        "blogName": "GDP 블로그",
+        "publishedAt": "2025-01-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아기랑 몰디브 소네바자니 리조트 워터빌라 챕터2 (조식, 스파...",
+        "url": "https://blog.naver.com/roha_love/223879923185",
+        "blogName": "Roha's love",
+        "publishedAt": "2025-05-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "온 신혼여행 느린편지 - 소네바자니 리조트 허니문 후기",
+        "url": "https://blog.naver.com/beaver_daddy/223973935638",
+        "blogName": "비버아빠의 육아일기",
+        "publishedAt": "2025-08-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 하이엔드 끝판왕.. 소네바자니 5박6일 후기 ...",
+        "url": "https://blog.naver.com/terrea1993/223996179107",
+        "blogName": "테르로그 | 여행 좋아하는 물욕자",
+        "publishedAt": "2025-09-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 day3 소네바자니 리조트 100% 즐긴 후기 ...",
+        "url": "https://blog.naver.com/mj7258/223101364325",
+        "blogName": "뷰말랭의 일상, 여행 기록",
+        "publishedAt": "2023-05-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행, 몰디브 입국심사, 몰디브 소네바자니 리조트 가기",
+        "url": "https://blog.naver.com/romanticod/221701823633",
+        "blogName": "오늘도 게으르게",
+        "publishedAt": "2019-11-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 . 소네바자니 .신혼여행. 1DAY",
+        "url": "https://blog.naver.com/silung/221559349173",
+        "blogName": "♡ 일상을 재미있게 기록하는 쇼닝 ♡",
+        "publishedAt": "2019-06-11",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

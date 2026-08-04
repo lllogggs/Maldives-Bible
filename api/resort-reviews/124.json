@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "resortId": 124,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "노을과 바다 풍경이 아름답고 수중환경도 좋아요.",
+        "mentions": 1
+      },
+      {
+        "text": "음식 대부분이 맛있어요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 9,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 여행 - 몰디브 리조트 선시암 이루푸시 비치빌라 숙박 후기",
+        "url": "https://blog.naver.com/jjaa87/223133344436",
+        "blogName": "콩이언니",
+        "publishedAt": "2023-06-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 Day 01| 선시암 이루푸시 리조트",
+        "url": "https://blog.naver.com/yslee_1018/223704099022",
+        "blogName": "Dans tes yeux",
+        "publishedAt": "2024-12-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 두 번째 방문기 (3) [ 선시암이루푸시 스노클링,돌핀투어]",
+        "url": "https://blog.naver.com/jisona/223548931207",
+        "blogName": "호두랑 사는 집",
+        "publishedAt": "2024-08-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 더 선 시암 이루푸시 리조트 (The Sun Siyam Iru...",
+        "url": "https://blog.naver.com/sysensation/220838124671",
+        "blogName": "시인의 정원",
+        "publishedAt": "2016-10-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가족여행 리조트 중 젤 혜택좋은 선시암 이루푸시",
+        "url": "https://blog.naver.com/iheeya/221674865945",
+        "blogName": "Hello 초희~♪",
+        "publishedAt": "2019-10-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 4박5일 @ 선 시암 이루 푸시 리조트 워터빌라...",
+        "url": "https://blog.naver.com/shinesparis/223164494079",
+        "blogName": "서소남매네:)",
+        "publishedAt": "2023-07-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 럭셔리 리조트 ... ' 선시암 이루푸시 리조트 Sun Siyam...",
+        "url": "https://blog.naver.com/earth_rabbit/221705177159",
+        "blogName": "From. 지구토끼",
+        "publishedAt": "2019-11-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "휴양지 몰디브 신혼여행 선시암 이루푸시 리조트 식사",
+        "url": "https://blog.naver.com/diary_travelssun/222756990200",
+        "blogName": "방랑일기",
+        "publishedAt": "2022-06-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 5박7일 : 결혼9주년... 더 선시암 이루푸시 , 수상 경비행기",
+        "url": "https://blog.naver.com/cywy0517/221338095742",
+        "blogName": "하스맘의 온라이프 ♡",
+        "publishedAt": "2018-08-13",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

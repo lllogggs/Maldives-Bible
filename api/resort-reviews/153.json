@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "resortId": 153,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 5,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 하이드 어웨이 비치 리조트&스파 ...",
+        "url": "https://blog.naver.com/coroc2019/222956193886",
+        "blogName": "잔인한 분당선",
+        "publishedAt": "2022-12-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼 여행 몰디브 하이드어웨이 비치 & 스파 리조트 후기 3일차",
+        "url": "https://blog.naver.com/js_9091/223195675117",
+        "blogName": "아장이 인생기록",
+        "publishedAt": "2023-09-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 몰디브 하이드어웨이 비치 리조트 이용 후기 1일차...",
+        "url": "https://blog.naver.com/min-bly/223824964157",
+        "blogName": "민블리 부부 이야기",
+        "publishedAt": "2025-04-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신행 후기 (9) - 대망의 D-Day 하이드어웨이 마지막 날...",
+        "url": "https://blog.naver.com/jjeong2_00/223344046903",
+        "blogName": "뿌뿌의 취향ෆ",
+        "publishedAt": "2024-02-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "허니문 DAY3: 몰디브 하이더웨이 / 리조트 고를 때 고려할 점",
+        "url": "https://blog.naver.com/so__log/223364104461",
+        "blogName": "소록소록 쌓이는 온이와의 기록",
+        "publishedAt": "2024-02-25",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

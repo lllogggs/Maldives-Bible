@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "resortId": 76,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 2,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "카기 리조트 몰디브 가성비... 풀빌라 방파제 장단점 후기 총정리",
+        "url": "https://blog.naver.com/yoonkoo_lumi/224337312760",
+        "blogName": "윤꾸’s 여행꾸러미",
+        "publishedAt": "2026-07-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "말레국제공항에서 스피드보트 타고 ' 카기 몰디브 리조트 '로 출발",
+        "url": "https://blog.naver.com/ssuining_bubu/224345389012",
+        "blogName": "유어오아시스",
+        "publishedAt": "2026-07-13",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "resortId": 129,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [
+      {
+        "text": "스피드보트 이동은 멀미 대비가 필요해요.",
+        "mentions": 1
+      }
+    ],
+    "neutral": [],
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 여행일기4] 툴하기리 리조트 스피드보트/슈페리어...",
+        "url": "https://blog.naver.com/hye6372_/223591187656",
+        "blogName": "혜찌네 여행일기♥️",
+        "publishedAt": "2024-09-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 말레) 툴하기리 리조트후기 가성비 리조트 AI 아기랑함께",
+        "url": "https://blog.naver.com/tiger0915/223929336876",
+        "blogName": "OH 형제가 사는 집 :-D",
+        "publishedAt": "2025-07-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 우정여행 1탄(feat. 몰디브 툴하기리 리조트 이용 후기 ...",
+        "url": "https://blog.naver.com/jiye125/223768762320",
+        "blogName": "LizzyBreeze",
+        "publishedAt": "2025-02-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 툴하기리 리조트",
+        "url": "https://blog.naver.com/marias72501/222979094691",
+        "blogName": "엘가의벤치",
+        "publishedAt": "2023-01-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 툴하기리 아일랜드 리조트 앤 스파 몰디브 #1] 워터 방갈로...",
+        "url": "https://blog.naver.com/hoohee_table/223151159003",
+        "blogName": "후히의 간단뚝딱 밥상",
+        "publishedAt": "2023-07-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 :: 툴하기리 리조트 첫날 (하프 보드-저녁 뷔페)",
+        "url": "https://blog.naver.com/id_dushdi/220766968536",
+        "blogName": "단 한 번뿐인 내 인생",
+        "publishedAt": "2016-07-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 툴하기리 아일랜드 리조트 앤 스파 가성비 굿",
+        "url": "https://blog.naver.com/dh_vvvv/221178062650",
+        "blogName": "알로록달로록, 빛나는 모든날들",
+        "publishedAt": "2018-01-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 도착 첫째날] 툴하기리 리조트 , 슈페리어워터빌라 203호",
+        "url": "https://blog.naver.com/ljw9773/222891190587",
+        "blogName": "채원가족이야기",
+        "publishedAt": "2022-10-04",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

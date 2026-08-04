@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "resortId": 2,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "사방으로 펼쳐지는 에메랄드빛 바다 전망이 인상적이에요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "배정된 객실에서 공사장이 보여 전망이 아쉬워요.",
+        "mentions": 1
+      }
+    ],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 여행♥] 2. 아다란 프레스티지 바두 리조트",
+        "url": "https://blog.naver.com/covergirl830/221630310732",
+        "blogName": "Y O o N *",
+        "publishedAt": "2019-08-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아다란 프레스티지 바두 리조트 : 공사장 뷰만 빼면 완벽",
+        "url": "https://blog.naver.com/aquarius37k/221431869190",
+        "blogName": "외식하는 집순이✨",
+        "publishedAt": "2019-01-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "다녀오기 그리고 아다란 프레스티지 바두 리조트 데이유즈",
+        "url": "https://blog.naver.com/pinkrunavi/220073090999",
+        "blogName": "뿌듯맘",
+        "publishedAt": "2014-07-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자유여행 12DAYS( 아다란 프레스티지 바두 리조트 ...",
+        "url": "https://blog.naver.com/popopo70/221332627698",
+        "blogName": "커피한잔님의 블로그",
+        "publishedAt": "2018-08-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ]:: 아다란 프레스티지 바두 2박 후기 (올인클루시브)",
+        "url": "https://blog.naver.com/birdj823/223422765541",
+        "blogName": "삐슬이의 D+ Life",
+        "publishedAt": "2024-04-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "웅아랑 함께하는 몰디브 자유여행- 아다란 프레스티지 바두",
+        "url": "https://blog.naver.com/positiveyuri/221074451464",
+        "blogName": "유쾌한 쑨도리의 행복한 인생",
+        "publishedAt": "2017-08-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자유여행 :: 아다란 바두 데이트립",
+        "url": "https://blog.naver.com/lin__da/221221421659",
+        "blogName": "프랑스 시골에 살아요",
+        "publishedAt": "2018-03-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 휴양(2) - 아다란 프레스티지 바두 리조트 ...",
+        "url": "https://blog.naver.com/wlsghksl218/220788681507",
+        "blogName": "달달의 행복한 Blog",
+        "publishedAt": "2016-08-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아다란 프레스티지 바두 리조트",
+        "url": "https://blog.naver.com/happygirlmh/220708989660",
+        "blogName": "고샤크 세계는 놀이터 Play with your strength!",
+        "publishedAt": "2016-05-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "떠난 몰디브 3박4일, 아다란 바두 리조트 , 아다란 프레스티지 ...",
+        "url": "https://blog.naver.com/se960227/223015023699",
+        "blogName": "기록의 다채로움",
+        "publishedAt": "2023-02-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "투어 후기 : 몰디브 리조트 아다 아란 프레스티지 바두 후기",
+        "url": "https://blog.naver.com/wannabe_lisa/223211599387",
+        "blogName": "야망주부 리사수",
+        "publishedAt": "2023-09-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아다 아란 프레스티지 바두 신혼여행 후기 (식사, 바다...",
+        "url": "https://blog.naver.com/saladin324/223654829996",
+        "blogName": "It's Travel Time, 여행에 빠지다.",
+        "publishedAt": "2024-11-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행기/ 아다 아란 프레스티지 바두 리조트 ...",
+        "url": "https://blog.naver.com/riinaa/221986265589",
+        "blogName": "또미의 사는 이야기",
+        "publishedAt": "2020-06-01",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

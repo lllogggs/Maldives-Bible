@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "resortId": 98,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 9,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 원앤온리 리시라 리조트 첫째날 - 허니문 일기 2",
+        "url": "https://blog.naver.com/laula34/20188656397",
+        "blogName": "♥Sweet-Taei♥ 태이의 일상",
+        "publishedAt": "2013-05-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 원앤온리 리시라",
+        "url": "https://blog.naver.com/furin100/112409936",
+        "blogName": "댕굴이 엘미나~",
+        "publishedAt": "2010-08-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] 원앤온리 리시라 , 몰디브 여행의 시작",
+        "url": "https://blog.naver.com/rdikei/150178392708",
+        "blogName": "아인이의 집",
+        "publishedAt": "2013-10-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "One&Only Reethi Rah, Maldives ( 몰디브 원앤온리 리시라 )",
+        "url": "https://blog.naver.com/ljw9773/130127693894",
+        "blogName": "채원가족이야기",
+        "publishedAt": "2012-01-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 , 원앤온리 리시라 1",
+        "url": "https://blog.naver.com/infinite23/80179226683",
+        "blogName": "55",
+        "publishedAt": "2013-01-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 원앤온리 리시라 4-1 (시크릿 오브 틸라)",
+        "url": "https://blog.naver.com/rabbit01081/30167134062",
+        "blogName": "la Mienne",
+        "publishedAt": "2013-05-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 어디까지 가봤니? 원앤온리 리시라",
+        "url": "https://blog.naver.com/ivorysee/220513675429",
+        "blogName": "나를 알아가는 공간",
+        "publishedAt": "2015-10-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 원앤온리 리시라 를 ㄷㅎㄴㅁ여행사 통해서 다녀온...",
+        "url": "https://blog.naver.com/le_miracle/220164045207",
+        "blogName": "Let's live a festive life!",
+        "publishedAt": "2014-10-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 원앤온리 리시라 - 두근거리는 첫째날",
+        "url": "https://blog.naver.com/withdai0605/220211551340",
+        "blogName": "다이아의 맛있는 여행",
+        "publishedAt": "2014-12-16",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

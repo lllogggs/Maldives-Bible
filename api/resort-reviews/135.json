@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "resortId": 135,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 4,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "신혼여행 경비, W몰디브 리조트 비치빌라 vs 워터빌라 비교 후기",
+        "url": "https://blog.naver.com/kim4993300/224318062937",
+        "blogName": "네이버 여행 인플루언서_일상도 여행처럼",
+        "publishedAt": "2026-06-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "메리어트 계열 호텔, W 몰디브 리조트 의 워터빌라 이용 후기",
+        "url": "https://blog.naver.com/ugi0489/223875437090",
+        "blogName": "해지음의 TraveLife-Log",
+        "publishedAt": "2025-05-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "W몰디브 리조트 프리미어 오버워터 빌라 업그레이드 받은 후기",
+        "url": "https://blog.naver.com/khrimm/224188542045",
+        "blogName": "혜구미 블로그",
+        "publishedAt": "2026-02-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 리조트 추천, W 몰디브 후기",
+        "url": "https://blog.naver.com/ekdms0518/224082503138",
+        "blogName": "단여와! 세계&국내 여행 이야기",
+        "publishedAt": "2025-11-20",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

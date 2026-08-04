@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "resortId": 83,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 7,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 리조트 쿠라마티 4일차 스노쿨링, 아일랜드 커피숍...",
+        "url": "https://blog.naver.com/heechuuu_/224224898070",
+        "blogName": "히츄의 여행 일기ღ",
+        "publishedAt": "2026-03-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 2일차 쿠라마티 리조트 조식 •팜...",
+        "url": "https://blog.naver.com/my1005757/224063675252",
+        "blogName": "똥개의 지구 걷기",
+        "publishedAt": "2025-11-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 힐링여행 쿠라마티 리조트 &말레 구경",
+        "url": "https://blog.naver.com/t9278jihye/223602445674",
+        "blogName": ",쉼표하나",
+        "publishedAt": "2024-09-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[허니문5] 웹투어 몰디브 쿠라마티 리조트 객실 - 비치빌라...",
+        "url": "https://blog.naver.com/beplus2015/224066984367",
+        "blogName": "리아님의 블로그",
+        "publishedAt": "2025-11-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2편) 몰디브 신혼 여행 쿠라마티 리조트 솔직 후기 ( 몰디브 여행...",
+        "url": "https://blog.naver.com/j_star116/224266803255",
+        "blogName": "이네's pick",
+        "publishedAt": "2026-04-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 후기 몰디브 쿠라마티 리조트 [1Day]",
+        "url": "https://blog.naver.com/yszzz777/223513942091",
+        "blogName": "리뷰하는 토실맘",
+        "publishedAt": "2024-07-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "쿠라마티 몰디브 KURAMATHI MALDIVES : 반얀트리",
+        "url": "https://blog.naver.com/enlightora/223727844220",
+        "blogName": "기억이 추억이 될 때까지",
+        "publishedAt": "2025-01-16",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

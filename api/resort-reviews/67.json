@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "resortId": 67,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 3,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 여행, 후라왈리 리조트 워터 선셋 빌라 후기 및 좋은 방...",
+        "url": "https://blog.naver.com/duatsong/221007049397",
+        "blogName": "Nana, Hello Travler",
+        "publishedAt": "2017-05-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 1일차... 사만그랜드 호텔, 후라왈리 리조트",
+        "url": "https://blog.naver.com/yulmu_13/223419298170",
+        "blogName": "@yulmu",
+        "publishedAt": "2024-04-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 후라왈리 리조트 오션풀빌라 후기 저녁엔 칵테일파티까지!",
+        "url": "https://blog.naver.com/nari1876/221649541901",
+        "blogName": "써내의공간",
+        "publishedAt": "2019-09-23",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

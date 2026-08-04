@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "resortId": 42,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "이탈리아 음식과 다이빙 경험이 만족스러워요.",
+        "mentions": 1
+      },
+      {
+        "text": "올인클루시브 숙박의 만족도가 높아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 4,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 ] 다이아몬드 투두푸시 리조트 Room",
+        "url": "https://blog.naver.com/aegel/221683284386",
+        "blogName": "Kidafamily",
+        "publishedAt": "2019-10-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "올인클루시브 리조트 ] 몰디브 신혼여행 : 다이아몬드 투두푸시",
+        "url": "https://blog.naver.com/bluebeigeday/220449712483",
+        "blogName": "The Bluebeige Day",
+        "publishedAt": "2015-08-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 가성비 리조트 다이아몬드 투두푸시 워터빌라...",
+        "url": "https://blog.naver.com/jangyah/224060587214",
+        "blogName": "보네르의 여행스토리",
+        "publishedAt": "2025-10-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 투두푸시 후기",
+        "url": "https://blog.naver.com/elec0907/224011733685",
+        "blogName": "테일러조",
+        "publishedAt": "2025-09-17",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

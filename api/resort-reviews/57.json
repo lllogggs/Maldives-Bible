@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "resortId": 57,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 2,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 자유여행 ( Furaveri Maldives ) 푸라베리 리조트 에서...",
+        "url": "https://blog.naver.com/eguaksei/223574205579",
+        "blogName": "eguaksei님의 블로그",
+        "publishedAt": "2024-09-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행_ 몰디브 DAY 2-1, 푸라베리( Furaveri Maldives )...",
+        "url": "https://blog.naver.com/tnqls8717/224260851921",
+        "blogName": "물콩LOG",
+        "publishedAt": "2026-04-22",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

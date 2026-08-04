@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "resortId": 111,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 5,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 로빈슨클럽 가는법 와이파이 레스토랑 액티비티 후기",
+        "url": "https://blog.naver.com/danzzak78/224108479362",
+        "blogName": "절대미남자와 평생공주의 여행습관",
+        "publishedAt": "2025-12-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 로빈슨 클럽 수중환경 몰디브 스노클링 후기",
+        "url": "https://blog.naver.com/gracefuldolphincoupl/223852471639",
+        "blogName": "돌고래부부의 여행블로그",
+        "publishedAt": "2025-05-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "여행] 몰디브 로빈슨클럽 / 올인클루시브 리조트 / 워터빌라 후기",
+        "url": "https://blog.naver.com/soulsum_/224092459614",
+        "blogName": "장래희망은 개그맨",
+        "publishedAt": "2025-11-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 경비 올인클루시브 리조트 추천 로빈슨",
+        "url": "https://blog.naver.com/dlditgh999/224089402096",
+        "blogName": "럭키뚜래블",
+        "publishedAt": "2025-11-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 추천 신상 로빈슨 몰디브 리조트",
+        "url": "https://blog.naver.com/bonniegets/224077718464",
+        "blogName": "보니앤조의 세계여행",
+        "publishedAt": "2025-11-17",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "resortId": 165,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 5,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "[ 몰디브 ] 노쿠 리조트 신혼여행 후기 | 비치풀빌라 VS...",
+        "url": "https://blog.naver.com/cjhgirl/224019251053",
+        "blogName": "카쏘 데일리로그",
+        "publishedAt": "2025-09-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 노쿠 리조트 비치빌라 위드 풀 후기",
+        "url": "https://blog.naver.com/appleish/223575559544",
+        "blogName": "찌니꾸 블로그",
+        "publishedAt": "2024-09-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 가성비 좋은 노쿠 리조트 후기 ! (1)",
+        "url": "https://blog.naver.com/0101523/223380726586",
+        "blogName": "추또리그램",
+        "publishedAt": "2024-03-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 몰디브 노쿠 리조트 1일차 : 워터풀빌라 후기",
+        "url": "https://blog.naver.com/tablestorystudio/221806736624",
+        "blogName": "일상을 회복하는 식탁",
+        "publishedAt": "2020-02-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 노쿠 리조트 (noku maldives) 타리레스토랑...",
+        "url": "https://blog.naver.com/happy_memories_/223024477591",
+        "blogName": "탐나는 행복기록",
+        "publishedAt": "2023-02-22",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

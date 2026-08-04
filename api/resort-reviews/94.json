@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 94,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "객실과 시설을 고려하면 가격 대비 만족도가 높아요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "오블루 네이처 헬렝겔리 , 몰디브 가성비 리조트 추천",
+        "url": "https://blog.naver.com/shootar/223915840363",
+        "blogName": "홍차왕자의 비밀지도",
+        "publishedAt": "2025-06-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "여행 리조트 추천 올인클루시브 오블루 네이처 헬렝겔리 ...",
+        "url": "https://blog.naver.com/suzie38317/223920714580",
+        "blogName": "Mrs.Moon House",
+        "publishedAt": "2025-07-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 후기 오블루 네이처 헬렝겔리 숙소",
+        "url": "https://blog.naver.com/queen77577/223892529299",
+        "blogName": "마녀씨의 힐링 스토리",
+        "publishedAt": "2025-06-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 / 오블루 네이처 헬렝겔리 리조트 (OBLU...",
+        "url": "https://blog.naver.com/sovelymang/224215726553",
+        "blogName": "보통의 날들,",
+        "publishedAt": "2026-03-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아부다비 신혼여행 | 오블루 네이처 헬렝겔리 리조트 ...",
+        "url": "https://blog.naver.com/han-mun/224124110117",
+        "blogName": "한문부부 사는 이야기",
+        "publishedAt": "2025-12-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "10월의 몰디브 ｜ 오블루 네이처 헬렝겔리 , 디럭스 워터빌라...",
+        "url": "https://blog.naver.com/writingj/224055764478",
+        "blogName": "써니의 공책",
+        "publishedAt": "2025-10-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "비즈니스 클래스 | 오블루 네이처 헬렝겔리 리조트 올인클루시브",
+        "url": "https://blog.naver.com/annleeyh/223829011425",
+        "blogName": "이윤희 아나운서-강사 “경험을 공유해요!”",
+        "publishedAt": "2025-04-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 오블루 네이처 헬렝겔리 (1/3)",
+        "url": "https://blog.naver.com/cay97_blog/223605362418",
+        "blogName": "life is good",
+        "publishedAt": "2024-10-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 [ 오블루 헬렝겔리 ] 비치빌라 & 워터빌라 위드풀",
+        "url": "https://blog.naver.com/rubberdu/223690722827",
+        "blogName": "여시는정의 다중생활 (일상,맛집,여행,취미)",
+        "publishedAt": "2024-12-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행 1일차] 싱가폴... 오블루 네이처 헬렝겔리",
+        "url": "https://blog.naver.com/yellowcap31/223642932610",
+        "blogName": "REMI _ LOVE's STORY",
+        "publishedAt": "2024-11-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 럭셔리 리조트 오블루 헬렝겔리 비치빌라 + 워터빌라 후기",
+        "url": "https://blog.naver.com/suzie38317/223909134713",
+        "blogName": "Mrs.Moon House",
+        "publishedAt": "2025-06-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "설연휴 몰디브 여행 / 오블루 네이처 헬렝겔리 리조트 ...",
+        "url": "https://blog.naver.com/sovelymang/224224093243",
+        "blogName": "보통의 날들,",
+        "publishedAt": "2026-03-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "10월의 몰디브 | 3. 오블루 네이처 헬렝겔리 디럭스비치빌라...",
+        "url": "https://blog.naver.com/writingj/224040419459",
+        "blogName": "써니의 공책",
+        "publishedAt": "2025-10-14",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

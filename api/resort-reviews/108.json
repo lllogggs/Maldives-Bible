@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 108,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [
+      {
+        "text": "예약형 레스토랑을 포함해 여러 식당을 운영해요.",
+        "mentions": 2
+      }
+    ],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 리조트 :: 더 레지던스 몰디브 앳 디구라 이용 가이드",
+        "url": "https://blog.naver.com/o8180505/224128282973",
+        "blogName": "취미로운 블로그",
+        "publishedAt": "2025-12-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[W] 신혼여행 후기 (2) - 더 레지던스 몰디브 앳 디구라 식당",
+        "url": "https://blog.naver.com/oct31_/224191696518",
+        "blogName": "imu",
+        "publishedAt": "2026-02-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "더 레지던스 몰디브 앳 디구라 리조트 가는 여정 후기 (feat....",
+        "url": "https://blog.naver.com/hallosophie_/224297104213",
+        "blogName": "헤이소피의 야외웨딩준비",
+        "publishedAt": "2026-05-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 국내선 리조트 더 레지던스 앳 디구라 선셋 비치 풀빌라...",
+        "url": "https://blog.naver.com/sora2450/224291869206",
+        "blogName": "맛집/뷰티/여행 정보 공유ෆ",
+        "publishedAt": "2026-05-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[웨딩] 몰디브 신혼여행 더레지던스 앳 디구라 후기",
+        "url": "https://blog.naver.com/pebblepeace/223756174482",
+        "blogName": "돌멩네",
+        "publishedAt": "2025-02-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 더레지던스 몰디브 앳 디구라 ... 워터 풀빌라 룸투어, 리조트 리뷰",
+        "url": "https://blog.naver.com/dyonggurami/223783868177",
+        "blogName": "둉글한 인생살이",
+        "publishedAt": "2025-03-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] DAY 1 - 더 레지던스 앳 몰디브 디구라",
+        "url": "https://blog.naver.com/kchh522/223756763138",
+        "blogName": "김뽀기네 일상",
+        "publishedAt": "2025-02-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행 6일차] 더 레지던스 몰디브 앳 디구라 ...",
+        "url": "https://blog.naver.com/frohedami/224313043611",
+        "blogName": "frohedami님의 블로그",
+        "publishedAt": "2026-06-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "팜투어 몰디브 신혼여행, 더 레지던스 디구라 리조트 스파...",
+        "url": "https://blog.naver.com/lssgrace/223503750327",
+        "blogName": "쏭의 여행 팔레트",
+        "publishedAt": "2024-07-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행1] 더 레지던스 몰디브 앳 디구라 /The...",
+        "url": "https://blog.naver.com/sgm34275385/223900550773",
+        "blogName": "Jena In Deutschland",
+        "publishedAt": "2025-06-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 허니문 더 레지던스 리조트 디구라 선셋 비치...",
+        "url": "https://blog.naver.com/hallosophie_/224303884078",
+        "blogName": "헤이소피의 야외웨딩준비",
+        "publishedAt": "2026-06-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "일상 [ 더레지던스 몰디브 앳 디구라 ] 후기 , 식당...",
+        "url": "https://blog.naver.com/dyonggurami/223795254399",
+        "blogName": "둉글한 인생살이",
+        "publishedAt": "2025-03-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행 4일차] 몰디브 로 이동 더 레지던스 몰디브 앳 디구라 ...",
+        "url": "https://blog.naver.com/frohedami/224295468022",
+        "blogName": "frohedami님의 블로그",
+        "publishedAt": "2026-05-25",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

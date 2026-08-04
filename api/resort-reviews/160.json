@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 160,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "아이와 함께하는 가족여행에 잘 맞아요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 가족여행 아난타라 디구 리조트 후기 | 비치풀 3박...",
+        "url": "https://blog.naver.com/yun12kaa/224134114197",
+        "blogName": "힐링스토리",
+        "publishedAt": "2026-01-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 후기 _아난타라_ Anantara Dhigu Maldives ...",
+        "url": "https://blog.naver.com/rpm_7800/224168641179",
+        "blogName": "Ich freue mich Sie kennen zu lernen ^^",
+        "publishedAt": "2026-02-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 가족여행 #1] 디구 아난타라 리조트 4박5일...",
+        "url": "https://blog.naver.com/dongjass/224041296376",
+        "blogName": "미쓰에버",
+        "publishedAt": "2025-10-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 추천 내돈내산 아난타라 벨리 디구 믹스 총정리",
+        "url": "https://blog.naver.com/dsk03064/223812220039",
+        "blogName": "솔직한 원블리의 식기장",
+        "publishedAt": "2025-03-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 마푸시섬에서 아난타라 디구 이동-카니호텔 스피드...",
+        "url": "https://blog.naver.com/hayam9662/223560142108",
+        "blogName": "웃는다",
+        "publishedAt": "2024-08-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아난타라 디구 +벨리 5박] 체크인, 선라이즈비치풀빌라",
+        "url": "https://blog.naver.com/ysjyshhs/223883039511",
+        "blogName": "지 금 이 순 간",
+        "publishedAt": "2025-05-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Anantara dhigu maldives resort /아난타라 디구 몰디브 ...",
+        "url": "https://blog.naver.com/cooki222/220539166706",
+        "blogName": "은수저님의 블로그",
+        "publishedAt": "2015-11-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "ANANTARA DHIGU MALDIVES RESORT",
+        "url": "https://blog.naver.com/storywithyou_/221307118735",
+        "blogName": "[사직남] 사십대 직장인 남자의 이야기",
+        "publishedAt": "2018-06-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Maldives Anantara Dhigu Resort 입성",
+        "url": "https://blog.naver.com/somebody77/221179519368",
+        "blogName": "나와 함께 영원히",
+        "publishedAt": "2018-01-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아난타라 디구( Anantara Dhigu Maldives Resort )...",
+        "url": "https://blog.naver.com/dongho326/221252712792",
+        "blogName": "FengLiSu's",
+        "publishedAt": "2018-04-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 아난타라 디구 에서의 하루 (&제트스키)+ 굴리푸쉬...",
+        "url": "https://blog.naver.com/ysjyshhs/223903981214",
+        "blogName": "지 금 이 순 간",
+        "publishedAt": "2025-06-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가족여행 리조트 아난타라 디구 왜 좋냐구요?",
+        "url": "https://blog.naver.com/dsk03064/223801134694",
+        "blogName": "솔직한 원블리의 식기장",
+        "publishedAt": "2025-03-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 가족 여행 #2] 조식 석식 뷔페, 아난타라 디구 리조트 ...",
+        "url": "https://blog.naver.com/dongjass/224047601406",
+        "blogName": "미쓰에버",
+        "publishedAt": "2025-10-20",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

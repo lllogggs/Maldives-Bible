@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "resortId": 123,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "서양식이 물릴 때 선택할 수 있는 동양식 국물 요리의 만족도가 높아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 7,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "세인트레지스 몰디브 보믈리 리조트 - 레스토랑 후기",
+        "url": "https://blog.naver.com/mary_go_travel/224080709369",
+        "blogName": "메리쫑쫑",
+        "publishedAt": "2025-11-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] 세인트레지스 보뮬리 Part 3. 리조트 수중환경...",
+        "url": "https://blog.naver.com/minsooni_life/223609361216",
+        "blogName": "# 민순이 스타일 #",
+        "publishedAt": "2024-10-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "가족여행에 딱 맞는 '더 세인트레지스 몰디브 보뮬리 리조트 ' 후기",
+        "url": "https://blog.naver.com/ekdms0518/224086130711",
+        "blogName": "단여와! 세계&국내 여행 이야기",
+        "publishedAt": "2025-11-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 세인트레지스 몰디브 보 물리 리조트 오션...",
+        "url": "https://blog.naver.com/hn8806/224343976976",
+        "blogName": "이안블로그",
+        "publishedAt": "2026-07-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행][ 몰디브 ] 신혼여행 숙소 ' 세인트레지스 리조트 ' 후기 ...",
+        "url": "https://blog.naver.com/sydream25/223934674034",
+        "blogName": "Sally's daily",
+        "publishedAt": "2025-07-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 7] 더 세인트 레지스 몰디브 보뮬리 리조트 / ALBA 조식...",
+        "url": "https://blog.naver.com/emilycherry/223876404306",
+        "blogName": "깨알같은 리뷰모음",
+        "publishedAt": "2025-05-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 세인트 레지스 봄물리 리조트 실제 후기 및 할인예약♥",
+        "url": "https://blog.naver.com/jinhr22/221767175958",
+        "blogName": "해롱롱",
+        "publishedAt": "2020-01-10",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

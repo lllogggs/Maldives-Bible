@@ -10,44 +10,120 @@
       content="몰디브 신혼여행 처음 준비, 몰디브 리조트 선택 기준, 몰디브 신혼여행 비용, 몰디브 신혼여행 일정, 몰디브 리조트 이동수단, 몰디브 워터빌라 비치빌라 차이, 몰디브 신혼여행 리조트 비교"
     />
     <meta name="author" content="몰디브 바이블" />
-    <meta name="robots" content="index,follow" />
-    <meta name="googlebot" content="index,follow" />
-    <meta
-      name="google-site-verification"
-      content=""
-    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large" />
     <meta property="og:locale" content="ko_KR" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="멜리아 웨일 라군 몰디브 리조트 정보 | 몰디브 바이블" />
     <meta property="og:description" content="멜리아 웨일 라군 몰디브 (Meliá Whale Lagoon Maldives) · 수상비행기 이동 · 4박 2인 기준 $6,300 리조트 정보를 한국어로 확인하세요." />
-    <meta property="og:image" content="https://www.maldivesbible.com/og-image.jpg?v=20260711-13" />
-    <meta property="og:image:secure_url" content="https://www.maldivesbible.com/og-image.jpg?v=20260711-13" />
+    <meta property="og:image" content="https://www.maldivesbible.com/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://www.maldivesbible.com/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="몰디브 바이블, 리조트 비교를 더 쉽게 문구와 가상의 초호화 몰디브 프라이빗 아일랜드 리조트" />
+    <meta property="og:image:alt" content="몰디브 라군과 리조트 전경" />
     <meta property="og:url" content="https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/" />
     <meta property="og:site_name" content="몰디브 바이블" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="멜리아 웨일 라군 몰디브 리조트 정보 | 몰디브 바이블" />
     <meta name="twitter:description" content="멜리아 웨일 라군 몰디브 (Meliá Whale Lagoon Maldives) · 수상비행기 이동 · 4박 2인 기준 $6,300 리조트 정보를 한국어로 확인하세요." />
-    <meta name="twitter:image" content="https://www.maldivesbible.com/og-image.jpg?v=20260711-13" />
-    <meta name="twitter:image:alt" content="몰디브 바이블, 리조트 비교를 더 쉽게 문구와 가상의 초호화 몰디브 프라이빗 아일랜드 리조트" />
+    <meta name="twitter:image" content="https://www.maldivesbible.com/og-image.jpg" />
+    <meta name="twitter:image:alt" content="몰디브 라군과 리조트 전경" />
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6227921544579562"
       crossorigin="anonymous"
     ></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y00T1V6W91"></script>
+    <!-- Production analytics: direct GA4 + Microsoft Clarity -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+      (() => {
+        const productionHostnames = new Set([
+          "maldivesbible.com",
+          "www.maldivesbible.com",
+        ]);
 
-      gtag("config", "G-Y00T1V6W91");
+        const campaignParams = new URLSearchParams(window.location.search);
+        const cleanCampaignValue = (value) => {
+          const normalized = value?.trim().toLowerCase().slice(0, 100);
+          return normalized && /^[a-z0-9]+(?:_[a-z0-9]+)*$/.test(normalized)
+            ? normalized
+            : null;
+        };
+        const campaignAttribution = {
+          utm_source: cleanCampaignValue(campaignParams.get("utm_source")),
+          utm_medium: cleanCampaignValue(campaignParams.get("utm_medium")),
+          utm_campaign: cleanCampaignValue(campaignParams.get("utm_campaign")),
+        };
+        if (
+          campaignAttribution.utm_source &&
+          campaignAttribution.utm_medium &&
+          campaignAttribution.utm_campaign
+        ) {
+          const content = cleanCampaignValue(campaignParams.get("utm_content"));
+          const term = cleanCampaignValue(campaignParams.get("utm_term"));
+          const attribution = {
+            ...campaignAttribution,
+            captured_at: new Date().toISOString(),
+            landing_page: `${window.location.pathname}${window.location.search}${window.location.hash}`.slice(0, 500),
+            ...(content ? { utm_content: content } : {}),
+            ...(term ? { utm_term: term } : {}),
+          };
+          try {
+            window.sessionStorage.setItem("mb_campaign_attribution_v1", JSON.stringify(attribution));
+          } catch {
+            // Session storage may be unavailable in privacy-restricted contexts.
+          }
+        }
+
+        if (!productionHostnames.has(window.location.hostname.toLowerCase())) {
+          return;
+        }
+
+        const measurementId = "G-Y00T1V6W91";
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag("js", new Date());
+        window.gtag("config", measurementId, { send_page_view: false });
+
+        const sendStaticPageView = () => {
+          const root = document.getElementById("root");
+          if (root?.dataset.staticPage !== "true") {
+            return;
+          }
+
+          const initialParams = new URLSearchParams(window.location.search);
+          const legacyView = initialParams.get("view");
+          const viewSuffix = legacyView ? `?view=${encodeURIComponent(legacyView)}` : "";
+          window.__MB_LAST_PAGE_VIEW__ = `${window.location.pathname}${viewSuffix}${window.location.hash}`;
+          window.gtag("event", "page_view", {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+          });
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", sendStaticPageView, { once: true });
+        } else {
+          sendStaticPageView();
+        }
+
+        const googleTag = document.createElement("script");
+        googleTag.async = true;
+        googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+        document.head.appendChild(googleTag);
+
+        const clarityProjectId = "u13oj1cs74";
+        window.clarity = window.clarity || function () {
+          (window.clarity.q = window.clarity.q || []).push(arguments);
+        };
+        const clarityTag = document.createElement("script");
+        clarityTag.async = true;
+        clarityTag.src = `https://www.clarity.ms/tag/${clarityProjectId}`;
+        document.head.appendChild(clarityTag);
+      })();
     </script>
     <meta name="application-name" content="몰디브 바이블" />
     <meta name="apple-mobile-web-app-title" content="몰디브 바이블" />
@@ -57,131 +133,128 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" sizes="48x48" href="/favicon.ico" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="msapplication-TileColor" content="#0e7490" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "몰디브 바이블",
-        "alternateName": ["Maldives Bible", "몰디브바이블"],
-        "url": "https://www.maldivesbible.com/",
-        "inLanguage": "ko-KR",
-        "description": "예산, 이동수단, 객실 유형, 수중환경 등 원하는 조건으로 몰디브 리조트를 찾고 최대 3곳을 비교하는 데이터베이스",
-        "publisher": {
-          "@type": "Organization",
-          "name": "몰디브 바이블",
-          "url": "https://www.maldivesbible.com/",
-          "logo": "https://www.maldivesbible.com/brand/maldives-bible-logo.png"
-        },
-        "image": "https://www.maldivesbible.com/og-image.jpg?v=20260711-13",
-        "keywords": [
-          "몰디브 신혼여행 처음 준비",
-          "몰디브 리조트 선택 기준",
-          "몰디브 신혼여행 비용",
-          "몰디브 신혼여행 일정",
-          "몰디브 리조트 이동수단",
-          "몰디브 신혼여행 리조트 비교"
-        ],
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.maldivesbible.com/?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      }
-    </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Hotel","name":"멜리아 웨일 라군 몰디브","alternateName":"Meliá Whale Lagoon Maldives","url":"https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/","image":["https://dam.melia.com/melia/file/n193GG79TeK692Dr8oFi.jpg","https://dam.melia.com/melia/file/mLrvnTxh9N2GNpGzerps.jpg","https://dam.melia.com/melia/file/26HtN5x9smxWG72qPNGB.jpg"],"address":{"@type":"PostalAddress","addressLocality":"South Ari Atoll"},"aggregateRating":{"@type":"AggregateRating","ratingValue":4.6,"ratingCount":1}}</script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "몰디브 리조트는 어떻게 비교하나요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "이동수단(수상비행기/스피드보트), 객실 타입(워터/비치), 예산대를 먼저 정하고 필터로 후보군을 좁히는 것이 가장 빠릅니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "올인클루시브는 다 같나요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "포함 범위가 리조트마다 다릅니다. 레스토랑 수, 음료/스파 포함 여부를 확인하는 것이 좋습니다."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "허니문과 가족여행 리조트 선택 기준은 무엇인가요?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "허니문은 프라이버시와 분위기, 가족여행은 키즈클럽/액티비티/이동시간이 핵심입니다."
-            }
-          }
-        ]
-      }
-    </script>
     <!-- Tailwind styles are bundled via Vite build -->
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        const f = d.getElementsByTagName(s)[0];
-        const j = d.createElement(s);
-        const dl = l !== "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WCJSNM2Q");
-    </script>
-    <!-- End Google Tag Manager -->
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-      (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () {
-          (c[a].q = c[a].q || []).push(arguments);
-        };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "u13oj1cs74");
-    </script>
-    <!-- End Microsoft Clarity -->
 <!-- Styles injected by Vite -->
-  <script type="module" crossorigin src="/assets/index-pb0ytmxq.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-Br3-Tdtn.css">
+  <script type="module" crossorigin src="/assets/index-C4VClWVL.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CARcWEbR.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/#webpage","url":"https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/","name":"멜리아 웨일 라군 몰디브 리조트 정보","description":"멜리아 웨일 라군 몰디브 (Meliá Whale Lagoon Maldives) · 수상비행기 이동 · 4박 2인 기준 $6,300 리조트 정보를 한국어로 확인하세요.","inLanguage":"ko-KR","isPartOf":{"@id":"https://www.maldivesbible.com/#website"},"about":{"@id":"https://www.maldivesbible.com/#organization"},"publisher":{"@id":"https://www.maldivesbible.com/#organization"},"breadcrumb":{"@id":"https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/#breadcrumb"},"datePublished":"2026-07-09","dateModified":"2026-07-27","mainEntity":{"@id":"https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/#hotel"}},{"@type":"BreadcrumbList","@id":"https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"몰디브 바이블","item":"https://www.maldivesbible.com/"},{"@type":"ListItem","position":2,"name":"몰디브 리조트 비교","item":"https://www.maldivesbible.com/maldives-resort-comparison/"},{"@type":"ListItem","position":3,"name":"멜리아 웨일 라군 몰디브","item":"https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/"}]},{"@type":"Hotel","@id":"https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/#hotel","name":"멜리아 웨일 라군 몰디브","alternateName":"Meliá Whale Lagoon Maldives","url":"https://www.maldivesbible.com/resorts/meli-whale-lagoon-maldives/","image":["https://dam.melia.com/melia/file/n193GG79TeK692Dr8oFi.jpg","https://dam.melia.com/melia/file/mLrvnTxh9N2GNpGzerps.jpg","https://dam.melia.com/melia/file/26HtN5x9smxWG72qPNGB.jpg"],"address":{"@type":"PostalAddress","addressLocality":"South Ari Atoll"}}]}</script>
 </head>
   <body class="bg-gray-50">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WCJSNM2Q"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div id="root">
-    <main style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
-      <article style="max-width:920px;margin:0 auto;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:26px;">
+    <style>
+      @media (max-width:760px) {
+        .seo-resort-overview-grid { grid-template-columns:minmax(0,1fr) !important; }
+      }
+      @media (max-width:480px) {
+        .seo-resort-page { padding:22px 12px !important; }
+        .seo-resort-card { padding:18px !important; }
+        .seo-resort-card h1 { font-size:clamp(28px,9vw,34px) !important;line-height:1.22 !important;letter-spacing:-.035em;overflow-wrap:anywhere; }
+        .seo-resort-review-grid { grid-template-columns:minmax(0,1fr) !important; }
+        .seo-editor-review header, .seo-editor-review-body { padding:16px !important; }
+        .seo-editor-review h2 { font-size:24px !important; }
+      }
+    </style>
+    <main class="seo-resort-page" style="font-family:'NanumSquareNeo','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;background:#f6f8f7;color:#0f172a;min-height:100vh;padding:32px 18px;">
+      <article class="seo-resort-card" style="max-width:920px;margin:0 auto;border:1px solid #dbe7e4;border-radius:14px;background:#fff;padding:26px;">
         <p style="margin:0 0 8px;color:#0f766e;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">몰디브 리조트 상세</p>
         <h1 style="margin:0;font-size:38px;line-height:1.18;">멜리아 웨일 라군 몰디브</h1>
         <p style="margin:8px 0 18px;color:#64748b;font-size:17px;">Meliá Whale Lagoon Maldives</p>
-        <p style="margin:0 0 12px;color:#334155;line-height:1.7;">
-          South Ari Atoll · 수상비행기 30분 · 4박 2인 $6,300
-        </p>
-        <p style="margin:0 0 18px;color:#334155;line-height:1.7;">
-          수중환경 4 / 5 · 레스토랑 3곳 · 바 2곳 · 이동비 2인 왕복 $1,000
-        </p>
-        <p style="margin:0 0 20px;"><span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">수상비행기 이동</span><span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">워터빌라 보유</span><span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">개인풀 보유</span><span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">허니문 혜택</span></p>
-        <a href="https://www.maldivesbible.com/" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 전체 비교로 돌아가기</a>
+        <section style="margin:0 0 18px;overflow:hidden;border:1px solid #ccfbf1;border-radius:16px;background:linear-gradient(135deg,#f0fdfa,#fff,#f0f9ff);" aria-labelledby="seo-resort-overview-title">
+          <h2 id="seo-resort-overview-title" style="margin:0;padding:16px 18px;border-bottom:1px solid #ccfbf1;font-size:23px;color:#0f172a;">멜리아 웨일 라군 몰디브 한눈에 보기</h2>
+          <div class="seo-resort-overview-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:18px;">
+            <section><h3 style="margin:0;color:#0f766e;font-size:15px;">추천</h3><p style="margin:7px 0 0;color:#334155;font-size:16px;line-height:1.7;">개인풀, 워터빌라를 중요하게 보는 여행자에게 잘 맞습니다.</p></section>
+            <section><h3 style="margin:0;color:#9a5b31;font-size:15px;">예약 전 확인</h3><p style="margin:7px 0 0;color:#334155;font-size:16px;line-height:1.7;">수상비행기으로 약 30분 이동합니다. 왕복 이동비는 1인 $500입니다.</p></section>
+          </div>
+          <p style="margin:0;padding:14px 18px;border-top:1px solid #ccfbf1;background:rgba(255,255,255,.72);color:#334155;font-size:14px;line-height:1.7;">
+            <strong style="color:#0f766e;">4박 2인 참고가 $6,300</strong> · 평점 4.6 / 5 · 수중환경 4 / 5
+          </p>
+        </section>
+        <p style="margin:0 0 22px;border:1px solid #ccfbf1;border-radius:10px;background:#f0fdfa;padding:12px 14px;color:#134e4a;font-size:14px;line-height:1.7;">비교용 참고가입니다. 항공권과 리조트 이동비는 별도이며 시즌·세금·환율에 따라 실제 견적이 달라질 수 있습니다.</p>
+        
+    <section class="seo-resort-reviews" aria-labelledby="seo-resort-reviews-title" style="margin:24px 0 22px;border-top:1px solid #dbe7e4;padding-top:22px;">
+      <p style="margin:0 0 7px;color:#0f766e;font-size:12px;font-weight:800;letter-spacing:.08em;">여행자 후기</p>
+      <div style="display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px;">
+        <h2 id="seo-resort-reviews-title" style="margin:0;font-size:23px;color:#0f172a;">실제 후기 요약</h2>
+        <span style="color:#64748b;font-size:12px;font-weight:700;">검증 후기 9개</span>
+      </div>
+      <div class="seo-resort-review-grid" style="display:grid;grid-template-columns:minmax(0,1fr);gap:12px;">
+        <section style="border-radius:12px;background:#effaf7;padding:15px 16px;"><h3 style="margin:0;color:#0f766e;font-size:16px;">😊 긍정 의견</h3><ul style="margin:5px 0 0;padding:0;list-style:none;color:#334155;"><li style="display:flex;gap:8px;margin-top:7px;line-height:1.65;"><span aria-hidden="true">😊</span><span>얕고 투명한 라군에서 몰디브다운 바다 풍경을 즐길 수 있어요.</span></li></ul></section>
+        
+        
+      </div>
+      <details style="margin-top:12px;border-top:1px solid #dbe7e4;padding-top:10px;"><summary style="cursor:pointer;color:#0f766e;font-size:13px;font-weight:700;">실제 후기 원문 9개</summary><ul style="margin:5px 0 0;padding-left:19px;color:#334155;font-size:12px;line-height:1.6;"><li style="margin-top:7px;"><a href="https://blog.naver.com/hoons-01/224343525782" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">몰디브 리조트 추천 멜리아 웨일라군 후기 와 선택한 이유(구...</a><span style="color:#64748b;"> · 훈네집 리빙로그 · 2026-07-11</span></li><li style="margin-top:7px;"><a href="https://blog.naver.com/lee__yh/224204488881" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">[ 몰디브 ] 말레공항에서 멜리아 웨일라군 수상비행기 대기부터...</a><span style="color:#64748b;"> · Essential Gomgom · 2026-03-05</span></li><li style="margin-top:7px;"><a href="https://blog.naver.com/lululala17-/224153786547" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">몰디브 우기 신혼여행 Day 1... 멜리아웨일라군 후기 ) 깨알정보...</a><span style="color:#64748b;"> · 룰루랄라 쏭쏭이의 일상기록 · 2026-01-20</span></li><li style="margin-top:7px;"><a href="https://blog.naver.com/candy_1020/223903838628" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">웨일 라군 ( 멜리아 웨일 라군 ) [두바이/ 몰디브 여행기 10-2]</a><span style="color:#64748b;"> · Fall in LOVE · 2025-06-23</span></li><li style="margin-top:7px;"><a href="https://blog.naver.com/lookingsolovely/224171328103" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">몰디브 신혼여행1( 몰디브 멜리아 웨일라군 리조트 , 바르셀로...</a><span style="color:#64748b;"> · you are more beautiful than you think✨ · 2026-02-04</span></li><li style="margin-top:7px;"><a href="https://blog.naver.com/seizetheday_0102/224025646237" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">_ 몰디브 바르셀로 웨일라군 리조트 ( 멜리아 웨일라군 )...</a><span style="color:#64748b;"> · 핸로그 · 2025-09-29</span></li><li style="margin-top:7px;"><a href="https://blog.naver.com/rotto_cancho/224136716695" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">신혼여행 웨일라군 몰디브 다녀왔습니다!! 항공권, 리조트 ...</a><span style="color:#64748b;"> · 냥냥펀치 · 2026-01-06</span></li><li style="margin-top:7px;"><a href="https://blog.naver.com/wingkk333/223823947414" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">[신혼여행]ep.5 몰디브 /바르셀로 웨일라군 리조트 /워터선셋빌라</a><span style="color:#64748b;"> · 우리의 순간들 · 2025-04-06</span></li><li style="margin-top:7px;"><a href="https://blog.naver.com/hhee_e_blog/223716684600" target="_blank" rel="noopener noreferrer" style="color:#0f766e;text-decoration:underline;text-underline-offset:2px;">몰디브 신혼여행 ep.1 바르셀로 웨일라군</a><span style="color:#64748b;"> · 세계여행이 꿈임미다 · 2025-01-06</span></li></ul></details>
+      <p style="margin:11px 0 0;color:#64748b;font-size:12px;line-height:1.6;">2026-07-14 후기 기준. 투숙 시기·객실 유형에 따라 체감은 달라질 수 있습니다.</p>
+    </section>
+        
+        <section style="margin:24px 0;" aria-labelledby="seo-resort-facts-title">
+          <h2 id="seo-resort-facts-title" style="margin:0 0 12px;font-size:23px;color:#0f172a;">기본 정보</h2>
+          <p style="margin:0 0 10px;color:#334155;line-height:1.7;">South Ari Atoll · 수상비행기 30분 · 이동비 1인 왕복 $500</p>
+          <p style="margin:0 0 14px;color:#334155;line-height:1.7;">레스토랑 3곳 · 바 2곳 · 오픈 2023</p>
+          <p style="margin:0;"><span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">수상비행기 이동</span><span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">워터빌라 보유</span><span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">개인풀 보유</span><span style="display:inline-block;margin:0 6px 6px 0;border-radius:999px;background:#ecfeff;color:#0f766e;padding:4px 9px;font-size:13px;font-weight:700;">허니문 혜택</span></p>
+        </section>
+        <a href="https://www.maldivesbible.com/maldives-resort-comparison/" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 리조트 비교 가이드</a>
+        <span aria-hidden="true" style="margin:0 8px;color:#94a3b8;">·</span>
+        <a href="https://www.maldivesbible.com/maldives-resort-comparison/" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 직접 비교</a>
+        
+  <style>
+    .maldives-glossary a:focus-visible { outline:2px solid #14b8a6;outline-offset:3px; }
+    @media (max-width:480px) {
+      .maldives-glossary__links { grid-template-columns:minmax(0,1fr) !important; }
+    }
+  </style>
+  <section class="maldives-glossary" aria-labelledby="maldives-glossary-title" style="max-width:100%;margin:32px auto 0;border-top:1px solid #dbe7e4;padding-top:22px;">
+    <p style="margin:0;color:#0f766e;font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;">Maldives glossary</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:10px 18px;margin-top:5px;">
+      <div>
+        <h2 id="maldives-glossary-title" style="margin:0;color:#0f172a;font-size:21px;">몰디브 관련 용어</h2>
+        <p style="margin:5px 0 0;color:#64748b;font-size:12px;line-height:1.65;">이동·객실·바다·식사·비용에서 자주 만나는 표현을 분야별로 정리했어요.</p>
+      </div>
+      <a href="https://www.maldivesbible.com/maldives-glossary/" style="color:#0f766e;font-size:13px;font-weight:800;text-underline-offset:3px;">43개 용어 한 번에 보기 →</a>
+    </div>
+    <div class="maldives-glossary__links" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:14px;">
+      
+        <a href="https://www.maldivesbible.com/maldives-glossary/#place" style="display:block;border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;color:#0f172a;text-decoration:none;">
+          <strong style="font-size:13px;">지역·리조트</strong>
+          <span style="display:block;margin-top:4px;color:#64748b;font-size:11px;line-height:1.5;">아톨 · 말레 · 리조트 아일랜드</span>
+        </a>
+        <a href="https://www.maldivesbible.com/maldives-glossary/#transfer" style="display:block;border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;color:#0f172a;text-decoration:none;">
+          <strong style="font-size:13px;">이동</strong>
+          <span style="display:block;margin-top:4px;color:#64748b;font-size:11px;line-height:1.5;">스피드보트 · 수상비행기 · 국내선</span>
+        </a>
+        <a href="https://www.maldivesbible.com/maldives-glossary/#villa" style="display:block;border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;color:#0f172a;text-decoration:none;">
+          <strong style="font-size:13px;">객실</strong>
+          <span style="display:block;margin-top:4px;color:#64748b;font-size:11px;line-height:1.5;">비치빌라 · 워터빌라 · 스플릿 스테이</span>
+        </a>
+        <a href="https://www.maldivesbible.com/maldives-glossary/#ocean" style="display:block;border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;color:#0f172a;text-decoration:none;">
+          <strong style="font-size:13px;">바다·환경</strong>
+          <span style="display:block;margin-top:4px;color:#64748b;font-size:11px;line-height:1.5;">라군 · 하우스리프 · 드롭오프</span>
+        </a>
+        <a href="https://www.maldivesbible.com/maldives-glossary/#meal" style="display:block;border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;color:#0f172a;text-decoration:none;">
+          <strong style="font-size:13px;">식사 플랜</strong>
+          <span style="display:block;margin-top:4px;color:#64748b;font-size:11px;line-height:1.5;">BB · HB · FB · AI</span>
+        </a>
+        <a href="https://www.maldivesbible.com/maldives-glossary/#booking" style="display:block;border:1px solid #dbe7e4;border-radius:10px;background:#fff;padding:11px 12px;color:#0f172a;text-decoration:none;">
+          <strong style="font-size:13px;">예약·비용</strong>
+          <span style="display:block;margin-top:4px;color:#64748b;font-size:11px;line-height:1.5;">포함·불포함 · ++ · 그린택스</span>
+        </a>
+    </div>
+  </section>
+        
+  <footer style="max-width:100%;margin:28px auto 0;border-top:1px solid #dbe7e4;padding:18px 0 8px;color:#64748b;font-size:12px;line-height:1.7;">
+    <p style="margin:0 0 8px;">몰디브 바이블 편집 · 최종 업데이트 2026.07.27</p>
+    <nav aria-label="몰디브 바이블 주요 서비스" style="display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:8px;">
+      <a href="https://www.maldivesbible.com/start/" style="color:#0f766e;font-weight:800;text-decoration:none;">시작하기</a><a href="https://www.maldivesbible.com/maldives-resort-comparison/" style="color:#0f766e;font-weight:800;text-decoration:none;">리조트 비교</a><a href="https://www.maldivesbible.com/quote-comparison/" style="color:#0f766e;font-weight:800;text-decoration:none;">견적 비교</a><a href="https://www.maldivesbible.com/flight-guide/" style="color:#0f766e;font-weight:800;text-decoration:none;">항공 가이드</a>
+    </nav>
+    <nav aria-label="사이트 정보" style="display:flex;flex-wrap:wrap;gap:8px 16px;">
+      <a href="https://www.maldivesbible.com/maldives-resorts/" style="color:#0f766e;font-weight:800;text-decoration:none;">전체 리조트 목록</a>
+      <a href="https://www.maldivesbible.com/maldives-glossary/" style="color:#0f766e;font-weight:800;text-decoration:none;">몰디브 용어집</a>
+      <a href="https://www.maldivesbible.com/about/" style="color:#0f766e;font-weight:800;text-decoration:none;">소개·편집 기준</a>
+    </nav>
+  </footer>
       </article>
     </main></div>
   </body>

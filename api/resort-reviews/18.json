@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "resortId": 18,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "바다와 하늘 풍경이 특별하고 인상적이에요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 3,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "바로스 몰디브 리조트 #01 ㅣ Baros Maldives",
+        "url": "https://blog.naver.com/sagereal/220459156635",
+        "blogName": "SAGE PANORAMA",
+        "publishedAt": "2015-08-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 - 바로스 리조트 둘째 날 아침 ( Baros Maldives )",
+        "url": "https://blog.naver.com/bbo0305/220856102841",
+        "blogName": "Anywhere in the world",
+        "publishedAt": "2016-11-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] Baros maldives (1)",
+        "url": "https://blog.naver.com/flllyhigh/221415324092",
+        "blogName": "winter kim",
+        "publishedAt": "2018-12-09",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

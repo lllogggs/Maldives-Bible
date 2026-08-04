@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 91,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "비치 풀빌라에서 몰디브다운 휴양을 즐길 수 있어요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "후기 _001] 밀라이두 리조트 ( Milaidhoo Island Maldives )...",
+        "url": "https://blog.naver.com/gardenfamily_/222590470344",
+        "blogName": "혼자 간직하기엔 아까운,",
+        "publishedAt": "2021-12-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 럭셔리 리조트 신혼여행 추천 밀라이두 조식 후기",
+        "url": "https://blog.naver.com/jjjadeland/224315271967",
+        "blogName": "여행미녀 제이드 :: JadeLand ♪",
+        "publishedAt": "2026-06-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 대학 리조트 학과 몰디브 밀라이두 워터빌라 숙소...",
+        "url": "https://blog.naver.com/kigi1234/224207937478",
+        "blogName": "서울숲 김첼시의 일일",
+        "publishedAt": "2026-03-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 밀라이두 리조트 5일차 후기 :) 바 텔리(ba'theli)...",
+        "url": "https://blog.naver.com/saemi0413/224089104481",
+        "blogName": "쌤캉스",
+        "publishedAt": "2025-11-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행 4탄] 밀라이두 리조트 후기 (2) _ 리조트 & 객실...",
+        "url": "https://blog.naver.com/alswl8242/223853117407",
+        "blogName": "강자매 블로그",
+        "publishedAt": "2025-05-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 밀라이두 리조트 5박 6일 자랑 후기",
+        "url": "https://blog.naver.com/hinicetomeetu_/223933656816",
+        "blogName": "체코홍합의 장바구니",
+        "publishedAt": "2025-07-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 허니문 밀라이두 리조트 워터빌라 후기",
+        "url": "https://blog.naver.com/jennygardenflower/223806881591",
+        "blogName": "초록이 머무는 곳",
+        "publishedAt": "2025-03-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 추천 힐튼 아밍기리, 밀라이두 , 후바펜푸시 비교...",
+        "url": "https://blog.naver.com/forraraland/224223064330",
+        "blogName": "RaRaLand",
+        "publishedAt": "2026-03-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 1] 프라이빗한 럭셔리 리조트 \" 밀라이두 워터빌라\"",
+        "url": "https://blog.naver.com/kook_smile/224058729483",
+        "blogName": "쿡스마일의 맛집, 여행기록",
+        "publishedAt": "2025-10-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "'21 몰디브 / day5 밀라이두 아일랜드 몰디브 워터빌라",
+        "url": "https://blog.naver.com/flipped22/222575885165",
+        "blogName": "데일리 부부 트래블러✈️",
+        "publishedAt": "2021-11-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 밀라이두 리조트 6일차 체크아웃 후기 :) 싱가포르...",
+        "url": "https://blog.naver.com/saemi0413/224092129165",
+        "blogName": "쌤캉스",
+        "publishedAt": "2025-11-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행 3탄] 밀라이두 리조트 후기 (1)_출발부터...",
+        "url": "https://blog.naver.com/alswl8242/223765757301",
+        "blogName": "강자매 블로그",
+        "publishedAt": "2025-02-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 밀라이두 리조트 자랑 후기 - 마사지 편",
+        "url": "https://blog.naver.com/hinicetomeetu_/223936231612",
+        "blogName": "체코홍합의 장바구니",
+        "publishedAt": "2025-07-16",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

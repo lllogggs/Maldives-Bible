@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 97,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "가격 대비 만족도가 좋은 리조트예요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "가성비 리조트 오블루 익스피리언스 아일라푸시 솔직 후기 ...",
+        "url": "https://blog.naver.com/dukdoong/224290774390",
+        "blogName": "덕둥이네 둥지 : 리뷰&트래블",
+        "publishedAt": "2026-05-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "이용, 가족 친화 리조트 오블루 익스피리언스 아일라푸시",
+        "url": "https://blog.naver.com/schoolphotostudio/223328924752",
+        "blogName": "학교사진관",
+        "publishedAt": "2024-01-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가족 여행 오블루 익스피리언스 아일라푸시 ...",
+        "url": "https://blog.naver.com/stellyn93/223880267822",
+        "blogName": "The Best Day",
+        "publishedAt": "2025-05-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 몰디브 2일차 / 오블루 익스피리언스 아일라푸시 ...",
+        "url": "https://blog.naver.com/rtt2323/223540900790",
+        "blogName": "콩세의 마음",
+        "publishedAt": "2024-08-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 오블루 로비길리 3일차 아일라푸시 리조트 가...",
+        "url": "https://blog.naver.com/bopteacher/224236523227",
+        "blogName": "밥티쳐의 놀고먹는 블로그",
+        "publishedAt": "2026-04-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "오블루 셀렉트 로비길리 장점, 옆 아일라푸시 리조트 에서...",
+        "url": "https://blog.naver.com/altmrla4/223142135331",
+        "blogName": "숑's 꾸러기방",
+        "publishedAt": "2023-06-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 오블루 셀렉트... 체크아웃 후 수영장 오블루 아일라푸시",
+        "url": "https://blog.naver.com/under_thesea1225/223811646906",
+        "blogName": "뽀짝뽀짝로그",
+        "publishedAt": "2025-03-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 4박 Day4_ 오블루 로비길리 일랑조식/ 아일라푸시 구경...",
+        "url": "https://blog.naver.com/rpwjfrhdwn/224141606904",
+        "blogName": "먹방꿈나무 & 떡블리영",
+        "publishedAt": "2026-01-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행] 14. 오블루 익스피리언스 아일라푸시 2탄...",
+        "url": "https://blog.naver.com/jihyun1743/223120204211",
+        "blogName": "ᶜᴴᴬᴱᶜᴴᴬᴱ",
+        "publishedAt": "2023-06-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 ️ 오블루 아일라푸시 입성! 공항 나오자마자...",
+        "url": "https://blog.naver.com/ssiaun2830/224162824215",
+        "blogName": "윤홍의 술기로운 신혼생활",
+        "publishedAt": "2026-01-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 몰디브 3일차 / 오블루 익스피리언스 아일라푸시 ...",
+        "url": "https://blog.naver.com/rtt2323/223765726868",
+        "blogName": "콩세의 마음",
+        "publishedAt": "2025-02-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] #3 가성비 리조트 로 추천하는 오블루 아일라푸시 ...",
+        "url": "https://blog.naver.com/seoyoon_99/222926445770",
+        "blogName": "우당탕탕~",
+        "publishedAt": "2022-11-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 오블루 익스피리언스 아일라푸시 에서 본 것",
+        "url": "https://blog.naver.com/juya60/223330607940",
+        "blogName": "주야의 주된관심사",
+        "publishedAt": "2024-01-22",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

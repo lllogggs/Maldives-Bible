@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "resortId": 109,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 9,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "신혼여행] 더 레지던스 몰디브 팔루마푸시 워터풀빌라 후기",
+        "url": "https://blog.naver.com/yulee123916/223903488107",
+        "blogName": "우리집 막내딸 공식 블로그",
+        "publishedAt": "2025-06-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 더 레지던스 몰디브 ] 팔루마푸시 워터빌라 및 식당 총정리!",
+        "url": "https://blog.naver.com/trjpie2/224086471548",
+        "blogName": "맹사원의 이것 저것",
+        "publishedAt": "2025-11-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 더 레지던스 앳 디구라 #3(객실위치추천, 팔루마푸시 ...",
+        "url": "https://blog.naver.com/ggusle/223659527670",
+        "blogName": "꾸슬의 여행",
+        "publishedAt": "2024-11-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "더 레지던스 몰디브 : 팔루마푸시 워터풀빌라 후기",
+        "url": "https://blog.naver.com/hao__de/223877830373",
+        "blogName": "쉬어 가는 곳",
+        "publishedAt": "2025-05-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 ep5 :: 더레지던스 디구라 및 팔루마푸시 ...",
+        "url": "https://blog.naver.com/jiwon3194/223809650346",
+        "blogName": "지자롱의 방구석ღ",
+        "publishedAt": "2025-03-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "7일차 ( 더 레지던스 몰디브 , 팔루마푸시 , 디구라, 롱아일랜드...",
+        "url": "https://blog.naver.com/heyrimiu/223684667622",
+        "blogName": "오늘은 뭐하지?",
+        "publishedAt": "2024-12-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 더 레지던스 팔루마푸시 워터풀빌라 5박7일...",
+        "url": "https://blog.naver.com/mokmok-/224207302620",
+        "blogName": "애기씨 추천모음",
+        "publishedAt": "2026-03-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 라군 리조트 팔루마푸시 디구라 다이브센터 수중환경...",
+        "url": "https://blog.naver.com/sora2450/224296036330",
+        "blogName": "맛집/뷰티/여행 정보 공유ෆ",
+        "publishedAt": "2026-05-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행, 더 레지던스 디구라 팔루마푸시",
+        "url": "https://blog.naver.com/wlq0957/223871779296",
+        "blogName": "record the day",
+        "publishedAt": "2025-05-20",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "resortId": 104,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 9,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 가족여행 리조트 추천 래디슨블루 수영장 스파 후기",
+        "url": "https://blog.naver.com/kim4993300/223949893332",
+        "blogName": "네이버 여행 인플루언서_일상도 여행처럼",
+        "publishedAt": "2025-07-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 추천 래디슨 블루 리조트 대만족 후기",
+        "url": "https://blog.naver.com/hand4444/223903652113",
+        "blogName": "금요일밤엔 치킨에 콜라",
+        "publishedAt": "2025-06-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 경비 일정 래디슨 블루 리조트 후기",
+        "url": "https://blog.naver.com/moneyjoa1/223801234747",
+        "blogName": "놀지혜의 놀로그",
+        "publishedAt": "2025-03-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 후기 숙소 리조트 워터빌라 래디슨블루 내돈내산",
+        "url": "https://blog.naver.com/jane4495/224263215466",
+        "blogName": "우히의 행복한 보통날",
+        "publishedAt": "2026-04-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "리조트 , 이렇게 골랐어요 | 래디슨 블루 리조트 몰디브 솔직 후기",
+        "url": "https://blog.naver.com/gathering_together/224236838113",
+        "blogName": "우리모두 함께해요 :)",
+        "publishedAt": "2026-04-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 가격 리조트 학과 졸업 래디슨 블루",
+        "url": "https://blog.naver.com/lllpeacelll1/223612142300",
+        "blogName": "블랙토끼의 새콤달콤 여행기록",
+        "publishedAt": "2024-10-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 럭셔리 리조트 추천 래디슨블루 올인클루시브 워터빌라...",
+        "url": "https://blog.naver.com/bles1/223919411681",
+        "blogName": "Hey, Travel",
+        "publishedAt": "2025-07-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 힐링여행의 정석: 래디슨 블루 리조트 에서 보낸 5박 6일",
+        "url": "https://blog.naver.com/kimha0311/224236916448",
+        "blogName": "도나의 하루",
+        "publishedAt": "2026-04-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 태교여행 추천: 래디슨 블루 리조트 남아리 아톨에서...",
+        "url": "https://blog.naver.com/happysoonchool/224236850767",
+        "blogName": "오래오래 건강하고 행복하게",
+        "publishedAt": "2026-04-01",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

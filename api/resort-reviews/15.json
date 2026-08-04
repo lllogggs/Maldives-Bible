@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "resortId": 15,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "비교적 부담이 낮은 가격으로 만족스럽게 머물 수 있어요.",
+        "mentions": 1
+      },
+      {
+        "text": "선셋 워터빌라의 숙박 만족도가 특히 높아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 반도스 식사 후기 , 퀄리티, 애프터눈 티 등 (1)",
+        "url": "https://blog.naver.com/yulri39/223694246876",
+        "blogName": "나를 채우는, 일상의 기록",
+        "publishedAt": "2024-12-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "반도스 몰디브 | 선셋 워터빌라 숙소 후기",
+        "url": "https://blog.naver.com/yulri39/223877327635",
+        "blogName": "나를 채우는, 일상의 기록",
+        "publishedAt": "2025-05-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 반도스 리조트 (Bandos Maldives) 투어 예약 / 부대...",
+        "url": "https://blog.naver.com/saseum87/223935893967",
+        "blogName": "조글렛의 일상다반사.",
+        "publishedAt": "2025-07-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2023 신혼여행 ( 몰디브 반도스 리조트 )",
+        "url": "https://blog.naver.com/blingyum/223513610713",
+        "blogName": "여기는 윰로그",
+        "publishedAt": "2024-07-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] Day 1 : 반도스 리조트 후반바, 몰디브 썬셋",
+        "url": "https://blog.naver.com/jiyun4747/221428781477",
+        "blogName": "지윤헤헤 Blog since 2006",
+        "publishedAt": "2018-12-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "반도스 몰디브 ⑥ :: 2일차, 낮잠은 필수! 풀바 이용하기",
+        "url": "https://blog.naver.com/zzoxzzi/221434267528",
+        "blogName": "SLOW360 느리게보기",
+        "publishedAt": "2019-01-04",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

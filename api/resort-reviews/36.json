@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "resortId": 36,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "공항 마중부터 라운지 안내까지 세심하게 챙겨줘요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 5,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "자유여행(3) 수상비행기타고 콘래드 몰디브 랑갈리 아일랜드",
+        "url": "https://blog.naver.com/basis1111023/224211711859",
+        "blogName": "인허플레이스",
+        "publishedAt": "2026-03-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "허니문 콘래드몰디브 랑갈리 아일랜드",
+        "url": "https://blog.naver.com/alicenj77/223694573085",
+        "blogName": "♥♥alice♥♥",
+        "publishedAt": "2024-12-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아웃, 콘래드 랑갈리 몰디브 리조트 입성! 수상비행기 탑승 후기",
+        "url": "https://blog.naver.com/leejieun930/223646428888",
+        "blogName": "지니의 기록✍",
+        "publishedAt": "2024-11-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[숙소] 몰디브 콘래드 랑갈리 아일랜드 성인전용 수영장 후기 ...",
+        "url": "https://blog.naver.com/666meme/223913036529",
+        "blogName": "Eternal summer",
+        "publishedAt": "2025-06-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Day 7-② : Maldives( 몰디브 : 콘래드 랑갈리 아일랜드 )",
+        "url": "https://blog.naver.com/78cupid/220229342503",
+        "blogName": "Travel by Wani (T.B.W)",
+        "publishedAt": "2015-01-04",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

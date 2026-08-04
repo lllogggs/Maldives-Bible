@@ -146,16 +146,13 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.hilton.com/im/en/MLEAIHI/17929415/hilton-amingiri-resort-aerial.jpg?impolicy=crop&cw=5000&ch=2811&gravity=NorthWest&xposition=0&yposition=248&rw=1240&rh=696",
-      "https://www.hilton.com/im/en/MLEAIHI/17929421/hilton-amingiri-overwater-suite.jpg?impolicy=crop&cw=5000&ch=2811&gravity=NorthWest&xposition=0&yposition=248&rw=1240&rh=696",
-      "https://www.hilton.com/im/en/MLEAIHI/17929424/hilton-amingiri-habitat-restaurant.jpg?impolicy=crop&cw=5000&ch=2811&gravity=NorthWest&xposition=0&yposition=248&rw=1240&rh=696",
-      "https://www.hilton.com/im/en/MLEAIHI/17929427/hilton-amingiri-aura-pool-bar.jpg?impolicy=crop&cw=5000&ch=2811&gravity=NorthWest&xposition=0&yposition=248&rw=1240&rh=696"
+      "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill%2Cw_1920%2Ch_1080%2Cq_70%2Cf_auto%2Cg_center/g_auto/Imagery/Property%20Photography/Hilton%20Hotels%20and%20Resorts/M/MLEAIHI/MLEAI_Aerial_for_OHW.jpg"
     ],
     "roomTypes": [
       "오버워터 스위트 위드 풀",
       "비치 빌라 위드 풀"
     ],
-    "homepageUrl": "https://www.hilton.com/en/hotels/mleaihi-hilton-maldives-amingiri-resort-spa/"
+    "homepageUrl": "https://www.hilton.com/en/hotels/mleaihi-hilton-maldives-amingiri-resort-and-spa/"
   },
   {
     "id": 65,
@@ -182,16 +179,13 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://www.ihg.com/holidayinnresorts/hotels/us/en/kandooma-fushi/mlekf/hoteldetail/hotel-room-details/photos-tours/fullscreen/63032502.jpg",
-      "https://www.ihg.com/holidayinnresorts/hotels/us/en/kandooma-fushi/mlekf/hoteldetail/hotel-room-details/photos-tours/fullscreen/63032504.jpg",
-      "https://www.ihg.com/holidayinnresorts/hotels/us/en/kandooma-fushi/mlekf/hoteldetail/dining/photos-tours/fullscreen/63032512.jpg",
-      "https://www.ihg.com/holidayinnresorts/hotels/us/en/kandooma-fushi/mlekf/hoteldetail/amenities/photos-tours/fullscreen/63032516.jpg"
+      "https://digital.ihg.com/is/image/ihg/holiday-inn-resort-south-male-atoll-4292556343-2x1?wid=1100"
     ],
     "roomTypes": [
       "비치 빌라",
       "오버워터 빌라"
     ],
-    "homepageUrl": "https://www.ihg.com/holidayinnresorts/hotels/us/en/kandooma-fushi/mlekf/hoteldetail"
+    "homepageUrl": "https://www.ihg.com/holidayinnresorts/hotels/us/en/south-male-atoll/mlekf/hoteldetail"
   },
   {
     "id": 66,
@@ -217,10 +211,7 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://hondaafushiisland.com/wp-content/uploads/2018/12/i9.jpg",
-      "https://hondaafushiisland.com/wp-content/uploads/2019/05/def-banner.jpg",
-      "https://hondaafushiisland.com/wp-content/uploads/2018/12/ine7.jpg",
-      "https://hondaafushiisland.com/wp-content/uploads/2018/12/i2-1.jpg"
+      "https://aaaresorts.com/wp-content/uploads/2026/02/Hondaafushi_0012__A3A5655.jpg"
     ],
     "roomTypes": [
       "슈페리어 비치 방갈로",
@@ -251,12 +242,7 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.hurawalhi.com/wp-content/uploads/2019/11/Hurawalhi-Maldives-Aerial-View-of-the-Resort-1.jpg",
-      "https://www.hurawalhi.com/wp-content/uploads/2019/11/Hurawalhi-Maldives-Ocean-Pool-Villa.jpg",
-      "https://www.hurawalhi.com/wp-content/uploads/2019/11/5.8-Undersea-Restaurant-1.jpg",
-      "https://www.hurawalhi.com/wp-content/uploads/2019/11/Coco-Bar-1.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 풀 빌라",
       "오션 풀 빌라"
@@ -399,17 +385,12 @@
     "hasFamilyRoom": true,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://joali.com/joali-being/media/1586/joali-being-aerial.jpg",
-      "https://joali.com/joali-being/media/1587/joali-being-ocean-pool-villa.jpg",
-      "https://joali.com/joali-being/media/1589/joali-being-flow-restaurant.jpg",
-      "https://joali.com/joali-being/media/1590/joali-being-areka-spa.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "오션 풀 빌라",
       "비치 풀 빌라"
     ],
-    "homepageUrl": "https://joali.com/joali-being/"
+    "homepageUrl": "https://www.joali.com/joali-being/"
   },
   {
     "id": 72,
@@ -434,17 +415,12 @@
     "hasFamilyRoom": true,
     "hasKidsClub": true,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://joali.com/maldives/media/1210/joali-maldives-aerial-view.jpg",
-      "https://joali.com/maldives/media/1211/joali-maldives-luxury-water-villa-with-pool.jpg",
-      "https://joali.com/maldives/media/1213/joali-maldives-vandhoo-restaurant.jpg",
-      "https://joali.com/maldives/media/1214/joali-maldives-spa-by-espa.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "럭셔리 워터 빌라 위드 풀",
       "비치 빌라 위드 풀"
     ],
-    "homepageUrl": "https://joali.com/maldives/"
+    "homepageUrl": "https://www.joali.com/joali-maldives/island-of-joy/"
   },
   {
     "id": 73,
@@ -470,16 +446,13 @@
     "hasKidsClub": true,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://joyislandmaldives.com/wp-content/uploads/2023/04/joy-island-maldives-lagoon-suite-pool.jpg",
-      "https://joyislandmaldives.com/wp-content/uploads/2023/04/joy-island-maldives-beach-suite.jpg",
-      "https://joyislandmaldives.com/wp-content/uploads/2023/04/joy-island-maldives-the-market-restaurant.jpg",
-      "https://joyislandmaldives.com/wp-content/uploads/2023/04/joy-island-maldives-rainbow-bar.jpg"
+      "https://static.wixstatic.com/media/d8b687_bf8cc3969e124fa5b364d56c04df923b~mv2.jpg/v1/fill/w_2500,h_1404,al_c/d8b687_bf8cc3969e124fa5b364d56c04df923b~mv2.jpg"
     ],
     "roomTypes": [
       "라군 빌라",
       "비치 스위트"
     ],
-    "homepageUrl": "https://joyislandmaldives.com/"
+    "homepageUrl": "https://www.joyisland.com/"
   },
   {
     "id": 74,
@@ -732,25 +705,7 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/001-Kandolhu-Aerial.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/006-Kandolhu-Aerial-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/015-Aerial-Ocean-Villas-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/016-Aerial-Ocean-Villas-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/010-Ocean-Pool-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/006-Ocean-Pool-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/005-Ocean-Pool-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/001-Beach-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/002-Beach-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/003-Beach-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/009-Ocean-Villa-Oceal-Pool-Villas-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/003-Duplex-Pool-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/001-Duplex-Pool-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/004-Duplex-Pool-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/006-Duplex-Pool-Villa-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/019-Vilu-Bar-233x144.jpg",
-      "https://www.kandolhu.com/wordpress/wp-content/uploads/2025/03/022-Beach-Dining-233x144.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "풀 빌라",
       "오션 풀 빌라"
@@ -781,12 +736,7 @@
     "hasFamilyRoom": false,
     "hasKidsClub": false,
     "honeymoonPerks": true,
-    "imageUrls": [
-      "https://www.komandoo.com/wp-content/uploads/2019/11/Komandoo-Maldives-Ocean-Jacuzzi-Water-Villa-1-1.jpg",
-      "https://www.komandoo.com/wp-content/uploads/2019/11/Komandoo-Maldives-Beach-Villa-1-1.jpg",
-      "https://www.komandoo.com/wp-content/uploads/2019/11/Komandoo-Maldives-Aqua-Restaurant-1-1.jpg",
-      "https://www.komandoo.com/wp-content/uploads/2019/11/Komandoo-Maldives-Thundi-Bar-1-1.jpg"
-    ],
+    "imageUrls": [],
     "roomTypes": [
       "비치 빌라",
       "오션 자쿠지 워터 빌라"

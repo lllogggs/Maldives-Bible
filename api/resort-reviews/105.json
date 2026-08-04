@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "resortId": 105,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "침실에서 보이는 에메랄드빛 바다 전망이 인상적이에요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 7,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 ] 래플스 메라두 리조트 오버워터빌라 4박",
+        "url": "https://blog.naver.com/lyzelog/223747655011",
+        "blogName": "ZELOG",
+        "publishedAt": "2025-02-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 럭셔리 리조트 래플스 메라두 후기 (객실...",
+        "url": "https://blog.naver.com/minybunny/223419648871",
+        "blogName": "MINY DAY",
+        "publishedAt": "2024-04-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "래플스 몰디브 메라두 도착 후기 (Raffles Madives Meradhoo)",
+        "url": "https://blog.naver.com/hwangihnjoon/223025154796",
+        "blogName": "갓황의 인생학개론",
+        "publishedAt": "2023-02-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 래플스 몰디브 레스토랑별 메뉴 추천",
+        "url": "https://blog.naver.com/thdghkfl684/223919802319",
+        "blogName": "물버미의 행복 일상(ง •̀ω•́)ง✧",
+        "publishedAt": "2025-07-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "래플스 몰디브 메라두 (Raffles Maldives Meradhoo) 후기 1",
+        "url": "https://blog.naver.com/hanghyhs/222592849857",
+        "blogName": "와즈불(wisebull)의 비즈니스",
+        "publishedAt": "2021-12-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 ( 래플스 몰디브 메라두 Raffles...",
+        "url": "https://blog.naver.com/tuddl0913/223361996721",
+        "blogName": "Passionfruit",
+        "publishedAt": "2024-02-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "웨딩기록 : 몰디브 신혼여행 래플스 비용 아부다비 경유",
+        "url": "https://blog.naver.com/yungjooda/223121241011",
+        "blogName": "쮸의 일상기록",
+        "publishedAt": "2023-06-06",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

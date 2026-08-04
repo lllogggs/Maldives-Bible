@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "resortId": 134,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "선셋 크루즈와 고래상어 투어 등 익스커션이 다양해 일정이 지루하지 않아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 빌라멘두 리조트 허니문 후기",
+        "url": "https://blog.naver.com/bgekim/220880511910",
+        "blogName": "살며, 사랑하며.",
+        "publishedAt": "2016-12-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 빌라멘두 아일랜드 리조트 앤 스파 비치빌라 후기",
+        "url": "https://blog.naver.com/saltbeach/222814595214",
+        "blogName": "K I T T Y ● H O U S E",
+        "publishedAt": "2022-07-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 빌라멘두 리조트 VILLAMENDOO ISLAND RESORT & SPA...",
+        "url": "https://blog.naver.com/april8282/100195754122",
+        "blogName": "꿈꾸는 사월의 골드 백수 다이어리",
+        "publishedAt": "2013-09-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브리조트 추천 빌라멘두 올인클루시브 인피니티풀 리얼 후기",
+        "url": "https://blog.naver.com/kimjiy8/221042571778",
+        "blogName": "그림 그리는 워킹맘 졸리 ✨",
+        "publishedAt": "2017-07-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 빌라멘두 리조트 (Vilamendhoo) 가는법 등등",
+        "url": "https://blog.naver.com/kellysweethome/221042353105",
+        "blogName": "켈리의 스윗홈♥",
+        "publishedAt": "2017-07-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] 빌라멘두 리조트 (1) / 빌라멘두 도착! (경비행기...",
+        "url": "https://blog.naver.com/charmant-coco/221645337011",
+        "blogName": "Collect moments, not things",
+        "publishedAt": "2019-09-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "빌라멘두 아일랜드 리조트 앤 스파 (Vilamendhoo island resort...",
+        "url": "https://blog.naver.com/ponystella/221101580281",
+        "blogName": "포니스텔라의 홈스위트홈♡",
+        "publishedAt": "2017-09-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 빌라멘두 리조트 후기 식사편",
+        "url": "https://blog.naver.com/b2g2y/221185214087",
+        "blogName": "㊗️화과산 수렴동 깊고 깊은 골짜기㊗️",
+        "publishedAt": "2018-01-15",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

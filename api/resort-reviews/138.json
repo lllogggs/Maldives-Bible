@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 138,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 안에서 즐길 프로그램과 놀거리가 다양해요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 준비물, 아마리 라야 럭셔리 리조트 후기",
+        "url": "https://blog.naver.com/jeongwon84/223360961022",
+        "blogName": "깜썰,리준 그리고 깜리",
+        "publishedAt": "2024-02-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "즐길거리] 몰디브 리조트 후기 / Amari Raaya Maldives / 구....",
+        "url": "https://blog.naver.com/yhl2923/223291473941",
+        "blogName": "부산양양이의 소확행 ♪",
+        "publishedAt": "2023-12-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 > 라야 바이 앳모스피어( 아마리 라야 ) 리조트 ...",
+        "url": "https://blog.naver.com/cooing_jj/223927361036",
+        "blogName": "둉둉",
+        "publishedAt": "2025-07-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[Wedding] 아마리 라야 몰디브 수중환경, 즐길 거리( 라야 바이...",
+        "url": "https://blog.naver.com/vkak1024/223611389576",
+        "blogName": "이그그",
+        "publishedAt": "2024-10-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 라야 바이 앳모스피어 신혼여행 후기",
+        "url": "https://blog.naver.com/beyond_themap/223973385245",
+        "blogName": "Beyond the Map (지도 너머의 이야기)",
+        "publishedAt": "2025-08-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 추천, 라야 바이앳모스피어 4박6일 신혼여행 후기",
+        "url": "https://blog.naver.com/breathing_room_/224171163174",
+        "blogName": "인생을 여행처험",
+        "publishedAt": "2026-02-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행| 라야 바이 앳모스피어 비치빌라 워터빌라 리조트 후기 !",
+        "url": "https://blog.naver.com/hoijin26/224260032387",
+        "blogName": "Jin_log : 찡꾸의 일상 '_'",
+        "publishedAt": "2026-04-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 라야 바이... 워터빌라 with 수영장 후기 (여행사❌)",
+        "url": "https://blog.naver.com/c_wooyun/224208857598",
+        "blogName": "귀찮은데 하는 블로그",
+        "publishedAt": "2026-03-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ]싱가포르경유 몰디브 여행 1 , 아마리라야 ( 라야 바이...",
+        "url": "https://blog.naver.com/als538000/223630836657",
+        "blogName": "미니라이프",
+        "publishedAt": "2024-10-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "11]투어민ㅣ 몰디브 라야 바이 앳모스피어 리조트 워터빌라 후기",
+        "url": "https://blog.naver.com/bbk_s2love/224172366829",
+        "blogName": "우아한 타조의 하루",
+        "publishedAt": "2026-02-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "라야 바이 앳모스피어 먹을거리 ( 아마리 라야 몰디브 였던 것..)",
+        "url": "https://blog.naver.com/vkak1024/223611649054",
+        "blogName": "이그그",
+        "publishedAt": "2024-10-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "Amari Raaya Maldives 리조트 이동] 몰디브 리조트 후기 / 구....",
+        "url": "https://blog.naver.com/yhl2923/223268591726",
+        "blogName": "부산양양이의 소확행 ♪",
+        "publishedAt": "2023-11-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 | Amari Raaya Maldives 아마리 라야 (현 라야...",
+        "url": "https://blog.naver.com/keem_page/223392304344",
+        "blogName": "나의 이야기",
+        "publishedAt": "2024-03-22",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

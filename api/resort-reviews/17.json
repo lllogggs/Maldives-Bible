@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "resortId": 17,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "얕고 투명한 라군에서 몰디브다운 바다 풍경을 즐길 수 있어요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 9,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 리조트 추천 멜리아 웨일라군 후기 와 선택한 이유(구...",
+        "url": "https://blog.naver.com/hoons-01/224343525782",
+        "blogName": "훈네집 리빙로그",
+        "publishedAt": "2026-07-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 말레공항에서 멜리아 웨일라군 수상비행기 대기부터...",
+        "url": "https://blog.naver.com/lee__yh/224204488881",
+        "blogName": "Essential Gomgom",
+        "publishedAt": "2026-03-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 우기 신혼여행 Day 1... 멜리아웨일라군 후기 ) 깨알정보...",
+        "url": "https://blog.naver.com/lululala17-/224153786547",
+        "blogName": "룰루랄라 쏭쏭이의 일상기록",
+        "publishedAt": "2026-01-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "웨일 라군 ( 멜리아 웨일 라군 ) [두바이/ 몰디브 여행기 10-2]",
+        "url": "https://blog.naver.com/candy_1020/223903838628",
+        "blogName": "Fall in LOVE",
+        "publishedAt": "2025-06-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행1( 몰디브 멜리아 웨일라군 리조트 , 바르셀로...",
+        "url": "https://blog.naver.com/lookingsolovely/224171328103",
+        "blogName": "you are more beautiful than you think✨",
+        "publishedAt": "2026-02-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "_ 몰디브 바르셀로 웨일라군 리조트 ( 멜리아 웨일라군 )...",
+        "url": "https://blog.naver.com/seizetheday_0102/224025646237",
+        "blogName": "핸로그",
+        "publishedAt": "2025-09-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 웨일라군 몰디브 다녀왔습니다!! 항공권, 리조트 ...",
+        "url": "https://blog.naver.com/rotto_cancho/224136716695",
+        "blogName": "냥냥펀치",
+        "publishedAt": "2026-01-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행]ep.5 몰디브 /바르셀로 웨일라군 리조트 /워터선셋빌라",
+        "url": "https://blog.naver.com/wingkk333/223823947414",
+        "blogName": "우리의 순간들",
+        "publishedAt": "2025-04-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 ep.1 바르셀로 웨일라군",
+        "url": "https://blog.naver.com/hhee_e_blog/223716684600",
+        "blogName": "세계여행이 꿈임미다",
+        "publishedAt": "2025-01-06",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

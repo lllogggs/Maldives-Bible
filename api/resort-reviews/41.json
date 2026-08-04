@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "resortId": 41,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "가격 경쟁력이 좋아요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "몰디브 여행 가성비 리조트 추천 다이아몬드 아투루가 라군...",
+        "url": "https://blog.naver.com/jangyah/224070139124",
+        "blogName": "보네르의 여행스토리",
+        "publishedAt": "2025-11-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 다이아몬드 아투루가 2024/10/20-10/26 - 리조트 편",
+        "url": "https://blog.naver.com/lazyblueday/223639672226",
+        "blogName": "신나게 살자~♡",
+        "publishedAt": "2024-10-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2024년 8월 몰디브 여행 - 다이아몬드 아투루가 ; 식사 후기",
+        "url": "https://blog.naver.com/blueblue____/223544187510",
+        "blogName": "리펭귄의 삶",
+        "publishedAt": "2024-08-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "6월 몰디브 다이아몬드 아투루가 리조트 후기 1~2일차 / 최상의...",
+        "url": "https://blog.naver.com/haeun0418/223925402791",
+        "blogName": "당연하지 않은 삶과 그 삶의 나날들",
+        "publishedAt": "2025-07-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 올인클 리조트 다이아몬드 아투루가 후기 5) 라군",
+        "url": "https://blog.naver.com/eganize/223630835145",
+        "blogName": "여차저차",
+        "publishedAt": "2024-10-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 리조트 후기 ] 와이페이모어 다이아몬드 아투루가 ...",
+        "url": "https://blog.naver.com/jwookmoon/223877489058",
+        "blogName": "jwookmoon님의 블로그",
+        "publishedAt": "2025-05-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신행은 몰디브 다녀옴/ 다이아몬드 아투루가",
+        "url": "https://blog.naver.com/kkomoroo/224017624788",
+        "blogName": "머루모리꼬모",
+        "publishedAt": "2025-09-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 다이아몬드 아투루가 2일차",
+        "url": "https://blog.naver.com/oransia/221713685176",
+        "blogName": "룰루팡! 룰루피! 룰루~얍!",
+        "publishedAt": "2019-11-20",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

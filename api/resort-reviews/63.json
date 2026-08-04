@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "resortId": 63,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "선셋 비치 풀빌라의 전반적인 만족도가 높아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "아침 식사가 가능한 식당이 적고 메뉴가 비슷하다는 점은 아쉬워요.",
+        "mentions": 1
+      }
+    ],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 리조트 후기 I 헤리턴스아라 선셋비치 풀빌라 I...",
+        "url": "https://blog.naver.com/yi__jj/224098243837",
+        "blogName": "푸르의 하루",
+        "publishedAt": "2025-12-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 행복했던 신혼여행: 헤리턴스 아라 리조트 (2)",
+        "url": "https://blog.naver.com/highbubu/223955071126",
+        "blogName": "어제 모했지? 오늘 모하지?",
+        "publishedAt": "2025-08-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 헤리턴스 아라 리조트 프리미엄 AI 객실...",
+        "url": "https://blog.naver.com/jwvoice/223889828716",
+        "blogName": "신부야 - 웨딩준비가어렵니?",
+        "publishedAt": "2025-06-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼 여행(1), 말레 공항에서 헤리턴스 아라 리조트 까...",
+        "url": "https://blog.naver.com/hh_hjin/224099795033",
+        "blogName": "지지라이프:)",
+        "publishedAt": "2025-12-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[EP.1] 몰디브 신혼여행 후기 / 헤리턴스아라 리조트 / 6박 9일...",
+        "url": "https://blog.naver.com/sojung7898/224229341846",
+        "blogName": "ෆ",
+        "publishedAt": "2026-03-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 럭셔리 리조트 헤리턴스 아라 오션 빌라 후기 장점 단점",
+        "url": "https://blog.naver.com/saladin324/223616090181",
+        "blogName": "It's Travel Time, 여행에 빠지다.",
+        "publishedAt": "2024-10-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[두바이- 몰디브 신혼여행 4탄] 헤리턴스 아라 리조트 3일 차...",
+        "url": "https://blog.naver.com/godsjh6304/224315595852",
+        "blogName": "데이터 탐험가",
+        "publishedAt": "2026-06-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "모녀 몰디브 여행 6탄... 수상비행기장/ 헤리턴스아라 리조트 ...",
+        "url": "https://blog.naver.com/love_maesil/224007223405",
+        "blogName": "매실이네",
+        "publishedAt": "2025-09-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행｜말레공항 헤리턴스아라 공항라운지...",
+        "url": "https://blog.naver.com/limonada12/223885391404",
+        "blogName": "#LEMONLOG",
+        "publishedAt": "2025-06-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 헤리턴스 아라 비치빌라 후기",
+        "url": "https://blog.naver.com/eddie__lee/223901413781",
+        "blogName": "에디B로그",
+        "publishedAt": "2025-06-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 3일차｜ 헤리턴스아라 아침 요가, 마사지...",
+        "url": "https://blog.naver.com/kimsang1102/224260447998",
+        "blogName": "Hyeony",
+        "publishedAt": "2026-04-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 4일차 / 몰디브 헤리턴스아라 리조트 올 인클루시브...",
+        "url": "https://blog.naver.com/chestnut312/224342517634",
+        "blogName": "알밤이의 데굴데굴 일상 여행",
+        "publishedAt": "2026-07-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "허니문 리조트 몰디브 도착 / 헤리턴스 아라 체크인 / 레스토랑...",
+        "url": "https://blog.naver.com/by1uv/223615319447",
+        "blogName": "_ordinary day",
+        "publishedAt": "2024-10-14",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

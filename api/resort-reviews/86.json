@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "resortId": 86,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 | 신혼부부 쿠룸바몰디브 리조트 1일차 후기",
+        "url": "https://blog.naver.com/ilikepotatopizza/224159035265",
+        "blogName": "이포피의 블로그",
+        "publishedAt": "2026-01-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "11월의 몰디브 여행 후기 . (Feat. 쿠룸바 리조트 )",
+        "url": "https://blog.naver.com/chewings2/223886557085",
+        "blogName": "즐기려면, 제대로",
+        "publishedAt": "2025-06-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 첫날 쿠라마티 스피드보트 취소, 쿠룸바 리조트 숙박",
+        "url": "https://blog.naver.com/wisecompass/223972265736",
+        "blogName": "Wise Compass",
+        "publishedAt": "2025-08-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "머무르기 좋은 리조트 쿠룸바 몰디브 Kurumba Maldives #1",
+        "url": "https://blog.naver.com/derm_bo/223756543194",
+        "blogName": "Derm_bo",
+        "publishedAt": "2025-02-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 가족여행] 카타르를 떠나 몰디브 로! - 쿠룸바 리조트",
+        "url": "https://blog.naver.com/yuri0615/120212673195",
+        "blogName": "일상을 여행처럼!",
+        "publishedAt": "2014-05-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "쿠룸바 몰디브 (KURUMBA MALDIVES) 리조트",
+        "url": "https://blog.naver.com/mindofdog/222316856293",
+        "blogName": "나른한 날",
+        "publishedAt": "2021-04-20",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

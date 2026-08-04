@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "resortId": 28,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "워터빌라 분위기가 로맨틱하고 만족스러워요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 9,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "W11. 신혼여행(3) - 몰디브 코코보두히티 워터빌라에서의 2박",
+        "url": "https://blog.naver.com/nijj_ez/224279048741",
+        "blogName": "keep a diary",
+        "publishedAt": "2026-05-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "W-77허니문 리조트 몰디브 코코보두히티 워터빌라 2박 후기",
+        "url": "https://blog.naver.com/hee321kr/224342944885",
+        "blogName": "또랑또랑하게 결혼준비",
+        "publishedAt": "2026-07-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "코코보두히티 / 몰디브 가성비 리조트 /부대이용편",
+        "url": "https://blog.naver.com/kite31113/223748733134",
+        "blogName": "오예로그",
+        "publishedAt": "2025-02-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신행) 몰디브 공항-> 코코보두히티 리조트 체크인, 스피드보트...",
+        "url": "https://blog.naver.com/jeenee_99/223849930398",
+        "blogName": "૮• ﻌ •ა",
+        "publishedAt": "2025-04-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 1일차 - 코코 보두히티 리조트 코코 레지던스...",
+        "url": "https://blog.naver.com/byp1989/223735891594",
+        "blogName": "어느 삼십대, 인생의 단편",
+        "publishedAt": "2025-01-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아홉번째 몰디브 , 코코보두히티 리조트 후기 5 (ft.이모 저모)",
+        "url": "https://blog.naver.com/blossomflower/223624243239",
+        "blogName": "꽃을 피우다, 피움",
+        "publishedAt": "2024-10-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 코코보두히티 코코 레지던스룸 솔직 후기 몰디브 리조트 ...",
+        "url": "https://blog.naver.com/hoi2408/224036847979",
+        "blogName": "체리비 블로그",
+        "publishedAt": "2025-10-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행으로 갔다 온 몰디브 1일차 ♡ - 코코보두히티 리조트",
+        "url": "https://blog.naver.com/ss_yeooonee/221706676278",
+        "blogName": "오늘을 기록중♡̈",
+        "publishedAt": "2019-11-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브리조트 코코보두히티 비치빌라 & 이스케이프 워터빌라 후기",
+        "url": "https://blog.naver.com/guseo01/223277067745",
+        "blogName": "awesome days",
+        "publishedAt": "2023-11-28",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

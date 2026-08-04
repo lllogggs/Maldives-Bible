@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "resortId": 92,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 1,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 상위1프로 리조트 미리히 워터빌라 후기",
+        "url": "https://blog.naver.com/mammamia4g/221624968721",
+        "blogName": "YURISM",
+        "publishedAt": "2019-08-22",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "resortId": 51,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 앞바다에서 다양한 물고기와 아기상어를 볼 수 있어요.",
+        "mentions": 1
+      },
+      {
+        "text": "한적하고 조용해 편안한 휴양에 잘 맞아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "[ 몰디브 여행] 피할로히 리조트 피할호히 리조트",
+        "url": "https://blog.naver.com/babulove09/224069265622",
+        "blogName": "평범한여자,엄마,주부의 일상",
+        "publishedAt": "2025-11-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 자유여행] 몰디브 ... RESORT DAY VISIT) 리조트 일일체...",
+        "url": "https://blog.naver.com/happy18206/223922763948",
+        "blogName": "인생은 아름다워~",
+        "publishedAt": "2025-07-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "아이랑 몰디브 카니 호텔 익스커션(2)- 피할로히 리조트 ...",
+        "url": "https://blog.naver.com/hayam9662/223554802689",
+        "blogName": "웃는다",
+        "publishedAt": "2024-08-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행기]해가지는 저녁... 그리고 디너[ 피할로히 리조트 ]",
+        "url": "https://blog.naver.com/zz324/220649454779",
+        "blogName": "영글영글 즐거운 세계여행-*",
+        "publishedAt": "2016-03-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "피할로히 리조트 ( Fihalhohi Island Resort ) 데이유즈...",
+        "url": "https://blog.naver.com/kimmk74/220359958013",
+        "blogName": "나마스떼=카나우",
+        "publishedAt": "2015-05-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "있던 몰디브 였어!! 마푸시섬에서 Fihalhohi 리조트 가기.....",
+        "url": "https://blog.naver.com/korea626/220711896521",
+        "blogName": "쿨성발 Life...is",
+        "publishedAt": "2016-05-17",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "resortId": 11,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 2,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "신혼여행 몰디브 카니푸시 로 떠나던 날~ 싱가폴항공타고 싱가폴...",
+        "url": "https://blog.naver.com/yj5629/220006767042",
+        "blogName": "JJU",
+        "publishedAt": "2014-05-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 : 완벽했던... 추천, 앳모스피어 카니푸시 4박 후기",
+        "url": "https://blog.naver.com/mina860527/221570062393",
+        "blogName": "메밀꽃부부의 세계일주프로젝트",
+        "publishedAt": "2019-06-25",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

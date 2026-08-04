@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "resortId": 31,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "스페셜티 레스토랑의 저녁 식사와 와인이 인상적이에요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "주류 가격이 높아 부담스러워요.",
+        "mentions": 1
+      }
+    ],
+    "neutral": [],
+    "sourceCount": 2,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "디너 & 와인테이스팅 @ 콘스탄스 할라벨리 리조트 , 몰디브 신혼여행",
+        "url": "https://blog.naver.com/gloriousld/220536197561",
+        "blogName": "이니그마의 사람을 만나는 여행, 마음을 담는 사진",
+        "publishedAt": "2015-11-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "이츠마이트래블 몰디브리조트 콘스탄스 할라벨리 리조트",
+        "url": "https://blog.naver.com/jhkim110/50176583958",
+        "blogName": "플라이앤플레이 - 파비똥꼬",
+        "publishedAt": "2013-08-01",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

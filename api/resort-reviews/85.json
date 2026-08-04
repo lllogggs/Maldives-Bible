@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "resortId": 85,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 1,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "잊을 수 없는 몰디브 에서의 저녁 시간",
+        "url": "https://blog.naver.com/ost1980/80207777274",
+        "blogName": "happypump",
+        "publishedAt": "2014-02-20",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

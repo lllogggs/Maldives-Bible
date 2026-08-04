@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "resortId": 8,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 5,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 아난타라 디구 벨리 리조트 추천 이유",
+        "url": "https://blog.naver.com/dsk03064/223663676438",
+        "blogName": "솔직한 원블리의 식기장",
+        "publishedAt": "2024-11-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] DAY2 :: 몰디브 아난타라벨리 리조트 비치풀빌라",
+        "url": "https://blog.naver.com/nareum_happy/223845264302",
+        "blogName": "나름의 행복한 일상들",
+        "publishedAt": "2025-04-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 : 노키즈 리조트 아난타라벨리 도니바 칵테일 후기",
+        "url": "https://blog.naver.com/khw2676/224006294883",
+        "blogName": "뚜뚜의 뚜루뚜뚜",
+        "publishedAt": "2025-09-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "웹투어 #1. 아난타라 벨리 &디구 몰디브 공항 내 리조트 라운지",
+        "url": "https://blog.naver.com/wkddbfl12_/223705931349",
+        "blogName": ".",
+        "publishedAt": "2024-12-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 몰디브 리조트 호텔 추천",
+        "url": "https://blog.naver.com/travelyanna/222990521004",
+        "blogName": "역마살 리애나",
+        "publishedAt": "2023-01-21",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

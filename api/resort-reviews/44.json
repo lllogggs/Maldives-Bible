@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "resortId": 44,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 2,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 여행 후기 드리프트 리조트 : 뜨거운 커플을 위한...",
+        "url": "https://blog.naver.com/jhkim110/221115374397",
+        "blogName": "플라이앤플레이 - 파비똥꼬",
+        "publishedAt": "2017-10-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 가성비 리조트 -드리프트 리트릿 후기",
+        "url": "https://blog.naver.com/kspringms/221951239077",
+        "blogName": "민프로 육아일기",
+        "publishedAt": "2020-05-08",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

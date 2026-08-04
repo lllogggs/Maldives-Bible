@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 45,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "워터프론트 풀빌라의 객실 만족도가 높아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 리조트 추천 두짓타니 워터프론트 풀빌라 룸 컨디션",
+        "url": "https://blog.naver.com/kikiroad_/223653881929",
+        "blogName": "키키라이프",
+        "publishedAt": "2024-11-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 두짓타니 리조트 수중환경 600번대 방 후기",
+        "url": "https://blog.naver.com/thegreatwave/224063452876",
+        "blogName": "건강한 먹뽁뽁 하루하루",
+        "publishedAt": "2025-11-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 경비 두짓타니 럭셔리 리조트 올인클루시브 후기",
+        "url": "https://blog.naver.com/freejel/224299336775",
+        "blogName": "신부야-웨딩&신혼여행 한번에 준비하기!",
+        "publishedAt": "2026-05-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 추천｜ 두짓타니 몰디브 6박 후기 ...",
+        "url": "https://blog.naver.com/hyezflim/224338161238",
+        "blogName": "일상도 여행처럼 기록하는 30대 여자 혜즈의 하루",
+        "publishedAt": "2026-07-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 두짓타니 몰디브 ] 더 마켓 조식 뷔페 후기",
+        "url": "https://blog.naver.com/hyojungg1019/224341580316",
+        "blogName": "시간내서 하는 블로그",
+        "publishedAt": "2026-07-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행으로 다녀온 몰디브 두짓타니 리조트 후기 (내돈내산)...",
+        "url": "https://blog.naver.com/diana244/223798587130",
+        "blogName": "나만의 여행일기 ♪",
+        "publishedAt": "2025-03-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행 4일차] 몰디브 호화 리조트 추천 - 두짓타니몰디브 ...",
+        "url": "https://blog.naver.com/mhj4615/224321777513",
+        "blogName": "모아이문 일상블로그",
+        "publishedAt": "2026-06-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 올인클루시브 리조트 두짓타니 식당 벤자롱 메뉴 추천...",
+        "url": "https://blog.naver.com/happy_yumm/223624602370",
+        "blogName": "연차 내고 세계여행, 해피윰",
+        "publishedAt": "2024-10-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "환전 필요없는 올인클루시브 숙소 두짓타니 리조트 와 벤자롱 후기",
+        "url": "https://blog.naver.com/yundlog/223564648214",
+        "blogName": "웅디 데일리",
+        "publishedAt": "2024-08-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 두짓타니 리조트 레스토랑 후기 음식 맛...",
+        "url": "https://blog.naver.com/leejyun917/224261701120",
+        "blogName": "RESET.",
+        "publishedAt": "2026-04-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 허니문 두짓타니 리조트 라운지 후기 ｜수상비행기...",
+        "url": "https://blog.naver.com/ming2log/224139770616",
+        "blogName": "ming2log님의 블로그",
+        "publishedAt": "2026-01-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 두짓타니 리조트 벤자롱 런치 후기 와 왕추천 칵테일",
+        "url": "https://blog.naver.com/henie__/223882285836",
+        "blogName": "헤니네 생활기록",
+        "publishedAt": "2025-05-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "두짓타니 몰디브 리조트 후기 - 룸타입 편",
+        "url": "https://blog.naver.com/beaberslodge/223868062454",
+        "blogName": "인생 1회차",
+        "publishedAt": "2025-05-16",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

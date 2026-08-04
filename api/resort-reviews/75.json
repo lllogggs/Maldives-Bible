@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "resortId": 75,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 2,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 리조트 가족여행부터 허니문까지 완벽한 JW 메리어트 ...",
+        "url": "https://blog.naver.com/lllpeacelll1/224035943584",
+        "blogName": "블랙토끼의 새콤달콤 여행기록",
+        "publishedAt": "2025-10-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "JW 메리어트 몰디브 리조트&스파 후기 25.3.4-3.6",
+        "url": "https://blog.naver.com/garamsg/223804897689",
+        "blogName": "♡maldives♡",
+        "publishedAt": "2025-03-21",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

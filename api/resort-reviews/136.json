@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "resortId": 136,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 5,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "월도프 아스토리아 몰디브 이타푸시 5박 6일 숙박 후기 (Feat....",
+        "url": "https://blog.naver.com/wemetinparis/223857017203",
+        "blogName": "WemetinParis",
+        "publishedAt": "2025-05-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2026년 4월 다시 간 월도프 아스토리아 몰디브 ...",
+        "url": "https://blog.naver.com/p_ssn/224295635449",
+        "blogName": "All Of Sanna",
+        "publishedAt": "2026-05-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[여행] 월도프 아스토리아 몰디브 사진 : 럭셔리 요트와 리프 빌라",
+        "url": "https://blog.naver.com/duadmsaud/224037503107",
+        "blogName": "♬ 쿠로네코의 GIF／MP3 공방 ♬",
+        "publishedAt": "2025-10-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[202409 아이와 몰디브 ] 월도프 아스토리아 몰디브 이타 푸쉬...",
+        "url": "https://blog.naver.com/blooming337/223642968002",
+        "blogName": "내 마음은 콩밭에",
+        "publishedAt": "2024-11-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 여행] 월도프 아스토리아 몰디브 DAY3...",
+        "url": "https://blog.naver.com/daily_hyunny/223184449175",
+        "blogName": "혀니의 지구별여행",
+        "publishedAt": "2023-08-15",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

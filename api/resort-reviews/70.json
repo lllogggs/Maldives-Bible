@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 70,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "조용히 쉬기 좋은 휴양형 분위기가 강점이에요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "심심한 섬이라고 했나! 몰디브 자마나파루 바쁜 신혼여행 후기",
+        "url": "https://blog.naver.com/minsanity-/223783775772",
+        "blogName": "갓생 서약서",
+        "publishedAt": "2025-03-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자 마나파루 5박 후기 ①｜비치빌라 2박 + 워터빌라...",
+        "url": "https://blog.naver.com/yubunamnote/224181128584",
+        "blogName": "결혼 3년차 유부남 라이프 노트",
+        "publishedAt": "2026-02-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 자마나파루 올인클루시브 몰디브 리조트",
+        "url": "https://blog.naver.com/lovemw3/224331350122",
+        "blogName": "미오의 즐거운 인생 ♥",
+        "publishedAt": "2026-06-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브리조트 자마나파루 후기 , 가격, 라군, 선택팁",
+        "url": "https://blog.naver.com/tvxqpeal/223666018863",
+        "blogName": "라이퓨's ROOM (블로그 성장을 위한 꿀팁 공간)",
+        "publishedAt": "2024-11-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 5성급 리조트 자마나파루 , 수상비행기타고...",
+        "url": "https://blog.naver.com/fouryourseason/223822187134",
+        "blogName": "모든 계절의 일상들",
+        "publishedAt": "2025-04-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 추천 자마나파루 선셋 워터빌라",
+        "url": "https://blog.naver.com/larin99/223614870480",
+        "blogName": "팡지는 오늘도 기록중",
+        "publishedAt": "2024-10-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 ✈️ ㅣ 말레공항 -> 자마나파루 리조트 ...",
+        "url": "https://blog.naver.com/samworiil/223878548310",
+        "blogName": "꿈꾸는 뚜모장",
+        "publishedAt": "2025-05-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자 마나파루 리조트 완벽 후기 (워터빌라, 비치빌라...",
+        "url": "https://blog.naver.com/hannah076/224063560539",
+        "blogName": "daily log",
+        "publishedAt": "2025-11-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "(허니문 리조트 몰디브 신혼여행 후기 , 자 마나파루 Ja...",
+        "url": "https://blog.naver.com/dmsqlek5232/223952258325",
+        "blogName": "할 말은 많은데, 말 할 데가 없다",
+        "publishedAt": "2025-07-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 자마나파루 ♥] 누구보다 자세한 후기 말아드림(3편)...",
+        "url": "https://blog.naver.com/naminnnnng/223755069655",
+        "blogName": "추구미 = 갭모에✨️",
+        "publishedAt": "2025-02-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자마나파루 후기 (3)-스노쿨링 투어, 선셋 돌고래 투어...",
+        "url": "https://blog.naver.com/myofic/223799473984",
+        "blogName": "MW슐랭",
+        "publishedAt": "2025-03-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "출발 몰디브 도착 (ft. 자마나파루 리조트 , 카쿠니...",
+        "url": "https://blog.naver.com/tewwa/224230365362",
+        "blogName": "Bibidi Babidi Bloom♬",
+        "publishedAt": "2026-03-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 6탄 ( 자마나파루 리조트 수중환경...",
+        "url": "https://blog.naver.com/biniroad/223507542210",
+        "blogName": "⭐️ 빈이로드 맛집 탐방 ✿",
+        "publishedAt": "2024-07-10",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

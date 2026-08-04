@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "resortId": 110,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 시설과 객실 어메니티 품질의 만족도가 높아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "리조트 , 신혼여행 추천 ' 리츠칼튼 몰디브 , 파리 아일랜드 ' 후기",
+        "url": "https://blog.naver.com/ekdms0518/224090085281",
+        "blogName": "단여와! 세계&국내 여행 이야기",
+        "publishedAt": "2025-11-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "W10. 몰디브 신혼여행 리조트 솔직 후기 리츠칼튼",
+        "url": "https://blog.naver.com/garden_by_rachel/223682657598",
+        "blogName": "Garden by Rachel",
+        "publishedAt": "2024-12-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "리츠칼튼 몰디브 허니문 3일차 스노클링 리조트 산책...",
+        "url": "https://blog.naver.com/heyrecords/223998482392",
+        "blogName": "Hey records",
+        "publishedAt": "2025-09-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 몰디브 1일차 리츠칼튼 몰디브 , 럭셔리 리조트 인...",
+        "url": "https://blog.naver.com/kyuing2020/223944505963",
+        "blogName": "규잉의 재테크 이야기",
+        "publishedAt": "2025-07-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리츠칼튼 휴가 기록 / 1",
+        "url": "https://blog.naver.com/dooyoo_seo/223631631473",
+        "blogName": "생활기록장",
+        "publishedAt": "2024-10-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리츠칼튼 (1) : 메리어트 포인트 숙박 후기",
+        "url": "https://blog.naver.com/barkgy10/223956117795",
+        "blogName": "바크지 일기장",
+        "publishedAt": "2025-08-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[Maldives] 리츠칼튼 몰디브 ... 클래스, 파리 마리나...",
+        "url": "https://blog.naver.com/derm_bo/223833107099",
+        "blogName": "Derm_bo",
+        "publishedAt": "2025-04-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "호텔 투숙기 - 리츠 칼튼 몰디브 , 파리 아일랜드 (4)...",
+        "url": "https://blog.naver.com/illumino/222865914771",
+        "blogName": "오늘의 호텔 리뷰",
+        "publishedAt": "2022-09-03",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

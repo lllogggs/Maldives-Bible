@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "resortId": 20,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "가격 대비 만족도가 높아요.",
+        "mentions": 2
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 4,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "sufficient",
+    "sources": [
+      {
+        "title": "준비물 총정리｜ 브레니아 코테파루 리조트 후기 & 가성비 숙소 팁",
+        "url": "https://blog.naver.com/dasul9442/224116674267",
+        "blogName": "가즈아 슬코스!",
+        "publishedAt": "2025-12-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 갓성비✨ 리조트 추천! 브레니아 코테파루 ...",
+        "url": "https://blog.naver.com/gksthf9431/223367863744",
+        "blogName": "피노랑 닝구랑",
+        "publishedAt": "2024-02-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 8박10일 브레니아 후기 와 스리랑카 경유로 다녀온...",
+        "url": "https://blog.naver.com/moogstar1004/223929887926",
+        "blogName": "여행 일기장",
+        "publishedAt": "2025-07-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "11월 두바이· 몰디브 신혼여행 후기 ｜에미레이트항공부터...",
+        "url": "https://blog.naver.com/dasul9442/224115390927",
+        "blogName": "가즈아 슬코스!",
+        "publishedAt": "2025-12-19",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

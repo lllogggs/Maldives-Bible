@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 35,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "하우스리프에서 거북이를 두 번 목격했어요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-30",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 코모 말리푸시( Como Maalifushi ) 리조트 - 후기 와...",
+        "url": "https://blog.naver.com/mini9618/223277272036",
+        "blogName": "그때가 되면 되어 있다",
+        "publishedAt": "2023-11-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[2022년 몰디브 코모 말리 푸시 ] 몰디브 신혼여행A to Z 리조트 ...",
+        "url": "https://blog.naver.com/tjswn104/222693158022",
+        "blogName": "쭈약's Diary",
+        "publishedAt": "2022-04-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 코모 말리 푸시 7일차 :: 비치빌라 122호...",
+        "url": "https://blog.naver.com/dlwnsrl0819/223727063909",
+        "blogName": "햄쥰의 오늘",
+        "publishedAt": "2025-01-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "두바이 몰디브 신혼여행 3일차 | 코모 말리 푸시 비치스윗 114호",
+        "url": "https://blog.naver.com/bbangbbang_0_0/223942881268",
+        "blogName": "ʚɞ빵또기의 일상ʚɞ",
+        "publishedAt": "2025-07-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 / 리조트 후기 / 코모 말리푸시 / Como Maalifushi",
+        "url": "https://blog.naver.com/ellen_diary/223049402963",
+        "blogName": "Love my Day",
+        "publishedAt": "2023-03-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "말리푸시 ( como maalifushi )/ 몰디브 럭셔리 리조트 ...",
+        "url": "https://blog.naver.com/ilovemax20/223148736923",
+        "blogName": "아이럽맥스",
+        "publishedAt": "2023-07-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 말리푸시( Maalifushi by como ) (2015.5.25~5.30)",
+        "url": "https://blog.naver.com/minnie81/220477409765",
+        "blogName": "minnie's",
+        "publishedAt": "2015-09-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "코모 말리푸시( COMO Maalifushi ) 비치스윗 위드 풀 후기",
+        "url": "https://blog.naver.com/hyetony/223009652650",
+        "blogName": "토다코 세가족★",
+        "publishedAt": "2023-02-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 Day4.... 카약 어드벤쳐 후기 | 카약타고 수영하고",
+        "url": "https://blog.naver.com/zu_log/222844637226",
+        "blogName": "zulog",
+        "publishedAt": "2022-08-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 몰디브 말리푸시 추천 장점 단점 후기 feat.영상편집",
+        "url": "https://blog.naver.com/jihye8927/221878477774",
+        "blogName": "똥글이의 소소한 이야기",
+        "publishedAt": "2020-03-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행 몰디브 ] 코모 말리푸시 COMO Maalifushi ...",
+        "url": "https://blog.naver.com/oloveoluck/223378741318",
+        "blogName": "fortunate",
+        "publishedAt": "2024-03-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 코모 말리푸시 리조트 (1월 16일~17일)...",
+        "url": "https://blog.naver.com/1225ina/223013454112",
+        "blogName": "꾸링의 일상",
+        "publishedAt": "2023-02-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행] 코모말리푸시 1일차",
+        "url": "https://blog.naver.com/kozi88/223298893501",
+        "blogName": "Bon voyage",
+        "publishedAt": "2023-12-21",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

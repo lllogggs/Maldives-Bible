@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "resortId": 107,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 3,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 리티 파루 리조트 ( Reethi Faru ) 후기",
+        "url": "https://blog.naver.com/machokim7/221333826831",
+        "blogName": "마쵸킴의 비트선물",
+        "publishedAt": "2018-08-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "리티 파루 리조트 ( Reethi Faru Resort )",
+        "url": "https://blog.naver.com/eunseon777/221334560241",
+        "blogName": "개굴개굴 S2 꽃돼지 부부의 세계여행이야기",
+        "publishedAt": "2018-08-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가성비 리조트 , 리티파루 총정리",
+        "url": "https://blog.naver.com/dammnang/221826464462",
+        "blogName": "담낭이의 담담한 블로그",
+        "publishedAt": "2020-02-26",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

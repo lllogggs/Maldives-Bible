@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "resortId": 154,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "다양한 물고기를 볼 수 있고 다시 방문하고 싶을 만큼 만족도가 높아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 2,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 리조트 추천 서머 아일랜드 몰디브 에서...",
+        "url": "https://blog.naver.com/theyunny_/223643640035",
+        "blogName": "YunnySideUp",
+        "publishedAt": "2024-11-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "^^ 몰디브 리조트 , 섬머 아일랜드( Summer Island Maldives )...",
+        "url": "https://blog.naver.com/kj_2020/221819800084",
+        "blogName": "호텔홀릭",
+        "publishedAt": "2020-02-22",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

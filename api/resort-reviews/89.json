@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 89,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "즐길 거리가 다양하고 신혼여행 만족도가 높아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "여행 | 럭스 사우스 아리아톨 올익스클루시브 후기 | 리조트 ...",
+        "url": "https://blog.naver.com/dahyun023/224049117707",
+        "blogName": "흥얼흥얼 MELODY ♬",
+        "publishedAt": "2025-10-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 ( 럭스 사우스 아리아톨 ) / 여행산책 여행 후기",
+        "url": "https://blog.naver.com/c_sol27/224255421200",
+        "blogName": "다재다능",
+        "publishedAt": "2026-04-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 럭스 사우스 아리아톨 ... 올인클루시브 플로팅조식 후기",
+        "url": "https://blog.naver.com/lyr0929/224251164279",
+        "blogName": "하옐이의 푸드로그",
+        "publishedAt": "2026-04-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "2편] 몰디브 리조트 고르는 꿀팁 + ‘ 럭스 사우스 아리 아톨 ’...",
+        "url": "https://blog.naver.com/hjy4527/224343357380",
+        "blogName": "사소한 나의 이야기",
+        "publishedAt": "2026-07-11",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 럭스 사우스 아리아톨 1일차 수상비행기...",
+        "url": "https://blog.naver.com/happyeteday/223963501635",
+        "blogName": "Happy ete day",
+        "publishedAt": "2025-08-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행ㅣ 럭스 사우스 아리아톨 뽕따색 바다와 맛집...",
+        "url": "https://blog.naver.com/yoon3198/223706021682",
+        "blogName": "핀치의 홈로그",
+        "publishedAt": "2024-12-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 럭스 사우스 아리 아톨 후기 1",
+        "url": "https://blog.naver.com/wowblog101/224190568921",
+        "blogName": "밍기적밍기적",
+        "publishedAt": "2026-02-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 신혼여행✈️말레... 후 ‘ 럭스사우스아리아톨 ’...",
+        "url": "https://blog.naver.com/ejsuh66/224200604910",
+        "blogName": "Have fun! Tina’s diary",
+        "publishedAt": "2026-03-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 후기 몰디브 럭셔리 리조트 숙소 럭스 사우스 아리아톨",
+        "url": "https://blog.naver.com/namhansh/223592887849",
+        "blogName": "프로 세계여행러 떠네르",
+        "publishedAt": "2024-09-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "(3)_ 럭스 사우스 아리아톨 워터풀빌라 3박 후기 , 여행산책...",
+        "url": "https://blog.naver.com/sunflower_4_u/223790880533",
+        "blogName": "MAGIC IN THE STAGE",
+        "publishedAt": "2025-03-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 경비> 완벽 정리(5박 6일) 럭스 사우스 아리아톨 리조트",
+        "url": "https://blog.naver.com/seguitestess/223599518181",
+        "blogName": "하고재비의 여행, 리빙 블로그",
+        "publishedAt": "2024-09-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 럭스 사우스 아리아톨 리조트 단점 (LUX* south ari...",
+        "url": "https://blog.naver.com/minilog3030/224152183274",
+        "blogName": "✈️ 람비의 Travelog",
+        "publishedAt": "2026-01-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "나의 몰디브 이야기 1탄 ( 럭스사우스 아리아톨 , with 여행산책)",
+        "url": "https://blog.naver.com/2hani95/224115192034",
+        "blogName": "하니와 함께하는 임상일상",
+        "publishedAt": "2025-12-19",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

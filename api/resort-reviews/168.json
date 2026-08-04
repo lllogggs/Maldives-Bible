@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "resortId": 168,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "일주일 동안 기대했던 하늘과 바다, 분위기를 모두 즐길 수 있어요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 9,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "에메랄드 파루푸시 몰디브 리조트 리뷰ㅣ 신혼여행 리조트 ...",
+        "url": "https://blog.naver.com/baepauline/223950333946",
+        "blogName": "On Green",
+        "publishedAt": "2025-07-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 에메랄드 파루푸시 리조트 입성 (DAY 1)",
+        "url": "https://blog.naver.com/sosohane-/223900330149",
+        "blogName": "밍기적 밍기적",
+        "publishedAt": "2025-06-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 상세사진과 솔직 후기 에메랄드 파루푸시 레스토랑...",
+        "url": "https://blog.naver.com/luv_0404/224284728423",
+        "blogName": "luv_u",
+        "publishedAt": "2026-05-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 5박7일 에메랄드 파루푸시 리조트 ...",
+        "url": "https://blog.naver.com/hellosoykim/223854135107",
+        "blogName": "쏘짱먹짱놀짱",
+        "publishedAt": "2025-05-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "4편 ( 몰디브 리조트 추천,에메랄드 파루푸시 비치빌라...",
+        "url": "https://blog.naver.com/s_e_u_li/224133087583",
+        "blogName": "꿀꽈배기 하우스",
+        "publishedAt": "2026-01-03",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 리조트 추천 수중환경 좋은 에메랄드 파루푸시",
+        "url": "https://blog.naver.com/liejerry/223999083281",
+        "blogName": "얄짤없는 라이제리뷰",
+        "publishedAt": "2025-09-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 후기 (에메랄드 파루푸시 ) 0일차",
+        "url": "https://blog.naver.com/leesky509/224224548626",
+        "blogName": "Skylog",
+        "publishedAt": "2026-03-21",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 에메랄드 파루푸시 리조트 , 워터 빌라 위드 풀",
+        "url": "https://blog.naver.com/dahy_e_/223538020608",
+        "blogName": "다헤의 먹고 놀고 즐기는 일상",
+        "publishedAt": "2024-08-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 / 몰디브 에메랄드 파루푸시 워터빌라 위드풀 후기 ...",
+        "url": "https://blog.naver.com/sar120/223601989147",
+        "blogName": "푸딩맘의 소소하개",
+        "publishedAt": "2024-09-30",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

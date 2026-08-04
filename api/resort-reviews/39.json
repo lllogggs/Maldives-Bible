@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "resortId": 39,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 신혼여행 니바 디갈리 리조트 라군빌라위드풀 숙소 후기",
+        "url": "https://blog.naver.com/sehee5933/224288264189",
+        "blogName": "Serong Blog ෆ",
+        "publishedAt": "2026-05-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 #12] 디갈리 리조트 후기 2탄(식당종류, 예약, 바Bar...",
+        "url": "https://blog.naver.com/hungry_hamo/223706518913",
+        "blogName": "배고픈 하모의 성장기",
+        "publishedAt": "2024-12-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 수상비행기 타고 디갈리 리조트 체크인까지",
+        "url": "https://blog.naver.com/letsgo_runa/224147031593",
+        "blogName": "집순이도 여행은 좋아해",
+        "publishedAt": "2026-01-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "디갈리 몰디브 리조트 신혼여행 솔직 후기 1탄 비치 방갈로!...",
+        "url": "https://blog.naver.com/richtree0316/224166840857",
+        "blogName": "한깡쀼의 일상로그",
+        "publishedAt": "2026-01-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 디갈리 리조트 라군빌라위드풀 3박 후기",
+        "url": "https://blog.naver.com/yhkim1287/223812939380",
+        "blogName": "로리의 지구여행",
+        "publishedAt": "2025-03-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 디갈리 DHIGALI MALDIVES 신혼여행 후기 1-3일차",
+        "url": "https://blog.naver.com/seungheemaseng/224034090798",
+        "blogName": "승희마셍의 잘 먹고 잘 사는 이야기",
+        "publishedAt": "2025-10-07",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 디갈리 리조트 ... Maldives 올 인클루시브 리얼 후기",
+        "url": "https://blog.naver.com/no1seho/224073255747",
+        "blogName": "바게뜨빵네 읽고, 쓰고, 투자하는 이야기",
+        "publishedAt": "2025-11-13",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 디갈리 리조트 라군 풀빌라 룸 컨디션",
+        "url": "https://blog.naver.com/hayoun15/224058210268",
+        "blogName": "오억이와 나붕이의 일상",
+        "publishedAt": "2025-10-29",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

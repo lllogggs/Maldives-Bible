@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "resortId": 3,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "막바지 예약에도 가격 대비 만족도가 좋아요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 3,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "D+146 몰디브 가성비 리조트 아다란 후두란푸시 후기 (1)",
+        "url": "https://blog.naver.com/gusdk021/223072766058",
+        "blogName": "2종2의 일상",
+        "publishedAt": "2023-04-12",
+        "independenceUnknown": false
+      },
+      {
+        "title": "유명한 리조트 아다란 셀렉트 후드후란 푸시 ! 로히스 Lohis...",
+        "url": "https://blog.naver.com/rushtag/221655621482",
+        "blogName": "리브 : Live Today♥",
+        "publishedAt": "2019-09-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "해외여행 몰디브 아다란 ... Villas) 후두 후란 푸시 ...",
+        "url": "https://blog.naver.com/theys7952/220969805060",
+        "blogName": "031So-Sick",
+        "publishedAt": "2017-03-29",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

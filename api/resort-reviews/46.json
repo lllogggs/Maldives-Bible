@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "resortId": 46,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 1,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "리조트 | Ellaidhoo Maldives by Cinnamon | 내돈내산 몰디브 여행",
+        "url": "https://blog.naver.com/ohifh1209/224034874547",
+        "blogName": "물한모금,사진한장",
+        "publishedAt": "2025-10-08",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

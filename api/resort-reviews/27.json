@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "resortId": 27,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 7,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 클럽메드 피놀루 리조트 올인클루시브, 수상 레스토랑...",
+        "url": "https://blog.naver.com/jaceylove/223761383527",
+        "blogName": "Ryunique Life",
+        "publishedAt": "2025-02-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브리조트 추천:: 클럽메드 피놀루 올인클루시브...",
+        "url": "https://blog.naver.com/suie1111/223675048741",
+        "blogName": "두이로그",
+        "publishedAt": "2024-11-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "리조트 학과 손쉽게 졸업하기- 클럽메드 몰디브 카니 , 피놀루 빌",
+        "url": "https://blog.naver.com/y8318386/223053544076",
+        "blogName": "⠀",
+        "publishedAt": "2023-03-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 (에어아시아... 택시/ 클럽메드 피놀루 / 카니 / 리조트 )",
+        "url": "https://blog.naver.com/maengssica/221477831573",
+        "blogName": "MAENGSSICA'",
+        "publishedAt": "2019-03-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 - 클럽메드 피놀루 가는길",
+        "url": "https://blog.naver.com/komi4494/221085188497",
+        "blogName": "하루하루 즐겁게♡",
+        "publishedAt": "2017-08-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 해외여행] 몰디브리조트 ' 클럽메드카니 '에서의 허니문...",
+        "url": "https://blog.naver.com/snoop0912/222797596284",
+        "blogName": "하루일기 걷고맛보고즐기고",
+        "publishedAt": "2022-07-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 ] 클럽메드 카니 ... 오버워터 스위트 3인 가족 이용 후기",
+        "url": "https://blog.naver.com/florina_4ever/221675915184",
+        "blogName": "풍요로운 나날들",
+        "publishedAt": "2019-10-12",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

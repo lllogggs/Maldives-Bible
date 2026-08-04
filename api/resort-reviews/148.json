@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "resortId": 148,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "[ 몰디브 ]️ 쿠두 머큐어 리조트 5박 후기 ! (feat.갓성비...",
+        "url": "https://blog.naver.com/ysg412/224062298409",
+        "blogName": "미생잡는 츄노",
+        "publishedAt": "2025-11-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "05 8박10일/' 머큐어 몰디브 쿠두 ' 6박 '워터빌라/워터...",
+        "url": "https://blog.naver.com/heycg82/224147588439",
+        "blogName": "헤이's 일상이 여행!",
+        "publishedAt": "2026-01-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 머큐어 몰디브 쿠두 리조트 ] 몰디브 신혼여행 리조트 리뷰...",
+        "url": "https://blog.naver.com/eatloveandplay/222700800247",
+        "blogName": "땡칠한 아시아 탐험",
+        "publishedAt": "2022-04-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "다녀온 후기 머큐어 몰디브 쿠두 리조트 Mercure...",
+        "url": "https://blog.naver.com/eldrkeldem1/223061074857",
+        "blogName": "행복한 댕댕이 김르네와 김르네 엄빠의 일상 블로그",
+        "publishedAt": "2023-03-31",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 머큐어 쿠두 리조트 체크인하다!! 비치 풀빌라 1일차...",
+        "url": "https://blog.naver.com/alakokoko/223502344482",
+        "blogName": "흑구의 우당탕탕 일상생활:)",
+        "publishedAt": "2024-07-05",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 머큐어 쿠두 리조트 비치빌라 후기 (1) - 나만의...",
+        "url": "https://blog.naver.com/elf87/223111055211",
+        "blogName": "여행이 필요한 시간",
+        "publishedAt": "2023-08-04",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

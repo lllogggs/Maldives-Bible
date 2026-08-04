@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "resortId": 21,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 6,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "[ 몰디브 리조트 ] 센타라 라스푸시 리조트 스파 가격 & 후기",
+        "url": "https://blog.naver.com/achellnet/223195314244",
+        "blogName": "리미의 다이어리",
+        "publishedAt": "2023-08-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 4월 센타라 라스 푸시 리조트 후기 집순이 관점",
+        "url": "https://blog.naver.com/s2dlals2/223833295774",
+        "blogName": "이연님의 지식 기록서",
+        "publishedAt": "2025-04-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 - 센타라 라스푸시 리조트 #1",
+        "url": "https://blog.naver.com/deadwalker/40194233155",
+        "blogName": "starrystar's photolog",
+        "publishedAt": "2013-08-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "센타라라스 푸쉬 신혼여행 몰디브 올인클루시브 리조트 후기 ...",
+        "url": "https://blog.naver.com/lemonatial/221410643879",
+        "blogName": "배움 쉐어 하우스",
+        "publishedAt": "2018-12-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 자유여행 리조트 센타라 라스 푸시 프리미엄 디럭스...",
+        "url": "https://blog.naver.com/yjy2292/221353541927",
+        "blogName": "인생은 여행★",
+        "publishedAt": "2018-09-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 센타라 라스푸시 리조트 체크인, 워터빌라 룸 컨디션",
+        "url": "https://blog.naver.com/ilovescdc/221139653060",
+        "blogName": "어서오세요, 서울센트럴치과에-",
+        "publishedAt": "2017-11-14",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "resortId": 114,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "hee] 몰디브 여행 ; 사파리 아일랜드 리조트 입성! 내돈내산 후기 ^",
+        "url": "https://blog.naver.com/daily__j-hee/224193761145",
+        "blogName": "j.hee' daily life^with",
+        "publishedAt": "2026-02-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 - 수상비행기 타고 사파리 아일랜드 리조트 ...",
+        "url": "https://blog.naver.com/kim_daes/223666490249",
+        "blogName": "양말부부의 일상, 여행 기록",
+        "publishedAt": "2024-11-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 3. 사파리 아일랜드 리조트 part 2",
+        "url": "https://blog.naver.com/eastview02/223581811650",
+        "blogName": "유유자적 트래블링 푸어",
+        "publishedAt": "2024-09-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "사파리 아일랜드 리조트 ⑤ 몰디브 다이빙 오전 다이빙 두탱크!!!",
+        "url": "https://blog.naver.com/jhkim110/220129054740",
+        "blogName": "플라이앤플레이 - 파비똥꼬",
+        "publishedAt": "2014-09-22",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 신혼여행 후기 ]... 사파리 아일랜드 리조트 까지",
+        "url": "https://blog.naver.com/gogooma-/223272252199",
+        "blogName": "고구마요네즈네",
+        "publishedAt": "2023-11-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가성비 리조트 : 사파리 아일랜드 올인클루시브...",
+        "url": "https://blog.naver.com/dhmi0124/222749363115",
+        "blogName": "행복은 지금 여기에",
+        "publishedAt": "2022-05-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 사파리아일랜드 리조트 신행 후기",
+        "url": "https://blog.naver.com/ssongkim86/220600886059",
+        "blogName": "SSONG_BLOG",
+        "publishedAt": "2016-01-18",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 사파리 아일랜드 ] 후기",
+        "url": "https://blog.naver.com/bgekim/221591320171",
+        "blogName": "살며, 사랑하며.",
+        "publishedAt": "2019-07-21",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

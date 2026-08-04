@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "resortId": 115,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "비치 객실에서 바로 바다로 나갈 수 있어 편리해요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 13,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "몰디브 여행 리조트 추천 사이라군 호텔 SAII LAGOON...",
+        "url": "https://blog.naver.com/smurfshouse/223954922168",
+        "blogName": "개구쟁이파파! 어디가?",
+        "publishedAt": "2025-08-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "사이라군 몰디브 리조트 숙박 Beach Pool Villa 후기",
+        "url": "https://blog.naver.com/jpkno/223558266903",
+        "blogName": "볼때리는 골퍼의 골프/여행/일상이야기",
+        "publishedAt": "2024-08-23",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 사이라군 리조트 :: 스카이룸 후기",
+        "url": "https://blog.naver.com/tobiolet/224246709581",
+        "blogName": "tobiolet 일상 기록",
+        "publishedAt": "2026-04-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 가족여행 사이라군 리조트 하드락수영장 이용 후기 매우...",
+        "url": "https://blog.naver.com/hellogome/223597863038",
+        "blogName": "welcome to dalgomi' world!",
+        "publishedAt": "2024-09-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 리조트 추천 사이 라군 큐리오 컬렉션 바이 힐튼...",
+        "url": "https://blog.naver.com/5fiona/223944955040",
+        "blogName": "오찰칵의 여행 꿀팁",
+        "publishedAt": "2025-07-24",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 사이라군 힐튼 신혼여행 후기",
+        "url": "https://blog.naver.com/guk9609/224341939657",
+        "blogName": "붉은따오기",
+        "publishedAt": "2026-07-09",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 #02. 도착, 스피드보트, 사이라군 리조트",
+        "url": "https://blog.naver.com/rosalinekim/223694460572",
+        "blogName": "오늘부터 시호는",
+        "publishedAt": "2024-12-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 사이라군 하드락 리조트 조식 후기 ｜테라&마르(terra...",
+        "url": "https://blog.naver.com/jihju261929/223976123952",
+        "blogName": "육아하는 유지어터",
+        "publishedAt": "2025-08-19",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 사이라군 리조트 신혼여행 추천 후기 2탄",
+        "url": "https://blog.naver.com/ttingsisters/223876341830",
+        "blogName": "띵자매 맛.여.캠.육",
+        "publishedAt": "2025-05-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "SAII LAGOON Maldives CURIO COLLECTION BY HILTON - Beach...",
+        "url": "https://blog.naver.com/iheeya/223680475312",
+        "blogName": "Hello 초희~♪",
+        "publishedAt": "2024-12-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 하드락 리조트 , 사이라군 리조트 디너 추천...",
+        "url": "https://blog.naver.com/tobiolet/224254722779",
+        "blogName": "tobiolet 일상 기록",
+        "publishedAt": "2026-04-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 하드락 사이라군 리조트 세션스 디너 재패니즈 나이트...",
+        "url": "https://blog.naver.com/shee__kim/224300628812",
+        "blogName": "새로 뜬 맛 탐색러의 여정",
+        "publishedAt": "2026-05-30",
+        "independenceUnknown": false
+      },
+      {
+        "title": "251129~1204 몰디브 힐튼 사이라군 SAii Lagoon 리조트 에...",
+        "url": "https://blog.naver.com/doksoori01/224114134057",
+        "blogName": "doksoori01님의 블로그",
+        "publishedAt": "2025-12-18",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

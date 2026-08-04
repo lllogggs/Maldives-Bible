@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "resortId": 33,
+  "reviewSummary": {
+    "pros": [
+      {
+        "text": "리조트 음식이 전반적으로 맛있어요.",
+        "mentions": 1
+      }
+    ],
+    "cons": [
+      {
+        "text": "식당 수가 적어 선택 폭이 좁다는 점은 아쉬워요.",
+        "mentions": 1
+      }
+    ],
+    "neutral": [],
+    "sourceCount": 12,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "limited",
+    "sources": [
+      {
+        "title": "코라코라 몰디브 리조트 , 자유... 경비 특전 혜택 일정 등 후기",
+        "url": "https://blog.naver.com/gkgk319/224218992752",
+        "blogName": "남아나모하나",
+        "publishedAt": "2026-03-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 경비 완벽한 수중환경의 코라코라 리조트 후기",
+        "url": "https://blog.naver.com/where-is-kat/224297204512",
+        "blogName": "신부야 - 결혼부터 허니문까지 준비하자!",
+        "publishedAt": "2026-05-26",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 코라코라 리조트 가는 법 총정리! 공항 라운지...",
+        "url": "https://blog.naver.com/seoyoojin96/224314901339",
+        "blogName": "유징의 여행 일기",
+        "publishedAt": "2026-06-14",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 찐 후기 1편 코라코라 리조트 가성비 갑...",
+        "url": "https://blog.naver.com/eienn1/223776496301",
+        "blogName": "쌍케이의 신나는 리뷰세상",
+        "publishedAt": "2025-02-27",
+        "independenceUnknown": false
+      },
+      {
+        "title": "경유 몰디브 / 수상비행기 타고 코라코라 리조트 까지",
+        "url": "https://blog.naver.com/ssh9740/224079264997",
+        "blogName": "뜽혀닝로그✨️",
+        "publishedAt": "2025-11-17",
+        "independenceUnknown": false
+      },
+      {
+        "title": "코라코라 몰디브 비치빌라 솔직 후기 ｜신혼여행 객실 리뷰...",
+        "url": "https://blog.naver.com/tngus0753/224171659979",
+        "blogName": "소소 산뽀",
+        "publishedAt": "2026-02-04",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 여행 신혼여행 리조트 완벽했던 코라코라 추천...",
+        "url": "https://blog.naver.com/dd_keep_well/224338014141",
+        "blogName": "메이둥‘s Travelog",
+        "publishedAt": "2026-07-06",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 몰디브 ] 싱가폴 경유 몰디브 코라코라 리조트 예약, 가는법...",
+        "url": "https://blog.naver.com/hoso0066/224311382969",
+        "blogName": "❤️쩡블로그❤️",
+        "publishedAt": "2026-06-10",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[ 코라코라 리조트 ] 몰디브 올인클루시브 리조트 추천",
+        "url": "https://blog.naver.com/gkdbwjd0806/224195710426",
+        "blogName": "유댕유뎡",
+        "publishedAt": "2026-02-25",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 신혼여행 코라코라 ... 라군 풀빌라 올인클루시브 후기",
+        "url": "https://blog.naver.com/jyj1471/224253499588",
+        "blogName": "션이 생각╰(*´▽｀*)╯",
+        "publishedAt": "2026-04-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "[신혼여행] 몰디브 코라 코라 리조트 후기",
+        "url": "https://blog.naver.com/rlaguswl44007/223679153005",
+        "blogName": "DajoA's 즐거운 일상",
+        "publishedAt": "2024-12-01",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 ] 몰디브 코라코라 리조트 라군풀빌라 허니문 후기 _객실...",
+        "url": "https://blog.naver.com/freenewbride/224324757569",
+        "blogName": "신혼쀼의 인생개척기",
+        "publishedAt": "2026-06-23",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}

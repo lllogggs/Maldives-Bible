@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "resortId": 101,
+  "reviewSummary": {
+    "pros": [],
+    "cons": [],
+    "neutral": [],
+    "sourceCount": 8,
+    "reviewedAt": "2026-07-14",
+    "basis": "naver-blog-search-snippets",
+    "evidenceStatus": "insufficient",
+    "sources": [
+      {
+        "title": "몰디브 파크하얏트 하다하 워터풀빌라 신혼여행 리조트",
+        "url": "https://blog.naver.com/daily_merry/223804082353",
+        "blogName": "메리썸 로그북",
+        "publishedAt": "2025-03-20",
+        "independenceUnknown": false
+      },
+      {
+        "title": "6박 7일, 1일차 파크하얏트 하다하 비치빌라 후기",
+        "url": "https://blog.naver.com/anna122412/224317016792",
+        "blogName": "혀나쓰 블로그",
+        "publishedAt": "2026-06-16",
+        "independenceUnknown": false
+      },
+      {
+        "title": "(3) 몰디브 파크하얏트 하다하 ... 비치풀빌라/오버워터빌라 후기",
+        "url": "https://blog.naver.com/akaleo_/223885429178",
+        "blogName": "Nareum",
+        "publishedAt": "2025-06-02",
+        "independenceUnknown": false
+      },
+      {
+        "title": "수중환경 대박 식사도 맛있는 파크하얏트 하다하 5일차 후기",
+        "url": "https://blog.naver.com/ka_yeon_2/224024467654",
+        "blogName": "몽실누나의 뇸뇸일기",
+        "publishedAt": "2025-09-28",
+        "independenceUnknown": false
+      },
+      {
+        "title": "몰디브 파크 하얏트 하다하 워터빌라, 평생 기억에 남을 하루",
+        "url": "https://blog.naver.com/graymoose/224008422978",
+        "blogName": "신혼여행 Honeymoon’s",
+        "publishedAt": "2025-09-15",
+        "independenceUnknown": false
+      },
+      {
+        "title": "파크하얏트 몰디브 하다하 1(객실, 예약하는 방법)",
+        "url": "https://blog.naver.com/hyunsukizz/224000070629",
+        "blogName": "주린이에서 증권사 헤비트레이더로",
+        "publishedAt": "2025-09-08",
+        "independenceUnknown": false
+      },
+      {
+        "title": "신혼여행 추천 파크 하얏트 몰디브 하다 레스토랑 완벽 정리",
+        "url": "https://blog.naver.com/iheeya/224300498122",
+        "blogName": "Hello 초희~♪",
+        "publishedAt": "2026-05-29",
+        "independenceUnknown": false
+      },
+      {
+        "title": "하얏트 몰디브 하다하 후기 ｜Park Hyatt Maldives 리조트 ...",
+        "url": "https://blog.naver.com/trip_withme/223922475217",
+        "blogName": "캘리포니아 여행꿀팁, 50개국 여행기, 하얏트 리뷰",
+        "publishedAt": "2025-07-18",
+        "independenceUnknown": false
+      }
+    ]
+  }
+}
