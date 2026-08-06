@@ -46,8 +46,9 @@ const QuoteRequestTemplate: React.FC = () => {
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'failed'>('idle');
 
   const requestText = useMemo(() => [
-    '안녕하세요. 아래와 같은 조건으로 몰디브 견적을 부탁드립니다.',
+    '안녕하세요. 아래와 같은 조건으로 견적을 부탁드립니다.',
     '',
+    '●몰디브바이블 추천 양식',
     `- 출발 예정일: ${travelDate || '미정'}`,
     `- 숙박: ${nights || '4'}박`,
     `- 인원: 성인 ${adults || '2'}명${Number(children) > 0 ? `, 아동 ${children}명` : ''}`,
@@ -55,7 +56,7 @@ const QuoteRequestTemplate: React.FC = () => {
     `- 식사: ${mealPlan}`,
     `- 후보 리조트: ${candidates.trim() || '추천 요청'}`,
     '',
-    '세금, 공항 이동비, 포함 특전, 취소 조건까지 포함한 총액으로 안내 부탁드립니다.',
+    '세금, 공항 이동비, 포함 특전, 취소 조건까지 포함해서 총액으로 안내 부탁드립니다!',
   ].join('\n'), [adults, candidates, children, mealPlan, nights, roomType, travelDate]);
 
   const handleCopy = async () => {
