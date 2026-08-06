@@ -24,7 +24,22 @@ const agencies: Agency[] = [
   { name: '팜투어', website: 'https://www.palmtour.co.kr', kakao_channel: 'https://pf.kakao.com/_Hxmxaxexj' },
 ];
 
+const GUIDE_KAKAO_URL = 'https://open.kakao.com/o/sEsPbzHi';
+
+const shuffleAgencies = (items: Agency[]): Agency[] => {
+  const shuffled = [...items];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+
+  return shuffled;
+};
+
 const TravelAgencies: React.FC = () => {
+  const randomizedAgencies = React.useMemo(() => shuffleAgencies(agencies), []);
+
   React.useEffect(() => {
     trackEvent('agency_list_view', { agency_count: agencies.length });
   }, []);
@@ -37,6 +52,13 @@ const TravelAgencies: React.FC = () => {
     });
   };
 
+  const handleGuideChatClick = () => {
+    trackEvent('guide_kakao_click', {
+      cta_placement: 'quote_comparison_top',
+      link_url: GUIDE_KAKAO_URL,
+    });
+  };
+
   return (
     <div className="animate-fade-in space-y-6 pb-10">
       <section className="flex items-center justify-between border-b border-slate-200 pb-4">
@@ -46,28 +68,26 @@ const TravelAgencies: React.FC = () => {
         </span>
       </section>
 
-      <section className="border-b border-slate-200 pb-5">
-        <div className="rounded-xl bg-[linear-gradient(135deg,#f8fafc,#ecfeff)] px-4 py-5 shadow-sm shadow-slate-900/5 ring-1 ring-teal-100 sm:px-6 sm:py-6">
-          <h2 className="font-brand-heading text-lg text-slate-950 sm:text-xl">여행사 견적이 더 낮을 수 있는 이유</h2>
-
-          <div className="mt-4 max-w-[58ch] text-base leading-7 text-slate-700 sm:leading-8">
-            <p>
-              리조트는 객실을 안정적으로 판매하기 위해 일부 객실을 여행사나 현지 파트너에게 별도 계약가로 제공합니다.
-              여행사는 이 객실에 식사, 공항 이동, 허니문 특전을 묶어 견적을 만들기 때문에 같은 일정과 객실이라도
-              개별 예약보다 총액이 낮을 수 있습니다.
-            </p>
-          </div>
-
-          <div className="mt-5 border-t border-teal-100 pt-4">
-            <p className="text-sm font-semibold text-slate-500">설명용 예시</p>
-            <p className="mt-1 font-brand-heading text-lg font-bold text-slate-950 sm:text-xl">
-              공개 판매가 $10,000 → 여행사 견적 $8,000
-            </p>
-            <p className="mt-3 max-w-[58ch] text-sm leading-6 text-slate-600">
-              여행사가 항상 더 저렴한 것은 아닙니다. 일정·객실·식사·이동·세금과 취소 조건을 같게 맞춰 비교하세요.
-            </p>
-          </div>
+      <section className="rounded-xl bg-[linear-gradient(135deg,#f8fafc,#ecfeff)] p-4 shadow-sm shadow-slate-900/5 ring-1 ring-teal-100 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-5">
+        <div className="max-w-2xl">
+          <h2 className="font-brand-heading text-lg text-slate-950">궁금한 게 많다면 먼저 물어보세요</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-600">
+            저는 여행사가 아니라 견적 요청이나 궁금한 점을 받아 함께 정리해 드리는 몰디브바이블 운영자입니다.
+            따로 영업하거나 예약을 권유하지 않으니 부담 없이 카카오톡으로 들어오세요.
+          </p>
         </div>
+
+        <a
+          href={GUIDE_KAKAO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleGuideChatClick}
+          className="mt-4 inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-lg bg-[#FAE100] px-4 py-2.5 text-sm font-bold text-[#371D1E] transition-colors hover:bg-[#f5dc00] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-yellow-400/30 sm:mt-0 sm:w-auto"
+          aria-label="몰디브바이블 운영자 오픈 카카오톡 새 창에서 열기"
+        >
+          <KakaoIcon className="h-4 w-4" />
+          카카오톡으로 편하게 질문하기
+        </a>
       </section>
 
       <QuoteRequestTemplate />
@@ -76,12 +96,15 @@ const TravelAgencies: React.FC = () => {
         <div>
           <h2 className="font-brand-heading text-xl text-slate-950">같은 조건으로 2~3곳에 요청하세요</h2>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            여행 날짜 · 숙박일수 · 객실 타입 · 식사 플랜 · 이동편 · 세금 · 취소 조건
+            아래 여행사는 페이지를 열 때마다 무작위 순서로 표시되며, 노출 순서는 추천이나 순위와 관계없습니다.
+          </p>
+          <p className="mt-1 text-sm leading-6 text-slate-500">
+            비교 조건: 여행 날짜 · 숙박일수 · 객실 타입 · 식사 플랜 · 이동편 · 세금 · 취소 조건
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {agencies.map(agency => (
+          {randomizedAgencies.map(agency => (
             <article key={agency.name} className="flex min-h-[96px] flex-col rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-900/5">
             <h3 className="line-clamp-1 text-base font-bold text-slate-950" title={agency.name}>
               {agency.name}
