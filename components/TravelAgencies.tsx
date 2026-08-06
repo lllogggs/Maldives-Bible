@@ -73,7 +73,7 @@ const TravelAgencies: React.FC = () => {
           <h2 className="font-brand-heading text-lg text-slate-950">궁금한 게 많다면 먼저 물어보세요</h2>
           <p className="mt-2 text-sm leading-6 text-slate-600">
             저는 여행사가 아니라 견적 요청이나 궁금한 점을 받아 함께 정리해 드리는 몰디브바이블 운영자입니다.
-            따로 영업하거나 예약을 권유하지 않으니 부담 없이 카카오톡으로 들어오세요.
+            따로 영업하거나 예약을 권유하지 않으니 부담 없이 익명으로 들어오세요.
           </p>
         </div>
 
