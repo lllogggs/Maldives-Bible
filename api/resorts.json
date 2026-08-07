@@ -55,36 +55,36 @@
     "hasKidsClub": false,
     "honeymoonPerks": true,
     "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_21.jpg/1920px-Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_21.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_08.jpg/1920px-Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_08.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_33.jpg/1920px-Flora_of_Adaaran_Prestige_Vadoo%2C_Maldives_33.jpg"
+      "https://adaaran.eme-devops.com/sites/3/2025/08/DRONE-3.jpg",
+      "https://adaaran.eme-devops.com/sites/3/2025/08/AERIAL-4.jpg",
+      "https://adaaran.eme-devops.com/sites/3/2025/08/SUNSET-VILLA-6-1.jpg"
     ],
     "roomTypes": [
       "선라이즈 워터 빌라",
       "선셋 워터 빌라"
     ],
     "homepageUrl": "https://www.adaaran.com/prestigevadoo/",
-    "imageSourceNote": "Wikimedia",
-    "imageSourceProvider": "Wikimedia Commons",
-    "imageSourceUrl": "https://commons.wikimedia.org/wiki/File%3AFlora_of_Adaaran_Prestige_Vadoo%2C_Maldives_21.jpg",
+    "imageSourceNote": "공식 이미지",
+    "imageSourceProvider": "Adaaran Resorts official site",
+    "imageSourceUrl": "https://www.adaaran.com/prestigevadoo/gallery/",
     "imageCredits": [
       {
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFlora_of_Adaaran_Prestige_Vadoo%2C_Maldives_21.jpg",
-        "creator": "Rajasekhar1961",
-        "license": "CC0",
-        "provider": "Wikimedia Commons"
+        "sourceUrl": "https://www.adaaran.com/prestigevadoo/gallery/",
+        "creator": "Adaaran Resorts",
+        "license": "공식 사이트 이미지",
+        "provider": "Adaaran Resorts official site"
       },
       {
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFlora_of_Adaaran_Prestige_Vadoo%2C_Maldives_08.jpg",
-        "creator": "Rajasekhar1961",
-        "license": "CC0",
-        "provider": "Wikimedia Commons"
+        "sourceUrl": "https://www.adaaran.com/prestigevadoo/gallery/",
+        "creator": "Adaaran Resorts",
+        "license": "공식 사이트 이미지",
+        "provider": "Adaaran Resorts official site"
       },
       {
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFlora_of_Adaaran_Prestige_Vadoo%2C_Maldives_33.jpg",
-        "creator": "Rajasekhar1961",
-        "license": "CC0",
-        "provider": "Wikimedia Commons"
+        "sourceUrl": "https://www.adaaran.com/prestigevadoo/gallery/",
+        "creator": "Adaaran Resorts",
+        "license": "공식 사이트 이미지",
+        "provider": "Adaaran Resorts official site"
       }
     ]
   },
