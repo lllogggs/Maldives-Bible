@@ -38,7 +38,7 @@ const ResortGrid: React.FC<ResortGridProps> = ({
   return (
     <div>
       {resorts.length > 0 ? (
-        <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 items-stretch gap-3 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
           {resorts.map((resort, index) => (
             <ResortCard
               key={resort.id}
