@@ -16,11 +16,13 @@ const CompareTray: React.FC<CompareTrayProps> = ({ resorts, onRemove, onClear, o
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 animate-fade-in bg-white/80 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_12px_rgba(0,0,0,0.1)] backdrop-blur-md">
-      <div className="mx-auto max-w-screen-xl px-3 py-2.5 sm:px-4 sm:py-3">
-        <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+      <div className="mx-auto max-w-screen-xl px-3 py-2 sm:px-4 sm:py-3">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <div className="flex-1 min-w-0">
             <h3 className="hidden sm:block text-lg font-bold text-gray-800 mb-2">비교 리조트 ({resorts.length}/3)</h3>
-            <div className="mb-1.5 text-sm font-bold text-gray-800 sm:hidden">비교 ({resorts.length}/3)</div>
+            <div className="mb-1 text-xs font-bold text-gray-700 sm:hidden">
+              {resorts.length < 2 ? '하나 더 선택하면 비교할 수 있어요' : `${resorts.length}개 리조트 비교 준비 완료`}
+            </div>
             
             <div className="hidden sm:grid sm:grid-cols-3 gap-3">
               {resorts.map(resort => (
@@ -45,12 +47,12 @@ const CompareTray: React.FC<CompareTrayProps> = ({ resorts, onRemove, onClear, o
 
             <div className="flex min-w-0 items-center gap-2 overflow-x-auto pb-1 sm:hidden">
                {resorts.map(resort => (
-                <div key={resort.id} className="flex min-w-[118px] max-w-[154px] flex-1 items-center gap-1 rounded-full bg-gray-100 py-1 pl-3 pr-1 text-sm ring-1 ring-gray-200">
+                <div key={resort.id} className="flex min-w-[108px] max-w-[148px] flex-1 items-center gap-1 rounded-full bg-gray-100 py-0.5 pl-3 pr-0.5 text-xs ring-1 ring-gray-200">
                   <span className="min-w-0 flex-1 truncate font-medium text-gray-800">{resort.name}</span>
                   <button
                     type="button"
                     onClick={() => onRemove(resort.id)}
-                    className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-200 hover:text-gray-800"
+                    className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-200 hover:text-gray-800 sm:h-11 sm:w-11"
                     aria-label={`${resort.name} 비교에서 제거`}
                   >
                     <XIcon className="h-4 w-4" />

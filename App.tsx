@@ -10,6 +10,7 @@ import ResortSelectionTips from './components/ResortSelectionTips';
 import TravelAgencies from './components/TravelAgencies';
 import FlightInfo from './components/FlightInfo';
 import SiteFooter from './components/SiteFooter';
+import DesktopViewingTip from './components/DesktopViewingTip';
 import { POPULARITY_RANKING } from './constants';
 import { TransportationType, type Resort, type Filters, type ResortEditorReview, type SortOption } from './types';
 import { ChevronDownIcon, FilterIcon, SearchIcon, SortIcon } from './components/icons/Icons';
@@ -2521,7 +2522,7 @@ const App: React.FC = () => {
     resortsToCompare.length > 0;
 
   return (
-    <div className={`min-h-screen bg-[#f6f8f7] text-slate-950 ${shouldShowCompareTray ? 'pb-[calc(11rem+env(safe-area-inset-bottom))] sm:pb-[calc(12rem+env(safe-area-inset-bottom))]' : 'pb-0'}`}>
+    <div className={`min-h-screen bg-[#f6f8f7] text-slate-950 ${shouldShowCompareTray ? 'pb-[calc(9rem+env(safe-area-inset-bottom))] sm:pb-[calc(12rem+env(safe-area-inset-bottom))]' : 'pb-0'}`}>
       <Header
         isImageEditMode={isImageEditMode}
         onToggleImageEditMode={handleToggleImageEditMode}
@@ -2572,31 +2573,17 @@ const App: React.FC = () => {
                 onDeleteImage={handleDeleteResortImage}
               />
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <header>
-                  <h1 className="font-brand-heading text-2xl text-slate-950">
+                  <h1 className="font-brand-heading text-xl text-slate-950 sm:text-2xl">
                     몰디브 리조트 비교
                   </h1>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">
+                  <p className="mt-1 text-sm leading-5 text-slate-600 sm:leading-6">
                     171개 리조트를 예산, 이동수단, 객실 유형, 개인풀과 수중환경 기준으로 비교해 보세요.
                   </p>
                 </header>
+                <DesktopViewingTip />
                 <div className="grid grid-cols-1 gap-3 border-b border-slate-200 pb-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6">
-                  <div className="flex items-center justify-between gap-3 lg:hidden">
-                    <button
-                      ref={filterTriggerRef}
-                      type="button"
-                      onClick={handleOpenFilter}
-                      className="flex h-10 items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:hidden"
-                    >
-                      <FilterIcon className="h-5 w-5" />
-                      <span>필터</span>
-                    </button>
-                    <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200">
-                      {displayedResorts.length}개 리조트
-                    </span>
-                  </div>
-
                   <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center lg:col-start-2">
                     <div className="relative min-w-0 flex-1">
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
@@ -2612,9 +2599,20 @@ const App: React.FC = () => {
                         className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-10 pr-4 text-sm text-slate-950 shadow-inner shadow-slate-900/[0.03] transition-all placeholder:text-slate-400 focus:border-teal-400 focus:outline-none focus:ring-4 focus:ring-teal-500/10"
                       />
                     </div>
-                    <div className="flex items-center gap-2 sm:justify-end">
-                      <SortIcon className="h-5 w-5 text-slate-500" />
-                      <div className="relative min-w-[154px] flex-1 sm:min-w-[200px] sm:flex-none">
+                    <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:flex sm:justify-end">
+                      <button
+                        ref={filterTriggerRef}
+                        type="button"
+                        onClick={handleOpenFilter}
+                        className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-900/5 hover:border-slate-300 hover:bg-slate-50 active:bg-slate-100 lg:hidden"
+                      >
+                        <FilterIcon className="h-5 w-5" />
+                        <span>
+                          필터{getActiveFilterCount(filters) > 0 ? ` ${getActiveFilterCount(filters)}` : ''}
+                        </span>
+                      </button>
+                      <SortIcon className="hidden h-5 w-5 text-slate-500 sm:block" />
+                      <div className="relative min-w-0 sm:min-w-[200px] sm:flex-none">
                         <select
                           id="sort-options"
                           aria-label="리조트 정렬 기준"
@@ -2639,6 +2637,9 @@ const App: React.FC = () => {
                           <ChevronDownIcon />
                         </div>
                       </div>
+                      <span className="shrink-0 text-xs font-semibold text-slate-500 lg:hidden">
+                        {displayedResorts.length}개
+                      </span>
                     </div>
                     <span className="hidden shrink-0 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 ring-1 ring-slate-200 lg:inline-flex">
                       {displayedResorts.length}개 리조트
